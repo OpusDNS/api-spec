@@ -87,6 +87,7 @@ import type {
   ParkingSignup,
   ParkingSignupStatus,
   ParkingTotalMetrics,
+  PreviewMailRes,
   Problem,
   ProductCreateRes,
   PublicPermissionSet,
@@ -860,6 +861,10 @@ export type GET_WhitelabelBranding_Response = GET_WhitelabelBranding_Response_20
 export type GET_WhitelabelBranding_Response_200 = WhitelabelBranding;
 export type GET_WhitelabelBranding_Response_422 = HTTPValidationError;
 
+export type GET_WhitelabelBrandingEmailTemplates_Response = GET_WhitelabelBrandingEmailTemplates_Response_422;
+
+export type GET_WhitelabelBrandingEmailTemplates_Response_422 = HTTPValidationError;
+
 export type PATCH_AiConciergeConversationsByConversationId_Response = PATCH_AiConciergeConversationsByConversationId_Response_200 | PATCH_AiConciergeConversationsByConversationId_Response_401 | PATCH_AiConciergeConversationsByConversationId_Response_404 | PATCH_AiConciergeConversationsByConversationId_Response_422 | PATCH_AiConciergeConversationsByConversationId_Response_502;
 
 export type PATCH_AiConciergeConversationsByConversationId_Response_200 = Conversation;
@@ -1353,6 +1358,11 @@ export type POST_WhitelabelBranding_Response = POST_WhitelabelBranding_Response_
 
 export type POST_WhitelabelBranding_Response_202 = ProductCreateRes;
 export type POST_WhitelabelBranding_Response_422 = HTTPValidationError;
+
+export type POST_WhitelabelBrandingEmailPreview_Response = POST_WhitelabelBrandingEmailPreview_Response_200 | POST_WhitelabelBrandingEmailPreview_Response_422;
+
+export type POST_WhitelabelBrandingEmailPreview_Response_200 = PreviewMailRes;
+export type POST_WhitelabelBrandingEmailPreview_Response_422 = HTTPValidationError;
 
 export type POST_WhitelabelBrandingRecheck_Response = POST_WhitelabelBrandingRecheck_Response_202 | POST_WhitelabelBrandingRecheck_Response_422;
 

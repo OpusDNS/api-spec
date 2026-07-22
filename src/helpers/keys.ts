@@ -5,8 +5,11 @@ import type {
   AiUsageTimeBucket,
   AllowedNumberOfNameserverBase,
   AttributeCondition,
+  Auth,
   BillingMetadata,
   BillingTransaction,
+  Brand,
+  BrandingDocument,
   BrowserStatsBucket,
   BulkObjectTagChanges,
   ClaimsNotice,
@@ -42,6 +45,7 @@ import type {
   ContactsBase,
   ContactsContext,
   ContactsContextCreate,
+  Content,
   ContextList,
   ContextMeta,
   ContextPayload_DomainForward,
@@ -240,6 +244,7 @@ import type {
   EventData,
   EventError,
   EventResponse,
+  Footer,
   GeneralAvailabilityBase,
   GeoStatsBucket,
   GetPrices,
@@ -266,10 +271,12 @@ import type {
   Job,
   LaunchPhaseBase,
   LaunchPhasesBase,
+  Legal,
   LegalRequirementBase,
   ListVanityNameserverSetsRes,
   ListZonesReferencingSetRes,
   LocalPresenceBase,
+  Logo,
   MemoryFact,
   MemoryFactCreateRequest,
   MemoryFactList,
@@ -302,6 +309,7 @@ import type {
   PageResponse_RequestHistory,
   PaginationMetadata,
   PaginationMetadataDTO,
+  Palette,
   ParkingActionPayloadData,
   ParkingAgreementAcceptance,
   ParkingCreateBulkCommand,
@@ -336,6 +344,8 @@ import type {
   PremiumPricingAction,
   PremiumPricingRes,
   PremiumPricing,
+  PreviewMailReq,
+  PreviewMailRes,
   PriceInfo,
   PricingPeriod,
   Problem,
@@ -364,10 +374,12 @@ import type {
   StatusChanges,
   StatusCodeStatsBucket,
   StatusTag,
+  Support,
   TagCreate,
   TagEnriched,
   Tag,
   TagUpdate,
+  Theme,
   TimeSeriesBucket,
   TldBase,
   TldResponseShort,
@@ -486,6 +498,14 @@ export const KEYS_ATTRIBUTE_CONDITION = [
   KEY_ATTRIBUTE_CONDITION_VALUE,
 ] as const satisfies (keyof AttributeCondition)[];
 
+export const KEY_AUTH_AUTHORITY = 'authority' satisfies keyof Auth;
+export const KEY_AUTH_CLIENT_ID = 'client_id' satisfies keyof Auth;
+
+export const KEYS_AUTH = [
+  KEY_AUTH_AUTHORITY,
+  KEY_AUTH_CLIENT_ID,
+] as const satisfies (keyof Auth)[];
+
 export const KEY_BILLING_METADATA_BILLING_MODEL = 'billing_model' satisfies keyof BillingMetadata;
 export const KEY_BILLING_METADATA_CREDIT_LIMIT = 'credit_limit' satisfies keyof BillingMetadata;
 export const KEY_BILLING_METADATA_CUSTOMER_NUMBER = 'customer_number' satisfies keyof BillingMetadata;
@@ -529,6 +549,28 @@ export const KEYS_BILLING_TRANSACTION = [
   KEY_BILLING_TRANSACTION_UPDATED_ON,
   KEY_BILLING_TRANSACTION_VOLUME,
 ] as const satisfies (keyof BillingTransaction)[];
+
+export const KEY_BRAND_LOGO = 'logo' satisfies keyof Brand;
+export const KEY_BRAND_NAME = 'name' satisfies keyof Brand;
+
+export const KEYS_BRAND = [
+  KEY_BRAND_LOGO,
+  KEY_BRAND_NAME,
+] as const satisfies (keyof Brand)[];
+
+export const KEY_BRANDING_DOCUMENT_AUTH = 'auth' satisfies keyof BrandingDocument;
+export const KEY_BRANDING_DOCUMENT_BRAND = 'brand' satisfies keyof BrandingDocument;
+export const KEY_BRANDING_DOCUMENT_CONTENT = 'content' satisfies keyof BrandingDocument;
+export const KEY_BRANDING_DOCUMENT_THEME = 'theme' satisfies keyof BrandingDocument;
+export const KEY_BRANDING_DOCUMENT_VERSION = 'version' satisfies keyof BrandingDocument;
+
+export const KEYS_BRANDING_DOCUMENT = [
+  KEY_BRANDING_DOCUMENT_AUTH,
+  KEY_BRANDING_DOCUMENT_BRAND,
+  KEY_BRANDING_DOCUMENT_CONTENT,
+  KEY_BRANDING_DOCUMENT_THEME,
+  KEY_BRANDING_DOCUMENT_VERSION,
+] as const satisfies (keyof BrandingDocument)[];
 
 export const KEY_BROWSER_STATS_BUCKET_KEY = 'key' satisfies keyof BrowserStatsBucket;
 export const KEY_BROWSER_STATS_BUCKET_TOTAL = 'total' satisfies keyof BrowserStatsBucket;
@@ -1061,6 +1103,20 @@ export const KEYS_CONTACTS_CONTEXT_CREATE = [
   KEY_CONTACTS_CONTEXT_CREATE_KIND,
   KEY_CONTACTS_CONTEXT_CREATE_PAYLOAD,
 ] as const satisfies (keyof ContactsContextCreate)[];
+
+export const KEY_CONTENT_EMAIL_BLOCKS = 'email_blocks' satisfies keyof Content;
+export const KEY_CONTENT_FOOTER = 'footer' satisfies keyof Content;
+export const KEY_CONTENT_LEGAL = 'legal' satisfies keyof Content;
+export const KEY_CONTENT_SIGNATURE = 'signature' satisfies keyof Content;
+export const KEY_CONTENT_SUPPORT = 'support' satisfies keyof Content;
+
+export const KEYS_CONTENT = [
+  KEY_CONTENT_EMAIL_BLOCKS,
+  KEY_CONTENT_FOOTER,
+  KEY_CONTENT_LEGAL,
+  KEY_CONTENT_SIGNATURE,
+  KEY_CONTENT_SUPPORT,
+] as const satisfies (keyof Content)[];
 
 export const KEY_CONTEXT_LIST_PAGINATION = 'pagination' satisfies keyof ContextList;
 export const KEY_CONTEXT_LIST_RESULTS = 'results' satisfies keyof ContextList;
@@ -3288,6 +3344,20 @@ export const KEYS_EVENT_RESPONSE = [
   KEY_EVENT_RESPONSE_TYPE,
 ] as const satisfies (keyof EventResponse)[];
 
+export const KEY_FOOTER_CONTACT_EMAIL = 'contact_email' satisfies keyof Footer;
+export const KEY_FOOTER_DISCLAIMER = 'disclaimer' satisfies keyof Footer;
+export const KEY_FOOTER_LEGAL_ENTITY = 'legal_entity' satisfies keyof Footer;
+export const KEY_FOOTER_LINES = 'lines' satisfies keyof Footer;
+export const KEY_FOOTER_VAT_ID = 'vat_id' satisfies keyof Footer;
+
+export const KEYS_FOOTER = [
+  KEY_FOOTER_CONTACT_EMAIL,
+  KEY_FOOTER_DISCLAIMER,
+  KEY_FOOTER_LEGAL_ENTITY,
+  KEY_FOOTER_LINES,
+  KEY_FOOTER_VAT_ID,
+] as const satisfies (keyof Footer)[];
+
 export const KEY_GENERAL_AVAILABILITY_BASE_START_DATE = 'start_date' satisfies keyof GeneralAvailabilityBase;
 
 export const KEYS_GENERAL_AVAILABILITY_BASE = [
@@ -3676,6 +3746,14 @@ export const KEYS_LAUNCH_PHASES_BASE = [
   KEY_LAUNCH_PHASES_BASE_TRADEMARK_CLAIMS,
 ] as const satisfies (keyof LaunchPhasesBase)[];
 
+export const KEY_LEGAL_PRIVACY_URL = 'privacy_url' satisfies keyof Legal;
+export const KEY_LEGAL_TERMS_URL = 'terms_url' satisfies keyof Legal;
+
+export const KEYS_LEGAL = [
+  KEY_LEGAL_PRIVACY_URL,
+  KEY_LEGAL_TERMS_URL,
+] as const satisfies (keyof Legal)[];
+
 export const KEY_LEGAL_REQUIREMENT_BASE_KEY = 'key' satisfies keyof LegalRequirementBase;
 export const KEY_LEGAL_REQUIREMENT_BASE_OPERATIONS = 'operations' satisfies keyof LegalRequirementBase;
 export const KEY_LEGAL_REQUIREMENT_BASE_TYPE = 'type' satisfies keyof LegalRequirementBase;
@@ -3717,6 +3795,18 @@ export const KEYS_LOCAL_PRESENCE_BASE = [
   KEY_LOCAL_PRESENCE_BASE_REQUIREMENT,
   KEY_LOCAL_PRESENCE_BASE_TYPE,
 ] as const satisfies (keyof LocalPresenceBase)[];
+
+export const KEY_LOGO_DARK = 'dark' satisfies keyof Logo;
+export const KEY_LOGO_FAVICON = 'favicon' satisfies keyof Logo;
+export const KEY_LOGO_ICON = 'icon' satisfies keyof Logo;
+export const KEY_LOGO_LIGHT = 'light' satisfies keyof Logo;
+
+export const KEYS_LOGO = [
+  KEY_LOGO_DARK,
+  KEY_LOGO_FAVICON,
+  KEY_LOGO_ICON,
+  KEY_LOGO_LIGHT,
+] as const satisfies (keyof Logo)[];
 
 export const KEY_MEMORY_FACT_CREATED_AT = 'created_at' satisfies keyof MemoryFact;
 export const KEY_MEMORY_FACT_EXPIRES_AT = 'expires_at' satisfies keyof MemoryFact;
@@ -4226,6 +4316,54 @@ export const KEYS_PAGINATION_METADATA_DTO = [
   KEY_PAGINATION_METADATA_DTO_TOTAL_PAGES,
 ] as const satisfies (keyof PaginationMetadataDTO)[];
 
+export const KEY_PALETTE_ACCENT = 'accent' satisfies keyof Palette;
+export const KEY_PALETTE_ACCENT_FOREGROUND = 'accent_foreground' satisfies keyof Palette;
+export const KEY_PALETTE_BACKGROUND = 'background' satisfies keyof Palette;
+export const KEY_PALETTE_BORDER = 'border' satisfies keyof Palette;
+export const KEY_PALETTE_CARD = 'card' satisfies keyof Palette;
+export const KEY_PALETTE_CARD_FOREGROUND = 'card_foreground' satisfies keyof Palette;
+export const KEY_PALETTE_CHART_COLORS = 'chart_colors' satisfies keyof Palette;
+export const KEY_PALETTE_DANGER = 'danger' satisfies keyof Palette;
+export const KEY_PALETTE_FOREGROUND = 'foreground' satisfies keyof Palette;
+export const KEY_PALETTE_INFO = 'info' satisfies keyof Palette;
+export const KEY_PALETTE_INPUT = 'input' satisfies keyof Palette;
+export const KEY_PALETTE_MUTED = 'muted' satisfies keyof Palette;
+export const KEY_PALETTE_MUTED_FOREGROUND = 'muted_foreground' satisfies keyof Palette;
+export const KEY_PALETTE_PRIMARY = 'primary' satisfies keyof Palette;
+export const KEY_PALETTE_PRIMARY_FOREGROUND = 'primary_foreground' satisfies keyof Palette;
+export const KEY_PALETTE_SECONDARY = 'secondary' satisfies keyof Palette;
+export const KEY_PALETTE_SECONDARY_FOREGROUND = 'secondary_foreground' satisfies keyof Palette;
+export const KEY_PALETTE_SIDEBAR = 'sidebar' satisfies keyof Palette;
+export const KEY_PALETTE_SIDEBAR_FOREGROUND = 'sidebar_foreground' satisfies keyof Palette;
+export const KEY_PALETTE_SUCCESS = 'success' satisfies keyof Palette;
+export const KEY_PALETTE_TAG_COLORS = 'tag_colors' satisfies keyof Palette;
+export const KEY_PALETTE_WARNING = 'warning' satisfies keyof Palette;
+
+export const KEYS_PALETTE = [
+  KEY_PALETTE_ACCENT,
+  KEY_PALETTE_ACCENT_FOREGROUND,
+  KEY_PALETTE_BACKGROUND,
+  KEY_PALETTE_BORDER,
+  KEY_PALETTE_CARD,
+  KEY_PALETTE_CARD_FOREGROUND,
+  KEY_PALETTE_CHART_COLORS,
+  KEY_PALETTE_DANGER,
+  KEY_PALETTE_FOREGROUND,
+  KEY_PALETTE_INFO,
+  KEY_PALETTE_INPUT,
+  KEY_PALETTE_MUTED,
+  KEY_PALETTE_MUTED_FOREGROUND,
+  KEY_PALETTE_PRIMARY,
+  KEY_PALETTE_PRIMARY_FOREGROUND,
+  KEY_PALETTE_SECONDARY,
+  KEY_PALETTE_SECONDARY_FOREGROUND,
+  KEY_PALETTE_SIDEBAR,
+  KEY_PALETTE_SIDEBAR_FOREGROUND,
+  KEY_PALETTE_SUCCESS,
+  KEY_PALETTE_TAG_COLORS,
+  KEY_PALETTE_WARNING,
+] as const satisfies (keyof Palette)[];
+
 export const KEY_PARKING_ACTION_PAYLOAD_DATA_PARKING_REFERENCE = 'parking_reference' satisfies keyof ParkingActionPayloadData;
 
 export const KEYS_PARKING_ACTION_PAYLOAD_DATA = [
@@ -4537,6 +4675,26 @@ export const KEY_PREMIUM_PRICING_PRICES = 'prices' satisfies keyof PremiumPricin
 export const KEYS_PREMIUM_PRICING = [
   KEY_PREMIUM_PRICING_PRICES,
 ] as const satisfies (keyof PremiumPricing)[];
+
+export const KEY_PREVIEW_MAIL_REQ_BRANDING_DOCUMENT = 'branding_document' satisfies keyof PreviewMailReq;
+export const KEY_PREVIEW_MAIL_REQ_LANGUAGE_CODE = 'language_code' satisfies keyof PreviewMailReq;
+export const KEY_PREVIEW_MAIL_REQ_TEMPLATE_NAME = 'template_name' satisfies keyof PreviewMailReq;
+
+export const KEYS_PREVIEW_MAIL_REQ = [
+  KEY_PREVIEW_MAIL_REQ_BRANDING_DOCUMENT,
+  KEY_PREVIEW_MAIL_REQ_LANGUAGE_CODE,
+  KEY_PREVIEW_MAIL_REQ_TEMPLATE_NAME,
+] as const satisfies (keyof PreviewMailReq)[];
+
+export const KEY_PREVIEW_MAIL_RES_HTML = 'html' satisfies keyof PreviewMailRes;
+export const KEY_PREVIEW_MAIL_RES_SUBJECT = 'subject' satisfies keyof PreviewMailRes;
+export const KEY_PREVIEW_MAIL_RES_TEXT = 'text' satisfies keyof PreviewMailRes;
+
+export const KEYS_PREVIEW_MAIL_RES = [
+  KEY_PREVIEW_MAIL_RES_HTML,
+  KEY_PREVIEW_MAIL_RES_SUBJECT,
+  KEY_PREVIEW_MAIL_RES_TEXT,
+] as const satisfies (keyof PreviewMailRes)[];
 
 export const KEY_PRICE_INFO_CURRENCY = 'currency' satisfies keyof PriceInfo;
 export const KEY_PRICE_INFO_PERIOD = 'period' satisfies keyof PriceInfo;
@@ -4864,6 +5022,14 @@ export const KEYS_STATUS_TAG = [
   KEY_STATUS_TAG_TAG_TYPE,
 ] as const satisfies (keyof StatusTag)[];
 
+export const KEY_SUPPORT_EMAIL = 'email' satisfies keyof Support;
+export const KEY_SUPPORT_URL = 'url' satisfies keyof Support;
+
+export const KEYS_SUPPORT = [
+  KEY_SUPPORT_EMAIL,
+  KEY_SUPPORT_URL,
+] as const satisfies (keyof Support)[];
+
 export const KEY_TAG_CREATE_COLOR = 'color' satisfies keyof TagCreate;
 export const KEY_TAG_CREATE_DESCRIPTION = 'description' satisfies keyof TagCreate;
 export const KEY_TAG_CREATE_LABEL = 'label' satisfies keyof TagCreate;
@@ -4915,6 +5081,20 @@ export const KEYS_TAG_UPDATE = [
   KEY_TAG_UPDATE_DESCRIPTION,
   KEY_TAG_UPDATE_LABEL,
 ] as const satisfies (keyof TagUpdate)[];
+
+export const KEY_THEME_DARK = 'dark' satisfies keyof Theme;
+export const KEY_THEME_FONT_FAMILY = 'font_family' satisfies keyof Theme;
+export const KEY_THEME_FONT_URL = 'font_url' satisfies keyof Theme;
+export const KEY_THEME_LIGHT = 'light' satisfies keyof Theme;
+export const KEY_THEME_RADIUS = 'radius' satisfies keyof Theme;
+
+export const KEYS_THEME = [
+  KEY_THEME_DARK,
+  KEY_THEME_FONT_FAMILY,
+  KEY_THEME_FONT_URL,
+  KEY_THEME_LIGHT,
+  KEY_THEME_RADIUS,
+] as const satisfies (keyof Theme)[];
 
 export const KEY_TIME_SERIES_BUCKET_TIMESTAMP = 'timestamp' satisfies keyof TimeSeriesBucket;
 export const KEY_TIME_SERIES_BUCKET_TOTAL = 'total' satisfies keyof TimeSeriesBucket;

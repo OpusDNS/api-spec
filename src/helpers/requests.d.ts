@@ -45,6 +45,7 @@ import type {
   OrganizationCreate,
   OrganizationUpdate,
   ParkingSignupRequest,
+  PreviewMailReq,
   PublicAuthRequestForm,
   PublicRoleAssignmentRequest,
   TagCreate,
@@ -1124,6 +1125,14 @@ export type POST_WhitelabelBranding_Request = {
   requestBody: WhitelabelBrandingCreate;
 };
 export type POST_WhitelabelBranding_Request_Body = POST_WhitelabelBranding_Request['requestBody'];
+
+export type POST_WhitelabelBrandingEmailPreview_Request = {
+  requestBody: PreviewMailReq;
+};
+export type POST_WhitelabelBrandingEmailPreview_Request_Body = POST_WhitelabelBrandingEmailPreview_Request['requestBody'];
+
+export type GET_WhitelabelBrandingEmailTemplates_Request = {
+};
 
 export type POST_WhitelabelBrandingRecheck_Request = {
 };

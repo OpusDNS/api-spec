@@ -2851,6 +2851,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/whitelabel-branding/email/preview": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Preview a transactional email template with a draft branding document */
+        post: operations["preview_whitelabel_email_v1_whitelabel_branding_email_preview_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/whitelabel-branding/email/templates": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List the editable transactional email templates and their content blocks */
+        get: operations["list_whitelabel_email_templates_v1_whitelabel_branding_email_templates_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/whitelabel-branding/recheck": {
         parameters: {
             query?: never;
@@ -2978,6 +3012,21 @@ export interface components {
          */
         AttributeType: "enum" | "string" | "boolean" | "datetime" | "integer" | "country_code" | "uri_template";
         /**
+         * Auth
+         * @description Pre-login OAuth bootstrap. The SPA resolves this document by hostname before login and uses
+         *     `client_id` (the org's `wl-<organization_id>` Keycloak client) + `authority` (the OIDC issuer on
+         *     the customer's auth host) to start the flow; absent, it falls back to the default dashboard client.
+         *
+         *     System-owned: written only by onboarding (via branding-service's set-auth endpoint), never by a
+         *     customer document write - branding-service preserves this block across customer upserts.
+         */
+        Auth: {
+            /** Authority */
+            authority?: string | null;
+            /** Client Id */
+            client_id?: string | null;
+        };
+        /**
          * BatchSortField
          * @enum {string}
          */
@@ -3102,6 +3151,24 @@ export interface components {
          * @enum {string}
          */
         BillingTransactionStatus: "pending" | "succeeded" | "failed" | "canceled";
+        /** Brand */
+        Brand: {
+            logo?: components["schemas"]["Logo"] | null;
+            /** Name */
+            name?: string | null;
+        };
+        /** BrandingDocument */
+        BrandingDocument: {
+            auth?: components["schemas"]["Auth"] | null;
+            brand?: components["schemas"]["Brand"] | null;
+            content?: components["schemas"]["Content"] | null;
+            theme?: components["schemas"]["Theme"] | null;
+            /**
+             * Version
+             * @default 1
+             */
+            version: number;
+        };
         /** BrowserStatsBucket */
         BrowserStatsBucket: {
             /** Key */
@@ -4203,6 +4270,16 @@ export interface components {
              */
             kind: "contacts";
             payload: components["schemas"]["ContextPayload_RegistrarContact_"];
+        };
+        /** Content */
+        Content: {
+            /** Email Blocks */
+            email_blocks?: Record<string, never> | null;
+            footer?: components["schemas"]["Footer"] | null;
+            legal?: components["schemas"]["Legal"] | null;
+            /** Signature */
+            signature?: string | null;
+            support?: components["schemas"]["Support"] | null;
         };
         /** ContextListResponse */
         ContextListResponse: {
@@ -7761,6 +7838,19 @@ export interface components {
          * @enum {string}
          */
         ExecutingEntity: "user" | "organization" | "system";
+        /** Footer */
+        Footer: {
+            /** Contact Email */
+            contact_email?: string | null;
+            /** Disclaimer */
+            disclaimer?: string | null;
+            /** Legal Entity */
+            legal_entity?: string | null;
+            /** Lines */
+            lines?: string[] | null;
+            /** Vat Id */
+            vat_id?: string | null;
+        };
         /** GeneralAvailabilityBase */
         GeneralAvailabilityBase: {
             /**
@@ -8536,6 +8626,13 @@ export interface components {
             phases: components["schemas"]["LaunchPhaseBase"][];
             trademark_claims?: components["schemas"]["TrademarkClaimsBase"] | null;
         };
+        /** Legal */
+        Legal: {
+            /** Privacy Url */
+            privacy_url?: string | null;
+            /** Terms Url */
+            terms_url?: string | null;
+        };
         /** LegalRequirementBase */
         LegalRequirementBase: {
             /**
@@ -8616,6 +8713,17 @@ export interface components {
          * @enum {string}
          */
         LocalPresenceRequirementType: "physical_address" | "business_entity";
+        /** Logo */
+        Logo: {
+            /** Dark */
+            dark?: string | null;
+            /** Favicon */
+            favicon?: string | null;
+            /** Icon */
+            icon?: string | null;
+            /** Light */
+            light?: string | null;
+        };
         /** MemoryFact */
         MemoryFact: {
             /**
@@ -9656,6 +9764,53 @@ export interface components {
             /** Results */
             results: components["schemas"]["UserPublicWithRole"][];
         };
+        /** Palette */
+        Palette: {
+            /** Accent */
+            accent?: string | null;
+            /** Accent Foreground */
+            accent_foreground?: string | null;
+            /** Background */
+            background?: string | null;
+            /** Border */
+            border?: string | null;
+            /** Card */
+            card?: string | null;
+            /** Card Foreground */
+            card_foreground?: string | null;
+            /** Chart Colors */
+            chart_colors?: string[] | null;
+            /** Danger */
+            danger?: string | null;
+            /** Foreground */
+            foreground?: string | null;
+            /** Info */
+            info?: string | null;
+            /** Input */
+            input?: string | null;
+            /** Muted */
+            muted?: string | null;
+            /** Muted Foreground */
+            muted_foreground?: string | null;
+            /** Primary */
+            primary?: string | null;
+            /** Primary Foreground */
+            primary_foreground?: string | null;
+            /** Secondary */
+            secondary?: string | null;
+            /** Secondary Foreground */
+            secondary_foreground?: string | null;
+            /** Sidebar */
+            sidebar?: string | null;
+            /** Sidebar Foreground */
+            sidebar_foreground?: string | null;
+            /** Success */
+            success?: string | null;
+            /** Tag Colors */
+            tag_colors?: string[] | null;
+            /** Warning */
+            warning?: string | null;
+        };
         /** ParkingActionPayloadData */
         ParkingActionPayloadData: {
             /** Parking Reference */
@@ -10184,6 +10339,23 @@ export interface components {
          * @enum {string}
          */
         PremiumSourceType: "EPP" | "API" | "CSV" | "manual";
+        /** PreviewMailReq */
+        PreviewMailReq: {
+            branding_document?: components["schemas"]["BrandingDocument"] | null;
+            /** Language Code */
+            language_code: string;
+            /** Template Name */
+            template_name: string;
+        };
+        /** PreviewMailRes */
+        PreviewMailRes: {
+            /** Html */
+            html: string;
+            /** Subject */
+            subject: string;
+            /** Text */
+            text: string;
+        };
         /** PriceInfo */
         PriceInfo: {
             /** Currency */
@@ -10736,6 +10908,13 @@ export interface components {
         StatusTagType: "VERIFICATION_REQUIRED" | "CREATE_REQUESTED";
         /** @example 12.50 */
         StrictMoneyDecimal: string;
+        /** Support */
+        Support: {
+            /** Email */
+            email?: string | null;
+            /** Url */
+            url?: string | null;
+        };
         /**
          * SyncOperationType
          * @enum {string}
@@ -10859,6 +11038,17 @@ export interface components {
              * @description A human-readable label for the tag
              */
             label?: string | null;
+        };
+        /** Theme */
+        Theme: {
+            dark?: components["schemas"]["Palette"] | null;
+            /** Font Family */
+            font_family?: string | null;
+            /** Font Url */
+            font_url?: string | null;
+            light?: components["schemas"]["Palette"] | null;
+            /** Radius */
+            radius?: string | null;
         };
         /**
          * TimeRange
@@ -26000,6 +26190,82 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ProductCreateRes"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    preview_whitelabel_email_v1_whitelabel_branding_email_preview_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PreviewMailReq"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PreviewMailRes"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_whitelabel_email_templates_v1_whitelabel_branding_email_templates_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
                 };
             };
             /** @description Validation Error */

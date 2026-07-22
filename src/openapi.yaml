@@ -180,6 +180,36 @@ components:
       - uri_template
       title: AttributeType
       type: string
+    Auth:
+      description: 'Pre-login OAuth bootstrap. The SPA resolves this document by hostname
+        before login and uses
+
+        `client_id` (the org''s `wl-<organization_id>` Keycloak client) + `authority`
+        (the OIDC issuer on
+
+        the customer''s auth host) to start the flow; absent, it falls back to the
+        default dashboard client.
+
+
+        System-owned: written only by onboarding (via branding-service''s set-auth
+        endpoint), never by a
+
+        customer document write - branding-service preserves this block across customer
+        upserts.'
+      properties:
+        authority:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authority
+        client_id:
+          anyOf:
+          - pattern: ^[a-zA-Z0-9._-]{1,255}$
+            type: string
+          - type: 'null'
+          title: Client Id
+      title: Auth
+      type: object
     BatchSortField:
       enum:
       - created_on
@@ -355,6 +385,45 @@ components:
       - canceled
       title: BillingTransactionStatus
       type: string
+    Brand:
+      properties:
+        logo:
+          anyOf:
+          - $ref: '#/components/schemas/Logo'
+          - type: 'null'
+        name:
+          anyOf:
+          - maxLength: 255
+            minLength: 1
+            type: string
+          - type: 'null'
+          title: Name
+      title: Brand
+      type: object
+    BrandingDocument:
+      properties:
+        auth:
+          anyOf:
+          - $ref: '#/components/schemas/Auth'
+          - type: 'null'
+        brand:
+          anyOf:
+          - $ref: '#/components/schemas/Brand'
+          - type: 'null'
+        content:
+          anyOf:
+          - $ref: '#/components/schemas/Content'
+          - type: 'null'
+        theme:
+          anyOf:
+          - $ref: '#/components/schemas/Theme'
+          - type: 'null'
+        version:
+          default: 1
+          title: Version
+          type: integer
+      title: BrandingDocument
+      type: object
     BrowserStatsBucket:
       properties:
         key:
@@ -1937,6 +2006,42 @@ components:
       required:
       - payload
       title: ContactsContextCreate
+      type: object
+    Content:
+      properties:
+        email_blocks:
+          anyOf:
+          - patternProperties:
+              ^[a-z0-9_]+$:
+                patternProperties:
+                  ^[a-z0-9_]+$:
+                    patternProperties:
+                      ^[a-z]{2}(-[a-z]{2})?$:
+                        maxLength: 2000
+                        type: string
+                    type: object
+                type: object
+            type: object
+          - type: 'null'
+          title: Email Blocks
+        footer:
+          anyOf:
+          - $ref: '#/components/schemas/Footer'
+          - type: 'null'
+        legal:
+          anyOf:
+          - $ref: '#/components/schemas/Legal'
+          - type: 'null'
+        signature:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Signature
+        support:
+          anyOf:
+          - $ref: '#/components/schemas/Support'
+          - type: 'null'
+      title: Content
       type: object
     ContextListResponse:
       properties:
@@ -7420,6 +7525,44 @@ components:
       - system
       title: ExecutingEntity
       type: string
+    Footer:
+      properties:
+        contact_email:
+          anyOf:
+          - pattern: ^[^@\s]+@[^@\s]+\.[^@\s]+$
+            type: string
+          - type: 'null'
+          title: Contact Email
+        disclaimer:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Disclaimer
+        legal_entity:
+          anyOf:
+          - maxLength: 255
+            minLength: 1
+            type: string
+          - type: 'null'
+          title: Legal Entity
+        lines:
+          anyOf:
+          - items:
+              maxLength: 255
+              minLength: 1
+              type: string
+            type: array
+          - type: 'null'
+          title: Lines
+        vat_id:
+          anyOf:
+          - maxLength: 255
+            minLength: 1
+            type: string
+          - type: 'null'
+          title: Vat Id
+      title: Footer
+      type: object
     GeneralAvailabilityBase:
       properties:
         start_date:
@@ -8578,6 +8721,20 @@ components:
       - general_availability
       title: LaunchPhasesBase
       type: object
+    Legal:
+      properties:
+        privacy_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Privacy Url
+        terms_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Terms Url
+      title: Legal
+      type: object
     LegalRequirementBase:
       properties:
         key:
@@ -8702,6 +8859,30 @@ components:
       - business_entity
       title: LocalPresenceRequirementType
       type: string
+    Logo:
+      properties:
+        dark:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Dark
+        favicon:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Favicon
+        icon:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Icon
+        light:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Light
+      title: Logo
+      type: object
     MemoryFact:
       properties:
         created_at:
@@ -10334,6 +10515,146 @@ components:
       - pagination
       title: Pagination[UserPublicWithRole]
       type: object
+    Palette:
+      properties:
+        accent:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Accent
+        accent_foreground:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Accent Foreground
+        background:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Background
+        border:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Border
+        card:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Card
+        card_foreground:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Card Foreground
+        chart_colors:
+          anyOf:
+          - items:
+              pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+              type: string
+            type: array
+          - type: 'null'
+          title: Chart Colors
+        danger:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Danger
+        foreground:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Foreground
+        info:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Info
+        input:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Input
+        muted:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Muted
+        muted_foreground:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Muted Foreground
+        primary:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Primary
+        primary_foreground:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Primary Foreground
+        secondary:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Secondary
+        secondary_foreground:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Secondary Foreground
+        sidebar:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Sidebar
+        sidebar_foreground:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Sidebar Foreground
+        success:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Success
+        tag_colors:
+          anyOf:
+          - items:
+              pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+              type: string
+            type: array
+          - type: 'null'
+          title: Tag Colors
+        warning:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Warning
+      title: Palette
+      type: object
     ParkingActionPayloadData:
       properties:
         parking_reference:
@@ -11060,6 +11381,40 @@ components:
       - manual
       title: PremiumSourceType
       type: string
+    PreviewMailReq:
+      properties:
+        branding_document:
+          anyOf:
+          - $ref: '#/components/schemas/BrandingDocument'
+          - type: 'null'
+        language_code:
+          title: Language Code
+          type: string
+        template_name:
+          title: Template Name
+          type: string
+      required:
+      - template_name
+      - language_code
+      title: PreviewMailReq
+      type: object
+    PreviewMailRes:
+      properties:
+        html:
+          title: Html
+          type: string
+        subject:
+          title: Subject
+          type: string
+        text:
+          title: Text
+          type: string
+      required:
+      - subject
+      - html
+      - text
+      title: PreviewMailRes
+      type: object
     PriceInfo:
       properties:
         currency:
@@ -11970,6 +12325,21 @@ components:
       - '12.50'
       pattern: ^\d{1,8}\.\d{2}$
       type: string
+    Support:
+      properties:
+        email:
+          anyOf:
+          - pattern: ^[^@\s]+@[^@\s]+\.[^@\s]+$
+            type: string
+          - type: 'null'
+          title: Email
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+      title: Support
+      type: object
     SyncOperationType:
       enum:
       - registration
@@ -12149,6 +12519,35 @@ components:
           description: A human-readable label for the tag
           title: Label
       title: TagUpdate
+      type: object
+    Theme:
+      properties:
+        dark:
+          anyOf:
+          - $ref: '#/components/schemas/Palette'
+          - type: 'null'
+        font_family:
+          anyOf:
+          - pattern: ^[0-9a-zA-Z, -]{1,128}$
+            type: string
+          - type: 'null'
+          title: Font Family
+        font_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Font Url
+        light:
+          anyOf:
+          - $ref: '#/components/schemas/Palette'
+          - type: 'null'
+        radius:
+          anyOf:
+          - pattern: ^[0-9a-zA-Z.% ]{1,32}$
+            type: string
+          - type: 'null'
+          title: Radius
+      title: Theme
       type: object
     TimeRange:
       enum:
@@ -14256,7 +14655,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-21-195001
+  version: 2026-07-22-134959
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -30808,6 +31207,67 @@ paths:
       - whitelabel
       x-required-permissions:
       - whitelabel_branding:manage
+  /v1/whitelabel-branding/email/preview:
+    post:
+      operationId: preview_whitelabel_email_v1_whitelabel_branding_email_preview_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreviewMailReq'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PreviewMailRes'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Preview a transactional email template with a draft branding document
+      tags:
+      - whitelabel
+      x-required-permissions:
+      - whitelabel_branding:manage
+  /v1/whitelabel-branding/email/templates:
+    get:
+      operationId: list_whitelabel_email_templates_v1_whitelabel_branding_email_templates_get
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                title: Response List Whitelabel Email Templates V1 Whitelabel Branding
+                  Email Templates Get
+                type: object
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List the editable transactional email templates and their content blocks
+      tags:
+      - whitelabel
+      x-required-permissions:
+      - whitelabel_branding:read
   /v1/whitelabel-branding/recheck:
     post:
       operationId: recheck_whitelabel_branding_v1_whitelabel_branding_recheck_post
