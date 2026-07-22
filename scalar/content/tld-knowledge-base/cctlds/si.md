@@ -1,30 +1,30 @@
-# 🇨🇿 .cz — Czechia
+# 🇸🇮 .si — Slovenia
 
-> The **.cz** is a country-code top-level domain (ccTLD) operated by CZ.NIC, z. s. p. o.. This article documents the technical, operational, and contractual requirements for the TLD, along with special considerations for registry, registrar, and domain management.
+> The **.si** is a country-code top-level domain (ccTLD) operated by Academic and Research Network of Slovenia (Arnes). This article documents the technical, operational, and contractual requirements for the TLD, along with special considerations for registry, registrar, and domain management.
 
 ## General Information
 
 | Property | Value |
 | --- | --- |
 | TLD Type | ccTLD |
-| Registry | CZ.NIC, z. s. p. o. |
-| Registry Country | Czechia |
-| Registry Website | [www.nic.cz](https://www.nic.cz) |
+| Registry | Academic and Research Network of Slovenia (Arnes) |
+| Registry Country | Slovenia |
+| Registry Website | [www.register.si](https://www.register.si) |
 | Provisioning Protocol | EPP |
-| Second-Level Registration | ✅ Yes |
+| Second-Level Registration | ❌ No |
 | Accreditation Required | ✅ Yes |
 
 ## Domain Lifecycle
 
 | Property | Value |
 | --- | --- |
-| Registration Period | 1–10 years |
-| Renewal Period | 1–10 years |
+| Registration Period | 1–5 years |
+| Renewal Period | 1–5 years |
 | Transfer Renewal Period | 1 year |
 | Deletion Policy | Immediate |
 | Auto-Renew Enabled | ❌ No |
 | Auto-Renewal Before Expiry | On expiration |
-| Sync After Operations | registration, renewal, transfer |
+| Sync After Operations | registration, transfer |
 
 **Grace periods**
 
@@ -32,9 +32,9 @@
 | --- | --- |
 | Add Grace Period | 0 days |
 | Standard Grace Period | 30 days |
-| Redemption Period | 31 days |
+| Redemption Period | 30 days |
 | Pending Restore | 0 days |
-| Pending Delete | 0 days |
+| Pending Delete | 5 days |
 
 ## Launch Phases & Availability
 
@@ -47,8 +47,8 @@
 
 | Property | Value |
 | --- | --- |
-| Domain Length | 1–63 characters |
-| IDN Support | ✅ Yes |
+| Domain Length | 2–63 characters |
+| IDN Support | ❌ No |
 | Premium Domains | ❌ No |
 | Reserved Domains | ❌ No |
 | Registry Lock | ❌ No |
@@ -57,31 +57,31 @@
 
 | Property | Value |
 | --- | --- |
-| Required Contacts | Domain Owner |
-| Supported Roles | Domain Owner, Administrator |
+| Required Contacts | Domain Owner, Technical Contact |
+| Supported Roles | Domain Owner, Technical Contact |
 | Thick WHOIS | ✅ Yes |
 | Privacy Proxy Allowed | ❌ No |
-| Contacts Transferable | ✅ Yes |
-| Allowed Postal Types | Local |
-| AuthInfo Required | ✅ Yes (8–32 characters) |
+| Contacts Transferable | ❌ No |
+| Allowed Postal Types | International |
+| AuthInfo Required | ✅ Yes (1–255 characters) |
 
 ## Nameservers & DNS
 
 | Property | Value |
 | --- | --- |
 | Nameserver Count | 2–10 |
-| Host Objects Allowed | ❌ No |
+| Host Objects Allowed | ✅ Yes |
 | Registry Nameserver Check | ✅ Yes |
 | DNSSEC Allowed | ✅ Yes |
 | DNSSEC Required | ❌ No |
-| DNSSEC Mode | DNSKEY |
+| DNSSEC Mode | DS |
 | CZDS (Zone Download) | ❌ No |
 
 ## Transfer Policy
 
 | Property | Value |
 | --- | --- |
-| Transfer Lock Enabled | ❌ No |
+| Transfer Lock Enabled | ✅ Yes (0 days after registration; 0 days after transfer) |
 | Transfer Duration | 0 days |
 | Transfer Extends Domain | ❌ No |
 | Transfer via AuthInfo | ❌ No |
@@ -91,8 +91,7 @@
 
 | Property | Value |
 | --- | --- |
-| WHOIS Server | `whois.nic.cz` |
-| RDAP Server | [rdap.nic.cz](https://rdap.nic.cz/) |
+| WHOIS Server | `whois.register.si` |
 
 ## Dispute Resolution
 
