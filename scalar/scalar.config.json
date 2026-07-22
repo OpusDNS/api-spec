@@ -903,6 +903,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/sc.md",
                 "showInSidebar": true
               },
+              "/si": {
+                "type": "page",
+                "title": "🇸🇮 .si",
+                "filepath": "content/tld-knowledge-base/cctlds/si.md",
+                "showInSidebar": true
+              },
               "/sk": {
                 "type": "page",
                 "title": "🇸🇰 .sk",
