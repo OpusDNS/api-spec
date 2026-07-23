@@ -8412,7 +8412,7 @@ export interface components {
             paused: number;
             /**
              * Progress Percentage
-             * @description Completion percentage (0-100)
+             * @description Percentage of jobs in a terminal state (succeeded, failed, canceled, or dead_letter), 0-100
              */
             progress_percentage: number;
             /**
