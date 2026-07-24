@@ -7840,10 +7840,6 @@ export interface components {
         ExecutingEntity: "user" | "organization" | "system";
         /** Footer */
         Footer: {
-            /** Contact Email */
-            contact_email?: string | null;
-            /** Disclaimer */
-            disclaimer?: string | null;
             /** Legal Entity */
             legal_entity?: string | null;
             /** Lines */

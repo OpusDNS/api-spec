@@ -3347,15 +3347,11 @@ export const KEYS_EVENT_RESPONSE = [
   KEY_EVENT_RESPONSE_TYPE,
 ] as const satisfies (keyof EventResponse)[];
 
-export const KEY_FOOTER_CONTACT_EMAIL = 'contact_email' satisfies keyof Footer;
-export const KEY_FOOTER_DISCLAIMER = 'disclaimer' satisfies keyof Footer;
 export const KEY_FOOTER_LEGAL_ENTITY = 'legal_entity' satisfies keyof Footer;
 export const KEY_FOOTER_LINES = 'lines' satisfies keyof Footer;
 export const KEY_FOOTER_VAT_ID = 'vat_id' satisfies keyof Footer;
 
 export const KEYS_FOOTER = [
-  KEY_FOOTER_CONTACT_EMAIL,
-  KEY_FOOTER_DISCLAIMER,
   KEY_FOOTER_LEGAL_ENTITY,
   KEY_FOOTER_LINES,
   KEY_FOOTER_VAT_ID,
