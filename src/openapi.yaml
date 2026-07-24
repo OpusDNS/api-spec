@@ -14287,9 +14287,14 @@ components:
           minLength: 1
           title: Hostname
           type: string
+        period:
+          $ref: '#/components/schemas/Period'
+          description: 'Billing period for the subscription; offered: 1 month or 1
+            year'
       required:
       - hostname
       - auth_hostname
+      - period
       title: WhitelabelBrandingCreate
       type: object
     WhitelabelBrandingResponse:
@@ -14696,7 +14701,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-23-122300
+  version: 2026-07-24-073532
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

@@ -12300,6 +12300,8 @@ export interface components {
              * @description Dashboard hostname the customer wants to brand (e.g. dash.customer.com)
              */
             hostname: string;
+            /** @description Billing period for the subscription; offered: 1 month or 1 year */
+            period: components["schemas"]["Period"];
         };
         /**
          * WhitelabelBrandingResponse

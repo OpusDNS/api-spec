@@ -5716,10 +5716,12 @@ export const KEYS_VISITS_BY_KEY_BUCKET = [
 
 export const KEY_WHITELABEL_BRANDING_CREATE_AUTH_HOSTNAME = 'auth_hostname' satisfies keyof WhitelabelBrandingCreate;
 export const KEY_WHITELABEL_BRANDING_CREATE_HOSTNAME = 'hostname' satisfies keyof WhitelabelBrandingCreate;
+export const KEY_WHITELABEL_BRANDING_CREATE_PERIOD = 'period' satisfies keyof WhitelabelBrandingCreate;
 
 export const KEYS_WHITELABEL_BRANDING_CREATE = [
   KEY_WHITELABEL_BRANDING_CREATE_AUTH_HOSTNAME,
   KEY_WHITELABEL_BRANDING_CREATE_HOSTNAME,
+  KEY_WHITELABEL_BRANDING_CREATE_PERIOD,
 ] as const satisfies (keyof WhitelabelBrandingCreate)[];
 
 export const KEY_WHITELABEL_BRANDING_AUTH_HOSTNAME = 'auth_hostname' satisfies keyof WhitelabelBranding;
