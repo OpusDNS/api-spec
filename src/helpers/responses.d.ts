@@ -53,6 +53,7 @@ import type {
   JobBatchStatus,
   ListVanityNameserverSetsRes,
   ListZonesReferencingSetRes,
+  MailTemplateCatalogRes,
   MemoryFact,
   MemoryFactList,
   Message,
@@ -861,8 +862,9 @@ export type GET_WhitelabelBranding_Response = GET_WhitelabelBranding_Response_20
 export type GET_WhitelabelBranding_Response_200 = WhitelabelBranding;
 export type GET_WhitelabelBranding_Response_422 = HTTPValidationError;
 
-export type GET_WhitelabelBrandingEmailTemplates_Response = GET_WhitelabelBrandingEmailTemplates_Response_422;
+export type GET_WhitelabelBrandingEmailTemplates_Response = GET_WhitelabelBrandingEmailTemplates_Response_200 | GET_WhitelabelBrandingEmailTemplates_Response_422;
 
+export type GET_WhitelabelBrandingEmailTemplates_Response_200 = MailTemplateCatalogRes;
 export type GET_WhitelabelBrandingEmailTemplates_Response_422 = HTTPValidationError;
 
 export type PATCH_AiConciergeConversationsByConversationId_Response = PATCH_AiConciergeConversationsByConversationId_Response_200 | PATCH_AiConciergeConversationsByConversationId_Response_401 | PATCH_AiConciergeConversationsByConversationId_Response_404 | PATCH_AiConciergeConversationsByConversationId_Response_422 | PATCH_AiConciergeConversationsByConversationId_Response_502;

@@ -8724,6 +8724,101 @@ export interface components {
             /** Light */
             light?: string | null;
         };
+        /**
+         * MailTemplate
+         * @description One editable transactional email template. This is the public catalog entry:
+         *     mail-service's operational fields (engine, internal, whitelabel, brand_defaults)
+         *     are deliberately not declared, so the response model drops them.
+         */
+        MailTemplate: {
+            /**
+             * Blocks
+             * @description Org-editable content blocks
+             */
+            blocks?: {
+                [key: string]: components["schemas"]["MailTemplateBlock"];
+            };
+            /**
+             * Locales
+             * @description Supported locales, first is the fallback
+             */
+            locales?: string[];
+            /**
+             * Subject
+             * @description Subject line per locale
+             */
+            subject?: {
+                [key: string]: string;
+            };
+            /**
+             * Variables
+             * @description Per-send variables
+             */
+            variables?: {
+                [key: string]: components["schemas"]["MailTemplateVariable"];
+            };
+            /**
+             * Version
+             * @description Template revision (major.minor)
+             * @default
+             */
+            version: string;
+        };
+        /** MailTemplateBlock */
+        MailTemplateBlock: {
+            /**
+             * Default
+             * @description Default copy per locale
+             */
+            default?: {
+                [key: string]: string;
+            };
+            /**
+             * Label
+             * @description Human-readable field name for the editor
+             * @default
+             */
+            label: string;
+            /**
+             * Max Len
+             * @description Maximum override text length
+             * @default 0
+             */
+            max_len: number;
+            /**
+             * Multiline
+             * @description Render the editor field as a textarea
+             * @default false
+             */
+            multiline: boolean;
+        };
+        /**
+         * MailTemplateCatalogRes
+         * @description The editable-template catalog keyed by template name.
+         */
+        MailTemplateCatalogRes: {
+            [key: string]: components["schemas"]["MailTemplate"];
+        };
+        /** MailTemplateVariable */
+        MailTemplateVariable: {
+            /**
+             * Required
+             * @default false
+             */
+            required: boolean;
+            /**
+             * Sample
+             * @description Sample value shown in previews
+             * @default
+             */
+            sample: string;
+            /**
+             * Type
+             * @description Value type driving render-time escaping (text or url)
+             * @default text
+             */
+            type: string;
+        };
         /** MemoryFact */
         MemoryFact: {
             /**
@@ -26290,9 +26385,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": {
-                        [key: string]: unknown;
-                    };
+                    "application/json": components["schemas"]["MailTemplateCatalogRes"];
                 };
             };
             /** @description Validation Error */

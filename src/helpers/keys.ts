@@ -277,6 +277,9 @@ import type {
   ListZonesReferencingSetRes,
   LocalPresenceBase,
   Logo,
+  MailTemplate,
+  MailTemplateBlock,
+  MailTemplateVariable,
   MemoryFact,
   MemoryFactCreateRequest,
   MemoryFactList,
@@ -3807,6 +3810,42 @@ export const KEYS_LOGO = [
   KEY_LOGO_ICON,
   KEY_LOGO_LIGHT,
 ] as const satisfies (keyof Logo)[];
+
+export const KEY_MAIL_TEMPLATE_BLOCKS = 'blocks' satisfies keyof MailTemplate;
+export const KEY_MAIL_TEMPLATE_LOCALES = 'locales' satisfies keyof MailTemplate;
+export const KEY_MAIL_TEMPLATE_SUBJECT = 'subject' satisfies keyof MailTemplate;
+export const KEY_MAIL_TEMPLATE_VARIABLES = 'variables' satisfies keyof MailTemplate;
+export const KEY_MAIL_TEMPLATE_VERSION = 'version' satisfies keyof MailTemplate;
+
+export const KEYS_MAIL_TEMPLATE = [
+  KEY_MAIL_TEMPLATE_BLOCKS,
+  KEY_MAIL_TEMPLATE_LOCALES,
+  KEY_MAIL_TEMPLATE_SUBJECT,
+  KEY_MAIL_TEMPLATE_VARIABLES,
+  KEY_MAIL_TEMPLATE_VERSION,
+] as const satisfies (keyof MailTemplate)[];
+
+export const KEY_MAIL_TEMPLATE_BLOCK_DEFAULT = 'default' satisfies keyof MailTemplateBlock;
+export const KEY_MAIL_TEMPLATE_BLOCK_LABEL = 'label' satisfies keyof MailTemplateBlock;
+export const KEY_MAIL_TEMPLATE_BLOCK_MAX_LEN = 'max_len' satisfies keyof MailTemplateBlock;
+export const KEY_MAIL_TEMPLATE_BLOCK_MULTILINE = 'multiline' satisfies keyof MailTemplateBlock;
+
+export const KEYS_MAIL_TEMPLATE_BLOCK = [
+  KEY_MAIL_TEMPLATE_BLOCK_DEFAULT,
+  KEY_MAIL_TEMPLATE_BLOCK_LABEL,
+  KEY_MAIL_TEMPLATE_BLOCK_MAX_LEN,
+  KEY_MAIL_TEMPLATE_BLOCK_MULTILINE,
+] as const satisfies (keyof MailTemplateBlock)[];
+
+export const KEY_MAIL_TEMPLATE_VARIABLE_REQUIRED = 'required' satisfies keyof MailTemplateVariable;
+export const KEY_MAIL_TEMPLATE_VARIABLE_SAMPLE = 'sample' satisfies keyof MailTemplateVariable;
+export const KEY_MAIL_TEMPLATE_VARIABLE_TYPE = 'type' satisfies keyof MailTemplateVariable;
+
+export const KEYS_MAIL_TEMPLATE_VARIABLE = [
+  KEY_MAIL_TEMPLATE_VARIABLE_REQUIRED,
+  KEY_MAIL_TEMPLATE_VARIABLE_SAMPLE,
+  KEY_MAIL_TEMPLATE_VARIABLE_TYPE,
+] as const satisfies (keyof MailTemplateVariable)[];
 
 export const KEY_MEMORY_FACT_CREATED_AT = 'created_at' satisfies keyof MemoryFact;
 export const KEY_MEMORY_FACT_EXPIRES_AT = 'expires_at' satisfies keyof MemoryFact;

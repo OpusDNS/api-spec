@@ -8884,6 +8884,94 @@ components:
           title: Light
       title: Logo
       type: object
+    MailTemplate:
+      description: 'One editable transactional email template. This is the public
+        catalog entry:
+
+        mail-service''s operational fields (engine, internal, whitelabel, brand_defaults)
+
+        are deliberately not declared, so the response model drops them.'
+      properties:
+        blocks:
+          additionalProperties:
+            $ref: '#/components/schemas/MailTemplateBlock'
+          description: Org-editable content blocks
+          title: Blocks
+          type: object
+        locales:
+          description: Supported locales, first is the fallback
+          items:
+            type: string
+          title: Locales
+          type: array
+        subject:
+          additionalProperties:
+            type: string
+          description: Subject line per locale
+          title: Subject
+          type: object
+        variables:
+          additionalProperties:
+            $ref: '#/components/schemas/MailTemplateVariable'
+          description: Per-send variables
+          title: Variables
+          type: object
+        version:
+          default: ''
+          description: Template revision (major.minor)
+          title: Version
+          type: string
+      title: MailTemplate
+      type: object
+    MailTemplateBlock:
+      properties:
+        default:
+          additionalProperties:
+            type: string
+          description: Default copy per locale
+          title: Default
+          type: object
+        label:
+          default: ''
+          description: Human-readable field name for the editor
+          title: Label
+          type: string
+        max_len:
+          default: 0
+          description: Maximum override text length
+          title: Max Len
+          type: integer
+        multiline:
+          default: false
+          description: Render the editor field as a textarea
+          title: Multiline
+          type: boolean
+      title: MailTemplateBlock
+      type: object
+    MailTemplateCatalogRes:
+      additionalProperties:
+        $ref: '#/components/schemas/MailTemplate'
+      description: The editable-template catalog keyed by template name.
+      title: MailTemplateCatalogRes
+      type: object
+    MailTemplateVariable:
+      properties:
+        required:
+          default: false
+          title: Required
+          type: boolean
+        sample:
+          default: ''
+          description: Sample value shown in previews
+          title: Sample
+          type: string
+        type:
+          default: text
+          description: Value type driving render-time escaping (text or url)
+          title: Type
+          type: string
+      title: MailTemplateVariable
+      type: object
     MemoryFact:
       properties:
         created_at:
@@ -14701,7 +14789,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-24-073532
+  version: 2026-07-24-083226
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -31295,10 +31383,7 @@ paths:
           content:
             application/json:
               schema:
-                additionalProperties: true
-                title: Response List Whitelabel Email Templates V1 Whitelabel Branding
-                  Email Templates Get
-                type: object
+                $ref: '#/components/schemas/MailTemplateCatalogRes'
           description: Successful Response
         '422':
           content:
