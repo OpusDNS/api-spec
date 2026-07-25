@@ -6,3 +6,16 @@ lt # WIP
 ua # WIP
 no # WIP
 ws # WIP
+dk
+pl
+mx
+pt
+ee
+gg
+je
+vlaanderen
+brussels
+wales
+cymru
+se
+nu
