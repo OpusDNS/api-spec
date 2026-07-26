@@ -1,10 +1,9 @@
 import { components } from '../schema';
 
-export type AiUsageGranularity = components['schemas']['AiUsageGranularity'];
-export type AiUsageModelBreakdown = components['schemas']['AiUsageModelBreakdown'];
-export type AiUsageSeries = components['schemas']['AiUsageSeriesResponse'];
-export type AiUsageSummary = components['schemas']['AiUsageSummaryResponse'];
-export type AiUsageTimeBucket = components['schemas']['AiUsageTimeBucket'];
+export type AiInferenceUsageBucket = components['schemas']['AiInferenceUsageBucket'];
+export type AiInferenceUsageGroup = components['schemas']['AiInferenceUsageGroup'];
+export type AiInferenceUsageSeries = components['schemas']['AiInferenceUsageSeriesResponse'];
+export type AiInferenceUsageSummary = components['schemas']['AiInferenceUsageSummaryResponse'];
 export type AllocationMethodType = components['schemas']['AllocationMethodType'];
 export type AllowedNumberOfNameserverBase = components['schemas']['AllowedNumberOfNameserverBase'];
 export type AssignablePublicRole = components['schemas']['AssignablePublicRole'];
@@ -527,6 +526,8 @@ export type TrademarkClaimsBase = components['schemas']['TrademarkClaimsBase'];
 export type TransferAckType = components['schemas']['TransferAckType'];
 export type TransferLockPolicyBase = components['schemas']['TransferLockPolicyBase'];
 export type TransferPoliciesBase = components['schemas']['TransferPoliciesBase'];
+export type UsageGranularity = components['schemas']['UsageGranularity'];
+export type UsageProduct = components['schemas']['UsageProduct'];
 export type User = components['schemas']['User'];
 export type UserAgentStatsBucket = components['schemas']['UserAgentStatsBucket'];
 export type UserAttributeBase = components['schemas']['UserAttributeBase'];

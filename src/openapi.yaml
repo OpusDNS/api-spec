@@ -15,15 +15,24 @@ components:
         - rfc3339
         type: string
   schemas:
-    AiUsageGranularity:
-      enum:
-      - day
-      - week
-      - month
-      title: AiUsageGranularity
-      type: string
-    AiUsageModelBreakdown:
-      description: 'Public per-model AI token usage. Deliberately excludes billing-gateway''s
+    AiInferenceUsageBucket:
+      properties:
+        groups:
+          items:
+            $ref: '#/components/schemas/AiInferenceUsageGroup'
+          title: Groups
+          type: array
+        period_start:
+          format: date
+          title: Period Start
+          type: string
+      required:
+      - period_start
+      - groups
+      title: AiInferenceUsageBucket
+      type: object
+    AiInferenceUsageGroup:
+      description: 'Public per-model AI inference usage. Deliberately excludes billing-gateway''s
 
         internal COGS fields (cost_amount, per-million rates, has_rate).'
       properties:
@@ -52,13 +61,13 @@ components:
       - cache_read_tokens
       - cache_write_tokens
       - request_count
-      title: AiUsageModelBreakdown
+      title: AiInferenceUsageGroup
       type: object
-    AiUsageSeriesResponse:
+    AiInferenceUsageSeriesResponse:
       properties:
         buckets:
           items:
-            $ref: '#/components/schemas/AiUsageTimeBucket'
+            $ref: '#/components/schemas/AiInferenceUsageBucket'
           title: Buckets
           type: array
         end_date:
@@ -66,7 +75,12 @@ components:
           title: End Date
           type: string
         granularity:
-          $ref: '#/components/schemas/AiUsageGranularity'
+          $ref: '#/components/schemas/UsageGranularity'
+        product:
+          const: ai_inference
+          default: ai_inference
+          title: Product
+          type: string
         start_date:
           format: date
           title: Start Date
@@ -76,18 +90,23 @@ components:
       - start_date
       - end_date
       - buckets
-      title: AiUsageSeriesResponse
+      title: AiInferenceUsageSeriesResponse
       type: object
-    AiUsageSummaryResponse:
+    AiInferenceUsageSummaryResponse:
       properties:
-        by_model:
-          items:
-            $ref: '#/components/schemas/AiUsageModelBreakdown'
-          title: By Model
-          type: array
         end_date:
           format: date
           title: End Date
+          type: string
+        groups:
+          items:
+            $ref: '#/components/schemas/AiInferenceUsageGroup'
+          title: Groups
+          type: array
+        product:
+          const: ai_inference
+          default: ai_inference
+          title: Product
           type: string
         start_date:
           format: date
@@ -96,24 +115,8 @@ components:
       required:
       - start_date
       - end_date
-      - by_model
-      title: AiUsageSummaryResponse
-      type: object
-    AiUsageTimeBucket:
-      properties:
-        by_model:
-          items:
-            $ref: '#/components/schemas/AiUsageModelBreakdown'
-          title: By Model
-          type: array
-        period_start:
-          format: date
-          title: Period Start
-          type: string
-      required:
-      - period_start
-      - by_model
-      title: AiUsageTimeBucket
+      - groups
+      title: AiInferenceUsageSummaryResponse
       type: object
     AllocationMethodType:
       enum:
@@ -13215,6 +13218,18 @@ components:
       - authinfo_required
       title: TransferPoliciesBase
       type: object
+    UsageGranularity:
+      enum:
+      - day
+      - week
+      - month
+      title: UsageGranularity
+      type: string
+    UsageProduct:
+      enum:
+      - ai_inference
+      title: UsageProduct
+      type: string
     User:
       properties:
         created_on:
@@ -14778,7 +14793,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-24-121118
+  version: 2026-07-26-224919
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -27459,164 +27474,6 @@ paths:
       summary: Create an organization
       tags:
       - organization
-  /v1/organizations/ai-usage:
-    get:
-      description: Retrieves the current organization's AI token usage as a time series,
-        bucketed by the requested granularity and broken down per model. Reports token
-        counts and request volumes only.
-      operationId: get_ai_usage_series_v1_organizations_ai_usage_get
-      parameters:
-      - in: query
-        name: start_date
-        required: true
-        schema:
-          format: date
-          title: Start Date
-          type: string
-      - in: query
-        name: end_date
-        required: true
-        schema:
-          format: date
-          title: End Date
-          type: string
-      - in: query
-        name: model
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Model
-      - in: query
-        name: granularity
-        required: false
-        schema:
-          $ref: '#/components/schemas/AiUsageGranularity'
-          default: day
-      - $ref: '#/components/parameters/DatetimeFormatHeader'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AiUsageSeriesResponse'
-          description: Successful Response
-        '401':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_AUTHENTICATION
-                detail: Additional error context.
-                status: 401
-                title: Authentication Error
-                type: authentication
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Unauthorized
-        '403':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_PERMISSION_DENIED
-                detail: Insufficient permissions to perform this action
-                status: 403
-                title: Permission Denied
-                type: permission-denied
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Forbidden
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      - APIKeyHeader: []
-      summary: AI usage over time
-      tags:
-      - organization
-      - ai_usage
-      x-required-permissions:
-      - organization:read
-  /v1/organizations/ai-usage/summary:
-    get:
-      description: Retrieves the current organization's total AI token usage over
-        a date range, broken down per model. Reports token counts and request volumes
-        only.
-      operationId: get_ai_usage_summary_v1_organizations_ai_usage_summary_get
-      parameters:
-      - in: query
-        name: start_date
-        required: true
-        schema:
-          format: date
-          title: Start Date
-          type: string
-      - in: query
-        name: end_date
-        required: true
-        schema:
-          format: date
-          title: End Date
-          type: string
-      - in: query
-        name: model
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Model
-      - $ref: '#/components/parameters/DatetimeFormatHeader'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AiUsageSummaryResponse'
-          description: Successful Response
-        '401':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_AUTHENTICATION
-                detail: Additional error context.
-                status: 401
-                title: Authentication Error
-                type: authentication
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Unauthorized
-        '403':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_PERMISSION_DENIED
-                detail: Insufficient permissions to perform this action
-                status: 403
-                title: Permission Denied
-                type: permission-denied
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Forbidden
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      - APIKeyHeader: []
-      summary: AI usage summary
-      tags:
-      - organization
-      - ai_usage
-      x-required-permissions:
-      - organization:read
   /v1/organizations/attributes:
     get:
       description: Retrieves a list of organization attributes for the current organization
@@ -29252,6 +29109,189 @@ paths:
       summary: Get a specific transaction
       tags:
       - organization
+      x-required-permissions:
+      - organization:read
+  /v1/organizations/{organization_id}/usage/{product}:
+    get:
+      description: Retrieves the organization's usage of a metered product as a time
+        series, bucketed by the requested granularity and grouped per sub-metric.
+        Reports usage quantities only.
+      operationId: get_usage_series_v1_organizations__organization_id__usage__product__get
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      - in: path
+        name: product
+        required: true
+        schema:
+          $ref: '#/components/schemas/UsageProduct'
+      - description: Inclusive start date (YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          description: Inclusive start date (YYYY-MM-DD)
+          format: date
+          title: Start Date
+          type: string
+      - description: Inclusive end date (YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          description: Inclusive end date (YYYY-MM-DD)
+          format: date
+          title: End Date
+          type: string
+      - description: Time-bucket size
+        in: query
+        name: granularity
+        required: false
+        schema:
+          $ref: '#/components/schemas/UsageGranularity'
+          default: day
+          description: Time-bucket size
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiInferenceUsageSeriesResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Usage over time
+      tags:
+      - organization
+      - usage
+      x-required-permissions:
+      - organization:read
+  /v1/organizations/{organization_id}/usage/{product}/summary:
+    get:
+      description: Retrieves the organization's total usage of a metered product over
+        a date range, grouped per sub-metric. Reports usage quantities only.
+      operationId: get_usage_summary_v1_organizations__organization_id__usage__product__summary_get
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      - in: path
+        name: product
+        required: true
+        schema:
+          $ref: '#/components/schemas/UsageProduct'
+      - description: Inclusive start date (YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          description: Inclusive start date (YYYY-MM-DD)
+          format: date
+          title: Start Date
+          type: string
+      - description: Inclusive end date (YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          description: Inclusive end date (YYYY-MM-DD)
+          format: date
+          title: End Date
+          type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiInferenceUsageSummaryResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Usage summary
+      tags:
+      - organization
+      - usage
       x-required-permissions:
       - organization:read
   /v1/parking:
@@ -31917,12 +31957,12 @@ tags:
 - description: Endpoints for creating new Tags
   name: tag
   x-displayName: Tags
-- description: 'Endpoints for reporting your organization''s AI usage.
+- description: 'Endpoints for reporting your organization''s usage of metered products.
 
 
-    These endpoints expose the AI token consumption incurred by your organization''s
-    use of OpusDNS AI features, so you can monitor usage over time and per model.
-    Usage is reported as token counts and request volumes only.
+    These endpoints expose the usage your organization has incurred for a metered
+    product, so you can monitor consumption over time and in total. Usage is reported
+    as quantities only; billing costs are never included.
 
 
     ### Endpoints
@@ -31932,15 +31972,16 @@ tags:
 
     |--------|------|-------------|
 
-    | `GET` | `/v1/organizations/ai-usage` | Token usage as a time series, bucketed
-    by granularity and broken down per model |
+    | `GET` | `/v1/organizations/{organization_id}/usage/{product}` | Usage as a time
+    series, bucketed by granularity and grouped per sub-metric |
 
-    | `GET` | `/v1/organizations/ai-usage/summary` | Token usage totals over a date
-    range, broken down per model |
+    | `GET` | `/v1/organizations/{organization_id}/usage/{product}/summary` | Usage
+    totals over a date range, grouped per sub-metric |
 
 
-    The reporting organization is taken from the authentication token; usage is always
-    scoped to the calling organization.
+    `{product}` selects the metered product. Currently supported: `ai_inference` (AI
+    token consumption from OpusDNS AI features). The response carries a top-level
+    `product` field identifying the reported product.
 
 
     ### Query Parameters
@@ -31957,8 +31998,6 @@ tags:
     | `granularity` | Time-bucket size for the series endpoint: `day` (default), `week`,
     or `month` |
 
-    | `model` | Optional filter to a single model |
-
 
     `start_date` must be on or before `end_date`, otherwise the request is rejected
     with `422 Unprocessable Content`.
@@ -31967,7 +32006,10 @@ tags:
     ### Reported Metrics
 
 
-    Each per-model breakdown reports token counts and request volume:
+    #### `ai_inference`
+
+
+    Each group reports token counts and request volume for one AI model:
 
 
     | Field | Description |
@@ -31991,15 +32033,15 @@ tags:
     permission.
 
     '
-  name: ai_usage
-  x-displayName: AI usage
+  name: usage
+  x-displayName: Usage
 x-tagGroups:
 - name: Account management
   tags:
   - authentication
   - user
   - organization
-  - ai_usage
+  - usage
 - name: Domains
   tags:
   - domain

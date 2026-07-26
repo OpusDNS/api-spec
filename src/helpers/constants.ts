@@ -1,5 +1,4 @@
 import type {
-  AiUsageGranularity,
   AllocationMethodType,
   AssignablePublicRole,
   AttributeType,
@@ -103,6 +102,8 @@ import type {
   TagType,
   TimeRange,
   TransferAckType,
+  UsageGranularity,
+  UsageProduct,
   UserSortField,
   VanityNameserverSetStatusDTO,
   VanityNsCheckConfidence,
@@ -117,18 +118,6 @@ import type {
   ZoneIncludeField,
   ZoneSortField,
 } from './schemas';
-
-export const AI_USAGE_GRANULARITY = {
-  DAY: "day",
-  WEEK: "week",
-  MONTH: "month",
-} as const satisfies Record<string, AiUsageGranularity>;
-
-export const AI_USAGE_GRANULARITY_VALUES = [
-  'day',
-  'week',
-  'month',
-] as const satisfies ReadonlyArray<AiUsageGranularity>;
 
 export const ALLOCATION_METHOD_TYPE = {
   FCFS: "fcfs",
@@ -1858,6 +1847,26 @@ export const TRANSFER_ACK_TYPE_VALUES = [
   'registrant',
   'both',
 ] as const satisfies ReadonlyArray<TransferAckType>;
+
+export const USAGE_GRANULARITY = {
+  DAY: "day",
+  WEEK: "week",
+  MONTH: "month",
+} as const satisfies Record<string, UsageGranularity>;
+
+export const USAGE_GRANULARITY_VALUES = [
+  'day',
+  'week',
+  'month',
+] as const satisfies ReadonlyArray<UsageGranularity>;
+
+export const USAGE_PRODUCT = {
+  AI_INFERENCE: "ai_inference",
+} as const satisfies Record<string, UsageProduct>;
+
+export const USAGE_PRODUCT_VALUES = [
+  'ai_inference',
+] as const satisfies ReadonlyArray<UsageProduct>;
 
 export const USER_SORT_FIELD = {
   CREATED_ON: "created_on",

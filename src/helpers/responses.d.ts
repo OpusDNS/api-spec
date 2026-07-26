@@ -1,6 +1,6 @@
 import type {
-  AiUsageSeries,
-  AiUsageSummary,
+  AiInferenceUsageSeries,
+  AiInferenceUsageSummary,
   BillingTransaction,
   ClaimsNotices,
   ClearVanityNameserverSetDefaultRes,
@@ -647,20 +647,6 @@ export type GET_Organizations_Response_401 = Problem;
 export type GET_Organizations_Response_403 = Problem;
 export type GET_Organizations_Response_422 = HTTPValidationError;
 
-export type GET_OrganizationsAiUsage_Response = GET_OrganizationsAiUsage_Response_200 | GET_OrganizationsAiUsage_Response_401 | GET_OrganizationsAiUsage_Response_403 | GET_OrganizationsAiUsage_Response_422;
-
-export type GET_OrganizationsAiUsage_Response_200 = AiUsageSeries;
-export type GET_OrganizationsAiUsage_Response_401 = Problem;
-export type GET_OrganizationsAiUsage_Response_403 = Problem;
-export type GET_OrganizationsAiUsage_Response_422 = HTTPValidationError;
-
-export type GET_OrganizationsAiUsageSummary_Response = GET_OrganizationsAiUsageSummary_Response_200 | GET_OrganizationsAiUsageSummary_Response_401 | GET_OrganizationsAiUsageSummary_Response_403 | GET_OrganizationsAiUsageSummary_Response_422;
-
-export type GET_OrganizationsAiUsageSummary_Response_200 = AiUsageSummary;
-export type GET_OrganizationsAiUsageSummary_Response_401 = Problem;
-export type GET_OrganizationsAiUsageSummary_Response_403 = Problem;
-export type GET_OrganizationsAiUsageSummary_Response_422 = HTTPValidationError;
-
 export type GET_OrganizationsAttributes_Response = GET_OrganizationsAttributes_Response_200 | GET_OrganizationsAttributes_Response_401 | GET_OrganizationsAttributes_Response_403 | GET_OrganizationsAttributes_Response_422;
 
 export type GET_OrganizationsAttributes_Response_200 = OrganizationAttribute2[];
@@ -707,6 +693,20 @@ export type GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Respons
 export type GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_401 = Problem;
 export type GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_403 = Problem;
 export type GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_422 = HTTPValidationError;
+
+export type GET_OrganizationsByOrganizationIdUsageByProduct_Response = GET_OrganizationsByOrganizationIdUsageByProduct_Response_200 | GET_OrganizationsByOrganizationIdUsageByProduct_Response_401 | GET_OrganizationsByOrganizationIdUsageByProduct_Response_403 | GET_OrganizationsByOrganizationIdUsageByProduct_Response_422;
+
+export type GET_OrganizationsByOrganizationIdUsageByProduct_Response_200 = AiInferenceUsageSeries;
+export type GET_OrganizationsByOrganizationIdUsageByProduct_Response_401 = Problem;
+export type GET_OrganizationsByOrganizationIdUsageByProduct_Response_403 = Problem;
+export type GET_OrganizationsByOrganizationIdUsageByProduct_Response_422 = HTTPValidationError;
+
+export type GET_OrganizationsByOrganizationIdUsageByProductSummary_Response = GET_OrganizationsByOrganizationIdUsageByProductSummary_Response_200 | GET_OrganizationsByOrganizationIdUsageByProductSummary_Response_401 | GET_OrganizationsByOrganizationIdUsageByProductSummary_Response_403 | GET_OrganizationsByOrganizationIdUsageByProductSummary_Response_422;
+
+export type GET_OrganizationsByOrganizationIdUsageByProductSummary_Response_200 = AiInferenceUsageSummary;
+export type GET_OrganizationsByOrganizationIdUsageByProductSummary_Response_401 = Problem;
+export type GET_OrganizationsByOrganizationIdUsageByProductSummary_Response_403 = Problem;
+export type GET_OrganizationsByOrganizationIdUsageByProductSummary_Response_422 = HTTPValidationError;
 
 export type GET_OrganizationsIpRestrictions_Response = GET_OrganizationsIpRestrictions_Response_200 | GET_OrganizationsIpRestrictions_Response_401 | GET_OrganizationsIpRestrictions_Response_403 | GET_OrganizationsIpRestrictions_Response_422;
 
