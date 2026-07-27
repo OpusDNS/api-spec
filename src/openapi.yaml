@@ -11971,7 +11971,6 @@ components:
           - type: 'null'
           title: Registrar
         statuses:
-          default: []
           items:
             type: string
           title: Statuses
@@ -14850,7 +14849,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-27-084121
+  version: 2026-07-27-141029
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

@@ -10735,11 +10735,8 @@ export interface components {
             nameservers: components["schemas"]["RegistrarNameserver"][];
             /** Registrar */
             registrar?: string | null;
-            /**
-             * Statuses
-             * @default []
-             */
-            statuses: string[];
+            /** Statuses */
+            statuses?: string[];
             zone?: components["schemas"]["RegistrarZone"] | null;
         };
         /** RegistrarNameserver */
