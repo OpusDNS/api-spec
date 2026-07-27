@@ -114,6 +114,8 @@ import type {
   VerificationClaimType,
   VerificationDeadlineType,
   VerificationType,
+  WhitelabelOnboardingFailureCode,
+  WhitelabelOnboardingFailureType,
   WhitelabelOnboardingStatus,
   ZoneIncludeField,
   ZoneSortField,
@@ -1991,6 +1993,40 @@ export const VERIFICATION_TYPE_VALUES = [
   'api',
   'email',
 ] as const satisfies ReadonlyArray<VerificationType>;
+
+export const WHITELABEL_ONBOARDING_FAILURE_CODE = {
+  ZONE_NOT_OWNED: "zone_not_owned",
+  DELEGATION_MISSING: "delegation_missing",
+  DELEGATION_MISMATCH: "delegation_mismatch",
+  DNS_RECORD_REJECTED: "dns_record_rejected",
+  AUTH_CLIENT_REJECTED: "auth_client_rejected",
+  BRANDING_REJECTED: "branding_rejected",
+  RETRIES_EXHAUSTED: "retries_exhausted",
+} as const satisfies Record<string, WhitelabelOnboardingFailureCode>;
+
+export const WHITELABEL_ONBOARDING_FAILURE_CODE_VALUES = [
+  'zone_not_owned',
+  'delegation_missing',
+  'delegation_mismatch',
+  'dns_record_rejected',
+  'auth_client_rejected',
+  'branding_rejected',
+  'retries_exhausted',
+] as const satisfies ReadonlyArray<WhitelabelOnboardingFailureCode>;
+
+export const WHITELABEL_ONBOARDING_FAILURE_TYPE = {
+  DNS: "dns",
+  AUTH: "auth",
+  BRANDING: "branding",
+  SYSTEM: "system",
+} as const satisfies Record<string, WhitelabelOnboardingFailureType>;
+
+export const WHITELABEL_ONBOARDING_FAILURE_TYPE_VALUES = [
+  'dns',
+  'auth',
+  'branding',
+  'system',
+] as const satisfies ReadonlyArray<WhitelabelOnboardingFailureType>;
 
 export const WHITELABEL_ONBOARDING_STATUS = {
   PENDING_DOMAIN_VERIFICATION: "pending_domain_verification",

@@ -14401,11 +14401,20 @@ components:
           format: date-time
           title: Created On
           type: string
-        failure_reason:
+        failure_code:
+          anyOf:
+          - $ref: '#/components/schemas/WhitelabelOnboardingFailureCode'
+          - type: 'null'
+        failure_detail:
           anyOf:
           - type: string
           - type: 'null'
-          title: Failure Reason
+          title: Failure Detail
+        failure_type:
+          anyOf:
+          - $ref: '#/components/schemas/WhitelabelOnboardingFailureType'
+          - type: 'null'
+          readOnly: true
         hostname:
           maxLength: 255
           minLength: 1
@@ -14453,11 +14462,34 @@ components:
       - auth_hostname
       - verification_domain
       - keycloak_client_id
-      - failure_reason
       - created_on
       - updated_on
+      - failure_type
       title: WhitelabelBrandingResponse
       type: object
+    WhitelabelOnboardingFailureCode:
+      description: 'Stable, frontend-facing reason a terminal onboarding failure happened.
+        The free-text
+
+        detail that accompanies it is for support/debugging, never for customer display.'
+      enum:
+      - zone_not_owned
+      - delegation_missing
+      - delegation_mismatch
+      - dns_record_rejected
+      - auth_client_rejected
+      - branding_rejected
+      - retries_exhausted
+      title: WhitelabelOnboardingFailureCode
+      type: string
+    WhitelabelOnboardingFailureType:
+      enum:
+      - dns
+      - auth
+      - branding
+      - system
+      title: WhitelabelOnboardingFailureType
+      type: string
     WhitelabelOnboardingStatus:
       enum:
       - pending_domain_verification
@@ -14793,7 +14825,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-26-224919
+  version: 2026-07-27-074918
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

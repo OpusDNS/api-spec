@@ -5765,7 +5765,9 @@ export const KEYS_WHITELABEL_BRANDING_CREATE = [
 
 export const KEY_WHITELABEL_BRANDING_AUTH_HOSTNAME = 'auth_hostname' satisfies keyof WhitelabelBranding;
 export const KEY_WHITELABEL_BRANDING_CREATED_ON = 'created_on' satisfies keyof WhitelabelBranding;
-export const KEY_WHITELABEL_BRANDING_FAILURE_REASON = 'failure_reason' satisfies keyof WhitelabelBranding;
+export const KEY_WHITELABEL_BRANDING_FAILURE_CODE = 'failure_code' satisfies keyof WhitelabelBranding;
+export const KEY_WHITELABEL_BRANDING_FAILURE_DETAIL = 'failure_detail' satisfies keyof WhitelabelBranding;
+export const KEY_WHITELABEL_BRANDING_FAILURE_TYPE = 'failure_type' satisfies keyof WhitelabelBranding;
 export const KEY_WHITELABEL_BRANDING_HOSTNAME = 'hostname' satisfies keyof WhitelabelBranding;
 export const KEY_WHITELABEL_BRANDING_KEYCLOAK_CLIENT_ID = 'keycloak_client_id' satisfies keyof WhitelabelBranding;
 export const KEY_WHITELABEL_BRANDING_ONBOARDING_STATUS = 'onboarding_status' satisfies keyof WhitelabelBranding;
@@ -5777,7 +5779,9 @@ export const KEY_WHITELABEL_BRANDING_WHITELABEL_BRANDING_ID = 'whitelabel_brandi
 export const KEYS_WHITELABEL_BRANDING = [
   KEY_WHITELABEL_BRANDING_AUTH_HOSTNAME,
   KEY_WHITELABEL_BRANDING_CREATED_ON,
-  KEY_WHITELABEL_BRANDING_FAILURE_REASON,
+  KEY_WHITELABEL_BRANDING_FAILURE_CODE,
+  KEY_WHITELABEL_BRANDING_FAILURE_DETAIL,
+  KEY_WHITELABEL_BRANDING_FAILURE_TYPE,
   KEY_WHITELABEL_BRANDING_HOSTNAME,
   KEY_WHITELABEL_BRANDING_KEYCLOAK_CLIENT_ID,
   KEY_WHITELABEL_BRANDING_ONBOARDING_STATUS,

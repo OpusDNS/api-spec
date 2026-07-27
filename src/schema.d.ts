@@ -12423,8 +12423,10 @@ export interface components {
              * Format: date-time
              */
             created_on: Date;
-            /** Failure Reason */
-            failure_reason: string | null;
+            failure_code?: components["schemas"]["WhitelabelOnboardingFailureCode"] | null;
+            /** Failure Detail */
+            failure_detail?: string | null;
+            readonly failure_type: components["schemas"]["WhitelabelOnboardingFailureType"] | null;
             /** Hostname */
             hostname: string;
             /** Keycloak Client Id */
@@ -12450,6 +12452,18 @@ export interface components {
              */
             whitelabel_branding_id: TypeId<"wlb">;
         };
+        /**
+         * WhitelabelOnboardingFailureCode
+         * @description Stable, frontend-facing reason a terminal onboarding failure happened. The free-text
+         *     detail that accompanies it is for support/debugging, never for customer display.
+         * @enum {string}
+         */
+        WhitelabelOnboardingFailureCode: "zone_not_owned" | "delegation_missing" | "delegation_mismatch" | "dns_record_rejected" | "auth_client_rejected" | "branding_rejected" | "retries_exhausted";
+        /**
+         * WhitelabelOnboardingFailureType
+         * @enum {string}
+         */
+        WhitelabelOnboardingFailureType: "dns" | "auth" | "branding" | "system";
         /**
          * WhitelabelOnboardingStatus
          * @enum {string}
