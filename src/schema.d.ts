@@ -12412,6 +12412,18 @@ export interface components {
             period: components["schemas"]["Period"];
         };
         /**
+         * WhitelabelBrandingRecheck
+         * @description Public recheck body. Empty = re-run onboarding against the stored hosts (retry after
+         *     fixing DNS). Both hosts present = re-point a wrong domain before re-running (pre-provisioning
+         *     only; server rejects once a Keycloak client exists).
+         */
+        WhitelabelBrandingRecheck: {
+            /** Auth Hostname */
+            auth_hostname?: string | null;
+            /** Hostname */
+            hostname?: string | null;
+        };
+        /**
          * WhitelabelBrandingResponse
          * @description Public read shape for an organization's whitelabel branding config.
          */
@@ -26448,7 +26460,11 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["WhitelabelBrandingRecheck"] | null;
+            };
+        };
         responses: {
             /** @description Successful Response */
             202: {

@@ -14389,6 +14389,31 @@ components:
       - period
       title: WhitelabelBrandingCreate
       type: object
+    WhitelabelBrandingRecheck:
+      description: 'Public recheck body. Empty = re-run onboarding against the stored
+        hosts (retry after
+
+        fixing DNS). Both hosts present = re-point a wrong domain before re-running
+        (pre-provisioning
+
+        only; server rejects once a Keycloak client exists).'
+      properties:
+        auth_hostname:
+          anyOf:
+          - maxLength: 255
+            minLength: 1
+            type: string
+          - type: 'null'
+          title: Auth Hostname
+        hostname:
+          anyOf:
+          - maxLength: 255
+            minLength: 1
+            type: string
+          - type: 'null'
+          title: Hostname
+      title: WhitelabelBrandingRecheck
+      type: object
     WhitelabelBrandingResponse:
       description: Public read shape for an organization's whitelabel branding config.
       properties:
@@ -14825,7 +14850,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-27-074918
+  version: 2026-07-27-084121
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -31465,6 +31490,14 @@ paths:
       operationId: recheck_whitelabel_branding_v1_whitelabel_branding_recheck_post
       parameters:
       - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - $ref: '#/components/schemas/WhitelabelBrandingRecheck'
+              - type: 'null'
+              title: Body
       responses:
         '202':
           content:

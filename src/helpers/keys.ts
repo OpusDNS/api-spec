@@ -425,6 +425,7 @@ import type {
   Verification,
   VisitsByKeyBucket,
   WhitelabelBrandingCreate,
+  WhitelabelBrandingRecheck,
   WhitelabelBranding,
   WhoisBase,
   ZoneVanitySetUpdate,
@@ -5762,6 +5763,14 @@ export const KEYS_WHITELABEL_BRANDING_CREATE = [
   KEY_WHITELABEL_BRANDING_CREATE_HOSTNAME,
   KEY_WHITELABEL_BRANDING_CREATE_PERIOD,
 ] as const satisfies (keyof WhitelabelBrandingCreate)[];
+
+export const KEY_WHITELABEL_BRANDING_RECHECK_AUTH_HOSTNAME = 'auth_hostname' satisfies keyof WhitelabelBrandingRecheck;
+export const KEY_WHITELABEL_BRANDING_RECHECK_HOSTNAME = 'hostname' satisfies keyof WhitelabelBrandingRecheck;
+
+export const KEYS_WHITELABEL_BRANDING_RECHECK = [
+  KEY_WHITELABEL_BRANDING_RECHECK_AUTH_HOSTNAME,
+  KEY_WHITELABEL_BRANDING_RECHECK_HOSTNAME,
+] as const satisfies (keyof WhitelabelBrandingRecheck)[];
 
 export const KEY_WHITELABEL_BRANDING_AUTH_HOSTNAME = 'auth_hostname' satisfies keyof WhitelabelBranding;
 export const KEY_WHITELABEL_BRANDING_CREATED_ON = 'created_on' satisfies keyof WhitelabelBranding;

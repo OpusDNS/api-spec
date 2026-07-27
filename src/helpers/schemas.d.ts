@@ -564,6 +564,7 @@ export type Verification = components['schemas']['VerificationResponse'];
 export type VerificationType = components['schemas']['VerificationType'];
 export type VisitsByKeyBucket = components['schemas']['VisitsByKeyBucket'];
 export type WhitelabelBrandingCreate = components['schemas']['WhitelabelBrandingCreate'];
+export type WhitelabelBrandingRecheck = components['schemas']['WhitelabelBrandingRecheck'];
 export type WhitelabelBranding = components['schemas']['WhitelabelBrandingResponse'];
 export type WhitelabelOnboardingFailureCode = components['schemas']['WhitelabelOnboardingFailureCode'];
 export type WhitelabelOnboardingFailureType = components['schemas']['WhitelabelOnboardingFailureType'];
