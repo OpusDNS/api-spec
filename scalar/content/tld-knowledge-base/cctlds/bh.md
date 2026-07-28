@@ -18,8 +18,8 @@
 
 | Property | Value |
 | --- | --- |
-| Registration Period | 1–10 years |
-| Renewal Period | 1–10 years |
+| Registration Period | 1–5 years |
+| Renewal Period | 1–5 years |
 | Transfer Renewal Period | 1 year |
 | Deletion Policy | Immediate, At expiration |
 | Auto-Renew Enabled | ✅ Yes |
@@ -31,10 +31,10 @@
 | Period | Duration |
 | --- | --- |
 | Add Grace Period | 5 days |
-| Standard Grace Period | 5 days |
+| Standard Grace Period | 45 days |
 | Redemption Period | 30 days |
 | Pending Restore | 7 days |
-| Pending Delete | 0 days |
+| Pending Delete | 5 days |
 
 ## Launch Phases & Availability
 
@@ -57,7 +57,7 @@
 
 | Property | Value |
 | --- | --- |
-| Required Contacts | Domain Owner, Technical Contact |
+| Required Contacts | Domain Owner |
 | Supported Roles | Domain Owner, Administrator, Technical Contact, Billing Contact |
 | Thick WHOIS | ✅ Yes |
 | Privacy Proxy Allowed | ✅ Yes |
@@ -91,8 +91,8 @@
 
 | Property | Value |
 | --- | --- |
-| WHOIS Server | `whois.nic.bh` |
-| RDAP Server | [rdap.centralnic.com](https://rdap.centralnic.com/) |
+| WHOIS Server | `whois.bhregistry.bh` |
+| RDAP Server | [rdap.bhregistry.bh/rdap](https://rdap.bhregistry.bh/rdap) |
 
 ## Dispute Resolution
 
