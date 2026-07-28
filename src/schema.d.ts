@@ -8759,6 +8759,12 @@ export interface components {
                 [key: string]: components["schemas"]["MailTemplateBlock"];
             };
             /**
+             * Label
+             * @description Human-readable template name for display
+             * @default
+             */
+            label: string;
+            /**
              * Locales
              * @description Supported locales, first is the fallback
              */

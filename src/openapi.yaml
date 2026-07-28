@@ -8890,6 +8890,11 @@ components:
           description: Org-editable content blocks
           title: Blocks
           type: object
+        label:
+          default: ''
+          description: Human-readable template name for display
+          title: Label
+          type: string
         locales:
           description: Supported locales, first is the fallback
           items:
@@ -14877,7 +14882,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-28-024409
+  version: 2026-07-28-150643
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
