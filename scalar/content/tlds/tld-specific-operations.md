@@ -35,9 +35,9 @@ curl "$OPUSDNS_API_BASE/v1/domains/tld-specific/be/example.be/auth_code/request"
 
 ## .cz — Request auth code
 
-`.cz` domains managed by CZ.NIC do not expose the auth code on a domain info
-lookup, so it has to be requested explicitly. The registry sends it to the
-holder's email address:
+`.cz` domains managed by CZ.NIC never expose the auth code over EPP, so it has
+to be requested explicitly. The registry generates it on demand and mails it to
+the registrant and to every administrative contact:
 
 ```bash
 curl "$OPUSDNS_API_BASE/v1/domains/tld-specific/cz/example.cz/auth_code/request" \
@@ -45,7 +45,8 @@ curl "$OPUSDNS_API_BASE/v1/domains/tld-specific/cz/example.cz/auth_code/request"
   --header "X-Api-Key: $OPUSDNS_API_KEY"
 ```
 
-The code is valid for 7 days after the request.
+The code is valid for 14 days. The response carries a `recipients` list with the
+masked addresses the registry sent it to.
 
 ## .lt — Request auth code
 
