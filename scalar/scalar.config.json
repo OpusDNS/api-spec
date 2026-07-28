@@ -373,6 +373,13 @@
                     "filepath": "content/tlds/be-operations.md",
                     "showInSidebar": true
                   },
+                  "/cz": {
+                    "type": "page",
+                    "title": ".cz operations",
+                    "icon": "line/travel-map-earth-globe",
+                    "filepath": "content/tlds/cz-operations.md",
+                    "showInSidebar": true
+                  },
                   "/de": {
                     "type": "page",
                     "title": ".de operations",

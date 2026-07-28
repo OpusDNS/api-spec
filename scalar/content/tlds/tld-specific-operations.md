@@ -33,6 +33,40 @@ curl "$OPUSDNS_API_BASE/v1/domains/tld-specific/be/example.be/auth_code/request"
   --header "X-Api-Key: $OPUSDNS_API_KEY"
 ```
 
+## .cz — Request auth code
+
+`.cz` domains managed by CZ.NIC do not expose the auth code on a domain info
+lookup, so it has to be requested explicitly. The registry sends it to the
+holder's email address:
+
+```bash
+curl "$OPUSDNS_API_BASE/v1/domains/tld-specific/cz/example.cz/auth_code/request" \
+  --request POST \
+  --header "X-Api-Key: $OPUSDNS_API_KEY"
+```
+
+The code is valid for 7 days after the request.
+
+## .lt — Request auth code
+
+`.lt` domains managed by DOMREG also require an explicit auth code request.
+Unlike the other TLDs above, DOMREG returns the code directly in the response:
+
+```bash
+curl "$OPUSDNS_API_BASE/v1/domains/tld-specific/lt/example.lt/auth_code/request" \
+  --request POST \
+  --header "X-Api-Key: $OPUSDNS_API_KEY"
+```
+
+```json
+{
+  "name": "example.lt",
+  "success": true,
+  "auth_code": "...",
+  "auth_code_expires_on": "2026-08-03T10:00:00Z"
+}
+```
+
 ## .de — Transit
 
 `.de` domains managed by DENIC support a transit operation. This disconnects the
@@ -115,6 +149,8 @@ Transfer-out tag releases for <code>.uk</code> domains are not currently exposed
 | --- | --- | --- |
 | `.eu` | Request auth code | `POST /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request` |
 | `.be` | Request auth code | `POST /v1/domains/tld-specific/be/{domain_reference}/auth_code/request` |
+| `.cz` | Request auth code | `POST /v1/domains/tld-specific/cz/{domain_reference}/auth_code/request` |
+| `.lt` | Request auth code | `POST /v1/domains/tld-specific/lt/{domain_reference}/auth_code/request` |
 | `.de` | Transit | `POST /v1/domains/tld-specific/de/{domain_reference}/transit` |
 | `.at` | Withdraw | `POST /v1/domains/tld-specific/at/{domain_reference}/withdraw` |
 | `.uk` | Transfer in | `POST /v1/domains/transfer` |
@@ -123,6 +159,8 @@ Transfer-out tag releases for <code>.uk</code> domains are not currently exposed
 
 - [`POST /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/eu/{domain_reference}/auth_code/request)
 - [`POST /v1/domains/tld-specific/be/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/be/{domain_reference}/auth_code/request)
+- [`POST /v1/domains/tld-specific/cz/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/cz/{domain_reference}/auth_code/request)
+- [`POST /v1/domains/tld-specific/lt/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/lt/{domain_reference}/auth_code/request)
 - [`POST /v1/domains/tld-specific/de/{domain_reference}/transit`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/de/{domain_reference}/transit)
 - [`POST /v1/domains/tld-specific/at/{domain_reference}/withdraw`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/at/{domain_reference}/withdraw)
 - [`POST /v1/domains/transfer`](/api-reference#tag/domain/POST/v1/domains/transfer)
