@@ -434,6 +434,7 @@ import type {
   RequestAuthcode,
   RequestAuthcode2,
   RequestAuthcode3,
+  RequestAuthcode4,
   DomainAvailabilityList,
   DomainAvailabilityCheck,
 } from './schemas';
@@ -5848,17 +5849,15 @@ export const KEYS_REQUEST_AUTHCODE = [
   KEY_REQUEST_AUTHCODE_SUCCESS,
 ] as const satisfies (keyof RequestAuthcode)[];
 
-export const KEY_REQUEST_AUTHCODE2_AUTH_CODE = 'auth_code' satisfies keyof RequestAuthcode2;
-export const KEY_REQUEST_AUTHCODE2_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' satisfies keyof RequestAuthcode2;
 export const KEY_REQUEST_AUTHCODE2_DETAIL = 'detail' satisfies keyof RequestAuthcode2;
 export const KEY_REQUEST_AUTHCODE2_NAME = 'name' satisfies keyof RequestAuthcode2;
+export const KEY_REQUEST_AUTHCODE2_RECIPIENTS = 'recipients' satisfies keyof RequestAuthcode2;
 export const KEY_REQUEST_AUTHCODE2_SUCCESS = 'success' satisfies keyof RequestAuthcode2;
 
 export const KEYS_REQUEST_AUTHCODE2 = [
-  KEY_REQUEST_AUTHCODE2_AUTH_CODE,
-  KEY_REQUEST_AUTHCODE2_AUTH_CODE_EXPIRES_ON,
   KEY_REQUEST_AUTHCODE2_DETAIL,
   KEY_REQUEST_AUTHCODE2_NAME,
+  KEY_REQUEST_AUTHCODE2_RECIPIENTS,
   KEY_REQUEST_AUTHCODE2_SUCCESS,
 ] as const satisfies (keyof RequestAuthcode2)[];
 
@@ -5875,6 +5874,20 @@ export const KEYS_REQUEST_AUTHCODE3 = [
   KEY_REQUEST_AUTHCODE3_NAME,
   KEY_REQUEST_AUTHCODE3_SUCCESS,
 ] as const satisfies (keyof RequestAuthcode3)[];
+
+export const KEY_REQUEST_AUTHCODE4_AUTH_CODE = 'auth_code' satisfies keyof RequestAuthcode4;
+export const KEY_REQUEST_AUTHCODE4_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' satisfies keyof RequestAuthcode4;
+export const KEY_REQUEST_AUTHCODE4_DETAIL = 'detail' satisfies keyof RequestAuthcode4;
+export const KEY_REQUEST_AUTHCODE4_NAME = 'name' satisfies keyof RequestAuthcode4;
+export const KEY_REQUEST_AUTHCODE4_SUCCESS = 'success' satisfies keyof RequestAuthcode4;
+
+export const KEYS_REQUEST_AUTHCODE4 = [
+  KEY_REQUEST_AUTHCODE4_AUTH_CODE,
+  KEY_REQUEST_AUTHCODE4_AUTH_CODE_EXPIRES_ON,
+  KEY_REQUEST_AUTHCODE4_DETAIL,
+  KEY_REQUEST_AUTHCODE4_NAME,
+  KEY_REQUEST_AUTHCODE4_SUCCESS,
+] as const satisfies (keyof RequestAuthcode4)[];
 
 export const KEY_DOMAIN_AVAILABILITY_LIST_META = 'meta' satisfies keyof DomainAvailabilityList;
 export const KEY_DOMAIN_AVAILABILITY_LIST_RESULTS = 'results' satisfies keyof DomainAvailabilityList;

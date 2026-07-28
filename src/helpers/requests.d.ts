@@ -584,6 +584,11 @@ export type POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Request = 
 };
 export type POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Request_Path = POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Request['parameters']['path'];
 
+export type POST_DomainsTldSpecificCzByDomainReferenceAuthCodeRequest_Request = {
+  parameters: operations['request_auth_code_v1_domains_tld_specific_cz__domain_reference__auth_code_request_post']['parameters'];
+};
+export type POST_DomainsTldSpecificCzByDomainReferenceAuthCodeRequest_Request_Path = POST_DomainsTldSpecificCzByDomainReferenceAuthCodeRequest_Request['parameters']['path'];
+
 export type POST_DomainsTldSpecificDeByDomainReferenceTransit_Request = {
   parameters: operations['transit_domain_v1_domains_tld_specific_de__domain_reference__transit_post']['parameters'];
   requestBody: DomainTransitRequest;
