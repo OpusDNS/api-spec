@@ -64,6 +64,7 @@ import type {
   OrganizationAttribute2,
   OrganizationCredential,
   OrganizationWithBillingData,
+  OutboundTransfer,
   PageResponse_EmailForwardLog,
   PageResponse_Job,
   PageResponse_JobBatchMetadata,
@@ -1147,6 +1148,13 @@ export type POST_DomainsByDomainReferenceRestore_Response = POST_DomainsByDomain
 
 export type POST_DomainsByDomainReferenceRestore_Response_200 = DomainRestore;
 export type POST_DomainsByDomainReferenceRestore_Response_422 = HTTPValidationError;
+
+export type POST_DomainsByDomainReferenceTransferOutbound_Response = POST_DomainsByDomainReferenceTransferOutbound_Response_200 | POST_DomainsByDomainReferenceTransferOutbound_Response_400 | POST_DomainsByDomainReferenceTransferOutbound_Response_404 | POST_DomainsByDomainReferenceTransferOutbound_Response_422;
+
+export type POST_DomainsByDomainReferenceTransferOutbound_Response_200 = OutboundTransfer;
+export type POST_DomainsByDomainReferenceTransferOutbound_Response_400 = Problem;
+export type POST_DomainsByDomainReferenceTransferOutbound_Response_404 = Problem;
+export type POST_DomainsByDomainReferenceTransferOutbound_Response_422 = Problem;
 
 export type POST_DomainsClaimsNotices_Response = POST_DomainsClaimsNotices_Response_200 | POST_DomainsClaimsNotices_Response_404 | POST_DomainsClaimsNotices_Response_422 | POST_DomainsClaimsNotices_Response_503;
 

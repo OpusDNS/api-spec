@@ -71,6 +71,7 @@ import type {
   OrganizationCredentialStatus,
   OrganizationSortField,
   OrganizationStatus,
+  OutboundTransferAction,
   ParkingSortField,
   PatchOp,
   PeriodUnit,
@@ -1308,6 +1309,16 @@ export const ORGANIZATION_STATUS_VALUES = [
   'active',
   'inactive',
 ] as const satisfies ReadonlyArray<OrganizationStatus>;
+
+export const OUTBOUND_TRANSFER_ACTION = {
+  APPROVE: "approve",
+  REJECT: "reject",
+} as const satisfies Record<string, OutboundTransferAction>;
+
+export const OUTBOUND_TRANSFER_ACTION_VALUES = [
+  'approve',
+  'reject',
+] as const satisfies ReadonlyArray<OutboundTransferAction>;
 
 export const PARKING_SORT_FIELD = {
   DOMAIN: "domain",

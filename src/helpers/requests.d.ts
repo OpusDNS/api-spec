@@ -44,6 +44,7 @@ import type {
   OrganizationAttributeUpdate,
   OrganizationCreate,
   OrganizationUpdate,
+  OutboundTransferRequest,
   ParkingSignupRequest,
   PreviewMailReq,
   PublicAuthRequestForm,
@@ -553,6 +554,13 @@ export type DELETE_DomainsByDomainReferenceTransfer_Request = {
   parameters: operations['cancel_domain_transfer_v1_domains__domain_reference__transfer_delete']['parameters'];
 };
 export type DELETE_DomainsByDomainReferenceTransfer_Request_Path = DELETE_DomainsByDomainReferenceTransfer_Request['parameters']['path'];
+
+export type POST_DomainsByDomainReferenceTransferOutbound_Request = {
+  parameters: operations['resolve_outbound_transfer_v1_domains__domain_reference__transfer_outbound_post']['parameters'];
+  requestBody: OutboundTransferRequest;
+};
+export type POST_DomainsByDomainReferenceTransferOutbound_Request_Path = POST_DomainsByDomainReferenceTransferOutbound_Request['parameters']['path'];
+export type POST_DomainsByDomainReferenceTransferOutbound_Request_Body = POST_DomainsByDomainReferenceTransferOutbound_Request['requestBody'];
 
 export type GET_DomainsCheck_Request = {
   parameters: operations['epp_check_domain_v1_domains_check_get']['parameters'];

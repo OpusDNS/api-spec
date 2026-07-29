@@ -10270,6 +10270,45 @@ components:
       - name
       title: OrganizationWithBillingData
       type: object
+    OutboundTransferAction:
+      enum:
+      - approve
+      - reject
+      title: OutboundTransferAction
+      type: string
+    OutboundTransferRequest:
+      properties:
+        action:
+          $ref: '#/components/schemas/OutboundTransferAction'
+          description: Whether to approve or reject the pending outbound transfer
+      required:
+      - action
+      title: OutboundTransferRequest
+      type: object
+    OutboundTransferResponse:
+      properties:
+        action:
+          $ref: '#/components/schemas/OutboundTransferAction'
+          description: The action that was applied to the outbound transfer
+        domain_id:
+          description: The ID of the domain whose outbound transfer was resolved
+          examples:
+          - domain_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Domain Id
+          type: string
+          x-typeid-prefix: domain
+        domain_name:
+          description: The name of the domain whose outbound transfer was resolved
+          title: Domain Name
+          type: string
+      required:
+      - domain_id
+      - domain_name
+      - action
+      title: OutboundTransferResponse
+      type: object
     PageResponse_EmailForwardLog_:
       properties:
         pagination:
@@ -14895,7 +14934,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-29-014404
+  version: 2026-07-29-143904
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -24607,6 +24646,85 @@ paths:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
       summary: Cancel a domain transfer
+      tags:
+      - domain
+      x-required-permissions:
+      - domains:manage
+  /v1/domains/{domain_reference}/transfer/outbound:
+    post:
+      operationId: resolve_outbound_transfer_v1_domains__domain_reference__transfer_outbound_post
+      parameters:
+      - in: path
+        name: domain_reference
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - domain_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: domain
+          - type: string
+          title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OutboundTransferRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutboundTransferResponse'
+          description: Successful Response
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_TRANSFER
+                detail: There was an error transferring the domain
+                domain_name: Additional error context.
+                reason: An unspecified error occurred
+                status: 400
+                title: Domain Transfer Error
+                type: domain-transfer
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_NOT_FOUND
+                detail: Domain not found
+                domain_name: Additional error context.
+                status: 404
+                title: Domain Management Error
+                type: domain-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_REGISTRY_POLICY
+                detail: The registry rejected the request due to a policy violation
+                domain_name: Additional error context.
+                status: 422
+                title: Registry Policy Error
+                type: domain-registry-policy
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Approve or reject an outbound domain transfer
       tags:
       - domain
       x-required-permissions:

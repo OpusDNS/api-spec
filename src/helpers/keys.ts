@@ -304,6 +304,8 @@ import type {
   OrganizationToken,
   OrganizationUpdate,
   OrganizationWithBillingData,
+  OutboundTransferRequest,
+  OutboundTransfer,
   PageResponse_EmailForwardLog,
   PageResponse_JobBatchMetadata,
   PageResponse_Job,
@@ -4280,6 +4282,22 @@ export const KEYS_ORGANIZATION_WITH_BILLING_DATA = [
   KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_RATE,
   KEY_ORGANIZATION_WITH_BILLING_DATA_USERS,
 ] as const satisfies (keyof OrganizationWithBillingData)[];
+
+export const KEY_OUTBOUND_TRANSFER_REQUEST_ACTION = 'action' satisfies keyof OutboundTransferRequest;
+
+export const KEYS_OUTBOUND_TRANSFER_REQUEST = [
+  KEY_OUTBOUND_TRANSFER_REQUEST_ACTION,
+] as const satisfies (keyof OutboundTransferRequest)[];
+
+export const KEY_OUTBOUND_TRANSFER_ACTION = 'action' satisfies keyof OutboundTransfer;
+export const KEY_OUTBOUND_TRANSFER_DOMAIN_ID = 'domain_id' satisfies keyof OutboundTransfer;
+export const KEY_OUTBOUND_TRANSFER_DOMAIN_NAME = 'domain_name' satisfies keyof OutboundTransfer;
+
+export const KEYS_OUTBOUND_TRANSFER = [
+  KEY_OUTBOUND_TRANSFER_ACTION,
+  KEY_OUTBOUND_TRANSFER_DOMAIN_ID,
+  KEY_OUTBOUND_TRANSFER_DOMAIN_NAME,
+] as const satisfies (keyof OutboundTransfer)[];
 
 export const KEY_PAGE_RESPONSE_EMAIL_FORWARD_LOG_PAGINATION = 'pagination' satisfies keyof PageResponse_EmailForwardLog;
 export const KEY_PAGE_RESPONSE_EMAIL_FORWARD_LOG_RESULTS = 'results' satisfies keyof PageResponse_EmailForwardLog;
