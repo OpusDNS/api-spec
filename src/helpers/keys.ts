@@ -1330,6 +1330,7 @@ export const KEY_DNS_CONFIGURATION_BASE_CZDS_AVAILABLE = 'czds_available' satisf
 export const KEY_DNS_CONFIGURATION_BASE_DNSSEC_ALLOWED = 'dnssec_allowed' satisfies keyof DnsConfigurationBase;
 export const KEY_DNS_CONFIGURATION_BASE_DNSSEC_MANDATORY = 'dnssec_mandatory' satisfies keyof DnsConfigurationBase;
 export const KEY_DNS_CONFIGURATION_BASE_DNSSEC_MODE = 'dnssec_mode' satisfies keyof DnsConfigurationBase;
+export const KEY_DNS_CONFIGURATION_BASE_DNSSEC_SUBMIT_DIGEST_TYPES = 'dnssec_submit_digest_types' satisfies keyof DnsConfigurationBase;
 export const KEY_DNS_CONFIGURATION_BASE_HOST_OBJECTS = 'host_objects' satisfies keyof DnsConfigurationBase;
 export const KEY_DNS_CONFIGURATION_BASE_HOST_PARENT_CHECK_TLDS = 'host_parent_check_tlds' satisfies keyof DnsConfigurationBase;
 export const KEY_DNS_CONFIGURATION_BASE_REGISTRY_NAMESERVER_CHECK = 'registry_nameserver_check' satisfies keyof DnsConfigurationBase;
@@ -1341,6 +1342,7 @@ export const KEYS_DNS_CONFIGURATION_BASE = [
   KEY_DNS_CONFIGURATION_BASE_DNSSEC_ALLOWED,
   KEY_DNS_CONFIGURATION_BASE_DNSSEC_MANDATORY,
   KEY_DNS_CONFIGURATION_BASE_DNSSEC_MODE,
+  KEY_DNS_CONFIGURATION_BASE_DNSSEC_SUBMIT_DIGEST_TYPES,
   KEY_DNS_CONFIGURATION_BASE_HOST_OBJECTS,
   KEY_DNS_CONFIGURATION_BASE_HOST_PARENT_CHECK_TLDS,
   KEY_DNS_CONFIGURATION_BASE_REGISTRY_NAMESERVER_CHECK,

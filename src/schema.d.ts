@@ -4587,6 +4587,11 @@ export interface components {
             /** @description DNSSEC mode */
             dnssec_mode?: components["schemas"]["DnssecModeType"] | null;
             /**
+             * Dnssec Submit Digest Types
+             * @description Which DS digest types we submit to the registry for zones we host, in order of preference: the first listed type the zone has a DS record for is submitted, later entries are fallbacks. Absent means submit every digest type the zone publishes. This is our submission policy, not the set of digest types the registry accepts.
+             */
+            dnssec_submit_digest_types?: number[] | null;
+            /**
              * Host Objects
              * @description Whether the registry supports host objects or use attributes
              */
@@ -16266,13 +16271,39 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_DNSSEC_ZONE_RECORDS_UNAVAILABLE",
+                     *       "detail": "DNS zone 'example.com.' is DNSSEC-enabled but has no usable DS records to publish",
+                     *       "status": 409,
+                     *       "title": "DNSSEC Zone Records Unavailable",
+                     *       "type": "domain-dnssec-zone-records-unavailable",
+                     *       "zone_name": "example.com."
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_DNSSEC_DIGEST_POLICY",
+                     *       "detail": "The DNS zone publishes DS digest type(s) [4], but only digest type(s) [2] can be submitted for TLD 'it'",
+                     *       "domain_name": "example.it",
+                     *       "status": 422,
+                     *       "title": "DNSSEC Digest Policy Error",
+                     *       "tld": "it",
+                     *       "type": "domain-dnssec-digest-policy"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
@@ -19978,13 +20009,6 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    /** @example {
-                     *       "code": "ERROR_POLICY_VALIDATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 422,
-                     *       "title": "Policy Validation Error",
-                     *       "type": "policy-validation-error"
-                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -20137,13 +20161,30 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_DNSSEC_ZONE_RECORDS_UNAVAILABLE",
+                     *       "detail": "DNS zone 'example.com.' is DNSSEC-enabled but has no usable DS records to publish",
+                     *       "status": 409,
+                     *       "title": "DNSSEC Zone Records Unavailable",
+                     *       "type": "domain-dnssec-zone-records-unavailable",
+                     *       "zone_name": "example.com."
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };

@@ -2547,6 +2547,19 @@ components:
           - $ref: '#/components/schemas/DnssecModeType'
           - type: 'null'
           description: DNSSEC mode
+        dnssec_submit_digest_types:
+          anyOf:
+          - items:
+              type: integer
+            minItems: 1
+            type: array
+          - type: 'null'
+          description: 'Which DS digest types we submit to the registry for zones
+            we host, in order of preference: the first listed type the zone has a
+            DS record for is submitted, later entries are fallbacks. Absent means
+            submit every digest type the zone publishes. This is our submission policy,
+            not the set of digest types the registry accepts.'
+          title: Dnssec Submit Digest Types
         host_objects:
           description: Whether the registry supports host objects or use attributes
           title: Host Objects
@@ -14882,7 +14895,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-28-214611
+  version: 2026-07-29-014404
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -19292,12 +19305,35 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Bad Request
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_DNSSEC_ZONE_RECORDS_UNAVAILABLE
+                detail: DNS zone 'example.com.' is DNSSEC-enabled but has no usable
+                  DS records to publish
+                status: 409
+                title: DNSSEC Zone Records Unavailable
+                type: domain-dnssec-zone-records-unavailable
+                zone_name: example.com.
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
         '422':
           content:
             application/problem+json:
+              example:
+                code: ERROR_DOMAIN_DNSSEC_DIGEST_POLICY
+                detail: The DNS zone publishes DS digest type(s) [4], but only digest
+                  type(s) [2] can be submitted for TLD 'it'
+                domain_name: example.it
+                status: 422
+                title: DNSSEC Digest Policy Error
+                tld: it
+                type: domain-dnssec-digest-policy
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -24253,12 +24289,22 @@ paths:
         '422':
           content:
             application/problem+json:
-              example:
-                code: ERROR_POLICY_VALIDATION
-                detail: Additional error context.
-                status: 422
-                title: Policy Validation Error
-                type: policy-validation-error
+              examples:
+                Domain Management Error:
+                  value:
+                    code: ERROR_DOMAIN_DNSSEC_NOT_SUPPORTED
+                    detail: DNSSEC not supported for this TLD
+                    domain_name: Additional error context.
+                    status: 422
+                    title: Domain Management Error
+                    type: domain-dnssec-not-supported
+                Policy Validation Error:
+                  value:
+                    code: ERROR_POLICY_VALIDATION
+                    detail: Additional error context.
+                    status: 422
+                    title: Policy Validation Error
+                    type: policy-validation-error
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Unprocessable Content
@@ -24360,12 +24406,45 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_DNSSEC_ZONE_RECORDS_UNAVAILABLE
+                detail: DNS zone 'example.com.' is DNSSEC-enabled but has no usable
+                  DS records to publish
+                status: 409
+                title: DNSSEC Zone Records Unavailable
+                type: domain-dnssec-zone-records-unavailable
+                zone_name: example.com.
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
         '422':
           content:
             application/problem+json:
+              examples:
+                DNSSEC Digest Policy Error:
+                  value:
+                    code: ERROR_DOMAIN_DNSSEC_DIGEST_POLICY
+                    detail: The DNS zone publishes DS digest type(s) [4], but only
+                      digest type(s) [2] can be submitted for TLD 'it'
+                    domain_name: example.it
+                    status: 422
+                    title: DNSSEC Digest Policy Error
+                    tld: it
+                    type: domain-dnssec-digest-policy
+                Domain Management Error:
+                  value:
+                    code: ERROR_DOMAIN_DNSSEC_NOT_SUPPORTED
+                    detail: DNSSEC not supported for this TLD
+                    domain_name: Additional error context.
+                    status: 422
+                    title: Domain Management Error
+                    type: domain-dnssec-not-supported
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
