@@ -12162,6 +12162,22 @@ components:
       - NOR_ID_CONTACT_TYPE
       - NOR_ID_IDENTITY_TYPE
       - NOR_ID_IDENTITY_VALUE
+      - REGISTRY_SE_ORG_NO
+      - REGISTRY_SE_VAT_NO
+      - DNS_PT_VAT
+      - DNS_PT_MOBILE
+      - DNS_PT_NIS2_VALIDATED
+      - DNS_PT_NIS2_VALIDATED_DATE
+      - PUNKTUM_DK_USER_TYPE
+      - PUNKTUM_DK_CVR
+      - PUNKTUM_DK_PNUMBER
+      - PUNKTUM_DK_EAN
+      - PUNKTUM_DK_SECONDARY_EMAIL
+      - PUNKTUM_DK_MOBILEPHONE
+      - PUNKTUM_DK_SOLE_PROPRIETORSHIP
+      - INTERNET_EE_IDENT_TYPE
+      - INTERNET_EE_IDENT_CC
+      - INTERNET_EE_IDENT_VALUE
       title: RegistryHandleAttributeType
       type: string
     RegistryLockBase:
@@ -14936,7 +14952,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-29-144759
+  version: 2026-07-29-210555
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
