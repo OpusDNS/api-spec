@@ -11080,7 +11080,7 @@ export interface components {
          * StatusTagType
          * @enum {string}
          */
-        StatusTagType: "VERIFICATION_REQUIRED" | "CREATE_REQUESTED";
+        StatusTagType: "VERIFICATION_REQUIRED" | "CREATE_REQUESTED" | "INBOUND_TRANSFER_PENDING" | "OUTBOUND_TRANSFER_PENDING";
         /** @example 12.50 */
         StrictMoneyDecimal: string;
         /** Support */

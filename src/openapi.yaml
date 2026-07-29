@@ -12465,6 +12465,8 @@ components:
       enum:
       - VERIFICATION_REQUIRED
       - CREATE_REQUESTED
+      - INBOUND_TRANSFER_PENDING
+      - OUTBOUND_TRANSFER_PENDING
       title: StatusTagType
       type: string
     StrictMoneyDecimal:
@@ -14934,7 +14936,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-29-143904
+  version: 2026-07-29-144759
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
