@@ -301,7 +301,7 @@ export interface paths {
         };
         /**
          * Check domain availability
-         * @description Check the availability of one or more domains.
+         * @description Check the availability of one or more domains. Invalid domains are reported per domain (status 'error' with error details) instead of failing the whole request.
          */
         get: operations["bulk_availability_v1_availability_get"];
         put?: never;
@@ -5271,7 +5271,22 @@ export interface components {
         DomainAvailability: {
             /** Domain */
             domain: string;
+            /** @description Error details when status is 'error', e.g. why a domain is invalid */
+            error?: components["schemas"]["DomainAvailabilityError"] | null;
             status: components["schemas"]["DomainAvailabilityStatus"];
+        };
+        /** DomainAvailabilityError */
+        DomainAvailabilityError: {
+            /**
+             * Message
+             * @description Human-readable error message
+             */
+            message: string;
+            /**
+             * Type
+             * @description Error type identifier, e.g. validation_error or check_error
+             */
+            type: string;
         };
         /** DomainAvailabilityMeta */
         DomainAvailabilityMeta: {

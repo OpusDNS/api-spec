@@ -112,6 +112,7 @@ import type {
   DnsZoneUpdateWorkerPayload,
   DnsZoneVanitySetUpdateRes,
   DomainAvailability,
+  DomainAvailabilityError,
   DomainAvailabilityMeta,
   DomainAvailabilityRequest,
   DomainCheck,
@@ -1804,12 +1805,22 @@ export const KEYS_DNS_ZONE_VANITY_SET_UPDATE_RES = [
 ] as const satisfies (keyof DnsZoneVanitySetUpdateRes)[];
 
 export const KEY_DOMAIN_AVAILABILITY_DOMAIN = 'domain' satisfies keyof DomainAvailability;
+export const KEY_DOMAIN_AVAILABILITY_ERROR = 'error' satisfies keyof DomainAvailability;
 export const KEY_DOMAIN_AVAILABILITY_STATUS = 'status' satisfies keyof DomainAvailability;
 
 export const KEYS_DOMAIN_AVAILABILITY = [
   KEY_DOMAIN_AVAILABILITY_DOMAIN,
+  KEY_DOMAIN_AVAILABILITY_ERROR,
   KEY_DOMAIN_AVAILABILITY_STATUS,
 ] as const satisfies (keyof DomainAvailability)[];
+
+export const KEY_DOMAIN_AVAILABILITY_ERROR_MESSAGE = 'message' satisfies keyof DomainAvailabilityError;
+export const KEY_DOMAIN_AVAILABILITY_ERROR_TYPE = 'type' satisfies keyof DomainAvailabilityError;
+
+export const KEYS_DOMAIN_AVAILABILITY_ERROR = [
+  KEY_DOMAIN_AVAILABILITY_ERROR_MESSAGE,
+  KEY_DOMAIN_AVAILABILITY_ERROR_TYPE,
+] as const satisfies (keyof DomainAvailabilityError)[];
 
 export const KEY_DOMAIN_AVAILABILITY_META_PROCESSING_TIME_MS = 'processing_time_ms' satisfies keyof DomainAvailabilityMeta;
 export const KEY_DOMAIN_AVAILABILITY_META_TOTAL = 'total' satisfies keyof DomainAvailabilityMeta;

@@ -146,6 +146,7 @@ export type DnssecRecordType = components['schemas']['DnssecRecordType'];
 export type DnssecStatus = components['schemas']['DnssecStatus'];
 export type DomainAttributeKey = components['schemas']['DomainAttributeKey'];
 export type DomainAvailability = components['schemas']['DomainAvailability'];
+export type DomainAvailabilityError = components['schemas']['DomainAvailabilityError'];
 export type DomainAvailabilityMeta = components['schemas']['DomainAvailabilityMeta'];
 export type DomainAvailabilityRequest = components['schemas']['DomainAvailabilityRequest'];
 export type DomainAvailabilityStatus = components['schemas']['DomainAvailabilityStatus'];
