@@ -3640,6 +3640,7 @@ components:
       - nor_id_declaration_token
       - punktum_dk_terms_acceptance
       - punktum_dk_tracking_no
+      - promotion
       title: DomainAttributeKey
       type: string
     DomainAvailability:
@@ -3778,7 +3779,8 @@ components:
               $ref: '#/components/schemas/DomainAttributeKey'
             type: object
           - type: 'null'
-          description: Additional attributes of the domain
+          description: Additional attributes of the domain. Platform-reserved keys
+            are rejected if supplied.
           title: Attributes
         auth_code:
           anyOf:
@@ -3873,7 +3875,8 @@ components:
               $ref: '#/components/schemas/DomainAttributeKey'
             type: object
           - type: 'null'
-          description: Override attributes for this domain
+          description: Override attributes for this domain. Platform-reserved keys
+            are rejected if supplied.
           title: Attributes
         auth_code:
           anyOf:
@@ -3955,7 +3958,8 @@ components:
               $ref: '#/components/schemas/DomainAttributeKey'
             type: object
           - type: 'null'
-          description: Additional attributes of the domain
+          description: Additional attributes of the domain. Platform-reserved keys
+            are rejected if supplied.
           title: Attributes
         auth_code:
           anyOf:
@@ -4027,7 +4031,8 @@ components:
               $ref: '#/components/schemas/DomainAttributeKey'
             type: object
           - type: 'null'
-          description: Additional attributes of the domain
+          description: Additional attributes of the domain. Platform-reserved keys
+            are rejected if supplied.
           title: Attributes
         auth_code:
           anyOf:
@@ -5761,7 +5766,8 @@ components:
               $ref: '#/components/schemas/DomainAttributeKey'
             type: object
           - type: 'null'
-          description: Override attributes for this domain
+          description: Override attributes for this domain. Platform-reserved keys
+            are rejected if supplied.
           title: Attributes
         auth_code:
           anyOf:
@@ -5843,7 +5849,8 @@ components:
               $ref: '#/components/schemas/DomainAttributeKey'
             type: object
           - type: 'null'
-          description: Additional attributes of the domain
+          description: Additional attributes of the domain. Platform-reserved keys
+            are rejected if supplied.
           title: Attributes
         contacts:
           $ref: '#/components/schemas/DomainContactHandles'
@@ -5909,7 +5916,8 @@ components:
               $ref: '#/components/schemas/DomainAttributeKey'
             type: object
           - type: 'null'
-          description: Additional attributes of the domain
+          description: Additional attributes of the domain. Platform-reserved keys
+            are rejected if supplied.
           title: Attributes
         auth_code:
           anyOf:
@@ -5973,7 +5981,8 @@ components:
               $ref: '#/components/schemas/DomainAttributeKey'
             type: object
           - type: 'null'
-          description: Additional attributes of the domain
+          description: Additional attributes of the domain. Platform-reserved keys
+            are rejected if supplied.
           title: Attributes
         auth_code:
           anyOf:
@@ -6082,7 +6091,8 @@ components:
               $ref: '#/components/schemas/DomainAttributeKey'
             type: object
           - type: 'null'
-          description: Additional attributes of the domain
+          description: Additional attributes of the domain. Platform-reserved keys
+            are rejected if supplied.
           title: Attributes
         auth_code:
           anyOf:
@@ -6300,7 +6310,8 @@ components:
               $ref: '#/components/schemas/DomainAttributeKey'
             type: object
           - type: 'null'
-          description: Additional attributes of the domain
+          description: Additional attributes of the domain. Platform-reserved keys
+            are rejected if supplied.
           title: Attributes
         auth_code:
           anyOf:
@@ -14976,7 +14987,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-31-115412
+  version: 2026-07-31-125734
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
