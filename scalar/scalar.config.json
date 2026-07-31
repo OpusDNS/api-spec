@@ -3395,6 +3395,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/vacations.md",
                 "showInSidebar": true
               },
+              "/vegas": {
+                "type": "page",
+                "title": "🌐 .vegas",
+                "filepath": "content/tld-knowledge-base/gtlds/vegas.md",
+                "showInSidebar": true
+              },
               "/ventures": {
                 "type": "page",
                 "title": "🌐 .ventures",
