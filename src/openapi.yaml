@@ -12178,6 +12178,7 @@ components:
       - CIRA_CPR
       - SIDN_LEGAL_FORM
       - SIDN_LEGAL_REG_NO
+      - SIDN_REGISTRANT_TYPE
       - US_NEXUS_CATEGORY
       - US_NEXUS_COUNTRY_CODE
       - US_APP_PURPOSE
@@ -14987,7 +14988,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-31-125734
+  version: 2026-08-03-200335
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
