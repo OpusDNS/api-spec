@@ -988,7 +988,7 @@
                 "filepath": "content/tld-knowledge-base/cctlds/wf.md",
                 "showInSidebar": true
               },
-                 "/ws": {
+              "/ws": {
                 "type": "page",
                 "title": "🇼🇸 .ws",
                 "filepath": "content/tld-knowledge-base/cctlds/ws.md",
