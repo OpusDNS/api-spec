@@ -814,6 +814,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/li.md",
                 "showInSidebar": true
               },
+              "/lt": {
+                "type": "page",
+                "title": "🇱🇹 .lt",
+                "filepath": "content/tld-knowledge-base/cctlds/lt.md",
+                "showInSidebar": true
+              },
               "/lu": {
                 "type": "page",
                 "title": "🇱🇺 .lu",
