@@ -10679,7 +10679,7 @@ export interface components {
          * PublicResource
          * @enum {string}
          */
-        PublicResource: "organization" | "domains" | "contacts" | "dns" | "hosts" | "email_forwards" | "domain_forwards" | "parking" | "events" | "jobs" | "billing" | "users" | "api_keys" | "registrar_credentials" | "tags" | "audit_logs" | "vanity_ns" | "whitelabel_branding" | "ai_concierge";
+        PublicResource: "organization" | "domains" | "domain_auth_codes" | "contacts" | "dns" | "hosts" | "email_forwards" | "domain_forwards" | "parking" | "events" | "jobs" | "billing" | "users" | "api_keys" | "registrar_credentials" | "tags" | "audit_logs" | "vanity_ns" | "whitelabel_branding" | "ai_concierge";
         /**
          * PublicRole
          * @enum {string}

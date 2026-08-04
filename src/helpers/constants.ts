@@ -1429,6 +1429,7 @@ export const PROTOCOL_VALUES = [
 export const PUBLIC_RESOURCE = {
   ORGANIZATION: "organization",
   DOMAINS: "domains",
+  DOMAIN_AUTH_CODES: "domain_auth_codes",
   CONTACTS: "contacts",
   DNS: "dns",
   HOSTS: "hosts",
@@ -1451,6 +1452,7 @@ export const PUBLIC_RESOURCE = {
 export const PUBLIC_RESOURCE_VALUES = [
   'organization',
   'domains',
+  'domain_auth_codes',
   'contacts',
   'dns',
   'hosts',

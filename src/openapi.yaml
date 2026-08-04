@@ -11810,6 +11810,7 @@ components:
       enum:
       - organization
       - domains
+      - domain_auth_codes
       - contacts
       - dns
       - hosts
@@ -14989,7 +14990,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-03-232757
+  version: 2026-08-04-064134
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
