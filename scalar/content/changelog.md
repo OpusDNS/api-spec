@@ -4,7 +4,25 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
-### 17 July 2026
+### 04 August 2026
+
+- Added **sub-zone delegation**: NS records below the zone apex are now
+  fully supported on every zone endpoint — include them when creating a zone,
+  or manage them with the RRset and record PATCH endpoints like any other
+  record type. OpusDNS nameservers serve the delegation as a standard DNS
+  referral. Delegations from DNSSEC-signed zones are insecure delegations
+  (child DS records are not supported). See
+  [Delegate a subdomain](/products/dns/subzone-delegation).
+
+- Changed **writes targeting system-managed records to return errors instead
+  of silently doing nothing**. Previously, a `PUT`/`PATCH` that tried to
+  modify or remove the zone apex NS, SOA, DNSKEY, or DS records could return
+  `204 No Content` while the request had no effect. These now return
+  `409 Conflict` with a `protected_reason`. Zone responses also report
+  `protected: true` consistently for every system-managed RRset. If your
+  integration echoes a full zone read back into a write, filter out RRsets
+  with `protected: true` first — see
+  [Protected records](/products/dns/zone-object#protected-records).
 
 - Added **independent billing for suborganizations**: create a suborganization
   with `billing_mode: "independent"` and it gets its own wallet, invoices, and

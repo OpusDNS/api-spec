@@ -263,6 +263,10 @@ Certain records are system-managed and cannot be modified:
 - Records created by **email forwarding** or **domain forwarding** are
   managed through their respective APIs.
 
+NS records **below** the apex are not protected — they delegate a subdomain to
+other nameservers and are managed like any other record type. See
+[Delegate a subdomain](/products/dns/subzone-delegation).
+
 Attempting to modify a protected record returns an error. See
 [the zone object](/products/dns/zone-object#protected-records) for the full
 list of protection reasons.
