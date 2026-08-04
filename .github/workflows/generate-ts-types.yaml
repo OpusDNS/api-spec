@@ -94,7 +94,9 @@ jobs:
         if: steps.commit.outputs.changed == 'true'
         uses: peter-evans/repository-dispatch@v4
         with:
-          token: ${{ secrets.MCP_SPEC_DISPATCH_TOKEN }}
+          # Scoped to opusdns-mcp only. Same token and same secret name that
+          # opusdns-mcp itself uses to open the resulting PR.
+          token: ${{ secrets.GH_PAT_OPENAPI_OPUSDNS_MCP }}
           repository: OpusDNS/opusdns-mcp
           event-type: openapi_spec_update
           client-payload: '{"ref": "${{ steps.commit.outputs.sha }}"}'
