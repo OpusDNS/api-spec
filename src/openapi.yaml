@@ -14990,7 +14990,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-04-064134
+  version: 2026-08-04-122306
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -32143,21 +32143,28 @@ tags:
     \ in the zone |\n| `PATCH /v1/dns/{zone_name}/rrsets` | RRset-level | Upserts\
     \ or removes entire rrsets by `(name, type)` |\n| `PATCH /v1/dns/{zone_name}/records`\
     \ | Record-level | Upserts or removes individual rdata values inside an rrset\
-    \ |\n\n### `PUT /v1/dns/{zone_name}/rrsets` \u2014 Replace all rrsets\n\nSupply\
-    \ the complete set of rrsets the zone should contain. Any existing user-managed\
-    \ rrset **not** in the request is removed. System-managed record types (SOA, DNSKEY,\
-    \ DS) are managed by OpusDNS and cannot be set or removed via this endpoint.\n\
-    \nUse this when you have authoritative, end-state data for a zone and want to\
-    \ reset it to that state.\n\n### `PATCH /v1/dns/{zone_name}/rrsets` \u2014 Upsert\
-    \ or remove whole rrsets\n\nSubmit an `ops[]` array where each op targets an rrset\
-    \ by `(name, type)`:\n\n- `op: \"upsert\"` \u2014 create or **replace** the rrset\
-    \ at `(name, type)` with the records you provide. Any records that previously\
-    \ existed at that `(name, type)` are discarded.\n- `op: \"remove\"` \u2014 delete\
-    \ the entire rrset at `(name, type)` (pass `records: []`).\n\n```json\n{\n  \"\
-    ops\": [\n    {\n      \"op\": \"upsert\",\n      \"rrset\": {\n        \"name\"\
-    : \"www\",\n        \"type\": \"A\",\n        \"ttl\": 300,\n        \"records\"\
-    : [\n          {\"rdata\": \"203.0.113.10\"},\n          {\"rdata\": \"203.0.113.11\"\
-    }\n        ]\n      }\n    },\n    {\n      \"op\": \"remove\",\n      \"rrset\"\
+    \ |\n\nAll three endpoints refuse writes targeting rrsets you cannot manage. SOA,\
+    \ DNSKEY, DS, and the NS rrset at the zone apex are system-managed by OpusDNS:\
+    \ a payload rrset or patch op targeting one \u2014 upsert **or** remove \u2014\
+    \ is rejected with a `409` protected-rrset error (these rrsets are reported with\
+    \ `\"protected\": true` in zone responses). NS records below the apex (sub-zone\
+    \ delegation) are not supported and are rejected with a `400` validation error.\
+    \ To change the nameservers a domain delegates to, update the nameservers on the\
+    \ domain instead.\n\n### `PUT /v1/dns/{zone_name}/rrsets` \u2014 Replace all rrsets\n\
+    \nSupply the complete set of rrsets the zone should contain. Any existing user-managed\
+    \ rrset **not** in the request is removed. System-managed rrsets cannot be set\
+    \ or removed via this endpoint; omit them from the payload.\n\nUse this when you\
+    \ have authoritative, end-state data for a zone and want to reset it to that state.\n\
+    \n### `PATCH /v1/dns/{zone_name}/rrsets` \u2014 Upsert or remove whole rrsets\n\
+    \nSubmit an `ops[]` array where each op targets an rrset by `(name, type)`:\n\n\
+    - `op: \"upsert\"` \u2014 create or **replace** the rrset at `(name, type)` with\
+    \ the records you provide. Any records that previously existed at that `(name,\
+    \ type)` are discarded.\n- `op: \"remove\"` \u2014 delete the entire rrset at\
+    \ `(name, type)` (pass `records: []`).\n\n```json\n{\n  \"ops\": [\n    {\n  \
+    \    \"op\": \"upsert\",\n      \"rrset\": {\n        \"name\": \"www\",\n   \
+    \     \"type\": \"A\",\n        \"ttl\": 300,\n        \"records\": [\n      \
+    \    {\"rdata\": \"203.0.113.10\"},\n          {\"rdata\": \"203.0.113.11\"}\n\
+    \        ]\n      }\n    },\n    {\n      \"op\": \"remove\",\n      \"rrset\"\
     : {\"name\": \"old\", \"type\": \"CNAME\", \"ttl\": 300, \"records\": []}\n  \
     \  }\n  ]\n}\n```\n\nUse this when you want to define the complete set of records\
     \ for a given `(name, type)` \u2014 e.g., \"`www` should have exactly these two\
