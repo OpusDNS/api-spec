@@ -429,6 +429,13 @@
                     "filepath": "content/dns/manage-records.md",
                     "showInSidebar": true
                   },
+                  "/subzone-delegation": {
+                    "type": "page",
+                    "title": "Delegate a subdomain",
+                    "icon": "line/arrow-right",
+                    "filepath": "content/dns/subzone-delegation.md",
+                    "showInSidebar": true
+                  },
                   "/dnssec": {
                     "type": "page",
                     "title": "DNSSEC",
