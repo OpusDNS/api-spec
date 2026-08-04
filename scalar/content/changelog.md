@@ -24,6 +24,32 @@ Track notable updates to the OpusDNS API and developer documentation here.
   with `protected: true` first — see
   [Protected records](/products/dns/zone-object#protected-records).
 
+### 03 August 2026
+
+- Onboarded **`.lt`** (Lithuania) and **`.ws`** (Samoa). Published their
+  [TLD Knowledge Base](/tld-knowledge-base) pages.
+
+### 31 July 2026
+
+- Onboarded **`.vegas`**. Published its
+  [TLD Knowledge Base](/tld-knowledge-base) page.
+
+### 30 July 2026
+
+- Onboarded **`.no`** (Norway). Published its
+  [TLD Knowledge Base](/tld-knowledge-base) page.
+
+### 22 July 2026
+
+- Onboarded **`.si`** (Slovenia). Published its
+  [TLD Knowledge Base](/tld-knowledge-base) page.
+
+### 17 July 2026
+
+- Onboarded **`.lv`** (Latvia) together with its second-level extensions
+  `.asn.lv`, `.com.lv`, `.conf.lv`, `.edu.lv`, `.id.lv`, `.net.lv`, and
+  `.org.lv`. Published its [TLD Knowledge Base](/tld-knowledge-base) page.
+
 - Added **independent billing for suborganizations**: create a suborganization
   with `billing_mode: "independent"` and it gets its own wallet, invoices, and
   payment methods instead of rolling up to your account. Consolidated billing
@@ -50,10 +76,23 @@ Track notable updates to the OpusDNS API and developer documentation here.
   nameservers are never touched. See
   [Automatic DNSSEC reconciliation](/products/domains/dnssec#automatic-dnssec-reconciliation).
 
+### 08 July 2026
+
+- Onboarded **3 IDN gTLDs** operated by Public Interest Registry:
+  `.xn--c1avg` (.орг), `.xn--i1b6b1a6a2e` (.संगठन), and `.xn--nqv7f` (.机构).
+  Their [TLD Knowledge Base](/tld-knowledge-base) pages are published.
+- Onboarded **`.juegos`**. Its [TLD Knowledge Base](/tld-knowledge-base) page
+  is published.
+
 ### 07 July 2026
 
 - Onboarded **`.lu`** (Luxembourg). Published its
   [TLD Knowledge Base](/tld-knowledge-base) page.
+
+### 06 July 2026
+
+- Onboarded **`.co.at`** and **`.or.at`**, the Austrian second-level
+  extensions. See the [`.at` TLD Knowledge Base](/tld-knowledge-base) page.
 
 ### 02 July 2026
 
@@ -115,8 +154,9 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ### 18 June 2026
 
-- Onboarded **`.it`** (Italy), **`.sk`** (Slovakia), and **`.latino`**.
-  Published their [TLD Knowledge Base](/tld-knowledge-base) pages.
+- Onboarded **`.it`** (Italy), **`.sk`** and **`.org.sk`** (Slovakia), and
+  **`.latino`**. Published their [TLD Knowledge Base](/tld-knowledge-base)
+  pages.
 
 ### 17 June 2026
 
@@ -138,6 +178,11 @@ Track notable updates to the OpusDNS API and developer documentation here.
   set a user's built-in or custom role. API keys are granted a role at issuance.
 - Published the [Roles & permissions](/account/organizations/roles) guide and a
   roles section in [User management](/account/users).
+
+### 15 June 2026
+
+- Onboarded **`.cz`** (Czechia). Published its
+  [TLD Knowledge Base](/tld-knowledge-base) page.
 
 ### 12 June 2026
 
