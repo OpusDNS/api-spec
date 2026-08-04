@@ -204,20 +204,31 @@ curl "$OPUSDNS_API_BASE/v1/contacts/$CONTACT_ID/verifications/attest" \
 | `attestations[].proof` | Yes | The specific evidence type used. See [Proofs](/products/contacts/verification#verification-proofs). |
 | `attestations[].attestation_reference` | Yes | Your reference identifier for the attestation (max 255 characters). |
 
+### Registry-specific constraints
+
+Some registries impose extra rules on top of the request format above. These
+constraints apply only when the contact is a registrant on domains of that TLD
+that currently require verification — for every other TLD, the standard request
+format applies.
+
+| TLD | Registry | Constraint |
+| --- | --- | --- |
+| `.de` | DENIC | All attestations in a single request must share the same `method`, `proof`, and `attestation_reference`. Submit one request per method/proof combination if the claims need different ones. |
+
+<scalar-callout type="warning">
+Violating a registry-specific constraint rejects the <strong>entire</strong> request — no attestation in it is submitted. Check the table above before batching attestations for a contact.
+</scalar-callout>
+
 ### Response
 
 The response returns the updated verification state for all claims — same
 format as the GET endpoint.
 
-<scalar-callout type="info">
-<strong>.de domain constraint:</strong> When the contact is a registrant on <code>.de</code> domains that currently require verification, all attestations in a single request <strong>must</strong> share the same <code>method</code>, <code>proof</code>, and <code>attestation_reference</code>. This is a DENIC registry limitation — submit separate requests if you need different methods or proofs for different claims.
-</scalar-callout>
-
 ### Error responses
 
 | Status | Code | Meaning |
 | --- | --- | --- |
-| `400` | `ERROR_DOMAIN_VERIFICATION_INCONSISTENT_METHOD_PROOF` | Attestations in the request use different methods or proofs (not allowed for `.de`). |
+| `400` | `ERROR_DOMAIN_VERIFICATION_INCONSISTENT_METHOD_PROOF` | Multiple attestations in one request use different methods or proofs, which the registry does not allow. See [Registry-specific constraints](#registry-specific-constraints). |
 | `404` | `ERROR_CONTACT_VERIFICATION_UPSTREAM_NOT_FOUND` | Contact has not been registered for verification. |
 | `502` | `ERROR_CONTACT_VERIFICATION_UPSTREAM_ERROR` | Verification service temporarily unavailable. |
 
@@ -261,7 +272,7 @@ By default, the events API returns only pending (unacknowledged) events. Pass <c
 | Issue | Cause | Resolution |
 | --- | --- | --- |
 | `404` on GET verification status | Contact hasn't been flagged for verification yet. | Wait for the verification process to initialize, or check that you're using the correct contact ID. |
-| `400` inconsistent method/proof | Multiple attestations use different methods or proofs in one request (`.de` restriction). | Submit separate requests — one per method/proof combination. |
+| `400` inconsistent method/proof | Multiple attestations use different methods or proofs in one request (`.de` restriction). | Submit separate requests — one per method/proof combination. See [Registry-specific constraints](#registry-specific-constraints). |
 | Claims stuck in `IN_PROGRESS` | Registry hasn't confirmed the attestation yet. | Wait and poll again. Registry confirmation can take time. |
 | Contact tag removed but domain tag remains | Contact tag is removed immediately after attestation; domain tags are cleared on the next sync cycle. | Wait a few minutes for the domain sync to run. |
 | `verification_required` still present after `VERIFIED` | Domain hasn't synced yet. | The field is cleared on the next domain sync cycle. This typically happens within minutes. |
