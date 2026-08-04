@@ -14990,7 +14990,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-04-135216
+  version: 2026-08-04-151228
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -19706,6 +19706,22 @@ paths:
         content:
           application/json:
             examples:
+              delegate_subdomain:
+                description: Add an NS RRset below the zone apex to delegate a subdomain
+                  to other nameservers (sub-zone delegation). The zone answers queries
+                  for the subtree with a referral. NS records at the apex are system-managed
+                  and cannot be changed here.
+                summary: Delegate a subdomain
+                value:
+                  ops:
+                  - op: upsert
+                    rrset:
+                      name: internal
+                      records:
+                      - rdata: ns1.other-provider.net.
+                      - rdata: ns2.other-provider.net.
+                      ttl: 3600
+                      type: NS
               remove_single_rrset:
                 description: Remove all records for a specific name and type
                 summary: Remove a single RRset
