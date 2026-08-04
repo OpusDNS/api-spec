@@ -251,6 +251,10 @@ curl --get "$OPUSDNS_API_BASE/v1/events" \
   --data-urlencode "type=VERIFICATION"
 ```
 
+<scalar-callout type="info">
+By default, the events API returns only pending (unacknowledged) events. Pass <code>acknowledged=true</code> to list events you have already acknowledged.
+</scalar-callout>
+
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
