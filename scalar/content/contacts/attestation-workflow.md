@@ -230,8 +230,9 @@ directly in the response. You can immediately see whether each claim moved to
 Once all claims reach the `VERIFIED` state, the registry clears the deadlines.
 OpusDNS automatically:
 
-- Removes the `VERIFICATION_REQUIRED` status tag from the **contact** immediately after successful attestation.
-- Removes the `VERIFICATION_REQUIRED` status tag from affected **domains** on the next domain sync.
+- Removes the `VERIFICATION_REQUIRED` status tag from: 
+    - the **contact**: immediately after successful attestation
+    - affected **domains**: on the next domain sync.
 - Sets `verification_required` to `null` on affected domain responses.
 
 If any claims are still `IN_PROGRESS` after attestation (awaiting registry
