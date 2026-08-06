@@ -12841,7 +12841,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory resource not found",
                      *       "status": 404,
-                     *       "title": "AI Concierge memory resource not found.",
+                     *       "title": "AI Concierge Memory Resource Not Found",
                      *       "type": "ai-concierge-memory-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -12866,7 +12866,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory service error",
                      *       "status": 502,
-                     *       "title": "AI Concierge memory service error.",
+                     *       "title": "AI Concierge Memory Error",
                      *       "type": "ai-concierge-memory"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -12931,7 +12931,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory resource not found",
                      *       "status": 404,
-                     *       "title": "AI Concierge memory resource not found.",
+                     *       "title": "AI Concierge Memory Resource Not Found",
                      *       "type": "ai-concierge-memory-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -12956,7 +12956,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory service error",
                      *       "status": 502,
-                     *       "title": "AI Concierge memory service error.",
+                     *       "title": "AI Concierge Memory Error",
                      *       "type": "ai-concierge-memory"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13018,7 +13018,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory resource not found",
                      *       "status": 404,
-                     *       "title": "AI Concierge memory resource not found.",
+                     *       "title": "AI Concierge Memory Resource Not Found",
                      *       "type": "ai-concierge-memory-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13043,7 +13043,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory service error",
                      *       "status": 502,
-                     *       "title": "AI Concierge memory service error.",
+                     *       "title": "AI Concierge Memory Error",
                      *       "type": "ai-concierge-memory"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13103,7 +13103,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory resource not found",
                      *       "status": 404,
-                     *       "title": "AI Concierge memory resource not found.",
+                     *       "title": "AI Concierge Memory Resource Not Found",
                      *       "type": "ai-concierge-memory-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13128,7 +13128,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory service error",
                      *       "status": 502,
-                     *       "title": "AI Concierge memory service error.",
+                     *       "title": "AI Concierge Memory Error",
                      *       "type": "ai-concierge-memory"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13186,7 +13186,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory resource not found",
                      *       "status": 404,
-                     *       "title": "AI Concierge memory resource not found.",
+                     *       "title": "AI Concierge Memory Resource Not Found",
                      *       "type": "ai-concierge-memory-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13211,7 +13211,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory service error",
                      *       "status": 502,
-                     *       "title": "AI Concierge memory service error.",
+                     *       "title": "AI Concierge Memory Error",
                      *       "type": "ai-concierge-memory"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13276,7 +13276,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory resource not found",
                      *       "status": 404,
-                     *       "title": "AI Concierge memory resource not found.",
+                     *       "title": "AI Concierge Memory Resource Not Found",
                      *       "type": "ai-concierge-memory-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13301,7 +13301,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory service error",
                      *       "status": 502,
-                     *       "title": "AI Concierge memory service error.",
+                     *       "title": "AI Concierge Memory Error",
                      *       "type": "ai-concierge-memory"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13364,7 +13364,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory resource not found",
                      *       "status": 404,
-                     *       "title": "AI Concierge memory resource not found.",
+                     *       "title": "AI Concierge Memory Resource Not Found",
                      *       "type": "ai-concierge-memory-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13389,7 +13389,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory service error",
                      *       "status": 502,
-                     *       "title": "AI Concierge memory service error.",
+                     *       "title": "AI Concierge Memory Error",
                      *       "type": "ai-concierge-memory"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13453,7 +13453,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory resource not found",
                      *       "status": 404,
-                     *       "title": "AI Concierge memory resource not found.",
+                     *       "title": "AI Concierge Memory Resource Not Found",
                      *       "type": "ai-concierge-memory-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13478,7 +13478,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory service error",
                      *       "status": 502,
-                     *       "title": "AI Concierge memory service error.",
+                     *       "title": "AI Concierge Memory Error",
                      *       "type": "ai-concierge-memory"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13545,7 +13545,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory resource not found",
                      *       "status": 404,
-                     *       "title": "AI Concierge memory resource not found.",
+                     *       "title": "AI Concierge Memory Resource Not Found",
                      *       "type": "ai-concierge-memory-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13570,7 +13570,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory service error",
                      *       "status": 502,
-                     *       "title": "AI Concierge memory service error.",
+                     *       "title": "AI Concierge Memory Error",
                      *       "type": "ai-concierge-memory"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13634,7 +13634,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory resource not found",
                      *       "status": 404,
-                     *       "title": "AI Concierge memory resource not found.",
+                     *       "title": "AI Concierge Memory Resource Not Found",
                      *       "type": "ai-concierge-memory-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13659,7 +13659,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory service error",
                      *       "status": 502,
-                     *       "title": "AI Concierge memory service error.",
+                     *       "title": "AI Concierge Memory Error",
                      *       "type": "ai-concierge-memory"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13720,7 +13720,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory resource not found",
                      *       "status": 404,
-                     *       "title": "AI Concierge memory resource not found.",
+                     *       "title": "AI Concierge Memory Resource Not Found",
                      *       "type": "ai-concierge-memory-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13745,7 +13745,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory service error",
                      *       "status": 502,
-                     *       "title": "AI Concierge memory service error.",
+                     *       "title": "AI Concierge Memory Error",
                      *       "type": "ai-concierge-memory"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13807,7 +13807,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory resource not found",
                      *       "status": 404,
-                     *       "title": "AI Concierge memory resource not found.",
+                     *       "title": "AI Concierge Memory Resource Not Found",
                      *       "type": "ai-concierge-memory-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13832,7 +13832,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory service error",
                      *       "status": 502,
-                     *       "title": "AI Concierge memory service error.",
+                     *       "title": "AI Concierge Memory Error",
                      *       "type": "ai-concierge-memory"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13894,7 +13894,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory resource not found",
                      *       "status": 404,
-                     *       "title": "AI Concierge memory resource not found.",
+                     *       "title": "AI Concierge Memory Resource Not Found",
                      *       "type": "ai-concierge-memory-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13919,7 +13919,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory service error",
                      *       "status": 502,
-                     *       "title": "AI Concierge memory service error.",
+                     *       "title": "AI Concierge Memory Error",
                      *       "type": "ai-concierge-memory"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -13977,7 +13977,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory resource not found",
                      *       "status": 404,
-                     *       "title": "AI Concierge memory resource not found.",
+                     *       "title": "AI Concierge Memory Resource Not Found",
                      *       "type": "ai-concierge-memory-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -14002,7 +14002,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory service error",
                      *       "status": 502,
-                     *       "title": "AI Concierge memory service error.",
+                     *       "title": "AI Concierge Memory Error",
                      *       "type": "ai-concierge-memory"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -14066,7 +14066,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory resource not found",
                      *       "status": 404,
-                     *       "title": "AI Concierge memory resource not found.",
+                     *       "title": "AI Concierge Memory Resource Not Found",
                      *       "type": "ai-concierge-memory-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -14091,7 +14091,7 @@ export interface operations {
                      *       "code": "ERROR_AI_CONCIERGE",
                      *       "detail": "AI Concierge memory service error",
                      *       "status": 502,
-                     *       "title": "AI Concierge memory service error.",
+                     *       "title": "AI Concierge Memory Error",
                      *       "type": "ai-concierge-memory"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];

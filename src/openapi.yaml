@@ -14990,7 +14990,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-04-151228
+  version: 2026-08-06-121126
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -15054,7 +15054,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory resource not found
                 status: 404
-                title: AI Concierge memory resource not found.
+                title: AI Concierge Memory Resource Not Found
                 type: ai-concierge-memory-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15072,7 +15072,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory service error
                 status: 502
-                title: AI Concierge memory service error.
+                title: AI Concierge Memory Error
                 type: ai-concierge-memory
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15154,7 +15154,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory resource not found
                 status: 404
-                title: AI Concierge memory resource not found.
+                title: AI Concierge Memory Resource Not Found
                 type: ai-concierge-memory-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15172,7 +15172,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory service error
                 status: 502
-                title: AI Concierge memory service error.
+                title: AI Concierge Memory Error
                 type: ai-concierge-memory
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15221,7 +15221,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory resource not found
                 status: 404
-                title: AI Concierge memory resource not found.
+                title: AI Concierge Memory Resource Not Found
                 type: ai-concierge-memory-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15239,7 +15239,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory service error
                 status: 502
-                title: AI Concierge memory service error.
+                title: AI Concierge Memory Error
                 type: ai-concierge-memory
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15292,7 +15292,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory resource not found
                 status: 404
-                title: AI Concierge memory resource not found.
+                title: AI Concierge Memory Resource Not Found
                 type: ai-concierge-memory-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15310,7 +15310,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory service error
                 status: 502
-                title: AI Concierge memory service error.
+                title: AI Concierge Memory Error
                 type: ai-concierge-memory
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15364,7 +15364,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory resource not found
                 status: 404
-                title: AI Concierge memory resource not found.
+                title: AI Concierge Memory Resource Not Found
                 type: ai-concierge-memory-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15382,7 +15382,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory service error
                 status: 502
-                title: AI Concierge memory service error.
+                title: AI Concierge Memory Error
                 type: ai-concierge-memory
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15452,7 +15452,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory resource not found
                 status: 404
-                title: AI Concierge memory resource not found.
+                title: AI Concierge Memory Resource Not Found
                 type: ai-concierge-memory-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15470,7 +15470,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory service error
                 status: 502
-                title: AI Concierge memory service error.
+                title: AI Concierge Memory Error
                 type: ai-concierge-memory
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15542,7 +15542,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory resource not found
                 status: 404
-                title: AI Concierge memory resource not found.
+                title: AI Concierge Memory Resource Not Found
                 type: ai-concierge-memory-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15560,7 +15560,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory service error
                 status: 502
-                title: AI Concierge memory service error.
+                title: AI Concierge Memory Error
                 type: ai-concierge-memory
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15653,7 +15653,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory resource not found
                 status: 404
-                title: AI Concierge memory resource not found.
+                title: AI Concierge Memory Resource Not Found
                 type: ai-concierge-memory-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15671,7 +15671,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory service error
                 status: 502
-                title: AI Concierge memory service error.
+                title: AI Concierge Memory Error
                 type: ai-concierge-memory
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15767,7 +15767,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory resource not found
                 status: 404
-                title: AI Concierge memory resource not found.
+                title: AI Concierge Memory Resource Not Found
                 type: ai-concierge-memory-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15785,7 +15785,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory service error
                 status: 502
-                title: AI Concierge memory service error.
+                title: AI Concierge Memory Error
                 type: ai-concierge-memory
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15845,7 +15845,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory resource not found
                 status: 404
-                title: AI Concierge memory resource not found.
+                title: AI Concierge Memory Resource Not Found
                 type: ai-concierge-memory-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15863,7 +15863,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory service error
                 status: 502
-                title: AI Concierge memory service error.
+                title: AI Concierge Memory Error
                 type: ai-concierge-memory
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15929,7 +15929,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory resource not found
                 status: 404
-                title: AI Concierge memory resource not found.
+                title: AI Concierge Memory Resource Not Found
                 type: ai-concierge-memory-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -15947,7 +15947,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory service error
                 status: 502
-                title: AI Concierge memory service error.
+                title: AI Concierge Memory Error
                 type: ai-concierge-memory
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -16018,7 +16018,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory resource not found
                 status: 404
-                title: AI Concierge memory resource not found.
+                title: AI Concierge Memory Resource Not Found
                 type: ai-concierge-memory-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -16036,7 +16036,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory service error
                 status: 502
-                title: AI Concierge memory service error.
+                title: AI Concierge Memory Error
                 type: ai-concierge-memory
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -16085,7 +16085,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory resource not found
                 status: 404
-                title: AI Concierge memory resource not found.
+                title: AI Concierge Memory Resource Not Found
                 type: ai-concierge-memory-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -16103,7 +16103,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory service error
                 status: 502
-                title: AI Concierge memory service error.
+                title: AI Concierge Memory Error
                 type: ai-concierge-memory
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -16154,7 +16154,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory resource not found
                 status: 404
-                title: AI Concierge memory resource not found.
+                title: AI Concierge Memory Resource Not Found
                 type: ai-concierge-memory-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -16172,7 +16172,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory service error
                 status: 502
-                title: AI Concierge memory service error.
+                title: AI Concierge Memory Error
                 type: ai-concierge-memory
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -16232,7 +16232,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory resource not found
                 status: 404
-                title: AI Concierge memory resource not found.
+                title: AI Concierge Memory Resource Not Found
                 type: ai-concierge-memory-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
@@ -16250,7 +16250,7 @@ paths:
                 code: ERROR_AI_CONCIERGE
                 detail: AI Concierge memory service error
                 status: 502
-                title: AI Concierge memory service error.
+                title: AI Concierge Memory Error
                 type: ai-concierge-memory
               schema:
                 $ref: '#/components/schemas/Problem'
