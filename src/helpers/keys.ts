@@ -2922,10 +2922,12 @@ export const KEYS_DOMAIN_WITHDRAW_REQUEST = [
   KEY_DOMAIN_WITHDRAW_REQUEST_ZONE_DELETE,
 ] as const satisfies (keyof DomainWithdrawRequest)[];
 
+export const KEY_DOMAIN_WITHDRAW_DETAIL = 'detail' satisfies keyof DomainWithdraw;
 export const KEY_DOMAIN_WITHDRAW_NAME = 'name' satisfies keyof DomainWithdraw;
 export const KEY_DOMAIN_WITHDRAW_SUCCESS = 'success' satisfies keyof DomainWithdraw;
 
 export const KEYS_DOMAIN_WITHDRAW = [
+  KEY_DOMAIN_WITHDRAW_DETAIL,
   KEY_DOMAIN_WITHDRAW_NAME,
   KEY_DOMAIN_WITHDRAW_SUCCESS,
 ] as const satisfies (keyof DomainWithdraw)[];

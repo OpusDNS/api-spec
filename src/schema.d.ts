@@ -7092,6 +7092,11 @@ export interface components {
         /** DomainWithdrawResponse */
         DomainWithdrawResponse: {
             /**
+             * Detail
+             * @description Why the withdraw did not succeed
+             */
+            detail?: string | null;
+            /**
              * Name
              * @description The domain name that was withdrawn
              */
