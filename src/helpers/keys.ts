@@ -5788,21 +5788,25 @@ export const KEYS_VISITS_BY_KEY_BUCKET = [
   KEY_VISITS_BY_KEY_BUCKET_UNIQUE,
 ] as const satisfies (keyof VisitsByKeyBucket)[];
 
-export const KEY_WHITELABEL_BRANDING_CREATE_AUTH_HOSTNAME = 'auth_hostname' satisfies keyof WhitelabelBrandingCreate;
+export const KEY_WHITELABEL_BRANDING_CREATE_AUTH_SUBDOMAIN = 'auth_subdomain' satisfies keyof WhitelabelBrandingCreate;
+export const KEY_WHITELABEL_BRANDING_CREATE_DASHBOARD_SUBDOMAIN = 'dashboard_subdomain' satisfies keyof WhitelabelBrandingCreate;
 export const KEY_WHITELABEL_BRANDING_CREATE_HOSTNAME = 'hostname' satisfies keyof WhitelabelBrandingCreate;
 export const KEY_WHITELABEL_BRANDING_CREATE_PERIOD = 'period' satisfies keyof WhitelabelBrandingCreate;
 
 export const KEYS_WHITELABEL_BRANDING_CREATE = [
-  KEY_WHITELABEL_BRANDING_CREATE_AUTH_HOSTNAME,
+  KEY_WHITELABEL_BRANDING_CREATE_AUTH_SUBDOMAIN,
+  KEY_WHITELABEL_BRANDING_CREATE_DASHBOARD_SUBDOMAIN,
   KEY_WHITELABEL_BRANDING_CREATE_HOSTNAME,
   KEY_WHITELABEL_BRANDING_CREATE_PERIOD,
 ] as const satisfies (keyof WhitelabelBrandingCreate)[];
 
-export const KEY_WHITELABEL_BRANDING_RECHECK_AUTH_HOSTNAME = 'auth_hostname' satisfies keyof WhitelabelBrandingRecheck;
+export const KEY_WHITELABEL_BRANDING_RECHECK_AUTH_SUBDOMAIN = 'auth_subdomain' satisfies keyof WhitelabelBrandingRecheck;
+export const KEY_WHITELABEL_BRANDING_RECHECK_DASHBOARD_SUBDOMAIN = 'dashboard_subdomain' satisfies keyof WhitelabelBrandingRecheck;
 export const KEY_WHITELABEL_BRANDING_RECHECK_HOSTNAME = 'hostname' satisfies keyof WhitelabelBrandingRecheck;
 
 export const KEYS_WHITELABEL_BRANDING_RECHECK = [
-  KEY_WHITELABEL_BRANDING_RECHECK_AUTH_HOSTNAME,
+  KEY_WHITELABEL_BRANDING_RECHECK_AUTH_SUBDOMAIN,
+  KEY_WHITELABEL_BRANDING_RECHECK_DASHBOARD_SUBDOMAIN,
   KEY_WHITELABEL_BRANDING_RECHECK_HOSTNAME,
 ] as const satisfies (keyof WhitelabelBrandingRecheck)[];
 

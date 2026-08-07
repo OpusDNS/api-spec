@@ -14470,23 +14470,39 @@ components:
       title: VisitsByKeyBucket
       type: object
     WhitelabelBrandingCreate:
-      description: 'Public create request body. The owning org comes from auth context,
-        and
+      description: 'Public create request body. The customer supplies their domain
+        plus the subdomains the
 
-        `verification_domain` is derived server-side (the registrable domain of `hostname`),
+        two whitelabel hosts live on; the full hostnames are composed here. `dashboard_subdomain`
 
-        so neither is accepted here. Both hostnames must resolve to the same registrable
+        is optional - omitted, the dashboard is served on `hostname` itself (the zone
+        apex when
 
-        domain (checked server-side in WhitelabelBrandingService.create).'
+        `hostname` is the bare domain). The owning org comes from auth context, and
+
+        `verification_domain` is derived server-side (the registrable domain of the
+        composed
+
+        dashboard host), so neither is accepted here.'
       properties:
-        auth_hostname:
-          description: Auth/login hostname served by Keycloak (e.g. auth.customer.com)
+        auth_subdomain:
+          description: Subdomain the Keycloak login is served on (e.g. auth -> auth.customer.com)
           maxLength: 255
           minLength: 1
-          title: Auth Hostname
+          title: Auth Subdomain
           type: string
+        dashboard_subdomain:
+          anyOf:
+          - maxLength: 255
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: Subdomain the dashboard is served on (e.g. dash -> dash.customer.com);
+            omit for the apex
+          title: Dashboard Subdomain
         hostname:
-          description: Dashboard hostname the customer wants to brand (e.g. dash.customer.com)
+          description: Domain the whitelabel runs under (e.g. customer.com); must
+            be an OpusDNS-hosted zone
           maxLength: 255
           minLength: 1
           title: Hostname
@@ -14497,7 +14513,7 @@ components:
             year'
       required:
       - hostname
-      - auth_hostname
+      - auth_subdomain
       - period
       title: WhitelabelBrandingCreate
       type: object
@@ -14505,18 +14521,28 @@ components:
       description: 'Public recheck body. Empty = re-run onboarding against the stored
         hosts (retry after
 
-        fixing DNS). Both hosts present = re-point a wrong domain before re-running
-        (pre-provisioning
+        fixing DNS). hostname + auth_subdomain present = re-point a wrong domain before
+        re-running
 
-        only; server rejects once a Keycloak client exists).'
+        (pre-provisioning only; server rejects once a Keycloak client exists). Same
+        composition
+
+        rules as WhitelabelBrandingCreate.'
       properties:
-        auth_hostname:
+        auth_subdomain:
           anyOf:
           - maxLength: 255
             minLength: 1
             type: string
           - type: 'null'
-          title: Auth Hostname
+          title: Auth Subdomain
+        dashboard_subdomain:
+          anyOf:
+          - maxLength: 255
+            minLength: 1
+            type: string
+          - type: 'null'
+          title: Dashboard Subdomain
         hostname:
           anyOf:
           - maxLength: 255
@@ -14990,7 +15016,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-06-121126
+  version: 2026-08-07-130930
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -32318,6 +32344,12 @@ tags:
   name: nameserver
   x-displayName: Vanity Nameservers
 - description: 'Endpoints for managing an organization''s whitelabel branding configuration.
+
+
+    The create body carries the customer''s domain plus subdomains: `{"hostname":
+    "customer.com", "dashboard_subdomain": "dash", "auth_subdomain": "auth"}` composes
+    `dash.customer.com` and `auth.customer.com`; omitting `dashboard_subdomain` serves
+    the dashboard on the domain apex itself.
 
     '
   name: whitelabel

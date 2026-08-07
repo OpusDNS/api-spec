@@ -12476,20 +12476,27 @@ export interface components {
         };
         /**
          * WhitelabelBrandingCreate
-         * @description Public create request body. The owning org comes from auth context, and
-         *     `verification_domain` is derived server-side (the registrable domain of `hostname`),
-         *     so neither is accepted here. Both hostnames must resolve to the same registrable
-         *     domain (checked server-side in WhitelabelBrandingService.create).
+         * @description Public create request body. The customer supplies their domain plus the subdomains the
+         *     two whitelabel hosts live on; the full hostnames are composed here. `dashboard_subdomain`
+         *     is optional - omitted, the dashboard is served on `hostname` itself (the zone apex when
+         *     `hostname` is the bare domain). The owning org comes from auth context, and
+         *     `verification_domain` is derived server-side (the registrable domain of the composed
+         *     dashboard host), so neither is accepted here.
          */
         WhitelabelBrandingCreate: {
             /**
-             * Auth Hostname
-             * @description Auth/login hostname served by Keycloak (e.g. auth.customer.com)
+             * Auth Subdomain
+             * @description Subdomain the Keycloak login is served on (e.g. auth -> auth.customer.com)
              */
-            auth_hostname: string;
+            auth_subdomain: string;
+            /**
+             * Dashboard Subdomain
+             * @description Subdomain the dashboard is served on (e.g. dash -> dash.customer.com); omit for the apex
+             */
+            dashboard_subdomain?: string | null;
             /**
              * Hostname
-             * @description Dashboard hostname the customer wants to brand (e.g. dash.customer.com)
+             * @description Domain the whitelabel runs under (e.g. customer.com); must be an OpusDNS-hosted zone
              */
             hostname: string;
             /** @description Billing period for the subscription; offered: 1 month or 1 year */
@@ -12498,12 +12505,15 @@ export interface components {
         /**
          * WhitelabelBrandingRecheck
          * @description Public recheck body. Empty = re-run onboarding against the stored hosts (retry after
-         *     fixing DNS). Both hosts present = re-point a wrong domain before re-running (pre-provisioning
-         *     only; server rejects once a Keycloak client exists).
+         *     fixing DNS). hostname + auth_subdomain present = re-point a wrong domain before re-running
+         *     (pre-provisioning only; server rejects once a Keycloak client exists). Same composition
+         *     rules as WhitelabelBrandingCreate.
          */
         WhitelabelBrandingRecheck: {
-            /** Auth Hostname */
-            auth_hostname?: string | null;
+            /** Auth Subdomain */
+            auth_subdomain?: string | null;
+            /** Dashboard Subdomain */
+            dashboard_subdomain?: string | null;
             /** Hostname */
             hostname?: string | null;
         };
