@@ -438,6 +438,7 @@ import type {
   RequestAuthcode2,
   RequestAuthcode3,
   RequestAuthcode4,
+  RequestAuthcode5,
   DomainAvailabilityList,
   DomainAvailabilityCheck,
 } from './schemas';
@@ -5927,6 +5928,18 @@ export const KEYS_REQUEST_AUTHCODE4 = [
   KEY_REQUEST_AUTHCODE4_NAME,
   KEY_REQUEST_AUTHCODE4_SUCCESS,
 ] as const satisfies (keyof RequestAuthcode4)[];
+
+export const KEY_REQUEST_AUTHCODE5_AUTH_CODE = 'auth_code' satisfies keyof RequestAuthcode5;
+export const KEY_REQUEST_AUTHCODE5_DETAIL = 'detail' satisfies keyof RequestAuthcode5;
+export const KEY_REQUEST_AUTHCODE5_NAME = 'name' satisfies keyof RequestAuthcode5;
+export const KEY_REQUEST_AUTHCODE5_SUCCESS = 'success' satisfies keyof RequestAuthcode5;
+
+export const KEYS_REQUEST_AUTHCODE5 = [
+  KEY_REQUEST_AUTHCODE5_AUTH_CODE,
+  KEY_REQUEST_AUTHCODE5_DETAIL,
+  KEY_REQUEST_AUTHCODE5_NAME,
+  KEY_REQUEST_AUTHCODE5_SUCCESS,
+] as const satisfies (keyof RequestAuthcode5)[];
 
 export const KEY_DOMAIN_AVAILABILITY_LIST_META = 'meta' satisfies keyof DomainAvailabilityList;
 export const KEY_DOMAIN_AVAILABILITY_LIST_RESULTS = 'results' satisfies keyof DomainAvailabilityList;

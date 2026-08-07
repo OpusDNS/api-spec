@@ -583,5 +583,6 @@ export type RequestAuthcode = components['schemas']['api__domain__tld_specific__
 export type RequestAuthcode2 = components['schemas']['api__domain__tld_specific__cz__models__RequestAuthcodeResponse'];
 export type RequestAuthcode3 = components['schemas']['api__domain__tld_specific__eu__models__RequestAuthcodeResponse'];
 export type RequestAuthcode4 = components['schemas']['api__domain__tld_specific__lt__models__RequestAuthcodeResponse'];
+export type RequestAuthcode5 = components['schemas']['api__domain__tld_specific__se__models__RequestAuthcodeResponse'];
 export type DomainAvailabilityList = components['schemas']['common__models__availability__datasource__DomainAvailabilityResponse'];
 export type DomainAvailabilityCheck = components['schemas']['common__models__domain__domain__DomainAvailabilityResponse'];

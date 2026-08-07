@@ -101,6 +101,7 @@ import type {
   RequestAuthcode2,
   RequestAuthcode3,
   RequestAuthcode4,
+  RequestAuthcode5,
   SetVanityNameserverSetDefaultRes,
   Tag,
   TldResponseShort,
@@ -1216,6 +1217,13 @@ export type POST_DomainsTldSpecificNoByDomainReferenceResendDeclarationEmail_Res
 export type POST_DomainsTldSpecificNoByDomainReferenceResendDeclarationEmail_Response_404 = Problem;
 export type POST_DomainsTldSpecificNoByDomainReferenceResendDeclarationEmail_Response_409 = Problem;
 export type POST_DomainsTldSpecificNoByDomainReferenceResendDeclarationEmail_Response_422 = HTTPValidationError;
+
+export type POST_DomainsTldSpecificSeByDomainReferenceAuthCodeRequest_Response = POST_DomainsTldSpecificSeByDomainReferenceAuthCodeRequest_Response_200 | POST_DomainsTldSpecificSeByDomainReferenceAuthCodeRequest_Response_400 | POST_DomainsTldSpecificSeByDomainReferenceAuthCodeRequest_Response_404 | POST_DomainsTldSpecificSeByDomainReferenceAuthCodeRequest_Response_422;
+
+export type POST_DomainsTldSpecificSeByDomainReferenceAuthCodeRequest_Response_200 = RequestAuthcode5;
+export type POST_DomainsTldSpecificSeByDomainReferenceAuthCodeRequest_Response_400 = Problem;
+export type POST_DomainsTldSpecificSeByDomainReferenceAuthCodeRequest_Response_404 = Problem;
+export type POST_DomainsTldSpecificSeByDomainReferenceAuthCodeRequest_Response_422 = HTTPValidationError;
 
 export type POST_DomainsTransfer_Response = POST_DomainsTransfer_Response_201 | POST_DomainsTransfer_Response_400 | POST_DomainsTransfer_Response_403 | POST_DomainsTransfer_Response_404 | POST_DomainsTransfer_Response_409 | POST_DomainsTransfer_Response_422;
 
