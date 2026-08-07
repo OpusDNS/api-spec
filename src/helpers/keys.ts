@@ -175,6 +175,7 @@ import type {
   DomainRenewRequest,
   DomainRenew,
   DomainRenewalDetails,
+  DomainRenewalPrice,
   Domain,
   DomainRestoreRequest,
   DomainRestore,
@@ -2495,6 +2496,18 @@ export const KEYS_DOMAIN_RENEWAL_DETAILS = [
   KEY_DOMAIN_RENEWAL_DETAILS_EXPIRES_ON,
 ] as const satisfies (keyof DomainRenewalDetails)[];
 
+export const KEY_DOMAIN_RENEWAL_PRICE_CURRENCY = 'currency' satisfies keyof DomainRenewalPrice;
+export const KEY_DOMAIN_RENEWAL_PRICE_IS_PREMIUM = 'is_premium' satisfies keyof DomainRenewalPrice;
+export const KEY_DOMAIN_RENEWAL_PRICE_PERIOD = 'period' satisfies keyof DomainRenewalPrice;
+export const KEY_DOMAIN_RENEWAL_PRICE_PRICE = 'price' satisfies keyof DomainRenewalPrice;
+
+export const KEYS_DOMAIN_RENEWAL_PRICE = [
+  KEY_DOMAIN_RENEWAL_PRICE_CURRENCY,
+  KEY_DOMAIN_RENEWAL_PRICE_IS_PREMIUM,
+  KEY_DOMAIN_RENEWAL_PRICE_PERIOD,
+  KEY_DOMAIN_RENEWAL_PRICE_PRICE,
+] as const satisfies (keyof DomainRenewalPrice)[];
+
 export const KEY_DOMAIN_AUTH_CODE = 'auth_code' satisfies keyof Domain;
 export const KEY_DOMAIN_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' satisfies keyof Domain;
 export const KEY_DOMAIN_CANCELED_ON = 'canceled_on' satisfies keyof Domain;
@@ -2513,6 +2526,7 @@ export const KEY_DOMAIN_REGISTRY_ACCOUNT_ID = 'registry_account_id' satisfies ke
 export const KEY_DOMAIN_REGISTRY_STATUSES = 'registry_statuses' satisfies keyof Domain;
 export const KEY_DOMAIN_RENEWAL_MODE = 'renewal_mode' satisfies keyof Domain;
 export const KEY_DOMAIN_RENEWAL_PERIOD = 'renewal_period' satisfies keyof Domain;
+export const KEY_DOMAIN_RENEWAL_PRICE = 'renewal_price' satisfies keyof Domain;
 export const KEY_DOMAIN_ROID = 'roid' satisfies keyof Domain;
 export const KEY_DOMAIN_SLD = 'sld' satisfies keyof Domain;
 export const KEY_DOMAIN_STATUS_TAGS = 'status_tags' satisfies keyof Domain;
@@ -2542,6 +2556,7 @@ export const KEYS_DOMAIN = [
   KEY_DOMAIN_REGISTRY_STATUSES,
   KEY_DOMAIN_RENEWAL_MODE,
   KEY_DOMAIN_RENEWAL_PERIOD,
+  KEY_DOMAIN_RENEWAL_PRICE,
   KEY_DOMAIN_ROID,
   KEY_DOMAIN_SLD,
   KEY_DOMAIN_STATUS_TAGS,

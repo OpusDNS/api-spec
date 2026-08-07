@@ -6160,7 +6160,7 @@ export interface components {
          * DomainIncludeField
          * @enum {string}
          */
-        DomainIncludeField: "tags";
+        DomainIncludeField: "tags" | "renewal_price";
         /** DomainLifecycleBase */
         DomainLifecycleBase: {
             /**
@@ -6231,6 +6231,16 @@ export interface components {
             /** @description List of allowed transfer renewal periods (eg. '1y') */
             transfer_renewal_periods?: components["schemas"]["PeriodList"];
         };
+        /**
+         * DomainListIncludeField
+         * @description Includes a list endpoint offers.
+         *
+         *     Deliberately narrower than `DomainIncludeField`: resolving a renewal price
+         *     costs a registry check plus a billing call per premium domain, which a page
+         *     of results would multiply into a registry rate-limit problem.
+         * @enum {string}
+         */
+        DomainListIncludeField: "tags";
         /** DomainNameParts */
         DomainNameParts: {
             /**
@@ -6347,6 +6357,28 @@ export interface components {
              */
             expires_on: Date;
         };
+        /** DomainRenewalPriceResponse */
+        DomainRenewalPriceResponse: {
+            /**
+             * Currency
+             * @description ISO 4217 currency code
+             * @example EUR
+             */
+            currency: string;
+            /**
+             * Is Premium
+             * @description True when the price came from the registry's premium classification for renew rather than from the organization's standard TLD pricing
+             */
+            is_premium: boolean;
+            /** @description Period the price covers */
+            period: components["schemas"]["DomainPeriod"];
+            /**
+             * Price
+             * @description Renewal price for the period below, in the organization's billing currency, taxes excluded
+             * @example 43.50
+             */
+            price: string;
+        };
         /** DomainResponse */
         DomainResponse: {
             /**
@@ -6398,7 +6430,7 @@ export interface components {
             hosts?: components["schemas"]["DomainHostResponse"][];
             /**
              * Is Premium
-             * @description Whether this is a premium domain
+             * @description Whether the registry prices this domain at a premium class for the action it was bought under. Not purchase provenance: a renewal-time check that affirmatively quotes renew as standard corrects the flag, so it tracks the registry's current classification. Registries classify each action separately, so a domain premium only to restore is not premium here.
              * @default false
              */
             is_premium: boolean;
@@ -6445,6 +6477,8 @@ export interface components {
              * @description Renewal period of the domain as an ISO 8601 duration (e.g. 'P1M', 'P1Y'). Null when the domain is not set to renew (renewal mode 'expire') or has no active subscription.
              */
             renewal_period?: string | null;
+            /** @description Price this organization pays to renew this domain for one year. Only included when ?include=renewal_price is specified. */
+            renewal_price?: components["schemas"]["DomainRenewalPriceResponse"] | null;
             /**
              * Roid
              * @description The registry object id of the domain
@@ -18778,7 +18812,7 @@ export interface operations {
                 /** @description Filter domains by registry status. Can be specified multiple times (union of all provided values). */
                 registry_statuses?: string[] | null;
                 /** @description Include additional data in the response. Can be specified multiple times. */
-                include?: components["schemas"]["DomainIncludeField"][] | null;
+                include?: components["schemas"]["DomainListIncludeField"][] | null;
             };
             header?: {
                 /**

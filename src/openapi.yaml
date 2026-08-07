@@ -4990,6 +4990,7 @@ components:
     DomainIncludeField:
       enum:
       - tags
+      - renewal_price
       title: DomainIncludeField
       type: string
     DomainLifecycleBase:
@@ -5126,6 +5127,19 @@ components:
       - default_transfer_renewal_period
       title: DomainLifecycleBase
       type: object
+    DomainListIncludeField:
+      description: 'Includes a list endpoint offers.
+
+
+        Deliberately narrower than `DomainIncludeField`: resolving a renewal price
+
+        costs a registry check plus a billing call per premium domain, which a page
+
+        of results would multiply into a registry rate-limit problem.'
+      enum:
+      - tags
+      title: DomainListIncludeField
+      type: string
     DomainNameParts:
       properties:
         domain:
@@ -5284,6 +5298,37 @@ components:
       - expires_on
       title: DomainRenewalDetails
       type: object
+    DomainRenewalPriceResponse:
+      properties:
+        currency:
+          description: ISO 4217 currency code
+          examples:
+          - EUR
+          title: Currency
+          type: string
+        is_premium:
+          description: True when the price came from the registry's premium classification
+            for renew rather than from the organization's standard TLD pricing
+          title: Is Premium
+          type: boolean
+        period:
+          $ref: '#/components/schemas/DomainPeriod'
+          description: Period the price covers
+        price:
+          description: Renewal price for the period below, in the organization's billing
+            currency, taxes excluded
+          examples:
+          - '43.50'
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Price
+          type: string
+      required:
+      - price
+      - currency
+      - period
+      - is_premium
+      title: DomainRenewalPriceResponse
+      type: object
     DomainResponse:
       properties:
         auth_code:
@@ -5349,7 +5394,12 @@ components:
           type: array
         is_premium:
           default: false
-          description: Whether this is a premium domain
+          description: 'Whether the registry prices this domain at a premium class
+            for the action it was bought under. Not purchase provenance: a renewal-time
+            check that affirmatively quotes renew as standard corrects the flag, so
+            it tracks the registry''s current classification. Registries classify
+            each action separately, so a domain premium only to restore is not premium
+            here.'
           title: Is Premium
           type: boolean
         name:
@@ -5407,6 +5457,12 @@ components:
             'P1M', 'P1Y'). Null when the domain is not set to renew (renewal mode
             'expire') or has no active subscription.
           title: Renewal Period
+        renewal_price:
+          anyOf:
+          - $ref: '#/components/schemas/DomainRenewalPriceResponse'
+          - type: 'null'
+          description: Price this organization pays to renew this domain for one year.
+            Only included when ?include=renewal_price is specified.
         roid:
           description: The registry object id of the domain
           examples:
@@ -15050,7 +15106,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-07-193122
+  version: 2026-08-07-221736
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -22977,7 +23033,7 @@ paths:
         schema:
           anyOf:
           - items:
-              $ref: '#/components/schemas/DomainIncludeField'
+              $ref: '#/components/schemas/DomainListIncludeField'
             type: array
           - type: 'null'
           description: Include additional data in the response. Can be specified multiple
