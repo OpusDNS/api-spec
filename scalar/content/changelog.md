@@ -7,8 +7,9 @@ Track notable updates to the OpusDNS API and developer documentation here.
 ### 10 August 2026
 
 - Onboarded **`.pl`** (Poland) together with its second-level extensions
-  `.com.pl`, `.net.pl`, and `.org.pl`, plus **`.gg`** (Guernsey) and
-  **`.je`** (Jersey). Published their
+  `.com.pl`, `.net.pl`, and `.org.pl`; **`.gg`** (Guernsey) together with
+  `.co.gg`, `.net.gg`, and `.org.gg`; and **`.je`** (Jersey) together with
+  `.co.je`, `.net.je`, and `.org.je`. Published their
   [TLD Knowledge Base](/tld-knowledge-base) pages.
 
 - Onboarded the Belgian geographic TLDs **`.brussels`** and
