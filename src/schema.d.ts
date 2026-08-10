@@ -6216,6 +6216,12 @@ export interface components {
             registry_auto_renew?: boolean | null;
             /** @description List of allowed renewal periods (e.g., '1y' or ['1y', '2y', '5y']) */
             renewal_periods?: components["schemas"]["PeriodList"];
+            /**
+             * Restore Triggers Renewal
+             * @description After a restore, renew the domain so its term matches the subscription. True for RGP registries, whose redemption restore does not extend the domain. False where the restore already leaves a valid term - e.g. NASK/.pl, where restore removes clientRenewProhibited or renews+reactivates, and a redundant renew is rejected (one renewal per billing period).
+             * @default true
+             */
+            restore_triggers_renewal: boolean;
             /** @description RGP operations supported by the registry */
             rgp_operations?: components["schemas"]["RgpOperations"] | null;
             /**
