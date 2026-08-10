@@ -813,6 +813,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/gd.md",
                 "showInSidebar": true
               },
+              "/gg": {
+                "type": "page",
+                "title": "🇬🇬 .gg",
+                "filepath": "content/tld-knowledge-base/cctlds/gg.md",
+                "showInSidebar": true
+              },
               "/gl": {
                 "type": "page",
                 "title": "🇬🇱 .gl",
@@ -835,6 +841,12 @@
                 "type": "page",
                 "title": "🇮🇹 .it",
                 "filepath": "content/tld-knowledge-base/cctlds/it.md",
+                "showInSidebar": true
+              },
+              "/je": {
+                "type": "page",
+                "title": "🇯🇪 .je",
+                "filepath": "content/tld-knowledge-base/cctlds/je.md",
                 "showInSidebar": true
               },
               "/lc": {
@@ -1274,6 +1286,12 @@
                 "type": "page",
                 "title": "🌐 .broker",
                 "filepath": "content/tld-knowledge-base/gtlds/broker.md",
+                "showInSidebar": true
+              },
+              "/brussels": {
+                "type": "page",
+                "title": "🌐 .brussels",
+                "filepath": "content/tld-knowledge-base/gtlds/brussels.md",
                 "showInSidebar": true
               },
               "/build": {
@@ -3500,6 +3518,12 @@
                 "type": "page",
                 "title": "🌐 .vision",
                 "filepath": "content/tld-knowledge-base/gtlds/vision.md",
+                "showInSidebar": true
+              },
+              "/vlaanderen": {
+                "type": "page",
+                "title": "🌐 .vlaanderen",
+                "filepath": "content/tld-knowledge-base/gtlds/vlaanderen.md",
                 "showInSidebar": true
               },
               "/vodka": {
