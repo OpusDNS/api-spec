@@ -915,6 +915,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/org.bh.md",
                 "showInSidebar": true
               },
+              "/pl": {
+                "type": "page",
+                "title": "🇵🇱 .pl",
+                "filepath": "content/tld-knowledge-base/cctlds/pl.md",
+                "showInSidebar": true
+              },
               "/pm": {
                 "type": "page",
                 "title": "🇵🇲 .pm",
