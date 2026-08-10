@@ -440,6 +440,8 @@ import type {
   RequestAuthcode3,
   RequestAuthcode4,
   RequestAuthcode5,
+  RequestAuthcode6,
+  RequestAuthcode7,
   DomainAvailabilityList,
   DomainAvailabilityCheck,
 } from './schemas';
@@ -5906,29 +5908,27 @@ export const KEYS_REQUEST_AUTHCODE = [
   KEY_REQUEST_AUTHCODE_SUCCESS,
 ] as const satisfies (keyof RequestAuthcode)[];
 
+export const KEY_REQUEST_AUTHCODE2_AUTH_CODE = 'auth_code' satisfies keyof RequestAuthcode2;
 export const KEY_REQUEST_AUTHCODE2_DETAIL = 'detail' satisfies keyof RequestAuthcode2;
 export const KEY_REQUEST_AUTHCODE2_NAME = 'name' satisfies keyof RequestAuthcode2;
-export const KEY_REQUEST_AUTHCODE2_RECIPIENTS = 'recipients' satisfies keyof RequestAuthcode2;
 export const KEY_REQUEST_AUTHCODE2_SUCCESS = 'success' satisfies keyof RequestAuthcode2;
 
 export const KEYS_REQUEST_AUTHCODE2 = [
+  KEY_REQUEST_AUTHCODE2_AUTH_CODE,
   KEY_REQUEST_AUTHCODE2_DETAIL,
   KEY_REQUEST_AUTHCODE2_NAME,
-  KEY_REQUEST_AUTHCODE2_RECIPIENTS,
   KEY_REQUEST_AUTHCODE2_SUCCESS,
 ] as const satisfies (keyof RequestAuthcode2)[];
 
-export const KEY_REQUEST_AUTHCODE3_AUTH_CODE = 'auth_code' satisfies keyof RequestAuthcode3;
-export const KEY_REQUEST_AUTHCODE3_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' satisfies keyof RequestAuthcode3;
 export const KEY_REQUEST_AUTHCODE3_DETAIL = 'detail' satisfies keyof RequestAuthcode3;
 export const KEY_REQUEST_AUTHCODE3_NAME = 'name' satisfies keyof RequestAuthcode3;
+export const KEY_REQUEST_AUTHCODE3_RECIPIENTS = 'recipients' satisfies keyof RequestAuthcode3;
 export const KEY_REQUEST_AUTHCODE3_SUCCESS = 'success' satisfies keyof RequestAuthcode3;
 
 export const KEYS_REQUEST_AUTHCODE3 = [
-  KEY_REQUEST_AUTHCODE3_AUTH_CODE,
-  KEY_REQUEST_AUTHCODE3_AUTH_CODE_EXPIRES_ON,
   KEY_REQUEST_AUTHCODE3_DETAIL,
   KEY_REQUEST_AUTHCODE3_NAME,
+  KEY_REQUEST_AUTHCODE3_RECIPIENTS,
   KEY_REQUEST_AUTHCODE3_SUCCESS,
 ] as const satisfies (keyof RequestAuthcode3)[];
 
@@ -5947,16 +5947,42 @@ export const KEYS_REQUEST_AUTHCODE4 = [
 ] as const satisfies (keyof RequestAuthcode4)[];
 
 export const KEY_REQUEST_AUTHCODE5_AUTH_CODE = 'auth_code' satisfies keyof RequestAuthcode5;
+export const KEY_REQUEST_AUTHCODE5_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' satisfies keyof RequestAuthcode5;
 export const KEY_REQUEST_AUTHCODE5_DETAIL = 'detail' satisfies keyof RequestAuthcode5;
 export const KEY_REQUEST_AUTHCODE5_NAME = 'name' satisfies keyof RequestAuthcode5;
 export const KEY_REQUEST_AUTHCODE5_SUCCESS = 'success' satisfies keyof RequestAuthcode5;
 
 export const KEYS_REQUEST_AUTHCODE5 = [
   KEY_REQUEST_AUTHCODE5_AUTH_CODE,
+  KEY_REQUEST_AUTHCODE5_AUTH_CODE_EXPIRES_ON,
   KEY_REQUEST_AUTHCODE5_DETAIL,
   KEY_REQUEST_AUTHCODE5_NAME,
   KEY_REQUEST_AUTHCODE5_SUCCESS,
 ] as const satisfies (keyof RequestAuthcode5)[];
+
+export const KEY_REQUEST_AUTHCODE6_AUTH_CODE = 'auth_code' satisfies keyof RequestAuthcode6;
+export const KEY_REQUEST_AUTHCODE6_DETAIL = 'detail' satisfies keyof RequestAuthcode6;
+export const KEY_REQUEST_AUTHCODE6_NAME = 'name' satisfies keyof RequestAuthcode6;
+export const KEY_REQUEST_AUTHCODE6_SUCCESS = 'success' satisfies keyof RequestAuthcode6;
+
+export const KEYS_REQUEST_AUTHCODE6 = [
+  KEY_REQUEST_AUTHCODE6_AUTH_CODE,
+  KEY_REQUEST_AUTHCODE6_DETAIL,
+  KEY_REQUEST_AUTHCODE6_NAME,
+  KEY_REQUEST_AUTHCODE6_SUCCESS,
+] as const satisfies (keyof RequestAuthcode6)[];
+
+export const KEY_REQUEST_AUTHCODE7_AUTH_CODE = 'auth_code' satisfies keyof RequestAuthcode7;
+export const KEY_REQUEST_AUTHCODE7_DETAIL = 'detail' satisfies keyof RequestAuthcode7;
+export const KEY_REQUEST_AUTHCODE7_NAME = 'name' satisfies keyof RequestAuthcode7;
+export const KEY_REQUEST_AUTHCODE7_SUCCESS = 'success' satisfies keyof RequestAuthcode7;
+
+export const KEYS_REQUEST_AUTHCODE7 = [
+  KEY_REQUEST_AUTHCODE7_AUTH_CODE,
+  KEY_REQUEST_AUTHCODE7_DETAIL,
+  KEY_REQUEST_AUTHCODE7_NAME,
+  KEY_REQUEST_AUTHCODE7_SUCCESS,
+] as const satisfies (keyof RequestAuthcode7)[];
 
 export const KEY_DOMAIN_AVAILABILITY_LIST_META = 'meta' satisfies keyof DomainAvailabilityList;
 export const KEY_DOMAIN_AVAILABILITY_LIST_RESULTS = 'results' satisfies keyof DomainAvailabilityList;

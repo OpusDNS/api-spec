@@ -592,6 +592,11 @@ export type POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Request = 
 };
 export type POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Request_Path = POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Request['parameters']['path'];
 
+export type POST_DomainsTldSpecificCymruByDomainReferenceAuthCodeRequest_Request = {
+  parameters: operations['request_auth_code_v1_domains_tld_specific_cymru__domain_reference__auth_code_request_post']['parameters'];
+};
+export type POST_DomainsTldSpecificCymruByDomainReferenceAuthCodeRequest_Request_Path = POST_DomainsTldSpecificCymruByDomainReferenceAuthCodeRequest_Request['parameters']['path'];
+
 export type POST_DomainsTldSpecificCzByDomainReferenceAuthCodeRequest_Request = {
   parameters: operations['request_auth_code_v1_domains_tld_specific_cz__domain_reference__auth_code_request_post']['parameters'];
 };
@@ -642,6 +647,11 @@ export type POST_DomainsTldSpecificSeByDomainReferenceAuthCodeRequest_Request = 
   parameters: operations['request_auth_code_v1_domains_tld_specific_se__domain_reference__auth_code_request_post']['parameters'];
 };
 export type POST_DomainsTldSpecificSeByDomainReferenceAuthCodeRequest_Request_Path = POST_DomainsTldSpecificSeByDomainReferenceAuthCodeRequest_Request['parameters']['path'];
+
+export type POST_DomainsTldSpecificWalesByDomainReferenceAuthCodeRequest_Request = {
+  parameters: operations['request_auth_code_v1_domains_tld_specific_wales__domain_reference__auth_code_request_post']['parameters'];
+};
+export type POST_DomainsTldSpecificWalesByDomainReferenceAuthCodeRequest_Request_Path = POST_DomainsTldSpecificWalesByDomainReferenceAuthCodeRequest_Request['parameters']['path'];
 
 export type POST_DomainsTransfer_Request = {
   requestBody: DomainTransferIn;
