@@ -61,6 +61,15 @@ Track notable updates to the OpusDNS API and developer documentation here.
 - Onboarded **[`.no`](/tld-knowledge-base/cctlds/no)** (Norway). Published its
   TLD Knowledge Base page.
 
+- Added **outbound transfer resolution** — approve or reject a pending
+  transfer of a domain away from OpusDNS directly via the API:
+  `POST /v1/domains/{domain_reference}/transfer/outbound` with an `action` of
+  `approve` or `reject`. Approving acknowledges the transfer at the registry;
+  the domain remains in your account until the registry confirms the transfer
+  has completed. Requires the domain to have a pending transfer, and is
+  available for TLDs whose registry lets the losing registrar act on
+  transfers.
+
 ### 22 July 2026
 
 - Onboarded **[`.si`](/tld-knowledge-base/cctlds/si)** (Slovenia). Published its
