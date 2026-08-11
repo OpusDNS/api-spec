@@ -1648,6 +1648,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/cruises.md",
                 "showInSidebar": true
               },
+              "/cymru": {
+                "type": "page",
+                "title": "🌐 .cymru",
+                "filepath": "content/tld-knowledge-base/gtlds/cymru.md",
+                "showInSidebar": true
+              },
               "/cyou": {
                 "type": "page",
                 "title": "🌐 .cyou",
@@ -3548,6 +3554,12 @@
                 "type": "page",
                 "title": "🌐 .voyage",
                 "filepath": "content/tld-knowledge-base/gtlds/voyage.md",
+                "showInSidebar": true
+              },
+              "/wales": {
+                "type": "page",
+                "title": "🌐 .wales",
+                "filepath": "content/tld-knowledge-base/gtlds/wales.md",
                 "showInSidebar": true
               },
               "/watch": {
