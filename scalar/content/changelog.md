@@ -68,7 +68,8 @@ Track notable updates to the OpusDNS API and developer documentation here.
   the domain remains in your account until the registry confirms the transfer
   has completed. Requires the domain to have a pending transfer, and is
   available for TLDs whose registry lets the losing registrar act on
-  transfers.
+  transfers. See
+  [Outbound transfers](/products/domains/transfer#outbound-transfers).
 
 ### 22 July 2026
 
