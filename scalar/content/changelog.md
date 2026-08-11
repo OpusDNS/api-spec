@@ -4,6 +4,12 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 11 August 2026
+
+- Onboarded the Welsh geographic TLDs **`.wales`** and **`.cymru`**
+  (operated by Nominet). Published their
+  [TLD Knowledge Base](/tld-knowledge-base) pages.
+
 ### 10 August 2026
 
 - Onboarded **`.pl`** (Poland) together with its second-level extensions
