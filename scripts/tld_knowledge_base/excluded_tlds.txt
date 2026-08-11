@@ -7,7 +7,5 @@ dk
 mx
 pt
 ee
-wales
-cymru
 se
 nu
