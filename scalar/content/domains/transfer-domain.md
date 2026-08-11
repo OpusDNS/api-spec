@@ -1,7 +1,9 @@
 # Transfer a domain
 
 This guide walks you through transferring a domain to OpusDNS from another
-registrar, including preparation, monitoring, and handling edge cases.
+registrar, including preparation, monitoring, and handling edge cases. It also
+covers [outbound transfers](#outbound-transfers) — approving or rejecting a
+transfer of a domain away from OpusDNS.
 
 ## Flow overview
 
@@ -197,6 +199,40 @@ Once the transfer completes:
   [Automatic DNSSEC reconciliation](/products/domains/dnssec#automatic-dnssec-reconciliation).
 - A transfer event is created (check `/v1/events`).
 
+## Outbound transfers
+
+When another registrar initiates a transfer of a domain **out of** your
+account, the domain enters `pendingTransfer` status. As the losing side you
+can resolve the pending transfer explicitly with
+`POST /v1/domains/{domain_reference}/transfer/outbound`:
+
+```bash
+curl "$OPUSDNS_API_BASE/v1/domains/example.com/transfer/outbound" \
+  --request POST \
+  --header "X-Api-Key: $OPUSDNS_API_KEY" \
+  --header "Content-Type: application/json" \
+  --data '{ "action": "approve" }'
+```
+
+| Field | Required | Description |
+| --- | --- | --- |
+| `action` | Yes | `"approve"` to release the domain to the gaining registrar, or `"reject"` to deny the transfer and keep the domain. |
+
+A few things to know:
+
+- **Approving acknowledges the transfer at the registry — it does not complete
+  it.** The domain remains in your account until the registry confirms the
+  transfer has completed; only then is it removed and its subscription ended.
+- **Rejecting** denies the request and the domain stays in your account
+  unchanged.
+- **If you do nothing**, most gTLD registries auto-approve the transfer after
+  the pending period (typically 5 days).
+- The domain must currently have a **pending outbound transfer**; otherwise the
+  request fails with `400`.
+- Explicit resolution is only available for TLDs whose registry allows the
+  losing registrar to act on transfers. For other TLDs the request fails with
+  `422`.
+
 ## Troubleshooting
 
 ### Common transfer failures
@@ -227,4 +263,5 @@ Not all TLDs follow the standard auth-code-based transfer process:
 - [`POST /v1/domains/transfer`](/api-reference#tag/domain/POST/v1/domains/transfer)
 - [`GET /v1/domains/{domain_reference}`](/api-reference#tag/domain/GET/v1/domains/{domain_reference})
 - [`DELETE /v1/domains/{domain_reference}/transfer`](/api-reference#tag/domain/DELETE/v1/domains/{domain_reference}/transfer)
+- [`POST /v1/domains/{domain_reference}/transfer/outbound`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/transfer/outbound)
 - [`POST /v1/contacts`](/api-reference#tag/contact/POST/v1/contacts)
