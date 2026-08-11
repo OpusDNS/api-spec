@@ -6,21 +6,24 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ### 11 August 2026
 
-- Onboarded the Welsh geographic TLDs **`.wales`** and **`.cymru`**
-  (operated by Nominet). Published their
-  [TLD Knowledge Base](/tld-knowledge-base) pages.
+- Onboarded the Welsh geographic TLDs
+  **[`.wales`](/tld-knowledge-base/gtlds/wales)** and
+  **[`.cymru`](/tld-knowledge-base/gtlds/cymru)** (operated by Nominet).
+  Published their TLD Knowledge Base pages.
 
 ### 10 August 2026
 
-- Onboarded **`.pl`** (Poland) together with its second-level extensions
-  `.com.pl`, `.net.pl`, and `.org.pl`; **`.gg`** (Guernsey) together with
-  `.co.gg`, `.net.gg`, and `.org.gg`; and **`.je`** (Jersey) together with
-  `.co.je`, `.net.je`, and `.org.je`. Published their
-  [TLD Knowledge Base](/tld-knowledge-base) pages.
+- Onboarded **[`.pl`](/tld-knowledge-base/cctlds/pl)** (Poland) together with
+  its second-level extensions `.com.pl`, `.net.pl`, and `.org.pl`;
+  **[`.gg`](/tld-knowledge-base/cctlds/gg)** (Guernsey) together with `.co.gg`,
+  `.net.gg`, and `.org.gg`; and **[`.je`](/tld-knowledge-base/cctlds/je)**
+  (Jersey) together with `.co.je`, `.net.je`, and `.org.je`. Published their TLD
+  Knowledge Base pages.
 
-- Onboarded the Belgian geographic TLDs **`.brussels`** and
-  **`.vlaanderen`**. Published their
-  [TLD Knowledge Base](/tld-knowledge-base) pages.
+- Onboarded the Belgian geographic TLDs
+  **[`.brussels`](/tld-knowledge-base/gtlds/brussels)** and
+  **[`.vlaanderen`](/tld-knowledge-base/gtlds/vlaanderen)**. Published their TLD
+  Knowledge Base pages.
 
 ### 04 August 2026
 
@@ -44,29 +47,30 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ### 03 August 2026
 
-- Onboarded **`.lt`** (Lithuania) and **`.ws`** (Samoa). Published their
-  [TLD Knowledge Base](/tld-knowledge-base) pages.
+- Onboarded **[`.lt`](/tld-knowledge-base/cctlds/lt)** (Lithuania) and
+  **[`.ws`](/tld-knowledge-base/cctlds/ws)** (Samoa). Published their TLD
+  Knowledge Base pages.
 
 ### 31 July 2026
 
-- Onboarded **`.vegas`**. Published its
-  [TLD Knowledge Base](/tld-knowledge-base) page.
+- Onboarded **[`.vegas`](/tld-knowledge-base/gtlds/vegas)**. Published its TLD
+  Knowledge Base page.
 
 ### 30 July 2026
 
-- Onboarded **`.no`** (Norway). Published its
-  [TLD Knowledge Base](/tld-knowledge-base) page.
+- Onboarded **[`.no`](/tld-knowledge-base/cctlds/no)** (Norway). Published its
+  TLD Knowledge Base page.
 
 ### 22 July 2026
 
-- Onboarded **`.si`** (Slovenia). Published its
-  [TLD Knowledge Base](/tld-knowledge-base) page.
+- Onboarded **[`.si`](/tld-knowledge-base/cctlds/si)** (Slovenia). Published its
+  TLD Knowledge Base page.
 
 ### 17 July 2026
 
-- Onboarded **`.lv`** (Latvia) together with its second-level extensions
-  `.asn.lv`, `.com.lv`, `.conf.lv`, `.edu.lv`, `.id.lv`, `.net.lv`, and
-  `.org.lv`. Published its [TLD Knowledge Base](/tld-knowledge-base) page.
+- Onboarded **[`.lv`](/tld-knowledge-base/cctlds/lv)** (Latvia) together with
+  its second-level extensions `.asn.lv`, `.com.lv`, `.conf.lv`, `.edu.lv`,
+  `.id.lv`, `.net.lv`, and `.org.lv`. Published its TLD Knowledge Base page.
 
 - Added **independent billing for suborganizations**: create a suborganization
   with `billing_mode: "independent"` and it gets its own wallet, invoices, and
@@ -97,26 +101,35 @@ Track notable updates to the OpusDNS API and developer documentation here.
 ### 08 July 2026
 
 - Onboarded **3 IDN gTLDs** operated by Public Interest Registry:
-  `.xn--c1avg` (.орг), `.xn--i1b6b1a6a2e` (.संगठन), and `.xn--nqv7f` (.机构).
-  Their [TLD Knowledge Base](/tld-knowledge-base) pages are published.
-- Onboarded **`.juegos`**. Its [TLD Knowledge Base](/tld-knowledge-base) page
-  is published.
+  [`.xn--c1avg`](/tld-knowledge-base/gtlds/xn--c1avg) (.орг),
+  [`.xn--i1b6b1a6a2e`](/tld-knowledge-base/gtlds/xn--i1b6b1a6a2e) (.संगठन), and
+  [`.xn--nqv7f`](/tld-knowledge-base/gtlds/xn--nqv7f) (.机构). Their TLD Knowledge
+  Base pages are published.
+- Onboarded **[`.juegos`](/tld-knowledge-base/gtlds/juegos)**. Its TLD Knowledge
+  Base page is published.
 
 ### 07 July 2026
 
-- Onboarded **`.lu`** (Luxembourg). Published its
-  [TLD Knowledge Base](/tld-knowledge-base) page.
+- Onboarded **[`.lu`](/tld-knowledge-base/cctlds/lu)** (Luxembourg). Published
+  its TLD Knowledge Base page.
 
 ### 06 July 2026
 
 - Onboarded **`.co.at`** and **`.or.at`**, the Austrian second-level
-  extensions. See the [`.at` TLD Knowledge Base](/tld-knowledge-base) page.
+  extensions. See the [`.at` TLD Knowledge Base](/tld-knowledge-base/cctlds/at)
+  page.
 
 ### 02 July 2026
 
-- Onboarded **8 new gTLDs**: `.to` (Tonga), `.country`, `.diy`, `.food`, `.hiv`,
-  `.lifestyle`, `.living`, and `.sexy`. Published their
-  [TLD Knowledge Base](/tld-knowledge-base) pages.
+- Onboarded **8 new gTLDs**: [`.to`](/tld-knowledge-base/cctlds/to) (Tonga),
+  [`.country`](/tld-knowledge-base/gtlds/country),
+  [`.diy`](/tld-knowledge-base/gtlds/diy),
+  [`.food`](/tld-knowledge-base/gtlds/food),
+  [`.hiv`](/tld-knowledge-base/gtlds/hiv),
+  [`.lifestyle`](/tld-knowledge-base/gtlds/lifestyle),
+  [`.living`](/tld-knowledge-base/gtlds/living), and
+  [`.sexy`](/tld-knowledge-base/gtlds/sexy). Published their TLD Knowledge Base
+  pages.
 
 ### 30 June 2026
 
@@ -131,19 +144,31 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ### 26 June 2026
 
-- Onboarded **13 new gTLDs**: `.best`, `.cam`, `.case`, `.dealer`, `.fans`,
-  `.frl`, `.help`, `.inc`, `.kred`, `.luxury`, `.ooo`, `.reit`, and `.saarland`.
-  Published their [TLD Knowledge Base](/tld-knowledge-base) pages.
+- Onboarded **13 new gTLDs**: [`.best`](/tld-knowledge-base/gtlds/best),
+  [`.cam`](/tld-knowledge-base/gtlds/cam),
+  [`.case`](/tld-knowledge-base/gtlds/case),
+  [`.dealer`](/tld-knowledge-base/gtlds/dealer),
+  [`.fans`](/tld-knowledge-base/gtlds/fans),
+  [`.frl`](/tld-knowledge-base/gtlds/frl),
+  [`.help`](/tld-knowledge-base/gtlds/help),
+  [`.inc`](/tld-knowledge-base/gtlds/inc),
+  [`.kred`](/tld-knowledge-base/gtlds/kred),
+  [`.luxury`](/tld-knowledge-base/gtlds/luxury),
+  [`.ooo`](/tld-knowledge-base/gtlds/ooo),
+  [`.reit`](/tld-knowledge-base/gtlds/reit), and
+  [`.saarland`](/tld-knowledge-base/gtlds/saarland). Published their TLD
+  Knowledge Base pages.
 
 ### 25 June 2026
 
-- Onboarded **`.name`** and **`.cc`**. Published their
-  [TLD Knowledge Base](/tld-knowledge-base) pages.
+- Onboarded **[`.name`](/tld-knowledge-base/gtlds/name)** and
+  **[`.cc`](/tld-knowledge-base/cctlds/cc)**. Published their TLD Knowledge Base
+  pages.
 
 ### 24 June 2026
 
-- Onboarded **`.blog`**. Published its
-  [TLD Knowledge Base](/tld-knowledge-base) page.
+- Onboarded **[`.blog`](/tld-knowledge-base/gtlds/blog)**. Published its TLD
+  Knowledge Base page.
 
 ### 21 June 2026
 
@@ -163,23 +188,40 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 - Onboarded **21 new TLDs**, including the Bahrain ccTLD bundle and its
   Arabic-script variant:
-  - `.bh`, `.biz.bh`, `.cc.bh`, `.com.bh`, `.edu.bh`, `.info.bh`, `.me.bh`,
-    `.name.bh`, `.net.bh`, `.org.bh`, and `.xn--mgbcpq6gpa1a` (Bahrain)
-  - `.co.nl`, `.co.no`, `.co.com`
-  - `.fm` (Micronesia), `.fo` (Faroe Islands), `.gd` (Grenada),
-    `.gl` (Greenland), `.radio.am`, `.radio.fm`, `.vg` (British Virgin Islands)
-- Published their [TLD Knowledge Base](/tld-knowledge-base) pages.
+  - [`.bh`](/tld-knowledge-base/cctlds/bh),
+    [`.biz.bh`](/tld-knowledge-base/cctlds/biz.bh),
+    [`.cc.bh`](/tld-knowledge-base/cctlds/cc.bh),
+    [`.com.bh`](/tld-knowledge-base/cctlds/com.bh),
+    [`.edu.bh`](/tld-knowledge-base/cctlds/edu.bh),
+    [`.info.bh`](/tld-knowledge-base/cctlds/info.bh),
+    [`.me.bh`](/tld-knowledge-base/cctlds/me.bh),
+    [`.name.bh`](/tld-knowledge-base/cctlds/name.bh),
+    [`.net.bh`](/tld-knowledge-base/cctlds/net.bh),
+    [`.org.bh`](/tld-knowledge-base/cctlds/org.bh), and
+    [`.xn--mgbcpq6gpa1a`](/tld-knowledge-base/gtlds/xn--mgbcpq6gpa1a) (Bahrain)
+  - [`.co.nl`](/tld-knowledge-base/cctlds/co.nl),
+    [`.co.no`](/tld-knowledge-base/cctlds/co.no),
+    [`.co.com`](/tld-knowledge-base/gtlds/co.com)
+  - [`.fm`](/tld-knowledge-base/cctlds/fm) (Micronesia),
+    [`.fo`](/tld-knowledge-base/cctlds/fo) (Faroe Islands),
+    [`.gd`](/tld-knowledge-base/cctlds/gd) (Grenada),
+    [`.gl`](/tld-knowledge-base/cctlds/gl) (Greenland),
+    [`.radio.am`](/tld-knowledge-base/cctlds/radio.am),
+    [`.radio.fm`](/tld-knowledge-base/cctlds/radio.fm),
+    [`.vg`](/tld-knowledge-base/cctlds/vg) (British Virgin Islands)
+- Published their TLD Knowledge Base pages.
 
 ### 18 June 2026
 
-- Onboarded **`.it`** (Italy), **`.sk`** and **`.org.sk`** (Slovakia), and
-  **`.latino`**. Published their [TLD Knowledge Base](/tld-knowledge-base)
-  pages.
+- Onboarded **[`.it`](/tld-knowledge-base/cctlds/it)** (Italy),
+  **[`.sk`](/tld-knowledge-base/cctlds/sk)** and **`.org.sk`** (Slovakia), and
+  **[`.latino`](/tld-knowledge-base/gtlds/latino)**. Published their TLD
+  Knowledge Base pages.
 
 ### 17 June 2026
 
-- Onboarded **`.cloud`**. Published its
-  [TLD Knowledge Base](/tld-knowledge-base) page.
+- Onboarded **[`.cloud`](/tld-knowledge-base/gtlds/cloud)**. Published its TLD
+  Knowledge Base page.
 
 ### 16 June 2026
 
@@ -199,8 +241,8 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ### 15 June 2026
 
-- Onboarded **`.cz`** (Czechia). Published its
-  [TLD Knowledge Base](/tld-knowledge-base) page.
+- Onboarded **[`.cz`](/tld-knowledge-base/cctlds/cz)** (Czechia). Published its
+  TLD Knowledge Base page.
 
 ### 12 June 2026
 
