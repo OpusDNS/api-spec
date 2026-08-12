@@ -1083,7 +1083,7 @@ export interface paths {
         };
         /**
          * List all domains
-         * @description Retrieves a paginated list of all active domains
+         * @description Retrieves a paginated list of all active domains.
          */
         get: operations["get_domains_v1_domains_get"];
         put?: never;
@@ -1419,7 +1419,7 @@ export interface paths {
         };
         /**
          * Retrieve a domain
-         * @description Retrieves a single active domain by either its name or id
+         * @description Retrieves a single active domain by either its name or id.
          */
         get: operations["get_domain_v1_domains__domain_reference__get"];
         put?: never;
@@ -6539,12 +6539,12 @@ export interface components {
             sld: string;
             /**
              * Status Tags
-             * @description Status tags assigned to this domain. Only included when ?include=tags is specified.
+             * @description Status tags assigned to this domain. Null unless `include=tags` is requested.
              */
             status_tags?: components["schemas"]["StatusTagResponse"][] | null;
             /**
              * Tags
-             * @description User tags assigned to this domain. Only included when ?include=tags is specified.
+             * @description User tags assigned to this domain. Null unless `include=tags` is requested.
              */
             tags?: components["schemas"]["TagEnrichedResponse"][] | null;
             /**
@@ -18903,7 +18903,7 @@ export interface operations {
                 transferred_before?: Date | null;
                 /** @description Filter domains by registry status. Can be specified multiple times (union of all provided values). */
                 registry_statuses?: string[] | null;
-                /** @description Include additional data in the response. Can be specified multiple times. */
+                /** @description Extra data to include in each result. `tags` populates the `tags` (user tags) and `status_tags` fields, which are otherwise null; filtering by `tag_ids` or `status_tags` alone does not populate them. */
                 include?: components["schemas"]["DomainListIncludeField"][] | null;
             };
             header?: {
@@ -20187,7 +20187,7 @@ export interface operations {
     get_domain_v1_domains__domain_reference__get: {
         parameters: {
             query?: {
-                /** @description Include additional data in the response. */
+                /** @description Extra data to include in the response. `tags` populates the `tags` and `status_tags` fields, which are otherwise null. `renewal_price` resolves the domain's renewal price. */
                 include?: components["schemas"]["DomainIncludeField"][] | null;
             };
             header?: {

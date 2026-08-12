@@ -5492,8 +5492,8 @@ components:
               $ref: '#/components/schemas/StatusTagResponse'
             type: array
           - type: 'null'
-          description: Status tags assigned to this domain. Only included when ?include=tags
-            is specified.
+          description: Status tags assigned to this domain. Null unless `include=tags`
+            is requested.
           title: Status Tags
         tags:
           anyOf:
@@ -5501,8 +5501,8 @@ components:
               $ref: '#/components/schemas/TagEnrichedResponse'
             type: array
           - type: 'null'
-          description: User tags assigned to this domain. Only included when ?include=tags
-            is specified.
+          description: User tags assigned to this domain. Null unless `include=tags`
+            is requested.
           title: Tags
         tld:
           description: The top level domain of the domain
@@ -15169,7 +15169,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-10-192446
+  version: 2026-08-12-074946
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -22833,7 +22833,7 @@ paths:
       - domain_search
   /v1/domains:
     get:
-      description: Retrieves a paginated list of all active domains
+      description: Retrieves a paginated list of all active domains.
       operationId: get_domains_v1_domains_get
       parameters:
       - in: query
@@ -23088,8 +23088,9 @@ paths:
           description: Filter domains by registry status. Can be specified multiple
             times (union of all provided values).
           title: Registry Statuses
-      - description: Include additional data in the response. Can be specified multiple
-          times.
+      - description: Extra data to include in each result. `tags` populates the `tags`
+          (user tags) and `status_tags` fields, which are otherwise null; filtering
+          by `tag_ids` or `status_tags` alone does not populate them.
         in: query
         name: include
         required: false
@@ -23099,8 +23100,9 @@ paths:
               $ref: '#/components/schemas/DomainListIncludeField'
             type: array
           - type: 'null'
-          description: Include additional data in the response. Can be specified multiple
-            times.
+          description: Extra data to include in each result. `tags` populates the
+            `tags` (user tags) and `status_tags` fields, which are otherwise null;
+            filtering by `tag_ids` or `status_tags` alone does not populate them.
           title: Include
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -24502,7 +24504,7 @@ paths:
       x-required-permissions:
       - domains:delete
     get:
-      description: Retrieves a single active domain by either its name or id
+      description: Retrieves a single active domain by either its name or id.
       operationId: get_domain_v1_domains__domain_reference__get
       parameters:
       - in: path
@@ -24518,7 +24520,9 @@ paths:
             x-typeid-prefix: domain
           - type: string
           title: Domain Reference
-      - description: Include additional data in the response.
+      - description: Extra data to include in the response. `tags` populates the `tags`
+          and `status_tags` fields, which are otherwise null. `renewal_price` resolves
+          the domain's renewal price.
         in: query
         name: include
         required: false
@@ -24528,7 +24532,9 @@ paths:
               $ref: '#/components/schemas/DomainIncludeField'
             type: array
           - type: 'null'
-          description: Include additional data in the response.
+          description: Extra data to include in the response. `tags` populates the
+            `tags` and `status_tags` fields, which are otherwise null. `renewal_price`
+            resolves the domain's renewal price.
           title: Include
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
