@@ -12943,6 +12943,8 @@ export interface components {
              * @example example.com
              */
             domain: string;
+            /** @description Error that prevented this domain from being checked: `validation_error` if the domain name is invalid or its TLD is not supported, `check_error` if the registry check failed. */
+            error?: components["schemas"]["DomainAvailabilityError"] | null;
             /**
              * Is Premium
              * @description True if the registry classifies this domain as premium (non-standard pricing)
@@ -12953,7 +12955,7 @@ export interface components {
             premium_pricing?: components["schemas"]["PremiumPricingResponse"] | null;
             /**
              * Reason
-             * @description Registry-supplied reason the domain is unavailable (e.g. 'Domain exists', 'Reserved', 'In Use'). May be null when the domain is available, or when the registry did not provide a reason.
+             * @description Registry-supplied reason the domain is unavailable (e.g. 'Domain exists', 'Reserved', 'In Use'). Null if the domain is available, failed prechecks, or no reason was returned by the registry.
              * @example Domain exists
              */
             reason: string | null;

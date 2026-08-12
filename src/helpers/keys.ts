@@ -5995,6 +5995,7 @@ export const KEYS_DOMAIN_AVAILABILITY_LIST = [
 export const KEY_DOMAIN_AVAILABILITY_CHECK_AVAILABLE = 'available' satisfies keyof DomainAvailabilityCheck;
 export const KEY_DOMAIN_AVAILABILITY_CHECK_CLAIMS_KEY = 'claims_key' satisfies keyof DomainAvailabilityCheck;
 export const KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN = 'domain' satisfies keyof DomainAvailabilityCheck;
+export const KEY_DOMAIN_AVAILABILITY_CHECK_ERROR = 'error' satisfies keyof DomainAvailabilityCheck;
 export const KEY_DOMAIN_AVAILABILITY_CHECK_IS_PREMIUM = 'is_premium' satisfies keyof DomainAvailabilityCheck;
 export const KEY_DOMAIN_AVAILABILITY_CHECK_PREMIUM_PRICING = 'premium_pricing' satisfies keyof DomainAvailabilityCheck;
 export const KEY_DOMAIN_AVAILABILITY_CHECK_REASON = 'reason' satisfies keyof DomainAvailabilityCheck;
@@ -6003,6 +6004,7 @@ export const KEYS_DOMAIN_AVAILABILITY_CHECK = [
   KEY_DOMAIN_AVAILABILITY_CHECK_AVAILABLE,
   KEY_DOMAIN_AVAILABILITY_CHECK_CLAIMS_KEY,
   KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN,
+  KEY_DOMAIN_AVAILABILITY_CHECK_ERROR,
   KEY_DOMAIN_AVAILABILITY_CHECK_IS_PREMIUM,
   KEY_DOMAIN_AVAILABILITY_CHECK_PREMIUM_PRICING,
   KEY_DOMAIN_AVAILABILITY_CHECK_REASON,
