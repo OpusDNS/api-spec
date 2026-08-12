@@ -116,6 +116,7 @@ import type {
   VerificationClaimType,
   VerificationDeadlineType,
   VerificationType,
+  WhitelabelBrandingTier,
   WhitelabelOnboardingFailureCode,
   WhitelabelOnboardingFailureType,
   WhitelabelOnboardingStatus,
@@ -211,6 +212,7 @@ export const BILLING_TRANSACTION_ACTION = {
   TRADE: "trade",
   APPLICATION: "application",
   SERVICE_FEE: "service_fee",
+  UPGRADE_FEE: "upgrade_fee",
   WALLET_TOP_UP: "wallet_top_up",
 } as const satisfies Record<string, BillingTransactionAction>;
 
@@ -222,6 +224,7 @@ export const BILLING_TRANSACTION_ACTION_VALUES = [
   'trade',
   'application',
   'service_fee',
+  'upgrade_fee',
   'wallet_top_up',
 ] as const satisfies ReadonlyArray<BillingTransactionAction>;
 
@@ -233,6 +236,7 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE = {
   ACCOUNT_WALLET: "account_wallet",
   VANITY_NAMESERVER: "vanity_nameserver",
   WHITELABEL_BRANDING: "whitelabel_branding",
+  WHITELABEL_BRANDING_PLUS: "whitelabel_branding_plus",
 } as const satisfies Record<string, BillingTransactionProductType>;
 
 export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
@@ -243,6 +247,7 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
   'account_wallet',
   'vanity_nameserver',
   'whitelabel_branding',
+  'whitelabel_branding_plus',
 ] as const satisfies ReadonlyArray<BillingTransactionProductType>;
 
 export const BILLING_TRANSACTION_SORT_FIELD = {
@@ -2065,6 +2070,16 @@ export const VERIFICATION_TYPE_VALUES = [
   'api',
   'email',
 ] as const satisfies ReadonlyArray<VerificationType>;
+
+export const WHITELABEL_BRANDING_TIER = {
+  BASE: "base",
+  PLUS: "plus",
+} as const satisfies Record<string, WhitelabelBrandingTier>;
+
+export const WHITELABEL_BRANDING_TIER_VALUES = [
+  'base',
+  'plus',
+] as const satisfies ReadonlyArray<WhitelabelBrandingTier>;
 
 export const WHITELABEL_ONBOARDING_FAILURE_CODE = {
   ZONE_NOT_OWNED: "zone_not_owned",

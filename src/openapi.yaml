@@ -263,6 +263,7 @@ components:
       - trade
       - application
       - service_fee
+      - upgrade_fee
       - wallet_top_up
       title: BillingTransactionAction
       type: string
@@ -275,6 +276,7 @@ components:
       - account_wallet
       - vanity_nameserver
       - whitelabel_branding
+      - whitelabel_branding_plus
       title: BillingTransactionProductType
       type: string
     BillingTransactionResponse:
@@ -14541,53 +14543,59 @@ components:
       - unique
       title: VisitsByKeyBucket
       type: object
-    WhitelabelBrandingCreate:
-      description: 'Public create request body. The customer supplies their domain
-        plus the subdomains the
-
-        two whitelabel hosts live on; the full hostnames are composed here. `dashboard_subdomain`
-
-        is optional - omitted, the dashboard is served on `hostname` itself (the zone
-        apex when
-
-        `hostname` is the bare domain). The owning org comes from auth context, and
-
-        `verification_domain` is derived server-side (the registrable domain of the
-        composed
-
-        dashboard host), so neither is accepted here.'
+    WhitelabelBaseCreate:
+      additionalProperties: false
+      description: 'Create the base tier: served on a managed subdomain composed from
+        `label`.'
       properties:
-        auth_subdomain:
-          description: Subdomain the Keycloak login is served on (e.g. auth -> auth.customer.com)
-          maxLength: 255
+        label:
+          description: Managed-subdomain label; composed into <label>-<hash>.<base-tier
+            suffix>
+          maxLength: 45
           minLength: 1
-          title: Auth Subdomain
-          type: string
-        dashboard_subdomain:
-          anyOf:
-          - maxLength: 255
-            minLength: 1
-            type: string
-          - type: 'null'
-          description: Subdomain the dashboard is served on (e.g. dash -> dash.customer.com);
-            omit for the apex
-          title: Dashboard Subdomain
-        hostname:
-          description: Domain the whitelabel runs under (e.g. customer.com); must
-            be an OpusDNS-hosted zone
-          maxLength: 255
-          minLength: 1
-          title: Hostname
+          title: Label
           type: string
         period:
           $ref: '#/components/schemas/Period'
-          description: 'Billing period for the subscription; offered: 1 month or 1
-            year'
+          description: 'Billing period; offered: 1 month or 1 year'
+        tier:
+          const: base
+          title: Tier
+          type: string
       required:
-      - hostname
-      - auth_subdomain
+      - tier
+      - label
       - period
-      title: WhitelabelBrandingCreate
+      title: WhitelabelBaseCreate
+      type: object
+    WhitelabelBrandingPatch:
+      description: 'Public patch body. Neither field is a purchase, so nothing here
+        touches the subscription or
+
+        its price: `label` moves the base subdomain to a different label (base tier
+        only - a plus
+
+        whitelabel is re-pointed by its hostnames through recheck), and `enabled`
+        starts or stops
+
+        serving it. At least one must be given.'
+      properties:
+        enabled:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether this whitelabel should be served
+          title: Enabled
+        label:
+          anyOf:
+          - maxLength: 45
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: New base-tier label; the hostnames become <label>-<hash>.<base-tier
+            suffix>. Base tier only.
+          title: Label
+      title: WhitelabelBrandingPatch
       type: object
     WhitelabelBrandingRecheck:
       description: 'Public recheck body. Empty = re-run onboarding against the stored
@@ -14596,10 +14604,10 @@ components:
         fixing DNS). hostname + auth_subdomain present = re-point a wrong domain before
         re-running
 
-        (pre-provisioning only; server rejects once a Keycloak client exists). Same
-        composition
+        (pre-provisioning only; server rejects once a Keycloak client exists). Plus
+        tier only - a
 
-        rules as WhitelabelBrandingCreate.'
+        base whitelabel is re-labelled through PATCH instead.'
       properties:
         auth_subdomain:
           anyOf:
@@ -14632,10 +14640,19 @@ components:
           minLength: 1
           title: Auth Hostname
           type: string
+        base_label:
+          maxLength: 255
+          minLength: 1
+          title: Base Label
+          type: string
         created_on:
           format: date-time
           title: Created On
           type: string
+        enabled:
+          default: true
+          title: Enabled
+          type: boolean
         failure_code:
           anyOf:
           - $ref: '#/components/schemas/WhitelabelOnboardingFailureCode'
@@ -14672,6 +14689,8 @@ components:
           title: Organization Id
           type: string
           x-typeid-prefix: organization
+        tier:
+          $ref: '#/components/schemas/WhitelabelBrandingTier'
         updated_on:
           format: date-time
           title: Updated On
@@ -14692,9 +14711,11 @@ components:
       required:
       - whitelabel_branding_id
       - organization_id
+      - tier
       - onboarding_status
       - hostname
       - auth_hostname
+      - base_label
       - verification_domain
       - keycloak_client_id
       - created_on
@@ -14702,6 +14723,29 @@ components:
       - failure_type
       title: WhitelabelBrandingResponse
       type: object
+    WhitelabelBrandingTier:
+      description: 'Which tier a whitelabel config is on. One config per organization,
+        one tier at a time.
+
+
+        BASE serves the customer on a subdomain of an OpusDNS-owned zone; PLUS serves
+        them on their
+
+        own domain. A whitelabel switches between the two in place (a plan change),
+        so `tier` is a
+
+        mutable attribute of the single config row, never a discriminator between
+        two rows. Deliberately
+
+        stored rather than inferred from the hostname, so a base-zone rename can never
+        re-route the row
+
+        down the wrong onboarding path.'
+      enum:
+      - base
+      - plus
+      title: WhitelabelBrandingTier
+      type: string
     WhitelabelOnboardingFailureCode:
       description: 'Stable, frontend-facing reason a terminal onboarding failure happened.
         The free-text
@@ -14734,6 +14778,99 @@ components:
       - failed
       title: WhitelabelOnboardingStatus
       type: string
+    WhitelabelPlusCreate:
+      additionalProperties: false
+      description: 'Create the plus tier: served on the customer''s own domain; `label`
+        still reserves a base
+
+        subdomain (kept for the redirect/downgrade).'
+      properties:
+        auth_subdomain:
+          description: Subdomain the Keycloak login is served on (e.g. auth -> auth.customer.com)
+          maxLength: 255
+          minLength: 1
+          title: Auth Subdomain
+          type: string
+        dashboard_subdomain:
+          anyOf:
+          - maxLength: 255
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: Subdomain the dashboard is served on (e.g. dash -> dash.customer.com);
+            omit for apex
+          title: Dashboard Subdomain
+        hostname:
+          description: Domain the whitelabel runs under (e.g. customer.com); an OpusDNS-hosted
+            zone owned by the org
+          maxLength: 255
+          minLength: 1
+          title: Hostname
+          type: string
+        label:
+          description: Managed-subdomain label reserved for the redirect/downgrade
+          maxLength: 45
+          minLength: 1
+          title: Label
+          type: string
+        period:
+          $ref: '#/components/schemas/Period'
+          description: 'Billing period; offered: 1 month or 1 year'
+        tier:
+          const: plus
+          title: Tier
+          type: string
+      required:
+      - hostname
+      - auth_subdomain
+      - tier
+      - label
+      - period
+      title: WhitelabelPlusCreate
+      type: object
+    WhitelabelUpgradeToPlus:
+      additionalProperties: false
+      description: 'Upgrade the whitelabel to the plus tier, served on the customer''s
+        own domain. This is NOT a
+
+        term change: the subscription keeps its period and renewal date and simply
+        renews at the plus
+
+        price. A yearly upgrade bills a one-time prorated difference for the remaining
+        whole months; a
+
+        monthly upgrade bills nothing now. Downgrades (plus -> base) are not supported
+        - cancel + rebook
+
+        instead - so this body only ever moves to plus (no tier field, no period).'
+      properties:
+        auth_subdomain:
+          description: Subdomain the Keycloak login is served on (e.g. auth -> auth.customer.com)
+          maxLength: 255
+          minLength: 1
+          title: Auth Subdomain
+          type: string
+        dashboard_subdomain:
+          anyOf:
+          - maxLength: 255
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: Subdomain the dashboard is served on (e.g. dash -> dash.customer.com);
+            omit for apex
+          title: Dashboard Subdomain
+        hostname:
+          description: Domain the whitelabel runs under (e.g. customer.com); an OpusDNS-hosted
+            zone owned by the org
+          maxLength: 255
+          minLength: 1
+          title: Hostname
+          type: string
+      required:
+      - hostname
+      - auth_subdomain
+      title: WhitelabelUpgradeToPlus
+      type: object
     WhoisBase:
       properties:
         whois_server:
@@ -15176,7 +15313,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-12-133338
+  version: 2026-08-12-140327
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -32182,6 +32319,37 @@ paths:
       - whitelabel
       x-required-permissions:
       - whitelabel_branding:read
+    patch:
+      operationId: patch_whitelabel_branding_v1_whitelabel_branding_patch
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WhitelabelBrandingPatch'
+        required: true
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelabelBrandingResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Change the organization's whitelabel branding config (relabel / enable)
+      tags:
+      - whitelabel
+      x-required-permissions:
+      - whitelabel_branding:manage
     post:
       operationId: create_whitelabel_branding_v1_whitelabel_branding_post
       parameters:
@@ -32190,7 +32358,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/WhitelabelBrandingCreate'
+              discriminator:
+                mapping:
+                  base: '#/components/schemas/WhitelabelBaseCreate'
+                  plus: '#/components/schemas/WhitelabelPlusCreate'
+                propertyName: tier
+              oneOf:
+              - $ref: '#/components/schemas/WhitelabelBaseCreate'
+              - $ref: '#/components/schemas/WhitelabelPlusCreate'
+              title: Body
         required: true
       responses:
         '202':
@@ -32208,7 +32384,7 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
-      summary: Create the organization's whitelabel branding config
+      summary: Buy the organization's whitelabel branding (base or plus tier)
       tags:
       - whitelabel
       x-required-permissions:
@@ -32301,6 +32477,39 @@ paths:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
       summary: Re-run onboarding for the organization's whitelabel branding config
+      tags:
+      - whitelabel
+      x-required-permissions:
+      - whitelabel_branding:manage
+  /v1/whitelabel-branding/tier:
+    post:
+      operationId: upgrade_whitelabel_to_plus_v1_whitelabel_branding_tier_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WhitelabelUpgradeToPlus'
+        required: true
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCreateRes'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Upgrade the whitelabel to the plus tier (served on the customer's own
+        domain)
       tags:
       - whitelabel
       x-required-permissions:
@@ -32729,10 +32938,94 @@ tags:
 - description: 'Endpoints for managing an organization''s whitelabel branding configuration.
 
 
-    The create body carries the customer''s domain plus subdomains: `{"hostname":
-    "customer.com", "dashboard_subdomain": "dash", "auth_subdomain": "auth"}` composes
-    `dash.customer.com` and `auth.customer.com`; omitting `dashboard_subdomain` serves
-    the dashboard on the domain apex itself.
+    An organization has one whitelabel config, on one tier at a time.
+
+    `GET /v1/whitelabel-branding` returns it, or `404` when nothing is set up.
+
+
+    The **base** tier serves the customer on a subdomain of a zone OpusDNS owns, so
+    it needs nothing from them but a name.
+
+    The **plus** tier serves them on their own domain for the fully unbranded experience.
+
+
+    `POST /v1/whitelabel-branding` buys a whitelabel on the chosen tier: `{"tier":
+    "base", "label": "acme", "period": {"value": 1, "unit": "y"}}`, or for plus `{"tier":
+    "plus", "label": "acme", "hostname": "customer.com", "dashboard_subdomain": "dash",
+    "auth_subdomain": "auth", "period": {...}}`.
+
+    A `label` is required for both tiers: every whitelabel keeps a managed subdomain,
+    composed by branding-service as `<label>-<hash>.<base-tier suffix>` and `<label>-<hash>-auth.<base-tier
+    suffix>`, where the hash comes from a per-organization secret it alone holds.
+
+    For base, that composed pair is what gets served; onboarding skips DNS verification
+    and the edge CNAME, because that zone has wildcard DNS and a wildcard certificate.
+
+    For plus, the customer''s own domain is served instead (omitting `dashboard_subdomain`
+    serves the dashboard on the apex); the domain must be an OpusDNS-hosted zone owned
+    by the organization, which onboarding verifies before pointing both hosts at the
+    whitelabel edge.
+
+    Labels are validated on the way in, and branding-service additionally rejects
+    reserved ones (that rejection surfaces as a 400).
+
+    Because every whitelabel composes its label, both tiers are only purchasable in
+    environments configured with a base-tier zone; elsewhere create answers 403.
+
+
+    Both tiers are paid, and a whitelabel is a single subscription: the tiers are
+    alternatives, not add-ons.
+
+
+    `POST /v1/whitelabel-branding/tier` upgrades a base whitelabel to plus in place,
+    with the plus create''s domain fields (`hostname`, `dashboard_subdomain`, `auth_subdomain`
+    - no `tier`, no `period`).
+
+    The subscription keeps its term and renewal date and simply renews at the plus
+    price; a yearly term additionally settles a one-time prorated fee for the remaining
+    whole months now, a monthly term pays nothing now.
+
+    The managed subdomain label is kept.
+
+    Downgrades are not offered (cancel and rebook instead), so a whitelabel already
+    on plus answers 409.
+
+
+    `POST /v1/whitelabel-branding/recheck` re-runs onboarding - the customer''s retry
+    after fixing their DNS setup.
+
+    A plus recheck may also carry a corrected `hostname` plus subdomains to re-point
+    the config before re-running, which is accepted only before provisioning has started.
+
+    A base whitelabel takes no repoint: its hostnames come from its label, so it is
+    moved with `PATCH` instead.
+
+
+    A disabled whitelabel answers 409 to both `/recheck` and `/tier`: re-enable it
+    first (`PATCH {"enabled": true}` alone re-runs the reconcile).
+
+
+    `PATCH /v1/whitelabel-branding` changes the config without touching its subscription
+    or price.
+
+    `{"label": "newname"}` moves a base-tier whitelabel to a different subdomain,
+    accepted only before provisioning has started (a plus whitelabel has no served
+    label - it is re-pointed by its hostnames through recheck).
+
+    `{"enabled": false}` stops serving the whitelabel: its login client is disabled
+    and OpusDNS withdraws its routing - the managed subdomain is unpublished for base,
+    the DNS edge records are removed for plus (a plus host whose DNS is pointed at
+    the edge manually keeps reaching the branded dashboard, but its login stays disabled).
+
+    The configuration, the branding document and the provisioning history are kept,
+    so `{"enabled": true}` brings it back without re-provisioning.
+
+    Like the other write routes this is asynchronous: the response is `202` once the
+    change is recorded, and a job converges the login client and the routing to it
+    shortly after.
+
+    Disabling a whitelabel does **not** cancel its subscription; billing continues
+    until the subscription itself is cancelled.
 
     '
   name: whitelabel

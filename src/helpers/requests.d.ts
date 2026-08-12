@@ -55,7 +55,8 @@ import type {
   UserUpdate,
   VanityNameserverSetCreate,
   VanityNsCheckPublicReq,
-  WhitelabelBrandingCreate,
+  WhitelabelBrandingPatch,
+  WhitelabelUpgradeToPlus,
   ZoneVanitySetUpdate,
 } from './schemas';
 
@@ -1151,10 +1152,13 @@ export type DELETE_VanityNameserverSetsDefault_Request = {
 export type GET_WhitelabelBranding_Request = {
 };
 
-export type POST_WhitelabelBranding_Request = {
-  requestBody: WhitelabelBrandingCreate;
+export type PATCH_WhitelabelBranding_Request = {
+  requestBody: WhitelabelBrandingPatch;
 };
-export type POST_WhitelabelBranding_Request_Body = POST_WhitelabelBranding_Request['requestBody'];
+export type PATCH_WhitelabelBranding_Request_Body = PATCH_WhitelabelBranding_Request['requestBody'];
+
+export type POST_WhitelabelBranding_Request = {
+};
 
 export type POST_WhitelabelBrandingEmailPreview_Request = {
   requestBody: PreviewMailReq;
@@ -1166,3 +1170,8 @@ export type GET_WhitelabelBrandingEmailTemplates_Request = {
 
 export type POST_WhitelabelBrandingRecheck_Request = {
 };
+
+export type POST_WhitelabelBrandingTier_Request = {
+  requestBody: WhitelabelUpgradeToPlus;
+};
+export type POST_WhitelabelBrandingTier_Request_Body = POST_WhitelabelBrandingTier_Request['requestBody'];

@@ -1018,6 +1018,11 @@ export type PATCH_VanityNameserverSetsBySetIdDefault_Response = PATCH_VanityName
 export type PATCH_VanityNameserverSetsBySetIdDefault_Response_200 = SetVanityNameserverSetDefaultRes;
 export type PATCH_VanityNameserverSetsBySetIdDefault_Response_422 = HTTPValidationError;
 
+export type PATCH_WhitelabelBranding_Response = PATCH_WhitelabelBranding_Response_202 | PATCH_WhitelabelBranding_Response_422;
+
+export type PATCH_WhitelabelBranding_Response_202 = WhitelabelBranding;
+export type PATCH_WhitelabelBranding_Response_422 = HTTPValidationError;
+
 export type POST_AiConciergeConversations_Response = POST_AiConciergeConversations_Response_201 | POST_AiConciergeConversations_Response_401 | POST_AiConciergeConversations_Response_404 | POST_AiConciergeConversations_Response_422 | POST_AiConciergeConversations_Response_502;
 
 export type POST_AiConciergeConversations_Response_201 = Conversation;
@@ -1412,6 +1417,11 @@ export type POST_WhitelabelBrandingRecheck_Response = POST_WhitelabelBrandingRec
 
 export type POST_WhitelabelBrandingRecheck_Response_202 = WhitelabelBranding;
 export type POST_WhitelabelBrandingRecheck_Response_422 = HTTPValidationError;
+
+export type POST_WhitelabelBrandingTier_Response = POST_WhitelabelBrandingTier_Response_202 | POST_WhitelabelBrandingTier_Response_422;
+
+export type POST_WhitelabelBrandingTier_Response_202 = ProductCreateRes;
+export type POST_WhitelabelBrandingTier_Response_422 = HTTPValidationError;
 
 export type PUT_ContactsByContactIdVerification_Response = PUT_ContactsByContactIdVerification_Response_400 | PUT_ContactsByContactIdVerification_Response_401 | PUT_ContactsByContactIdVerification_Response_403 | PUT_ContactsByContactIdVerification_Response_404 | PUT_ContactsByContactIdVerification_Response_422;
 

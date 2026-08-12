@@ -2937,12 +2937,13 @@ export interface paths {
         /** Get the organization's whitelabel branding config */
         get: operations["get_whitelabel_branding_v1_whitelabel_branding_get"];
         put?: never;
-        /** Create the organization's whitelabel branding config */
+        /** Buy the organization's whitelabel branding (base or plus tier) */
         post: operations["create_whitelabel_branding_v1_whitelabel_branding_post"];
         delete?: never;
         options?: never;
         head?: never;
-        patch?: never;
+        /** Change the organization's whitelabel branding config (relabel / enable) */
+        patch: operations["patch_whitelabel_branding_v1_whitelabel_branding_patch"];
         trace?: never;
     };
     "/v1/whitelabel-branding/email/preview": {
@@ -2990,6 +2991,23 @@ export interface paths {
         put?: never;
         /** Re-run onboarding for the organization's whitelabel branding config */
         post: operations["recheck_whitelabel_branding_v1_whitelabel_branding_recheck_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/whitelabel-branding/tier": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Upgrade the whitelabel to the plus tier (served on the customer's own domain) */
+        post: operations["upgrade_whitelabel_to_plus_v1_whitelabel_branding_tier_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3164,12 +3182,12 @@ export interface components {
          * BillingTransactionAction
          * @enum {string}
          */
-        BillingTransactionAction: "create" | "transfer" | "renew" | "restore" | "trade" | "application" | "service_fee" | "wallet_top_up";
+        BillingTransactionAction: "create" | "transfer" | "renew" | "restore" | "trade" | "application" | "service_fee" | "upgrade_fee" | "wallet_top_up";
         /**
          * BillingTransactionProductType
          * @enum {string}
          */
-        BillingTransactionProductType: "domain" | "zones" | "email_forward" | "domain_forward" | "account_wallet" | "vanity_nameserver" | "whitelabel_branding";
+        BillingTransactionProductType: "domain" | "zones" | "email_forward" | "domain_forward" | "account_wallet" | "vanity_nameserver" | "whitelabel_branding" | "whitelabel_branding_plus";
         /** BillingTransactionResponse */
         BillingTransactionResponse: {
             /** @description The action performed in the transaction */
@@ -12580,39 +12598,48 @@ export interface components {
             unique: number;
         };
         /**
-         * WhitelabelBrandingCreate
-         * @description Public create request body. The customer supplies their domain plus the subdomains the
-         *     two whitelabel hosts live on; the full hostnames are composed here. `dashboard_subdomain`
-         *     is optional - omitted, the dashboard is served on `hostname` itself (the zone apex when
-         *     `hostname` is the bare domain). The owning org comes from auth context, and
-         *     `verification_domain` is derived server-side (the registrable domain of the composed
-         *     dashboard host), so neither is accepted here.
+         * WhitelabelBaseCreate
+         * @description Create the base tier: served on a managed subdomain composed from `label`.
          */
-        WhitelabelBrandingCreate: {
+        WhitelabelBaseCreate: {
             /**
-             * Auth Subdomain
-             * @description Subdomain the Keycloak login is served on (e.g. auth -> auth.customer.com)
+             * Label
+             * @description Managed-subdomain label; composed into <label>-<hash>.<base-tier suffix>
              */
-            auth_subdomain: string;
-            /**
-             * Dashboard Subdomain
-             * @description Subdomain the dashboard is served on (e.g. dash -> dash.customer.com); omit for the apex
-             */
-            dashboard_subdomain?: string | null;
-            /**
-             * Hostname
-             * @description Domain the whitelabel runs under (e.g. customer.com); must be an OpusDNS-hosted zone
-             */
-            hostname: string;
-            /** @description Billing period for the subscription; offered: 1 month or 1 year */
+            label: string;
+            /** @description Billing period; offered: 1 month or 1 year */
             period: components["schemas"]["Period"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            tier: "base";
+        };
+        /**
+         * WhitelabelBrandingPatch
+         * @description Public patch body. Neither field is a purchase, so nothing here touches the subscription or
+         *     its price: `label` moves the base subdomain to a different label (base tier only - a plus
+         *     whitelabel is re-pointed by its hostnames through recheck), and `enabled` starts or stops
+         *     serving it. At least one must be given.
+         */
+        WhitelabelBrandingPatch: {
+            /**
+             * Enabled
+             * @description Whether this whitelabel should be served
+             */
+            enabled?: boolean | null;
+            /**
+             * Label
+             * @description New base-tier label; the hostnames become <label>-<hash>.<base-tier suffix>. Base tier only.
+             */
+            label?: string | null;
         };
         /**
          * WhitelabelBrandingRecheck
          * @description Public recheck body. Empty = re-run onboarding against the stored hosts (retry after
          *     fixing DNS). hostname + auth_subdomain present = re-point a wrong domain before re-running
-         *     (pre-provisioning only; server rejects once a Keycloak client exists). Same composition
-         *     rules as WhitelabelBrandingCreate.
+         *     (pre-provisioning only; server rejects once a Keycloak client exists). Plus tier only - a
+         *     base whitelabel is re-labelled through PATCH instead.
          */
         WhitelabelBrandingRecheck: {
             /** Auth Subdomain */
@@ -12629,11 +12656,18 @@ export interface components {
         WhitelabelBrandingResponse: {
             /** Auth Hostname */
             auth_hostname: string;
+            /** Base Label */
+            base_label: string;
             /**
              * Created On
              * Format: date-time
              */
             created_on: Date;
+            /**
+             * Enabled
+             * @default true
+             */
+            enabled: boolean;
             failure_code?: components["schemas"]["WhitelabelOnboardingFailureCode"] | null;
             /** Failure Detail */
             failure_detail?: string | null;
@@ -12649,6 +12683,7 @@ export interface components {
              * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id: TypeId<"organization">;
+            tier: components["schemas"]["WhitelabelBrandingTier"];
             /**
              * Updated On
              * Format: date-time
@@ -12663,6 +12698,18 @@ export interface components {
              */
             whitelabel_branding_id: TypeId<"wlb">;
         };
+        /**
+         * WhitelabelBrandingTier
+         * @description Which tier a whitelabel config is on. One config per organization, one tier at a time.
+         *
+         *     BASE serves the customer on a subdomain of an OpusDNS-owned zone; PLUS serves them on their
+         *     own domain. A whitelabel switches between the two in place (a plan change), so `tier` is a
+         *     mutable attribute of the single config row, never a discriminator between two rows. Deliberately
+         *     stored rather than inferred from the hostname, so a base-zone rename can never re-route the row
+         *     down the wrong onboarding path.
+         * @enum {string}
+         */
+        WhitelabelBrandingTier: "base" | "plus";
         /**
          * WhitelabelOnboardingFailureCode
          * @description Stable, frontend-facing reason a terminal onboarding failure happened. The free-text
@@ -12680,6 +12727,65 @@ export interface components {
          * @enum {string}
          */
         WhitelabelOnboardingStatus: "pending_domain_verification" | "verifying" | "provisioning" | "active" | "failed";
+        /**
+         * WhitelabelPlusCreate
+         * @description Create the plus tier: served on the customer's own domain; `label` still reserves a base
+         *     subdomain (kept for the redirect/downgrade).
+         */
+        WhitelabelPlusCreate: {
+            /**
+             * Auth Subdomain
+             * @description Subdomain the Keycloak login is served on (e.g. auth -> auth.customer.com)
+             */
+            auth_subdomain: string;
+            /**
+             * Dashboard Subdomain
+             * @description Subdomain the dashboard is served on (e.g. dash -> dash.customer.com); omit for apex
+             */
+            dashboard_subdomain?: string | null;
+            /**
+             * Hostname
+             * @description Domain the whitelabel runs under (e.g. customer.com); an OpusDNS-hosted zone owned by the org
+             */
+            hostname: string;
+            /**
+             * Label
+             * @description Managed-subdomain label reserved for the redirect/downgrade
+             */
+            label: string;
+            /** @description Billing period; offered: 1 month or 1 year */
+            period: components["schemas"]["Period"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            tier: "plus";
+        };
+        /**
+         * WhitelabelUpgradeToPlus
+         * @description Upgrade the whitelabel to the plus tier, served on the customer's own domain. This is NOT a
+         *     term change: the subscription keeps its period and renewal date and simply renews at the plus
+         *     price. A yearly upgrade bills a one-time prorated difference for the remaining whole months; a
+         *     monthly upgrade bills nothing now. Downgrades (plus -> base) are not supported - cancel + rebook
+         *     instead - so this body only ever moves to plus (no tier field, no period).
+         */
+        WhitelabelUpgradeToPlus: {
+            /**
+             * Auth Subdomain
+             * @description Subdomain the Keycloak login is served on (e.g. auth -> auth.customer.com)
+             */
+            auth_subdomain: string;
+            /**
+             * Dashboard Subdomain
+             * @description Subdomain the dashboard is served on (e.g. dash -> dash.customer.com); omit for apex
+             */
+            dashboard_subdomain?: string | null;
+            /**
+             * Hostname
+             * @description Domain the whitelabel runs under (e.g. customer.com); an OpusDNS-hosted zone owned by the org
+             */
+            hostname: string;
+        };
         /** WhoisBase */
         WhoisBase: {
             /**
@@ -27050,7 +27156,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["WhitelabelBrandingCreate"];
+                "application/json": components["schemas"]["WhitelabelBaseCreate"] | components["schemas"]["WhitelabelPlusCreate"];
             };
         };
         responses: {
@@ -27061,6 +27167,45 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ProductCreateRes"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    patch_whitelabel_branding_v1_whitelabel_branding_patch: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["WhitelabelBrandingPatch"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WhitelabelBrandingResponse"];
                 };
             };
             /** @description Validation Error */
@@ -27174,6 +27319,45 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["WhitelabelBrandingResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    upgrade_whitelabel_to_plus_v1_whitelabel_branding_tier_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["WhitelabelUpgradeToPlus"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCreateRes"];
                 };
             };
             /** @description Validation Error */
