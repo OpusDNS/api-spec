@@ -14549,9 +14549,9 @@ components:
         `label`.'
       properties:
         label:
-          description: Managed-subdomain label; composed into <label>-<hash>.<base-tier
-            suffix>
-          maxLength: 45
+          description: Managed-subdomain label; composed into app.<label>.<base-tier
+            suffix> / auth.<label>.<suffix>
+          maxLength: 63
           minLength: 1
           title: Label
           type: string
@@ -14588,12 +14588,12 @@ components:
           title: Enabled
         label:
           anyOf:
-          - maxLength: 45
+          - maxLength: 63
             minLength: 1
             type: string
           - type: 'null'
-          description: New base-tier label; the hostnames become <label>-<hash>.<base-tier
-            suffix>. Base tier only.
+          description: New base-tier label; the hostnames become app.<label>.<suffix>
+            / auth.<label>.<suffix>. Base tier only.
           title: Label
       title: WhitelabelBrandingPatch
       type: object
@@ -14809,7 +14809,7 @@ components:
           type: string
         label:
           description: Managed-subdomain label reserved for the redirect/downgrade
-          maxLength: 45
+          maxLength: 63
           minLength: 1
           title: Label
           type: string
@@ -15313,7 +15313,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-12-140327
+  version: 2026-08-13-160906
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

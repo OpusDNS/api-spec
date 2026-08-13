@@ -12604,7 +12604,7 @@ export interface components {
         WhitelabelBaseCreate: {
             /**
              * Label
-             * @description Managed-subdomain label; composed into <label>-<hash>.<base-tier suffix>
+             * @description Managed-subdomain label; composed into app.<label>.<base-tier suffix> / auth.<label>.<suffix>
              */
             label: string;
             /** @description Billing period; offered: 1 month or 1 year */
@@ -12630,7 +12630,7 @@ export interface components {
             enabled?: boolean | null;
             /**
              * Label
-             * @description New base-tier label; the hostnames become <label>-<hash>.<base-tier suffix>. Base tier only.
+             * @description New base-tier label; the hostnames become app.<label>.<suffix> / auth.<label>.<suffix>. Base tier only.
              */
             label?: string | null;
         };
