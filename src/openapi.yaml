@@ -3642,6 +3642,7 @@ components:
       - nor_id_declaration_token
       - punktum_dk_terms_acceptance
       - punktum_dk_tracking_no
+      - internet_ee_registrant_agreement
       - promotion
       - promotion_eligibility
       title: DomainAttributeKey
@@ -15313,7 +15314,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-14-000616
+  version: 2026-08-14-151943
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

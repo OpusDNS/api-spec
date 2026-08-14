@@ -629,6 +629,7 @@ export const DOMAIN_ATTRIBUTE_KEY = {
   NOR_ID_DECLARATION_TOKEN: "nor_id_declaration_token",
   PUNKTUM_DK_TERMS_ACCEPTANCE: "punktum_dk_terms_acceptance",
   PUNKTUM_DK_TRACKING_NO: "punktum_dk_tracking_no",
+  INTERNET_EE_REGISTRANT_AGREEMENT: "internet_ee_registrant_agreement",
   PROMOTION: "promotion",
   PROMOTION_ELIGIBILITY: "promotion_eligibility",
 } as const satisfies Record<string, DomainAttributeKey>;
@@ -648,6 +649,7 @@ export const DOMAIN_ATTRIBUTE_KEY_VALUES = [
   'nor_id_declaration_token',
   'punktum_dk_terms_acceptance',
   'punktum_dk_tracking_no',
+  'internet_ee_registrant_agreement',
   'promotion',
   'promotion_eligibility',
 ] as const satisfies ReadonlyArray<DomainAttributeKey>;
