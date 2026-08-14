@@ -342,12 +342,12 @@
               },
               "/contacts": {
                 "type": "group",
-                "title": "Contact Verification",
-                "icon": "phosphor/regular/shield-check",
+                "title": "Contacts",
+                "icon": "line/interface-users-multiple",
                 "children": {
                   "/verification": {
                     "type": "page",
-                    "title": "Overview",
+                    "title": "Contact verification",
                     "icon": "phosphor/regular/shield-check",
                     "filepath": "content/contacts/overview.md",
                     "showInSidebar": true
@@ -364,6 +364,13 @@
                     "title": "Initialize verification",
                     "icon": "line/interface-add",
                     "filepath": "content/contacts/initialize-verification.md",
+                    "showInSidebar": true
+                  },
+                  "/postal-codes": {
+                    "type": "page",
+                    "title": "Postal codes",
+                    "icon": "line/interface-content-file",
+                    "filepath": "content/contacts/postal-codes.md",
                     "showInSidebar": true
                   }
                 }

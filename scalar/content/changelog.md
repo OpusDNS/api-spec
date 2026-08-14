@@ -4,6 +4,33 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 14 August 2026
+
+- Added **postal code validation on contacts**: `postal_code` is validated
+  against the country's published format for an initial set of 16 countries
+  (`AT`, `BE`, `CA`, `CH`, `CZ`, `DE`, `DK`, `ES`, `FR`, `GB`, `IT`, `LU`,
+  `NL`, `NO`, `SE`, `US`). Contacts in every other country are unaffected. An
+  invalid postal code returns a `422` request-validation error whose error
+  `type` is `invalid_postal_code`, locating the `postal_code` field. A postal
+  code containing non-ASCII characters is rejected for every country, because
+  it cannot be transmitted to a registry. See
+  [Postal codes](/products/contacts/postal-codes).
+
+- Changed **postal codes to be stored in a canonical form**: Dutch postal codes
+  are stored in the official national notation (`1234 AB` — both `1234AB` and
+  `1234 ab` are accepted), cross-border country prefixes are stripped
+  (`D-26133` → `26133` for a `DE` contact), and US ZIP+4 is normalized to the
+  hyphenated form (`12345 6789` → `12345-6789`). Existing Dutch contact data
+  was migrated to the canonical form. See
+  [What gets stored](/products/contacts/postal-codes#what-gets-stored).
+
+- Added **the registry's own field-level validation messages** to registry
+  errors. Where a registry reports which field it refused, an
+  `ERROR_REGISTRY_POLICY` on a domain or contact operation now carries that text
+  in `detail` after the generic result code, instead of the result code text
+  alone. For a `.nl` postcode rejected by SIDN, `detail` now ends with
+  `Contact address group: A postcode has to be four numbers and two letters.`
+
 ### 11 August 2026
 
 - Onboarded the Welsh geographic TLDs
