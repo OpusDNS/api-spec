@@ -12288,6 +12288,7 @@ components:
       - PUNKTUM_DK_SECONDARY_EMAIL
       - PUNKTUM_DK_MOBILEPHONE
       - PUNKTUM_DK_SOLE_PROPRIETORSHIP
+      - PUNKTUM_DK_CONTACT_VERIFIED
       - INTERNET_EE_IDENT_TYPE
       - INTERNET_EE_IDENT_CC
       - INTERNET_EE_IDENT_VALUE
@@ -15314,7 +15315,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-14-151943
+  version: 2026-08-14-165642
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
