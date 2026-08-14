@@ -15313,7 +15313,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-13-160906
+  version: 2026-08-14-000616
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -17668,9 +17668,31 @@ paths:
         '422':
           content:
             application/problem+json:
+              examples:
+                invalid_postal_code:
+                  description: The postal code is not valid for the contact's country.
+                    Enforced for a specific set of countries; elsewhere the postal
+                    code is stored as submitted. A non-ASCII postal code is rejected
+                    for every country.
+                  summary: Postal code does not match the country
+                  value:
+                    errors:
+                    - ctx:
+                        message: '''93053'' is not a valid postal code for country
+                          ''NL'', expected a format like ''1234 AB'''
+                      input: '93053'
+                      loc:
+                      - body
+                      - postal_code
+                      msg: '''93053'' is not a valid postal code for country ''NL'',
+                        expected a format like ''1234 AB'''
+                      type: invalid_postal_code
+                    status: 422
+                    title: Request validation error.
+                    type: request-validation-failed
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+          description: Invalid request parameters
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []

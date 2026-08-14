@@ -14982,7 +14982,7 @@ export interface operations {
                     "application/json": components["schemas"]["ContactResponse"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Invalid request parameters */
             422: {
                 headers: {
                     [name: string]: unknown;
