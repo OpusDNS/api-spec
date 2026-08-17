@@ -3018,6 +3018,84 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** AggregationResult */
+        AggregationResult: {
+            /** Field */
+            field?: string | null;
+            /** Name */
+            name: string;
+            /** Other Count */
+            other_count?: number | null;
+            /** Rows */
+            rows?: components["schemas"]["AggregationRow"][] | null;
+            /** Type */
+            type: string;
+            /** Value */
+            value?: number | null;
+            /** Values */
+            values?: {
+                [key: string]: number;
+            } | null;
+        };
+        /** AggregationRow */
+        AggregationRow: {
+            /** Count */
+            count: number;
+            /** Key */
+            key: string;
+        };
+        /** AggregationsContext */
+        AggregationsContext: {
+            /**
+             * Context Id
+             * Format: typeid
+             * @example ctx_01h45ytscbebyvny4gc8cr8ma2
+             */
+            context_id: TypeId<"ctx">;
+            /**
+             * Conversation Id
+             * Format: typeid
+             * @example conv_01h45ytscbebyvny4gc8cr8ma2
+             */
+            conversation_id: TypeId<"conv">;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: Date;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "aggregations";
+            /**
+             * Organization Id
+             * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            payload: components["schemas"]["AggregationsContextPayload"];
+            /** User Id */
+            user_id: string;
+        };
+        /** AggregationsContextCreate */
+        AggregationsContextCreate: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "aggregations";
+            payload: components["schemas"]["AggregationsContextPayload"];
+        };
+        /** AggregationsContextPayload */
+        AggregationsContextPayload: {
+            /** Aggregations */
+            aggregations: components["schemas"]["AggregationResult"][];
+            /** Question */
+            question: string;
+            /** Total */
+            total?: number | null;
+        };
         /** AiInferenceUsageBucket */
         AiInferenceUsageBucket: {
             /** Groups */
@@ -4404,7 +4482,7 @@ export interface components {
         ContextListResponse: {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
-            results: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"])[];
+            results: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"])[];
         };
         /** ContextMeta */
         ContextMeta: {
@@ -13104,7 +13182,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"];
+                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"];
                 };
             };
             /** @description Unauthorized */
@@ -13706,7 +13784,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["ZonesContextCreate"] | components["schemas"]["ContactsContextCreate"] | components["schemas"]["DomainsContextCreate"] | components["schemas"]["DomainForwardsContextCreate"] | components["schemas"]["EmailForwardsContextCreate"] | components["schemas"]["DomainRecommendationsContextCreate"];
+                "application/json": components["schemas"]["ZonesContextCreate"] | components["schemas"]["ContactsContextCreate"] | components["schemas"]["DomainsContextCreate"] | components["schemas"]["DomainForwardsContextCreate"] | components["schemas"]["EmailForwardsContextCreate"] | components["schemas"]["DomainRecommendationsContextCreate"] | components["schemas"]["AggregationsContextCreate"];
             };
         };
         responses: {
@@ -13716,7 +13794,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"];
+                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"];
                 };
             };
             /** @description Unauthorized */

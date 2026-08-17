@@ -1,5 +1,10 @@
 import { components } from '../schema';
 
+export type AggregationResult = components['schemas']['AggregationResult'];
+export type AggregationRow = components['schemas']['AggregationRow'];
+export type AggregationsContext = components['schemas']['AggregationsContext'];
+export type AggregationsContextCreate = components['schemas']['AggregationsContextCreate'];
+export type AggregationsContextPayload = components['schemas']['AggregationsContextPayload'];
 export type AiInferenceUsageBucket = components['schemas']['AiInferenceUsageBucket'];
 export type AiInferenceUsageGroup = components['schemas']['AiInferenceUsageGroup'];
 export type AiInferenceUsageSeries = components['schemas']['AiInferenceUsageSeriesResponse'];

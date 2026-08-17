@@ -1,4 +1,9 @@
 import type {
+  AggregationResult,
+  AggregationRow,
+  AggregationsContext,
+  AggregationsContextCreate,
+  AggregationsContextPayload,
   AiInferenceUsageBucket,
   AiInferenceUsageGroup,
   AiInferenceUsageSeries,
@@ -448,6 +453,68 @@ import type {
   DomainAvailabilityList,
   DomainAvailabilityCheck,
 } from './schemas';
+
+export const KEY_AGGREGATION_RESULT_FIELD = 'field' satisfies keyof AggregationResult;
+export const KEY_AGGREGATION_RESULT_NAME = 'name' satisfies keyof AggregationResult;
+export const KEY_AGGREGATION_RESULT_OTHER_COUNT = 'other_count' satisfies keyof AggregationResult;
+export const KEY_AGGREGATION_RESULT_ROWS = 'rows' satisfies keyof AggregationResult;
+export const KEY_AGGREGATION_RESULT_TYPE = 'type' satisfies keyof AggregationResult;
+export const KEY_AGGREGATION_RESULT_VALUE = 'value' satisfies keyof AggregationResult;
+export const KEY_AGGREGATION_RESULT_VALUES = 'values' satisfies keyof AggregationResult;
+
+export const KEYS_AGGREGATION_RESULT = [
+  KEY_AGGREGATION_RESULT_FIELD,
+  KEY_AGGREGATION_RESULT_NAME,
+  KEY_AGGREGATION_RESULT_OTHER_COUNT,
+  KEY_AGGREGATION_RESULT_ROWS,
+  KEY_AGGREGATION_RESULT_TYPE,
+  KEY_AGGREGATION_RESULT_VALUE,
+  KEY_AGGREGATION_RESULT_VALUES,
+] as const satisfies (keyof AggregationResult)[];
+
+export const KEY_AGGREGATION_ROW_COUNT = 'count' satisfies keyof AggregationRow;
+export const KEY_AGGREGATION_ROW_KEY = 'key' satisfies keyof AggregationRow;
+
+export const KEYS_AGGREGATION_ROW = [
+  KEY_AGGREGATION_ROW_COUNT,
+  KEY_AGGREGATION_ROW_KEY,
+] as const satisfies (keyof AggregationRow)[];
+
+export const KEY_AGGREGATIONS_CONTEXT_CONTEXT_ID = 'context_id' satisfies keyof AggregationsContext;
+export const KEY_AGGREGATIONS_CONTEXT_CONVERSATION_ID = 'conversation_id' satisfies keyof AggregationsContext;
+export const KEY_AGGREGATIONS_CONTEXT_CREATED_AT = 'created_at' satisfies keyof AggregationsContext;
+export const KEY_AGGREGATIONS_CONTEXT_KIND = 'kind' satisfies keyof AggregationsContext;
+export const KEY_AGGREGATIONS_CONTEXT_ORGANIZATION_ID = 'organization_id' satisfies keyof AggregationsContext;
+export const KEY_AGGREGATIONS_CONTEXT_PAYLOAD = 'payload' satisfies keyof AggregationsContext;
+export const KEY_AGGREGATIONS_CONTEXT_USER_ID = 'user_id' satisfies keyof AggregationsContext;
+
+export const KEYS_AGGREGATIONS_CONTEXT = [
+  KEY_AGGREGATIONS_CONTEXT_CONTEXT_ID,
+  KEY_AGGREGATIONS_CONTEXT_CONVERSATION_ID,
+  KEY_AGGREGATIONS_CONTEXT_CREATED_AT,
+  KEY_AGGREGATIONS_CONTEXT_KIND,
+  KEY_AGGREGATIONS_CONTEXT_ORGANIZATION_ID,
+  KEY_AGGREGATIONS_CONTEXT_PAYLOAD,
+  KEY_AGGREGATIONS_CONTEXT_USER_ID,
+] as const satisfies (keyof AggregationsContext)[];
+
+export const KEY_AGGREGATIONS_CONTEXT_CREATE_KIND = 'kind' satisfies keyof AggregationsContextCreate;
+export const KEY_AGGREGATIONS_CONTEXT_CREATE_PAYLOAD = 'payload' satisfies keyof AggregationsContextCreate;
+
+export const KEYS_AGGREGATIONS_CONTEXT_CREATE = [
+  KEY_AGGREGATIONS_CONTEXT_CREATE_KIND,
+  KEY_AGGREGATIONS_CONTEXT_CREATE_PAYLOAD,
+] as const satisfies (keyof AggregationsContextCreate)[];
+
+export const KEY_AGGREGATIONS_CONTEXT_PAYLOAD_AGGREGATIONS = 'aggregations' satisfies keyof AggregationsContextPayload;
+export const KEY_AGGREGATIONS_CONTEXT_PAYLOAD_QUESTION = 'question' satisfies keyof AggregationsContextPayload;
+export const KEY_AGGREGATIONS_CONTEXT_PAYLOAD_TOTAL = 'total' satisfies keyof AggregationsContextPayload;
+
+export const KEYS_AGGREGATIONS_CONTEXT_PAYLOAD = [
+  KEY_AGGREGATIONS_CONTEXT_PAYLOAD_AGGREGATIONS,
+  KEY_AGGREGATIONS_CONTEXT_PAYLOAD_QUESTION,
+  KEY_AGGREGATIONS_CONTEXT_PAYLOAD_TOTAL,
+] as const satisfies (keyof AggregationsContextPayload)[];
 
 export const KEY_AI_INFERENCE_USAGE_BUCKET_GROUPS = 'groups' satisfies keyof AiInferenceUsageBucket;
 export const KEY_AI_INFERENCE_USAGE_BUCKET_PERIOD_START = 'period_start' satisfies keyof AiInferenceUsageBucket;

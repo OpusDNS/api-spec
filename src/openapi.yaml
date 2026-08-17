@@ -15,6 +15,143 @@ components:
         - rfc3339
         type: string
   schemas:
+    AggregationResult:
+      properties:
+        field:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Field
+        name:
+          title: Name
+          type: string
+        other_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Other Count
+        rows:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/AggregationRow'
+            type: array
+          - type: 'null'
+          title: Rows
+        type:
+          title: Type
+          type: string
+        value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Value
+        values:
+          anyOf:
+          - additionalProperties:
+              type: number
+            type: object
+          - type: 'null'
+          title: Values
+      required:
+      - name
+      - type
+      title: AggregationResult
+      type: object
+    AggregationRow:
+      properties:
+        count:
+          title: Count
+          type: integer
+        key:
+          title: Key
+          type: string
+      required:
+      - key
+      - count
+      title: AggregationRow
+      type: object
+    AggregationsContext:
+      properties:
+        context_id:
+          examples:
+          - ctx_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^ctx_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Context Id
+          type: string
+          x-typeid-prefix: ctx
+        conversation_id:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        kind:
+          const: aggregations
+          default: aggregations
+          title: Kind
+          type: string
+        organization_id:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        payload:
+          $ref: '#/components/schemas/AggregationsContextPayload'
+        user_id:
+          title: User Id
+          type: string
+      required:
+      - context_id
+      - conversation_id
+      - organization_id
+      - user_id
+      - created_at
+      - payload
+      title: AggregationsContext
+      type: object
+    AggregationsContextCreate:
+      properties:
+        kind:
+          const: aggregations
+          default: aggregations
+          title: Kind
+          type: string
+        payload:
+          $ref: '#/components/schemas/AggregationsContextPayload'
+      required:
+      - payload
+      title: AggregationsContextCreate
+      type: object
+    AggregationsContextPayload:
+      properties:
+        aggregations:
+          items:
+            $ref: '#/components/schemas/AggregationResult'
+          title: Aggregations
+          type: array
+        question:
+          title: Question
+          type: string
+        total:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total
+      required:
+      - question
+      - aggregations
+      title: AggregationsContextPayload
+      type: object
     AiInferenceUsageBucket:
       properties:
         groups:
@@ -2056,6 +2193,7 @@ components:
           items:
             discriminator:
               mapping:
+                aggregations: '#/components/schemas/AggregationsContext'
                 contacts: '#/components/schemas/ContactsContext'
                 domain_forwards: '#/components/schemas/DomainForwardsContext'
                 domain_recommendations: '#/components/schemas/DomainRecommendationsContext'
@@ -2070,6 +2208,7 @@ components:
             - $ref: '#/components/schemas/DomainForwardsContext'
             - $ref: '#/components/schemas/EmailForwardsContext'
             - $ref: '#/components/schemas/DomainRecommendationsContext'
+            - $ref: '#/components/schemas/AggregationsContext'
           title: Results
           type: array
       required:
@@ -15315,7 +15454,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-14-165642
+  version: 2026-08-17-111612
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -15344,6 +15483,7 @@ paths:
               schema:
                 discriminator:
                   mapping:
+                    aggregations: '#/components/schemas/AggregationsContext'
                     contacts: '#/components/schemas/ContactsContext'
                     domain_forwards: '#/components/schemas/DomainForwardsContext'
                     domain_recommendations: '#/components/schemas/DomainRecommendationsContext'
@@ -15358,6 +15498,7 @@ paths:
                 - $ref: '#/components/schemas/DomainForwardsContext'
                 - $ref: '#/components/schemas/EmailForwardsContext'
                 - $ref: '#/components/schemas/DomainRecommendationsContext'
+                - $ref: '#/components/schemas/AggregationsContext'
                 title: Response Get Context V1 Ai Concierge Contexts  Context Id  Get
           description: Successful Response
         '401':
@@ -15919,6 +16060,7 @@ paths:
             schema:
               discriminator:
                 mapping:
+                  aggregations: '#/components/schemas/AggregationsContextCreate'
                   contacts: '#/components/schemas/ContactsContextCreate'
                   domain_forwards: '#/components/schemas/DomainForwardsContextCreate'
                   domain_recommendations: '#/components/schemas/DomainRecommendationsContextCreate'
@@ -15933,6 +16075,7 @@ paths:
               - $ref: '#/components/schemas/DomainForwardsContextCreate'
               - $ref: '#/components/schemas/EmailForwardsContextCreate'
               - $ref: '#/components/schemas/DomainRecommendationsContextCreate'
+              - $ref: '#/components/schemas/AggregationsContextCreate'
               title: Request Body
         required: true
       responses:
@@ -15942,6 +16085,7 @@ paths:
               schema:
                 discriminator:
                   mapping:
+                    aggregations: '#/components/schemas/AggregationsContext'
                     contacts: '#/components/schemas/ContactsContext'
                     domain_forwards: '#/components/schemas/DomainForwardsContext'
                     domain_recommendations: '#/components/schemas/DomainRecommendationsContext'
@@ -15956,6 +16100,7 @@ paths:
                 - $ref: '#/components/schemas/DomainForwardsContext'
                 - $ref: '#/components/schemas/EmailForwardsContext'
                 - $ref: '#/components/schemas/DomainRecommendationsContext'
+                - $ref: '#/components/schemas/AggregationsContext'
                 title: Response Create Context V1 Ai Concierge Conversations  Conversation
                   Id  Contexts Post
           description: Successful Response
