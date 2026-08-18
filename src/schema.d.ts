@@ -3761,7 +3761,7 @@ export interface components {
             city: string;
             /**
              * Country
-             * @description The country of the contact
+             * @description The country of the contact (ISO 3166-1 alpha-2, plus XK for Kosovo)
              */
             country: string;
             /**
@@ -3928,7 +3928,7 @@ export interface components {
         ContactCreateBulkTemplate: {
             /**
              * Country
-             * @description The country of the contacts
+             * @description The country of the contacts (ISO 3166-1 alpha-2, plus XK for Kosovo)
              */
             country: string;
             /**
@@ -3982,7 +3982,7 @@ export interface components {
             city: string;
             /**
              * Country
-             * @description The country of the contact
+             * @description The country of the contact (ISO 3166-1 alpha-2, plus XK for Kosovo)
              */
             country: string;
             /**
@@ -4111,7 +4111,7 @@ export interface components {
             contact_id?: TypeId<"contact">;
             /**
              * Country
-             * @description The country of the contact
+             * @description The country of the contact (ISO 3166-1 alpha-2, plus XK for Kosovo)
              */
             country: string;
             /**
@@ -9446,7 +9446,7 @@ export interface components {
             city?: string | null;
             /**
              * Country Code
-             * @description ISO 3166-1 alpha-2 country code.
+             * @description ISO 3166-1 alpha-2 country code, plus XK (Kosovo).
              */
             country_code?: string | null;
             /**
@@ -9666,7 +9666,7 @@ export interface components {
             city?: string | null;
             /**
              * Country Code
-             * @description ISO 3166-1 alpha-2 country code.
+             * @description ISO 3166-1 alpha-2 country code, plus XK (Kosovo).
              */
             country_code?: string | null;
             /** @description The currency used by the organization. */
@@ -9897,7 +9897,7 @@ export interface components {
             city?: string | null;
             /**
              * Country Code
-             * @description ISO 3166-1 alpha-2 country code.
+             * @description ISO 3166-1 alpha-2 country code, plus XK (Kosovo).
              */
             country_code?: string | null;
             /**

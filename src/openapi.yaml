@@ -1113,7 +1113,8 @@ components:
           title: City
           type: string
         country:
-          description: The country of the contact
+          description: The country of the contact (ISO 3166-1 alpha-2, plus XK for
+            Kosovo)
           pattern: ^\w{2}$
           title: Country
           type: string
@@ -1344,7 +1345,8 @@ components:
     ContactCreateBulkTemplate:
       properties:
         country:
-          description: The country of the contacts
+          description: The country of the contacts (ISO 3166-1 alpha-2, plus XK for
+            Kosovo)
           pattern: ^\w{2}$
           title: Country
           type: string
@@ -1415,7 +1417,8 @@ components:
           title: City
           type: string
         country:
-          description: The country of the contact
+          description: The country of the contact (ISO 3166-1 alpha-2, plus XK for
+            Kosovo)
           pattern: ^\w{2}$
           title: Country
           type: string
@@ -1604,7 +1607,8 @@ components:
           type: string
           x-typeid-prefix: contact
         country:
-          description: The country of the contact
+          description: The country of the contact (ISO 3166-1 alpha-2, plus XK for
+            Kosovo)
           pattern: ^\w{2}$
           title: Country
           type: string
@@ -9753,7 +9757,7 @@ components:
             pattern: ^\w{2}$
             type: string
           - type: 'null'
-          description: ISO 3166-1 alpha-2 country code.
+          description: ISO 3166-1 alpha-2 country code, plus XK (Kosovo).
           title: Country Code
         created_on:
           description: The date/time the entry was created on
@@ -10048,7 +10052,7 @@ components:
             pattern: ^\w{2}$
             type: string
           - type: 'null'
-          description: ISO 3166-1 alpha-2 country code.
+          description: ISO 3166-1 alpha-2 country code, plus XK (Kosovo).
           title: Country Code
         currency:
           anyOf:
@@ -10284,7 +10288,7 @@ components:
           title: City
         country_code:
           anyOf:
-          - description: ISO 3166-1 alpha-2 country code.
+          - description: ISO 3166-1 alpha-2 country code, plus XK (Kosovo).
             maxLength: 2
             minLength: 2
             pattern: ^\w{2}$
@@ -10408,7 +10412,7 @@ components:
             pattern: ^\w{2}$
             type: string
           - type: 'null'
-          description: ISO 3166-1 alpha-2 country code.
+          description: ISO 3166-1 alpha-2 country code, plus XK (Kosovo).
           title: Country Code
         created_on:
           description: The date/time the entry was created on
@@ -15534,7 +15538,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-18-090726
+  version: 2026-08-18-144629
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
