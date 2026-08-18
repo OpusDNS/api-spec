@@ -1423,6 +1423,11 @@ export type POST_WhitelabelBrandingRecheck_Response = POST_WhitelabelBrandingRec
 export type POST_WhitelabelBrandingRecheck_Response_202 = WhitelabelBranding;
 export type POST_WhitelabelBrandingRecheck_Response_422 = HTTPValidationError;
 
+export type POST_WhitelabelBrandingRestore_Response = POST_WhitelabelBrandingRestore_Response_200 | POST_WhitelabelBrandingRestore_Response_422;
+
+export type POST_WhitelabelBrandingRestore_Response_200 = WhitelabelBranding;
+export type POST_WhitelabelBrandingRestore_Response_422 = HTTPValidationError;
+
 export type POST_WhitelabelBrandingTier_Response = POST_WhitelabelBrandingTier_Response_202 | POST_WhitelabelBrandingTier_Response_422;
 
 export type POST_WhitelabelBrandingTier_Response_202 = ProductCreateRes;

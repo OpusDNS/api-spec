@@ -15534,7 +15534,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-18-083654
+  version: 2026-08-18-090726
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -32770,6 +32770,33 @@ paths:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
       summary: Re-run onboarding for the organization's whitelabel branding config
+      tags:
+      - whitelabel
+      x-required-permissions:
+      - whitelabel_branding:manage
+  /v1/whitelabel-branding/restore:
+    post:
+      operationId: restore_whitelabel_branding_v1_whitelabel_branding_restore_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelabelBrandingResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Restore a terminated whitelabel (re-enable and reprovision from the
+        preserved state)
       tags:
       - whitelabel
       x-required-permissions:

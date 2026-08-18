@@ -1179,6 +1179,9 @@ export type GET_WhitelabelBrandingEmailTemplates_Request = {
 export type POST_WhitelabelBrandingRecheck_Request = {
 };
 
+export type POST_WhitelabelBrandingRestore_Request = {
+};
+
 export type POST_WhitelabelBrandingTier_Request = {
   requestBody: WhitelabelUpgradeToPlus;
 };
