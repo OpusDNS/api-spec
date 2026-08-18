@@ -5579,6 +5579,15 @@ components:
           title: Owner Id
           type: string
           x-typeid-prefix: organization
+        read_only:
+          default: false
+          description: "Whether the domain is read-only in OpusDNS. When `true`, the\
+            \ domain is listed in your portfolio but cannot be managed \u2014 for\
+            \ example while it awaits a migration, is locked for legal reasons, or\
+            \ is managed at an external registrar. The flag is set and removed by\
+            \ OpusDNS; it cannot be changed through the API."
+          title: Read Only
+          type: boolean
         registered_on:
           anyOf:
           - format: date-time
@@ -15538,7 +15547,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-18-144629
+  version: 2026-08-18-162915
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -23349,6 +23358,14 @@ paths:
           - type: boolean
           - type: 'null'
           title: Transfer Lock
+      - in: query
+        name: read_only
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Read Only
       - in: query
         name: is_premium
         required: false

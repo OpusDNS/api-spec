@@ -2597,6 +2597,7 @@ export const KEY_DOMAIN_IS_PREMIUM = 'is_premium' satisfies keyof Domain;
 export const KEY_DOMAIN_NAME = 'name' satisfies keyof Domain;
 export const KEY_DOMAIN_NAMESERVERS = 'nameservers' satisfies keyof Domain;
 export const KEY_DOMAIN_OWNER_ID = 'owner_id' satisfies keyof Domain;
+export const KEY_DOMAIN_READ_ONLY = 'read_only' satisfies keyof Domain;
 export const KEY_DOMAIN_REGISTERED_ON = 'registered_on' satisfies keyof Domain;
 export const KEY_DOMAIN_REGISTRY_ACCOUNT_ID = 'registry_account_id' satisfies keyof Domain;
 export const KEY_DOMAIN_REGISTRY_STATUSES = 'registry_statuses' satisfies keyof Domain;
@@ -2627,6 +2628,7 @@ export const KEYS_DOMAIN = [
   KEY_DOMAIN_NAME,
   KEY_DOMAIN_NAMESERVERS,
   KEY_DOMAIN_OWNER_ID,
+  KEY_DOMAIN_READ_ONLY,
   KEY_DOMAIN_REGISTERED_ON,
   KEY_DOMAIN_REGISTRY_ACCOUNT_ID,
   KEY_DOMAIN_REGISTRY_STATUSES,

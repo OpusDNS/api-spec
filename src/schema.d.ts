@@ -6614,6 +6614,12 @@ export interface components {
              */
             owner_id: TypeId<"organization">;
             /**
+             * Read Only
+             * @description Whether the domain is read-only in OpusDNS. When `true`, the domain is listed in your portfolio but cannot be managed — for example while it awaits a migration, is locked for legal reasons, or is managed at an external registrar. The flag is set and removed by OpusDNS; it cannot be changed through the API.
+             * @default false
+             */
+            read_only: boolean;
+            /**
              * Registered On
              * @description When the domain was registered
              */
@@ -19126,6 +19132,7 @@ export interface operations {
                 tld?: string[] | null;
                 sld?: string | null;
                 transfer_lock?: boolean | null;
+                read_only?: boolean | null;
                 is_premium?: boolean | null;
                 created_after?: Date | null;
                 created_before?: Date | null;
