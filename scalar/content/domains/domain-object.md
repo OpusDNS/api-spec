@@ -17,6 +17,7 @@ returned by all domain endpoints — registration, transfer, update, and retriev
   "renewal_mode": "renew",
   "transfer_lock": false,
   "is_premium": false,
+  "read_only": false,
   "registered_on": "2026-01-15T10:30:00Z",
   "expires_on": "2027-01-15T10:30:00Z",
   "created_on": "2026-01-15T10:30:00Z",
@@ -61,6 +62,7 @@ returned by all domain endpoints — registration, transfer, update, and retriev
 | `renewal_mode` | `string` | How the domain handles expiry. `"renew"` — the domain auto-renews before expiration. `"expire"` — the domain is allowed to expire. |
 | `transfer_lock` | `boolean` | Whether the domain is locked to prevent outbound transfers. When `true`, the domain cannot be transferred to another registrar. |
 | `is_premium` | `boolean` | Whether this is a premium domain with non-standard pricing. See [Premium domains](/products/domains/premium). |
+| `read_only` | `boolean` | Whether the domain is read-only in OpusDNS. When `true`, the domain is listed in your portfolio but cannot be managed — for example while it awaits a migration, is locked for legal reasons, or is managed at an external registrar. The flag is set and removed by OpusDNS; it cannot be changed through the API. |
 
 ### Dates
 

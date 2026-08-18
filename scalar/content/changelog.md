@@ -4,6 +4,18 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 18 August 2026
+
+- Added **a `read_only` flag to the domain object**: a domain marked read-only
+  is listed in your portfolio but cannot be managed — updates, renewals, and
+  deletions are rejected. OpusDNS sets and removes the flag; it cannot be
+  changed through the API. It is used for domains imported ahead of a
+  migration, domains locked for legal reasons, and domains managed at an
+  external registrar. The flag is included in every domain response and
+  `GET /v1/domains` accepts a `read_only` query parameter to filter by it. See
+  [The domain object](/products/domains/domain-object) and
+  [Read-only domains](/products/domains/manage#read-only-domains).
+
 ### 14 August 2026
 
 - Added **postal code validation on contacts**: `postal_code` is validated

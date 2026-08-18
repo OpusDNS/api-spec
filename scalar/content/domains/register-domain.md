@@ -201,6 +201,7 @@ The registration returns a `DomainResponse` with the full domain details:
   "renewal_mode": "renew",
   "transfer_lock": false,
   "is_premium": false,
+  "read_only": false,
   "registered_on": "2026-05-04T10:30:00Z",
   "expires_on": "2027-05-04T10:30:00Z",
   "nameservers": [

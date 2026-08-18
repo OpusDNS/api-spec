@@ -128,6 +128,16 @@ you must remove them before making other changes:
 - `pendingDelete`
 - `redemptionPeriod`
 
+### Read-only domains
+
+A domain with `read_only: true` cannot be managed at all — updates, renewals,
+and deletions are rejected. OpusDNS sets this flag on domains that are listed
+in your portfolio but not manageable, for example while they await a
+migration, are locked for legal reasons, or are managed at an external
+registrar. The flag is removed by OpusDNS when management becomes available;
+it cannot be changed through the API. To find affected domains, filter with
+the `read_only` query parameter on `GET /v1/domains`.
+
 ## Rotate auth code
 
 Generate a new authorization code for a domain:
