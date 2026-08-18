@@ -2125,6 +2125,7 @@ export const WHITELABEL_ONBOARDING_STATUS = {
   PROVISIONING: "provisioning",
   ACTIVE: "active",
   FAILED: "failed",
+  TERMINATED: "terminated",
 } as const satisfies Record<string, WhitelabelOnboardingStatus>;
 
 export const WHITELABEL_ONBOARDING_STATUS_VALUES = [
@@ -2133,6 +2134,7 @@ export const WHITELABEL_ONBOARDING_STATUS_VALUES = [
   'provisioning',
   'active',
   'failed',
+  'terminated',
 ] as const satisfies ReadonlyArray<WhitelabelOnboardingStatus>;
 
 export const ZONE_INCLUDE_FIELD = {

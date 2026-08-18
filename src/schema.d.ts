@@ -12804,7 +12804,7 @@ export interface components {
          * WhitelabelOnboardingStatus
          * @enum {string}
          */
-        WhitelabelOnboardingStatus: "pending_domain_verification" | "verifying" | "provisioning" | "active" | "failed";
+        WhitelabelOnboardingStatus: "pending_domain_verification" | "verifying" | "provisioning" | "active" | "failed" | "terminated";
         /**
          * WhitelabelPlusCreate
          * @description Create the plus tier: served on the customer's own domain; `label` still reserves a base
