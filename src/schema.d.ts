@@ -2856,7 +2856,8 @@ export interface paths {
         delete: operations["delete_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__delete"];
         options?: never;
         head?: never;
-        patch?: never;
+        /** Set the vanity nameserver set's renewal mode (expire = cancel at period end, renew = un-cancel) */
+        patch: operations["set_vanity_nameserver_set_renewal_mode_v1_vanity_nameserver_sets__set_id__patch"];
         trace?: never;
     };
     "/v1/vanity-nameserver-sets/{set_id}/default": {
@@ -2942,7 +2943,7 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        /** Change the organization's whitelabel branding config (relabel / enable) */
+        /** Change the organization's whitelabel branding config (relabel / enable / renewal mode) */
         patch: operations["patch_whitelabel_branding_v1_whitelabel_branding_patch"];
         trace?: never;
     };
@@ -11232,6 +11233,11 @@ export interface components {
              */
             request: boolean;
         };
+        /** SetRenewalModeReq */
+        SetRenewalModeReq: {
+            /** @description expire cancels the set at period end (serves out the term), renew un-cancels (resumes auto-renew) */
+            renewal_mode: components["schemas"]["RenewalModeDTO"];
+        };
         /** SetVanityNameserverSetDefaultRes */
         SetVanityNameserverSetDefaultRes: {
             /** @description The set that is now the org's default (or unchanged set on a no-op 200). */
@@ -12695,10 +12701,11 @@ export interface components {
         };
         /**
          * WhitelabelBrandingPatch
-         * @description Public patch body. Neither field is a purchase, so nothing here touches the subscription or
-         *     its price: `label` moves the base subdomain to a different label (base tier only - a plus
-         *     whitelabel is re-pointed by its hostnames through recheck), and `enabled` starts or stops
-         *     serving it. At least one must be given.
+         * @description Public patch body. `label` moves the base subdomain to a different label (base tier only - a
+         *     plus whitelabel is re-pointed by its hostnames through recheck) and `enabled` starts or stops
+         *     serving it - both applied asynchronously via the reconcile job, neither a purchase. `renewal_mode`
+         *     sets the subscription's auto-renew intent synchronously (EXPIRE = cancel at period end, RENEW =
+         *     un-cancel); it is not a purchase either - no price change. At least one must be given.
          */
         WhitelabelBrandingPatch: {
             /**
@@ -12711,6 +12718,8 @@ export interface components {
              * @description New base-tier label; the hostnames become app.<label>.<suffix> / auth.<label>.<suffix>. Base tier only.
              */
             label?: string | null;
+            /** @description Set auto-renew intent: expire cancels at period end (serves out the term), renew un-cancels */
+            renewal_mode?: components["schemas"]["WhitelabelRenewalMode"] | null;
         };
         /**
          * WhitelabelBrandingRecheck
@@ -12761,6 +12770,7 @@ export interface components {
              * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id: TypeId<"organization">;
+            subscription?: components["schemas"]["WhitelabelSubscriptionInfo"] | null;
             tier: components["schemas"]["WhitelabelBrandingTier"];
             /**
              * Updated On
@@ -12838,6 +12848,32 @@ export interface components {
              * @enum {string}
              */
             tier: "plus";
+        };
+        /**
+         * WhitelabelRenewalMode
+         * @description Whether the whitelabel's subscription auto-renews (RENEW) or lapses at period end (EXPIRE,
+         *     i.e. cancelled). The customer's renewal intent, stored on the row and mirrored to the subscription
+         *     on change (like the domain object). Its own enum so the whitelabel model does not depend on the
+         *     domain model; the wire values (renew/expire) match domains + vanity nameservers.
+         * @enum {string}
+         */
+        WhitelabelRenewalMode: "renew" | "expire";
+        /**
+         * WhitelabelSubscriptionInfo
+         * @description The whitelabel's billing-lifecycle state, a pass-through read from the subscription at the api
+         *     layer (product-service owns it; the branding row does not). Grouped into its own object so it
+         *     reads as one all-or-nothing block: the parent's `subscription` is null when the config has no live
+         *     subscription (still provisioning, or terminated). renewal_mode EXPIRE + expires_on is how a
+         *     cancelled whitelabel reads: "cancelled, served until expires_on".
+         */
+        WhitelabelSubscriptionInfo: {
+            /** Expires On */
+            expires_on?: Date | null;
+            /** Grace Period Ends At */
+            grace_period_ends_at?: Date | null;
+            /** Renew Scheduled At */
+            renew_scheduled_at?: Date | null;
+            renewal_mode: components["schemas"]["WhitelabelRenewalMode"];
         };
         /**
          * WhitelabelUpgradeToPlus
@@ -27033,6 +27069,47 @@ export interface operations {
             };
         };
     };
+    set_vanity_nameserver_set_renewal_mode_v1_vanity_nameserver_sets__set_id__patch: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                set_id: TypeId<"vns">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SetRenewalModeReq"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VanityNameserverSetSummaryDTO"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     set_vanity_nameserver_set_default_v1_vanity_nameserver_sets__set_id__default_patch: {
         parameters: {
             query?: never;
@@ -27278,7 +27355,7 @@ export interface operations {
         };
         responses: {
             /** @description Successful Response */
-            202: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };

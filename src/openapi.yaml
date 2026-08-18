@@ -12642,6 +12642,16 @@ components:
           type: boolean
       title: RgpOperations
       type: object
+    SetRenewalModeReq:
+      properties:
+        renewal_mode:
+          $ref: '#/components/schemas/RenewalModeDTO'
+          description: expire cancels the set at period end (serves out the term),
+            renew un-cancels (resumes auto-renew)
+      required:
+      - renewal_mode
+      title: SetRenewalModeReq
+      type: object
     SetVanityNameserverSetDefaultRes:
       properties:
         vanity_nameserver_set:
@@ -14710,16 +14720,20 @@ components:
       title: WhitelabelBaseCreate
       type: object
     WhitelabelBrandingPatch:
-      description: 'Public patch body. Neither field is a purchase, so nothing here
-        touches the subscription or
+      description: 'Public patch body. `label` moves the base subdomain to a different
+        label (base tier only - a
 
-        its price: `label` moves the base subdomain to a different label (base tier
-        only - a plus
-
-        whitelabel is re-pointed by its hostnames through recheck), and `enabled`
+        plus whitelabel is re-pointed by its hostnames through recheck) and `enabled`
         starts or stops
 
-        serving it. At least one must be given.'
+        serving it - both applied asynchronously via the reconcile job, neither a
+        purchase. `renewal_mode`
+
+        sets the subscription''s auto-renew intent synchronously (EXPIRE = cancel
+        at period end, RENEW =
+
+        un-cancel); it is not a purchase either - no price change. At least one must
+        be given.'
       properties:
         enabled:
           anyOf:
@@ -14736,6 +14750,12 @@ components:
           description: New base-tier label; the hostnames become app.<label>.<suffix>
             / auth.<label>.<suffix>. Base tier only.
           title: Label
+        renewal_mode:
+          anyOf:
+          - $ref: '#/components/schemas/WhitelabelRenewalMode'
+          - type: 'null'
+          description: 'Set auto-renew intent: expire cancels at period end (serves
+            out the term), renew un-cancels'
       title: WhitelabelBrandingPatch
       type: object
     WhitelabelBrandingRecheck:
@@ -14830,6 +14850,10 @@ components:
           title: Organization Id
           type: string
           x-typeid-prefix: organization
+        subscription:
+          anyOf:
+          - $ref: '#/components/schemas/WhitelabelSubscriptionInfo'
+          - type: 'null'
         tier:
           $ref: '#/components/schemas/WhitelabelBrandingTier'
         updated_on:
@@ -14969,6 +14993,61 @@ components:
       - label
       - period
       title: WhitelabelPlusCreate
+      type: object
+    WhitelabelRenewalMode:
+      description: 'Whether the whitelabel''s subscription auto-renews (RENEW) or
+        lapses at period end (EXPIRE,
+
+        i.e. cancelled). The customer''s renewal intent, stored on the row and mirrored
+        to the subscription
+
+        on change (like the domain object). Its own enum so the whitelabel model does
+        not depend on the
+
+        domain model; the wire values (renew/expire) match domains + vanity nameservers.'
+      enum:
+      - renew
+      - expire
+      title: WhitelabelRenewalMode
+      type: string
+    WhitelabelSubscriptionInfo:
+      description: 'The whitelabel''s billing-lifecycle state, a pass-through read
+        from the subscription at the api
+
+        layer (product-service owns it; the branding row does not). Grouped into its
+        own object so it
+
+        reads as one all-or-nothing block: the parent''s `subscription` is null when
+        the config has no live
+
+        subscription (still provisioning, or terminated). renewal_mode EXPIRE + expires_on
+        is how a
+
+        cancelled whitelabel reads: "cancelled, served until expires_on".'
+      properties:
+        expires_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Expires On
+        grace_period_ends_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Grace Period Ends At
+        renew_scheduled_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Renew Scheduled At
+        renewal_mode:
+          $ref: '#/components/schemas/WhitelabelRenewalMode'
+      required:
+      - renewal_mode
+      title: WhitelabelSubscriptionInfo
       type: object
     WhitelabelUpgradeToPlus:
       additionalProperties: false
@@ -15455,7 +15534,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-18-083544
+  version: 2026-08-18-083654
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -32298,6 +32377,49 @@ paths:
       - nameserver
       x-required-permissions:
       - vanity_ns:read
+    patch:
+      operationId: set_vanity_nameserver_set_renewal_mode_v1_vanity_nameserver_sets__set_id__patch
+      parameters:
+      - in: path
+        name: set_id
+        required: true
+        schema:
+          examples:
+          - vns_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Set Id
+          type: string
+          x-typeid-prefix: vns
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetRenewalModeReq'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VanityNameserverSetSummaryDTO'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Set the vanity nameserver set's renewal mode (expire = cancel at period
+        end, renew = un-cancel)
+      tags:
+      - nameserver
+      x-required-permissions:
+      - vanity_ns:manage
   /v1/vanity-nameserver-sets/{set_id}/default:
     patch:
       operationId: set_vanity_nameserver_set_default_v1_vanity_nameserver_sets__set_id__default_patch
@@ -32500,7 +32622,7 @@ paths:
               $ref: '#/components/schemas/WhitelabelBrandingPatch'
         required: true
       responses:
-        '202':
+        '200':
           content:
             application/json:
               schema:
@@ -32515,7 +32637,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
-      summary: Change the organization's whitelabel branding config (relabel / enable)
+      summary: Change the organization's whitelabel branding config (relabel / enable
+        / renewal mode)
       tags:
       - whitelabel
       x-required-permissions:

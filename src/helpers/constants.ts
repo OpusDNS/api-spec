@@ -120,6 +120,7 @@ import type {
   WhitelabelOnboardingFailureCode,
   WhitelabelOnboardingFailureType,
   WhitelabelOnboardingStatus,
+  WhitelabelRenewalMode,
   ZoneIncludeField,
   ZoneSortField,
 } from './schemas';
@@ -2136,6 +2137,16 @@ export const WHITELABEL_ONBOARDING_STATUS_VALUES = [
   'failed',
   'terminated',
 ] as const satisfies ReadonlyArray<WhitelabelOnboardingStatus>;
+
+export const WHITELABEL_RENEWAL_MODE = {
+  RENEW: "renew",
+  EXPIRE: "expire",
+} as const satisfies Record<string, WhitelabelRenewalMode>;
+
+export const WHITELABEL_RENEWAL_MODE_VALUES = [
+  'renew',
+  'expire',
+] as const satisfies ReadonlyArray<WhitelabelRenewalMode>;
 
 export const ZONE_INCLUDE_FIELD = {
   TAGS: "tags",

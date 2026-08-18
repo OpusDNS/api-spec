@@ -381,6 +381,7 @@ import type {
   RequestHistory,
   ReservedDomainsBase,
   RgpOperations,
+  SetRenewalModeReq,
   SetVanityNameserverSetDefaultRes,
   SldLength,
   StatusChanges,
@@ -438,6 +439,7 @@ import type {
   WhitelabelBrandingRecheck,
   WhitelabelBranding,
   WhitelabelPlusCreate,
+  WhitelabelSubscriptionInfo,
   WhitelabelUpgradeToPlus,
   WhoisBase,
   ZoneVanitySetUpdate,
@@ -5146,6 +5148,12 @@ export const KEYS_RGP_OPERATIONS = [
   KEY_RGP_OPERATIONS_REQUEST,
 ] as const satisfies (keyof RgpOperations)[];
 
+export const KEY_SET_RENEWAL_MODE_REQ_RENEWAL_MODE = 'renewal_mode' satisfies keyof SetRenewalModeReq;
+
+export const KEYS_SET_RENEWAL_MODE_REQ = [
+  KEY_SET_RENEWAL_MODE_REQ_RENEWAL_MODE,
+] as const satisfies (keyof SetRenewalModeReq)[];
+
 export const KEY_SET_VANITY_NAMESERVER_SET_DEFAULT_RES_VANITY_NAMESERVER_SET = 'vanity_nameserver_set' satisfies keyof SetVanityNameserverSetDefaultRes;
 
 export const KEYS_SET_VANITY_NAMESERVER_SET_DEFAULT_RES = [
@@ -5892,10 +5900,12 @@ export const KEYS_WHITELABEL_BASE_CREATE = [
 
 export const KEY_WHITELABEL_BRANDING_PATCH_ENABLED = 'enabled' satisfies keyof WhitelabelBrandingPatch;
 export const KEY_WHITELABEL_BRANDING_PATCH_LABEL = 'label' satisfies keyof WhitelabelBrandingPatch;
+export const KEY_WHITELABEL_BRANDING_PATCH_RENEWAL_MODE = 'renewal_mode' satisfies keyof WhitelabelBrandingPatch;
 
 export const KEYS_WHITELABEL_BRANDING_PATCH = [
   KEY_WHITELABEL_BRANDING_PATCH_ENABLED,
   KEY_WHITELABEL_BRANDING_PATCH_LABEL,
+  KEY_WHITELABEL_BRANDING_PATCH_RENEWAL_MODE,
 ] as const satisfies (keyof WhitelabelBrandingPatch)[];
 
 export const KEY_WHITELABEL_BRANDING_RECHECK_AUTH_SUBDOMAIN = 'auth_subdomain' satisfies keyof WhitelabelBrandingRecheck;
@@ -5919,6 +5929,7 @@ export const KEY_WHITELABEL_BRANDING_HOSTNAME = 'hostname' satisfies keyof White
 export const KEY_WHITELABEL_BRANDING_KEYCLOAK_CLIENT_ID = 'keycloak_client_id' satisfies keyof WhitelabelBranding;
 export const KEY_WHITELABEL_BRANDING_ONBOARDING_STATUS = 'onboarding_status' satisfies keyof WhitelabelBranding;
 export const KEY_WHITELABEL_BRANDING_ORGANIZATION_ID = 'organization_id' satisfies keyof WhitelabelBranding;
+export const KEY_WHITELABEL_BRANDING_SUBSCRIPTION = 'subscription' satisfies keyof WhitelabelBranding;
 export const KEY_WHITELABEL_BRANDING_TIER = 'tier' satisfies keyof WhitelabelBranding;
 export const KEY_WHITELABEL_BRANDING_UPDATED_ON = 'updated_on' satisfies keyof WhitelabelBranding;
 export const KEY_WHITELABEL_BRANDING_VERIFICATION_DOMAIN = 'verification_domain' satisfies keyof WhitelabelBranding;
@@ -5936,6 +5947,7 @@ export const KEYS_WHITELABEL_BRANDING = [
   KEY_WHITELABEL_BRANDING_KEYCLOAK_CLIENT_ID,
   KEY_WHITELABEL_BRANDING_ONBOARDING_STATUS,
   KEY_WHITELABEL_BRANDING_ORGANIZATION_ID,
+  KEY_WHITELABEL_BRANDING_SUBSCRIPTION,
   KEY_WHITELABEL_BRANDING_TIER,
   KEY_WHITELABEL_BRANDING_UPDATED_ON,
   KEY_WHITELABEL_BRANDING_VERIFICATION_DOMAIN,
@@ -5957,6 +5969,18 @@ export const KEYS_WHITELABEL_PLUS_CREATE = [
   KEY_WHITELABEL_PLUS_CREATE_PERIOD,
   KEY_WHITELABEL_PLUS_CREATE_TIER,
 ] as const satisfies (keyof WhitelabelPlusCreate)[];
+
+export const KEY_WHITELABEL_SUBSCRIPTION_INFO_EXPIRES_ON = 'expires_on' satisfies keyof WhitelabelSubscriptionInfo;
+export const KEY_WHITELABEL_SUBSCRIPTION_INFO_GRACE_PERIOD_ENDS_AT = 'grace_period_ends_at' satisfies keyof WhitelabelSubscriptionInfo;
+export const KEY_WHITELABEL_SUBSCRIPTION_INFO_RENEW_SCHEDULED_AT = 'renew_scheduled_at' satisfies keyof WhitelabelSubscriptionInfo;
+export const KEY_WHITELABEL_SUBSCRIPTION_INFO_RENEWAL_MODE = 'renewal_mode' satisfies keyof WhitelabelSubscriptionInfo;
+
+export const KEYS_WHITELABEL_SUBSCRIPTION_INFO = [
+  KEY_WHITELABEL_SUBSCRIPTION_INFO_EXPIRES_ON,
+  KEY_WHITELABEL_SUBSCRIPTION_INFO_GRACE_PERIOD_ENDS_AT,
+  KEY_WHITELABEL_SUBSCRIPTION_INFO_RENEW_SCHEDULED_AT,
+  KEY_WHITELABEL_SUBSCRIPTION_INFO_RENEWAL_MODE,
+] as const satisfies (keyof WhitelabelSubscriptionInfo)[];
 
 export const KEY_WHITELABEL_UPGRADE_TO_PLUS_AUTH_SUBDOMAIN = 'auth_subdomain' satisfies keyof WhitelabelUpgradeToPlus;
 export const KEY_WHITELABEL_UPGRADE_TO_PLUS_DASHBOARD_SUBDOMAIN = 'dashboard_subdomain' satisfies keyof WhitelabelUpgradeToPlus;

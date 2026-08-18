@@ -49,6 +49,7 @@ import type {
   PreviewMailReq,
   PublicAuthRequestForm,
   PublicRoleAssignmentRequest,
+  SetRenewalModeReq,
   TagCreate,
   TagUpdate,
   UserCreate,
@@ -1119,6 +1120,13 @@ export type GET_VanityNameserverSetsBySetId_Request = {
   parameters: operations['get_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__get']['parameters'];
 };
 export type GET_VanityNameserverSetsBySetId_Request_Path = GET_VanityNameserverSetsBySetId_Request['parameters']['path'];
+
+export type PATCH_VanityNameserverSetsBySetId_Request = {
+  parameters: operations['set_vanity_nameserver_set_renewal_mode_v1_vanity_nameserver_sets__set_id__patch']['parameters'];
+  requestBody: SetRenewalModeReq;
+};
+export type PATCH_VanityNameserverSetsBySetId_Request_Path = PATCH_VanityNameserverSetsBySetId_Request['parameters']['path'];
+export type PATCH_VanityNameserverSetsBySetId_Request_Body = PATCH_VanityNameserverSetsBySetId_Request['requestBody'];
 
 export type PATCH_VanityNameserverSetsBySetIdDefault_Request = {
   parameters: operations['set_vanity_nameserver_set_default_v1_vanity_nameserver_sets__set_id__default_patch']['parameters'];
