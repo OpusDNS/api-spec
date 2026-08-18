@@ -4,6 +4,11 @@ The public `/v1` API is standardizing datetime fields on **RFC 3339** with an
 explicit UTC designator. You can opt in today with a request header, and the new
 format becomes the default on a staged schedule per environment.
 
+<scalar-callout type="info">
+<strong>Sandbox switched to the tz-aware default on 2026-08-18</strong>, as
+scheduled. Production follows on Monday, 2026-09-01.
+</scalar-callout>
+
 ## What is changing
 
 All datetimes the API returns represent UTC instants. Today most fields are
@@ -97,10 +102,13 @@ required. The header keeps working after cutover and simply becomes a no-op (it 
 always accepted and never causes an error). Adopt the header before your target date
 so the switch is a no-op for you.
 
-| Environment | Default cutover date |
-| ----------- | -------------------- |
-| Sandbox     | Monday, 2026-08-18   |
-| Production  | Monday, 2026-09-01   |
+| Environment | Default cutover date | Status    |
+| ----------- | -------------------- | --------- |
+| Sandbox     | Monday, 2026-08-18   | Completed |
+| Production  | Monday, 2026-09-01   | Upcoming  |
+
+Sandbox completed its cutover on schedule and serves tz-aware datetimes by default.
+Test your integration against sandbox now to be ready for the production date.
 
 ## Scope
 

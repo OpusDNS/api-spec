@@ -6,6 +6,14 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ### 18 August 2026
 
+- Changed **the sandbox environment to serve timezone-aware (RFC 3339) datetimes
+  by default**, on schedule per the announced staged cutover. Every datetime in
+  public `/v1` responses from sandbox now carries the explicit UTC designator
+  (trailing `Z`); the `X-Datetime-Format: rfc3339` header remains accepted there
+  and is now a no-op. Production follows on Monday, 2026-09-01. See
+  [Timezone-aware datetimes (RFC 3339)](/upcoming-changes/rfc3339-datetimes) for
+  migration guidance.
+
 - Added **a `read_only` flag to the domain object**: a domain marked read-only
   is listed in your portfolio but cannot be managed — updates, renewals, and
   deletions are rejected. OpusDNS sets and removes the flag; it cannot be
