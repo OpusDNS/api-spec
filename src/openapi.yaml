@@ -14724,6 +14724,8 @@ components:
           description: 'Billing period; offered: 1 month or 1 year'
         tier:
           const: base
+          description: Tier discriminator; base = served on a managed subdomain of
+            an OpusDNS-owned zone
           title: Tier
           type: string
       required:
@@ -14778,8 +14780,8 @@ components:
         fixing DNS). hostname + auth_subdomain present = re-point a wrong domain before
         re-running
 
-        (pre-provisioning only; server rejects once a Keycloak client exists). Plus
-        tier only - a
+        (pre-provisioning only; server rejects once an authentication client exists).
+        Plus tier only - a
 
         base whitelabel is re-labelled through PATCH instead.'
       properties:
@@ -14789,6 +14791,7 @@ components:
             minLength: 1
             type: string
           - type: 'null'
+          description: Subdomain the login is served on; required together with hostname
           title: Auth Subdomain
         dashboard_subdomain:
           anyOf:
@@ -14796,6 +14799,8 @@ components:
             minLength: 1
             type: string
           - type: 'null'
+          description: Subdomain the dashboard is served on; omit for apex. Only together
+            with hostname.
           title: Dashboard Subdomain
         hostname:
           anyOf:
@@ -14803,6 +14808,8 @@ components:
             minLength: 1
             type: string
           - type: 'null'
+          description: New domain to run the whitelabel under; omit to re-run against
+            the stored hosts
           title: Hostname
       title: WhitelabelBrandingRecheck
       type: object
@@ -14810,11 +14817,15 @@ components:
       description: Public read shape for an organization's whitelabel branding config.
       properties:
         auth_hostname:
+          description: Auth/login hostname served by the authentication system (e.g.
+            auth.customer.com)
           maxLength: 255
           minLength: 1
           title: Auth Hostname
           type: string
         base_label:
+          description: Managed-subdomain label; served on the base tier, reserved
+            on plus
           maxLength: 255
           minLength: 1
           title: Base Label
@@ -14825,16 +14836,21 @@ components:
           type: string
         enabled:
           default: true
+          description: Whether this whitelabel is served; false freezes serving but
+            keeps the config
           title: Enabled
           type: boolean
         failure_code:
           anyOf:
           - $ref: '#/components/schemas/WhitelabelOnboardingFailureCode'
           - type: 'null'
+          description: Stable code of the last terminal onboarding failure
         failure_detail:
           anyOf:
           - type: string
           - type: 'null'
+          description: Free-text detail of the last onboarding failure (support/debugging,
+            not for customer display)
           title: Failure Detail
         failure_type:
           anyOf:
@@ -14842,6 +14858,7 @@ components:
           - type: 'null'
           readOnly: true
         hostname:
+          description: Dashboard hostname being served (e.g. app.customer.com)
           maxLength: 255
           minLength: 1
           title: Hostname
@@ -14852,9 +14869,12 @@ components:
             minLength: 1
             type: string
           - type: 'null'
+          description: Authentication-system client provisioned for this whitelabel;
+            null until provisioning
           title: Keycloak Client Id
         onboarding_status:
           $ref: '#/components/schemas/WhitelabelOnboardingStatus'
+          description: Onboarding lifecycle state
         organization_id:
           examples:
           - organization_01h45ytscbebyvny4gc8cr8ma2
@@ -14867,13 +14887,18 @@ components:
           anyOf:
           - $ref: '#/components/schemas/WhitelabelSubscriptionInfo'
           - type: 'null'
+          description: Billing-lifecycle block; null when the config has no live subscription
+            (provisioning or terminated)
         tier:
           $ref: '#/components/schemas/WhitelabelBrandingTier'
+          description: 'Tier this config is on: base (managed subdomain) or plus (customer''s
+            own domain)'
         updated_on:
           format: date-time
           title: Updated On
           type: string
         verification_domain:
+          description: Registrable domain of the served hostname
           maxLength: 255
           minLength: 1
           title: Verification Domain
@@ -14965,7 +14990,7 @@ components:
         subdomain (kept for the redirect/downgrade).'
       properties:
         auth_subdomain:
-          description: Subdomain the Keycloak login is served on (e.g. auth -> auth.customer.com)
+          description: Subdomain the login is served on (e.g. auth -> auth.customer.com)
           maxLength: 255
           minLength: 1
           title: Auth Subdomain
@@ -14997,6 +15022,7 @@ components:
           description: 'Billing period; offered: 1 month or 1 year'
         tier:
           const: plus
+          description: Tier discriminator; plus = served on the customer's own domain
           title: Tier
           type: string
       required:
@@ -15043,23 +15069,35 @@ components:
           - format: date-time
             type: string
           - type: 'null'
+          description: End of the current paid term; on an expiring config, when serving
+            stops
           title: Expires On
         grace_period_ends_at:
           anyOf:
           - format: date-time
             type: string
           - type: 'null'
+          description: End of the grace period, if the subscription is in one
           title: Grace Period Ends At
+        period:
+          $ref: '#/components/schemas/Period'
+          description: Billing period the subscription renews on (same shape as the
+            create body's period)
         renew_scheduled_at:
           anyOf:
           - format: date-time
             type: string
           - type: 'null'
+          description: When the next automatic renewal runs; only surfaced on a renewing
+            config
           title: Renew Scheduled At
         renewal_mode:
           $ref: '#/components/schemas/WhitelabelRenewalMode'
+          description: Whether the subscription auto-renews (renew) or lapses at period
+            end (expire, i.e. cancelled)
       required:
       - renewal_mode
+      - period
       title: WhitelabelSubscriptionInfo
       type: object
     WhitelabelUpgradeToPlus:
@@ -15079,7 +15117,7 @@ components:
         instead - so this body only ever moves to plus (no tier field, no period).'
       properties:
         auth_subdomain:
-          description: Subdomain the Keycloak login is served on (e.g. auth -> auth.customer.com)
+          description: Subdomain the login is served on (e.g. auth -> auth.customer.com)
           maxLength: 255
           minLength: 1
           title: Auth Subdomain
@@ -15547,7 +15585,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-18-162915
+  version: 2026-08-19-080746
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

@@ -5974,12 +5974,14 @@ export const KEYS_WHITELABEL_PLUS_CREATE = [
 
 export const KEY_WHITELABEL_SUBSCRIPTION_INFO_EXPIRES_ON = 'expires_on' satisfies keyof WhitelabelSubscriptionInfo;
 export const KEY_WHITELABEL_SUBSCRIPTION_INFO_GRACE_PERIOD_ENDS_AT = 'grace_period_ends_at' satisfies keyof WhitelabelSubscriptionInfo;
+export const KEY_WHITELABEL_SUBSCRIPTION_INFO_PERIOD = 'period' satisfies keyof WhitelabelSubscriptionInfo;
 export const KEY_WHITELABEL_SUBSCRIPTION_INFO_RENEW_SCHEDULED_AT = 'renew_scheduled_at' satisfies keyof WhitelabelSubscriptionInfo;
 export const KEY_WHITELABEL_SUBSCRIPTION_INFO_RENEWAL_MODE = 'renewal_mode' satisfies keyof WhitelabelSubscriptionInfo;
 
 export const KEYS_WHITELABEL_SUBSCRIPTION_INFO = [
   KEY_WHITELABEL_SUBSCRIPTION_INFO_EXPIRES_ON,
   KEY_WHITELABEL_SUBSCRIPTION_INFO_GRACE_PERIOD_ENDS_AT,
+  KEY_WHITELABEL_SUBSCRIPTION_INFO_PERIOD,
   KEY_WHITELABEL_SUBSCRIPTION_INFO_RENEW_SCHEDULED_AT,
   KEY_WHITELABEL_SUBSCRIPTION_INFO_RENEWAL_MODE,
 ] as const satisfies (keyof WhitelabelSubscriptionInfo)[];

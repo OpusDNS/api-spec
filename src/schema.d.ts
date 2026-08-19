@@ -12717,7 +12717,7 @@ export interface components {
             /** @description Billing period; offered: 1 month or 1 year */
             period: components["schemas"]["Period"];
             /**
-             * @description discriminator enum property added by openapi-typescript
+             * @description Tier discriminator; base = served on a managed subdomain of an OpusDNS-owned zone (enum property replaced by openapi-typescript)
              * @enum {string}
              */
             tier: "base";
@@ -12748,15 +12748,24 @@ export interface components {
          * WhitelabelBrandingRecheck
          * @description Public recheck body. Empty = re-run onboarding against the stored hosts (retry after
          *     fixing DNS). hostname + auth_subdomain present = re-point a wrong domain before re-running
-         *     (pre-provisioning only; server rejects once a Keycloak client exists). Plus tier only - a
+         *     (pre-provisioning only; server rejects once an authentication client exists). Plus tier only - a
          *     base whitelabel is re-labelled through PATCH instead.
          */
         WhitelabelBrandingRecheck: {
-            /** Auth Subdomain */
+            /**
+             * Auth Subdomain
+             * @description Subdomain the login is served on; required together with hostname
+             */
             auth_subdomain?: string | null;
-            /** Dashboard Subdomain */
+            /**
+             * Dashboard Subdomain
+             * @description Subdomain the dashboard is served on; omit for apex. Only together with hostname.
+             */
             dashboard_subdomain?: string | null;
-            /** Hostname */
+            /**
+             * Hostname
+             * @description New domain to run the whitelabel under; omit to re-run against the stored hosts
+             */
             hostname?: string | null;
         };
         /**
@@ -12764,9 +12773,15 @@ export interface components {
          * @description Public read shape for an organization's whitelabel branding config.
          */
         WhitelabelBrandingResponse: {
-            /** Auth Hostname */
+            /**
+             * Auth Hostname
+             * @description Auth/login hostname served by the authentication system (e.g. auth.customer.com)
+             */
             auth_hostname: string;
-            /** Base Label */
+            /**
+             * Base Label
+             * @description Managed-subdomain label; served on the base tier, reserved on plus
+             */
             base_label: string;
             /**
              * Created On
@@ -12775,17 +12790,29 @@ export interface components {
             created_on: Date;
             /**
              * Enabled
+             * @description Whether this whitelabel is served; false freezes serving but keeps the config
              * @default true
              */
             enabled: boolean;
+            /** @description Stable code of the last terminal onboarding failure */
             failure_code?: components["schemas"]["WhitelabelOnboardingFailureCode"] | null;
-            /** Failure Detail */
+            /**
+             * Failure Detail
+             * @description Free-text detail of the last onboarding failure (support/debugging, not for customer display)
+             */
             failure_detail?: string | null;
             readonly failure_type: components["schemas"]["WhitelabelOnboardingFailureType"] | null;
-            /** Hostname */
+            /**
+             * Hostname
+             * @description Dashboard hostname being served (e.g. app.customer.com)
+             */
             hostname: string;
-            /** Keycloak Client Id */
+            /**
+             * Keycloak Client Id
+             * @description Authentication-system client provisioned for this whitelabel; null until provisioning
+             */
             keycloak_client_id: string | null;
+            /** @description Onboarding lifecycle state */
             onboarding_status: components["schemas"]["WhitelabelOnboardingStatus"];
             /**
              * Organization Id
@@ -12793,14 +12820,19 @@ export interface components {
              * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id: TypeId<"organization">;
+            /** @description Billing-lifecycle block; null when the config has no live subscription (provisioning or terminated) */
             subscription?: components["schemas"]["WhitelabelSubscriptionInfo"] | null;
+            /** @description Tier this config is on: base (managed subdomain) or plus (customer's own domain) */
             tier: components["schemas"]["WhitelabelBrandingTier"];
             /**
              * Updated On
              * Format: date-time
              */
             updated_on: Date;
-            /** Verification Domain */
+            /**
+             * Verification Domain
+             * @description Registrable domain of the served hostname
+             */
             verification_domain: string;
             /**
              * Whitelabel Branding Id
@@ -12846,7 +12878,7 @@ export interface components {
         WhitelabelPlusCreate: {
             /**
              * Auth Subdomain
-             * @description Subdomain the Keycloak login is served on (e.g. auth -> auth.customer.com)
+             * @description Subdomain the login is served on (e.g. auth -> auth.customer.com)
              */
             auth_subdomain: string;
             /**
@@ -12867,7 +12899,7 @@ export interface components {
             /** @description Billing period; offered: 1 month or 1 year */
             period: components["schemas"]["Period"];
             /**
-             * @description discriminator enum property added by openapi-typescript
+             * @description Tier discriminator; plus = served on the customer's own domain (enum property replaced by openapi-typescript)
              * @enum {string}
              */
             tier: "plus";
@@ -12890,12 +12922,24 @@ export interface components {
          *     cancelled whitelabel reads: "cancelled, served until expires_on".
          */
         WhitelabelSubscriptionInfo: {
-            /** Expires On */
+            /**
+             * Expires On
+             * @description End of the current paid term; on an expiring config, when serving stops
+             */
             expires_on?: Date | null;
-            /** Grace Period Ends At */
+            /**
+             * Grace Period Ends At
+             * @description End of the grace period, if the subscription is in one
+             */
             grace_period_ends_at?: Date | null;
-            /** Renew Scheduled At */
+            /** @description Billing period the subscription renews on (same shape as the create body's period) */
+            period: components["schemas"]["Period"];
+            /**
+             * Renew Scheduled At
+             * @description When the next automatic renewal runs; only surfaced on a renewing config
+             */
             renew_scheduled_at?: Date | null;
+            /** @description Whether the subscription auto-renews (renew) or lapses at period end (expire, i.e. cancelled) */
             renewal_mode: components["schemas"]["WhitelabelRenewalMode"];
         };
         /**
@@ -12909,7 +12953,7 @@ export interface components {
         WhitelabelUpgradeToPlus: {
             /**
              * Auth Subdomain
-             * @description Subdomain the Keycloak login is served on (e.g. auth -> auth.customer.com)
+             * @description Subdomain the login is served on (e.g. auth -> auth.customer.com)
              */
             auth_subdomain: string;
             /**
