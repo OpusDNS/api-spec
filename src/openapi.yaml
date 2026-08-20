@@ -12760,6 +12760,8 @@ components:
       - INBOUND_TRANSFER_PENDING
       - OUTBOUND_TRANSFER_PENDING
       - EXTERNAL
+      - IMPORT_REQUESTED
+      - IMPORT_PENDING
       title: StatusTagType
       type: string
     StrictMoneyDecimal:
@@ -15586,7 +15588,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-20-103451
+  version: 2026-08-20-165512
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
