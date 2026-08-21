@@ -1394,12 +1394,14 @@ export const KEYS_DNS_CHANGE = [
 
 export const KEY_DNS_CHANGES_CHANGES = 'changes' satisfies keyof DnsChanges;
 export const KEY_DNS_CHANGES_CHANGESET_ID = 'changeset_id' satisfies keyof DnsChanges;
+export const KEY_DNS_CHANGES_DNSSEC_REGISTRY_PUBLISH = 'dnssec_registry_publish' satisfies keyof DnsChanges;
 export const KEY_DNS_CHANGES_NUM_CHANGES = 'num_changes' satisfies keyof DnsChanges;
 export const KEY_DNS_CHANGES_ZONE_NAME = 'zone_name' satisfies keyof DnsChanges;
 
 export const KEYS_DNS_CHANGES = [
   KEY_DNS_CHANGES_CHANGES,
   KEY_DNS_CHANGES_CHANGESET_ID,
+  KEY_DNS_CHANGES_DNSSEC_REGISTRY_PUBLISH,
   KEY_DNS_CHANGES_NUM_CHANGES,
   KEY_DNS_CHANGES_ZONE_NAME,
 ] as const satisfies (keyof DnsChanges)[];

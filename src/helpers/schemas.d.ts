@@ -148,6 +148,7 @@ export type DnssecAlgorithm = components['schemas']['DnssecAlgorithm'];
 export type DnssecDigestType = components['schemas']['DnssecDigestType'];
 export type DnssecModeType = components['schemas']['DnssecModeType'];
 export type DnssecRecordType = components['schemas']['DnssecRecordType'];
+export type DnssecRegistryPublishOutcome = components['schemas']['DnssecRegistryPublishOutcome'];
 export type DnssecStatus = components['schemas']['DnssecStatus'];
 export type DomainAttributeKey = components['schemas']['DomainAttributeKey'];
 export type DomainAvailability = components['schemas']['DomainAvailability'];

@@ -4752,6 +4752,7 @@ export interface components {
             changes: components["schemas"]["DnsChangeResponse"][];
             /** Changeset Id */
             changeset_id: string | null;
+            dnssec_registry_publish?: components["schemas"]["DnssecRegistryPublishOutcome"] | null;
             /** Num Changes */
             num_changes: number;
             /** Zone Name */
@@ -5431,6 +5432,26 @@ export interface components {
          * @enum {string}
          */
         DnssecRecordType: "ds_data" | "key_data";
+        /**
+         * DnssecRegistryPublishOutcome
+         * @description Fate of the DS/DNSKEY submission that follows signing a zone.
+         *
+         *     DEFERRED means the zone is signed but the parent holds no DS yet: the registry
+         *     rejected the submission because the public nameservers had not served the new key
+         *     material yet, and a background job is retrying. A signed zone with no DS at the
+         *     parent resolves as unsigned, so the intermediate state is safe.
+         *
+         *     WITHDRAWN means the zone stopped being signed while the DS was in flight, so the DS
+         *     was taken back off the parent: the enablement did not take effect. It is kept apart
+         *     from SKIPPED because SKIPPED also covers "there was nothing to submit", and a caller
+         *     must not render an enablement that was undone as a success.
+         *
+         *     FAILED means the zone is signed and nothing is working towards a DS. Only the zone
+         *     create path can report it, because that is the one caller that cannot propagate the
+         *     error. Null means the response makes no statement about a registry DS submission.
+         * @enum {string}
+         */
+        DnssecRegistryPublishOutcome: "published" | "deferred" | "skipped" | "withdrawn" | "failed";
         /**
          * DnssecStatus
          * @enum {string}
@@ -16787,6 +16808,15 @@ export interface operations {
                     "application/json": components["schemas"]["DnsChangesResponse"];
                 };
             };
+            /** @description The zone is signed, but the registry has not accepted the DS record yet because it could not see the new key material on the public nameservers. A background job resubmits it with backoff. Until it succeeds the zone resolves as unsigned; if the job gives up, DNSSEC is switched back off and a domain modification failure event carries the registry's diagnostic. */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
             /** @description Bad Request */
             400: {
                 headers: {
@@ -16809,14 +16839,6 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_DNSSEC_ZONE_RECORDS_UNAVAILABLE",
-                     *       "detail": "DNS zone 'example.com.' is DNSSEC-enabled but has no usable DS records to publish",
-                     *       "status": 409,
-                     *       "title": "DNSSEC Zone Records Unavailable",
-                     *       "type": "domain-dnssec-zone-records-unavailable",
-                     *       "zone_name": "example.com."
-                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -20893,6 +20915,15 @@ export interface operations {
                     "application/json": components["schemas"]["DomainDnssecDataResponse"][];
                 };
             };
+            /** @description The zone is signed, but the registry has not accepted the DS record yet because it could not see the new key material on the public nameservers. A background job resubmits it with backoff, so the response carries no records. Until it succeeds the zone resolves as unsigned; if the job gives up, DNSSEC is switched back off and a domain modification failure event carries the registry's diagnostic. */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainDnssecDataResponse"][];
+                };
+            };
             /** @description Not Found */
             404: {
                 headers: {
@@ -20916,14 +20947,6 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_DNSSEC_ZONE_RECORDS_UNAVAILABLE",
-                     *       "detail": "DNS zone 'example.com.' is DNSSEC-enabled but has no usable DS records to publish",
-                     *       "status": 409,
-                     *       "title": "DNSSEC Zone Records Unavailable",
-                     *       "type": "domain-dnssec-zone-records-unavailable",
-                     *       "zone_name": "example.com."
-                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };

@@ -28,6 +28,7 @@ import type {
   DnssecDigestType,
   DnssecModeType,
   DnssecRecordType,
+  DnssecRegistryPublishOutcome,
   DnssecStatus,
   DomainAttributeKey,
   DomainAvailabilityStatus,
@@ -604,6 +605,22 @@ export const DNSSEC_RECORD_TYPE_VALUES = [
   'ds_data',
   'key_data',
 ] as const satisfies ReadonlyArray<DnssecRecordType>;
+
+export const DNSSEC_REGISTRY_PUBLISH_OUTCOME = {
+  PUBLISHED: "published",
+  DEFERRED: "deferred",
+  SKIPPED: "skipped",
+  WITHDRAWN: "withdrawn",
+  FAILED: "failed",
+} as const satisfies Record<string, DnssecRegistryPublishOutcome>;
+
+export const DNSSEC_REGISTRY_PUBLISH_OUTCOME_VALUES = [
+  'published',
+  'deferred',
+  'skipped',
+  'withdrawn',
+  'failed',
+] as const satisfies ReadonlyArray<DnssecRegistryPublishOutcome>;
 
 export const DNSSEC_STATUS = {
   ENABLED: "enabled",

@@ -2654,6 +2654,10 @@ components:
             type: string
           - type: 'null'
           title: Changeset Id
+        dnssec_registry_publish:
+          anyOf:
+          - $ref: '#/components/schemas/DnssecRegistryPublishOutcome'
+          - type: 'null'
         num_changes:
           title: Num Changes
           type: integer
@@ -3762,6 +3766,48 @@ components:
       - ds_data
       - key_data
       title: DnssecRecordType
+      type: string
+    DnssecRegistryPublishOutcome:
+      description: 'Fate of the DS/DNSKEY submission that follows signing a zone.
+
+
+        DEFERRED means the zone is signed but the parent holds no DS yet: the registry
+
+        rejected the submission because the public nameservers had not served the
+        new key
+
+        material yet, and a background job is retrying. A signed zone with no DS at
+        the
+
+        parent resolves as unsigned, so the intermediate state is safe.
+
+
+        WITHDRAWN means the zone stopped being signed while the DS was in flight,
+        so the DS
+
+        was taken back off the parent: the enablement did not take effect. It is kept
+        apart
+
+        from SKIPPED because SKIPPED also covers "there was nothing to submit", and
+        a caller
+
+        must not render an enablement that was undone as a success.
+
+
+        FAILED means the zone is signed and nothing is working towards a DS. Only
+        the zone
+
+        create path can report it, because that is the one caller that cannot propagate
+        the
+
+        error. Null means the response makes no statement about a registry DS submission.'
+      enum:
+      - published
+      - deferred
+      - skipped
+      - withdrawn
+      - failed
+      title: DnssecRegistryPublishOutcome
       type: string
     DnssecStatus:
       enum:
@@ -15588,7 +15634,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-20-165512
+  version: 2026-08-21-183123
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -20018,6 +20064,59 @@ paths:
               schema:
                 $ref: '#/components/schemas/DnsChangesResponse'
           description: DNSSEC enabled successfully
+        '202':
+          content:
+            application/json:
+              examples:
+                dnssec_publish_deferred:
+                  description: Changeset response with `dnssec_registry_publish` set
+                    to `deferred`
+                  summary: DNSSEC enabled, registry publish deferred
+                  value:
+                    changes:
+                    - action: delete_record
+                      record_data: ns1.opusdns.com. hostmaster.opusdns.com. 2025111801
+                        10800 3600 604800 300
+                      rrset_name: example.com.
+                      rrset_type: SOA
+                      ttl: 3600
+                    - action: create_record
+                      record_data: ns1.opusdns.com. hostmaster.opusdns.com. 2025111802
+                        10800 3600 604800 300
+                      rrset_name: example.com.
+                      rrset_type: SOA
+                      ttl: 3600
+                    - action: create_record
+                      record_data: 256 3 13 5OmhbRQw0+xlqw4iYjM9SojiKkpfReE8LoMzzb3uDSvfvaePyreODC0Pf0eMti2hz/q9by5G7jh5nqQBRp8qAA==
+                      rrset_name: example.com.
+                      rrset_type: DNSKEY
+                      ttl: 300
+                    - action: create_record
+                      record_data: 257 3 13 4knSelKBhrAmgwkLMDbJGXmpdO2vkPf6uwGn52BQmlgWXjIXnGqv9CYPTwplRf4mRbFKFDkhU8dn9AsNOL+8EQ==
+                      rrset_name: example.com.
+                      rrset_type: DNSKEY
+                      ttl: 300
+                    - action: create_record
+                      record_data: 41074 13 2 0f8ad1e9b0de2eb958ba571208951e71330e6d9e2afa3c84ec6bd16d77bfc718
+                      rrset_name: example.com.
+                      rrset_type: DS
+                      ttl: 300
+                    - action: create_record
+                      record_data: 41074 13 4 f2fa86164e45235537238dd5b86a6a2533fd17b1e8216c1d66d18ccfc79be4dca77e3bc6d76eb136e193c2cee0a6ea85
+                      rrset_name: example.com.
+                      rrset_type: DS
+                      ttl: 300
+                    - action: enable_dnssec
+                    changeset_id: b89527a6-b46e-4d29-bd57-6a1b6b4915c7
+                    dnssec_registry_publish: deferred
+                    num_changes: 7
+                    zone_name: example.com.
+          description: The zone is signed, but the registry has not accepted the DS
+            record yet because it could not see the new key material on the public
+            nameservers. A background job resubmits it with backoff. Until it succeeds
+            the zone resolves as unsigned; if the job gives up, DNSSEC is switched
+            back off and a domain modification failure event carries the registry's
+            diagnostic.
         '400':
           content:
             application/problem+json:
@@ -20033,14 +20132,25 @@ paths:
         '409':
           content:
             application/problem+json:
-              example:
-                code: ERROR_DOMAIN_DNSSEC_ZONE_RECORDS_UNAVAILABLE
-                detail: DNS zone 'example.com.' is DNSSEC-enabled but has no usable
-                  DS records to publish
-                status: 409
-                title: DNSSEC Zone Records Unavailable
-                type: domain-dnssec-zone-records-unavailable
-                zone_name: example.com.
+              examples:
+                DNSSEC Enable Superseded:
+                  value:
+                    code: ERROR_DOMAIN_DNSSEC_ENABLE_SUPERSEDED
+                    detail: DNSSEC was disabled for 'example.com.' while it was being
+                      enabled; the DS record was withdrawn and DNSSEC is off
+                    status: 409
+                    title: DNSSEC Enable Superseded
+                    type: domain-dnssec-enable-superseded
+                    zone_name: example.com.
+                DNSSEC Zone Records Unavailable:
+                  value:
+                    code: ERROR_DOMAIN_DNSSEC_ZONE_RECORDS_UNAVAILABLE
+                    detail: DNS zone 'example.com.' is DNSSEC-enabled but has no usable
+                      DS records to publish
+                    status: 409
+                    title: DNSSEC Zone Records Unavailable
+                    type: domain-dnssec-zone-records-unavailable
+                    zone_name: example.com.
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Conflict
@@ -25365,6 +25475,21 @@ paths:
                   Reference  Dnssec Enable Post
                 type: array
           description: Successful Response
+        '202':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/DomainDnssecDataResponse'
+                title: Response 202 Enable And Publish Dnssec Records V1 Domains  Domain
+                  Reference  Dnssec Enable Post
+                type: array
+          description: The zone is signed, but the registry has not accepted the DS
+            record yet because it could not see the new key material on the public
+            nameservers. A background job resubmits it with backoff, so the response
+            carries no records. Until it succeeds the zone resolves as unsigned; if
+            the job gives up, DNSSEC is switched back off and a domain modification
+            failure event carries the registry's diagnostic.
         '404':
           content:
             application/problem+json:
@@ -25381,14 +25506,25 @@ paths:
         '409':
           content:
             application/problem+json:
-              example:
-                code: ERROR_DOMAIN_DNSSEC_ZONE_RECORDS_UNAVAILABLE
-                detail: DNS zone 'example.com.' is DNSSEC-enabled but has no usable
-                  DS records to publish
-                status: 409
-                title: DNSSEC Zone Records Unavailable
-                type: domain-dnssec-zone-records-unavailable
-                zone_name: example.com.
+              examples:
+                DNSSEC Enable Superseded:
+                  value:
+                    code: ERROR_DOMAIN_DNSSEC_ENABLE_SUPERSEDED
+                    detail: DNSSEC was disabled for 'example.com.' while it was being
+                      enabled; the DS record was withdrawn and DNSSEC is off
+                    status: 409
+                    title: DNSSEC Enable Superseded
+                    type: domain-dnssec-enable-superseded
+                    zone_name: example.com.
+                DNSSEC Zone Records Unavailable:
+                  value:
+                    code: ERROR_DOMAIN_DNSSEC_ZONE_RECORDS_UNAVAILABLE
+                    detail: DNS zone 'example.com.' is DNSSEC-enabled but has no usable
+                      DS records to publish
+                    status: 409
+                    title: DNSSEC Zone Records Unavailable
+                    type: domain-dnssec-zone-records-unavailable
+                    zone_name: example.com.
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Conflict
