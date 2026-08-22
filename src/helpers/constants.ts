@@ -1831,6 +1831,7 @@ export const STATUS_TAG_TYPE = {
   EXTERNAL: "EXTERNAL",
   IMPORT_REQUESTED: "IMPORT_REQUESTED",
   IMPORT_PENDING: "IMPORT_PENDING",
+  DNSSEC_PENDING: "DNSSEC_PENDING",
 } as const satisfies Record<string, StatusTagType>;
 
 export const STATUS_TAG_TYPE_VALUES = [
@@ -1841,6 +1842,7 @@ export const STATUS_TAG_TYPE_VALUES = [
   'EXTERNAL',
   'IMPORT_REQUESTED',
   'IMPORT_PENDING',
+  'DNSSEC_PENDING',
 ] as const satisfies ReadonlyArray<StatusTagType>;
 
 export const SYNC_OPERATION_TYPE = {
