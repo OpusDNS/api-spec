@@ -6,7 +6,7 @@ format becomes the default on a staged schedule per environment.
 
 <scalar-callout type="info">
 <strong>Sandbox switched to the tz-aware default on 2026-08-18</strong>, as
-scheduled. Production follows on Monday, 2026-09-01.
+scheduled. Production follows on Tuesday, 2026-09-01.
 </scalar-callout>
 
 ## What is changing
@@ -104,8 +104,8 @@ so the switch is a no-op for you.
 
 | Environment | Default cutover date | Status    |
 | ----------- | -------------------- | --------- |
-| Sandbox     | Monday, 2026-08-18   | Completed |
-| Production  | Monday, 2026-09-01   | Upcoming  |
+| Sandbox     | Tuesday, 2026-08-18  | Completed |
+| Production  | Tuesday, 2026-09-01  | Upcoming  |
 
 Sandbox completed its cutover on schedule and serves tz-aware datetimes by default.
 Test your integration against sandbox now to be ready for the production date.

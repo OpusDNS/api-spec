@@ -10,7 +10,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
   by default**, on schedule per the announced staged cutover. Every datetime in
   public `/v1` responses from sandbox now carries the explicit UTC designator
   (trailing `Z`); the `X-Datetime-Format: rfc3339` header remains accepted there
-  and is now a no-op. Production follows on Monday, 2026-09-01. See
+  and is now a no-op. Production follows on Tuesday, 2026-09-01. See
   [Timezone-aware datetimes (RFC 3339)](/upcoming-changes/rfc3339-datetimes) for
   migration guidance.
 
