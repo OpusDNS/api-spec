@@ -11146,6 +11146,11 @@ export interface components {
             supported: boolean;
         };
         /**
+         * RegistryServiceBackend
+         * @enum {string}
+         */
+        RegistryServiceBackend: "afnic" | "centralnic" | "cira" | "switch" | "nicat" | "verisign" | "pir" | "gmo" | "google" | "denic" | "identity_digital" | "godaddy" | "dns_belgium" | "eurid" | "rotld" | "nominet_uk" | "radix" | "sidn" | "sidn_hello" | "tucows" | "dot_ua" | "nic_it" | "dns_lu" | "restena_lu" | "cz_nic" | "ras_manual" | "ras_external" | "register_si" | "sk_nic" | "dot_blog" | "nic_lv" | "domreg_lt" | "nor_id" | "website_ws" | "dns_pt" | "punktum_dk" | "nic_mexico" | "internet_ee" | "channel_isles" | "registry_se" | "nask" | "dns_belgium_gtld" | "nominet_dragon" | "red_es" | "internet_nz" | "zacr" | "traficom" | "ie_registry" | "nic_im" | "cn_nic" | "forth" | "dns_hr" | "nixi" | "is_nic" | "sg_nic" | "ke_nic" | "tld_box" | "ryce" | "cocca" | "amazon";
+        /**
          * RenewalMode
          * @enum {string}
          */
@@ -26536,7 +26541,14 @@ export interface operations {
     };
     get_tld_spec_v1_tlds__tld__get: {
         parameters: {
-            query?: never;
+            query?: {
+                /** @description Override the resolved account backend. */
+                backend?: components["schemas"]["RegistryServiceBackend"] | null;
+                /** @description Override the customer spec ref. */
+                customer_spec_ref?: string | null;
+                /** @description Override the spec version pin (or LATEST). */
+                version?: string | null;
+            };
             header?: {
                 /**
                  * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.

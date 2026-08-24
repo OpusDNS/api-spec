@@ -12522,6 +12522,70 @@ components:
       - supported
       title: RegistryLockBase
       type: object
+    RegistryServiceBackend:
+      enum:
+      - afnic
+      - centralnic
+      - cira
+      - switch
+      - nicat
+      - verisign
+      - pir
+      - gmo
+      - google
+      - denic
+      - identity_digital
+      - godaddy
+      - dns_belgium
+      - eurid
+      - rotld
+      - nominet_uk
+      - radix
+      - sidn
+      - sidn_hello
+      - tucows
+      - dot_ua
+      - nic_it
+      - dns_lu
+      - restena_lu
+      - cz_nic
+      - ras_manual
+      - ras_external
+      - register_si
+      - sk_nic
+      - dot_blog
+      - nic_lv
+      - domreg_lt
+      - nor_id
+      - website_ws
+      - dns_pt
+      - punktum_dk
+      - nic_mexico
+      - internet_ee
+      - channel_isles
+      - registry_se
+      - nask
+      - dns_belgium_gtld
+      - nominet_dragon
+      - red_es
+      - internet_nz
+      - zacr
+      - traficom
+      - ie_registry
+      - nic_im
+      - cn_nic
+      - forth
+      - dns_hr
+      - nixi
+      - is_nic
+      - sg_nic
+      - ke_nic
+      - tld_box
+      - ryce
+      - cocca
+      - amazon
+      title: RegistryServiceBackend
+      type: string
     RenewalMode:
       enum:
       - renew
@@ -15635,7 +15699,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-22-161524
+  version: 2026-08-24-085051
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -31866,6 +31930,36 @@ paths:
         schema:
           title: Tld
           type: string
+      - description: Override the resolved account backend.
+        in: query
+        name: backend
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/RegistryServiceBackend'
+          - type: 'null'
+          description: Override the resolved account backend.
+          title: Backend
+      - description: Override the customer spec ref.
+        in: query
+        name: customer_spec_ref
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Override the customer spec ref.
+          title: Customer Spec Ref
+      - description: Override the spec version pin (or LATEST).
+        in: query
+        name: version
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Override the spec version pin (or LATEST).
+          title: Version
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':

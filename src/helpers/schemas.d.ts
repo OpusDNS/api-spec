@@ -490,6 +490,7 @@ export type RegistrarRecord = components['schemas']['RegistrarRecord'];
 export type RegistrarZone = components['schemas']['RegistrarZone'];
 export type RegistryHandleAttributeType = components['schemas']['RegistryHandleAttributeType'];
 export type RegistryLockBase = components['schemas']['RegistryLockBase'];
+export type RegistryServiceBackend = components['schemas']['RegistryServiceBackend'];
 export type RenewalMode = components['schemas']['RenewalMode'];
 export type RenewalModeDTO = components['schemas']['RenewalModeDTO'];
 export type ReportStatus = components['schemas']['ReportStatus'];
