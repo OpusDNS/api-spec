@@ -9,3 +9,9 @@ pt
 ee
 se
 nu
+berlin
+hamburg
+bayern
+nrw
+wien
+tirol
