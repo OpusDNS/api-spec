@@ -21353,19 +21353,12 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Email forwarding configuration already exists */
+            /** @description Email forwarding configuration already exists, or the organization is at its email forward limit */
             409: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    /** @example {
-                     *       "code": "ERROR_EMAIL_FORWARD_ALREADY_EXISTS",
-                     *       "detail": "Email forward already exists for hostname: mail.example.com",
-                     *       "status": 409,
-                     *       "title": "Email Forward Error",
-                     *       "type": "email-forward-already-exists"
-                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -23692,13 +23685,21 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    /** @example {
+                     *       "attribute_key": "email_forward_limit",
+                     *       "code": "ERROR_ORGANIZATION_ATTRIBUTE_VALUE_INVALID",
+                     *       "detail": "Organization attribute 'email_forward_limit' must be a positive integer, got 'not-a-number'.",
+                     *       "status": 422,
+                     *       "title": "Organization Management Error",
+                     *       "type": "organization-attribute-value-invalid"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
@@ -24982,13 +24983,21 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    /** @example {
+                     *       "attribute_key": "email_forward_limit",
+                     *       "code": "ERROR_ORGANIZATION_ATTRIBUTE_VALUE_INVALID",
+                     *       "detail": "Organization attribute 'email_forward_limit' must be a positive integer, got 'not-a-number'.",
+                     *       "status": 422,
+                     *       "title": "Organization Management Error",
+                     *       "type": "organization-attribute-value-invalid"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };

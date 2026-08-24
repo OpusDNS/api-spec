@@ -15699,7 +15699,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-24-085051
+  version: 2026-08-24-112237
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -26081,15 +26081,32 @@ paths:
         '409':
           content:
             application/problem+json:
-              example:
-                code: ERROR_EMAIL_FORWARD_ALREADY_EXISTS
-                detail: 'Email forward already exists for hostname: mail.example.com'
-                status: 409
-                title: Email Forward Error
-                type: email-forward-already-exists
+              examples:
+                email_forward_already_exists:
+                  summary: A forward already exists for the hostname
+                  value:
+                    code: ERROR_EMAIL_FORWARD_ALREADY_EXISTS
+                    detail: 'Email forward already exists for hostname: mail.example.com'
+                    status: 409
+                    title: Email Forward Error
+                    type: email-forward-already-exists
+                email_forward_limit_exceeded:
+                  description: The limit defaults to a per-environment value and can
+                    be raised or lowered per organization by support.
+                  summary: The organization is at its email forward limit
+                  value:
+                    code: ERROR_EMAIL_FORWARD_LIMIT_EXCEEDED
+                    detail: Email forward limit of 250 reached for this organization.
+                      Delete an existing email forward or contact support to raise
+                      the limit.
+                    limit: 250
+                    status: 409
+                    title: Email Forward Error
+                    type: email-forward-limit-exceeded
               schema:
                 $ref: '#/components/schemas/Problem'
-          description: Email forwarding configuration already exists
+          description: Email forwarding configuration already exists, or the organization
+            is at its email forward limit
         '422':
           content:
             application/problem+json:
@@ -29086,9 +29103,17 @@ paths:
         '422':
           content:
             application/problem+json:
+              example:
+                attribute_key: email_forward_limit
+                code: ERROR_ORGANIZATION_ATTRIBUTE_VALUE_INVALID
+                detail: Organization attribute 'email_forward_limit' must be a positive
+                  integer, got 'not-a-number'.
+                status: 422
+                title: Organization Management Error
+                type: organization-attribute-value-invalid
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -30222,9 +30247,17 @@ paths:
         '422':
           content:
             application/problem+json:
+              example:
+                attribute_key: email_forward_limit
+                code: ERROR_ORGANIZATION_ATTRIBUTE_VALUE_INVALID
+                detail: Organization attribute 'email_forward_limit' must be a positive
+                  integer, got 'not-a-number'.
+                status: 422
+                title: Organization Management Error
+                type: organization-attribute-value-invalid
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
