@@ -1,0 +1,91 @@
+name: Validate Scalar docs
+
+# Merging to main is what publishes developers.opusdns.com — Scalar's GitHub
+# integration builds main and there is no staging site. So the config and the
+# generators are validated on the PR, not after.
+#
+# Note this does NOT run on the bot PRs from the two sync workflows: GitHub
+# suppresses workflow runs for PRs opened with GITHUB_TOKEN. Those workflows
+# therefore run `scalar project check-config` inline before opening their PR.
+
+on:
+  pull_request:
+    paths:
+      - 'scalar/**'
+      - 'scripts/**'
+      - '.github/workflows/scalar-check.yaml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  config:
+    name: Scalar config
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v6
+        with:
+          # .nvmrc is "v24.*", which node-version-file does not resolve.
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: scalar/package-lock.json
+
+      - name: Validate scalar.config.json
+        run: |
+          npm ci --prefix scalar --no-audit --no-fund
+          npm --prefix scalar run check
+
+      # An icon Scalar does not know, or a filepath pointing at a file that does
+      # not exist, renders as nothing and check-config does not catch either.
+      - name: Every page referenced by the nav exists
+        run: |
+          python3 - <<'EOF'
+          import json, sys
+          from pathlib import Path
+
+          root = Path("scalar")
+          config = json.loads((root / "scalar.config.json").read_text(encoding="utf-8"))
+
+          def walk(value):
+              if isinstance(value, dict):
+                  yield value
+                  for child in value.values():
+                      yield from walk(child)
+              elif isinstance(value, list):
+                  for child in value:
+                      yield from walk(child)
+
+          missing = sorted(
+              node["filepath"]
+              for node in walk(config)
+              if isinstance(node.get("filepath"), str)
+              and not (root / node["filepath"]).is_file()
+          )
+          if missing:
+              print("nav entries point at files that do not exist:")
+              for path in missing:
+                  print(f"  {path}")
+              sys.exit(1)
+          print(f"all nav filepaths resolve")
+          EOF
+
+  generators:
+    name: Generator tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip pytest pyyaml
+
+      # These tests existed but nothing ran them.
+      - name: Run the generator tests
+        working-directory: scripts
+        run: python -m pytest -q

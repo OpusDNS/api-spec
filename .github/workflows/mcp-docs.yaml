@@ -1,0 +1,145 @@
+name: Sync MCP Server Docs
+
+# Mirrors the published MCP-server docs from OpusDNS/opusdns-mcp into
+# scalar/content/mcp-server, refreshes the /mcp-server nav tree and the MCP tab
+# in scalar.config.json, and opens a PR with the diff. Merging that PR publishes
+# to developers.opusdns.com/mcp-server via Scalar.
+#
+# The Markdown is copied, not regenerated. opusdns-mcp renders it with `make docs`
+# from its committed tools/list snapshot, and its CI fails the PR when the
+# committed output drifts — so there is exactly one renderer and this repo needs
+# no Go toolchain. Please do not add setup-go here: two renderers can disagree.
+
+on:
+  workflow_dispatch:
+    inputs:
+      opusdns_mcp_ref:
+        description: Branch/tag/SHA of OpusDNS/opusdns-mcp to sync from
+        required: false
+        default: main
+  repository_dispatch:
+    types: [mcp_docs_updated]
+  push:
+    branches: [main]
+    # Re-run when the api-spec side of the sync changes. Source changes arrive by
+    # repository_dispatch.
+    paths:
+      - 'scripts/mcp_docs/**'
+      - 'scripts/sync_mcp_docs.py'
+  schedule:
+    # Weekly safety net. This is the real backstop: if the sender's PAT expires,
+    # the dispatch fails in opusdns-mcp, where nobody watching this repo sees it.
+    - cron: "0 6 * * 1"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout api-spec
+        uses: actions/checkout@v7
+
+      # Reset before generating, not after. The TLD workflow generates first and
+      # then does a stash / reset --hard / stash-pop dance, which conflicts on
+      # scalar.config.json whenever origin/main moved in the meantime (e.g. the
+      # TLD bot merged) and fails the job dirty with no PR. Resetting while the
+      # tree is still clean makes that impossible.
+      - name: Base on latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      # opusdns-mcp is private, so checkout needs credentials. A read-only deploy
+      # key is the least-privilege option and has no expiry to babysit; mirrors
+      # TLD_SPECS_DEPLOY_KEY.
+      - name: Checkout opusdns-mcp
+        uses: actions/checkout@v7
+        with:
+          repository: OpusDNS/opusdns-mcp
+          path: opusdns-mcp
+          ssh-key: ${{ secrets.OPUSDNS_MCP_DEPLOY_KEY }}
+          ref: >-
+            ${{ github.event.inputs.opusdns_mcp_ref
+                || github.event.client_payload.ref
+                || 'main' }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          # No install step: the sync script and the nav patcher are stdlib-only.
+
+      - name: Sync MCP docs and patch the Scalar nav
+        run: |
+          python scripts/sync_mcp_docs.py --source opusdns-mcp/docs/scalar
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          # .nvmrc is "v24.*", which node-version-file does not resolve.
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: scalar/package-lock.json
+
+      # Nothing else in this repo validates scalar.config.json, and merging is
+      # what publishes all four tabs. Validate before the PR exists: a PR opened
+      # with GITHUB_TOKEN does not trigger workflow runs, so a PR-time check
+      # would never run on this bot's PRs.
+      - name: Validate the Scalar config
+        run: |
+          npm ci --prefix scalar --no-audit --no-fund
+          npm --prefix scalar run check
+
+      # git diff ignores untracked files, so a brand-new page would report
+      # "unchanged". (The TLD workflow has that bug, masked because
+      # scalar.config.json always changes alongside.) --porcelain sees both.
+      - name: Detect changes
+        id: diff
+        run: |
+          if [ -z "$(git status --porcelain -- scalar/content/mcp-server scalar/scalar.config.json)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Published MCP docs are already up to date."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git status --porcelain -- scalar/content/mcp-server scalar/scalar.config.json
+          fi
+
+      - name: Open pull request
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v8
+        with:
+          # add-paths is handed to `git add`, which stages deletions of tracked
+          # files too, so a pruned page propagates. The nested opusdns-mcp/
+          # checkout is outside these paths and is never committed.
+          add-paths: |
+            scalar/content/mcp-server/**
+            scalar/scalar.config.json
+          branch: bot/mcp-docs-sync
+          commit-message: "chore(mcp-docs): sync MCP server docs"
+          title: "chore(mcp-docs): sync MCP server docs"
+          body: |
+            Auto-generated by the **Sync MCP Server Docs** workflow.
+
+            Source: `OpusDNS/opusdns-mcp@${{
+              github.event.inputs.opusdns_mcp_ref
+                || github.event.client_payload.ref
+                || 'main' }}`
+
+            Files under `scalar/content/mcp-server/generated/` are rendered by
+            `make docs` in `opusdns-mcp` from its `tools/list` snapshot. Edit the
+            source there, never here — the sidebar (titles, icons, order) comes
+            from that repo's `docs/scalar/nav.json` too.
+
+            Merging this PR publishes to
+            https://developers.opusdns.com/mcp-server via Scalar.
+          labels: |
+            automated
+            mcp-docs
+          delete-branch: true

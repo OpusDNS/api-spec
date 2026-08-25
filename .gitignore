@@ -10,3 +10,7 @@ scalar/.scalar/
 # Python build artefacts (TLD knowledge base generator)
 __pycache__/
 *.py[cod]
+
+# Sibling repos the sync workflows check out into this tree.
+/opusdns-mcp/
+/tld-specifications/
