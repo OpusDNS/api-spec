@@ -12791,6 +12791,11 @@ export interface components {
              */
             auth_subdomain?: string | null;
             /**
+             * Create Zone
+             * @description Opt in (or out) of onboarding creating the OpusDNS-hosted zone if it is missing, applied before this re-run and to any re-pointed domain. Omit to keep the config's current setting - a plain retry never changes it. Plus tier only.
+             */
+            create_zone?: boolean | null;
+            /**
              * Dashboard Subdomain
              * @description Subdomain the dashboard is served on; omit for apex. Only together with hostname.
              */
@@ -12892,7 +12897,7 @@ export interface components {
          *     detail that accompanies it is for support/debugging, never for customer display.
          * @enum {string}
          */
-        WhitelabelOnboardingFailureCode: "zone_not_owned" | "delegation_missing" | "delegation_mismatch" | "dns_record_rejected" | "auth_client_rejected" | "branding_rejected" | "retries_exhausted";
+        WhitelabelOnboardingFailureCode: "zone_not_owned" | "delegation_missing" | "delegation_mismatch" | "zone_create_failed" | "dns_record_rejected" | "auth_client_rejected" | "branding_rejected" | "retries_exhausted";
         /**
          * WhitelabelOnboardingFailureType
          * @enum {string}
@@ -12914,6 +12919,12 @@ export interface components {
              * @description Subdomain the login is served on (e.g. auth -> auth.customer.com)
              */
             auth_subdomain: string;
+            /**
+             * Create Zone
+             * @description Create the OpusDNS-hosted DNS zone for this domain during onboarding if it does not already exist, instead of requiring it to exist beforehand. The domain must still be delegated to the OpusDNS nameservers for verification to pass. The dashboard sends true; other API callers opt in explicitly.
+             * @default false
+             */
+            create_zone: boolean;
             /**
              * Dashboard Subdomain
              * @description Subdomain the dashboard is served on (e.g. dash -> dash.customer.com); omit for apex
@@ -12989,6 +13000,12 @@ export interface components {
              * @description Subdomain the login is served on (e.g. auth -> auth.customer.com)
              */
             auth_subdomain: string;
+            /**
+             * Create Zone
+             * @description Create the OpusDNS-hosted DNS zone for this domain during onboarding if it does not already exist, instead of requiring it to exist beforehand. The domain must still be delegated to the OpusDNS nameservers for verification to pass. The dashboard sends true; other API callers opt in explicitly.
+             * @default false
+             */
+            create_zone: boolean;
             /**
              * Dashboard Subdomain
              * @description Subdomain the dashboard is served on (e.g. dash -> dash.customer.com); omit for apex

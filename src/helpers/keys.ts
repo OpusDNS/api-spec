@@ -5915,11 +5915,13 @@ export const KEYS_WHITELABEL_BRANDING_PATCH = [
 ] as const satisfies (keyof WhitelabelBrandingPatch)[];
 
 export const KEY_WHITELABEL_BRANDING_RECHECK_AUTH_SUBDOMAIN = 'auth_subdomain' satisfies keyof WhitelabelBrandingRecheck;
+export const KEY_WHITELABEL_BRANDING_RECHECK_CREATE_ZONE = 'create_zone' satisfies keyof WhitelabelBrandingRecheck;
 export const KEY_WHITELABEL_BRANDING_RECHECK_DASHBOARD_SUBDOMAIN = 'dashboard_subdomain' satisfies keyof WhitelabelBrandingRecheck;
 export const KEY_WHITELABEL_BRANDING_RECHECK_HOSTNAME = 'hostname' satisfies keyof WhitelabelBrandingRecheck;
 
 export const KEYS_WHITELABEL_BRANDING_RECHECK = [
   KEY_WHITELABEL_BRANDING_RECHECK_AUTH_SUBDOMAIN,
+  KEY_WHITELABEL_BRANDING_RECHECK_CREATE_ZONE,
   KEY_WHITELABEL_BRANDING_RECHECK_DASHBOARD_SUBDOMAIN,
   KEY_WHITELABEL_BRANDING_RECHECK_HOSTNAME,
 ] as const satisfies (keyof WhitelabelBrandingRecheck)[];
@@ -5961,6 +5963,7 @@ export const KEYS_WHITELABEL_BRANDING = [
 ] as const satisfies (keyof WhitelabelBranding)[];
 
 export const KEY_WHITELABEL_PLUS_CREATE_AUTH_SUBDOMAIN = 'auth_subdomain' satisfies keyof WhitelabelPlusCreate;
+export const KEY_WHITELABEL_PLUS_CREATE_CREATE_ZONE = 'create_zone' satisfies keyof WhitelabelPlusCreate;
 export const KEY_WHITELABEL_PLUS_CREATE_DASHBOARD_SUBDOMAIN = 'dashboard_subdomain' satisfies keyof WhitelabelPlusCreate;
 export const KEY_WHITELABEL_PLUS_CREATE_HOSTNAME = 'hostname' satisfies keyof WhitelabelPlusCreate;
 export const KEY_WHITELABEL_PLUS_CREATE_LABEL = 'label' satisfies keyof WhitelabelPlusCreate;
@@ -5969,6 +5972,7 @@ export const KEY_WHITELABEL_PLUS_CREATE_TIER = 'tier' satisfies keyof Whitelabel
 
 export const KEYS_WHITELABEL_PLUS_CREATE = [
   KEY_WHITELABEL_PLUS_CREATE_AUTH_SUBDOMAIN,
+  KEY_WHITELABEL_PLUS_CREATE_CREATE_ZONE,
   KEY_WHITELABEL_PLUS_CREATE_DASHBOARD_SUBDOMAIN,
   KEY_WHITELABEL_PLUS_CREATE_HOSTNAME,
   KEY_WHITELABEL_PLUS_CREATE_LABEL,
@@ -5991,11 +5995,13 @@ export const KEYS_WHITELABEL_SUBSCRIPTION_INFO = [
 ] as const satisfies (keyof WhitelabelSubscriptionInfo)[];
 
 export const KEY_WHITELABEL_UPGRADE_TO_PLUS_AUTH_SUBDOMAIN = 'auth_subdomain' satisfies keyof WhitelabelUpgradeToPlus;
+export const KEY_WHITELABEL_UPGRADE_TO_PLUS_CREATE_ZONE = 'create_zone' satisfies keyof WhitelabelUpgradeToPlus;
 export const KEY_WHITELABEL_UPGRADE_TO_PLUS_DASHBOARD_SUBDOMAIN = 'dashboard_subdomain' satisfies keyof WhitelabelUpgradeToPlus;
 export const KEY_WHITELABEL_UPGRADE_TO_PLUS_HOSTNAME = 'hostname' satisfies keyof WhitelabelUpgradeToPlus;
 
 export const KEYS_WHITELABEL_UPGRADE_TO_PLUS = [
   KEY_WHITELABEL_UPGRADE_TO_PLUS_AUTH_SUBDOMAIN,
+  KEY_WHITELABEL_UPGRADE_TO_PLUS_CREATE_ZONE,
   KEY_WHITELABEL_UPGRADE_TO_PLUS_DASHBOARD_SUBDOMAIN,
   KEY_WHITELABEL_UPGRADE_TO_PLUS_HOSTNAME,
 ] as const satisfies (keyof WhitelabelUpgradeToPlus)[];

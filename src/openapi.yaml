@@ -14918,6 +14918,15 @@ components:
           - type: 'null'
           description: Subdomain the login is served on; required together with hostname
           title: Auth Subdomain
+        create_zone:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Opt in (or out) of onboarding creating the OpusDNS-hosted zone
+            if it is missing, applied before this re-run and to any re-pointed domain.
+            Omit to keep the config's current setting - a plain retry never changes
+            it. Plus tier only.
+          title: Create Zone
         dashboard_subdomain:
           anyOf:
           - maxLength: 255
@@ -15083,6 +15092,7 @@ components:
       - zone_not_owned
       - delegation_missing
       - delegation_mismatch
+      - zone_create_failed
       - dns_record_rejected
       - auth_client_rejected
       - branding_rejected
@@ -15120,6 +15130,14 @@ components:
           minLength: 1
           title: Auth Subdomain
           type: string
+        create_zone:
+          default: false
+          description: Create the OpusDNS-hosted DNS zone for this domain during onboarding
+            if it does not already exist, instead of requiring it to exist beforehand.
+            The domain must still be delegated to the OpusDNS nameservers for verification
+            to pass. The dashboard sends true; other API callers opt in explicitly.
+          title: Create Zone
+          type: boolean
         dashboard_subdomain:
           anyOf:
           - maxLength: 255
@@ -15247,6 +15265,14 @@ components:
           minLength: 1
           title: Auth Subdomain
           type: string
+        create_zone:
+          default: false
+          description: Create the OpusDNS-hosted DNS zone for this domain during onboarding
+            if it does not already exist, instead of requiring it to exist beforehand.
+            The domain must still be delegated to the OpusDNS nameservers for verification
+            to pass. The dashboard sends true; other API callers opt in explicitly.
+          title: Create Zone
+          type: boolean
         dashboard_subdomain:
           anyOf:
           - maxLength: 255
@@ -15710,7 +15736,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-25-075629
+  version: 2026-08-25-080032
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
