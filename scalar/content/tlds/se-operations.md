@@ -2,9 +2,8 @@
 
 `.se` and `.nu` domains are managed by
 [Internetstiftelsen](https://internetstiftelsen.se), the Swedish Internet
-Foundation. Both TLDs run on the same registry platform, so they share one
-endpoint and one set of rules. The OpusDNS API provides a dedicated endpoint for
-generating auth codes at the registry.
+Foundation. Both TLDs run on the same registry platform and follow the same
+rules, and each has its own endpoint for generating auth codes at the registry.
 
 ## Request an auth code
 
@@ -20,8 +19,13 @@ curl "$OPUSDNS_API_BASE/v1/domains/tld-specific/se/example.se/auth_code/request"
   --header "X-Api-Key: $OPUSDNS_API_KEY"
 ```
 
-The path segment is `se` for both TLDs. Pass a `.nu` domain in
-`{domain_reference}` to use it for `.nu`.
+`.nu` has its own path, and each one only accepts names in its own TLD:
+
+```bash
+curl "$OPUSDNS_API_BASE/v1/domains/tld-specific/nu/example.nu/auth_code/request" \
+  --request POST \
+  --header "X-Api-Key: $OPUSDNS_API_KEY"
+```
 
 ### Response
 
@@ -86,3 +90,4 @@ Base for the format and its validation rules.
 ## Related API Reference
 
 - [`POST /v1/domains/tld-specific/se/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/se/{domain_reference}/auth_code/request)
+- [`POST /v1/domains/tld-specific/nu/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/nu/{domain_reference}/auth_code/request)
