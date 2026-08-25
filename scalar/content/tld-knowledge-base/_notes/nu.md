@@ -50,6 +50,40 @@ Two consequences worth planning for:
 
 Transfers do not extend the registration period, and the auth code is consumed in the process.
 
+## Contacts on an inbound transfer
+
+Transferring a `.nu` domain in does not move its contact across. The registry **clones** the holder under your account as a brand new handle, and that clone is stripped down: the registry keeps the name, the email, the phone and `iis:orgno`, and returns the postal address as empty strings.
+
+A cloned holder comes back looking like this:
+
+```json
+{
+  "id": "76uFie8Nap2SVSfN",
+  "roid": "CONTACT_0000129392-TEST",
+  "email": "person@example.com",
+  "voice": "+46.812345678",
+  "postal_infos": [
+    {
+      "type": "loc",
+      "name": "Full Name",
+      "org": null,
+      "street": [""],
+      "city": "",
+      "sp": null,
+      "pc": null,
+      "cc": ""
+    }
+  ],
+  "status": ["ok", "linked"]
+}
+```
+
+The street, city, state, postal code and country the holder had at the losing registrar are **gone**, and there is no way to recover them from the registry.
+
+Since a contact cannot be stored without an address, the import fills each empty field with OpusDNS's own company address rather than leaving it blank. An imported `.nu` holder therefore lands with `Franz-Mayer-Str. 1`, `Regensburg`, `93053`, `DE` even though the holder has no connection to that address. The name, email, phone and `REGISTRY_SE_ORG_NO` are the real ones.
+
+> ⚠️ **Update the holder after a transfer in.** The placeholder address is a technical stand-in, not the holder's data. Correct it with `PATCH /v1/contacts/{contact_id}` once the transfer completes, and the change is pushed to the registry.
+
 ## Registrant verification
 
 Internetstiftelsen may hold a new registration while it verifies the holder's data. The domain is created, but the registry applies `serverHold`, `serverTransferProhibited` and `serverRenewProhibited`, so it does not resolve and cannot be transferred or renewed while the check is open.
