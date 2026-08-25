@@ -4,6 +4,130 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 25 August 2026
+
+- Added **an exclusionary tag filter mode**: `match_none` returns only the objects
+  carrying **none** of the listed tags, including objects that carry no tags at
+  all. It is accepted wherever `match_any` and `match_all` already were —
+  `tag_mode` on `GET /v1/domains`, `GET /v1/contacts` and `GET /v1/dns`, and
+  `status_tag_mode` on `GET /v1/domains` and `GET /v1/contacts`. See
+  [User tags](/automation/tags/user-tags#filter-mode) and
+  [Status tags](/automation/tags/status-tags#filter-mode).
+
+- Added **status tag counts to the domain summary**: `GET /v1/domains/summary`
+  now returns a `by_status_tag` breakdown alongside `by_status`, `by_tld`, and
+  `by_organization`. Only status tags with at least one domain are included, so
+  the map is empty rather than zero-filled when nothing is tagged.
+
+- Fixed **`match_all` tag filtering when the same tag is repeated** in the query
+  string. `?status_tags=X&status_tags=X` compared a distinct-tag count against
+  the number of values supplied and therefore matched nothing; repeated values
+  are now collapsed.
+
+- Added **`create_zone` to whitelabel Plus onboarding**. A Plus create or upgrade
+  can now ask OpusDNS to create the customer's DNS zone as part of onboarding
+  instead of requiring a separate zone create first. The flag is remembered and
+  re-applied on every recheck, and a caller who created without it can opt in on
+  a later recheck. A zone that cannot be created fails onboarding with the new
+  `zone_create_failed` code. Domain verification is unchanged — the customer
+  still has to delegate the domain to the OpusDNS nameservers.
+
+- Documented **the AFNIC contact attributes** on the TLD Knowledge Base pages for
+  [`.fr`](/tld-knowledge-base/cctlds/fr#contact-attributes),
+  [`.re`](/tld-knowledge-base/cctlds/re#contact-attributes),
+  [`.pm`](/tld-knowledge-base/cctlds/pm#contact-attributes),
+  [`.wf`](/tld-knowledge-base/cctlds/wf#contact-attributes),
+  [`.yt`](/tld-knowledge-base/cctlds/yt#contact-attributes) and
+  [`.tf`](/tld-knowledge-base/cctlds/tf#contact-attributes) — the `PP`/`PM`
+  split, the identifiers each legal status accepts, the association rules, and
+  the fact that AFNIC requires the attributes on every contact role rather than
+  on the registrant alone.
+
+### 24 August 2026
+
+- Added **spec-selection overrides to the TLD specification endpoint**.
+  `GET /v1/tlds/{tld}` accepts optional `backend`, `customer_spec_ref`, and
+  `version` query parameters to read a specific registry backend's specification
+  instead of the one resolved for your organization. Omitting them keeps the
+  existing behaviour.
+
+- Changed **`.dk` contact pre-verification to be optional**. Punktum dk runs its
+  own data and identity control and reports the outcome over poll;
+  `PUNKTUM_DK_CONTACT_VERIFIED` previously had to be asserted on every `.dk`
+  contact. It is now an optional attribute — omit it to let the registry perform
+  the control, or assert it to declare the contact already verified.
+
+### 22 August 2026
+
+- Added **the `DNSSEC_PENDING` status tag**. A domain carries it while a deferred
+  DNSSEC registry submission is being retried, so a zone that reads as signed
+  while the parent still holds no DS is visible rather than silently
+  misreported. The tag is removed on every terminal outcome. See
+  [Status tags](/automation/tags/status-tags).
+
+### 21 August 2026
+
+- Changed **enabling DNSSEC to complete asynchronously when the registry defers
+  the DS submission**. Some registries — DENIC among them — check the domain's
+  public nameservers before accepting a DS and reject a submission made before
+  the new key material has propagated. Rather than failing, the zone stays
+  signed and the submission is retried in the background for roughly 16 minutes;
+  if that budget runs out, DNSSEC is switched back off and the registry's own
+  diagnostic reaches you as a domain modification failure event.
+
+  `POST /v1/domains/{domain_reference}/dnssec/enable` and
+  `POST /v1/dns/{zone_name}/dnssec/enable` now answer **`202 Accepted`** when the
+  submission was deferred, instead of always answering `200`. A concurrent
+  disable that supersedes the enable returns **`409 Conflict`** with
+  `ERROR_DOMAIN_DNSSEC_ENABLE_SUPERSEDED`. On the zone route, `DnsChangesResponse`
+  carries the outcome in `dnssec_registry_publish` — `published`, `deferred`,
+  `skipped`, `withdrawn`, or `failed`, and `null` when the response makes no
+  statement about a registry submission. A signed zone with no DS at the parent
+  resolves as unsigned, so the intermediate state is safe. See
+  [Domain DNSSEC](/products/domains/dnssec).
+
+- Fixed **IDN registrations on Verisign TLDs**. Registering an internationalized
+  domain under `.com`, `.net`, `.cc`, or `.name` failed at the registry with
+  `Language tag required for IDN label domain names`, because the required
+  language tag was not sent. It is now included on registration. Note that the
+  API does not convert a Unicode name to its A-label for you — send the
+  punycode form (`xn--…`).
+
+### 20 August 2026
+
+- Added **typed credential errors to registrar sync**. When a connected
+  registrar rejects the stored credentials, the sync status now reports a stable
+  `error_code` — `ERROR_CREDENTIAL_AUTH` when the credentials were rejected, or
+  `ERROR_CREDENTIAL_ACCESS` when the account denied access (for example, a
+  calling IP that is not allowlisted) — alongside an actionable `error_message`
+  and the registrar's own diagnostic in `error_detail`. These failures are no
+  longer retried, so they surface immediately instead of after several minutes
+  of backoff.
+
+- Added **the `IMPORT_REQUESTED` and `IMPORT_PENDING` status tags**, carried by
+  domains during a bulk import while their initial registry synchronization is
+  queued and then running. See
+  [Status tags](/automation/tags/status-tags).
+
+### 19 August 2026
+
+- Added **the `EXTERNAL` status tag**, assigned to every domain mirrored into
+  your portfolio from a connected external registrar. It distinguishes mirrored
+  domains from the ones OpusDNS sponsors, and can be filtered on like any other
+  status tag. See [Status tags](/automation/tags/status-tags).
+
+- Added **the billing period to the whitelabel subscription block**. The nested
+  `subscription` object now carries `period` in the same shape the create body
+  accepts (`{"value": 1, "unit": "m"}`), so a client can tell whether a
+  whitelabel renews monthly or yearly without a second lookup.
+
+- Changed **`.dk` contact validation to run before the request reaches the
+  registry**. `PUNKTUM_DK_CVR` is required for a Danish legal entity and refused
+  on a Danish individual, and `PUNKTUM_DK_SOLE_PROPRIETORSHIP` is refused on any
+  Danish contact — all three previously failed only once Punktum dk saw them.
+  EU/EEA legal entities outside Denmark may still supply a CVR and are not
+  required to.
+
 ### 18 August 2026
 
 - Changed **the sandbox environment to serve timezone-aware (RFC 3339) datetimes

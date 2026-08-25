@@ -178,6 +178,7 @@ When filtering by multiple tags, control the matching behavior with
 | --- | --- |
 | `match_any` | Domain matches if it has **at least one** of the specified tags. This is the default. |
 | `match_all` | Domain matches only if it has **all** of the specified tags. |
+| `match_none` | Domain matches only if it has **none** of the specified tags. Domains carrying no tags at all are included. |
 
 ```bash
 curl "$OPUSDNS_API_BASE/v1/domains?tag_ids=tag_01a,tag_02b&tag_mode=match_all&include=tags" \
