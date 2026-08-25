@@ -122,3 +122,5 @@ token on disk.
   prompt looks like
 - [OAuth details](/mcp-server/connect/oauth) — the flow in full, for writing
   your own client
+- [Disconnecting](/mcp-server/connect/disconnect) — removing the connector,
+  signing out, and cutting access off

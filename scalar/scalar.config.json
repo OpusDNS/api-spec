@@ -3742,6 +3742,13 @@
                 "icon": "phosphor/regular/shield-check",
                 "filepath": "content/mcp-server/pages/connect-oauth.md",
                 "showInSidebar": true
+              },
+              "/disconnect": {
+                "type": "page",
+                "title": "Disconnecting",
+                "icon": "line/interface-lock-closed",
+                "filepath": "content/mcp-server/pages/disconnect.md",
+                "showInSidebar": true
               }
             }
           },

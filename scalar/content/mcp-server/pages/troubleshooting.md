@@ -54,6 +54,13 @@ The concurrency cap. It counts requests in flight on one server instance across
 all callers, not just yours, so it can trip because the service is busy rather
 than because of anything you did. Retry after a second.
 
+### I removed the connector but the agent still has access
+
+Removing the server from one client does not invalidate a token another client
+already holds, and a `mcp-remote` bridge keeps its own copy on disk. See
+[Disconnecting](/mcp-server/connect/disconnect) for what each step stops and
+how to cut access off outright.
+
 ## Approvals
 
 ### Approval keeps being requested
