@@ -11417,7 +11417,7 @@ export interface components {
          * TagFilterMode
          * @enum {string}
          */
-        TagFilterMode: "match_any" | "match_all";
+        TagFilterMode: "match_any" | "match_all" | "match_none";
         /** TagResponse */
         TagResponse: {
             /** @description The color of the tag */

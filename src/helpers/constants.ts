@@ -2023,11 +2023,13 @@ export const TAG_COLOR_VALUES = [
 export const TAG_FILTER_MODE = {
   MATCH_ANY: "match_any",
   MATCH_ALL: "match_all",
+  MATCH_NONE: "match_none",
 } as const satisfies Record<string, TagFilterMode>;
 
 export const TAG_FILTER_MODE_VALUES = [
   'match_any',
   'match_all',
+  'match_none',
 ] as const satisfies ReadonlyArray<TagFilterMode>;
 
 export const TAG_SORT_FIELD = {
