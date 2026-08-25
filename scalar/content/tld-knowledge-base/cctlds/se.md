@@ -136,7 +136,7 @@ If the holder has no organisation name and the country code is `[SE]`, the regis
 
 `.se` auth codes belong to the registry. A registrar can never choose the value: the registry generates it, returns it in the registration response, and a domain info request does not expose it afterwards.
 
-Request a fresh one with [`POST /v1/domains/tld-specific/se/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/se/{domain_reference}/auth_code/request), which returns the code directly and **invalidates the previous one**. This is how a code spent on a transfer gets replaced. The same endpoint serves `.nu`.
+Request a fresh one with [`POST /v1/domains/tld-specific/se/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/se/{domain_reference}/auth_code/request), which returns the code directly and **invalidates the previous one**. This is how a code spent on a transfer gets replaced.
 
 ## Transfers
 
