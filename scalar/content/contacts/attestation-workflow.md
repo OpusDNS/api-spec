@@ -60,7 +60,7 @@ is specified:
 ```
 
 <scalar-callout type="info">
-You can combine <code>status_tags</code> with <code>status_tag_mode</code> (<code>match_any</code> or <code>match_all</code>) to control how multiple status tag filters are combined.
+You can combine <code>status_tags</code> with <code>status_tag_mode</code> (<code>match_any</code>, <code>match_all</code>, or <code>match_none</code>) to control how multiple status tag filters are combined.
 </scalar-callout>
 
 ### Check the verification_required field on domains

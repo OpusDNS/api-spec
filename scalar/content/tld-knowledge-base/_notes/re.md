@@ -1,105 +1,3 @@
-# 🇾🇹 .yt — Mayotte
-
-> The **.yt** is a country-code top-level domain (ccTLD) operated by AFNIC (Association Française pour le Nommage Internet en Coopération). This article documents the technical, operational, and contractual requirements for the TLD, along with special considerations for registry, registrar, and domain management.
-
-## General Information
-
-| Property | Value |
-| --- | --- |
-| TLD Type | ccTLD |
-| Registry | AFNIC (Association Française pour le Nommage Internet en Coopération) |
-| Registry Country | France |
-| Registry Website | [www.afnic.fr](https://www.afnic.fr) |
-| Provisioning Protocol | EPP |
-| Second-Level Registration | ✅ Yes |
-| Accreditation Required | ✅ Yes |
-
-## Domain Lifecycle
-
-| Property | Value |
-| --- | --- |
-| Registration Period | 1–10 years |
-| Renewal Period | 1–10 years |
-| Transfer Renewal Period | 1 year |
-| Deletion Policy | Immediate |
-| Auto-Renew Enabled | ✅ Yes |
-| Auto-Renewal Before Expiry | 7 days before expiration |
-| Sync After Operations | registration, renewal, transfer |
-
-**Grace periods**
-
-| Period | Duration |
-| --- | --- |
-| Add Grace Period | 5 days |
-| Standard Grace Period | 0 days |
-| Redemption Period | 30 days |
-| Pending Restore | 7 days |
-| Pending Delete | 0 days |
-
-## Launch Phases & Availability
-
-| Property | Value |
-| --- | --- |
-| General Availability | ✅ TLD is live |
-| TMCH / Trademark Claims | ❌ No |
-
-## Domain Characteristics
-
-| Property | Value |
-| --- | --- |
-| Domain Length | 1–63 characters |
-| IDN Support | ✅ Yes |
-| Premium Domains | ❌ No |
-| Reserved Domains | ❌ No |
-| Registry Lock | ❌ No |
-
-## Contacts & Roles
-
-| Property | Value |
-| --- | --- |
-| Required Contacts | Domain Owner, Administrator, Technical Contact |
-| Supported Roles | Domain Owner, Administrator, Technical Contact |
-| Thick WHOIS | ✅ Yes |
-| Privacy Proxy Allowed | ❌ No |
-| Contacts Transferable | ❌ No |
-| Allowed Postal Types | Local |
-| AuthInfo Required | ✅ Yes (12–63 characters) |
-
-## Nameservers & DNS
-
-| Property | Value |
-| --- | --- |
-| Nameserver Count | 0–8 |
-| Host Objects Allowed | ✅ Yes |
-| Registry Nameserver Check | ❌ No |
-| DNSSEC Allowed | ✅ Yes |
-| DNSSEC Required | ❌ No |
-| DNSSEC Mode | DS |
-| CZDS (Zone Download) | ❌ No |
-
-## Transfer Policy
-
-| Property | Value |
-| --- | --- |
-| Transfer Lock Enabled | ✅ Yes (60 days after registration; 60 days after transfer) |
-| Transfer Duration | 8 days |
-| Transfer Extends Domain | ✅ Yes (+1 year) |
-| Transfer via AuthInfo | ✅ Yes |
-| Confirmation Required | ✅ Yes (registrar) |
-
-## WHOIS & RDAP
-
-| Property | Value |
-| --- | --- |
-| WHOIS Server | `whois.nic.yt` |
-| RDAP Server | [rdap.nic.yt](https://rdap.nic.yt) |
-
-## Dispute Resolution
-
-| Property | Value |
-| --- | --- |
-| Dispute Resolution Available | ❌ No |
-
 ## Contact Attributes
 
 AFNIC models every contact as either a **natural person** (`PP` — *personne physique*) or a
@@ -111,7 +9,7 @@ Two things set the AFNIC TLDs apart from most ccTLDs:
 - the attributes are required on **every** contact role — registrant, administrative, and
   technical — not on the registrant alone;
 - the roles do not have to agree. A `PP` registrant with a `PM` technical contact is a normal
-  `.yt` registration.
+  `.re` registration.
 
 | Attribute | Type | Required | Applies to | Allowed values |
 | --- | --- | --- | --- | --- |
@@ -193,8 +91,8 @@ curl "$OPUSDNS_API_BASE/v1/contacts/attribute-sets" \
   --header "X-Api-Key: $OPUSDNS_API_KEY" \
   --header "Content-Type: application/json" \
   --data '{
-    "label": "YT registrant - individual",
-    "tld": "yt",
+    "label": "RE registrant - individual",
+    "tld": "re",
     "attributes": {
       "AFNIC_CONTACT_TYPE": "PP",
       "AFNIC_PP_FIRST_NAME": "Pierre"
@@ -210,8 +108,8 @@ curl "$OPUSDNS_API_BASE/v1/contacts/attribute-sets" \
   --header "X-Api-Key: $OPUSDNS_API_KEY" \
   --header "Content-Type: application/json" \
   --data '{
-    "label": "YT registrant - association",
-    "tld": "yt",
+    "label": "RE registrant - association",
+    "tld": "re",
     "attributes": {
       "AFNIC_CONTACT_TYPE": "PM",
       "AFNIC_PM_LEGAL_STATUS": "association",
@@ -242,7 +140,7 @@ curl "$OPUSDNS_API_BASE/v1/contacts/attribute-sets" \
 > ```
 
 These constraints are machine-readable: each `possible_attributes` entry returned by
-[`GET /v1/tlds/yt`](/api-reference#tag/tld/GET/v1/tlds/{tld}) carries its own `type`,
+[`GET /v1/tlds/re`](/api-reference#tag/tld/GET/v1/tlds/{tld}) carries its own `type`,
 `values`, `required`, `contact_roles`, and `conditions` fields. Build forms from the
 specification rather than hard-coding the `PP`/`PM` split.
 
@@ -253,10 +151,10 @@ existing AFNIC handle cannot be adopted through the API.
 
 ## Transfers and registrant changes
 
-The registrant is **not** part of a `.yt` transfer request: an inbound transfer keeps the
+The registrant is **not** part of a `.re` transfer request: an inbound transfer keeps the
 registrant the domain already has at the registry. The administrative and technical contacts are
 supplied with the transfer as usual.
 
 To move a domain to a different holder, transfer it first and then change the registrant with a
-domain update — `.yt` supports a registrant change through
+domain update — `.re` supports a registrant change through
 [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference}).

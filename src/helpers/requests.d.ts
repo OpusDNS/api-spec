@@ -1051,6 +1051,7 @@ export type GET_Tlds_Request_Query = GET_Tlds_Request['parameters']['query'];
 export type GET_TldsByTld_Request = {
   parameters: operations['get_tld_spec_v1_tlds__tld__get']['parameters'];
 };
+export type GET_TldsByTld_Request_Query = GET_TldsByTld_Request['parameters']['query'];
 export type GET_TldsByTld_Request_Path = GET_TldsByTld_Request['parameters']['path'];
 
 export type GET_TldsPortfolio_Request = {
