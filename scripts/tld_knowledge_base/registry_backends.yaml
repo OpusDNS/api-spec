@@ -1,0 +1,20 @@
+# Registry backend to document for a TLD whose specs are compiled for more than one.
+#
+# The knowledge base publishes one page per TLD, so a TLD served by two backends needs an
+# explicit choice — the generator fails rather than picking one silently, and fails again if
+# the named backend disappears from the compiled specs.
+#
+# `migrates_to` / `migrates_on` are documentation, not automation: the generator never flips
+# the backend on a date, because registry migrations slip. It warns once `migrates_on` has
+# passed so the stale entry surfaces in the weekly run instead of rotting quietly. Leave
+# `migrates_on` out when the date is not yet confirmed.
+
+nl:
+  backend: sidn
+  migrates_to: sidn_hello
+  migrates_on: 2026-11-03
+
+lu:
+  backend: dns_lu
+  migrates_to: restena_lu
+  # Date not confirmed yet — expected within a week or two of 2026-08-25.

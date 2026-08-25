@@ -9,6 +9,7 @@ and refreshes the sidebar in ``scalar/scalar.config.json``.
 from __future__ import annotations
 
 import argparse
+import datetime
 import sys
 from pathlib import Path
 from typing import Iterable
@@ -24,6 +25,7 @@ DEFAULT_INPUT = REPO_ROOT.parent / "tld-specifications" / "compiled_specificatio
 DEFAULT_OUTPUT = REPO_ROOT / "scalar" / "content" / "tld-knowledge-base"
 DEFAULT_CONFIG = REPO_ROOT / "scalar" / "scalar.config.json"
 DEFAULT_EXCLUDE_FILE = REPO_ROOT / "scripts" / "tld_knowledge_base" / "excluded_tlds.txt"
+DEFAULT_BACKENDS_FILE = REPO_ROOT / "scripts" / "tld_knowledge_base" / "registry_backends.yaml"
 
 # Manually-provisioned TLDs (specifications/ras_manual in OpusDNS/tld-specifications)
 # are enabled in the API but should not be published in the knowledge base.
@@ -76,6 +78,15 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help=(
             "Also render manually-provisioned TLDs "
             f"(registry provisioning_protocol {MANUAL_PROVISIONING_PROTOCOL!r})"
+        ),
+    )
+    parser.add_argument(
+        "--backends-file",
+        type=Path,
+        default=DEFAULT_BACKENDS_FILE,
+        help=(
+            "File choosing the registry backend to document for TLDs compiled under more "
+            "than one (default: %(default)s)"
         ),
     )
     parser.add_argument(
@@ -152,18 +163,36 @@ def load_specs(
 ) -> list[tuple[Path, dict]]:
     if not input_dir.exists():
         raise SystemExit(f"Input directory does not exist: {input_dir}")
+
+    # compile_tld_specs.py writes <backend>/<tld>/<version>.yaml. It used to write a flat
+    # <tld>.yaml alongside; those are no longer produced but survive in a local checkout,
+    # because compiled_specifications/ is gitignored and nothing prunes it. Reading only the
+    # tree is what stops a stale flat file from silently overriding a fresh compile.
+    paths = sorted(input_dir.glob("*/*/*.yaml"))
+    if not paths and any(input_dir.glob("*.yaml")):
+        raise SystemExit(
+            f"{input_dir} holds only the retired flat <tld>.yaml layout. Re-run "
+            "`make compile` in tld-specifications, then delete the leftover flat files."
+        )
+    if stale := list(input_dir.glob("*.yaml")):
+        print(
+            f"::warning::ignoring {len(stale)} flat <tld>.yaml file(s) in {input_dir} left "
+            "over from an older compile; delete them to avoid confusion",
+            file=sys.stderr,
+        )
+
     specs: list[tuple[Path, dict]] = []
     skipped_manual = 0
-    for path in sorted(input_dir.glob("*.yaml")):
+    for path in paths:
         try:
             data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
         except yaml.YAMLError as exc:
-            print(f"::warning::failed to parse {path.name}: {exc}", file=sys.stderr)
+            print(f"::warning::failed to parse {_spec_label(path)}: {exc}", file=sys.stderr)
             continue
         config = data.get("tld_configuration") or {}
         if not include_disabled and not config.get("enabled"):
             continue
-        if not include_manual and is_manual(config, path.name):
+        if not include_manual and is_manual(config, _spec_label(path)):
             skipped_manual += 1
             continue
         slug = render.page_slug(data)
@@ -177,6 +206,90 @@ def load_specs(
             file=sys.stderr,
         )
     return specs
+
+
+def _spec_label(path: Path) -> str:
+    """``backend/tld/version.yaml`` — a spec's filename alone is not unique in the tree."""
+    return "/".join(path.parts[-3:])
+
+
+def spec_backend(spec: dict, path: Path) -> str:
+    """Backend a compiled spec belongs to, from its metadata or its position in the tree."""
+    backend = (spec.get("spec_metadata") or {}).get("backend")
+    return str(backend) if backend else path.parts[-3]
+
+
+def load_backend_choices(path: Path) -> dict[str, dict]:
+    """Per-TLD registry backend choices for TLDs compiled under more than one."""
+    if not path.exists():
+        return {}
+    raw = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    if not isinstance(raw, dict):
+        raise SystemExit(f"{path}: expected a mapping of TLD to backend choice")
+    return raw
+
+
+def resolve_backends(
+    specs: list[tuple[Path, dict]],
+    choices: dict[str, dict],
+    *,
+    today: datetime.date | None = None,
+) -> list[tuple[Path, dict]]:
+    """Reduce each TLD to the one backend its page should document.
+
+    A TLD compiled under a single backend needs no choice. One compiled under several needs
+    an entry in the backends file: picking silently would swap a page's registry, contact
+    rules and lifecycle on whichever backend happened to sort first.
+    """
+    by_tld: dict[str, list[tuple[Path, dict]]] = {}
+    for path, spec in specs:
+        by_tld.setdefault(tld_name(spec), []).append((path, spec))
+
+    resolved: list[tuple[Path, dict]] = []
+    unmapped: list[str] = []
+    for tld, entries in sorted(by_tld.items()):
+        if len(entries) == 1:
+            resolved.append(entries[0])
+            continue
+
+        available = {spec_backend(spec, path): (path, spec) for path, spec in entries}
+        choice = choices.get(tld) or {}
+        wanted = choice.get("backend")
+        if not wanted:
+            unmapped.append(f"{tld} (backends: {', '.join(sorted(available))})")
+            continue
+        if wanted not in available:
+            raise SystemExit(
+                f"{tld}: backends file selects '{wanted}', which is not in the compiled "
+                f"specs ({', '.join(sorted(available))}). Update the backends file."
+            )
+        _warn_if_migration_due(tld, choice, today=today)
+        resolved.append(available[wanted])
+
+    if unmapped:
+        raise SystemExit(
+            "These TLDs are compiled under more than one registry backend and have no entry "
+            f"in {DEFAULT_BACKENDS_FILE.name}:\n  "
+            + "\n  ".join(unmapped)
+            + "\nAdd the backend each page should document."
+        )
+    return resolved
+
+
+def _warn_if_migration_due(tld: str, choice: dict, *, today: datetime.date | None) -> None:
+    """Flag a backend choice whose documented migration date has already passed."""
+    migrates_on = choice.get("migrates_on")
+    if not isinstance(migrates_on, datetime.date):
+        return
+    if (today or datetime.date.today()) < migrates_on:
+        return
+    print(
+        f"::warning::.{tld} was due to migrate from '{choice.get('backend')}' to "
+        f"'{choice.get('migrates_to')}' on {migrates_on.isoformat()}; the knowledge base "
+        f"still documents '{choice.get('backend')}'. Confirm the migration and update "
+        f"{DEFAULT_BACKENDS_FILE.name}",
+        file=sys.stderr,
+    )
 
 
 NOTES_DIRNAME = "_notes"
@@ -274,6 +387,9 @@ def main(argv: list[str] | None = None) -> int:
     if not specs:
         print("No matching compiled spec files found.", file=sys.stderr)
         return 1
+
+    # After exclusions: an excluded multi-backend TLD needs no choice made for it.
+    specs = resolve_backends(specs, load_backend_choices(args.backends_file))
 
     if not (args.output / NOTES_DIRNAME / DEFAULT_NOTES_NAME).exists():
         print(

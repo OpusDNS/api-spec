@@ -12,11 +12,34 @@ into the Markdown pages served by Scalar under
 scripts/
 ├── generate_tld_knowledge_base.py   # CLI entry point
 └── tld_knowledge_base/
-    ├── countries.py        # ISO-3166 names + flag emoji
-    ├── formatters.py       # value formatters (durations, yes/no, …)
-    ├── render.py           # spec dict → Markdown
-    └── scalar_config.py    # idempotent sidebar registration
+    ├── countries.py              # ISO-3166 names + flag emoji
+    ├── excluded_tlds.txt         # pre-launch docs holdback
+    ├── formatters.py             # value formatters (durations, yes/no, …)
+    ├── registry_backends.yaml    # which backend to document for multi-backend TLDs
+    ├── render.py                 # spec dict → Markdown
+    └── scalar_config.py          # idempotent sidebar registration
 ```
+
+## Input layout
+
+`compile_tld_specs.py` writes `compiled_specifications/<backend>/<tld>/<version>.yaml`, and
+the generator reads only that tree. It used to write a flat `<tld>.yaml` alongside; those are
+no longer produced, but `compiled_specifications/` is gitignored and nothing prunes it, so an
+older checkout keeps serving stale flat files forever. They are ignored with a warning —
+delete them.
+
+## Multi-backend TLDs
+
+A handful of TLDs are compiled under two registry backends, usually because a migration is
+coming: `.nl` (`sidn` → `sidn_hello`), `.lu` (`dns_lu` → `restena_lu`). The knowledge base
+publishes one page per TLD, so each needs an entry in `registry_backends.yaml` naming the
+backend to document. Without one the generator fails rather than picking, because the choice
+silently swaps the page's registry, contact rules and lifecycle.
+
+`migrates_to` / `migrates_on` in that file are documentation, not automation. The generator
+never flips a backend on a date — registry migrations slip — but it warns once `migrates_on`
+has passed, so a stale entry shows up in the weekly run. Leave `migrates_on` out when the date
+is not confirmed.
 
 Generated content lives in:
 
@@ -82,6 +105,7 @@ generation:
    - `--include-disabled` &mdash; also render specs with
      `tld_configuration.enabled: false`.
    - `--tld NAME` &mdash; limit generation to one TLD; may be repeated.
+   - `--backends-file PATH` &mdash; path to `registry_backends.yaml`.
 
 3. Inspect the changes with `git diff` and open a pull request.
 
