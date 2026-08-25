@@ -982,6 +982,7 @@ export const EVENT_TYPE = {
   VANITY_NS_SUSPENSION: "VANITY_NS_SUSPENSION",
   VANITY_NS_RESTORATION: "VANITY_NS_RESTORATION",
   VANITY_NS_TERMINATION: "VANITY_NS_TERMINATION",
+  CLONE: "CLONE",
 } as const satisfies Record<string, EventType>;
 
 export const EVENT_TYPE_VALUES = [
@@ -999,6 +1000,7 @@ export const EVENT_TYPE_VALUES = [
   'VANITY_NS_SUSPENSION',
   'VANITY_NS_RESTORATION',
   'VANITY_NS_TERMINATION',
+  'CLONE',
 ] as const satisfies ReadonlyArray<EventType>;
 
 export const EVENT_VERSION = {
