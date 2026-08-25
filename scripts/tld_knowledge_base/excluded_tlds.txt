@@ -7,8 +7,6 @@ dk
 mx
 pt
 ee
-se
-nu
 berlin
 hamburg
 bayern
