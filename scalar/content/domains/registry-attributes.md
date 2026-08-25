@@ -200,6 +200,7 @@ Use `GET /v1/tlds/{tld}` for the authoritative, up-to-date list, and each TLD's
 | `.ca` | CIRA | `CIRA_CPR` | registrant, admin |
 | `.nl` | SIDN | `SIDN_LEGAL_FORM`, `SIDN_LEGAL_REG_NO` | registrant, admin, tech |
 | `.ro` | ROTLD | `ROTLD_CONTACT_TYPE`, `ROTLD_CNP_FISCAL_CODE`, `ROTLD_ID_NUMBER`, `ROTLD_REGISTRATION_NUMBER` | registrant, admin, tech, billing |
+| [`.se`](/tld-knowledge-base/cctlds/se#contact-attributes), [`.nu`](/tld-knowledge-base/cctlds/nu#contact-attributes) | Internetstiftelsen | `REGISTRY_SE_ORG_NO`, `REGISTRY_SE_VAT_NO` | registrant |
 
 ### Example: .fr registration (AFNIC)
 
