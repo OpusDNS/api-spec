@@ -928,6 +928,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/no.md",
                 "showInSidebar": true
               },
+              "/nu": {
+                "type": "page",
+                "title": "🇳🇺 .nu",
+                "filepath": "content/tld-knowledge-base/cctlds/nu.md",
+                "showInSidebar": true
+              },
               "/org.bh": {
                 "type": "page",
                 "title": "🇧🇭 .org.bh",
@@ -980,6 +986,12 @@
                 "type": "page",
                 "title": "🇸🇨 .sc",
                 "filepath": "content/tld-knowledge-base/cctlds/sc.md",
+                "showInSidebar": true
+              },
+              "/se": {
+                "type": "page",
+                "title": "🇸🇪 .se",
+                "filepath": "content/tld-knowledge-base/cctlds/se.md",
                 "showInSidebar": true
               },
               "/si": {
