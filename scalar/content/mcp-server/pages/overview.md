@@ -14,6 +14,24 @@ execution is usually used for happen server-side. Catalog search replaces a tool
 per endpoint. Jobs templates replace a loop over domains. Field-projected reads
 replace dumping your portfolio into the model's context.
 
+## Try asking
+
+Once your client is connected, you talk to it in your own words — the model
+picks the tools. A few that exercise each family:
+
+- *"How many domains do I have, and what is expiring in the next 90 days?"*
+- *"Which of my .com domains expire in the next 30 days? Just the names and
+  dates."*
+- *"Lock transfers on everything tagged migration."*
+- *"Renew acme-labs.com for a year."*
+- *"Turn off auto-renew on every .io that expires this quarter."*
+- *"Batch batch_01k3n0m5xrf9pab6t2wqzhkvr3 has failures — retry only the ones
+  that ran out of funds."*
+
+The first two answer straight away. The rest write, so each one stops and asks
+you to approve it before anything reaches the OpusDNS API — and the bulk ones
+show you how many domains matched before you decide.
+
 ## Endpoints
 
 | Environment | MCP endpoint |
@@ -107,6 +125,8 @@ one TLD at a time.
 - [Connect your client](/mcp-server/connect) — Claude, Cursor, VS Code, ChatGPT
 - [Tool workflows](/mcp-server/tool-workflows) — worked end-to-end examples
 - [Bulk operations with Jobs](/mcp-server/bulk-operations)
+- [Data handling](/mcp-server/data-handling) — what the agent sees and where it
+  goes
 - [API Quickstart](/introduction/quickstart) — the same operations over plain
   HTTP with an API key
 - [API Reference](/api-reference) — every endpoint the tools can reach

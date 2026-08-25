@@ -3773,6 +3773,13 @@
             "filepath": "content/mcp-server/pages/bulk-operations.md",
             "showInSidebar": true
           },
+          "/data-handling": {
+            "type": "page",
+            "title": "Data handling",
+            "icon": "line/interface-lock-closed",
+            "filepath": "content/mcp-server/pages/data-handling.md",
+            "showInSidebar": true
+          },
           "/tools": {
             "type": "group",
             "title": "Tools reference",
