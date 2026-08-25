@@ -60,9 +60,18 @@ generation:
    ```bash
    pip install pyyaml
    python scripts/generate_tld_knowledge_base.py            # all enabled TLDs
-   python scripts/generate_tld_knowledge_base.py --tld nl   # single TLD
    python scripts/generate_tld_knowledge_base.py --dry-run  # preview only
    ```
+
+   Prefer the full run even when you only touched one TLD's notes: pages whose
+   content did not change are left alone, so `git diff` is the filter. A full run
+   is also the only run that reconciles the corpus &mdash; it prunes pages whose
+   TLD is gone and rewrites the generated half of the `scalar.config.json`
+   sidebar.
+
+   `--tld nl` renders just that page and skips both of those steps, precisely
+   because a partial run cannot reconcile a whole corpus. Use it to iterate on one
+   page; finish with a full run so removals and the sidebar land.
 
    Useful flags:
 
@@ -72,6 +81,7 @@ generation:
    - `--config PATH` &mdash; path to `scalar.config.json`.
    - `--include-disabled` &mdash; also render specs with
      `tld_configuration.enabled: false`.
+   - `--tld NAME` &mdash; limit generation to one TLD; may be repeated.
 
 3. Inspect the changes with `git diff` and open a pull request.
 

@@ -97,7 +97,10 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--tld",
         action="append",
-        help="Limit generation to specific TLD(s); may be repeated",
+        help=(
+            "Limit generation to specific TLD(s); may be repeated. Renders only those "
+            "pages and leaves every other page and the sidebar untouched"
+        ),
     )
     return parser.parse_args(argv)
 
@@ -280,6 +283,15 @@ def main(argv: list[str] | None = None) -> int:
         )
 
     entries = write_pages(specs, args.output, dry_run=args.dry_run)
+
+    if allowlist is not None:
+        # Pruning stale pages and rewriting the sidebar both reconcile the whole corpus
+        # against this run's output. An allowlisted run only rendered part of it, so
+        # reconciling would delete every page the run was told to skip. Both stay the
+        # job of a full run, which is what CI does.
+        print("--tld run: leaving other pages and scalar.config.json untouched")
+        return 0
+
     keep = {(category, slug) for category, slug, _ in entries}
     prune_stale_pages(args.output, keep, dry_run=args.dry_run)
 

@@ -3,6 +3,7 @@
 Run from the ``scripts/`` directory (or repo root) with ``python -m pytest``.
 """
 
+import json
 from pathlib import Path
 
 import pytest
@@ -15,6 +16,7 @@ from generate_tld_knowledge_base import (
     load_excluded,
     load_notes,
     load_specs,
+    main,
 )
 
 
@@ -152,3 +154,75 @@ def test_is_manual_detects_manual_protocol() -> None:
 def test_is_manual_fails_fast_on_unknown_protocol(protocol: str) -> None:
     with pytest.raises(SystemExit, match="unknown registry.provisioning_protocol"):
         is_manual({"registry": {"provisioning_protocol": protocol}}, "x.yaml")
+
+
+# ---------------------------------------------------------------------------
+# --tld runs render part of the corpus, so they must not reconcile the whole of it
+# ---------------------------------------------------------------------------
+
+
+def _generated_corpus(tmp_path: Path) -> tuple[Path, Path, Path]:
+    """Build an input dir, an output dir and a config, then generate them in full."""
+    input_dir = tmp_path / "compiled"
+    input_dir.mkdir()
+    for name in ("keep", "target"):
+        _write_spec(input_dir, name)
+
+    output_dir = tmp_path / "tld-knowledge-base"
+    _write(output_dir, DEFAULT_NOTES_NAME, "## Notes\n\ndefault\n")
+
+    config_path = tmp_path / "scalar.config.json"
+    config_path.write_text(
+        json.dumps({"navigation": {"routes": {"/tld-knowledge-base": {"children": {}}}}}),
+        encoding="utf-8",
+    )
+
+    argv = ["--input", str(input_dir), "--output", str(output_dir), "--config", str(config_path)]
+    assert main(argv) == 0
+    return input_dir, output_dir, config_path
+
+
+def _page_slugs(output_dir: Path) -> set[str]:
+    return {
+        path.stem
+        for category in ("cctlds", "gtlds")
+        for path in (output_dir / category).glob("*.md")
+    }
+
+
+def _sidebar_slugs(config_path: Path) -> set[str]:
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    groups = config["navigation"]["routes"]["/tld-knowledge-base"]["children"]
+    return {slug.lstrip("/") for group in groups.values() for slug in group["children"]}
+
+
+def test_tld_run_leaves_other_pages_and_sidebar_alone(tmp_path: Path) -> None:
+    input_dir, output_dir, config_path = _generated_corpus(tmp_path)
+    assert _page_slugs(output_dir) == {"keep", "target"}
+    assert _sidebar_slugs(config_path) == {"keep", "target"}
+
+    _write(output_dir, "target.md", "## Notes\n\ntarget-specific\n")
+    argv = [
+        "--input", str(input_dir),
+        "--output", str(output_dir),
+        "--config", str(config_path),
+        "--tld", "target",
+    ]
+    assert main(argv) == 0
+
+    # The allowlisted page picked up its new notes...
+    assert "target-specific" in (output_dir / "gtlds" / "target.md").read_text(encoding="utf-8")
+    # ...and nothing else was pruned or dropped from the sidebar.
+    assert _page_slugs(output_dir) == {"keep", "target"}
+    assert _sidebar_slugs(config_path) == {"keep", "target"}
+
+
+def test_full_run_still_prunes_a_page_that_left_the_corpus(tmp_path: Path) -> None:
+    input_dir, output_dir, config_path = _generated_corpus(tmp_path)
+
+    (input_dir / "keep.yaml").unlink()
+    argv = ["--input", str(input_dir), "--output", str(output_dir), "--config", str(config_path)]
+    assert main(argv) == 0
+
+    assert _page_slugs(output_dir) == {"target"}
+    assert _sidebar_slugs(config_path) == {"target"}
