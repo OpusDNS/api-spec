@@ -2726,6 +2726,7 @@ export const KEYS_DOMAIN_STATUSES_BASE = [
 
 export const KEY_DOMAIN_SUMMARY_DATA_BY_ORGANIZATION = 'by_organization' satisfies keyof DomainSummaryData;
 export const KEY_DOMAIN_SUMMARY_DATA_BY_STATUS = 'by_status' satisfies keyof DomainSummaryData;
+export const KEY_DOMAIN_SUMMARY_DATA_BY_STATUS_TAG = 'by_status_tag' satisfies keyof DomainSummaryData;
 export const KEY_DOMAIN_SUMMARY_DATA_BY_TLD = 'by_tld' satisfies keyof DomainSummaryData;
 export const KEY_DOMAIN_SUMMARY_DATA_EXPIRING_SOON = 'expiring_soon' satisfies keyof DomainSummaryData;
 export const KEY_DOMAIN_SUMMARY_DATA_TOTAL_COUNT = 'total_count' satisfies keyof DomainSummaryData;
@@ -2733,6 +2734,7 @@ export const KEY_DOMAIN_SUMMARY_DATA_TOTAL_COUNT = 'total_count' satisfies keyof
 export const KEYS_DOMAIN_SUMMARY_DATA = [
   KEY_DOMAIN_SUMMARY_DATA_BY_ORGANIZATION,
   KEY_DOMAIN_SUMMARY_DATA_BY_STATUS,
+  KEY_DOMAIN_SUMMARY_DATA_BY_STATUS_TAG,
   KEY_DOMAIN_SUMMARY_DATA_BY_TLD,
   KEY_DOMAIN_SUMMARY_DATA_EXPIRING_SOON,
   KEY_DOMAIN_SUMMARY_DATA_TOTAL_COUNT,

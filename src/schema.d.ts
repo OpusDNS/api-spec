@@ -6840,6 +6840,13 @@ export interface components {
                 [key: string]: number;
             };
             /**
+             * By Status Tag
+             * @description Domain counts by status tag (status_tag: count), only status tags with at least one domain
+             */
+            by_status_tag: {
+                [key: string]: number;
+            };
+            /**
              * By Tld
              * @description Domain counts by TLD (tld: count)
              */

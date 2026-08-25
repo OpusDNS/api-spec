@@ -5958,6 +5958,15 @@ components:
           description: 'Domain counts by status (status: count)'
           title: By Status
           type: object
+        by_status_tag:
+          additionalProperties:
+            type: integer
+          description: 'Domain counts by status tag (status_tag: count), only status
+            tags with at least one domain'
+          propertyNames:
+            $ref: '#/components/schemas/StatusTagType'
+          title: By Status Tag
+          type: object
         by_tld:
           additionalProperties:
             type: integer
@@ -5974,6 +5983,7 @@ components:
       required:
       - total_count
       - by_status
+      - by_status_tag
       - by_tld
       - by_organization
       - expiring_soon
@@ -15700,7 +15710,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-25-003145
+  version: 2026-08-25-075629
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
