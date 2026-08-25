@@ -435,6 +435,13 @@
                     "icon": "line/travel-map-earth-globe",
                     "filepath": "content/tlds/uk-operations.md",
                     "showInSidebar": true
+                  },
+                  "/se": {
+                    "type": "page",
+                    "title": ".se and .nu operations",
+                    "icon": "line/travel-map-earth-globe",
+                    "filepath": "content/tlds/se-operations.md",
+                    "showInSidebar": true
                   }
                 }
               },
