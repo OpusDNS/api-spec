@@ -645,6 +645,11 @@ export type POST_DomainsTldSpecificNoByDomainReferenceResendDeclarationEmail_Req
 };
 export type POST_DomainsTldSpecificNoByDomainReferenceResendDeclarationEmail_Request_Path = POST_DomainsTldSpecificNoByDomainReferenceResendDeclarationEmail_Request['parameters']['path'];
 
+export type POST_DomainsTldSpecificNuByDomainReferenceAuthCodeRequest_Request = {
+  parameters: operations['request_auth_code_v1_domains_tld_specific_nu__domain_reference__auth_code_request_post']['parameters'];
+};
+export type POST_DomainsTldSpecificNuByDomainReferenceAuthCodeRequest_Request_Path = POST_DomainsTldSpecificNuByDomainReferenceAuthCodeRequest_Request['parameters']['path'];
+
 export type POST_DomainsTldSpecificSeByDomainReferenceAuthCodeRequest_Request = {
   parameters: operations['request_auth_code_v1_domains_tld_specific_se__domain_reference__auth_code_request_post']['parameters'];
 };
