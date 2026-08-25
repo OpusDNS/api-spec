@@ -100,6 +100,12 @@
         "newTab": false
       },
       {
+        "title": "MCP",
+        "icon": "phosphor/regular/plugs",
+        "to": "/mcp-server",
+        "newTab": false
+      },
+      {
         "title": "TLD Info",
         "icon": "line/travel-map-earth-globe",
         "to": "/tld-knowledge-base",
@@ -3696,6 +3702,118 @@
                 "showInSidebar": true
               }
             }
+          }
+        }
+      },
+      "/mcp-server": {
+        "type": "group",
+        "title": "MCP server",
+        "icon": "phosphor/regular/plugs",
+        "children": {
+          "/": {
+            "type": "page",
+            "title": "Overview",
+            "icon": "line/interface-home-house",
+            "filepath": "content/mcp-server/pages/overview.md",
+            "showInSidebar": true
+          },
+          "/connect": {
+            "type": "group",
+            "title": "Connect your client",
+            "icon": "line/interface-login-key",
+            "children": {
+              "/": {
+                "type": "page",
+                "title": "Claude and Claude Code",
+                "icon": "line/interface-login-key",
+                "filepath": "content/mcp-server/pages/connect-claude.md",
+                "showInSidebar": true
+              },
+              "/editors": {
+                "type": "page",
+                "title": "Cursor, VS Code, and ChatGPT",
+                "icon": "line/programming-script-code",
+                "filepath": "content/mcp-server/pages/connect-editors.md",
+                "showInSidebar": true
+              },
+              "/oauth": {
+                "type": "page",
+                "title": "OAuth details",
+                "icon": "phosphor/regular/shield-check",
+                "filepath": "content/mcp-server/pages/connect-oauth.md",
+                "showInSidebar": true
+              }
+            }
+          },
+          "/tool-workflows": {
+            "type": "page",
+            "title": "Tool workflows",
+            "icon": "line/arrow-right",
+            "filepath": "content/mcp-server/pages/tool-workflows.md",
+            "showInSidebar": true
+          },
+          "/approvals": {
+            "type": "page",
+            "title": "Approvals and confirmations",
+            "icon": "phosphor/regular/shield-check",
+            "filepath": "content/mcp-server/pages/approvals.md",
+            "showInSidebar": true
+          },
+          "/bulk-operations": {
+            "type": "page",
+            "title": "Bulk operations with Jobs",
+            "icon": "phosphor/regular/stack",
+            "filepath": "content/mcp-server/pages/bulk-operations.md",
+            "showInSidebar": true
+          },
+          "/tools": {
+            "type": "group",
+            "title": "Tools reference",
+            "icon": "line/programming-script-code",
+            "children": {
+              "/": {
+                "type": "page",
+                "title": "All tools",
+                "icon": "line/programming-script-code",
+                "filepath": "content/mcp-server/generated/tools.md",
+                "showInSidebar": true
+              },
+              "/discovery": {
+                "type": "page",
+                "title": "Discovery tools",
+                "icon": "line/interface-content-book-open-pages",
+                "filepath": "content/mcp-server/generated/tools-discovery.md",
+                "showInSidebar": true
+              },
+              "/bulk": {
+                "type": "page",
+                "title": "Bulk tools",
+                "icon": "phosphor/regular/stack",
+                "filepath": "content/mcp-server/generated/tools-bulk.md",
+                "showInSidebar": true
+              },
+              "/portfolio": {
+                "type": "page",
+                "title": "Portfolio tools",
+                "icon": "phosphor/regular/chart-bar",
+                "filepath": "content/mcp-server/generated/tools-portfolio.md",
+                "showInSidebar": true
+              },
+              "/templates": {
+                "type": "page",
+                "title": "Bulk templates",
+                "icon": "line/interface-content-file",
+                "filepath": "content/mcp-server/generated/bulk-templates.md",
+                "showInSidebar": true
+              }
+            }
+          },
+          "/troubleshooting": {
+            "type": "page",
+            "title": "Troubleshooting",
+            "icon": "line/interface-setting-cog",
+            "filepath": "content/mcp-server/pages/troubleshooting.md",
+            "showInSidebar": true
           }
         }
       }
