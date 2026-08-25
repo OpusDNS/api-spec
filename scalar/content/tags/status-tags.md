@@ -1,7 +1,7 @@
 # Status tags
 
 Status tags are system-managed labels that OpusDNS assigns automatically
-based on the state of a domain. Unlike [user tags](/products/domains/user-tags),
+based on the state of a domain. Unlike [user tags](/automation/tags/user-tags),
 you cannot create, modify, or remove status tags through the API — they are
 controlled entirely by the system and reflect conditions that may require your
 attention.
@@ -18,6 +18,13 @@ your part to manage these tags.
 | Tag type | Label | Description |
 | --- | --- | --- |
 | `VERIFICATION_REQUIRED` | VERIFICATION REQUIRED | The domain requires identity verification from the registrant. Assigned when a registry mandates holder verification and removed once verification is completed. |
+| `CREATE_REQUESTED` | CREATE REQUESTED | The registration was accepted but the domain does not exist at the registry yet, because it is waiting on an out-of-band step — the signed applicant declaration for a `.no` registration, for example. The domain cannot be updated while this tag is set. Removed once the registry create succeeds. |
+| `INBOUND_TRANSFER_PENDING` | INBOUND TRANSFER PENDING | A transfer of the domain into your account is in progress at the registry. |
+| `OUTBOUND_TRANSFER_PENDING` | OUTBOUND TRANSFER PENDING | A transfer of the domain away from your account is pending. Removed when the transfer completes or is rejected. |
+| `EXTERNAL` | EXTERNAL | The domain is mirrored from a connected external registrar rather than sponsored by OpusDNS. See [Read-only domains](/products/domains/manage#read-only-domains). |
+| `IMPORT_REQUESTED` | IMPORT REQUESTED | The domain was bulk-imported and is awaiting its initial registry synchronization. |
+| `IMPORT_PENDING` | IMPORT PENDING | The initial registry synchronization for an imported domain has been queued and is awaiting execution. |
+| `DNSSEC_PENDING` | DNSSEC PENDING | The zone is signed, but the registry has not yet accepted the DS record and the submission is being retried. See [Domain DNSSEC](/products/domains/dnssec). |
 
 <scalar-callout type="info">
 Additional status tag types may be introduced over time. Your integration should handle unknown <code>tag_type</code> values gracefully.
@@ -86,6 +93,7 @@ When filtering by multiple status tags, control the matching behavior with
 | --- | --- |
 | `match_any` | Domain matches if it has **at least one** of the specified status tags. This is the default. |
 | `match_all` | Domain matches only if it has **all** of the specified status tags. |
+| `match_none` | Domain matches only if it has **none** of the specified status tags. Domains carrying no status tags at all are included. |
 
 ```bash
 curl "$OPUSDNS_API_BASE/v1/domains?status_tags=VERIFICATION_REQUIRED&status_tag_mode=match_all&include=tags" \
@@ -109,7 +117,7 @@ codes.
 
 ## Related guides
 
-- [User tags](/products/domains/user-tags) — create and manage your own tags
+- [User tags](/automation/tags/user-tags) — create and manage your own tags
 - [The domain object](/products/domains/domain-object) — full domain response reference
 - [Manage a domain](/products/domains/manage) — update domain configuration
 

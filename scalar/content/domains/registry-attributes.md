@@ -185,7 +185,8 @@ curl "$OPUSDNS_API_BASE/v1/contacts/attribute-sets/cas_01j5..." \
 ## Supported TLDs and attributes
 
 The following TLDs currently require or accept registry-specific attributes.
-Use `GET /v1/tlds/{tld}` for the authoritative, up-to-date list.
+Use `GET /v1/tlds/{tld}` for the authoritative, up-to-date list, and each TLD's
+[TLD Knowledge Base](/tld-knowledge-base) page for what its attributes mean.
 
 | TLD | Registry | Key attributes | Roles |
 | --- | --- | --- | --- |
@@ -193,8 +194,8 @@ Use `GET /v1/tlds/{tld}` for the authoritative, up-to-date list.
 | `.de` | DENIC | `DE_CONTACT_TYPE` | registrant |
 | `.eu` | EURid | `eurid:type` | registrant, tech |
 | `.be` | DNS Belgium | `dnsbe:type` | registrant, tech |
-| `.fr` | AFNIC | `AFNIC_CONTACT_TYPE`, `AFNIC_PP_FIRST_NAME`, `AFNIC_PM_LEGAL_STATUS`, `AFNIC_PM_SIREN`, and more | registrant, admin, tech |
-| `.re`, `.pm`, `.wf`, `.yt`, `.tf` | AFNIC | Same as `.fr` | registrant, admin, tech |
+| [`.fr`](/tld-knowledge-base/cctlds/fr#contact-attributes) | AFNIC | `AFNIC_CONTACT_TYPE`, `AFNIC_PP_FIRST_NAME`, `AFNIC_PM_LEGAL_STATUS`, `AFNIC_PM_SIREN`, and more | registrant, admin, tech |
+| [`.re`](/tld-knowledge-base/cctlds/re#contact-attributes), [`.pm`](/tld-knowledge-base/cctlds/pm#contact-attributes), [`.wf`](/tld-knowledge-base/cctlds/wf#contact-attributes), [`.yt`](/tld-knowledge-base/cctlds/yt#contact-attributes), [`.tf`](/tld-knowledge-base/cctlds/tf#contact-attributes) | AFNIC | Same as `.fr` | registrant, admin, tech |
 | `.uk` | Nominet | `NOMINET_CONTACT_TYPE`, `NOMINET_CO_NO`, `NOMINET_TRAD_NAME` | registrant |
 | `.ca` | CIRA | `CIRA_CPR` | registrant, admin |
 | `.nl` | SIDN | `SIDN_LEGAL_FORM`, `SIDN_LEGAL_REG_NO` | registrant, admin, tech |
@@ -206,7 +207,10 @@ AFNIC TLDs distinguish between natural persons (`PP`) and legal entities
 (`PM`). A natural person requires `AFNIC_CONTACT_TYPE` and
 `AFNIC_PP_FIRST_NAME`. A legal entity requires `AFNIC_PM_LEGAL_STATUS` and,
 depending on the status, identifiers like `AFNIC_PM_SIREN` or association
-details.
+details. AFNIC requires these attributes on the administrative and technical
+contacts too, not only the registrant — see
+[Contact attributes on `.fr`](/tld-knowledge-base/cctlds/fr#contact-attributes)
+for the full set and the rules that govern it.
 
 ```bash
 curl "$OPUSDNS_API_BASE/v1/contacts/attribute-sets" \
