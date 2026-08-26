@@ -130,7 +130,8 @@ samp {
 	color: black !important;
 }
 
-.tabs {
+.tabs,
+.t-header__tabs {
 	font-family: var(--scalar-font);
 	height: var(--opusdns-tabs-height) !important;
 }
@@ -179,7 +180,7 @@ samp {
 	padding-top: 24px !important;
 }
 
-.page-content .page > .content {
+.page-content .page>.content {
 	margin-top: 0 !important;
 	padding-top: 0 !important;
 }
