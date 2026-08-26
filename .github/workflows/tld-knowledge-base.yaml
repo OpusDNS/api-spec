@@ -38,6 +38,16 @@ jobs:
       - name: Checkout api-spec
         uses: actions/checkout@v7
 
+      # Base on current origin/main before generating, so the bot branch never
+      # looks like it reverts commits landed since checkout. Doing it here rather
+      # than after generation (stash / reset --hard / stash pop) also removes the
+      # failure mode where the stash pop conflicts on scalar.config.json because
+      # origin/main moved meanwhile, and the job dies dirty with no PR.
+      - name: Base on latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
       - name: Checkout tld-specifications
         uses: actions/checkout@v7
         with:
@@ -80,27 +90,17 @@ jobs:
           python scripts/generate_tld_knowledge_base.py \
             --input tld-specifications/compiled_specifications
 
+      # git diff ignores untracked files, so a brand-new page would report
+      # "unchanged" — masked here only because scalar.config.json always changes
+      # alongside. --porcelain sees both.
       - name: Detect changes
         id: diff
         run: |
-          if git diff --quiet --exit-code -- \
-              scalar/content/tld-knowledge-base scalar/scalar.config.json; then
+          if [ -z "$(git status --porcelain -- scalar/content/tld-knowledge-base scalar/scalar.config.json)" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
-
-      - name: Rebase on latest main
-        if: steps.diff.outputs.changed == 'true'
-        run: |
-          # Avoid pushing a bot branch whose base lags behind origin/main,
-          # which would otherwise look like the bot is reverting unrelated
-          # commits (e.g. workflow file updates) and be rejected by GitHub.
-          git fetch origin main
-          git stash push --include-untracked -- \
-            scalar/content/tld-knowledge-base scalar/scalar.config.json
-          git reset --hard origin/main
-          git stash pop
 
       - name: Open pull request
         if: steps.diff.outputs.changed == 'true'

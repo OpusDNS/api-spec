@@ -61,33 +61,67 @@ import {
 
 ## Documentation
 
-There are two documentation setups in this repository:
+[developers.opusdns.com](https://developers.opusdns.com/) is served by
+[Scalar Docs 2.0](https://scalar.com/products/docs/getting-started) from
+[`scalar/`](./scalar/) in this repository.
 
-### Legacy: GitHub Pages API Reference (production)
+### How publishing works
 
-The `docs/` folder is a static site that embeds
-[`@scalar/api-reference`](https://github.com/scalar/scalar) and is published
-via GitHub Pages on [developers.opusdns.com](https://developers.opusdns.com/).
-Source of truth: [`docs/index.html`](./docs/index.html). Do **not** put
-guides/Markdown content here.
+**Merging to `main` publishes.** Scalar's GitHub integration builds `main`; there
+is no deploy workflow in this repo and no Scalar token. The custom domain is
+declared in the config itself
+([`scalar/scalar.config.json`](./scalar/scalar.config.json), `siteConfig.customDomain`),
+not in CI. Nothing in the repository shows this connection, so it is written down
+here: if publishing ever stops, the integration in the Scalar dashboard is where
+to look.
 
-### Scalar Docs 2.0 (local preview)
+**Every PR gets a preview.** The same integration builds each pull request and
+posts a throwaway URL as a comment (`…--opusdns-api-spec.apidocumentation.com`),
+so you can read a change as rendered before merging it. Use it — a bad `filepath`
+or an icon name Scalar does not know renders as nothing rather than failing, and
+merging is what makes that public.
 
-A more sophisticated documentation setup using
-[Scalar Docs 2.0](https://scalar.com/products/docs/getting-started) is
-contained in [`scalar/`](./scalar/). The Scalar project config lives at
-[`scalar/scalar.config.json`](./scalar/scalar.config.json), guide content lives
-under [`scalar/content/`](./scalar/content/), and the API reference is
-fetched from the raw GitHub copy of [`src/openapi.yaml`](./src/openapi.yaml).
+The preview does not, however, cover the two sync workflows' own PRs: GitHub
+suppresses workflow runs for PRs opened with `GITHUB_TOKEN`, so those workflows
+validate the config inline before opening theirs.
 
-To preview locally:
+### Layout
+
+| Path | What |
+| --- | --- |
+| `scalar/scalar.config.json` | The whole site: tabs, sidebar routes, theme. Every page's title, icon and URL live here — content files carry no frontmatter |
+| `scalar/content/` | Guide Markdown |
+| `scalar/content/tld-knowledge-base/` | **Generated** from `OpusDNS/tld-specifications` by `scripts/generate_tld_knowledge_base.py` |
+| `scalar/content/mcp-server/` | **Generated** in `OpusDNS/opusdns-mcp` and mirrored here by `scripts/sync_mcp_docs.py` |
+| `src/openapi.yaml` | The spec. The API Reference tab is fetched by Scalar from the raw GitHub URL at build time, so it is eventually consistent rather than bundled |
+
+Two workflows write `scalar.config.json`: **Generate TLD Knowledge Base** and
+**Sync MCP Server Docs**. Each rebuilds only the subtree it owns and both
+serialise identically (`json.dumps(..., indent=2, ensure_ascii=False)` plus a
+trailing newline), so hand edits should match that style — otherwise the next bot
+PR reformats your lines.
+
+### Local preview
 
 ```bash
 npm install
 npm --prefix scalar install
 npm run docs:preview
 # → http://localhost:7970
+
+npm --prefix scalar run check   # validate scalar.config.json
 ```
+
+Run `check` before pushing anything that touches the config. A `filepath`
+pointing at a file that does not exist, or an icon name Scalar does not know,
+renders as nothing — and merging is what publishes.
+
+### The legacy `docs/` folder
+
+[`docs/`](./docs/) is a static GitHub Pages site that embeds
+[`@scalar/api-reference`](https://github.com/scalar/scalar). GitHub Pages is
+still configured for it, but DNS points at Scalar, so **it is not what serves the
+domain**. Treat it as vestigial; do not put content there.
 
 ### Links
 
