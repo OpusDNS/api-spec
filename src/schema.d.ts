@@ -1063,7 +1063,18 @@ export interface paths {
         };
         /**
          * Suggest domains
-         * @description Get a list of domain suggestions based on a search query
+         * @description Get a list of domain suggestions based on a search query.
+         *
+         *     Suggestions are generated and ranked by relevance rather than enumerated from a fixed list, so the
+         *     results depend on the shape of `query`:
+         *
+         *     - **Keyword or phrase** (e.g. `bluewidgets`) — every result is a generated name, and its `available`
+         *       flag is best-effort.
+         *     - **Full domain name** (e.g. `bluewidgets.de`) — the queried domain is always returned as the first
+         *       result, with availability checked directly against the registry.
+         *
+         *     Use a full domain name, or `GET /v1/availability`, whenever you need a definitive answer about a
+         *     specific domain.
          */
         get: operations["suggest_v1_domain_search_suggest_get"];
         put?: never;
@@ -19178,9 +19189,9 @@ export interface operations {
     suggest_v1_domain_search_suggest_get: {
         parameters: {
             query: {
-                /** @description The primary keyword or phrase for the domain search */
+                /** @description The primary keyword or phrase for the domain search. A full domain name is always returned as the first result, with registry-checked availability. */
                 query: string;
-                /** @description The TLDs to include in the search */
+                /** @description Restricts results to these TLDs. This is a filter, not a guarantee: suggestions are ranked by relevance across the whole requested set, so a listed TLD may be absent from the results even when available names exist in it, and raising `limit` does not change that. To guarantee a TLD is represented, query it on its own. */
                 tlds?: string[] | null;
                 /** @description The maximum number of domain suggestions to return */
                 limit?: number | null;

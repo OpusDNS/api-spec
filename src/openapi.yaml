@@ -15765,7 +15765,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-26-021624
+  version: 2026-08-26-165903
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -23423,18 +23423,33 @@ paths:
       - domain_forwards:manage
   /v1/domain-search/suggest:
     get:
-      description: Get a list of domain suggestions based on a search query
+      description: "Get a list of domain suggestions based on a search query.\n\n\
+        Suggestions are generated and ranked by relevance rather than enumerated from\
+        \ a fixed list, so the\nresults depend on the shape of `query`:\n\n- **Keyword\
+        \ or phrase** (e.g. `bluewidgets`) \u2014 every result is a generated name,\
+        \ and its `available`\n  flag is best-effort.\n- **Full domain name** (e.g.\
+        \ `bluewidgets.de`) \u2014 the queried domain is always returned as the first\n\
+        \  result, with availability checked directly against the registry.\n\nUse\
+        \ a full domain name, or `GET /v1/availability`, whenever you need a definitive\
+        \ answer about a\nspecific domain."
       operationId: suggest_v1_domain_search_suggest_get
       parameters:
-      - description: The primary keyword or phrase for the domain search
+      - description: The primary keyword or phrase for the domain search. A full domain
+          name is always returned as the first result, with registry-checked availability.
         in: query
         name: query
         required: true
         schema:
-          description: The primary keyword or phrase for the domain search
+          description: The primary keyword or phrase for the domain search. A full
+            domain name is always returned as the first result, with registry-checked
+            availability.
           title: Query
           type: string
-      - description: The TLDs to include in the search
+      - description: 'Restricts results to these TLDs. This is a filter, not a guarantee:
+          suggestions are ranked by relevance across the whole requested set, so a
+          listed TLD may be absent from the results even when available names exist
+          in it, and raising `limit` does not change that. To guarantee a TLD is represented,
+          query it on its own.'
         examples:
           list:
             summary: A list of TLDs
@@ -23451,7 +23466,11 @@ paths:
               type: string
             type: array
           - type: 'null'
-          description: The TLDs to include in the search
+          description: 'Restricts results to these TLDs. This is a filter, not a guarantee:
+            suggestions are ranked by relevance across the whole requested set, so
+            a listed TLD may be absent from the results even when available names
+            exist in it, and raising `limit` does not change that. To guarantee a
+            TLD is represented, query it on its own.'
           title: Tlds
       - description: The maximum number of domain suggestions to return
         in: query
@@ -33664,9 +33683,33 @@ tags:
 - description: ''
   name: domain_tld_specific
   x-displayName: TLD specific domain management
-- description: 'Endpoints for searching domains.
-
-    '
+- description: "Endpoints for searching domains.\n\n### Keyword queries vs. full domain\
+    \ names\n\n`GET /v1/domain-search/suggest` behaves differently depending on the\
+    \ shape of the `query` value:\n\n- **Keyword or phrase** (e.g. `bluewidgets`)\
+    \ \u2014 every result is a name produced by our suggestion engine, which generates\
+    \ candidates and ranks them by relevance. No particular name is guaranteed to\
+    \ appear.\n- **Full domain name** (e.g. `bluewidgets.de`) \u2014 the queried domain\
+    \ is always returned as the first result, and its availability is checked directly\
+    \ against the registry rather than coming from the suggestion engine.\n\nUse a\
+    \ full domain name whenever you need a definitive answer about one specific domain.\
+    \ To check several specific domains at once, use `GET /v1/availability` instead.\n\
+    \n### `tlds` restricts results, it does not guarantee them\n\nThe `tlds` parameter\
+    \ is a filter: results are limited to the TLDs you list, but a TLD you list may\
+    \ still be absent from the response. Suggestions are ranked by relevance across\
+    \ the whole requested set, so a keyword whose strongest candidates are `.com`/`.net`/`.org`\
+    \ names can return no `.de` results even though available `.de` names exist for\
+    \ that keyword.\n\nThis is consistent for a given keyword rather than random \u2014\
+    \ the same query returns the same TLD mix each time \u2014 and raising `limit`\
+    \ does not change it.\n\nTo guarantee that a TLD is represented, query it on its\
+    \ own:\n\n```\nGET /v1/domain-search/suggest?query=bluewidgets&tlds=de&limit=5\n\
+    ```\n\nIssuing one request per TLD is the reliable way to build a per-TLD view\
+    \ in a search interface.\n\n### Availability of suggestions\n\nThe `available`\
+    \ flag on a generated suggestion is best-effort. Our suggestion engine's data\
+    \ is not authoritative for every TLD, and it is less accurate for some ccTLDs,\
+    \ so a suggestion can occasionally be shown as available when it is not.\n\nAvailability\
+    \ is authoritative in two cases: when the query is a full domain name (the first\
+    \ result), and for domains checked via `GET /v1/availability`. Always confirm\
+    \ with one of those before presenting a domain as purchasable.\n"
   name: domain_search
   x-displayName: Domain search
 - description: "Endpoints for managing host objects (nameserver glue records).\n\n\
