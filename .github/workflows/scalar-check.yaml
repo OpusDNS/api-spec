@@ -5,9 +5,11 @@ name: Validate Scalar docs
 # rendered preview on each PR, but that is a human-review aid: it reports a
 # successful build, not whether a nav entry points at a file that exists.
 #
-# Note this does NOT run on the bot PRs from the two sync workflows: GitHub
-# suppresses workflow runs for PRs opened with GITHUB_TOKEN. Those workflows
-# therefore run `scalar project check-config` inline before opening their PR.
+# Note this does NOT run on the bots' PRs: GitHub suppresses workflow runs for
+# pull requests opened with a token rather than by a person. Both bots — Generate
+# TLD Knowledge Base here, and Publish MCP docs to api-spec over in
+# OpusDNS/opusdns-mcp — therefore run `scalar project check-config` inline before
+# opening their PR.
 
 on:
   pull_request:
