@@ -7,13 +7,6 @@ and no server to run. Point any MCP client that speaks remote Streamable HTTP at
 the endpoint, sign in with your OpusDNS account, and the client gets nine tools
 that cover the whole API.
 
-The server runs **no code execution**. That is a deliberate constraint rather
-than a gap: a hosted server can neither force nor prevent code execution on a
-third-party client, so instead of shipping an interpreter, the three things code
-execution is usually used for happen server-side. Catalog search replaces a tool
-per endpoint. Jobs templates replace a loop over domains. Field-projected reads
-replace dumping your portfolio into the model's context.
-
 ## Try asking
 
 Once your client is connected, you talk to it in your own words — the model
