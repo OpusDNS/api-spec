@@ -54,9 +54,9 @@ uninteresting as a store:
 | | |
 | --- | --- |
 | Logged per request | The request line only — method, path, status code, duration, source address and a request ID |
-| Not logged | Tool arguments, domain names, request bodies, response bodies |
+| Not logged | Domain names, request bodies, response bodies, and the arguments you pass a tool — with one exception: the optional label you give a bulk submission is recorded, so a batch can be traced back |
 | Kept between calls | Nothing about your domains. The one exception is an approval marker, so an approval cannot be used twice; it expires within minutes and carries no domain names and no request contents |
-| Sent to third parties | Nothing. The server talks to the OpusDNS API and to the OpusDNS identity provider, and to nothing else |
+| Sent to third parties | Nothing. The server talks to the OpusDNS API, the OpusDNS identity provider, and its own store for the approval marker above — all OpusDNS infrastructure |
 
 Calls the server makes on your behalf arrive at the OpusDNS API as ordinary API
 requests, and appear in your account's request history like any other client's.
