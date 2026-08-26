@@ -6,20 +6,18 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ### 25 August 2026
 
-- Added **documentation for the OpusDNS MCP server** under the new **MCP** tab.
-  The server itself is not new — it has been live at
-  `https://api.opusdns.com/mcp` (sandbox: `https://sandbox.opusdns.com/mcp`) —
-  but nothing described it. It is a hosted [Model Context
-  Protocol](https://modelcontextprotocol.io) endpoint that lets an AI client work
-  with your account through nine tools: catalog search and single operations,
-  portfolio reads that project only the fields you ask for, and multi-domain
-  changes submitted as [Jobs](/automation/jobs/overview) batches rather than a
-  loop. Sign-in is browser OAuth and API keys are not accepted; everything that
-  is not a read is blocked server-side until you explicitly approve it, and the
-  approval is bound to the exact action, including the resolved list of domains
-  for a bulk change. The new pages cover connecting each client, worked
-  workflows, approvals, bulk operations, what the agent can see, and
-  troubleshooting. See [OpusDNS MCP server](/mcp-server).
+- Released **the OpusDNS MCP server**, documented under the new **MCP** tab. It is
+  a hosted [Model Context Protocol](https://modelcontextprotocol.io) endpoint at
+  `https://api.opusdns.com/mcp` (sandbox: `https://sandbox.opusdns.com/mcp`) that
+  lets an AI client work with your account through nine tools: catalog search and
+  single operations, portfolio reads that project only the fields you ask for, and
+  multi-domain changes submitted as [Jobs](/automation/jobs/overview) batches
+  rather than a loop. Sign-in is browser OAuth and API keys are not accepted;
+  everything that is not a read is blocked server-side until you explicitly
+  approve it, and the approval is bound to the exact action, including the
+  resolved list of domains for a bulk change. The new pages cover connecting each
+  client, worked workflows, approvals, bulk operations, what the agent can see,
+  and troubleshooting. See [OpusDNS MCP server](/mcp-server).
 
 - Added **an exclusionary tag filter mode**: `match_none` returns only the objects
   carrying **none** of the listed tags, including objects that carry no tags at
