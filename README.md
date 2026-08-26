@@ -81,9 +81,9 @@ so you can read a change as rendered before merging it. Use it — a bad `filepa
 or an icon name Scalar does not know renders as nothing rather than failing, and
 merging is what makes that public.
 
-The preview does not, however, cover the two sync workflows' own PRs: GitHub
-suppresses workflow runs for PRs opened with `GITHUB_TOKEN`, so those workflows
-validate the config inline before opening theirs.
+The preview does not, however, cover the bots' own PRs: GitHub suppresses
+workflow runs for pull requests opened with a token rather than by a person, so
+both bots validate the config inline before opening theirs.
 
 ### Layout
 
@@ -92,14 +92,15 @@ validate the config inline before opening theirs.
 | `scalar/scalar.config.json` | The whole site: tabs, sidebar routes, theme. Every page's title, icon and URL live here — content files carry no frontmatter |
 | `scalar/content/` | Guide Markdown |
 | `scalar/content/tld-knowledge-base/` | **Generated** from `OpusDNS/tld-specifications` by `scripts/generate_tld_knowledge_base.py` |
-| `scalar/content/mcp-server/` | **Generated** in `OpusDNS/opusdns-mcp` and mirrored here by `scripts/sync_mcp_docs.py` |
+| `scalar/content/mcp-server/` | **Generated** in `OpusDNS/opusdns-mcp`, which opens a PR here carrying the diff. `scripts/sync_mcp_docs.py` lives here but is run from there — see [`scripts/mcp_docs/`](./scripts/mcp_docs/) |
 | `src/openapi.yaml` | The spec. The API Reference tab is fetched by Scalar from the raw GitHub URL at build time, so it is eventually consistent rather than bundled |
 
-Two workflows write `scalar.config.json`: **Generate TLD Knowledge Base** and
-**Sync MCP Server Docs**. Each rebuilds only the subtree it owns and both
-serialise identically (`json.dumps(..., indent=2, ensure_ascii=False)` plus a
-trailing newline), so hand edits should match that style — otherwise the next bot
-PR reformats your lines.
+Two bots write `scalar.config.json`: **Generate TLD Knowledge Base**, a workflow
+in this repo, and **Publish MCP docs to api-spec**, a workflow in
+`OpusDNS/opusdns-mcp` that opens its PR here. Each rebuilds only the subtree it
+owns and both serialise identically (`json.dumps(..., indent=2,
+ensure_ascii=False)` plus a trailing newline), so hand edits should match that
+style — otherwise the next bot PR reformats your lines.
 
 ### Local preview
 

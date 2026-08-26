@@ -11,6 +11,8 @@ scalar/.scalar/
 __pycache__/
 *.py[cod]
 
-# Sibling repos the sync workflows check out into this tree.
-/opusdns-mcp/
+# Sibling repos checked out into this tree by the sync workflows.
+# mcp/ is created by "Publish MCP docs to api-spec" in OpusDNS/opusdns-mcp, which
+# checks this repository out at the workspace root and its own alongside it.
+/mcp/
 /tld-specifications/
