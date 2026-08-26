@@ -1769,6 +1769,7 @@ export const REGISTRY_SERVICE_BACKEND = {
   RYCE: "ryce",
   COCCA: "cocca",
   AMAZON: "amazon",
+  TANGO: "tango",
 } as const satisfies Record<string, RegistryServiceBackend>;
 
 export const REGISTRY_SERVICE_BACKEND_VALUES = [
@@ -1832,6 +1833,7 @@ export const REGISTRY_SERVICE_BACKEND_VALUES = [
   'ryce',
   'cocca',
   'amazon',
+  'tango',
 ] as const satisfies ReadonlyArray<RegistryServiceBackend>;
 
 export const RENEWAL_MODE = {

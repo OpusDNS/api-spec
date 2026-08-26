@@ -11176,7 +11176,7 @@ export interface components {
          * RegistryServiceBackend
          * @enum {string}
          */
-        RegistryServiceBackend: "afnic" | "centralnic" | "cira" | "switch" | "nicat" | "verisign" | "pir" | "gmo" | "google" | "denic" | "identity_digital" | "godaddy" | "dns_belgium" | "eurid" | "rotld" | "nominet_uk" | "radix" | "sidn" | "sidn_hello" | "tucows" | "dot_ua" | "nic_it" | "dns_lu" | "restena_lu" | "cz_nic" | "ras_manual" | "ras_external" | "register_si" | "sk_nic" | "dot_blog" | "nic_lv" | "domreg_lt" | "nor_id" | "website_ws" | "dns_pt" | "punktum_dk" | "nic_mexico" | "internet_ee" | "channel_isles" | "registry_se" | "nask" | "dns_belgium_gtld" | "nominet_dragon" | "red_es" | "internet_nz" | "zacr" | "traficom" | "ie_registry" | "nic_im" | "cn_nic" | "forth" | "dns_hr" | "nixi" | "is_nic" | "sg_nic" | "ke_nic" | "tld_box" | "ryce" | "cocca" | "amazon";
+        RegistryServiceBackend: "afnic" | "centralnic" | "cira" | "switch" | "nicat" | "verisign" | "pir" | "gmo" | "google" | "denic" | "identity_digital" | "godaddy" | "dns_belgium" | "eurid" | "rotld" | "nominet_uk" | "radix" | "sidn" | "sidn_hello" | "tucows" | "dot_ua" | "nic_it" | "dns_lu" | "restena_lu" | "cz_nic" | "ras_manual" | "ras_external" | "register_si" | "sk_nic" | "dot_blog" | "nic_lv" | "domreg_lt" | "nor_id" | "website_ws" | "dns_pt" | "punktum_dk" | "nic_mexico" | "internet_ee" | "channel_isles" | "registry_se" | "nask" | "dns_belgium_gtld" | "nominet_dragon" | "red_es" | "internet_nz" | "zacr" | "traficom" | "ie_registry" | "nic_im" | "cn_nic" | "forth" | "dns_hr" | "nixi" | "is_nic" | "sg_nic" | "ke_nic" | "tld_box" | "ryce" | "cocca" | "amazon" | "tango";
         /**
          * RenewalMode
          * @enum {string}
