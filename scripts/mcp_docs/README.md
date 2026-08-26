@@ -72,8 +72,9 @@ Flags: `--source` (default `../opusdns-mcp/docs/scalar`), `--content`,
 
 ## Safety properties
 
-Both scripts fail closed, because merging to `main` publishes immediately and
-there is no staging site:
+Both scripts fail closed, because merging to `main` publishes immediately. Scalar
+previews each PR, but a bot PR opened with `GITHUB_TOKEN` gets no workflow run,
+so these guards are what stands between a bad checkout and the live site:
 
 - **An empty or page-less manifest is refused**, so a partial or failed checkout
   cannot silently wipe the published section.

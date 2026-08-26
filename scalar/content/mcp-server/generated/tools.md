@@ -42,6 +42,11 @@ submitted batches with job_batch_status and steer them with job_batch_control.
 
 Portfolio reads: portfolio_summary for totals, portfolio_query for field-projected rows.
 
+Sub-organizations: every tool acts on the signed-in account unless you pass
+organizationId, which must name a sub-organization of it. Ask the user which one before
+guessing, and keep it on every call of a sequence -- preview and submit that disagree
+about it are two different actions.
+
 Operations that write, cost money, or destroy resources require explicit user approval
 before they run. This is enforced server-side, not by these instructions.
 ```

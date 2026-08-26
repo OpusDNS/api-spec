@@ -68,12 +68,22 @@ import {
 ### How publishing works
 
 **Merging to `main` publishes.** Scalar's GitHub integration builds `main`; there
-is no deploy workflow in this repo, no Scalar token, and no staging site. The
-custom domain is declared in the config itself
+is no deploy workflow in this repo and no Scalar token. The custom domain is
+declared in the config itself
 ([`scalar/scalar.config.json`](./scalar/scalar.config.json), `siteConfig.customDomain`),
 not in CI. Nothing in the repository shows this connection, so it is written down
 here: if publishing ever stops, the integration in the Scalar dashboard is where
 to look.
+
+**Every PR gets a preview.** The same integration builds each pull request and
+posts a throwaway URL as a comment (`…--opusdns-api-spec.apidocumentation.com`),
+so you can read a change as rendered before merging it. Use it — a bad `filepath`
+or an icon name Scalar does not know renders as nothing rather than failing, and
+merging is what makes that public.
+
+The preview does not, however, cover the two sync workflows' own PRs: GitHub
+suppresses workflow runs for PRs opened with `GITHUB_TOKEN`, so those workflows
+validate the config inline before opening theirs.
 
 ### Layout
 

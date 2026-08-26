@@ -66,6 +66,7 @@ more context, and asks for a separate approval every time.
 | `operationId` | string | **yes** | the operationId to call |
 | `body` | any (JSON) | no | JSON request body for write operations |
 | `confirmationToken` | string | no | token returned by a prior confirmation\_required response |
+| `organizationId` | string | no | act on this sub-organization instead of your own, e.g. organization\_01h45ytscbebyvny4gc8cr8ma2. It must be a sub-organization of the signed-in account; find its id with the organizations list operation |
 | `pathParams` | object (any keys) | no | path parameter values keyed by name |
 | `query` | object (any keys) | no | query parameter values keyed by name |
 

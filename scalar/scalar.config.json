@@ -3759,6 +3759,13 @@
             "filepath": "content/mcp-server/pages/tool-workflows.md",
             "showInSidebar": true
           },
+          "/sub-organizations": {
+            "type": "page",
+            "title": "Sub-organizations",
+            "icon": "phosphor/regular/buildings",
+            "filepath": "content/mcp-server/pages/sub-organizations.md",
+            "showInSidebar": true
+          },
           "/approvals": {
             "type": "page",
             "title": "Approvals and confirmations",

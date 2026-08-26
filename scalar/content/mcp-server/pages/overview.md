@@ -124,6 +124,8 @@ one TLD at a time.
 
 - [Connect your client](/mcp-server/connect) — Claude, Cursor, VS Code, ChatGPT
 - [Tool workflows](/mcp-server/tool-workflows) — worked end-to-end examples
+- [Sub-organizations](/mcp-server/sub-organizations) — acting on an organization
+  below your own
 - [Bulk operations with Jobs](/mcp-server/bulk-operations)
 - [Data handling](/mcp-server/data-handling) — what the agent sees and where it
   goes

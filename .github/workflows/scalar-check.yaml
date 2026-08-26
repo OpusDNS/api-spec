@@ -1,8 +1,9 @@
 name: Validate Scalar docs
 
-# Merging to main is what publishes developers.opusdns.com — Scalar's GitHub
-# integration builds main and there is no staging site. So the config and the
-# generators are validated on the PR, not after.
+# Merging to main is what publishes developers.opusdns.com, so the config and the
+# generators are validated on the PR, not after. Scalar's integration also posts a
+# rendered preview on each PR, but that is a human-review aid: it reports a
+# successful build, not whether a nav entry points at a file that exists.
 #
 # Note this does NOT run on the bot PRs from the two sync workflows: GitHub
 # suppresses workflow runs for PRs opened with GITHUB_TOKEN. Those workflows

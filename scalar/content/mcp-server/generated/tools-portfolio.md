@@ -16,7 +16,11 @@ Return the account domain summary: total counts and breakdowns by status, TLD, a
 **When to use it.** The cheapest way to answer "how many domains do I have, and what is expiring".
 Call it before listing individual domains.
 
-_This tool takes no arguments._
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `organizationId` | string | no | act on this sub-organization instead of your own, e.g. organization\_01h45ytscbebyvny4gc8cr8ma2. It must be a sub-organization of the signed-in account; find its id with the organizations list operation |
+
+Unknown parameters are rejected.
 
 - Read-only: never changes anything in your account.
 - Repeating the same call has the same effect.
@@ -35,6 +39,7 @@ question.
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `fields` | array of string | no | which domain fields to project (default: name, domain\_id, expires\_on, renewal\_mode, status\_tags) |
+| `organizationId` | string | no | act on this sub-organization instead of your own, e.g. organization\_01h45ytscbebyvny4gc8cr8ma2. It must be a sub-organization of the signed-in account; find its id with the organizations list operation |
 | `page` | integer | no | 1-based page number (default 1) |
 | `pageSize` | integer | no | results per page (capped server-side) |
 | `selector` | object (any keys) | no | GET /v1/domains filters (tag\_ids, tld, search, expires\_in\_30\_days, ...). tag\_ids takes tag IDs like tag\_01..., NOT labels — resolve a label to its ID via the /v1/tags list operation first. tag\_ids, tld and status\_tags take lists, e.g. tld: \["com", "org"\] |

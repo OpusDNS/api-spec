@@ -26,6 +26,7 @@ without submitting anything or asking for approval.
 | `template` | object (any keys) | **yes** | shared mutation applied to every selected resource (the Jobs template body) |
 | `selector` | object (any keys) | **yes** | GET /v1/domains filters (e.g. tag\_ids, tld, search, expires\_in\_30\_days) used to resolve the target domains server-side. tag\_ids, tld and status\_tags take lists, e.g. tld: \["com", "org"\] |
 | `hostnamePrefix` | string | no | forward templates only: prefix prepended to each resolved domain to form the instance hostname. Use '\*.' for a wildcard subdomain forward (\*.example.com), or '' (default) for the apex (example.com) |
+| `organizationId` | string | no | act on this sub-organization instead of your own, e.g. organization\_01h45ytscbebyvny4gc8cr8ma2. It must be a sub-organization of the signed-in account; find its id with the organizations list operation |
 | `sampleSize` | integer | no | how many resolved domains to include in the preview (default 10) |
 
 Unknown parameters are rejected.
@@ -52,6 +53,7 @@ retry, you are asked again.
 | `confirmationToken` | string | no | token from a prior confirmation\_required response, echoed back to execute the approved action. Omit on the first call |
 | `hostnamePrefix` | string | no | forward templates only: prefix prepended to each resolved domain to form the instance hostname. Use '\*.' for a wildcard subdomain forward, or '' (default) for the apex |
 | `label` | string | no | human-readable batch label |
+| `organizationId` | string | no | act on this sub-organization instead of your own, e.g. organization\_01h45ytscbebyvny4gc8cr8ma2. It must be a sub-organization of the signed-in account; find its id with the organizations list operation |
 
 Unknown parameters are rejected.
 
@@ -71,6 +73,7 @@ state, so a partly-failed batch is visible without listing every job.
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `batchId` | string | **yes** | batch id returned by bulk\_submit, e.g. batch\_01k3n0m5xrf9pab6t2wqzhkvr3 |
+| `organizationId` | string | no | act on this sub-organization instead of your own, e.g. organization\_01h45ytscbebyvny4gc8cr8ma2. It must be a sub-organization of the signed-in account; find its id with the organizations list operation |
 
 Unknown parameters are rejected.
 
@@ -94,6 +97,7 @@ that failed that way — useful after fixing one cause and leaving the rest alon
 | `action` | string | **yes** | one of pause, resume, retry, cancel |
 | `confirmationToken` | string | no | token from a prior confirmation\_required response, echoed back to execute the approved action. Omit on the first call |
 | `errorClass` | string | no | for retry: only retry jobs with this error\_class |
+| `organizationId` | string | no | act on this sub-organization instead of your own, e.g. organization\_01h45ytscbebyvny4gc8cr8ma2. It must be a sub-organization of the signed-in account; find its id with the organizations list operation |
 
 Unknown parameters are rejected.
 

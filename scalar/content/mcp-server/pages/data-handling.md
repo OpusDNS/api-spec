@@ -23,8 +23,10 @@ client you connect. Everything below is about the OpusDNS side of the line.
 
 ## What the agent can reach
 
-Everything your own account can reach. `call_operation` covers the whole API, so
-that includes the contact endpoints — **registrant names, postal addresses,
+Everything your own account can reach — and, on a call that carries
+[`organizationId`](/mcp-server/sub-organizations), everything the named
+sub-organization can. `call_operation` covers the whole API, so that includes
+the contact endpoints — **registrant names, postal addresses,
 phone numbers and email addresses can appear in a tool result**, and therefore
 in the model's context, whenever the agent reads a contact.
 

@@ -212,6 +212,8 @@ Jobs](/mcp-server/bulk-operations).
 ## Related
 
 - [Tools reference](/mcp-server/tools) — every parameter of every tool
+- [Sub-organizations](/mcp-server/sub-organizations) — the `organizationId`
+  parameter every one of these tools takes
 - [Renew a domain](/products/domains/renew), [Manage a
   domain](/products/domains/manage)
 - [API Reference](/api-reference)
