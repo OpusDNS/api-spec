@@ -1,15 +1,3 @@
-## Registration Levels
-
-`.mx` is registered both directly at the second level (`example.mx`) and under two third-level structures:
-
-| Level | Example |
-| --- | --- |
-| `mx` | `example.mx` |
-| `com.mx` | `example.com.mx` |
-| `org.mx` | `example.org.mx` |
-
-All three are served by the same registry and share the specification returned by [`GET /v1/tlds/mx`](/api-reference#tag/tld/GET/v1/tlds/{tld}).
-
 ## Contacts
 
 `.mx` is a thick registry and requires **all four roles** — registrant, administrative, technical and billing — with exactly one contact each. They are mandatory on a registration, on a transfer request and on any update that changes contacts; omitting one is rejected before the request reaches the registry.
