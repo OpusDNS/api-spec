@@ -8302,6 +8302,17 @@ components:
       - idn_capable
       title: IdnBase
       type: object
+    InvoiceDocumentType:
+      description: 'Customer-facing document class. Orthogonal to `InvoiceResponseType`:
+        prepaid-credit invoices are receipts,
+
+        everything else billable is an invoice. Documents billing classifies as neither
+        are never returned.'
+      enum:
+      - invoice
+      - receipt
+      title: InvoiceDocumentType
+      type: string
     InvoiceResponse:
       properties:
         amount:
@@ -8312,6 +8323,9 @@ components:
         currency:
           $ref: '#/components/schemas/Currency'
           description: Invoice currency
+        document_type:
+          $ref: '#/components/schemas/InvoiceDocumentType'
+          description: Customer-facing document class
         external_id:
           description: Lago ID (external) for this invoice
           title: External Id
@@ -8365,6 +8379,7 @@ components:
       - issuing_date
       - payment_due_date
       - invoice_type
+      - document_type
       - status
       - payment_status
       - payment_overdue
@@ -15765,7 +15780,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-26-165903
+  version: 2026-08-27-083857
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -30471,6 +30486,61 @@ paths:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
       summary: List all invoices for the organization
+      tags:
+      - organization
+      x-required-permissions:
+      - billing:manage
+  /v1/organizations/{organization_id}/billing/receipts:
+    get:
+      description: Retrieves a paginated list of all payment receipts for the organization
+      operationId: list_receipts_v1_organizations__organization_id__billing_receipts_get
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_InvoiceResponse_'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List all payment receipts for the organization
       tags:
       - organization
       x-required-permissions:

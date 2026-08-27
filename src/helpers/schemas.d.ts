@@ -327,6 +327,7 @@ export type HttpRedirectRequest = components['schemas']['HttpRedirectRequest'];
 export type HttpRedirectUpsert = components['schemas']['HttpRedirectUpsert'];
 export type IPAddressType = components['schemas']['IPAddressType'];
 export type IdnBase = components['schemas']['IdnBase'];
+export type InvoiceDocumentType = components['schemas']['InvoiceDocumentType'];
 export type Invoice = components['schemas']['InvoiceResponse'];
 export type InvoiceResponsePaymentStatus = components['schemas']['InvoiceResponsePaymentStatus'];
 export type InvoiceResponseStatus = components['schemas']['InvoiceResponseStatus'];

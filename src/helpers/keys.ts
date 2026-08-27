@@ -3651,6 +3651,7 @@ export const KEYS_IDN_BASE = [
 
 export const KEY_INVOICE_AMOUNT = 'amount' satisfies keyof Invoice;
 export const KEY_INVOICE_CURRENCY = 'currency' satisfies keyof Invoice;
+export const KEY_INVOICE_DOCUMENT_TYPE = 'document_type' satisfies keyof Invoice;
 export const KEY_INVOICE_EXTERNAL_ID = 'external_id' satisfies keyof Invoice;
 export const KEY_INVOICE_FEES_AMOUNT = 'fees_amount' satisfies keyof Invoice;
 export const KEY_INVOICE_FILE_URL = 'file_url' satisfies keyof Invoice;
@@ -3666,6 +3667,7 @@ export const KEY_INVOICE_TAXES_AMOUNT = 'taxes_amount' satisfies keyof Invoice;
 export const KEYS_INVOICE = [
   KEY_INVOICE_AMOUNT,
   KEY_INVOICE_CURRENCY,
+  KEY_INVOICE_DOCUMENT_TYPE,
   KEY_INVOICE_EXTERNAL_ID,
   KEY_INVOICE_FEES_AMOUNT,
   KEY_INVOICE_FILE_URL,

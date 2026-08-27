@@ -880,6 +880,12 @@ export type GET_OrganizationsByOrganizationIdBillingInvoices_Request = {
 export type GET_OrganizationsByOrganizationIdBillingInvoices_Request_Query = GET_OrganizationsByOrganizationIdBillingInvoices_Request['parameters']['query'];
 export type GET_OrganizationsByOrganizationIdBillingInvoices_Request_Path = GET_OrganizationsByOrganizationIdBillingInvoices_Request['parameters']['path'];
 
+export type GET_OrganizationsByOrganizationIdBillingReceipts_Request = {
+  parameters: operations['list_receipts_v1_organizations__organization_id__billing_receipts_get']['parameters'];
+};
+export type GET_OrganizationsByOrganizationIdBillingReceipts_Request_Query = GET_OrganizationsByOrganizationIdBillingReceipts_Request['parameters']['query'];
+export type GET_OrganizationsByOrganizationIdBillingReceipts_Request_Path = GET_OrganizationsByOrganizationIdBillingReceipts_Request['parameters']['path'];
+
 export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Request = {
   parameters: operations['get_pricing_plans_v1_organizations__organization_id__pricing_product_type__product_type__get']['parameters'];
 };

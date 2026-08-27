@@ -56,6 +56,7 @@ import type {
   HostStatus,
   HttpProtocol,
   IPAddressType,
+  InvoiceDocumentType,
   InvoiceResponsePaymentStatus,
   InvoiceResponseStatus,
   InvoiceResponseType,
@@ -1094,6 +1095,16 @@ export const IP_ADDRESS_TYPE_VALUES = [
   'v4',
   'v6',
 ] as const satisfies ReadonlyArray<IPAddressType>;
+
+export const INVOICE_DOCUMENT_TYPE = {
+  INVOICE: "invoice",
+  RECEIPT: "receipt",
+} as const satisfies Record<string, InvoiceDocumentType>;
+
+export const INVOICE_DOCUMENT_TYPE_VALUES = [
+  'invoice',
+  'receipt',
+] as const satisfies ReadonlyArray<InvoiceDocumentType>;
 
 export const INVOICE_RESPONSE_PAYMENT_STATUS = {
   PENDING: "pending",
