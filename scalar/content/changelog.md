@@ -4,6 +4,15 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 27 August 2026
+
+- Added **an `in_use` filter to the contact list**: `GET /v1/contacts?in_use=true`
+  returns only contacts attached to at least one domain, and `in_use=false` only
+  contacts attached to none. A contact counts as in use through any role -
+  registrant, admin, tech, or billing. Omitting the parameter keeps the
+  unfiltered listing. See
+  [`GET /v1/contacts`](/api-reference#tag/contact/GET/v1/contacts).
+
 ### 25 August 2026
 
 - Released **the OpusDNS MCP server**, documented under the new **MCP** tab. It is
