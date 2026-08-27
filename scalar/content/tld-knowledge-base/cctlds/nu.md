@@ -103,22 +103,22 @@
 
 ## Contact Attributes
 
-`.nu` provisions the holder only, and that holder must carry a personal or organisational number:
+`.nu` provisions the holder (the registrant) only, and that holder must carry a personal or organization number:
 
 | Attribute | Type | Required | Applies to | Format |
 | --- | --- | --- | --- | --- |
-| `REGISTRY_SE_ORG_NO` | String | ✅ Required | Domain Owner | A bracketed ISO 3166-1 alpha-2 country code followed by 1 to 123 characters, 127 overall |
-| `REGISTRY_SE_VAT_NO` | String | ➖ Optional | Domain Owner | A two-letter country code followed by a country-specific string of letters and digits, 32 overall |
+| `REGISTRY_SE_ORG_NO` | String | ✅ Required | Domain Owner | A bracketed ISO 3166-1 alpha-2 country code followed by 1 to 123 characters, 127 characters overall |
+| `REGISTRY_SE_VAT_NO` | String | ➖ Optional | Domain Owner | A two-letter country code followed by a country-specific string of letters and digits, 32 characters overall |
 
-The country code identifies the jurisdiction where the person or company is **registered**, which is not necessarily the country in the contact's postal address. A German company operating from Stockholm is `[DE]`, not `[SE]`.
+The country code identifies the jurisdiction in which the person or company is **registered**, which is not necessarily the country in the contact's postal address. A German company operating from Stockholm is `[DE]`, not `[SE]`.
 
 `REGISTRY_SE_ORG_NO` is immutable once the handle exists at the registry. `REGISTRY_SE_VAT_NO` can be changed.
 
-### `[SE]` is validated for real
+### `[SE]` numbers are verified by the registry
 
-Any country code other than `[SE]` accepts a free-form identifier, which is the common case for `.nu` since it has no local presence requirement. `[SE]` does not: the registry requires a genuine Swedish personal or organisational number, six digits, a dash, four digits, and it checks the number itself rather than just its shape.
+For every country code other than `[SE]`, the registry accepts a free-form identifier — the common case for `.nu`, which has no local presence requirement. `[SE]` is the exception: it requires a valid Swedish personal or organization number — six digits, a hyphen, then four digits — and the registry verifies the number itself, not only its format.
 
-> ⚠️ A well-formed but non-existent number is rejected. `[SE]111111-1111` matches the documented format and still fails:
+> ⚠️ A correctly formatted but non-existent number is rejected. `[SE]111111-1111` matches the documented format and still fails:
 >
 > ```json
 > {
@@ -130,32 +130,32 @@ Any country code other than `[SE]` accepts a free-form identifier, which is the 
 > }
 > ```
 >
-> Use a real number, such as `[SE]802405-0190`, or a non-Swedish country code when the holder is registered elsewhere.
+> Supply a valid number, such as `[SE]802405-0190`, or use a non-Swedish country code when the holder is registered elsewhere.
 
-If the holder has no organisation name and the country code is `[SE]`, the registry expects a personal number rather than an organisational one.
+When the holder has no organization name and the country code is `[SE]`, the registry expects a personal number rather than an organization number.
 
 ## Auth Codes
 
-`.nu` auth codes belong to the registry. A registrar can never choose the value: the registry generates it, returns it in the registration response, and a domain info request does not expose it afterwards.
+`.nu` auth codes are owned by the registry. A registrar cannot choose the value: the registry generates it, returns it in the registration response, and does not expose it in a later domain info request.
 
-Request a fresh one with [`POST /v1/domains/tld-specific/nu/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/nu/{domain_reference}/auth_code/request), which returns the code directly and **invalidates the previous one**. This is how a code spent on a transfer gets replaced.
+Request a fresh code with [`POST /v1/domains/tld-specific/nu/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/nu/{domain_reference}/auth_code/request), which returns the code directly and **invalidates the previous one**. This is how a code consumed by a transfer is replaced.
 
 ## Transfers
 
-`.nu` transfers complete **immediately**: there is no pending window, no approval and no rejection. The request either succeeds outright or fails.
+`.nu` transfers complete **immediately**: there is no pending window, no approval and no rejection. A transfer request either succeeds outright or fails.
 
-Two consequences worth planning for:
+Two consequences are worth planning for:
 
-- the gaining registrar learns the outcome from the transfer response itself, with nothing to wait for;
-- the losing registrar is informed afterwards and cannot stop it.
+- the gaining registrar learns the outcome from the transfer response itself, with no notification to wait for;
+- the losing registrar is notified after the fact and cannot prevent the transfer.
 
 Transfers do not extend the registration period, and the auth code is consumed in the process.
 
-## Contacts on an inbound transfer
+## Contacts on an Inbound Transfer
 
-Transferring a `.nu` domain in does not move its contact across. The registry **clones** the holder under your account as a brand new handle, and that clone is stripped down: the registry keeps the name, the email, the phone and `iis:orgno`, and returns the postal address as empty strings.
+Transferring a `.nu` domain in does not move its contact with it. The registry **clones** the holder under your account as a new handle, and that clone is incomplete: it retains the name, email address, phone number and `iis:orgno`, but the postal address is returned as empty strings.
 
-A cloned holder comes back looking like this:
+A cloned holder is returned in this form:
 
 ```json
 {
@@ -179,18 +179,18 @@ A cloned holder comes back looking like this:
 }
 ```
 
-The street, city, state, postal code and country the holder had at the losing registrar are **gone**, and there is no way to recover them from the registry.
+The street, city, state, postal code and country the holder had at the losing registrar are **not carried over**, and cannot be recovered from the registry.
 
-Since a contact cannot be stored without an address, the import fills each empty field with OpusDNS's own company address rather than leaving it blank. An imported `.nu` holder therefore lands with `Franz-Mayer-Str. 1`, `Regensburg`, `93053`, `DE` even though the holder has no connection to that address. The name, email, phone and `REGISTRY_SE_ORG_NO` are the real ones.
+Because a contact cannot be stored without an address, the import populates each empty field with OpusDNS's own company address rather than leaving it blank. An imported `.nu` holder therefore arrives with `Franz-Mayer-Str. 1`, `Regensburg`, `93053`, `DE`, even though the holder has no connection to that address. The name, email address, phone number and `REGISTRY_SE_ORG_NO` are the holder's own.
 
-> ⚠️ **Update the holder after a transfer in.** The placeholder address is a technical stand-in, not the holder's data. Correct it with `PATCH /v1/contacts/{contact_id}` once the transfer completes, and the change is pushed to the registry.
+> ⚠️ **Update the holder after an inbound transfer.** The placeholder address is a technical stand-in, not the holder's data. Correct it with `PATCH /v1/contacts/{contact_id}` once the transfer completes, and the change is propagated to the registry.
 
-## Registrant verification
+## Holder Verification
 
 Internetstiftelsen may hold a new registration while it verifies the holder's data. The domain is created, but the registry applies `serverHold`, `serverTransferProhibited` and `serverRenewProhibited`, so it does not resolve and cannot be transferred or renewed while the check is open.
 
-The check clears when the registry accepts the holder data, or when the holder is replaced with one that passes. Either outcome is reported by the registry and reconciled onto the domain automatically, so those statuses disappear on their own. Nothing is required beyond correcting the holder when the registry asks for it.
+The check clears when the registry accepts the holder data, or when the holder is replaced with one that passes. Either outcome is reported by the registry and reconciled onto the domain automatically, so these statuses are removed without intervention. No action is required beyond correcting the holder data when the registry asks for it.
 
-## Registry lock
+## Registry Lock
 
-Registry lock blocks updates, transfers and deletions, and can be requested when registering or updating a domain. **The registry does not support unlocking over EPP**, so removal is arranged out of band with Internetstiftelsen.
+Registry lock blocks updates, transfers and deletions, and can be requested when registering or updating a domain. **The registry does not support unlocking over EPP**, so removal must be arranged directly with Internetstiftelsen.

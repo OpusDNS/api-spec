@@ -7,11 +7,11 @@ rules, and each has its own endpoint for generating auth codes at the registry.
 
 ## Request an auth code
 
-`.se` and `.nu` auth codes belong to the registry. A registrar can never choose
+`.se` and `.nu` auth codes are owned by the registry. A registrar cannot choose
 the value: the registry generates it and returns it when the domain is
-registered, and a domain info request does not expose it afterwards. This
-endpoint asks the registry for a fresh code and stores it, which is how a code
-spent on a transfer gets replaced.
+registered, and it is not exposed in a later domain info request. This endpoint
+requests a fresh code from the registry and stores it, which is how a code
+consumed by a transfer is replaced.
 
 ```bash
 curl "$OPUSDNS_API_BASE/v1/domains/tld-specific/se/example.se/auth_code/request" \
@@ -19,7 +19,7 @@ curl "$OPUSDNS_API_BASE/v1/domains/tld-specific/se/example.se/auth_code/request"
   --header "X-Api-Key: $OPUSDNS_API_KEY"
 ```
 
-`.nu` has its own path, and each one only accepts names in its own TLD:
+`.nu` has its own path, and each endpoint accepts only names within its own TLD:
 
 ```bash
 curl "$OPUSDNS_API_BASE/v1/domains/tld-specific/nu/example.nu/auth_code/request" \
@@ -62,7 +62,8 @@ This has two consequences worth planning for:
 
 - the gaining registrar learns the outcome from the transfer response itself,
   with no notification to wait for;
-- the losing registrar is informed after the fact and cannot stop it.
+- the losing registrar is notified after the fact and cannot prevent the
+  transfer.
 
 Transfers do not extend the registration period, and the auth code is consumed
 in the process. Request a new one through the endpoint above if the domain needs
@@ -76,12 +77,12 @@ registrant's data. The domain is created, but the registry applies `serverHold`,
 it does not resolve and cannot be transferred or renewed in the meantime.
 
 The check clears when the registry accepts the registrant data, or when the
-registrant is replaced with one that passes. Either way the registry reports the
-outcome and the statuses are reconciled onto the domain automatically.
+registrant is replaced with one that passes. In either case the registry reports
+the outcome and the statuses are reconciled onto the domain automatically.
 
 ## Contact attributes
 
-Every registrant needs `REGISTRY_SE_ORG_NO`, a personal or organisational number
+Every registrant needs `REGISTRY_SE_ORG_NO`, a personal or organization number
 prefixed with a bracketed country code. See
 [`.se`](/tld-knowledge-base/cctlds/se#contact-attributes) or
 [`.nu`](/tld-knowledge-base/cctlds/nu#contact-attributes) in the TLD Knowledge
