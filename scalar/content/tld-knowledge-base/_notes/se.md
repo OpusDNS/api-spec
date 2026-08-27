@@ -29,6 +29,8 @@ For every country code other than `[SE]`, the registry accepts a free-form ident
 >
 > Supply the holder's own personal or organization number, or use a non-Swedish country code when the holder is registered elsewhere.
 
+Internetstiftelsen's EPP specification uses `[SE]802405-0190` as its worked example (§7.1.5). That is Internetstiftelsen's own organisationsnummer — a live number, not a test value — so treat it as illustrative and submit the holder's own number instead.
+
 When the holder has no organization name and the country code is `[SE]`, the registry expects a personal number rather than an organization number.
 
 ## Auth Codes
