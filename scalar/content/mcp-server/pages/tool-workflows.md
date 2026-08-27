@@ -11,6 +11,7 @@ only, flagged as an error.) The examples below show the payload.
 
 `search_operations` with:
 
+<!-- example: search_operations -->
 ```json
 { "query": "renew domain", "limit": 10 }
 ```
@@ -34,8 +35,8 @@ comes back as:
       "operationId": "epp_check_domain_v1_domains_check_get",
       "method": "GET",
       "path": "/v1/domains/check",
-      "tags": ["availability"],
-      "summary": "Check domain availability",
+      "tags": ["domain"],
+      "summary": "Check domain availability and registration metadata",
       "safety": { "read": true, "write": false, "cost": false, "destructive": false }
     }
   ]
@@ -54,6 +55,7 @@ a count of the whole catalog.
 so that a search with one unambiguous answer saves a round trip. Two operations
 matched, so pick one and run `describe_operation` on its id:
 
+<!-- example: describe_operation -->
 ```json
 { "operationId": "renew_domain_v1_domains__domain_reference__renew_post" }
 ```
@@ -61,10 +63,21 @@ matched, so pick one and run `describe_operation` on its id:
 which returns the operation's parameters, request-body schema and safety flags,
 plus `requiresConfirmation`.
 
+An `operationId` the catalog does not know is answered as a **result**, not an
+error — so search again rather than retrying:
+
+```json
+{
+  "status": "not_found",
+  "message": "unknown operationId: renew_domain_v2"
+}
+```
+
 ### 2. Call it
 
 `call_operation` with:
 
+<!-- example: call_operation -->
 ```json
 {
   "operationId": "renew_domain_v1_domains__domain_reference__renew_post",
@@ -137,6 +150,7 @@ what is expiring":
 `portfolio_query` lists domains but returns only the fields you name, which is
 what keeps a four-thousand-domain account out of the model's context:
 
+<!-- example: portfolio_query -->
 ```json
 {
   "selector": { "tld": ["com"], "expires_in_30_days": true },
@@ -179,7 +193,7 @@ object drives the bulk tools. The filters worth knowing:
 | Filter | Type | Notes |
 | --- | --- | --- |
 | `tag_ids` | list of tag IDs | IDs such as `tag_01h45ytscbebyvny4gc8cr8ma2`, **not** labels |
-| `tag_mode` | `match_any` or `match_all` | Defaults to `match_any` |
+| `tag_mode` | `match_any`, `match_all` or `match_none` | Defaults to `match_any` |
 | `status_tags` | list | For example `VERIFICATION_REQUIRED`, `INBOUND_TRANSFER_PENDING` |
 | `tld` | list | For example `["com", "org"]` |
 | `search`, `name`, `sld` | string | Match by full name, second-level label, or free text |
@@ -187,6 +201,7 @@ object drives the bulk tools. The filters worth knowing:
 | `expires_before`, `expires_after` | RFC 3339 | Also `created_*`, `updated_*`, `registered_*`, `transferred_*` |
 | `transfer_lock`, `is_premium` | boolean | |
 | `registry_statuses` | list | |
+| `include` | list | `["tags"]` populates `tags` and `status_tags`, which are otherwise `null` |
 
 <scalar-callout type="warning">
 <code>tag_ids</code> takes tag <strong>IDs</strong>, not labels. Ask for the tag
@@ -200,17 +215,26 @@ harmless for a read, and consequential for
 <a href="/mcp-server/bulk-operations">a bulk submission</a>.
 </scalar-callout>
 
-## Bulk: change many domains at once
+## Bulk: from a query to a change
 
 Two calls — `bulk_preview`, then `bulk_submit` with the same arguments. The
 selector resolves server-side, so the model never transcribes a domain name, and
 the approval you give is bound to the exact set that was resolved.
 
+The useful property is that **the same selector means the same thing to both
+families**. Find the set with `portfolio_query` and read its
+`pagination.total_items`; hand the identical selector to `bulk_preview` and read
+`matchedDomains`. The two numbers agreeing is the check to make before you
+approve — if they disagree, the selector is not describing what you think it is.
+
 Full walkthrough: [Bulk operations with
-Jobs](/mcp-server/bulk-operations).
+Jobs](/mcp-server/bulk-operations). Task-shaped examples:
+[Recipes](/mcp-server/recipes).
 
 ## Related
 
+- [Recipes](/mcp-server/recipes) — the same tools, arranged by task
+- [Results and errors](/mcp-server/results) — every shape a tool can return
 - [Tools reference](/mcp-server/tools) — every parameter of every tool
 - [Sub-organizations](/mcp-server/sub-organizations) — the `organizationId`
   parameter every one of these tools takes

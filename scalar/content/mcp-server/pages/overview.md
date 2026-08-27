@@ -7,6 +7,13 @@ and no server to run. Point any MCP client that speaks remote Streamable HTTP at
 the endpoint, sign in with your OpusDNS account, and the client gets nine tools
 that cover the whole API.
 
+<scalar-callout type="info">
+New here? The <a href="/mcp-server/quickstart">Quickstart</a> gets you from
+nothing to an approved change in about ten minutes, in the sandbox. Building
+unattended automation instead? Read
+<a href="/mcp-server/mcp-or-api">MCP or the REST API?</a> first.
+</scalar-callout>
+
 ## Try asking
 
 Once your client is connected, you talk to it in your own words — the model
@@ -96,6 +103,14 @@ action — including the exact resolved list of domains for a bulk operation. Se
 | Upstream API timeout | 10 seconds |
 | Tool-list freshness hint | 15 minutes |
 
+Defaults, where you do not say otherwise:
+
+| Default | Value |
+| --- | --- |
+| `search_operations` results | 25 |
+| `portfolio_query` page / page size | page 1, 50 rows |
+| `bulk_preview` sample size | 10 resolved domains |
+
 <scalar-callout type="info">
 The 1,000-domain limit is the Jobs API's cap on instances in a single bulk
 command, and a batch built from a selector is one command. To change more than
@@ -115,11 +130,17 @@ one TLD at a time.
 
 ## Next
 
+- [Quickstart](/mcp-server/quickstart) — connected, asking and approving in ten
+  minutes
 - [Connect your client](/mcp-server/connect) — Claude, Cursor, VS Code, ChatGPT
-- [Tool workflows](/mcp-server/tool-workflows) — worked end-to-end examples
+- [Recipes](/mcp-server/recipes) — worked examples for the jobs people actually
+  do
+- [Tool workflows](/mcp-server/tool-workflows) — one worked example per tool
+  family
 - [Sub-organizations](/mcp-server/sub-organizations) — acting on an organization
   below your own
 - [Bulk operations with Jobs](/mcp-server/bulk-operations)
+- [Results and errors](/mcp-server/results) — every shape a tool can return
 - [Data handling](/mcp-server/data-handling) — what the agent sees and where it
   goes
 - [API Quickstart](/introduction/quickstart) — the same operations over plain

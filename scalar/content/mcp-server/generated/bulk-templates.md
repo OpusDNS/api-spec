@@ -15,7 +15,7 @@ The `templateType` is also the name of the Jobs command it runs.
 | --- | --- |
 | `domain_update_bulk` | `domain_id` |
 | `dns_zone_create_bulk` | `name` |
-| `dns_zone_patch_rrsets_bulk` | `name` |
+| `dns_zone_patch_rrsets_bulk` | `zone_name` |
 | `dns_zone_update_bulk` | `name` |
 | `domain_forward_create_bulk` | `hostname` |
 | `domain_forward_delete_bulk` | `hostname` |
