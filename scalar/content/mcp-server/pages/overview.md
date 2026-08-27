@@ -1,4 +1,4 @@
-# OpusDNS MCP server
+# OpusDNS MCP server <span class="opusdns-beta-badge">Beta</span>
 
 The OpusDNS MCP server is a remote [Model Context
 Protocol](https://modelcontextprotocol.io) server that exposes the OpusDNS

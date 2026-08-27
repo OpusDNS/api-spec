@@ -4,7 +4,11 @@
   function updateTitle() {
     var h1 = document.querySelector('h1');
     if (h1) {
-      var pageTitle = h1.textContent.trim();
+      var clone = h1.cloneNode(true);
+      clone.querySelectorAll('.opusdns-beta-badge').forEach(function (badge) {
+        badge.remove();
+      });
+      var pageTitle = clone.textContent.trim();
       if (pageTitle && document.title !== pageTitle + suffix) {
         document.title = pageTitle + suffix;
       }
