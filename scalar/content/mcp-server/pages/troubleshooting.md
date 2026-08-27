@@ -41,6 +41,15 @@ entry with a `url` and no `"type": "http"` is read as a local command and
 skipped. See [Connect Cursor, VS Code, and
 ChatGPT](/mcp-server/connect/editors).
 
+### ChatGPT signed in but reports no tools
+
+Developer mode is off, or your plan does not offer it. Without it ChatGPT
+surfaces only tools named `search` and `fetch`, and this server exposes neither,
+so a connector whose OAuth flow succeeded still looks empty. Developer mode is a
+paid-plan feature on the web and does not exist on the free plan — an OpenAI
+limitation, not something the server can work around. See
+[ChatGPT](/mcp-server/connect/editors#chatgpt).
+
 ### `403` from a tool call
 
 Authentication worked; your organization role does not permit that operation.

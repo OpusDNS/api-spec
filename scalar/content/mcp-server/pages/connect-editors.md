@@ -20,6 +20,10 @@ if it negotiates protocol revision `2026-07-28` **and** declares elicitation;
 everything else falls back to Path B, which works everywhere. See
 [Approvals and confirmations](/mcp-server/approvals).
 
+ChatGPT adds a second gate the other clients do not have: signing in is one
+thing, *seeing* the tools is another, and the latter needs developer mode, which
+is not offered on the free plan. See [ChatGPT](#chatgpt).
+
 ## Cursor
 
 Write `~/.cursor/mcp.json` for every project, or `.cursor/mcp.json` in a project
@@ -68,17 +72,34 @@ without changing that key is the most common reason the server never appears.
 
 ## ChatGPT
 
-ChatGPT reaches custom MCP servers through developer mode in its connector
-settings: create a connector, paste `https://api.opusdns.com/mcp`, and set
-authentication to OAuth.
+Create a connector, paste `https://api.opusdns.com/mcp`, and set authentication
+to OAuth. The only OpusDNS-specific values are that URL and choosing OAuth.
 
-<scalar-callout type="info">
-Availability and the exact location of that setting depend on your ChatGPT plan
-and have moved more than once. Follow
-<a href="https://platform.openai.com/docs">OpenAI's own documentation</a> for the
-current steps; the only OpusDNS-specific values are the URL above and choosing
-OAuth.
+Sign-in itself works on any plan: Dynamic Client Registration completes, the
+browser flow completes, and the server answers `tools/list` with its full tool
+list. Whether ChatGPT then *shows* those tools is a separate, plan-dependent
+question.
+
+<scalar-callout type="warning">
+Outside developer mode, ChatGPT surfaces only tools named <code>search</code>
+and <code>fetch</code>. This server exposes neither, so on a plan without
+developer mode a connector that authenticated perfectly still reports no tools.
+Developer mode is
+<a href="https://developers.openai.com/api/docs/guides/developer-mode">available
+to Pro, Plus, Business, Enterprise, and Education accounts on the web</a> — it
+does not exist on the free plan. This is an OpenAI product limitation; nothing
+on the OpusDNS side can lift it.
 </scalar-callout>
+
+On a plan that offers it, the toggle is under **Settings → Security and login**.
+It has moved before — it lived under Connectors → Advanced until Connectors was
+renamed to Plugins — so treat OpenAI's documentation, not any particular path,
+as authoritative. With developer mode on, every tool this server exposes is
+available, writes included, subject to your confirmation settings.
+
+Two limits survive developer mode: agent mode does not use custom connectors at
+all, and deep research uses them for reads only, which puts `bulk_submit` out of
+reach there.
 
 ### OpenAI Responses API
 
