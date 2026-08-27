@@ -114,7 +114,7 @@ The country code identifies the jurisdiction in which the person or company is *
 
 ### `[SE]` numbers are verified by the registry
 
-For every country code other than `[SE]`, the registry accepts a free-form identifier. `[SE]` is the exception: it requires a valid Swedish personal or organization number — six digits, a hyphen, then four digits — and the registry verifies the number itself, not only its format.
+For every country code other than `[SE]`, the registry accepts a free-form identifier. `[SE]` is the exception: it requires a valid Swedish personal or organization number — six digits, a hyphen, then four digits (`[SE]NNNNNN-NNNN`) — and the registry verifies the number itself, not only its format.
 
 > ⚠️ A correctly formatted but non-existent number is rejected. `[SE]111111-1111` matches the documented format and still fails:
 >
@@ -128,7 +128,7 @@ For every country code other than `[SE]`, the registry accepts a free-form ident
 > }
 > ```
 >
-> Supply a valid number, such as `[SE]802405-0190`, or use a non-Swedish country code when the holder is registered elsewhere.
+> Supply the holder's own personal or organization number, or use a non-Swedish country code when the holder is registered elsewhere.
 
 When the holder has no organization name and the country code is `[SE]`, the registry expects a personal number rather than an organization number.
 
