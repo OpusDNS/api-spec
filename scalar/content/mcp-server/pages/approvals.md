@@ -35,6 +35,21 @@ transfer lock is one of the things it does. The wording changes what the prompt
 says, never whether approval is required.
 </scalar-callout>
 
+## Which path your client takes
+
+| Client | Path | What you see |
+| --- | --- | --- |
+| Claude Code | A | An approval prompt in the terminal |
+| Claude desktop and web | A | An approval prompt in the conversation |
+| Cursor | B | The agent relays the `confirmation_required` payload and asks |
+| VS Code | B | The agent relays the payload and asks |
+| ChatGPT / OpenAI Responses API | B | The agent relays the payload and asks |
+
+Path A needs two things at once: protocol revision `2026-07-28` **and** a
+declared elicitation capability. A client missing either gets Path B, which
+works everywhere. Both enforce the same gate server-side; they differ only in who
+draws the prompt.
+
 ## Path A — your client asks you directly
 
 Clients on protocol revision `2026-07-28` that support elicitation get a
@@ -114,6 +129,7 @@ Every other client gets a payload the model has to relay to you:
 
 Repeat the **identical** call with the token added as an argument:
 
+<!-- example: call_operation -->
 ```json
 {
   "operationId": "renew_domain_v1_domains__domain_reference__renew_post",
@@ -180,6 +196,18 @@ Nothing is consumed.
 challenge. See
 [Troubleshooting](/mcp-server/troubleshooting#approval-keeps-being-requested).
 
+## Approving a bulk action safely
+
+Three things to read in the prompt before you say yes:
+
+1. **The count.** Does `matchedDomains` from the preview match what you
+   expected? 412 and 4,127 look alike in a hurry.
+2. **The selector echo.** The prompt spells out the filters — `tld=["com"],
+   expires_in_30_days=true`. If it says *"the entire portfolio (no filters)"*,
+   the selector was empty.
+3. **The organization.** If you are acting for a customer, the prompt names the
+   sub-organization. If it does not, you are about to change your own portfolio.
+
 ## Bulk approvals bind the resolved set
 
 For a bulk call, the resolved list of domains is part of what the token binds.
@@ -196,6 +224,7 @@ roughly".
 ## Related
 
 - [Bulk operations with Jobs](/mcp-server/bulk-operations)
+- [Results and errors](/mcp-server/results) — the shapes an approval can return
 - [Roles &amp; permissions](/account/organizations/roles) — approval is not
   authorization; the API still decides what your account may do
 - [Troubleshooting](/mcp-server/troubleshooting)

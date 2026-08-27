@@ -4,6 +4,7 @@ An MCP session signs you in as yourself, so by default every tool acts on your
 own organization. If your account is a parent of other organizations — the usual
 reseller shape — pass `organizationId` to act on one of them instead:
 
+<!-- example: portfolio_query -->
 ```json
 {
   "selector": { "expires_in_30_days": true },

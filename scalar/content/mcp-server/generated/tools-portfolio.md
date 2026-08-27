@@ -26,6 +26,51 @@ Unknown parameters are rejected.
 - Repeating the same call has the same effect.
 - Calls the OpusDNS API.
 
+**Example call.**
+
+```json
+{}
+```
+
+**Example result.**
+
+```json
+{
+  "status": "ok",
+  "operationId": "get_domain_summary_v1_domains_summary_get",
+  "httpStatus": 200,
+  "headers": {
+    "content-type": "application/json"
+  },
+  "data": {
+    "organization_id": "organization_01h45ytscbebyvny4gc8cr8ma2",
+    "domains": {
+      "total_count": 1284,
+      "by_status": {
+        "ok": 1275,
+        "pendingDelete": 9
+      },
+      "by_tld": {
+        "com": 612,
+        "de": 388,
+        "net": 154,
+        "org": 92,
+        "io": 38
+      },
+      "by_organization": {
+        "Acme Labs": 1284
+      },
+      "expiring_soon": {
+        "next_30_days": 41,
+        "next_60_days": 96,
+        "next_90_days": 155
+      }
+    }
+  },
+  "truncated": false
+}
+```
+
 ## portfolio_query
 
 **Query the domain portfolio** — approval required: **no**
@@ -49,3 +94,60 @@ Unknown parameters are rejected.
 - Read-only: never changes anything in your account.
 - Repeating the same call has the same effect.
 - Calls the OpusDNS API.
+
+**Example call.**
+
+```json
+{
+  "selector": {
+    "tld": [
+      "com"
+    ],
+    "expires_in_30_days": true
+  },
+  "fields": [
+    "name",
+    "expires_on",
+    "renewal_mode"
+  ],
+  "pageSize": 3
+}
+```
+
+**Example result.**
+
+```json
+{
+  "status": "ok",
+  "fields": [
+    "name",
+    "expires_on",
+    "renewal_mode"
+  ],
+  "results": [
+    {
+      "name": "acme-labs.com",
+      "expires_on": "2026-09-03T21:25:00Z",
+      "renewal_mode": "expire"
+    },
+    {
+      "name": "acme-shop.com",
+      "expires_on": "2026-09-11T08:00:00Z",
+      "renewal_mode": "renew"
+    },
+    {
+      "name": "spring-sale-2026.com",
+      "expires_on": "2026-09-18T12:30:00Z",
+      "renewal_mode": "renew"
+    }
+  ],
+  "pagination": {
+    "current_page": 1,
+    "page_size": 3,
+    "total_items": 41,
+    "total_pages": 14,
+    "has_next_page": true,
+    "has_previous_page": false
+  }
+}
+```

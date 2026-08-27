@@ -48,7 +48,18 @@ guessing, and keep it on every call of a sequence -- preview and submit that dis
 about it are two different actions.
 
 Operations that write, cost money, or destroy resources require explicit user approval
-before they run. This is enforced server-side, not by these instructions.
+before they run. This is enforced server-side, not by these instructions. If a call comes
+back with status "confirmation_required", ask the user, then retry the SAME call with
+confirmationToken added and nothing else changed -- a different selector, body or
+organizationId is a different action and will be refused. "declined" means stop.
+
+Reading a result: status "ok" is a 2xx, status "api_error" is a 4xx or 5xx from the
+OpusDNS API and is a normal result carrying httpStatus and the API's problem detail in
+data -- report it, do not retry blindly. status "error" means the call did not reach the
+API; its "code" says why: invalid_request or unknown_operation mean fix the arguments,
+authentication_required means sign in, upstream_timeout and upstream_unavailable are
+transient and may be retried once after a pause. truncated true means the response was
+cut off: narrow the request instead of repeating it.
 ```
 
 The tool list carries a freshness hint of **15 minutes** (`ttlMs: 900000`), so a client

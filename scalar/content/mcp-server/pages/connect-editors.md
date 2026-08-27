@@ -4,15 +4,21 @@ All of these clients talk to the same endpoint with the same credentials:
 `https://api.opusdns.com/mcp`, remote Streamable HTTP, browser OAuth. What
 differs is the config file and the key it nests the server under.
 
-| Client | Remote HTTP | Browser sign-in | Bridge needed |
-| --- | --- | --- | --- |
-| Claude Code | Yes | Yes | No |
-| Claude desktop and web | Yes | Yes | No |
-| Cursor | Yes | Yes | No |
-| VS Code | Yes | Yes | No |
-| ChatGPT custom connectors | Yes | Yes | No |
-| OpenAI Responses API `mcp` tool | Yes | **No** — needs a token you already hold | No |
-| stdio-only clients | No | Through a bridge | Yes |
+| Client | Remote HTTP | Browser sign-in | Bridge needed | Approval prompt |
+| --- | --- | --- | --- | --- |
+| Claude Code | Yes | Yes | No | In the client (Path A) |
+| Claude desktop and web | Yes | Yes | No | In the client (Path A) |
+| Cursor | Yes | Yes | No | Relayed by the agent (Path B) |
+| VS Code | Yes | Yes | No | Relayed by the agent (Path B) |
+| ChatGPT custom connectors | Yes | Yes | No | Relayed by the agent (Path B) |
+| OpenAI Responses API `mcp` tool | Yes | **No** — needs a token you already hold | No | Relayed by the agent (Path B) |
+| stdio-only clients | No | Through a bridge | Yes | Relayed by the agent (Path B) |
+
+The last column is about *who draws the prompt*, not about how strongly the
+action is gated — the gate is server-side either way. A client gets Path A only
+if it negotiates protocol revision `2026-07-28` **and** declares elicitation;
+everything else falls back to Path B, which works everywhere. See
+[Approvals and confirmations](/mcp-server/approvals).
 
 ## Cursor
 

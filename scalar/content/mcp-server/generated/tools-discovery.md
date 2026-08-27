@@ -31,11 +31,61 @@ Unknown parameters are rejected.
 - Repeating the same call has the same effect.
 - Answered from the server's built-in API catalog; makes no network call.
 
+**Example call.**
+
+```json
+{
+  "query": "renew domain",
+  "limit": 5
+}
+```
+
+**Example result.**
+
+```json
+{
+  "count": 2,
+  "total": 2,
+  "results": [
+    {
+      "operationId": "renew_domain_v1_domains__domain_reference__renew_post",
+      "method": "POST",
+      "path": "/v1/domains/{domain_reference}/renew",
+      "tags": [
+        "domain"
+      ],
+      "summary": "Renew a domain",
+      "safety": {
+        "read": false,
+        "write": true,
+        "cost": true,
+        "destructive": false
+      }
+    },
+    {
+      "operationId": "epp_check_domain_v1_domains_check_get",
+      "method": "GET",
+      "path": "/v1/domains/check",
+      "tags": [
+        "domain"
+      ],
+      "summary": "Check domain availability and registration metadata",
+      "safety": {
+        "read": true,
+        "write": false,
+        "cost": false,
+        "destructive": false
+      }
+    }
+  ]
+}
+```
+
 ## describe_operation
 
 **Describe an OpusDNS API operation** — approval required: **no**
 
-Return full call details for one operation: method, path, parameters, request-body schema, safety flags, and whether confirmation is required before calling.
+Return full call details for one operation: method, path, parameters, request-body schema, safety flags, and whether confirmation is required before calling. An unknown operationId is answered with status "not_found" as a normal result, not an error — search_operations for the right id rather than retrying this one.
 
 **When to use it.** Use it when a search returned several candidates and you need the parameters and
 request body of the one you picked. A single-match search already includes this,
@@ -51,11 +101,66 @@ Unknown parameters are rejected.
 - Repeating the same call has the same effect.
 - Answered from the server's built-in API catalog; makes no network call.
 
+**Example call.**
+
+```json
+{
+  "operationId": "renew_domain_v1_domains__domain_reference__renew_post"
+}
+```
+
+**Example result.**
+
+```json
+{
+  "operation": {
+    "operationId": "renew_domain_v1_domains__domain_reference__renew_post",
+    "method": "POST",
+    "path": "/v1/domains/{domain_reference}/renew",
+    "tags": [
+      "domain"
+    ],
+    "summary": "Renew a domain",
+    "description": "Extends the registration period of an existing domain.",
+    "safety": {
+      "read": false,
+      "write": true,
+      "cost": true,
+      "destructive": false
+    },
+    "parameters": [
+      {
+        "name": "domain_reference",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "title": "Domain Reference",
+          "…": "a domain id or a domain name"
+        }
+      }
+    ],
+    "requestBody": {
+      "required": true,
+      "contentTypes": [
+        "application/json"
+      ],
+      "schema": {
+        "…": "the full request-body schema"
+      }
+    },
+    "responseContentTypes": [
+      "application/json"
+    ]
+  },
+  "requiresConfirmation": true
+}
+```
+
 ## call_operation
 
 **Call an OpusDNS API operation** — approval required: **depends on the operation**
 
-Call one OpusDNS operation. Write/cost/destructive operations require explicit user approval before they run; clients that support elicitation are asked directly, others receive a confirmation_required payload to approve and retry with the confirmationToken. For multi-domain mutations use the bulk_* tools instead of looping this tool.
+Call one OpusDNS operation. Path parameters go in pathParams, query parameters in query, and the JSON body in body — never interpolate a value into the operationId. Write/cost/destructive operations require explicit user approval before they run; clients that support elicitation are asked directly, others receive a confirmation_required payload to approve and retry with the confirmationToken, changing nothing else. For multi-domain mutations use the bulk_* tools instead of looping this tool.
 
 **When to use it.** For one operation on one resource. For the same change across many domains, use
 `bulk_preview` and `bulk_submit` instead — looping this tool is slower, costs
@@ -65,7 +170,7 @@ more context, and asks for a separate approval every time.
 | --- | --- | --- | --- |
 | `operationId` | string | **yes** | the operationId to call |
 | `body` | any (JSON) | no | JSON request body for write operations |
-| `confirmationToken` | string | no | token returned by a prior confirmation\_required response |
+| `confirmationToken` | string | no | token from a prior confirmation\_required response, echoed back to execute the approved action. Omit on the first call |
 | `organizationId` | string | no | act on this sub-organization instead of your own, e.g. organization\_01h45ytscbebyvny4gc8cr8ma2. It must be a sub-organization of the signed-in account; find its id with the organizations list operation |
 | `pathParams` | object (any keys) | no | path parameter values keyed by name |
 | `query` | object (any keys) | no | query parameter values keyed by name |
@@ -75,3 +180,39 @@ Unknown parameters are rejected.
 - **Can modify or delete data, depending on what you call.** Anything that is not a read requires your explicit approval first.
 - Repeating the call repeats the effect.
 - Calls the OpusDNS API.
+
+**Example call.**
+
+```json
+{
+  "operationId": "renew_domain_v1_domains__domain_reference__renew_post",
+  "pathParams": {
+    "domain_reference": "acme-labs.com"
+  },
+  "body": {
+    "period": {
+      "unit": "y",
+      "value": 1
+    },
+    "current_expiry_date": "2026-11-04T00:00:00Z"
+  }
+}
+```
+
+**Example result.**
+
+```json
+{
+  "status": "ok",
+  "operationId": "renew_domain_v1_domains__domain_reference__renew_post",
+  "httpStatus": 200,
+  "headers": {
+    "content-type": "application/json",
+    "x-server-request-id": "8f3c2e10-1b4a-4c6b-9e77-2a91f5d0c4aa"
+  },
+  "data": {
+    "…": "the updated domain"
+  },
+  "truncated": false
+}
+```

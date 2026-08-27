@@ -3736,6 +3736,20 @@
             "filepath": "content/mcp-server/pages/overview.md",
             "showInSidebar": true
           },
+          "/quickstart": {
+            "type": "page",
+            "title": "Quickstart",
+            "icon": "line/interface-share-rocket",
+            "filepath": "content/mcp-server/pages/quickstart.md",
+            "showInSidebar": true
+          },
+          "/mcp-or-api": {
+            "type": "page",
+            "title": "MCP or the REST API?",
+            "icon": "line/arrow-right",
+            "filepath": "content/mcp-server/pages/mcp-or-api.md",
+            "showInSidebar": true
+          },
           "/connect": {
             "type": "group",
             "title": "Connect your client",
@@ -3776,6 +3790,13 @@
             "title": "Tool workflows",
             "icon": "line/arrow-right",
             "filepath": "content/mcp-server/pages/tool-workflows.md",
+            "showInSidebar": true
+          },
+          "/recipes": {
+            "type": "page",
+            "title": "Recipes",
+            "icon": "line/interface-content-book-page",
+            "filepath": "content/mcp-server/pages/recipes.md",
             "showInSidebar": true
           },
           "/sub-organizations": {
@@ -3848,11 +3869,25 @@
               }
             }
           },
+          "/results": {
+            "type": "page",
+            "title": "Results and errors",
+            "icon": "phosphor/regular/flag",
+            "filepath": "content/mcp-server/pages/results.md",
+            "showInSidebar": true
+          },
           "/troubleshooting": {
             "type": "page",
             "title": "Troubleshooting",
             "icon": "line/interface-setting-cog",
             "filepath": "content/mcp-server/pages/troubleshooting.md",
+            "showInSidebar": true
+          },
+          "/faq": {
+            "type": "page",
+            "title": "FAQ",
+            "icon": "line/interface-content-book-open-pages",
+            "filepath": "content/mcp-server/pages/faq.md",
             "showInSidebar": true
           }
         }

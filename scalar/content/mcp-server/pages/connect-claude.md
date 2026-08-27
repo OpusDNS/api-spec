@@ -76,6 +76,17 @@ own sign-in and neither can see the other's domains. Give them distinct names �
 an agent offered two connectors with the same name will pick one arbitrarily.
 </scalar-callout>
 
+### Check it worked
+
+```bash
+claude mcp list
+```
+
+The server should show as connected. Then ask for something read-only —
+*"how many domains do I have?"* — and expect a count back. If it does not
+connect, the symptom is almost certainly in
+[Troubleshooting](/mcp-server/troubleshooting#connecting).
+
 ## Claude desktop and Claude on the web
 
 Open **Settings → Connectors → Add custom connector**, name it `OpusDNS`, paste

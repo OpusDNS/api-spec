@@ -17,13 +17,35 @@ Three consequences worth knowing:
 | Family | `templateType` | Instances addressed by |
 | --- | --- | --- |
 | Domains | `domain_update_bulk` | `domain_id` |
-| DNS zones | `dns_zone_create_bulk`, `dns_zone_update_bulk`, `dns_zone_patch_rrsets_bulk` | `name` |
+| DNS zones | `dns_zone_create_bulk`, `dns_zone_update_bulk` | `name` |
+| DNS RRsets | `dns_zone_patch_rrsets_bulk` | `zone_name` |
 | Domain (URL) forwards | `domain_forward_create_bulk`, `domain_forward_update_bulk`, `domain_forward_enable_bulk`, `domain_forward_disable_bulk`, `domain_forward_delete_bulk` | `hostname` |
 | Email forwards | `email_forward_create_bulk`, `email_forward_update_bulk`, `email_forward_enable_bulk`, `email_forward_disable_bulk`, `email_forward_delete_bulk` | `hostname` |
 
 The always-current list, including the Jobs commands that are deliberately not
 reachable this way and why, is on [Bulk
-templates](/mcp-server/tools/templates).
+templates](/mcp-server/tools/templates). A worked `template` body for each
+family is on [Recipes](/mcp-server/recipes).
+
+## Choosing a template body
+
+The `template` is the shared mutation, in the shape the Jobs command expects —
+`renewal_mode`, `nameservers`, `status_changes` or `contacts` for a domain
+update; `rrsets` and `dnssec_status` for a zone; `http`/`https` redirects for a
+URL forward; `aliases` for an email forward.
+
+<scalar-callout type="warning">
+The <strong>enable, disable and delete</strong> commands carry no template of
+their own — there is nothing to configure, only a set to act on. The tool still
+requires the argument, so pass an empty object:
+<code>"template": {}</code>.
+</scalar-callout>
+
+`dns_zone_patch_rrsets_bulk` is the other shape: its command has no shared
+template either, because the RRset operations belong to each zone. You still
+pass one `template` — put the `ops` in it — and the server writes them into
+every resolved instance alongside its `zone_name`. `bulk_preview` shows the
+result under `sampleInstances`.
 
 ## The selector
 
@@ -44,6 +66,17 @@ Forward instances are addressed by hostname, built as `hostnamePrefix` plus the
 resolved domain. Pass `"*."` to target wildcard subdomain forwards
 (`*.acme-labs.com`), or leave it out for the apex (`acme-labs.com`).
 
+The two are separate forwards, so covering both means running the operation
+twice. For a selector resolving to `acme-labs.com` and `acme-shop.com`:
+
+| `hostnamePrefix` | Resolved instances |
+| --- | --- |
+| `""` (default) | `{"hostname": "acme-labs.com"}`, `{"hostname": "acme-shop.com"}` |
+| `"*."` | `{"hostname": "*.acme-labs.com"}`, `{"hostname": "*.acme-shop.com"}` |
+
+`bulk_preview` shows exactly this under `sampleInstances`, which is the cheapest
+way to be sure you are about to change the one you meant.
+
 Supplying it for a template that is not hostname-addressed is rejected:
 
 ```
@@ -54,6 +87,7 @@ hostnamePrefix is only valid for hostname-addressed templates (*_forward_*_bulk)
 
 `bulk_preview` with:
 
+<!-- example: bulk_preview -->
 ```json
 {
   "templateType": "domain_update_bulk",
@@ -157,9 +191,23 @@ The errors you will meet:
 
 | Message | Meaning |
 | --- | --- |
-| `selector matched no domains; nothing to submit` | Filters too narrow, or `tag_ids` was given a label instead of an ID |
-| `selector matched 1204 domains, exceeding the limit of 1000` | Narrow the selector and submit in parts |
-| `selector matched more than the limit of 1000 domains; narrow the selector` | Same, detected while paging |
+| `selector matched no domains; nothing to submit…` | Filters too narrow, or `tag_ids` was given a label instead of an ID |
+| `selector matched 1204 domains, exceeding the limit of 1000…` | Narrow the selector and submit in parts |
+| `selector matched more than the limit of 1000 domains; narrow the selector…` | Same, detected while paging |
+
+### Changing more than 1,000 domains
+
+Split along a filter that partitions cleanly. One TLD at a time is the least
+surprising, because each half is easy to describe out loud and easy to check in
+the preview:
+
+1. `bulk_preview` with `{"tld": ["com"], …}` → 812 matched → submit, approve,
+   keep the `batch_id`.
+2. `bulk_preview` with `{"tld": ["de"], …}` → 392 matched → submit, approve,
+   keep the second `batch_id`.
+
+Each half is its own approval and its own batch. Keep both ids: that is how you
+check and steer them afterwards.
 
 ## Step 3 — watch it
 
@@ -183,8 +231,35 @@ batches](/automation/jobs/managing-batches).
 
 `errorClass` is what makes `retry` useful: retry only the jobs that failed for
 one reason — say insufficient funds, after topping up — and leave failures with a
-different cause alone. See [Managing
-batches](/automation/jobs/managing-batches).
+different cause alone. It is a **list**, and omitting it retries every failed job
+in the batch:
+
+<!-- example: job_batch_control -->
+
+```json
+{
+  "batchId": "batch_01k3n0m5xrf9pab6t2wqzhkvr3",
+  "action": "retry",
+  "errorClass": ["BillingInsufficientFundsError"]
+}
+```
+
+```json
+{
+  "status": "ok",
+  "operationId": "retry_batch_v1_jobs__batch_id__retry_post",
+  "httpStatus": 200,
+  "data": {
+    "batch_id": "batch_01k3n0m5xrf9pab6t2wqzhkvr3",
+    "retried_count": 5,
+    "queued_count": 5,
+    "blocked_count": 0
+  },
+  "truncated": false
+}
+```
+
+See [Managing batches](/automation/jobs/managing-batches).
 
 The approval prompt for a pause reads:
 
@@ -201,8 +276,15 @@ success, not a truncated response. Retry is the exception: it answers
 jobs it actually picked up.
 </scalar-callout>
 
+<scalar-callout type="info">
+A batch outlives the conversation. It runs inside OpusDNS Jobs, so closing your
+client neither pauses nor cancels it — reconnect later and ask for its status by
+<code>batch_id</code>.
+</scalar-callout>
+
 ## Related
 
+- [Recipes](/mcp-server/recipes) — a worked template body per family
 - [Bulk templates](/mcp-server/tools/templates)
 - [Jobs overview](/automation/jobs/overview), [Domain
   commands](/automation/jobs/domain-commands), [Managing

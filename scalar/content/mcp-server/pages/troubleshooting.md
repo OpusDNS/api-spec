@@ -1,6 +1,9 @@
 # Troubleshooting
 
-Symptom first, in the words the server actually uses.
+Symptom first, in the words the server actually uses. Looking for a shape rather
+than a symptom — what `api_error` means, which `code` values exist, what a
+truncated result looks like — see
+[Results and errors](/mcp-server/results).
 
 ## Connecting
 
@@ -90,14 +93,45 @@ is a client behaviour to raise with the client's vendor: the server can verify
 that a token matches an action, but not that a human saw it. See [Path
 B](/mcp-server/approvals#path-b-the-confirmation-payload).
 
+### I approved it and nothing happened
+
+The approval reached your client but the retry never left it. Nothing was
+consumed, so simply ask again. If it repeats with one particular client, that is
+a client bug worth reporting — the server cannot retry on its behalf.
+
+## Using the tools
+
+### The agent called one operation per domain instead of one batch
+
+Say so: *"do that as one bulk operation, not one call per domain"*. A loop of
+`call_operation` costs an approval per domain and is exactly what
+[the bulk tools](/mcp-server/bulk-operations) exist to replace.
+
+### The agent acted on the wrong organization
+
+`organizationId` applies to a **single call**, never to a session. Every call in
+a sequence needs it, and a preview and a submit that disagree about it are two
+different actions. See [Sub-organizations](/mcp-server/sub-organizations).
+
+### A new tool or a changed parameter is not showing up
+
+Tool lists are cacheable for about fifteen minutes. Reconnect the server in your
+client to force a fresh `tools/list`.
+
+### A filter worked but `status_tags` came back `null`
+
+The domain list only populates `tags` and `status_tags` when the request asks
+for them. Add `"include": ["tags"]` to the selector.
+
 ## Bulk
 
 | Symptom | Cause |
 | --- | --- |
-| `selector matched no domains; nothing to submit` | Filters too narrow — or `tag_ids` was given a tag label instead of a tag ID |
-| `selector matched 1204 domains, exceeding the limit of 1000` | One batch is one command, and a command holds 1,000 instances. Narrow the selector and submit in parts |
+| `selector matched no domains; nothing to submit…` | Filters too narrow — or `tag_ids` was given a tag label instead of a tag ID |
+| `selector matched 1204 domains, exceeding the limit of 1000…` | One batch is one command, and a command holds 1,000 instances. Narrow the selector and submit in parts |
 | `unknown templateType "..."` | The error lists the allowed values. See [Bulk templates](/mcp-server/tools/templates) |
-| `hostnamePrefix is only valid for hostname-addressed templates` | Only the forward templates take a prefix |
+| `hostnamePrefix is only valid for hostname-addressed templates…` | Only the forward templates take a prefix |
+| `Invalid query parameter "error_class"` | `errorClass` is a list — `["BillingInsufficientFundsError"]`, not a bare string |
 | `"httpStatus": 204` with empty `data` | Success. Pause, resume and cancel return no content |
 
 ## Results

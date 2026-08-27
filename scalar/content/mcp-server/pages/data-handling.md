@@ -68,8 +68,17 @@ and holds the resulting credentials itself, on your machine. The MCP server neve
 stores them, and it accepts no API keys. Ending that access is
 [Disconnecting](/mcp-server/connect/disconnect).
 
+## Policies
+
+Processing of personal data by OpusDNS is covered by the
+[OpusDNS privacy policy](https://www.opusdns.com/privacy-policy). Connecting the
+MCP server introduces no separate processor: the tools reach the same OpusDNS API
+your account already uses, with your own permissions.
+
 ## Related
 
+- [Results and errors](/mcp-server/results) — what a tool hands back, and how
+  much of it
 - [Approvals and confirmations](/mcp-server/approvals) — what an agent may
   *do*, as against what it may see
 - [Roles &amp; permissions](/account/organizations/roles) — an MCP session

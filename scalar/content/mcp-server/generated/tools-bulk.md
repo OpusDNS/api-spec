@@ -14,7 +14,7 @@ selector matched 412 domains rather than 4,127. See
 
 **Preview a bulk domain operation** — approval required: **no**
 
-Dry-run a bulk operation. Resolves the selector to domains server-side and renders the planned Jobs template + instances. Submits nothing upstream. Review the result, then call bulk_submit with the same arguments.
+Dry-run a bulk operation. Resolves the selector by reading the domain list from the OpusDNS API, then renders the planned Jobs template + instances. It reads but never writes, so it needs the same credentials as any other call and no approval. Review matchedDomains, then call bulk_submit with the same arguments.
 
 **When to use it.** Always run this first. It resolves the selector and shows you the matched count,
 the shared template, and a sample of the instances that would be created —
@@ -34,6 +34,72 @@ Unknown parameters are rejected.
 - Read-only: never changes anything in your account.
 - Repeating the same call has the same effect.
 - Calls the OpusDNS API.
+
+**Example call.**
+
+```json
+{
+  "templateType": "domain_update_bulk",
+  "template": {
+    "status_changes": {
+      "add": [
+        "clientTransferProhibited"
+      ]
+    }
+  },
+  "selector": {
+    "tld": [
+      "com"
+    ],
+    "expires_in_30_days": true
+  },
+  "sampleSize": 3
+}
+```
+
+**Example result.**
+
+```json
+{
+  "status": "dry_run",
+  "templateType": "domain_update_bulk",
+  "command": "domain_update_bulk",
+  "matchedDomains": 412,
+  "template": {
+    "status_changes": {
+      "add": [
+        "clientTransferProhibited"
+      ]
+    }
+  },
+  "sampleDomains": [
+    {
+      "name": "acme-labs.com",
+      "domain_id": "domain_01h45ytscbebyvny4gc8cr8ma2"
+    },
+    {
+      "name": "acme-labs.net",
+      "domain_id": "domain_01h45yv2m8fbcwnz9pq3kr7txe"
+    },
+    {
+      "name": "acme-shop.com",
+      "domain_id": "domain_01h45yw7q2gdexpa4bt6mn8zvc"
+    }
+  ],
+  "sampleInstances": [
+    {
+      "domain_id": "domain_01h45ytscbebyvny4gc8cr8ma2"
+    },
+    {
+      "domain_id": "domain_01h45yv2m8fbcwnz9pq3kr7txe"
+    },
+    {
+      "domain_id": "domain_01h45yw7q2gdexpa4bt6mn8zvc"
+    }
+  ],
+  "note": "Nothing was submitted. Call bulk_submit with the same templateType, template and selector to execute. You will be asked to approve the action first."
+}
+```
 
 ## bulk_submit
 
@@ -61,6 +127,52 @@ Unknown parameters are rejected.
 - Repeating the call repeats the effect.
 - Calls the OpusDNS API.
 
+**Example call.**
+
+```json
+{
+  "templateType": "domain_update_bulk",
+  "template": {
+    "status_changes": {
+      "add": [
+        "clientTransferProhibited"
+      ]
+    }
+  },
+  "selector": {
+    "tld": [
+      "com"
+    ],
+    "expires_in_30_days": true
+  },
+  "label": "lock-expiring-com"
+}
+```
+
+**Example result.**
+
+```json
+{
+  "status": "ok",
+  "operationId": "create_batch_v1_jobs_post",
+  "httpStatus": 201,
+  "headers": {
+    "content-type": "application/json"
+  },
+  "data": {
+    "batch_id": "batch_01k3n0m5xrf9pab6t2wqzhkvr3",
+    "jobs_created": 412,
+    "jobs_failed": 0,
+    "jobs_duplicated": 0,
+    "duplicates": [],
+    "errors": [],
+    "total_commands": 1,
+    "status_url": "/v1/jobs/batch_01k3n0m5xrf9pab6t2wqzhkvr3"
+  },
+  "truncated": false
+}
+```
+
 ## job_batch_status
 
 **Get job batch status** — approval required: **no**
@@ -81,6 +193,42 @@ Unknown parameters are rejected.
 - Repeating the same call has the same effect.
 - Calls the OpusDNS API.
 
+**Example call.**
+
+```json
+{
+  "batchId": "batch_01k3n0m5xrf9pab6t2wqzhkvr3"
+}
+```
+
+**Example result.**
+
+```json
+{
+  "status": "ok",
+  "operationId": "get_batch_v1_jobs__batch_id__get",
+  "httpStatus": 200,
+  "headers": {
+    "content-type": "application/json"
+  },
+  "data": {
+    "batch_id": "batch_01k3n0m5xrf9pab6t2wqzhkvr3",
+    "label": "lock-expiring-com",
+    "total": 412,
+    "queued": 0,
+    "running": 6,
+    "succeeded": 401,
+    "failed": 5,
+    "blocked": 0,
+    "paused": 0,
+    "canceled": 0,
+    "dead_letter": 0,
+    "progress_percentage": 98
+  },
+  "truncated": false
+}
+```
+
 ## job_batch_control
 
 **Control a job batch** — approval required: **yes**
@@ -96,7 +244,7 @@ that failed that way — useful after fixing one cause and leaving the rest alon
 | `batchId` | string | **yes** | batch id returned by bulk\_submit, e.g. batch\_01k3n0m5xrf9pab6t2wqzhkvr3 |
 | `action` | string | **yes** | one of pause, resume, retry, cancel |
 | `confirmationToken` | string | no | token from a prior confirmation\_required response, echoed back to execute the approved action. Omit on the first call |
-| `errorClass` | string | no | for retry: only retry jobs with this error\_class |
+| `errorClass` | array of string | no | for retry: only retry jobs whose error\_class is one of these, e.g. \["BillingInsufficientFundsError"\]. Omit to retry every failed job in the batch |
 | `organizationId` | string | no | act on this sub-organization instead of your own, e.g. organization\_01h45ytscbebyvny4gc8cr8ma2. It must be a sub-organization of the signed-in account; find its id with the organizations list operation |
 
 Unknown parameters are rejected.
@@ -104,3 +252,35 @@ Unknown parameters are rejected.
 - **Can modify or delete data.** Requires your explicit approval before it runs.
 - Repeating the call repeats the effect.
 - Calls the OpusDNS API.
+
+**Example call.**
+
+```json
+{
+  "batchId": "batch_01k3n0m5xrf9pab6t2wqzhkvr3",
+  "action": "retry",
+  "errorClass": [
+    "BillingInsufficientFundsError"
+  ]
+}
+```
+
+**Example result.**
+
+```json
+{
+  "status": "ok",
+  "operationId": "retry_batch_v1_jobs__batch_id__retry_post",
+  "httpStatus": 200,
+  "headers": {
+    "content-type": "application/json"
+  },
+  "data": {
+    "batch_id": "batch_01k3n0m5xrf9pab6t2wqzhkvr3",
+    "retried_count": 5,
+    "queued_count": 5,
+    "blocked_count": 0
+  },
+  "truncated": false
+}
+```
