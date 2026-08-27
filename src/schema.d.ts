@@ -15231,6 +15231,7 @@ export interface operations {
                 email?: string | null;
                 search?: string | null;
                 country?: string | null;
+                in_use?: boolean | null;
                 created_after?: Date | null;
                 created_before?: Date | null;
                 /** @description Include additional data in the response. Can be specified multiple times. */
