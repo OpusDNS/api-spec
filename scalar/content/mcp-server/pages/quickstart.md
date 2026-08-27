@@ -1,18 +1,19 @@
 # Quickstart
 
-Connect a client, ask a question, make a change. About ten minutes, all of it in
-the sandbox, none of it billable.
+Connect a client, ask a question, make a change. About ten minutes, most of it
+read-only.
 
 <scalar-callout type="info">
-This walkthrough uses the <strong>sandbox</strong>
-(<code>https://sandbox.opusdns.com/mcp</code>). It is a separate account and a
-separate sign-in from production, so nothing here can touch live domains. When
-you are ready, swap one URL — see step 5.
+This walkthrough uses <strong>production</strong>
+(<code>https://api.opusdns.com/mcp</code>) — the endpoint you will keep using.
+Steps 1–3 only read and preview; nothing changes until you approve step 4. If
+you would rather rehearse against throwaway domains first, there is a free
+sandbox — see step 5.
 </scalar-callout>
 
 ## Before you start
 
-- A sandbox account. It is free and independent of your production account.
+- An OpusDNS account.
 - An MCP client that speaks remote Streamable HTTP. This page uses Claude Code
   because it is a single command; every other client is on
   [Connect your client](/mcp-server/connect).
@@ -23,11 +24,11 @@ your browser and rejects API keys.
 ## 1. Add the server
 
 ```bash
-claude mcp add --transport http opusdns-sandbox https://sandbox.opusdns.com/mcp
+claude mcp add --transport http opusdns https://api.opusdns.com/mcp
 ```
 
-Then run `/mcp` inside Claude Code, pick **opusdns-sandbox**, and complete the
-sign-in that opens in your browser. There is nothing to paste back.
+Then run `/mcp` inside Claude Code, pick **opusdns**, and complete the sign-in
+that opens in your browser. There is nothing to paste back.
 
 Check it worked:
 
@@ -94,6 +95,12 @@ changing four thousand.
 
 ## 4. Approve the change
 
+<scalar-callout type="warning">
+This step changes live domains. Check <code>matchedDomains</code> from step 3
+first, and keep the selector narrow. To rehearse the write itself against
+throwaway domains, run the same steps against the sandbox — step 5.
+</scalar-callout>
+
 > *"Yes, do it."*
 
 The model calls `bulk_submit` with the same arguments. This one writes, so it
@@ -122,15 +129,19 @@ Approve it, and the answer carries a `batch_id`:
 
 Ask *"is that batch done?"* and the model calls `job_batch_status` with that id.
 
-## 5. Move to production
+## 5. Optional: the sandbox
 
-Same client, one different URL:
+If you want to try writes without touching live domains, the sandbox runs the
+same nine tools against a free, fully isolated account. Same client, one
+different URL:
 
 ```bash
-claude mcp add --transport http opusdns https://api.opusdns.com/mcp
+claude mcp add --transport http opusdns-sandbox https://sandbox.opusdns.com/mcp
 ```
 
-Production is a separate sign-in. You can keep both connected at once — see
+It is a separate account and a separate sign-in, so its domains and your
+production domains never see each other. You can keep both connected at once —
+give them distinct names, as above. See
 [Adding the sandbox alongside production](/mcp-server/connect#adding-the-sandbox-alongside-production).
 
 ## What just happened

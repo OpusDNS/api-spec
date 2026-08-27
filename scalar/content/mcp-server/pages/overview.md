@@ -1,4 +1,4 @@
-# OpusDNS MCP server <span class="opusdns-beta-badge">Beta</span>
+# OpusDNS MCP server
 
 The OpusDNS MCP server is a remote [Model Context
 Protocol](https://modelcontextprotocol.io) server that exposes the OpusDNS
@@ -9,8 +9,8 @@ that cover the whole API.
 
 <scalar-callout type="info">
 New here? The <a href="/mcp-server/quickstart">Quickstart</a> gets you from
-nothing to an approved change in about ten minutes, in the sandbox. Building
-unattended automation instead? Read
+nothing to an approved change in about ten minutes. Building unattended
+automation instead? Read
 <a href="/mcp-server/mcp-or-api">MCP or the REST API?</a> first.
 </scalar-callout>
 
