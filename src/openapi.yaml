@@ -15780,7 +15780,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-27-143617
+  version: 2026-08-27-221530
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -21332,7 +21332,7 @@ paths:
                 status: 404
                 title: DNS Error
                 type: dns-zone-not-found
-                zone_name: Zone example.com. not found
+                zone_name: example.com.
               schema:
                 $ref: '#/components/schemas/Problem'
           description: DNS zone was not found
@@ -26253,7 +26253,7 @@ paths:
                 status: 404
                 title: DNS Error
                 type: dns-zone-not-found
-                zone_name: Zone example.com. not found
+                zone_name: example.com.
               schema:
                 $ref: '#/components/schemas/Problem'
           description: DNS zone was not found

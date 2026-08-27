@@ -17486,7 +17486,7 @@ export interface operations {
                      *       "status": 404,
                      *       "title": "DNS Error",
                      *       "type": "dns-zone-not-found",
-                     *       "zone_name": "Zone example.com. not found"
+                     *       "zone_name": "example.com."
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
@@ -21528,7 +21528,7 @@ export interface operations {
                      *       "status": 404,
                      *       "title": "DNS Error",
                      *       "type": "dns-zone-not-found",
-                     *       "zone_name": "Zone example.com. not found"
+                     *       "zone_name": "example.com."
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
