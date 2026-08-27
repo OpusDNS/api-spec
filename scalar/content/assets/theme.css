@@ -190,17 +190,23 @@ samp {
 	margin-top: 0 !important;
 }
 
-.tabs .link {
+/* The hosted platform renders the tab bar as .t-header__tabs > .t-header__item,
+   the local preview as .tabs > .link — every rule must target both. */
+.tabs .link,
+.t-header__tabs .t-header__item {
 	font-size: 14px;
 	font-weight: 600;
+	color: var(--scalar-color-2);
 }
 
-.tabs .link-active {
+.tabs .link-active,
+.t-header__tabs .t-header__item--active {
 	color: var(--scalar-color-accent);
 }
 
 .opusdns-beta-badge,
-.tabs a[href^='/mcp-server']::after {
+.tabs a[href^='/mcp-server']::after,
+.t-header__tabs a[href^='/mcp-server']::after {
 	display: inline-block;
 	background: var(--opusdns-secondary);
 	color: #171923;
@@ -214,7 +220,8 @@ samp {
 	vertical-align: middle;
 }
 
-.tabs a[href^='/mcp-server']::after {
+.tabs a[href^='/mcp-server']::after,
+.t-header__tabs a[href^='/mcp-server']::after {
 	content: 'Beta';
 	margin-left: 6px;
 }
