@@ -453,6 +453,7 @@ import type {
   RequestAuthcode6,
   RequestAuthcode7,
   RequestAuthcode8,
+  RequestAuthcode9,
   DomainAvailabilityList,
   DomainAvailabilityCheck,
 } from './schemas';
@@ -6110,12 +6111,14 @@ export const KEYS_REQUEST_AUTHCODE5 = [
 ] as const satisfies (keyof RequestAuthcode5)[];
 
 export const KEY_REQUEST_AUTHCODE6_AUTH_CODE = 'auth_code' satisfies keyof RequestAuthcode6;
+export const KEY_REQUEST_AUTHCODE6_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' satisfies keyof RequestAuthcode6;
 export const KEY_REQUEST_AUTHCODE6_DETAIL = 'detail' satisfies keyof RequestAuthcode6;
 export const KEY_REQUEST_AUTHCODE6_NAME = 'name' satisfies keyof RequestAuthcode6;
 export const KEY_REQUEST_AUTHCODE6_SUCCESS = 'success' satisfies keyof RequestAuthcode6;
 
 export const KEYS_REQUEST_AUTHCODE6 = [
   KEY_REQUEST_AUTHCODE6_AUTH_CODE,
+  KEY_REQUEST_AUTHCODE6_AUTH_CODE_EXPIRES_ON,
   KEY_REQUEST_AUTHCODE6_DETAIL,
   KEY_REQUEST_AUTHCODE6_NAME,
   KEY_REQUEST_AUTHCODE6_SUCCESS,
@@ -6144,6 +6147,18 @@ export const KEYS_REQUEST_AUTHCODE8 = [
   KEY_REQUEST_AUTHCODE8_NAME,
   KEY_REQUEST_AUTHCODE8_SUCCESS,
 ] as const satisfies (keyof RequestAuthcode8)[];
+
+export const KEY_REQUEST_AUTHCODE9_AUTH_CODE = 'auth_code' satisfies keyof RequestAuthcode9;
+export const KEY_REQUEST_AUTHCODE9_DETAIL = 'detail' satisfies keyof RequestAuthcode9;
+export const KEY_REQUEST_AUTHCODE9_NAME = 'name' satisfies keyof RequestAuthcode9;
+export const KEY_REQUEST_AUTHCODE9_SUCCESS = 'success' satisfies keyof RequestAuthcode9;
+
+export const KEYS_REQUEST_AUTHCODE9 = [
+  KEY_REQUEST_AUTHCODE9_AUTH_CODE,
+  KEY_REQUEST_AUTHCODE9_DETAIL,
+  KEY_REQUEST_AUTHCODE9_NAME,
+  KEY_REQUEST_AUTHCODE9_SUCCESS,
+] as const satisfies (keyof RequestAuthcode9)[];
 
 export const KEY_DOMAIN_AVAILABILITY_LIST_META = 'meta' satisfies keyof DomainAvailabilityList;
 export const KEY_DOMAIN_AVAILABILITY_LIST_RESULTS = 'results' satisfies keyof DomainAvailabilityList;

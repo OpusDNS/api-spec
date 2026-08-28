@@ -611,6 +611,11 @@ export type POST_DomainsTldSpecificDeByDomainReferenceTransit_Request = {
 export type POST_DomainsTldSpecificDeByDomainReferenceTransit_Request_Path = POST_DomainsTldSpecificDeByDomainReferenceTransit_Request['parameters']['path'];
 export type POST_DomainsTldSpecificDeByDomainReferenceTransit_Request_Body = POST_DomainsTldSpecificDeByDomainReferenceTransit_Request['requestBody'];
 
+export type POST_DomainsTldSpecificDkByDomainReferenceAuthCodeRequest_Request = {
+  parameters: operations['request_auth_code_v1_domains_tld_specific_dk__domain_reference__auth_code_request_post']['parameters'];
+};
+export type POST_DomainsTldSpecificDkByDomainReferenceAuthCodeRequest_Request_Path = POST_DomainsTldSpecificDkByDomainReferenceAuthCodeRequest_Request['parameters']['path'];
+
 export type POST_DomainsTldSpecificEuByDomainReferenceAuthCodeRequest_Request = {
   parameters: operations['request_auth_code_v1_domains_tld_specific_eu__domain_reference__auth_code_request_post']['parameters'];
 };
