@@ -63,14 +63,11 @@ In both cases the registrant may additionally be asked to confirm their email ad
 
 ### Deadlines
 
-| Stage | Period |
-| --- | --- |
-| Response to the control request | 25 days |
-| Suspension before deletion | 30 days |
+**Every request states its own deadline**, and that date is the one to work from. The registry's terms set the response window at **25 days**, shortened to 10 in exceptional circumstances, but the deadline attached to a given request is what governs it.
 
-A control request that expires or is rejected suspends the registrant's domains, and the registrant is recorded as unknown. The suspension applies to **every domain held by that registrant**, not only the one that triggered the control. If the control is still incomplete 30 days later, those domains are deleted.
+A control request that expires or is rejected suspends the registrant's domains, and the registrant is recorded as unknown. The suspension applies to **every domain held by that registrant**, not only the one that triggered the control. If the control is still incomplete **30 days** later, those domains are deleted.
 
-In exceptional circumstances the registry may shorten the response window to 10 days.
+Email confirmation requests are far shorter lived than identity checks, often expiring within a day or two of being issued.
 
 ### Changing a verified email address
 
@@ -109,6 +106,10 @@ Renewals are explicit and always **one year**. Three registry rules apply:
 A deleted `.dk` domain enters a **30 day redemption period** during which it can be restored with [`POST /v1/domains/{domain_reference}/restore`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/restore).
 
 The registry does not implement the two-step RGP restore. There is no restore request phase and no report to file afterwards: a single restore call completes the operation.
+
+> ⚠️ A redemption period **caused by a failed data or ID control cannot be restored**. When the domain entered redemption because the registrant's ID control expired or was rejected, rather than because the domain was deleted or allowed to expire, the restore is refused. Completing the outstanding control is the only way back, and it has to happen before the redemption period ends.
+
+The notification that opens the redemption period carries the **exact date** on which the domain will be deleted.
 
 ## Name servers
 
