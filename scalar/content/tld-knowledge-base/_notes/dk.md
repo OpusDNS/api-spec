@@ -75,12 +75,13 @@ An email address that has been verified must be verified again after it is chang
 
 ## Registrant change
 
-A change of registrant is submitted through [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference}) and is subject to two registry rules:
+A change of registrant is submitted through [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference}), alongside any other change, exactly as on any other TLD. The registry itself refuses to combine a registrant change with anything else, but that is handled for you: the update is split into the necessary registry commands, with the registrant applied last.
 
-- It **cannot be combined with any other change**. A request that alters the registrant along with name servers, contacts or the auth code is rejected. Submit the registrant change on its own.
-- It requires the registrant's confirmation. The registry accepts the request, places the domain in a pending state, and completes the change once the confirmation is given.
+Because nothing at the registry spans those commands, a failure partway through can leave the earlier changes applied. The response states which part landed, and the domain is resynchronised from the registry.
 
-A registrant change also triggers a new data and ID control for the incoming registrant.
+A registrant change requires the incoming registrant to have accepted Punktum dk's terms, declared through the `punktum_dk_terms_acceptance` confirmation. It is checked before any registry traffic, so a missing acceptance fails the request up front.
+
+The change also triggers a new data and ID control for the incoming registrant. Until that control completes, the domain sits in a pending state and further updates are refused.
 
 ## Transfers
 
