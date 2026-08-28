@@ -917,6 +917,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/mn.md",
                 "showInSidebar": true
               },
+              "/mx": {
+                "type": "page",
+                "title": "🇲🇽 .mx",
+                "filepath": "content/tld-knowledge-base/cctlds/mx.md",
+                "showInSidebar": true
+              },
               "/name.bh": {
                 "type": "page",
                 "title": "🇧🇭 .name.bh",
