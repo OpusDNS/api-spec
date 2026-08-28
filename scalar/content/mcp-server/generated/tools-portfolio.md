@@ -83,7 +83,7 @@ question.
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `fields` | array of string | no | which domain fields to project (default: name, domain\_id, expires\_on, renewal\_mode, status\_tags) |
+| `fields` | array of string | no | which domain fields of the domain record to project (default: name, domain\_id, expires\_on, renewal\_mode, status\_tags). Any field of the domain record can be named, so ask for the ones the question needs — e.g. is\_premium, transfer\_lock, registry\_statuses, tags, nameservers, sld, tld, renewal\_price, created\_on, registered\_on. A field the record does not carry is dropped silently rather than reported |
 | `organizationId` | string | no | act on this sub-organization instead of your own, e.g. organization\_01h45ytscbebyvny4gc8cr8ma2. It must be a sub-organization of the signed-in account; find its id with the organizations list operation |
 | `page` | integer | no | 1-based page number (default 1) |
 | `pageSize` | integer | no | results per page (capped server-side) |
