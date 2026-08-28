@@ -4,6 +4,12 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 28 August 2026
+
+- Onboarded **[`.mx`](/tld-knowledge-base/cctlds/mx)** (Mexico, operated by
+  Registry .MX) together with its second-level extensions `.com.mx` and
+  `.org.mx`. Published its TLD Knowledge Base page.
+
 ### 27 August 2026
 
 - Added **an `in_use` filter to the contact list**: `GET /v1/contacts?in_use=true`
