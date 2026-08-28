@@ -14,7 +14,7 @@ selector matched 412 domains rather than 4,127. See
 
 **Preview a bulk domain operation** — approval required: **no**
 
-Dry-run a bulk operation. Resolves the selector by reading the domain list from the OpusDNS API, then renders the planned Jobs template + instances. It reads but never writes, so it needs the same credentials as any other call and no approval. Review matchedDomains, then call bulk_submit with the same arguments.
+Dry-run a bulk operation. Resolves the selector by reading the domain list from the OpusDNS API, then renders the planned Jobs template + instances and validates them against the Jobs schema, so a template bulk_submit would reject fails here instead of after the user approved it. It reads but never writes, so it needs the same credentials as any other call and no approval. Review matchedDomains, then call bulk_submit with the same arguments.
 
 **When to use it.** Always run this first. It resolves the selector and shows you the matched count,
 the shared template, and a sample of the instances that would be created —
@@ -23,7 +23,7 @@ without submitting anything or asking for approval.
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `templateType` | string | **yes** | bulk template type: domain\_update\_bulk; dns\_zone\_create\_bulk, dns\_zone\_update\_bulk, dns\_zone\_patch\_rrsets\_bulk; domain\_forward\_{create, update, enable, disable, delete}\_bulk; email\_forward\_{create, update, enable, disable, delete}\_bulk |
-| `template` | object (any keys) | **yes** | shared mutation applied to every selected resource (the Jobs template body) |
+| `template` | object (any keys) | **yes** | shared mutation applied to every selected resource (the Jobs template body). Its fields depend on templateType: domain\_update\_bulk {renewal\_mode, nameservers, contacts, statuses, status\_changes}; dns\_zone\_create\_bulk and dns\_zone\_update\_bulk {dnssec\_status, rrsets}; dns\_zone\_patch\_rrsets\_bulk {ops} where each op is {op: upsert\|remove, rrset: {name, type, ttl, records}}, copied into every instance; domain\_forward\_create\_bulk {enabled, http, https, auto\_create\_zone}; domain\_forward\_update\_bulk {enabled (required), http, https}; email\_forward\_create\_bulk {aliases, enabled, auto\_create\_zone}; email\_forward\_update\_bulk {enabled (required), aliases}; the enable, disable and delete forward templates take no fields, pass {}. bulk\_preview validates this against the Jobs schema, so preview before you submit |
 | `selector` | object (any keys) | **yes** | GET /v1/domains filters (e.g. tag\_ids, tld, search, expires\_in\_30\_days) used to resolve the target domains server-side. tag\_ids, tld and status\_tags take lists, e.g. tld: \["com", "org"\] |
 | `hostnamePrefix` | string | no | forward templates only: prefix prepended to each resolved domain to form the instance hostname. Use '\*.' for a wildcard subdomain forward (\*.example.com), or '' (default) for the apex (example.com) |
 | `organizationId` | string | no | act on this sub-organization instead of your own, e.g. organization\_01h45ytscbebyvny4gc8cr8ma2. It must be a sub-organization of the signed-in account; find its id with the organizations list operation |
@@ -114,7 +114,7 @@ retry, you are asked again.
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `templateType` | string | **yes** | bulk template type; must match the bulk\_preview you reviewed: domain\_update\_bulk; dns\_zone\_create\_bulk, dns\_zone\_update\_bulk, dns\_zone\_patch\_rrsets\_bulk; domain\_forward\_{create, update, enable, disable, delete}\_bulk; email\_forward\_{create, update, enable, disable, delete}\_bulk |
-| `template` | object (any keys) | **yes** | shared mutation applied to every selected resource (the Jobs template body) |
+| `template` | object (any keys) | **yes** | shared mutation applied to every selected resource (the Jobs template body). Its fields depend on templateType: domain\_update\_bulk {renewal\_mode, nameservers, contacts, statuses, status\_changes}; dns\_zone\_create\_bulk and dns\_zone\_update\_bulk {dnssec\_status, rrsets}; dns\_zone\_patch\_rrsets\_bulk {ops}, copied into every instance; domain\_forward\_create\_bulk {enabled, http, https, auto\_create\_zone}; domain\_forward\_update\_bulk {enabled (required), http, https}; email\_forward\_create\_bulk {aliases, enabled, auto\_create\_zone}; email\_forward\_update\_bulk {enabled (required), aliases}; the enable, disable and delete forward templates take no fields, pass {}. bulk\_preview validates this against the Jobs schema, so preview before you submit |
 | `selector` | object (any keys) | **yes** | GET /v1/domains filters (e.g. tag\_ids, tld, search, expires\_in\_30\_days) used to resolve the target domains server-side. tag\_ids, tld and status\_tags take lists, e.g. tld: \["com", "org"\]. An empty selector targets every domain in the account |
 | `confirmationToken` | string | no | token from a prior confirmation\_required response, echoed back to execute the approved action. Omit on the first call |
 | `hostnamePrefix` | string | no | forward templates only: prefix prepended to each resolved domain to form the instance hostname. Use '\*.' for a wildcard subdomain forward, or '' (default) for the apex |
