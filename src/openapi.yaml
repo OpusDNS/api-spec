@@ -12504,7 +12504,7 @@ components:
       - REGISTRY_SE_VAT_NO
       - DNS_PT_VAT
       - DNS_PT_MOBILE
-      - ptnis2:validatedDate
+      - DNS_PT_NIS2_VALIDATED_ON
       - PUNKTUM_DK_USER_TYPE
       - PUNKTUM_DK_CVR
       - PUNKTUM_DK_PNUMBER
@@ -15814,7 +15814,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-31-144454
+  version: 2026-08-31-222534
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
