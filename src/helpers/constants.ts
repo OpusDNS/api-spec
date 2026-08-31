@@ -241,6 +241,7 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE = {
   VANITY_NAMESERVER: "vanity_nameserver",
   WHITELABEL_BRANDING: "whitelabel_branding",
   WHITELABEL_BRANDING_PLUS: "whitelabel_branding_plus",
+  RAS_DOMAIN_LIFECYCLE: "ras_domain_lifecycle",
 } as const satisfies Record<string, BillingTransactionProductType>;
 
 export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
@@ -252,6 +253,7 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
   'vanity_nameserver',
   'whitelabel_branding',
   'whitelabel_branding_plus',
+  'ras_domain_lifecycle',
 ] as const satisfies ReadonlyArray<BillingTransactionProductType>;
 
 export const BILLING_TRANSACTION_SORT_FIELD = {
