@@ -1291,14 +1291,16 @@ export type POST_DomainsTransfer_Response_404 = Problem;
 export type POST_DomainsTransfer_Response_409 = Problem;
 export type POST_DomainsTransfer_Response_422 = Problem;
 
-export type POST_EmailForwards_Response = POST_EmailForwards_Response_201 | POST_EmailForwards_Response_401 | POST_EmailForwards_Response_403 | POST_EmailForwards_Response_404 | POST_EmailForwards_Response_409 | POST_EmailForwards_Response_422;
+export type POST_EmailForwards_Response = POST_EmailForwards_Response_201 | POST_EmailForwards_Response_400 | POST_EmailForwards_Response_401 | POST_EmailForwards_Response_403 | POST_EmailForwards_Response_404 | POST_EmailForwards_Response_409 | POST_EmailForwards_Response_422 | POST_EmailForwards_Response_503;
 
 export type POST_EmailForwards_Response_201 = EmailForward;
+export type POST_EmailForwards_Response_400 = Problem;
 export type POST_EmailForwards_Response_401 = Problem;
 export type POST_EmailForwards_Response_403 = Problem;
 export type POST_EmailForwards_Response_404 = Problem;
 export type POST_EmailForwards_Response_409 = Problem;
 export type POST_EmailForwards_Response_422 = HTTPValidationError;
+export type POST_EmailForwards_Response_503 = Problem;
 
 export type POST_EmailForwardsByEmailForwardIdAliases_Response = POST_EmailForwardsByEmailForwardIdAliases_Response_201 | POST_EmailForwardsByEmailForwardIdAliases_Response_401 | POST_EmailForwardsByEmailForwardIdAliases_Response_403 | POST_EmailForwardsByEmailForwardIdAliases_Response_404 | POST_EmailForwardsByEmailForwardIdAliases_Response_409 | POST_EmailForwardsByEmailForwardIdAliases_Response_422;
 

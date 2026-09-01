@@ -15898,7 +15898,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-01-125121
+  version: 2026-09-01-130544
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -26475,6 +26475,37 @@ paths:
               schema:
                 $ref: '#/components/schemas/EmailForwardResponse'
           description: Email forwarding created successfully
+        '400':
+          content:
+            application/problem+json:
+              examples:
+                email_forward_alias_rejected:
+                  description: The detail states what is wrong with the alias. Correct
+                    it and retry.
+                  summary: An alias in the request was rejected
+                  value:
+                    code: ERROR_EMAIL_FORWARD_VALIDATION
+                    detail: Alias cannot contain @
+                    status: 400
+                    title: Email Forward Error
+                    type: email-forward-validation
+                email_forward_domain_rejected:
+                  description: Check that the domain is registered and resolves in
+                    public DNS, then retry.
+                  summary: Email forwarding could not be set up for the hostname
+                  value:
+                    code: ERROR_EMAIL_FORWARD_VALIDATION
+                    detail: Email forwarding could not be set up for this domain.
+                      This usually means the domain is not yet registered or does
+                      not resolve in public DNS; a recently registered or transferred
+                      domain may need time to propagate. Retry once it resolves, or
+                      contact support if the problem persists.
+                    status: 400
+                    title: Email Forward Error
+                    type: email-forward-validation
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: The hostname, or one of the aliases in the request, was rejected
         '401':
           content:
             application/problem+json:
@@ -26547,6 +26578,36 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
+        '503':
+          content:
+            application/problem+json:
+              examples:
+                email_forward_capacity:
+                  description: Nothing in the request needs changing. Contact support,
+                    then retry.
+                  summary: Email forwarding capacity is temporarily exhausted
+                  value:
+                    code: ERROR_EMAIL_FORWARD_CAPACITY
+                    detail: Email forward management is temporarily unavailable. Existing
+                      email forwards are not affected. Please contact support.
+                    status: 503
+                    title: Email Forward Error
+                    type: email-forward-capacity
+                email_forward_configuration:
+                  description: The requested hostname was not the reason and needs
+                    no change. Contact support, then retry.
+                  summary: Email forwarding is temporarily misconfigured
+                  value:
+                    code: ERROR_EMAIL_FORWARD_CONFIGURATION
+                    detail: Email forward management is temporarily unavailable. Existing
+                      email forwards are not affected. Please contact support.
+                    status: 503
+                    title: Email Forward Error
+                    type: email-forward-configuration
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Email forwarding is temporarily unavailable; the request itself
+            is valid
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []

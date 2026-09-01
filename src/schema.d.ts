@@ -21765,6 +21765,15 @@ export interface operations {
                     "application/json": components["schemas"]["EmailForwardResponse"];
                 };
             };
+            /** @description The hostname, or one of the aliases in the request, was rejected */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Unauthorized */
             401: {
                 headers: {
@@ -21830,6 +21839,15 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Email forwarding is temporarily unavailable; the request itself is valid */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
