@@ -797,6 +797,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/de.md",
                 "showInSidebar": true
               },
+              "/dk": {
+                "type": "page",
+                "title": "🇩🇰 .dk",
+                "filepath": "content/tld-knowledge-base/cctlds/dk.md",
+                "showInSidebar": true
+              },
               "/edu.bh": {
                 "type": "page",
                 "title": "🇧🇭 .edu.bh",
