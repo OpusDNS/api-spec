@@ -6,6 +6,13 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ### 1 September 2026
 
+- Onboarded **[`.bayern`](/tld-knowledge-base/gtlds/bayern)** (Bayern Connect
+  GmbH) and **[`.nrw`](/tld-knowledge-base/gtlds/nrw)** (Minds + Machines GmbH),
+  both served over the Tango registry backend. Published their TLD Knowledge Base
+  pages. Both lock a domain for 60 days after a registration or a transfer.
+  `.nrw` additionally requires the domain owner to hold a physical address in
+  Germany.
+
 - Onboarded **[`.berlin`](/tld-knowledge-base/gtlds/berlin)** and
   **[`.hamburg`](/tld-knowledge-base/gtlds/hamburg)** (both operated by TLD-BOX
   Registrydienstleistungen GmbH). Published their TLD Knowledge Base pages. Both
