@@ -3,7 +3,6 @@
 # Remove a line to publish that TLD again.
 # Excluded TLDs stay fully usable at runtime; this only hides the docs page.
 ua # WIP
-dk
 pt
 ee
 berlin

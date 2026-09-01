@@ -4,6 +4,15 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 1 September 2026
+
+- Onboarded **[`.dk`](/tld-knowledge-base/cctlds/dk)** (Denmark, operated by
+  Punktum dk). Published its TLD Knowledge Base page. A `.dk` registration is an
+  application rather than an allocation: the registry queues it, and the domain is
+  activated only once the registrant's data and ID control has completed. That
+  control is run by Punktum dk, using MitID for registrants residing in Denmark
+  and a risk assessment for everyone else.
+
 ### 28 August 2026
 
 - Onboarded **[`.mx`](/tld-knowledge-base/cctlds/mx)** (Mexico, operated by
