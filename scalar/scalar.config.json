@@ -1230,6 +1230,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/beer.md",
                 "showInSidebar": true
               },
+              "/berlin": {
+                "type": "page",
+                "title": "🌐 .berlin",
+                "filepath": "content/tld-knowledge-base/gtlds/berlin.md",
+                "showInSidebar": true
+              },
               "/best": {
                 "type": "page",
                 "title": "🌐 .best",
@@ -2242,6 +2248,12 @@
                 "type": "page",
                 "title": "🌐 .hair",
                 "filepath": "content/tld-knowledge-base/gtlds/hair.md",
+                "showInSidebar": true
+              },
+              "/hamburg": {
+                "type": "page",
+                "title": "🌐 .hamburg",
+                "filepath": "content/tld-knowledge-base/gtlds/hamburg.md",
                 "showInSidebar": true
               },
               "/haus": {
