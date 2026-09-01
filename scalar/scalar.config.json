@@ -1224,6 +1224,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/bargains.md",
                 "showInSidebar": true
               },
+              "/bayern": {
+                "type": "page",
+                "title": "🌐 .bayern",
+                "filepath": "content/tld-knowledge-base/gtlds/bayern.md",
+                "showInSidebar": true
+              },
               "/beer": {
                 "type": "page",
                 "title": "🌐 .beer",
@@ -2818,6 +2824,12 @@
                 "type": "page",
                 "title": "🌐 .ninja",
                 "filepath": "content/tld-knowledge-base/gtlds/ninja.md",
+                "showInSidebar": true
+              },
+              "/nrw": {
+                "type": "page",
+                "title": "🌐 .nrw",
+                "filepath": "content/tld-knowledge-base/gtlds/nrw.md",
                 "showInSidebar": true
               },
               "/ong": {
