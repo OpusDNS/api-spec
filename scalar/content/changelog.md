@@ -6,6 +6,13 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ### 1 September 2026
 
+- Onboarded **[`.berlin`](/tld-knowledge-base/gtlds/berlin)** and
+  **[`.hamburg`](/tld-knowledge-base/gtlds/hamburg)** (both operated by TLD-BOX
+  Registrydienstleistungen GmbH). Published their TLD Knowledge Base pages. Both
+  require a domain owner, administrative and technical contact, each carrying a
+  physical address, and both lock a domain for 60 days after a registration or a
+  transfer.
+
 - Onboarded **[`.dk`](/tld-knowledge-base/cctlds/dk)** (Denmark, operated by
   Punktum dk). Published its TLD Knowledge Base page. A `.dk` registration is an
   application rather than an allocation: the registry queues it, and the domain is
