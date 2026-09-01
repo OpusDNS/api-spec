@@ -37,6 +37,15 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ### 25 August 2026
 
+- Onboarded **[`.se`](/tld-knowledge-base/cctlds/se)** (Sweden) and
+  **[`.nu`](/tld-knowledge-base/cctlds/nu)** (Niue), both operated by
+  Internetstiftelsen (The Swedish Internet Foundation). Published their TLD
+  Knowledge Base pages. For both TLDs the registry owns the auth code — request a
+  fresh one with
+  [`POST /v1/domains/tld-specific/se/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/se/{domain_reference}/auth_code/request)
+  (or the `.nu` equivalent), which invalidates the previous code — and transfers
+  complete immediately, with no pending window.
+
 - Released **the OpusDNS MCP server**, documented under the new **MCP** tab. It is
   a hosted [Model Context Protocol](https://modelcontextprotocol.io) endpoint at
   `https://api.opusdns.com/mcp` (sandbox: `https://sandbox.opusdns.com/mcp`) that
