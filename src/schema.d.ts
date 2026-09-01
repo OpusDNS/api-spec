@@ -275,6 +275,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/auth/signup": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Signup */
+        post: operations["signup_v1_auth_signup_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/auth/token": {
         parameters: {
             query?: never;
@@ -3182,6 +3199,11 @@ export interface components {
             /** Total */
             total?: number | null;
         };
+        /**
+         * AgreementType
+         * @enum {string}
+         */
+        AgreementType: "terms_and_conditions" | "master_service_agreement" | "acting_as_trader" | "parking_agreement";
         /** AiInferenceUsageBucket */
         AiInferenceUsageBucket: {
             /** Groups */
@@ -11376,6 +11398,25 @@ export interface components {
             /** @description The set that is now the org's default (or unchanged set on a no-op 200). */
             vanity_nameserver_set: components["schemas"]["VanityNameserverSetDTO"];
         };
+        /** SignupCreate */
+        SignupCreate: {
+            /**
+             * Agreements
+             * @description User agreement acceptances.
+             */
+            agreements?: components["schemas"]["UserAgreementAcceptance"][] | null;
+            /** @description Organization signup. */
+            organization: components["schemas"]["OrganizationCreate"];
+            /** @description Terms of service acceptance (legacy). */
+            terms_of_service?: components["schemas"]["TermsOfServiceAccept"] | null;
+            /** @description User signup to platform. */
+            user: components["schemas"]["UserCreate"];
+        };
+        /** SignupResponse */
+        SignupResponse: {
+            organization: components["schemas"]["Organization"];
+            user: components["schemas"]["User"];
+        };
         /** SldLength */
         SldLength: {
             /**
@@ -11568,6 +11609,14 @@ export interface components {
              * @description A human-readable label for the tag
              */
             label?: string | null;
+        };
+        /** TermsOfServiceAccept */
+        TermsOfServiceAccept: {
+            /**
+             * Accepted
+             * @description The organization accepts Terms of Service.
+             */
+            accepted: boolean;
         };
         /** Theme */
         Theme: {
@@ -12058,6 +12107,26 @@ export interface components {
             total: number;
             /** Unique */
             unique: number;
+        };
+        /** UserAgreementAcceptance */
+        UserAgreementAcceptance: {
+            /**
+             * Accepted
+             * @description Whether the agreement has been accepted.
+             */
+            accepted: boolean;
+            /** @description Type of agreement being accepted. */
+            type: components["schemas"]["AgreementType"];
+            /**
+             * Url
+             * @description URL where the agreement can be found.
+             */
+            url?: string | null;
+            /**
+             * Version
+             * @description Version of the agreement being accepted.
+             */
+            version?: string | null;
         };
         /** UserAttributeBase */
         UserAttributeBase: {
@@ -15040,6 +15109,101 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    signup_v1_auth_signup_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SignupCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SignupResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PASSWORD_POLICY",
+                     *       "detail": "Password policy violation",
+                     *       "status": 400,
+                     *       "title": "User Management Error",
+                     *       "type": "user"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_SIGNUP_NOT_ALLOWED",
+                     *       "detail": "Additional error context.",
+                     *       "status": 403,
+                     *       "title": "Organization Management Error",
+                     *       "type": "signup-not-allowed"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_USER_EXISTS",
+                     *       "detail": "User with username or email already exists",
+                     *       "status": 409,
+                     *       "title": "User Management Error",
+                     *       "type": "user-already-present",
+                     *       "user": "Additional error context."
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_BILLING_CURRENCY_REQUIRED",
+                     *       "detail": "Additional error context.",
+                     *       "status": 422,
+                     *       "title": "Billing Error",
+                     *       "type": "billing-customer-currency-required"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };

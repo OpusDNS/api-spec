@@ -107,6 +107,7 @@ import type {
   RequestAuthcode8,
   RequestAuthcode9,
   SetVanityNameserverSetDefaultRes,
+  Signup,
   Tag,
   TldResponseShort,
   TldSpecification,
@@ -1065,6 +1066,14 @@ export type POST_AiConciergeMemoryFacts_Response_401 = Problem;
 export type POST_AiConciergeMemoryFacts_Response_404 = Problem;
 export type POST_AiConciergeMemoryFacts_Response_422 = HTTPValidationError;
 export type POST_AiConciergeMemoryFacts_Response_502 = Problem;
+
+export type POST_AuthSignup_Response = POST_AuthSignup_Response_200 | POST_AuthSignup_Response_400 | POST_AuthSignup_Response_403 | POST_AuthSignup_Response_409 | POST_AuthSignup_Response_422;
+
+export type POST_AuthSignup_Response_200 = Signup;
+export type POST_AuthSignup_Response_400 = Problem;
+export type POST_AuthSignup_Response_403 = Problem;
+export type POST_AuthSignup_Response_409 = Problem;
+export type POST_AuthSignup_Response_422 = Problem;
 
 export type POST_AuthToken_Response = POST_AuthToken_Response_401;
 

@@ -12,6 +12,7 @@ export const ARCHIVE_OBJECT_LOGS_ENDPOINT = '/v1/archive/object-logs';
 export const ARCHIVE_OBJECT_LOGS_BY_OBJECT_ID_ENDPOINT = '/v1/archive/object-logs/{object_id}';
 export const ARCHIVE_REQUEST_HISTORY_ENDPOINT = '/v1/archive/request-history';
 export const AUTH_CLIENT_CREDENTIALS_INTROSPECT_ENDPOINT = '/v1/auth/client_credentials/introspect';
+export const AUTH_SIGNUP_ENDPOINT = '/v1/auth/signup';
 export const AUTH_TOKEN_ENDPOINT = '/v1/auth/token';
 export const AVAILABILITY_ENDPOINT = '/v1/availability';
 export const AVAILABILITY_STREAM_ENDPOINT = '/v1/availability/stream';
@@ -167,6 +168,7 @@ export type Endpoint =
   | typeof ARCHIVE_OBJECT_LOGS_BY_OBJECT_ID_ENDPOINT
   | typeof ARCHIVE_REQUEST_HISTORY_ENDPOINT
   | typeof AUTH_CLIENT_CREDENTIALS_INTROSPECT_ENDPOINT
+  | typeof AUTH_SIGNUP_ENDPOINT
   | typeof AUTH_TOKEN_ENDPOINT
   | typeof AVAILABILITY_ENDPOINT
   | typeof AVAILABILITY_STREAM_ENDPOINT

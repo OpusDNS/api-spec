@@ -383,6 +383,8 @@ import type {
   RgpOperations,
   SetRenewalModeReq,
   SetVanityNameserverSetDefaultRes,
+  SignupCreate,
+  Signup,
   SldLength,
   StatusChanges,
   StatusCodeStatsBucket,
@@ -392,6 +394,7 @@ import type {
   TagEnriched,
   Tag,
   TagUpdate,
+  TermsOfServiceAccept,
   Theme,
   TimeSeriesBucket,
   TldBase,
@@ -411,6 +414,7 @@ import type {
   TransferPoliciesBase,
   User,
   UserAgentStatsBucket,
+  UserAgreementAcceptance,
   UserAttributeBase,
   UserAttribute,
   UserCreate,
@@ -5170,6 +5174,26 @@ export const KEYS_SET_VANITY_NAMESERVER_SET_DEFAULT_RES = [
   KEY_SET_VANITY_NAMESERVER_SET_DEFAULT_RES_VANITY_NAMESERVER_SET,
 ] as const satisfies (keyof SetVanityNameserverSetDefaultRes)[];
 
+export const KEY_SIGNUP_CREATE_AGREEMENTS = 'agreements' satisfies keyof SignupCreate;
+export const KEY_SIGNUP_CREATE_ORGANIZATION = 'organization' satisfies keyof SignupCreate;
+export const KEY_SIGNUP_CREATE_TERMS_OF_SERVICE = 'terms_of_service' satisfies keyof SignupCreate;
+export const KEY_SIGNUP_CREATE_USER = 'user' satisfies keyof SignupCreate;
+
+export const KEYS_SIGNUP_CREATE = [
+  KEY_SIGNUP_CREATE_AGREEMENTS,
+  KEY_SIGNUP_CREATE_ORGANIZATION,
+  KEY_SIGNUP_CREATE_TERMS_OF_SERVICE,
+  KEY_SIGNUP_CREATE_USER,
+] as const satisfies (keyof SignupCreate)[];
+
+export const KEY_SIGNUP_ORGANIZATION = 'organization' satisfies keyof Signup;
+export const KEY_SIGNUP_USER = 'user' satisfies keyof Signup;
+
+export const KEYS_SIGNUP = [
+  KEY_SIGNUP_ORGANIZATION,
+  KEY_SIGNUP_USER,
+] as const satisfies (keyof Signup)[];
+
 export const KEY_SLD_LENGTH_MAX = 'max' satisfies keyof SldLength;
 export const KEY_SLD_LENGTH_MIN = 'min' satisfies keyof SldLength;
 
@@ -5265,6 +5289,12 @@ export const KEYS_TAG_UPDATE = [
   KEY_TAG_UPDATE_DESCRIPTION,
   KEY_TAG_UPDATE_LABEL,
 ] as const satisfies (keyof TagUpdate)[];
+
+export const KEY_TERMS_OF_SERVICE_ACCEPT_ACCEPTED = 'accepted' satisfies keyof TermsOfServiceAccept;
+
+export const KEYS_TERMS_OF_SERVICE_ACCEPT = [
+  KEY_TERMS_OF_SERVICE_ACCEPT_ACCEPTED,
+] as const satisfies (keyof TermsOfServiceAccept)[];
 
 export const KEY_THEME_DARK = 'dark' satisfies keyof Theme;
 export const KEY_THEME_FONT_FAMILY = 'font_family' satisfies keyof Theme;
@@ -5551,6 +5581,18 @@ export const KEYS_USER_AGENT_STATS_BUCKET = [
   KEY_USER_AGENT_STATS_BUCKET_TOTAL,
   KEY_USER_AGENT_STATS_BUCKET_UNIQUE,
 ] as const satisfies (keyof UserAgentStatsBucket)[];
+
+export const KEY_USER_AGREEMENT_ACCEPTANCE_ACCEPTED = 'accepted' satisfies keyof UserAgreementAcceptance;
+export const KEY_USER_AGREEMENT_ACCEPTANCE_TYPE = 'type' satisfies keyof UserAgreementAcceptance;
+export const KEY_USER_AGREEMENT_ACCEPTANCE_URL = 'url' satisfies keyof UserAgreementAcceptance;
+export const KEY_USER_AGREEMENT_ACCEPTANCE_VERSION = 'version' satisfies keyof UserAgreementAcceptance;
+
+export const KEYS_USER_AGREEMENT_ACCEPTANCE = [
+  KEY_USER_AGREEMENT_ACCEPTANCE_ACCEPTED,
+  KEY_USER_AGREEMENT_ACCEPTANCE_TYPE,
+  KEY_USER_AGREEMENT_ACCEPTANCE_URL,
+  KEY_USER_AGREEMENT_ACCEPTANCE_VERSION,
+] as const satisfies (keyof UserAgreementAcceptance)[];
 
 export const KEY_USER_ATTRIBUTE_BASE_KEY = 'key' satisfies keyof UserAttributeBase;
 export const KEY_USER_ATTRIBUTE_BASE_VALUE = 'value' satisfies keyof UserAttributeBase;

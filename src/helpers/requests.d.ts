@@ -50,6 +50,7 @@ import type {
   PublicAuthRequestForm,
   PublicRoleAssignmentRequest,
   SetRenewalModeReq,
+  SignupCreate,
   TagCreate,
   TagUpdate,
   UserCreate,
@@ -174,6 +175,11 @@ export type GET_ArchiveRequestHistory_Request_Query = GET_ArchiveRequestHistory_
 
 export type GET_AuthClientCredentialsIntrospect_Request = {
 };
+
+export type POST_AuthSignup_Request = {
+  requestBody: SignupCreate;
+};
+export type POST_AuthSignup_Request_Body = POST_AuthSignup_Request['requestBody'];
 
 export type POST_AuthToken_Request = {
   requestBody: PublicAuthRequestForm;

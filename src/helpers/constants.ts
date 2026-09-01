@@ -1,4 +1,5 @@
 import type {
+  AgreementType,
   AllocationMethodType,
   AssignablePublicRole,
   AttributeType,
@@ -127,6 +128,20 @@ import type {
   ZoneIncludeField,
   ZoneSortField,
 } from './schemas';
+
+export const AGREEMENT_TYPE = {
+  TERMS_AND_CONDITIONS: "terms_and_conditions",
+  MASTER_SERVICE_AGREEMENT: "master_service_agreement",
+  ACTING_AS_TRADER: "acting_as_trader",
+  PARKING_AGREEMENT: "parking_agreement",
+} as const satisfies Record<string, AgreementType>;
+
+export const AGREEMENT_TYPE_VALUES = [
+  'terms_and_conditions',
+  'master_service_agreement',
+  'acting_as_trader',
+  'parking_agreement',
+] as const satisfies ReadonlyArray<AgreementType>;
 
 export const ALLOCATION_METHOD_TYPE = {
   FCFS: "fcfs",

@@ -152,6 +152,14 @@ components:
       - aggregations
       title: AggregationsContextPayload
       type: object
+    AgreementType:
+      enum:
+      - terms_and_conditions
+      - master_service_agreement
+      - acting_as_trader
+      - parking_agreement
+      title: AgreementType
+      type: string
     AiInferenceUsageBucket:
       properties:
         groups:
@@ -12812,6 +12820,43 @@ components:
       - vanity_nameserver_set
       title: SetVanityNameserverSetDefaultRes
       type: object
+    SignupCreate:
+      properties:
+        agreements:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/UserAgreementAcceptance'
+            type: array
+          - type: 'null'
+          description: User agreement acceptances.
+          title: Agreements
+        organization:
+          $ref: '#/components/schemas/OrganizationCreate'
+          description: Organization signup.
+        terms_of_service:
+          anyOf:
+          - $ref: '#/components/schemas/TermsOfServiceAccept'
+          - type: 'null'
+          description: Terms of service acceptance (legacy).
+        user:
+          $ref: '#/components/schemas/UserCreate'
+          description: User signup to platform.
+      required:
+      - user
+      - organization
+      title: SignupCreate
+      type: object
+    SignupResponse:
+      properties:
+        organization:
+          $ref: '#/components/schemas/Organization'
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - user
+      - organization
+      title: SignupResponse
+      type: object
     SldLength:
       properties:
         max:
@@ -13102,6 +13147,16 @@ components:
           description: A human-readable label for the tag
           title: Label
       title: TagUpdate
+      type: object
+    TermsOfServiceAccept:
+      properties:
+        accepted:
+          description: The organization accepts Terms of Service.
+          title: Accepted
+          type: boolean
+      required:
+      - accepted
+      title: TermsOfServiceAccept
       type: object
     Theme:
       properties:
@@ -13820,6 +13875,35 @@ components:
       - total
       - unique
       title: UserAgentStatsBucket
+      type: object
+    UserAgreementAcceptance:
+      properties:
+        accepted:
+          description: Whether the agreement has been accepted.
+          title: Accepted
+          type: boolean
+        type:
+          $ref: '#/components/schemas/AgreementType'
+          description: Type of agreement being accepted.
+        url:
+          anyOf:
+          - format: uri
+            maxLength: 2083
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: URL where the agreement can be found.
+          title: Url
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Version of the agreement being accepted.
+          title: Version
+      required:
+      - type
+      - accepted
+      title: UserAgreementAcceptance
       type: object
     UserAttributeBase:
       properties:
@@ -15814,7 +15898,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-08-31-222534
+  version: 2026-09-01-125121
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -17752,6 +17836,76 @@ paths:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
       summary: Introspect the current API key
+      tags:
+      - authentication
+  /v1/auth/signup:
+    post:
+      operationId: signup_v1_auth_signup_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignupCreate'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignupResponse'
+          description: Successful Response
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PASSWORD_POLICY
+                detail: Password policy violation
+                status: 400
+                title: User Management Error
+                type: user
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_SIGNUP_NOT_ALLOWED
+                detail: Additional error context.
+                status: 403
+                title: Organization Management Error
+                type: signup-not-allowed
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_USER_EXISTS
+                detail: User with username or email already exists
+                status: 409
+                title: User Management Error
+                type: user-already-present
+                user: Additional error context.
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_BILLING_CURRENCY_REQUIRED
+                detail: Additional error context.
+                status: 422
+                title: Billing Error
+                type: billing-customer-currency-required
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
+      summary: Signup
       tags:
       - authentication
   /v1/auth/token:

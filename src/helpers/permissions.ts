@@ -16,6 +16,7 @@ import {
   ARCHIVE_OBJECT_LOGS_ENDPOINT,
   ARCHIVE_REQUEST_HISTORY_ENDPOINT,
   AUTH_CLIENT_CREDENTIALS_INTROSPECT_ENDPOINT,
+  AUTH_SIGNUP_ENDPOINT,
   AUTH_TOKEN_ENDPOINT,
   AVAILABILITY_ENDPOINT,
   AVAILABILITY_STREAM_ENDPOINT,
@@ -315,6 +316,13 @@ export const REQUIRED_PERMISSIONS = {
     delete: [],
   },
   [AUTH_CLIENT_CREDENTIALS_INTROSPECT_ENDPOINT]: {
+    get: [],
+    post: [],
+    put: [],
+    patch: [],
+    delete: [],
+  },
+  [AUTH_SIGNUP_ENDPOINT]: {
     get: [],
     post: [],
     put: [],
