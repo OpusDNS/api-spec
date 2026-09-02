@@ -5625,7 +5625,35 @@ export interface components {
         DomainCreate: {
             /**
              * Attributes
-             * @description Additional attributes of the domain. Platform-reserved keys are rejected if supplied.
+             * @description Additional attributes of the domain, keyed by attribute name; request values are strings.
+             *     Direction: *input* keys are read from the request; *output* keys are written by the platform, rejected if supplied and
+             *     never returned under `attributes`; *ignored* keys are dropped from the request because the platform derives them itself.
+             *
+             *     | Key | Accepted values | TLDs | Direction |
+             *     |---|---|---|---|
+             *     | `auto_renew_period` | `monthly`, `yearly` | all on create and transfer-in, `.de` only on update | both |
+             *     | `music_registrant_attestation` | `true` (also `1`, `yes`) | .music (registration) | input |
+             *     | `nic_it_compliance_confirmation` | `true` (also `1`, `yes`) | .it (registration, transfer) | input |
+             *     | `travel_industry_acknowledgement` | `true` (also `1`, `yes`) | .travel (registration) | input |
+             *     | `internet_ee_registrant_agreement` | `true` (also `1`, `yes`) | .ee (registration) | input |
+             *     | `punktum_dk_terms_acceptance` | `true` (also `1`, `yes`) | .dk (registration, registrant change) | input |
+             *     | `de_general_request_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `de_abuse_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `nor_id_applicant_version`, `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date` | taken from the signed applicant declaration | .no | ignored |
+             *     | `nor_id_declaration`, `nor_id_declaration_token` | | .no | output |
+             *     | `punktum_dk_tracking_no` | registry-issued | .dk | output |
+             *     | `verification_required` | | all | output |
+             *     | `promotion`, `promotion_eligibility` | | all | output |
+             *
+             *     `auto_renew_period`: on transfer-in without `period` it also sets the period added by the transfer; on create and update it
+             *     selects the period of the next renewal only and the current expiry date does not move. `monthly` is rejected on transfer-in
+             *     and ignored at renewal when the TLD's renewal periods have no month unit.
+             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *
+             * @example {
+             *       "auto_renew_period": "monthly"
+             *     }
              */
             attributes?: {
                 [key: string]: string;
@@ -5696,7 +5724,34 @@ export interface components {
         DomainCreateBulkInstance: {
             /**
              * Attributes
-             * @description Override attributes for this domain. Platform-reserved keys are rejected if supplied.
+             * @description Override attributes for this domain.
+             *
+             *     Additional attributes of the domain, keyed by attribute name; request values are strings.
+             *     Direction: *input* keys are read from the request; *output* keys are written by the platform, rejected if supplied and
+             *     never returned under `attributes`; *ignored* keys are dropped from the request because the platform derives them itself.
+             *
+             *     | Key | Accepted values | TLDs | Direction |
+             *     |---|---|---|---|
+             *     | `auto_renew_period` | `monthly`, `yearly` | all on create and transfer-in, `.de` only on update | both |
+             *     | `music_registrant_attestation` | `true` (also `1`, `yes`) | .music (registration) | input |
+             *     | `nic_it_compliance_confirmation` | `true` (also `1`, `yes`) | .it (registration, transfer) | input |
+             *     | `travel_industry_acknowledgement` | `true` (also `1`, `yes`) | .travel (registration) | input |
+             *     | `internet_ee_registrant_agreement` | `true` (also `1`, `yes`) | .ee (registration) | input |
+             *     | `punktum_dk_terms_acceptance` | `true` (also `1`, `yes`) | .dk (registration, registrant change) | input |
+             *     | `de_general_request_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `de_abuse_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `nor_id_applicant_version`, `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date` | taken from the signed applicant declaration | .no | ignored |
+             *     | `nor_id_declaration`, `nor_id_declaration_token` | | .no | output |
+             *     | `punktum_dk_tracking_no` | registry-issued | .dk | output |
+             *     | `verification_required` | | all | output |
+             *     | `promotion`, `promotion_eligibility` | | all | output |
+             *
+             *     `auto_renew_period`: on transfer-in without `period` it also sets the period added by the transfer; on create and update it
+             *     selects the period of the next renewal only and the current expiry date does not move. `monthly` is rejected on transfer-in
+             *     and ignored at renewal when the TLD's renewal periods have no month unit.
+             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *
              */
             attributes?: {
                 [key: string]: string;
@@ -5744,7 +5799,32 @@ export interface components {
         DomainCreateBulkTemplate: {
             /**
              * Attributes
-             * @description Additional attributes of the domain. Platform-reserved keys are rejected if supplied.
+             * @description Additional attributes of the domain, keyed by attribute name; request values are strings.
+             *     Direction: *input* keys are read from the request; *output* keys are written by the platform, rejected if supplied and
+             *     never returned under `attributes`; *ignored* keys are dropped from the request because the platform derives them itself.
+             *
+             *     | Key | Accepted values | TLDs | Direction |
+             *     |---|---|---|---|
+             *     | `auto_renew_period` | `monthly`, `yearly` | all on create and transfer-in, `.de` only on update | both |
+             *     | `music_registrant_attestation` | `true` (also `1`, `yes`) | .music (registration) | input |
+             *     | `nic_it_compliance_confirmation` | `true` (also `1`, `yes`) | .it (registration, transfer) | input |
+             *     | `travel_industry_acknowledgement` | `true` (also `1`, `yes`) | .travel (registration) | input |
+             *     | `internet_ee_registrant_agreement` | `true` (also `1`, `yes`) | .ee (registration) | input |
+             *     | `punktum_dk_terms_acceptance` | `true` (also `1`, `yes`) | .dk (registration, registrant change) | input |
+             *     | `de_general_request_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `de_abuse_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `nor_id_applicant_version`, `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date` | taken from the signed applicant declaration | .no | ignored |
+             *     | `nor_id_declaration`, `nor_id_declaration_token` | | .no | output |
+             *     | `punktum_dk_tracking_no` | registry-issued | .dk | output |
+             *     | `verification_required` | | all | output |
+             *     | `promotion`, `promotion_eligibility` | | all | output |
+             *
+             *     `auto_renew_period`: on transfer-in without `period` it also sets the period added by the transfer; on create and update it
+             *     selects the period of the next renewal only and the current expiry date does not move. `monthly` is rejected on transfer-in
+             *     and ignored at renewal when the TLD's renewal periods have no month unit.
+             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *
              */
             attributes?: {
                 [key: string]: string;
@@ -5796,7 +5876,35 @@ export interface components {
         DomainCreatePayloadData: {
             /**
              * Attributes
-             * @description Additional attributes of the domain. Platform-reserved keys are rejected if supplied.
+             * @description Additional attributes of the domain, keyed by attribute name; request values are strings.
+             *     Direction: *input* keys are read from the request; *output* keys are written by the platform, rejected if supplied and
+             *     never returned under `attributes`; *ignored* keys are dropped from the request because the platform derives them itself.
+             *
+             *     | Key | Accepted values | TLDs | Direction |
+             *     |---|---|---|---|
+             *     | `auto_renew_period` | `monthly`, `yearly` | all on create and transfer-in, `.de` only on update | both |
+             *     | `music_registrant_attestation` | `true` (also `1`, `yes`) | .music (registration) | input |
+             *     | `nic_it_compliance_confirmation` | `true` (also `1`, `yes`) | .it (registration, transfer) | input |
+             *     | `travel_industry_acknowledgement` | `true` (also `1`, `yes`) | .travel (registration) | input |
+             *     | `internet_ee_registrant_agreement` | `true` (also `1`, `yes`) | .ee (registration) | input |
+             *     | `punktum_dk_terms_acceptance` | `true` (also `1`, `yes`) | .dk (registration, registrant change) | input |
+             *     | `de_general_request_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `de_abuse_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `nor_id_applicant_version`, `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date` | taken from the signed applicant declaration | .no | ignored |
+             *     | `nor_id_declaration`, `nor_id_declaration_token` | | .no | output |
+             *     | `punktum_dk_tracking_no` | registry-issued | .dk | output |
+             *     | `verification_required` | | all | output |
+             *     | `promotion`, `promotion_eligibility` | | all | output |
+             *
+             *     `auto_renew_period`: on transfer-in without `period` it also sets the period added by the transfer; on create and update it
+             *     selects the period of the next renewal only and the current expiry date does not move. `monthly` is rejected on transfer-in
+             *     and ignored at renewal when the TLD's renewal periods have no month unit.
+             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *
+             * @example {
+             *       "auto_renew_period": "monthly"
+             *     }
              */
             attributes?: {
                 [key: string]: string;
@@ -7010,7 +7118,34 @@ export interface components {
         DomainTransferBulkInstance: {
             /**
              * Attributes
-             * @description Override attributes for this domain. Platform-reserved keys are rejected if supplied.
+             * @description Override attributes for this domain.
+             *
+             *     Additional attributes of the domain, keyed by attribute name; request values are strings.
+             *     Direction: *input* keys are read from the request; *output* keys are written by the platform, rejected if supplied and
+             *     never returned under `attributes`; *ignored* keys are dropped from the request because the platform derives them itself.
+             *
+             *     | Key | Accepted values | TLDs | Direction |
+             *     |---|---|---|---|
+             *     | `auto_renew_period` | `monthly`, `yearly` | all on create and transfer-in, `.de` only on update | both |
+             *     | `music_registrant_attestation` | `true` (also `1`, `yes`) | .music (registration) | input |
+             *     | `nic_it_compliance_confirmation` | `true` (also `1`, `yes`) | .it (registration, transfer) | input |
+             *     | `travel_industry_acknowledgement` | `true` (also `1`, `yes`) | .travel (registration) | input |
+             *     | `internet_ee_registrant_agreement` | `true` (also `1`, `yes`) | .ee (registration) | input |
+             *     | `punktum_dk_terms_acceptance` | `true` (also `1`, `yes`) | .dk (registration, registrant change) | input |
+             *     | `de_general_request_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `de_abuse_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `nor_id_applicant_version`, `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date` | taken from the signed applicant declaration | .no | ignored |
+             *     | `nor_id_declaration`, `nor_id_declaration_token` | | .no | output |
+             *     | `punktum_dk_tracking_no` | registry-issued | .dk | output |
+             *     | `verification_required` | | all | output |
+             *     | `promotion`, `promotion_eligibility` | | all | output |
+             *
+             *     `auto_renew_period`: on transfer-in without `period` it also sets the period added by the transfer; on create and update it
+             *     selects the period of the next renewal only and the current expiry date does not move. `monthly` is rejected on transfer-in
+             *     and ignored at renewal when the TLD's renewal periods have no month unit.
+             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *
              */
             attributes?: {
                 [key: string]: string;
@@ -7058,7 +7193,32 @@ export interface components {
         DomainTransferBulkTemplate: {
             /**
              * Attributes
-             * @description Additional attributes of the domain. Platform-reserved keys are rejected if supplied.
+             * @description Additional attributes of the domain, keyed by attribute name; request values are strings.
+             *     Direction: *input* keys are read from the request; *output* keys are written by the platform, rejected if supplied and
+             *     never returned under `attributes`; *ignored* keys are dropped from the request because the platform derives them itself.
+             *
+             *     | Key | Accepted values | TLDs | Direction |
+             *     |---|---|---|---|
+             *     | `auto_renew_period` | `monthly`, `yearly` | all on create and transfer-in, `.de` only on update | both |
+             *     | `music_registrant_attestation` | `true` (also `1`, `yes`) | .music (registration) | input |
+             *     | `nic_it_compliance_confirmation` | `true` (also `1`, `yes`) | .it (registration, transfer) | input |
+             *     | `travel_industry_acknowledgement` | `true` (also `1`, `yes`) | .travel (registration) | input |
+             *     | `internet_ee_registrant_agreement` | `true` (also `1`, `yes`) | .ee (registration) | input |
+             *     | `punktum_dk_terms_acceptance` | `true` (also `1`, `yes`) | .dk (registration, registrant change) | input |
+             *     | `de_general_request_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `de_abuse_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `nor_id_applicant_version`, `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date` | taken from the signed applicant declaration | .no | ignored |
+             *     | `nor_id_declaration`, `nor_id_declaration_token` | | .no | output |
+             *     | `punktum_dk_tracking_no` | registry-issued | .dk | output |
+             *     | `verification_required` | | all | output |
+             *     | `promotion`, `promotion_eligibility` | | all | output |
+             *
+             *     `auto_renew_period`: on transfer-in without `period` it also sets the period added by the transfer; on create and update it
+             *     selects the period of the next renewal only and the current expiry date does not move. `monthly` is rejected on transfer-in
+             *     and ignored at renewal when the TLD's renewal periods have no month unit.
+             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *
              */
             attributes?: {
                 [key: string]: string;
@@ -7106,7 +7266,35 @@ export interface components {
         DomainTransferIn: {
             /**
              * Attributes
-             * @description Additional attributes of the domain. Platform-reserved keys are rejected if supplied.
+             * @description Additional attributes of the domain, keyed by attribute name; request values are strings.
+             *     Direction: *input* keys are read from the request; *output* keys are written by the platform, rejected if supplied and
+             *     never returned under `attributes`; *ignored* keys are dropped from the request because the platform derives them itself.
+             *
+             *     | Key | Accepted values | TLDs | Direction |
+             *     |---|---|---|---|
+             *     | `auto_renew_period` | `monthly`, `yearly` | all on create and transfer-in, `.de` only on update | both |
+             *     | `music_registrant_attestation` | `true` (also `1`, `yes`) | .music (registration) | input |
+             *     | `nic_it_compliance_confirmation` | `true` (also `1`, `yes`) | .it (registration, transfer) | input |
+             *     | `travel_industry_acknowledgement` | `true` (also `1`, `yes`) | .travel (registration) | input |
+             *     | `internet_ee_registrant_agreement` | `true` (also `1`, `yes`) | .ee (registration) | input |
+             *     | `punktum_dk_terms_acceptance` | `true` (also `1`, `yes`) | .dk (registration, registrant change) | input |
+             *     | `de_general_request_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `de_abuse_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `nor_id_applicant_version`, `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date` | taken from the signed applicant declaration | .no | ignored |
+             *     | `nor_id_declaration`, `nor_id_declaration_token` | | .no | output |
+             *     | `punktum_dk_tracking_no` | registry-issued | .dk | output |
+             *     | `verification_required` | | all | output |
+             *     | `promotion`, `promotion_eligibility` | | all | output |
+             *
+             *     `auto_renew_period`: on transfer-in without `period` it also sets the period added by the transfer; on create and update it
+             *     selects the period of the next renewal only and the current expiry date does not move. `monthly` is rejected on transfer-in
+             *     and ignored at renewal when the TLD's renewal periods have no month unit.
+             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *
+             * @example {
+             *       "auto_renew_period": "monthly"
+             *     }
              */
             attributes?: {
                 [key: string]: string;
@@ -7151,7 +7339,35 @@ export interface components {
         DomainTransferPayloadData: {
             /**
              * Attributes
-             * @description Additional attributes of the domain. Platform-reserved keys are rejected if supplied.
+             * @description Additional attributes of the domain, keyed by attribute name; request values are strings.
+             *     Direction: *input* keys are read from the request; *output* keys are written by the platform, rejected if supplied and
+             *     never returned under `attributes`; *ignored* keys are dropped from the request because the platform derives them itself.
+             *
+             *     | Key | Accepted values | TLDs | Direction |
+             *     |---|---|---|---|
+             *     | `auto_renew_period` | `monthly`, `yearly` | all on create and transfer-in, `.de` only on update | both |
+             *     | `music_registrant_attestation` | `true` (also `1`, `yes`) | .music (registration) | input |
+             *     | `nic_it_compliance_confirmation` | `true` (also `1`, `yes`) | .it (registration, transfer) | input |
+             *     | `travel_industry_acknowledgement` | `true` (also `1`, `yes`) | .travel (registration) | input |
+             *     | `internet_ee_registrant_agreement` | `true` (also `1`, `yes`) | .ee (registration) | input |
+             *     | `punktum_dk_terms_acceptance` | `true` (also `1`, `yes`) | .dk (registration, registrant change) | input |
+             *     | `de_general_request_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `de_abuse_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `nor_id_applicant_version`, `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date` | taken from the signed applicant declaration | .no | ignored |
+             *     | `nor_id_declaration`, `nor_id_declaration_token` | | .no | output |
+             *     | `punktum_dk_tracking_no` | registry-issued | .dk | output |
+             *     | `verification_required` | | all | output |
+             *     | `promotion`, `promotion_eligibility` | | all | output |
+             *
+             *     `auto_renew_period`: on transfer-in without `period` it also sets the period added by the transfer; on create and update it
+             *     selects the period of the next renewal only and the current expiry date does not move. `monthly` is rejected on transfer-in
+             *     and ignored at renewal when the TLD's renewal periods have no month unit.
+             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *
+             * @example {
+             *       "auto_renew_period": "monthly"
+             *     }
              */
             attributes?: {
                 [key: string]: string;
@@ -7228,7 +7444,35 @@ export interface components {
         DomainUpdate: {
             /**
              * Attributes
-             * @description Additional attributes of the domain. Platform-reserved keys are rejected if supplied.
+             * @description Additional attributes of the domain, keyed by attribute name; request values are strings.
+             *     Direction: *input* keys are read from the request; *output* keys are written by the platform, rejected if supplied and
+             *     never returned under `attributes`; *ignored* keys are dropped from the request because the platform derives them itself.
+             *
+             *     | Key | Accepted values | TLDs | Direction |
+             *     |---|---|---|---|
+             *     | `auto_renew_period` | `monthly`, `yearly` | all on create and transfer-in, `.de` only on update | both |
+             *     | `music_registrant_attestation` | `true` (also `1`, `yes`) | .music (registration) | input |
+             *     | `nic_it_compliance_confirmation` | `true` (also `1`, `yes`) | .it (registration, transfer) | input |
+             *     | `travel_industry_acknowledgement` | `true` (also `1`, `yes`) | .travel (registration) | input |
+             *     | `internet_ee_registrant_agreement` | `true` (also `1`, `yes`) | .ee (registration) | input |
+             *     | `punktum_dk_terms_acceptance` | `true` (also `1`, `yes`) | .dk (registration, registrant change) | input |
+             *     | `de_general_request_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `de_abuse_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `nor_id_applicant_version`, `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date` | taken from the signed applicant declaration | .no | ignored |
+             *     | `nor_id_declaration`, `nor_id_declaration_token` | | .no | output |
+             *     | `punktum_dk_tracking_no` | registry-issued | .dk | output |
+             *     | `verification_required` | | all | output |
+             *     | `promotion`, `promotion_eligibility` | | all | output |
+             *
+             *     `auto_renew_period`: on transfer-in without `period` it also sets the period added by the transfer; on create and update it
+             *     selects the period of the next renewal only and the current expiry date does not move. `monthly` is rejected on transfer-in
+             *     and ignored at renewal when the TLD's renewal periods have no month unit.
+             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *
+             * @example {
+             *       "auto_renew_period": "monthly"
+             *     }
              */
             attributes?: {
                 [key: string]: string;
@@ -7373,7 +7617,35 @@ export interface components {
         DomainUpdatePayloadData: {
             /**
              * Attributes
-             * @description Additional attributes of the domain. Platform-reserved keys are rejected if supplied.
+             * @description Additional attributes of the domain, keyed by attribute name; request values are strings.
+             *     Direction: *input* keys are read from the request; *output* keys are written by the platform, rejected if supplied and
+             *     never returned under `attributes`; *ignored* keys are dropped from the request because the platform derives them itself.
+             *
+             *     | Key | Accepted values | TLDs | Direction |
+             *     |---|---|---|---|
+             *     | `auto_renew_period` | `monthly`, `yearly` | all on create and transfer-in, `.de` only on update | both |
+             *     | `music_registrant_attestation` | `true` (also `1`, `yes`) | .music (registration) | input |
+             *     | `nic_it_compliance_confirmation` | `true` (also `1`, `yes`) | .it (registration, transfer) | input |
+             *     | `travel_industry_acknowledgement` | `true` (also `1`, `yes`) | .travel (registration) | input |
+             *     | `internet_ee_registrant_agreement` | `true` (also `1`, `yes`) | .ee (registration) | input |
+             *     | `punktum_dk_terms_acceptance` | `true` (also `1`, `yes`) | .dk (registration, registrant change) | input |
+             *     | `de_general_request_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `de_abuse_contact` | id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` = `REQUEST` | .de | input |
+             *     | `nor_id_applicant_version`, `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date` | taken from the signed applicant declaration | .no | ignored |
+             *     | `nor_id_declaration`, `nor_id_declaration_token` | | .no | output |
+             *     | `punktum_dk_tracking_no` | registry-issued | .dk | output |
+             *     | `verification_required` | | all | output |
+             *     | `promotion`, `promotion_eligibility` | | all | output |
+             *
+             *     `auto_renew_period`: on transfer-in without `period` it also sets the period added by the transfer; on create and update it
+             *     selects the period of the next renewal only and the current expiry date does not move. `monthly` is rejected on transfer-in
+             *     and ignored at renewal when the TLD's renewal periods have no month unit.
+             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *
+             * @example {
+             *       "auto_renew_period": "monthly"
+             *     }
              */
             attributes?: {
                 [key: string]: string;
