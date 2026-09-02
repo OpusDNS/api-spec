@@ -6425,7 +6425,7 @@ export interface components {
          * DomainIncludeField
          * @enum {string}
          */
-        DomainIncludeField: "tags" | "renewal_price";
+        DomainIncludeField: "tags" | "renewal_price" | "registrar_credential";
         /** DomainLifecycleBase */
         DomainLifecycleBase: {
             /**
@@ -6509,9 +6509,12 @@ export interface components {
          *     Deliberately narrower than `DomainIncludeField`: resolving a renewal price
          *     costs a registry check plus a billing call per premium domain, which a page
          *     of results would multiply into a registry rate-limit problem.
+         *
+         *     Also typed on the internal domains-service list request, which implements
+         *     only `TAGS`; the public list route is the only consumer of every member.
          * @enum {string}
          */
-        DomainListIncludeField: "tags";
+        DomainListIncludeField: "tags" | "registrar_credential";
         /** DomainNameParts */
         DomainNameParts: {
             /**
@@ -6582,6 +6585,23 @@ export interface components {
              */
             kind: "domain_recommendations";
             payload: components["schemas"]["ContextPayload_DomainSearchSuggestionWithPrice_"];
+        };
+        /** DomainRegistrarCredentialResponse */
+        DomainRegistrarCredentialResponse: {
+            /**
+             * Name
+             * @description Human-readable name for this credential
+             */
+            name: string;
+            /** @description The registrar this credential is for */
+            registrar: components["schemas"]["Registrar"];
+            /**
+             * Registrar Credential Id
+             * Format: typeid
+             * @description Unique identifier for this credential
+             * @example registrar_credential_01h45ytscbebyvny4gc8cr8ma2
+             */
+            registrar_credential_id: TypeId<"registrar_credential">;
         };
         /** DomainRenewRequest */
         DomainRenewRequest: {
@@ -6735,6 +6755,8 @@ export interface components {
              * @description When the domain was registered
              */
             registered_on?: Date | null;
+            /** @description The connected registrar credential this domain is synced from. Null unless `include=registrar_credential` is requested, and null even then for natively registered domains, for domains on operator-managed registry accounts, and when the credential was deleted. */
+            registrar_credential?: components["schemas"]["DomainRegistrarCredentialResponse"] | null;
             /**
              * Registry Account Id
              * Format: typeid
@@ -11117,6 +11139,11 @@ export interface components {
          * @enum {string}
          */
         RegistrantChangeType: "update" | "trade";
+        /**
+         * Registrar
+         * @enum {string}
+         */
+        Registrar: "INTERNETX" | "MONIKER" | "DOMAIN_BESTELLSYSTEM" | "CENTRALNIC" | "NICMANAGER" | "OPUSDNS" | "ENOM" | "OPENSRS" | "NIC_DIRECT";
         /** RegistrarContact */
         RegistrarContact: {
             /** City */
@@ -19537,7 +19564,7 @@ export interface operations {
                 transferred_before?: Date | null;
                 /** @description Filter domains by registry status. Can be specified multiple times (union of all provided values). */
                 registry_statuses?: string[] | null;
-                /** @description Extra data to include in each result. `tags` populates the `tags` (user tags) and `status_tags` fields, which are otherwise null; filtering by `tag_ids` or `status_tags` alone does not populate them. */
+                /** @description Extra data to include in each result. `tags` populates the `tags` (user tags) and `status_tags` fields, which are otherwise null; filtering by `tag_ids` or `status_tags` alone does not populate them. `registrar_credential` populates the `registrar_credential` field for domains held at an external registrar. */
                 include?: components["schemas"]["DomainListIncludeField"][] | null;
             };
             header?: {
@@ -20965,7 +20992,7 @@ export interface operations {
     get_domain_v1_domains__domain_reference__get: {
         parameters: {
             query?: {
-                /** @description Extra data to include in the response. `tags` populates the `tags` and `status_tags` fields, which are otherwise null. `renewal_price` resolves the domain's renewal price. */
+                /** @description Extra data to include in the response. `tags` populates the `tags` and `status_tags` fields, which are otherwise null. `renewal_price` resolves the domain's renewal price. `registrar_credential` populates the `registrar_credential` field for domains held at an external registrar. */
                 include?: components["schemas"]["DomainIncludeField"][] | null;
             };
             header?: {

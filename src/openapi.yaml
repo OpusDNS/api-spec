@@ -5192,6 +5192,7 @@ components:
       enum:
       - tags
       - renewal_price
+      - registrar_credential
       title: DomainIncludeField
       type: string
     DomainLifecycleBase:
@@ -5345,9 +5346,15 @@ components:
 
         costs a registry check plus a billing call per premium domain, which a page
 
-        of results would multiply into a registry rate-limit problem.'
+        of results would multiply into a registry rate-limit problem.
+
+
+        Also typed on the internal domains-service list request, which implements
+
+        only `TAGS`; the public list route is the only consumer of every member.'
       enum:
       - tags
+      - registrar_credential
       title: DomainListIncludeField
       type: string
     DomainNameParts:
@@ -5451,6 +5458,30 @@ components:
       required:
       - payload
       title: DomainRecommendationsContextCreate
+      type: object
+    DomainRegistrarCredentialResponse:
+      properties:
+        name:
+          description: Human-readable name for this credential
+          title: Name
+          type: string
+        registrar:
+          $ref: '#/components/schemas/Registrar'
+          description: The registrar this credential is for
+        registrar_credential_id:
+          description: Unique identifier for this credential
+          examples:
+          - registrar_credential_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^registrar_credential_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Registrar Credential Id
+          type: string
+          x-typeid-prefix: registrar_credential
+      required:
+      - registrar_credential_id
+      - name
+      - registrar
+      title: DomainRegistrarCredentialResponse
       type: object
     DomainRenewRequest:
       properties:
@@ -5650,6 +5681,14 @@ components:
           - type: 'null'
           description: When the domain was registered
           title: Registered On
+        registrar_credential:
+          anyOf:
+          - $ref: '#/components/schemas/DomainRegistrarCredentialResponse'
+          - type: 'null'
+          description: The connected registrar credential this domain is synced from.
+            Null unless `include=registrar_credential` is requested, and null even
+            then for natively registered domains, for domains on operator-managed
+            registry accounts, and when the credential was deleted.
         registry_account_id:
           default: None
           examples:
@@ -12267,6 +12306,19 @@ components:
       - trade
       title: RegistrantChangeType
       type: string
+    Registrar:
+      enum:
+      - INTERNETX
+      - MONIKER
+      - DOMAIN_BESTELLSYSTEM
+      - CENTRALNIC
+      - NICMANAGER
+      - OPUSDNS
+      - ENOM
+      - OPENSRS
+      - NIC_DIRECT
+      title: Registrar
+      type: string
     RegistrarContact:
       properties:
         city:
@@ -15898,7 +15950,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-01-130544
+  version: 2026-09-02-183544
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -24016,7 +24068,9 @@ paths:
           title: Registry Statuses
       - description: Extra data to include in each result. `tags` populates the `tags`
           (user tags) and `status_tags` fields, which are otherwise null; filtering
-          by `tag_ids` or `status_tags` alone does not populate them.
+          by `tag_ids` or `status_tags` alone does not populate them. `registrar_credential`
+          populates the `registrar_credential` field for domains held at an external
+          registrar.
         in: query
         name: include
         required: false
@@ -24029,6 +24083,8 @@ paths:
           description: Extra data to include in each result. `tags` populates the
             `tags` (user tags) and `status_tags` fields, which are otherwise null;
             filtering by `tag_ids` or `status_tags` alone does not populate them.
+            `registrar_credential` populates the `registrar_credential` field for
+            domains held at an external registrar.
           title: Include
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -25588,7 +25644,8 @@ paths:
           title: Domain Reference
       - description: Extra data to include in the response. `tags` populates the `tags`
           and `status_tags` fields, which are otherwise null. `renewal_price` resolves
-          the domain's renewal price.
+          the domain's renewal price. `registrar_credential` populates the `registrar_credential`
+          field for domains held at an external registrar.
         in: query
         name: include
         required: false
@@ -25600,7 +25657,8 @@ paths:
           - type: 'null'
           description: Extra data to include in the response. `tags` populates the
             `tags` and `status_tags` fields, which are otherwise null. `renewal_price`
-            resolves the domain's renewal price.
+            resolves the domain's renewal price. `registrar_credential` populates
+            the `registrar_credential` field for domains held at an external registrar.
           title: Include
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:

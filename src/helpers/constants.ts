@@ -89,6 +89,7 @@ import type {
   PublicScope,
   RedirectCode,
   RegistrantChangeType,
+  Registrar,
   RegistryHandleAttributeType,
   RegistryServiceBackend,
   RenewalMode,
@@ -768,19 +769,23 @@ export const DOMAIN_FORWARD_ZONE_SORT_FIELD_VALUES = [
 export const DOMAIN_INCLUDE_FIELD = {
   TAGS: "tags",
   RENEWAL_PRICE: "renewal_price",
+  REGISTRAR_CREDENTIAL: "registrar_credential",
 } as const satisfies Record<string, DomainIncludeField>;
 
 export const DOMAIN_INCLUDE_FIELD_VALUES = [
   'tags',
   'renewal_price',
+  'registrar_credential',
 ] as const satisfies ReadonlyArray<DomainIncludeField>;
 
 export const DOMAIN_LIST_INCLUDE_FIELD = {
   TAGS: "tags",
+  REGISTRAR_CREDENTIAL: "registrar_credential",
 } as const satisfies Record<string, DomainListIncludeField>;
 
 export const DOMAIN_LIST_INCLUDE_FIELD_VALUES = [
   'tags',
+  'registrar_credential',
 ] as const satisfies ReadonlyArray<DomainListIncludeField>;
 
 export const DOMAIN_SORT_FIELD = {
@@ -1585,6 +1590,30 @@ export const REGISTRANT_CHANGE_TYPE_VALUES = [
   'update',
   'trade',
 ] as const satisfies ReadonlyArray<RegistrantChangeType>;
+
+export const REGISTRAR = {
+  INTERNETX: "INTERNETX",
+  MONIKER: "MONIKER",
+  DOMAIN_BESTELLSYSTEM: "DOMAIN_BESTELLSYSTEM",
+  CENTRALNIC: "CENTRALNIC",
+  NICMANAGER: "NICMANAGER",
+  OPUSDNS: "OPUSDNS",
+  ENOM: "ENOM",
+  OPENSRS: "OPENSRS",
+  NIC_DIRECT: "NIC_DIRECT",
+} as const satisfies Record<string, Registrar>;
+
+export const REGISTRAR_VALUES = [
+  'INTERNETX',
+  'MONIKER',
+  'DOMAIN_BESTELLSYSTEM',
+  'CENTRALNIC',
+  'NICMANAGER',
+  'OPUSDNS',
+  'ENOM',
+  'OPENSRS',
+  'NIC_DIRECT',
+] as const satisfies ReadonlyArray<Registrar>;
 
 export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
   AT_EXT_CONTACT_TYPE: "at-ext-contact:type",

@@ -177,6 +177,7 @@ import type {
   DomainPeriod,
   DomainRecommendationsContext,
   DomainRecommendationsContextCreate,
+  DomainRegistrarCredential,
   DomainRenewRequest,
   DomainRenew,
   DomainRenewalDetails,
@@ -2552,6 +2553,16 @@ export const KEYS_DOMAIN_RECOMMENDATIONS_CONTEXT_CREATE = [
   KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_CREATE_PAYLOAD,
 ] as const satisfies (keyof DomainRecommendationsContextCreate)[];
 
+export const KEY_DOMAIN_REGISTRAR_CREDENTIAL_NAME = 'name' satisfies keyof DomainRegistrarCredential;
+export const KEY_DOMAIN_REGISTRAR_CREDENTIAL_REGISTRAR = 'registrar' satisfies keyof DomainRegistrarCredential;
+export const KEY_DOMAIN_REGISTRAR_CREDENTIAL_REGISTRAR_CREDENTIAL_ID = 'registrar_credential_id' satisfies keyof DomainRegistrarCredential;
+
+export const KEYS_DOMAIN_REGISTRAR_CREDENTIAL = [
+  KEY_DOMAIN_REGISTRAR_CREDENTIAL_NAME,
+  KEY_DOMAIN_REGISTRAR_CREDENTIAL_REGISTRAR,
+  KEY_DOMAIN_REGISTRAR_CREDENTIAL_REGISTRAR_CREDENTIAL_ID,
+] as const satisfies (keyof DomainRegistrarCredential)[];
+
 export const KEY_DOMAIN_RENEW_REQUEST_CURRENT_EXPIRY_DATE = 'current_expiry_date' satisfies keyof DomainRenewRequest;
 export const KEY_DOMAIN_RENEW_REQUEST_EXPECTED_PRICE = 'expected_price' satisfies keyof DomainRenewRequest;
 export const KEY_DOMAIN_RENEW_REQUEST_PERIOD = 'period' satisfies keyof DomainRenewRequest;
@@ -2607,6 +2618,7 @@ export const KEY_DOMAIN_NAMESERVERS = 'nameservers' satisfies keyof Domain;
 export const KEY_DOMAIN_OWNER_ID = 'owner_id' satisfies keyof Domain;
 export const KEY_DOMAIN_READ_ONLY = 'read_only' satisfies keyof Domain;
 export const KEY_DOMAIN_REGISTERED_ON = 'registered_on' satisfies keyof Domain;
+export const KEY_DOMAIN_REGISTRAR_CREDENTIAL = 'registrar_credential' satisfies keyof Domain;
 export const KEY_DOMAIN_REGISTRY_ACCOUNT_ID = 'registry_account_id' satisfies keyof Domain;
 export const KEY_DOMAIN_REGISTRY_STATUSES = 'registry_statuses' satisfies keyof Domain;
 export const KEY_DOMAIN_RENEWAL_MODE = 'renewal_mode' satisfies keyof Domain;
@@ -2638,6 +2650,7 @@ export const KEYS_DOMAIN = [
   KEY_DOMAIN_OWNER_ID,
   KEY_DOMAIN_READ_ONLY,
   KEY_DOMAIN_REGISTERED_ON,
+  KEY_DOMAIN_REGISTRAR_CREDENTIAL,
   KEY_DOMAIN_REGISTRY_ACCOUNT_ID,
   KEY_DOMAIN_REGISTRY_STATUSES,
   KEY_DOMAIN_RENEWAL_MODE,
