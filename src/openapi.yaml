@@ -16598,7 +16598,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-02-192218
+  version: 2026-09-02-200743
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -24714,6 +24714,51 @@ paths:
           description: Filter domains by registry status. Can be specified multiple
             times (union of all provided values).
           title: Registry Statuses
+      - description: Filter domains held at an external registrar by the connected
+          registrar credential they were synced from. Can be specified multiple times
+          (union of all provided values); combined with `registrar`, both must match.
+          Matches exactly the domains whose `registrar_credential` field carries the
+          id, so domains OpusDNS sponsors never match.
+        in: query
+        name: registrar_credential_id
+        required: false
+        schema:
+          anyOf:
+          - items:
+              examples:
+              - registrar_credential_01h45ytscbebyvny4gc8cr8ma2
+              format: typeid
+              pattern: ^registrar_credential_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+              type: string
+              x-typeid-prefix: registrar_credential
+            type: array
+          - type: 'null'
+          description: Filter domains held at an external registrar by the connected
+            registrar credential they were synced from. Can be specified multiple
+            times (union of all provided values); combined with `registrar`, both
+            must match. Matches exactly the domains whose `registrar_credential` field
+            carries the id, so domains OpusDNS sponsors never match.
+          title: Registrar Credential Id
+      - description: Filter domains held at an external registrar by that registrar.
+          Can be specified multiple times (union of all provided values); combined
+          with `registrar_credential_id`, both must match. Matches exactly the domains
+          whose `registrar_credential` field carries the registrar, so domains OpusDNS
+          sponsors never match.
+        in: query
+        name: registrar
+        required: false
+        schema:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Registrar'
+            type: array
+          - type: 'null'
+          description: Filter domains held at an external registrar by that registrar.
+            Can be specified multiple times (union of all provided values); combined
+            with `registrar_credential_id`, both must match. Matches exactly the domains
+            whose `registrar_credential` field carries the registrar, so domains OpusDNS
+            sponsors never match.
+          title: Registrar
       - description: Extra data to include in each result. `tags` populates the `tags`
           (user tags) and `status_tags` fields, which are otherwise null; filtering
           by `tag_ids` or `status_tags` alone does not populate them. `registrar_credential`

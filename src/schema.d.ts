@@ -19836,6 +19836,10 @@ export interface operations {
                 transferred_before?: Date | null;
                 /** @description Filter domains by registry status. Can be specified multiple times (union of all provided values). */
                 registry_statuses?: string[] | null;
+                /** @description Filter domains held at an external registrar by the connected registrar credential they were synced from. Can be specified multiple times (union of all provided values); combined with `registrar`, both must match. Matches exactly the domains whose `registrar_credential` field carries the id, so domains OpusDNS sponsors never match. */
+                registrar_credential_id?: TypeId<"registrar_credential">[] | null;
+                /** @description Filter domains held at an external registrar by that registrar. Can be specified multiple times (union of all provided values); combined with `registrar_credential_id`, both must match. Matches exactly the domains whose `registrar_credential` field carries the registrar, so domains OpusDNS sponsors never match. */
+                registrar?: components["schemas"]["Registrar"][] | null;
                 /** @description Extra data to include in each result. `tags` populates the `tags` (user tags) and `status_tags` fields, which are otherwise null; filtering by `tag_ids` or `status_tags` alone does not populate them. `registrar_credential` populates the `registrar_credential` field for domains held at an external registrar. */
                 include?: components["schemas"]["DomainListIncludeField"][] | null;
             };
