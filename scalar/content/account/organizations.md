@@ -52,7 +52,8 @@ permanent thereafter:
 - **Independent** — the suborganization is its own billing customer, with its
   own account balance, payment methods, and invoices. Its charges never touch
   the parent's balance. Ideal when a suborganization is a separate legal
-  entity that pays for itself.
+  entity that pays for itself. Available on request: contact support to have
+  it enabled for your organization.
 
 See [Billing modes](/account/organizations/manage#billing-modes) for how to
 create each kind, and [Billing & transactions](/account/organizations/billing)

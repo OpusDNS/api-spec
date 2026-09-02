@@ -26,7 +26,7 @@ curl "$OPUSDNS_API_BASE/v1/organizations" \
 | Field | Required | Description |
 | --- | --- | --- |
 | `name` | Yes | Display name for the organization. |
-| `billing_mode` | No | `consolidated` (default) or `independent` — see [Billing modes](#billing-modes). **Cannot be changed after creation.** |
+| `billing_mode` | No | `consolidated` (default) or `independent` — see [Billing modes](#billing-modes). `independent` requires approval for your organization. **Cannot be changed after creation.** |
 | `country_code` | No | ISO 3166-1 alpha-2 country code. |
 | `city` | No | City. |
 | `address_1` | No | First line of the street address. |
@@ -96,6 +96,15 @@ Every suborganization is created in one of two billing modes, set with the
 | Wallet & payment methods | Yours | Its own wallet, balance, and payment methods |
 | Extra required fields | None | `currency`, `country_code` |
 
+<scalar-callout type="info">
+<strong>Independent billing is enabled per organization.</strong> Creating a
+suborganization with <code>billing_mode: "independent"</code> is available to
+top-level organizations that have been approved for the feature; until then the
+request is rejected with <code>422 ERROR_INDEPENDENT_BILLING_NOT_APPROVED</code>.
+Contact <a href="mailto:support@opusdns.com">support@opusdns.com</a> if you would
+like more information about this feature or to have it enabled.
+</scalar-callout>
+
 **`billing_mode` is permanent.** It cannot be changed after creation — an
 update request that includes `billing_mode` is rejected. Choose deliberately;
 converting an organization between modes means deleting and recreating it.
@@ -146,6 +155,7 @@ Requirements and behavior:
 
 | HTTP | Error code | Meaning |
 | --- | --- | --- |
+| 422 | `ERROR_INDEPENDENT_BILLING_NOT_APPROVED` | Your organization has not been enabled for independent billing. Contact [support@opusdns.com](mailto:support@opusdns.com). |
 | 422 | `ERROR_INDEPENDENT_BILLING_NOT_ALLOWED` | Independent billing is only available for suborganizations created directly under your top-level (billing) organization. |
 | 422 | `ERROR_INDEPENDENT_BILLING_ATTRIBUTES_INVALID` | `currency` or `country_code` missing or invalid — the response lists every problem in `invalid_fields`. |
 | 422 | `ERROR_INDEPENDENT_BILLING_CONTACT_NOT_FOUND` | No billing contact could be resolved — include a user in `users[]`. |
