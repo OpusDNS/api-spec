@@ -5,8 +5,10 @@ explicit UTC designator. You can opt in today with a request header, and the new
 format becomes the default on a staged schedule per environment.
 
 <scalar-callout type="info">
-<strong>Sandbox switched to the tz-aware default on 2026-08-18</strong>, as
-scheduled. Production follows on Tuesday, 2026-09-01.
+<strong>The cutover is complete.</strong> Sandbox switched to the tz-aware
+default on 2026-08-18 and production on 2026-09-02. Every environment now
+serves RFC 3339 datetimes by default; the header below is accepted but no
+longer changes anything.
 </scalar-callout>
 
 ## What is changing
@@ -105,10 +107,10 @@ so the switch is a no-op for you.
 | Environment | Default cutover date | Status    |
 | ----------- | -------------------- | --------- |
 | Sandbox     | Tuesday, 2026-08-18  | Completed |
-| Production  | Tuesday, 2026-09-01  | Upcoming  |
+| Production  | Wednesday, 2026-09-02 | Completed |
 
-Sandbox completed its cutover on schedule and serves tz-aware datetimes by default.
-Test your integration against sandbox now to be ready for the production date.
+Both environments serve tz-aware datetimes by default. The header is still
+accepted everywhere and is a no-op.
 
 ## Scope
 

@@ -4,6 +4,47 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 2 September 2026
+
+- Changed **independent billing for suborganizations to require approval**:
+  `billing_mode: "independent"` on
+  [`POST /v1/organizations`](/api-reference#tag/organization/POST/v1/organizations)
+  is now accepted only for top-level organizations that have been enabled for
+  the feature. Other requests are rejected with `422
+  ERROR_INDEPENDENT_BILLING_NOT_APPROVED`; consolidated billing and existing
+  independent suborganizations are unaffected. Contact
+  [support@opusdns.com](mailto:support@opusdns.com) for more information about
+  this feature. See [Billing modes](/account/organizations/manage#billing-modes).
+
+- Changed **the production environment to serve timezone-aware (RFC 3339)
+  datetimes by default**, completing the staged cutover: every datetime in a
+  public `/v1` response now carries a trailing `Z`. The `X-Datetime-Format:
+  rfc3339` header remains accepted and is now a no-op. See
+  [Timezone-aware datetimes (RFC 3339)](/upcoming-changes/rfc3339-datetimes).
+
+- Added **the registrar credential to domains held at a connected registrar**:
+  request `include=registrar_credential` on
+  [`GET /v1/domains`](/api-reference#tag/domain/GET/v1/domains) or
+  [`GET /v1/domains/{domain_reference}`](/api-reference#tag/domain/GET/v1/domains/{domain_reference})
+  and each domain synced from a connected registrar carries a
+  `registrar_credential` object with its `registrar_credential_id`, `name` and
+  `registrar`; natively registered domains return `null`. The domain list also
+  gained two repeatable filters, `registrar_credential_id` and `registrar`, so
+  you can list the domains behind one credential or one registrar. Values
+  within a parameter are OR-ed and the two parameters are AND-ed, as with `tld`
+  and `tag_ids`.
+
+- Changed **domain `attributes` values to be validated**: `auto_renew_period`
+  accepts only `monthly` or `yearly`, and any other value is rejected with a
+  `422` naming the accepted values, on domain create, transfer-in and update and
+  at bulk job submission. Keys the platform writes itself
+  (`verification_required`, `nor_id_declaration`, `nor_id_declaration_token`,
+  `punktum_dk_tracking_no`) are now rejected if supplied, as the promotion keys
+  already were. The `attributes` field in the API Reference now lists every
+  key with its accepted values, the TLDs it applies to and whether it is read
+  from the request or written by the platform. Changing `auto_renew_period`
+  takes effect at the next renewal; the current expiry date does not move.
+
 ### 1 September 2026
 
 - Onboarded **[`.bayern`](/tld-knowledge-base/gtlds/bayern)** (Bayern Connect
