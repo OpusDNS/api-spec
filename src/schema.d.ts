@@ -24049,13 +24049,6 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    /** @example {
-                     *       "code": "ERROR_INDEPENDENT_BILLING_NOT_ALLOWED",
-                     *       "detail": "Independent billing mode is only allowed for sub-organizations of a billing organization.",
-                     *       "status": 422,
-                     *       "title": "Organization Management Error",
-                     *       "type": "independent-billing-not-allowed"
-                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };

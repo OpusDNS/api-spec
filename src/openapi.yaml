@@ -15950,7 +15950,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-02-183544
+  version: 2026-09-02-191532
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -29521,13 +29521,15 @@ paths:
         '422':
           content:
             application/problem+json:
-              example:
-                code: ERROR_INDEPENDENT_BILLING_NOT_ALLOWED
-                detail: Independent billing mode is only allowed for sub-organizations
-                  of a billing organization.
-                status: 422
-                title: Organization Management Error
-                type: independent-billing-not-allowed
+              examples:
+                Organization Management Error:
+                  value:
+                    code: ERROR_INDEPENDENT_BILLING_NOT_APPROVED
+                    detail: The parent organization is not approved to create sub-organizations
+                      with independent billing.
+                    status: 422
+                    title: Organization Management Error
+                    type: independent-billing-not-approved
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Unprocessable Content
