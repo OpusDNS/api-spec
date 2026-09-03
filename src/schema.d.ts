@@ -4481,6 +4481,12 @@ export interface components {
              */
             authinfo_required?: boolean | null;
             /**
+             * Authinfo Supported
+             * @description Whether the registry supports authinfo for contact creation
+             * @default true
+             */
+            authinfo_supported: boolean;
+            /**
              * Is Thick
              * @description Whether the registry supports thick contacts
              */

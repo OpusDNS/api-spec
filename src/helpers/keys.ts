@@ -1146,6 +1146,7 @@ export const KEYS_CONTACT_VERIFICATION_STATUS = [
 ] as const satisfies (keyof ContactVerificationStatus)[];
 
 export const KEY_CONTACTS_BASE_AUTHINFO_REQUIRED = 'authinfo_required' satisfies keyof ContactsBase;
+export const KEY_CONTACTS_BASE_AUTHINFO_SUPPORTED = 'authinfo_supported' satisfies keyof ContactsBase;
 export const KEY_CONTACTS_BASE_IS_THICK = 'is_thick' satisfies keyof ContactsBase;
 export const KEY_CONTACTS_BASE_POSSIBLE_ATTRIBUTES = 'possible_attributes' satisfies keyof ContactsBase;
 export const KEY_CONTACTS_BASE_PRIVACY_PROXY = 'privacy_proxy' satisfies keyof ContactsBase;
@@ -1160,6 +1161,7 @@ export const KEY_CONTACTS_BASE_UPDATE_SUPPORTED_ROLES = 'update_supported_roles'
 
 export const KEYS_CONTACTS_BASE = [
   KEY_CONTACTS_BASE_AUTHINFO_REQUIRED,
+  KEY_CONTACTS_BASE_AUTHINFO_SUPPORTED,
   KEY_CONTACTS_BASE_IS_THICK,
   KEY_CONTACTS_BASE_POSSIBLE_ATTRIBUTES,
   KEY_CONTACTS_BASE_PRIVACY_PROXY,
