@@ -11582,7 +11582,7 @@ export interface components {
          * ReportStatus
          * @enum {string}
          */
-        ReportStatus: "pending" | "generating" | "completed" | "failed";
+        ReportStatus: "pending" | "generating" | "completed" | "failed" | "empty";
         /**
          * ReportTriggerType
          * @enum {string}

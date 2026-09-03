@@ -1916,6 +1916,7 @@ export const REPORT_STATUS = {
   GENERATING: "generating",
   COMPLETED: "completed",
   FAILED: "failed",
+  EMPTY: "empty",
 } as const satisfies Record<string, ReportStatus>;
 
 export const REPORT_STATUS_VALUES = [
@@ -1923,6 +1924,7 @@ export const REPORT_STATUS_VALUES = [
   'generating',
   'completed',
   'failed',
+  'empty',
 ] as const satisfies ReadonlyArray<ReportStatus>;
 
 export const REPORT_TRIGGER_TYPE = {
