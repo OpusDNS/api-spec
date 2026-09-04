@@ -12297,6 +12297,12 @@ export interface components {
              */
             authinfo_validity_period?: string | null;
             /**
+             * Contacts In Transfer Command
+             * @description Whether the registry takes the domain contacts on the transfer command itself
+             * @default false
+             */
+            contacts_in_transfer_command: boolean;
+            /**
              * Info Contact Authinfo
              * @description Whether querying a foreign contact with authinfo is possible
              */

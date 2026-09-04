@@ -13964,6 +13964,12 @@ components:
           - type: 'null'
           description: Validity period of the auth info (e.g., '5D' for 5 days)
           title: Authinfo Validity Period
+        contacts_in_transfer_command:
+          default: false
+          description: Whether the registry takes the domain contacts on the transfer
+            command itself
+          title: Contacts In Transfer Command
+          type: boolean
         info_contact_authinfo:
           anyOf:
           - type: boolean
@@ -16170,7 +16176,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-03-201425
+  version: 2026-09-04-155853
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

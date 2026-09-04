@@ -5530,6 +5530,7 @@ export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_REQUIRED = 'authinfo_required' 
 export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_SET_BY_REGISTRAR = 'authinfo_set_by_registrar' satisfies keyof TransferPoliciesBase;
 export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_TIME_LIMITED = 'authinfo_time_limited' satisfies keyof TransferPoliciesBase;
 export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_VALIDITY_PERIOD = 'authinfo_validity_period' satisfies keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_CONTACTS_IN_TRANSFER_COMMAND = 'contacts_in_transfer_command' satisfies keyof TransferPoliciesBase;
 export const KEY_TRANSFER_POLICIES_BASE_INFO_CONTACT_AUTHINFO = 'info_contact_authinfo' satisfies keyof TransferPoliciesBase;
 export const KEY_TRANSFER_POLICIES_BASE_INFO_DOMAIN_AUTHINFO = 'info_domain_authinfo' satisfies keyof TransferPoliciesBase;
 export const KEY_TRANSFER_POLICIES_BASE_POST_TRANSFER_REQUIREMENTS = 'post_transfer_requirements' satisfies keyof TransferPoliciesBase;
@@ -5549,6 +5550,7 @@ export const KEYS_TRANSFER_POLICIES_BASE = [
   KEY_TRANSFER_POLICIES_BASE_AUTHINFO_SET_BY_REGISTRAR,
   KEY_TRANSFER_POLICIES_BASE_AUTHINFO_TIME_LIMITED,
   KEY_TRANSFER_POLICIES_BASE_AUTHINFO_VALIDITY_PERIOD,
+  KEY_TRANSFER_POLICIES_BASE_CONTACTS_IN_TRANSFER_COMMAND,
   KEY_TRANSFER_POLICIES_BASE_INFO_CONTACT_AUTHINFO,
   KEY_TRANSFER_POLICIES_BASE_INFO_DOMAIN_AUTHINFO,
   KEY_TRANSFER_POLICIES_BASE_POST_TRANSFER_REQUIREMENTS,
