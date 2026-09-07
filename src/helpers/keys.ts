@@ -1929,10 +1929,12 @@ export const KEYS_DOMAIN_CHECK = [
   KEY_DOMAIN_CHECK_RESULTS,
 ] as const satisfies (keyof DomainCheck)[];
 
+export const KEY_DOMAIN_CONTACT_ATTRIBUTES = 'attributes' satisfies keyof DomainContact;
 export const KEY_DOMAIN_CONTACT_CONTACT_ID = 'contact_id' satisfies keyof DomainContact;
 export const KEY_DOMAIN_CONTACT_CONTACT_TYPE = 'contact_type' satisfies keyof DomainContact;
 
 export const KEYS_DOMAIN_CONTACT = [
+  KEY_DOMAIN_CONTACT_ATTRIBUTES,
   KEY_DOMAIN_CONTACT_CONTACT_ID,
   KEY_DOMAIN_CONTACT_CONTACT_TYPE,
 ] as const satisfies (keyof DomainContact)[];

@@ -5557,7 +5557,7 @@ export interface components {
          * DomainAttributeKey
          * @enum {string}
          */
-        DomainAttributeKey: "auto_renew_period" | "music_registrant_attestation" | "nic_it_compliance_confirmation" | "travel_industry_acknowledgement" | "verification_required" | "de_general_request_contact" | "de_abuse_contact" | "nor_id_applicant_version" | "nor_id_applicant_accept_name" | "nor_id_applicant_accept_date" | "nor_id_declaration" | "nor_id_declaration_token" | "punktum_dk_terms_acceptance" | "punktum_dk_tracking_no" | "internet_ee_registrant_agreement" | "promotion" | "promotion_eligibility";
+        DomainAttributeKey: "auto_renew_period" | "music_registrant_attestation" | "nic_it_compliance_confirmation" | "travel_industry_acknowledgement" | "verification_required" | "de_general_request_contact" | "de_abuse_contact" | "nor_id_applicant_version" | "nor_id_applicant_accept_name" | "nor_id_applicant_accept_date" | "nor_id_declaration" | "nor_id_declaration_token" | "punktum_dk_terms_acceptance" | "punktum_dk_tracking_no" | "internet_ee_registrant_agreement" | "promotion" | "promotion_eligibility" | "domain_contact_attributes";
         /** DomainAvailability */
         DomainAvailability: {
             /** Domain */
@@ -5613,6 +5613,13 @@ export interface components {
         /** DomainContactResponse */
         DomainContactResponse: {
             /**
+             * Attributes
+             * @description Registry-specific attributes supplied inline for this contact in this role. Omitted when the contact was submitted without inline attributes; attributes taken from a linked contact attribute set are not reported here.
+             */
+            attributes?: {
+                [key: string]: string;
+            } | null;
+            /**
              * Contact Id
              * Format: typeid
              * @description The contact id of the contact
@@ -5650,7 +5657,8 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
              *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
@@ -5752,7 +5760,8 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
              *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
@@ -5826,7 +5835,8 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
              *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
@@ -5904,7 +5914,8 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
              *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
@@ -7149,7 +7160,8 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
              *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
@@ -7223,7 +7235,8 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
              *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
@@ -7297,7 +7310,8 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
              *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
@@ -7371,7 +7385,8 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
              *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
@@ -7477,7 +7492,8 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
              *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
@@ -7651,7 +7667,8 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
              *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.

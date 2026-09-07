@@ -3848,6 +3848,7 @@ components:
       - internet_ee_registrant_agreement
       - promotion
       - promotion_eligibility
+      - domain_contact_attributes
       title: DomainAttributeKey
       type: string
     DomainAvailability:
@@ -3951,6 +3952,19 @@ components:
       type: object
     DomainContactResponse:
       properties:
+        attributes:
+          anyOf:
+          - additionalProperties:
+              type: string
+            propertyNames:
+              $ref: '#/components/schemas/RegistryHandleAttributeType'
+            type: object
+          - type: 'null'
+          description: Registry-specific attributes supplied inline for this contact
+            in this role. Omitted when the contact was submitted without inline attributes;
+            attributes taken from a linked contact attribute set are not reported
+            here.
+          title: Attributes
         contact_id:
           description: The contact id of the contact
           examples:
@@ -4002,10 +4016,12 @@ components:
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
             \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
-            \ `punktum_dk_tracking_no`. They are never returned under `attributes`.\n\
-            \nDerived from the signed `.no` applicant declaration and ignored if supplied:\
-            \ `nor_id_applicant_version`,\n`nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\
-            \nOn update, only `.de` stores attributes and an empty value removes the\
+            \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
+            returned under `attributes`; inline contact attributes surface on the\
+            \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
+            \ applicant declaration and ignored if supplied: `nor_id_applicant_version`,\n\
+            `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\nOn\
+            \ update, only `.de` stores attributes and an empty value removes the\
             \ stored attribute; `.dk` reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change and other registries ignore attributes.\n"
           examples:
@@ -4121,10 +4137,12 @@ components:
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
             \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
-            \ `punktum_dk_tracking_no`. They are never returned under `attributes`.\n\
-            \nDerived from the signed `.no` applicant declaration and ignored if supplied:\
-            \ `nor_id_applicant_version`,\n`nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\
-            \nOn update, only `.de` stores attributes and an empty value removes the\
+            \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
+            returned under `attributes`; inline contact attributes surface on the\
+            \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
+            \ applicant declaration and ignored if supplied: `nor_id_applicant_version`,\n\
+            `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\nOn\
+            \ update, only `.de` stores attributes and an empty value removes the\
             \ stored attribute; `.dk` reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change and other registries ignore attributes.\n"
           title: Attributes
@@ -4224,10 +4242,12 @@ components:
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
             \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
-            \ `punktum_dk_tracking_no`. They are never returned under `attributes`.\n\
-            \nDerived from the signed `.no` applicant declaration and ignored if supplied:\
-            \ `nor_id_applicant_version`,\n`nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\
-            \nOn update, only `.de` stores attributes and an empty value removes the\
+            \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
+            returned under `attributes`; inline contact attributes surface on the\
+            \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
+            \ applicant declaration and ignored if supplied: `nor_id_applicant_version`,\n\
+            `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\nOn\
+            \ update, only `.de` stores attributes and an empty value removes the\
             \ stored attribute; `.dk` reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change and other registries ignore attributes.\n"
           title: Attributes
@@ -4317,10 +4337,12 @@ components:
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
             \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
-            \ `punktum_dk_tracking_no`. They are never returned under `attributes`.\n\
-            \nDerived from the signed `.no` applicant declaration and ignored if supplied:\
-            \ `nor_id_applicant_version`,\n`nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\
-            \nOn update, only `.de` stores attributes and an empty value removes the\
+            \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
+            returned under `attributes`; inline contact attributes surface on the\
+            \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
+            \ applicant declaration and ignored if supplied: `nor_id_applicant_version`,\n\
+            `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\nOn\
+            \ update, only `.de` stores attributes and an empty value removes the\
             \ stored attribute; `.dk` reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change and other registries ignore attributes.\n"
           examples:
@@ -6198,10 +6220,12 @@ components:
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
             \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
-            \ `punktum_dk_tracking_no`. They are never returned under `attributes`.\n\
-            \nDerived from the signed `.no` applicant declaration and ignored if supplied:\
-            \ `nor_id_applicant_version`,\n`nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\
-            \nOn update, only `.de` stores attributes and an empty value removes the\
+            \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
+            returned under `attributes`; inline contact attributes surface on the\
+            \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
+            \ applicant declaration and ignored if supplied: `nor_id_applicant_version`,\n\
+            `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\nOn\
+            \ update, only `.de` stores attributes and an empty value removes the\
             \ stored attribute; `.dk` reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change and other registries ignore attributes.\n"
           title: Attributes
@@ -6301,10 +6325,12 @@ components:
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
             \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
-            \ `punktum_dk_tracking_no`. They are never returned under `attributes`.\n\
-            \nDerived from the signed `.no` applicant declaration and ignored if supplied:\
-            \ `nor_id_applicant_version`,\n`nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\
-            \nOn update, only `.de` stores attributes and an empty value removes the\
+            \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
+            returned under `attributes`; inline contact attributes surface on the\
+            \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
+            \ applicant declaration and ignored if supplied: `nor_id_applicant_version`,\n\
+            `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\nOn\
+            \ update, only `.de` stores attributes and an empty value removes the\
             \ stored attribute; `.dk` reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change and other registries ignore attributes.\n"
           title: Attributes
@@ -6388,10 +6414,12 @@ components:
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
             \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
-            \ `punktum_dk_tracking_no`. They are never returned under `attributes`.\n\
-            \nDerived from the signed `.no` applicant declaration and ignored if supplied:\
-            \ `nor_id_applicant_version`,\n`nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\
-            \nOn update, only `.de` stores attributes and an empty value removes the\
+            \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
+            returned under `attributes`; inline contact attributes surface on the\
+            \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
+            \ applicant declaration and ignored if supplied: `nor_id_applicant_version`,\n\
+            `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\nOn\
+            \ update, only `.de` stores attributes and an empty value removes the\
             \ stored attribute; `.dk` reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change and other registries ignore attributes.\n"
           examples:
@@ -6475,10 +6503,12 @@ components:
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
             \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
-            \ `punktum_dk_tracking_no`. They are never returned under `attributes`.\n\
-            \nDerived from the signed `.no` applicant declaration and ignored if supplied:\
-            \ `nor_id_applicant_version`,\n`nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\
-            \nOn update, only `.de` stores attributes and an empty value removes the\
+            \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
+            returned under `attributes`; inline contact attributes surface on the\
+            \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
+            \ applicant declaration and ignored if supplied: `nor_id_applicant_version`,\n\
+            `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\nOn\
+            \ update, only `.de` stores attributes and an empty value removes the\
             \ stored attribute; `.dk` reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change and other registries ignore attributes.\n"
           examples:
@@ -6607,10 +6637,12 @@ components:
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
             \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
-            \ `punktum_dk_tracking_no`. They are never returned under `attributes`.\n\
-            \nDerived from the signed `.no` applicant declaration and ignored if supplied:\
-            \ `nor_id_applicant_version`,\n`nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\
-            \nOn update, only `.de` stores attributes and an empty value removes the\
+            \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
+            returned under `attributes`; inline contact attributes surface on the\
+            \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
+            \ applicant declaration and ignored if supplied: `nor_id_applicant_version`,\n\
+            `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\nOn\
+            \ update, only `.de` stores attributes and an empty value removes the\
             \ stored attribute; `.dk` reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change and other registries ignore attributes.\n"
           examples:
@@ -6848,10 +6880,12 @@ components:
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
             \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
-            \ `punktum_dk_tracking_no`. They are never returned under `attributes`.\n\
-            \nDerived from the signed `.no` applicant declaration and ignored if supplied:\
-            \ `nor_id_applicant_version`,\n`nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\
-            \nOn update, only `.de` stores attributes and an empty value removes the\
+            \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
+            returned under `attributes`; inline contact attributes surface on the\
+            \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
+            \ applicant declaration and ignored if supplied: `nor_id_applicant_version`,\n\
+            `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\nOn\
+            \ update, only `.de` stores attributes and an empty value removes the\
             \ stored attribute; `.dk` reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change and other registries ignore attributes.\n"
           examples:
@@ -16196,7 +16230,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-07-115957
+  version: 2026-09-07-195702
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

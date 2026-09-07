@@ -670,6 +670,7 @@ export const DOMAIN_ATTRIBUTE_KEY = {
   INTERNET_EE_REGISTRANT_AGREEMENT: "internet_ee_registrant_agreement",
   PROMOTION: "promotion",
   PROMOTION_ELIGIBILITY: "promotion_eligibility",
+  DOMAIN_CONTACT_ATTRIBUTES: "domain_contact_attributes",
 } as const satisfies Record<string, DomainAttributeKey>;
 
 export const DOMAIN_ATTRIBUTE_KEY_VALUES = [
@@ -690,6 +691,7 @@ export const DOMAIN_ATTRIBUTE_KEY_VALUES = [
   'internet_ee_registrant_agreement',
   'promotion',
   'promotion_eligibility',
+  'domain_contact_attributes',
 ] as const satisfies ReadonlyArray<DomainAttributeKey>;
 
 export const DOMAIN_AVAILABILITY_STATUS = {
