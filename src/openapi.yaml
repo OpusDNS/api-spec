@@ -15239,20 +15239,20 @@ components:
       title: WhitelabelBaseCreate
       type: object
     WhitelabelBrandingPatch:
-      description: 'Public patch body. `label` moves the base subdomain to a different
-        label (base tier only - a
+      description: 'Public patch body. `label` moves the managed base subdomain to
+        a different label (on plus the
 
-        plus whitelabel is re-pointed by its hostnames through recheck) and `enabled`
-        starts or stops
+        custom domain is untouched - it is re-pointed by its hostnames through recheck)
+        and `enabled`
 
-        serving it - both applied asynchronously via the reconcile job, neither a
-        purchase. `renewal_mode`
+        starts or stops serving - both applied asynchronously via the reconcile job,
+        neither a purchase.
 
-        sets the subscription''s auto-renew intent synchronously (EXPIRE = cancel
-        at period end, RENEW =
+        `renewal_mode` sets the subscription''s auto-renew intent synchronously (EXPIRE
+        = cancel at period
 
-        un-cancel); it is not a purchase either - no price change. At least one must
-        be given.'
+        end, RENEW = un-cancel); it is not a purchase either - no price change. At
+        least one must be given.'
       properties:
         enabled:
           anyOf:
@@ -15266,8 +15266,8 @@ components:
             minLength: 1
             type: string
           - type: 'null'
-          description: New base-tier label; the hostnames become app.<label>.<suffix>
-            / auth.<label>.<suffix>. Base tier only.
+          description: New managed-subdomain label; the base hosts become app.<label>.<suffix>
+            / auth.<label>.<suffix>. On plus the custom domain keeps serving unchanged.
           title: Label
         renewal_mode:
           anyOf:
@@ -15336,9 +15336,28 @@ components:
           minLength: 1
           title: Auth Hostname
           type: string
+        base_auth_hostname:
+          anyOf:
+          - maxLength: 255
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: Managed base auth host (auth.<base_label>.<suffix>); null until
+            first published
+          title: Base Auth Hostname
+        base_hostname:
+          anyOf:
+          - maxLength: 255
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: Managed base dashboard host (app.<base_label>.<suffix>); on
+            plus a backup address served alongside the custom domain, null until first
+            published
+          title: Base Hostname
         base_label:
-          description: Managed-subdomain label; served on the base tier, reserved
-            on plus
+          description: Managed-subdomain label; the composed pair is the served pair
+            on base, the backup pair on plus
           maxLength: 255
           minLength: 1
           title: Base Label
@@ -15498,10 +15517,10 @@ components:
       type: string
     WhitelabelPlusCreate:
       additionalProperties: false
-      description: 'Create the plus tier: served on the customer''s own domain; `label`
-        still reserves a base
+      description: 'Create the plus tier: served on the customer''s own domain, with
+        the managed base subdomain
 
-        subdomain (kept for the redirect/downgrade).'
+        composed from `label` served alongside it as a backup address.'
       properties:
         auth_subdomain:
           description: Subdomain the login is served on (e.g. auth -> auth.customer.com)
@@ -15534,7 +15553,8 @@ components:
           title: Hostname
           type: string
         label:
-          description: Managed-subdomain label reserved for the redirect/downgrade
+          description: Managed-subdomain label; the composed pair is served alongside
+            the custom domain as a backup
           maxLength: 63
           minLength: 1
           title: Label
@@ -16176,7 +16196,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-07-084158
+  version: 2026-09-07-115957
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

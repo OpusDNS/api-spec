@@ -5990,6 +5990,8 @@ export const KEYS_WHITELABEL_BRANDING_RECHECK = [
 ] as const satisfies (keyof WhitelabelBrandingRecheck)[];
 
 export const KEY_WHITELABEL_BRANDING_AUTH_HOSTNAME = 'auth_hostname' satisfies keyof WhitelabelBranding;
+export const KEY_WHITELABEL_BRANDING_BASE_AUTH_HOSTNAME = 'base_auth_hostname' satisfies keyof WhitelabelBranding;
+export const KEY_WHITELABEL_BRANDING_BASE_HOSTNAME = 'base_hostname' satisfies keyof WhitelabelBranding;
 export const KEY_WHITELABEL_BRANDING_BASE_LABEL = 'base_label' satisfies keyof WhitelabelBranding;
 export const KEY_WHITELABEL_BRANDING_CREATED_ON = 'created_on' satisfies keyof WhitelabelBranding;
 export const KEY_WHITELABEL_BRANDING_ENABLED = 'enabled' satisfies keyof WhitelabelBranding;
@@ -6008,6 +6010,8 @@ export const KEY_WHITELABEL_BRANDING_WHITELABEL_BRANDING_ID = 'whitelabel_brandi
 
 export const KEYS_WHITELABEL_BRANDING = [
   KEY_WHITELABEL_BRANDING_AUTH_HOSTNAME,
+  KEY_WHITELABEL_BRANDING_BASE_AUTH_HOSTNAME,
+  KEY_WHITELABEL_BRANDING_BASE_HOSTNAME,
   KEY_WHITELABEL_BRANDING_BASE_LABEL,
   KEY_WHITELABEL_BRANDING_CREATED_ON,
   KEY_WHITELABEL_BRANDING_ENABLED,

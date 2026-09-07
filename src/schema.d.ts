@@ -13224,11 +13224,11 @@ export interface components {
         };
         /**
          * WhitelabelBrandingPatch
-         * @description Public patch body. `label` moves the base subdomain to a different label (base tier only - a
-         *     plus whitelabel is re-pointed by its hostnames through recheck) and `enabled` starts or stops
-         *     serving it - both applied asynchronously via the reconcile job, neither a purchase. `renewal_mode`
-         *     sets the subscription's auto-renew intent synchronously (EXPIRE = cancel at period end, RENEW =
-         *     un-cancel); it is not a purchase either - no price change. At least one must be given.
+         * @description Public patch body. `label` moves the managed base subdomain to a different label (on plus the
+         *     custom domain is untouched - it is re-pointed by its hostnames through recheck) and `enabled`
+         *     starts or stops serving - both applied asynchronously via the reconcile job, neither a purchase.
+         *     `renewal_mode` sets the subscription's auto-renew intent synchronously (EXPIRE = cancel at period
+         *     end, RENEW = un-cancel); it is not a purchase either - no price change. At least one must be given.
          */
         WhitelabelBrandingPatch: {
             /**
@@ -13238,7 +13238,7 @@ export interface components {
             enabled?: boolean | null;
             /**
              * Label
-             * @description New base-tier label; the hostnames become app.<label>.<suffix> / auth.<label>.<suffix>. Base tier only.
+             * @description New managed-subdomain label; the base hosts become app.<label>.<suffix> / auth.<label>.<suffix>. On plus the custom domain keeps serving unchanged.
              */
             label?: string | null;
             /** @description Set auto-renew intent: expire cancels at period end (serves out the term), renew un-cancels */
@@ -13284,8 +13284,18 @@ export interface components {
              */
             auth_hostname: string;
             /**
+             * Base Auth Hostname
+             * @description Managed base auth host (auth.<base_label>.<suffix>); null until first published
+             */
+            base_auth_hostname?: string | null;
+            /**
+             * Base Hostname
+             * @description Managed base dashboard host (app.<base_label>.<suffix>); on plus a backup address served alongside the custom domain, null until first published
+             */
+            base_hostname?: string | null;
+            /**
              * Base Label
-             * @description Managed-subdomain label; served on the base tier, reserved on plus
+             * @description Managed-subdomain label; the composed pair is the served pair on base, the backup pair on plus
              */
             base_label: string;
             /**
@@ -13377,8 +13387,8 @@ export interface components {
         WhitelabelOnboardingStatus: "pending_domain_verification" | "verifying" | "provisioning" | "active" | "failed" | "terminated";
         /**
          * WhitelabelPlusCreate
-         * @description Create the plus tier: served on the customer's own domain; `label` still reserves a base
-         *     subdomain (kept for the redirect/downgrade).
+         * @description Create the plus tier: served on the customer's own domain, with the managed base subdomain
+         *     composed from `label` served alongside it as a backup address.
          */
         WhitelabelPlusCreate: {
             /**
@@ -13404,7 +13414,7 @@ export interface components {
             hostname: string;
             /**
              * Label
-             * @description Managed-subdomain label reserved for the redirect/downgrade
+             * @description Managed-subdomain label; the composed pair is served alongside the custom domain as a backup
              */
             label: string;
             /** @description Billing period; offered: 1 month or 1 year */
