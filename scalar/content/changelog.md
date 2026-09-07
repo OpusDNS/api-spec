@@ -4,6 +4,20 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 7 September 2026
+
+- Added **inline contact attributes to the domain response**: each entry of
+  `contacts[]` returned by
+  [`GET /v1/domains/{domain_reference}`](/api-reference#tag/domain/GET/v1/domains/{domain_reference}),
+  [`GET /v1/domains`](/api-reference#tag/domain/GET/v1/domains) and the domain
+  create, transfer and update responses can now carry an `attributes` map
+  holding the registry-specific attributes you supplied inline on that contact
+  for that role, for example `{"contact_id": "contact_01…", "contact_type":
+  "tech", "attributes": {"AFNIC_CONTACT_TYPE": "PM"}}`. The key is omitted for
+  contacts submitted without inline attributes, so existing responses are
+  unchanged, and attributes applied from a linked contact attribute set are not
+  reported.
+
 ### 2 September 2026
 
 - Changed **independent billing for suborganizations to require approval**:
