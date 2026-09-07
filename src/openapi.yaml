@@ -16176,7 +16176,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-04-155853
+  version: 2026-09-07-084158
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -20203,6 +20203,32 @@ paths:
                     status: 422
                     title: Request validation error.
                     type: request-validation-failed
+                zone_validation_failed:
+                  description: The payload parsed but describes a zone that cannot
+                    be served; each entry names the offending element via `loc` and
+                    echoes it in `input`
+                  summary: Zone rules rejected the rrsets
+                  value:
+                    code: ERROR_ZONE_VALIDATION_FAILED
+                    detail: Zone validation failed
+                    errors:
+                    - input:
+                        name: www.example.com.
+                        records:
+                        - rdata: example.com.
+                        ttl: 3600
+                        type: CNAME
+                      loc:
+                      - body
+                      - rrsets
+                      - 0
+                      msg: 'CNAME record cannot coexist with other record types at
+                        ''www.example.com.''. Found: CNAME and A'
+                      type: cname_conflict
+                    status: 422
+                    title: DNS Error
+                    type: dns-zone-validation
+                    zone_name: example.com.
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Invalid request parameters
@@ -21034,9 +21060,30 @@ paths:
         '422':
           content:
             application/problem+json:
+              example:
+                code: ERROR_ZONE_VALIDATION_FAILED
+                detail: Zone validation failed
+                errors:
+                - input:
+                    op: upsert
+                    record:
+                      name: www.example.com.
+                      rdata: target.invalid-tld.
+                      ttl: 3600
+                      type: CNAME
+                  loc:
+                  - body
+                  - ops
+                  - 0
+                  msg: Unrecognized TLD
+                  type: invalid_rdata
+                status: 422
+                title: DNS Error
+                type: dns-zone-validation
+                zone_name: example.com.
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -21198,9 +21245,31 @@ paths:
         '422':
           content:
             application/problem+json:
+              example:
+                code: ERROR_ZONE_VALIDATION_FAILED
+                detail: Zone validation failed
+                errors:
+                - input:
+                    op: upsert
+                    rrset:
+                      name: www.example.com.
+                      records:
+                      - rdata: target.invalid-tld.
+                      ttl: 3600
+                      type: CNAME
+                  loc:
+                  - body
+                  - ops
+                  - 0
+                  msg: Unrecognized TLD
+                  type: invalid_rdata
+                status: 422
+                title: DNS Error
+                type: dns-zone-validation
+                zone_name: example.com.
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -21333,9 +21402,30 @@ paths:
         '422':
           content:
             application/problem+json:
+              example:
+                code: ERROR_ZONE_VALIDATION_FAILED
+                detail: Zone validation failed
+                errors:
+                - input:
+                    name: www.example.com.
+                    records:
+                    - rdata: example.com.
+                    ttl: 3600
+                    type: CNAME
+                  loc:
+                  - body
+                  - rrsets
+                  - 0
+                  msg: 'CNAME record cannot coexist with other record types at ''www.example.com.''.
+                    Found: CNAME and A'
+                  type: cname_conflict
+                status: 422
+                title: DNS Error
+                type: dns-zone-validation
+                zone_name: example.com.
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []

@@ -17690,13 +17690,41 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    /** @example {
+                     *       "code": "ERROR_ZONE_VALIDATION_FAILED",
+                     *       "detail": "Zone validation failed",
+                     *       "errors": [
+                     *         {
+                     *           "input": {
+                     *             "op": "upsert",
+                     *             "record": {
+                     *               "name": "www.example.com.",
+                     *               "rdata": "target.invalid-tld.",
+                     *               "ttl": 3600,
+                     *               "type": "CNAME"
+                     *             }
+                     *           },
+                     *           "loc": [
+                     *             "body",
+                     *             "ops",
+                     *             0
+                     *           ],
+                     *           "msg": "Unrecognized TLD",
+                     *           "type": "invalid_rdata"
+                     *         }
+                     *       ],
+                     *       "status": 422,
+                     *       "title": "DNS Error",
+                     *       "type": "dns-zone-validation",
+                     *       "zone_name": "example.com."
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
@@ -17746,13 +17774,42 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    /** @example {
+                     *       "code": "ERROR_ZONE_VALIDATION_FAILED",
+                     *       "detail": "Zone validation failed",
+                     *       "errors": [
+                     *         {
+                     *           "input": {
+                     *             "name": "www.example.com.",
+                     *             "records": [
+                     *               {
+                     *                 "rdata": "example.com."
+                     *               }
+                     *             ],
+                     *             "ttl": 3600,
+                     *             "type": "CNAME"
+                     *           },
+                     *           "loc": [
+                     *             "body",
+                     *             "rrsets",
+                     *             0
+                     *           ],
+                     *           "msg": "CNAME record cannot coexist with other record types at 'www.example.com.'. Found: CNAME and A",
+                     *           "type": "cname_conflict"
+                     *         }
+                     *       ],
+                     *       "status": 422,
+                     *       "title": "DNS Error",
+                     *       "type": "dns-zone-validation",
+                     *       "zone_name": "example.com."
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
@@ -17802,13 +17859,45 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    /** @example {
+                     *       "code": "ERROR_ZONE_VALIDATION_FAILED",
+                     *       "detail": "Zone validation failed",
+                     *       "errors": [
+                     *         {
+                     *           "input": {
+                     *             "op": "upsert",
+                     *             "rrset": {
+                     *               "name": "www.example.com.",
+                     *               "records": [
+                     *                 {
+                     *                   "rdata": "target.invalid-tld."
+                     *                 }
+                     *               ],
+                     *               "ttl": 3600,
+                     *               "type": "CNAME"
+                     *             }
+                     *           },
+                     *           "loc": [
+                     *             "body",
+                     *             "ops",
+                     *             0
+                     *           ],
+                     *           "msg": "Unrecognized TLD",
+                     *           "type": "invalid_rdata"
+                     *         }
+                     *       ],
+                     *       "status": 422,
+                     *       "title": "DNS Error",
+                     *       "type": "dns-zone-validation",
+                     *       "zone_name": "example.com."
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
