@@ -3954,6 +3954,7 @@ export const KEYS_LOGO = [
 ] as const satisfies (keyof Logo)[];
 
 export const KEY_MAIL_TEMPLATE_BLOCKS = 'blocks' satisfies keyof MailTemplate;
+export const KEY_MAIL_TEMPLATE_CATEGORY = 'category' satisfies keyof MailTemplate;
 export const KEY_MAIL_TEMPLATE_LABEL = 'label' satisfies keyof MailTemplate;
 export const KEY_MAIL_TEMPLATE_LOCALES = 'locales' satisfies keyof MailTemplate;
 export const KEY_MAIL_TEMPLATE_SUBJECT = 'subject' satisfies keyof MailTemplate;
@@ -3962,6 +3963,7 @@ export const KEY_MAIL_TEMPLATE_VERSION = 'version' satisfies keyof MailTemplate;
 
 export const KEYS_MAIL_TEMPLATE = [
   KEY_MAIL_TEMPLATE_BLOCKS,
+  KEY_MAIL_TEMPLATE_CATEGORY,
   KEY_MAIL_TEMPLATE_LABEL,
   KEY_MAIL_TEMPLATE_LOCALES,
   KEY_MAIL_TEMPLATE_SUBJECT,

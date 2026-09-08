@@ -9538,6 +9538,10 @@ components:
           description: Org-editable content blocks
           title: Blocks
           type: object
+        category:
+          $ref: '#/components/schemas/MailTemplateCategory'
+          default: unknown
+          description: Template category for grouping in the editor
         label:
           default: ''
           description: Human-readable template name for display
@@ -9599,6 +9603,22 @@ components:
       description: The editable-template catalog keyed by template name.
       title: MailTemplateCatalogRes
       type: object
+    MailTemplateCategory:
+      description: 'Category a template is grouped under in the editor. mail-service
+        owns the set
+
+        and validates it; a value it adds before this enum is updated decodes to UNKNOWN
+
+        rather than failing the catalog (see MailTemplate._coerce_category).'
+      enum:
+      - organization
+      - billing
+      - user_account
+      - icann_policy
+      - tld_specific
+      - unknown
+      title: MailTemplateCategory
+      type: string
     MailTemplateVariable:
       properties:
         required:
@@ -16230,7 +16250,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-07-195702
+  version: 2026-09-08-081758
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

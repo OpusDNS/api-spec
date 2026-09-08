@@ -9475,6 +9475,11 @@ export interface components {
                 [key: string]: components["schemas"]["MailTemplateBlock"];
             };
             /**
+             * @description Template category for grouping in the editor
+             * @default unknown
+             */
+            category: components["schemas"]["MailTemplateCategory"];
+            /**
              * Label
              * @description Human-readable template name for display
              * @default
@@ -9541,6 +9546,14 @@ export interface components {
         MailTemplateCatalogRes: {
             [key: string]: components["schemas"]["MailTemplate"];
         };
+        /**
+         * MailTemplateCategory
+         * @description Category a template is grouped under in the editor. mail-service owns the set
+         *     and validates it; a value it adds before this enum is updated decodes to UNKNOWN
+         *     rather than failing the catalog (see MailTemplate._coerce_category).
+         * @enum {string}
+         */
+        MailTemplateCategory: "organization" | "billing" | "user_account" | "icann_policy" | "tld_specific" | "unknown";
         /** MailTemplateVariable */
         MailTemplateVariable: {
             /**

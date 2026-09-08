@@ -360,6 +360,7 @@ export type Logo = components['schemas']['Logo'];
 export type MailTemplate = components['schemas']['MailTemplate'];
 export type MailTemplateBlock = components['schemas']['MailTemplateBlock'];
 export type MailTemplateCatalogRes = components['schemas']['MailTemplateCatalogRes'];
+export type MailTemplateCategory = components['schemas']['MailTemplateCategory'];
 export type MailTemplateVariable = components['schemas']['MailTemplateVariable'];
 export type MemoryFact = components['schemas']['MemoryFact'];
 export type MemoryFactCreateRequest = components['schemas']['MemoryFactCreateRequest'];

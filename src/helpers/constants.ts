@@ -66,6 +66,7 @@ import type {
   LegalRequirementOperationType,
   LegalRequirementType,
   LocalPresenceRequirementType,
+  MailTemplateCategory,
   MemoryFactKind,
   MessageRole,
   MetricsGrouping,
@@ -1243,6 +1244,24 @@ export const LOCAL_PRESENCE_REQUIREMENT_TYPE_VALUES = [
   'physical_address',
   'business_entity',
 ] as const satisfies ReadonlyArray<LocalPresenceRequirementType>;
+
+export const MAIL_TEMPLATE_CATEGORY = {
+  ORGANIZATION: "organization",
+  BILLING: "billing",
+  USER_ACCOUNT: "user_account",
+  ICANN_POLICY: "icann_policy",
+  TLD_SPECIFIC: "tld_specific",
+  UNKNOWN: "unknown",
+} as const satisfies Record<string, MailTemplateCategory>;
+
+export const MAIL_TEMPLATE_CATEGORY_VALUES = [
+  'organization',
+  'billing',
+  'user_account',
+  'icann_policy',
+  'tld_specific',
+  'unknown',
+] as const satisfies ReadonlyArray<MailTemplateCategory>;
 
 export const MEMORY_FACT_KIND = {
   PREFERENCE: "preference",
