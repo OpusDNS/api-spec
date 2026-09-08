@@ -147,6 +147,9 @@ export const VANITY_NAMESERVER_SETS_BY_SET_ID_RESTORE_ENDPOINT = '/v1/vanity-nam
 export const VANITY_NAMESERVER_SETS_BY_SET_ID_RETRY_ENDPOINT = '/v1/vanity-nameserver-sets/{set_id}/retry';
 export const VANITY_NAMESERVER_SETS_BY_SET_ID_ZONES_ENDPOINT = '/v1/vanity-nameserver-sets/{set_id}/zones';
 export const WHITELABEL_BRANDING_ENDPOINT = '/v1/whitelabel-branding';
+export const WHITELABEL_BRANDING_ASSETS_ENDPOINT = '/v1/whitelabel-branding/assets';
+export const WHITELABEL_BRANDING_ASSETS_BY_ASSET_ID_ENDPOINT = '/v1/whitelabel-branding/assets/{asset_id}';
+export const WHITELABEL_BRANDING_DOCUMENT_ENDPOINT = '/v1/whitelabel-branding/document';
 export const WHITELABEL_BRANDING_EMAIL_PREVIEW_ENDPOINT = '/v1/whitelabel-branding/email/preview';
 export const WHITELABEL_BRANDING_EMAIL_TEMPLATES_ENDPOINT = '/v1/whitelabel-branding/email/templates';
 export const WHITELABEL_BRANDING_RECHECK_ENDPOINT = '/v1/whitelabel-branding/recheck';
@@ -303,6 +306,9 @@ export type Endpoint =
   | typeof VANITY_NAMESERVER_SETS_BY_SET_ID_RETRY_ENDPOINT
   | typeof VANITY_NAMESERVER_SETS_BY_SET_ID_ZONES_ENDPOINT
   | typeof WHITELABEL_BRANDING_ENDPOINT
+  | typeof WHITELABEL_BRANDING_ASSETS_ENDPOINT
+  | typeof WHITELABEL_BRANDING_ASSETS_BY_ASSET_ID_ENDPOINT
+  | typeof WHITELABEL_BRANDING_DOCUMENT_ENDPOINT
   | typeof WHITELABEL_BRANDING_EMAIL_PREVIEW_ENDPOINT
   | typeof WHITELABEL_BRANDING_EMAIL_TEMPLATES_ENDPOINT
   | typeof WHITELABEL_BRANDING_RECHECK_ENDPOINT

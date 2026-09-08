@@ -13,7 +13,9 @@ import type {
   Auth,
   BillingMetadata,
   BillingTransaction,
+  Body_upload_whitelabel_asset_v1_whitelabel_branding_assets_post,
   Brand,
+  BrandingAsset,
   BrandingDocument,
   BrowserStatsBucket,
   BulkObjectTagChanges,
@@ -281,6 +283,7 @@ import type {
   LaunchPhasesBase,
   Legal,
   LegalRequirementBase,
+  ListBrandingAssets,
   ListVanityNameserverSetsRes,
   ListZonesReferencingSetRes,
   LocalPresenceBase,
@@ -645,6 +648,12 @@ export const KEYS_BILLING_TRANSACTION = [
   KEY_BILLING_TRANSACTION_VOLUME,
 ] as const satisfies (keyof BillingTransaction)[];
 
+export const KEY_BODY_UPLOAD_WHITELABEL_ASSET_V1_WHITELABEL_BRANDING_ASSETS_POST_FILE = 'file' satisfies keyof Body_upload_whitelabel_asset_v1_whitelabel_branding_assets_post;
+
+export const KEYS_BODY_UPLOAD_WHITELABEL_ASSET_V1_WHITELABEL_BRANDING_ASSETS_POST = [
+  KEY_BODY_UPLOAD_WHITELABEL_ASSET_V1_WHITELABEL_BRANDING_ASSETS_POST_FILE,
+] as const satisfies (keyof Body_upload_whitelabel_asset_v1_whitelabel_branding_assets_post)[];
+
 export const KEY_BRAND_LOGO = 'logo' satisfies keyof Brand;
 export const KEY_BRAND_NAME = 'name' satisfies keyof Brand;
 
@@ -652,6 +661,20 @@ export const KEYS_BRAND = [
   KEY_BRAND_LOGO,
   KEY_BRAND_NAME,
 ] as const satisfies (keyof Brand)[];
+
+export const KEY_BRANDING_ASSET_ASSET_ID = 'asset_id' satisfies keyof BrandingAsset;
+export const KEY_BRANDING_ASSET_ASSET_URL = 'asset_url' satisfies keyof BrandingAsset;
+export const KEY_BRANDING_ASSET_CONTENT_TYPE = 'content_type' satisfies keyof BrandingAsset;
+export const KEY_BRANDING_ASSET_SIZE_BYTES = 'size_bytes' satisfies keyof BrandingAsset;
+export const KEY_BRANDING_ASSET_UPDATED_ON = 'updated_on' satisfies keyof BrandingAsset;
+
+export const KEYS_BRANDING_ASSET = [
+  KEY_BRANDING_ASSET_ASSET_ID,
+  KEY_BRANDING_ASSET_ASSET_URL,
+  KEY_BRANDING_ASSET_CONTENT_TYPE,
+  KEY_BRANDING_ASSET_SIZE_BYTES,
+  KEY_BRANDING_ASSET_UPDATED_ON,
+] as const satisfies (keyof BrandingAsset)[];
 
 export const KEY_BRANDING_DOCUMENT_AUTH = 'auth' satisfies keyof BrandingDocument;
 export const KEY_BRANDING_DOCUMENT_BRAND = 'brand' satisfies keyof BrandingDocument;
@@ -3910,6 +3933,12 @@ export const KEYS_LEGAL_REQUIREMENT_BASE = [
   KEY_LEGAL_REQUIREMENT_BASE_TYPE,
   KEY_LEGAL_REQUIREMENT_BASE_URL,
 ] as const satisfies (keyof LegalRequirementBase)[];
+
+export const KEY_LIST_BRANDING_ASSETS_ASSETS = 'assets' satisfies keyof ListBrandingAssets;
+
+export const KEYS_LIST_BRANDING_ASSETS = [
+  KEY_LIST_BRANDING_ASSETS_ASSETS,
+] as const satisfies (keyof ListBrandingAssets)[];
 
 export const KEY_LIST_VANITY_NAMESERVER_SETS_RES_PAGINATION = 'pagination' satisfies keyof ListVanityNameserverSetsRes;
 export const KEY_LIST_VANITY_NAMESERVER_SETS_RES_RESULTS = 'results' satisfies keyof ListVanityNameserverSetsRes;

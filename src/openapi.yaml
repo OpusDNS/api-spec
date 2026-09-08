@@ -536,6 +536,17 @@ components:
       - canceled
       title: BillingTransactionStatus
       type: string
+    Body_upload_whitelabel_asset_v1_whitelabel_branding_assets_post:
+      properties:
+        file:
+          contentMediaType: application/octet-stream
+          description: Asset file (image/font)
+          title: File
+          type: string
+      required:
+      - file
+      title: Body_upload_whitelabel_asset_v1_whitelabel_branding_assets_post
+      type: object
     Brand:
       properties:
         logo:
@@ -550,6 +561,38 @@ components:
           - type: 'null'
           title: Name
       title: Brand
+      type: object
+    BrandingAsset:
+      properties:
+        asset_id:
+          description: Opaque handle used to delete or reference the asset
+          title: Asset Id
+          type: string
+        asset_url:
+          description: Public URL of the asset
+          title: Asset Url
+          type: string
+        content_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: MIME type of the asset
+          title: Content Type
+        size_bytes:
+          description: Asset size in bytes
+          title: Size Bytes
+          type: integer
+        updated_on:
+          description: Last-modified timestamp
+          format: date-time
+          title: Updated On
+          type: string
+      required:
+      - asset_id
+      - asset_url
+      - size_bytes
+      - updated_on
+      title: BrandingAsset
       type: object
     BrandingDocument:
       properties:
@@ -9421,6 +9464,16 @@ components:
       - confirmation
       title: LegalRequirementType
       type: string
+    ListBrandingAssetsResponse:
+      properties:
+        assets:
+          description: Uploaded assets, most recent first
+          items:
+            $ref: '#/components/schemas/BrandingAsset'
+          title: Assets
+          type: array
+      title: ListBrandingAssetsResponse
+      type: object
     ListVanityNameserverSetsRes:
       properties:
         pagination:
@@ -9525,12 +9578,7 @@ components:
       title: Logo
       type: object
     MailTemplate:
-      description: 'One editable transactional email template. This is the public
-        catalog entry:
-
-        mail-service''s operational fields (engine, internal, whitelabel, brand_defaults)
-
-        are deliberately not declared, so the response model drops them.'
+      description: One editable transactional email template in the catalog.
       properties:
         blocks:
           additionalProperties:
@@ -9604,12 +9652,8 @@ components:
       title: MailTemplateCatalogRes
       type: object
     MailTemplateCategory:
-      description: 'Category a template is grouped under in the editor. mail-service
-        owns the set
-
-        and validates it; a value it adds before this enum is updated decodes to UNKNOWN
-
-        rather than failing the catalog (see MailTemplate._coerce_category).'
+      description: Category a template is grouped under in the editor. An unrecognised
+        value decodes to `unknown`.
       enum:
       - organization
       - billing
@@ -12180,10 +12224,16 @@ components:
           anyOf:
           - $ref: '#/components/schemas/BrandingDocument'
           - type: 'null'
+          description: Draft branding document to render the preview with; omit to
+            preview with the default OpusDNS branding. Only the fields the template
+            uses are applied, the rest are ignored.
         language_code:
+          description: Locale to render in (e.g. en); falls back to the template's
+            default
           title: Language Code
           type: string
         template_name:
+          description: Template to render, as listed by the template catalog
           title: Template Name
           type: string
       required:
@@ -15299,14 +15349,13 @@ components:
         custom domain is untouched - it is re-pointed by its hostnames through recheck)
         and `enabled`
 
-        starts or stops serving - both applied asynchronously via the reconcile job,
-        neither a purchase.
+        starts or stops serving - both applied asynchronously, neither a purchase.
+        `renewal_mode` sets the
 
-        `renewal_mode` sets the subscription''s auto-renew intent synchronously (EXPIRE
-        = cancel at period
+        subscription''s auto-renew intent synchronously (EXPIRE = cancel at period
+        end, RENEW = un-cancel);
 
-        end, RENEW = un-cancel); it is not a purchase either - no price change. At
-        least one must be given.'
+        it is not a purchase either - no price change. At least one must be given.'
       properties:
         enabled:
           anyOf:
@@ -15646,19 +15695,16 @@ components:
       title: WhitelabelRenewalMode
       type: string
     WhitelabelSubscriptionInfo:
-      description: 'The whitelabel''s billing-lifecycle state, a pass-through read
-        from the subscription at the api
+      description: 'The whitelabel''s billing-lifecycle state, grouped into its own
+        block: the parent''s
 
-        layer (product-service owns it; the branding row does not). Grouped into its
-        own object so it
+        `subscription` is null when the config has no live subscription (still provisioning,
+        or
 
-        reads as one all-or-nothing block: the parent''s `subscription` is null when
-        the config has no live
+        terminated). A cancelled whitelabel reads as renewal_mode=expire with expires_on
+        set to when
 
-        subscription (still provisioning, or terminated). renewal_mode EXPIRE + expires_on
-        is how a
-
-        cancelled whitelabel reads: "cancelled, served until expires_on".'
+        serving stops.'
       properties:
         expires_on:
           anyOf:
@@ -16250,7 +16296,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-08-081758
+  version: 2026-09-08-113838
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -34054,6 +34100,179 @@ paths:
       - whitelabel
       x-required-permissions:
       - whitelabel_branding:manage
+  /v1/whitelabel-branding/assets:
+    get:
+      operationId: list_whitelabel_assets_v1_whitelabel_branding_assets_get
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListBrandingAssetsResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List uploaded branding assets
+      tags:
+      - whitelabel
+      x-required-permissions:
+      - whitelabel_branding:read
+    post:
+      operationId: upload_whitelabel_asset_v1_whitelabel_branding_assets_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_upload_whitelabel_asset_v1_whitelabel_branding_assets_post'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandingAsset'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Upload a branding asset
+      tags:
+      - whitelabel
+      x-required-permissions:
+      - whitelabel_branding:manage
+  /v1/whitelabel-branding/assets/{asset_id}:
+    delete:
+      operationId: delete_whitelabel_asset_v1_whitelabel_branding_assets__asset_id__delete
+      parameters:
+      - in: path
+        name: asset_id
+        required: true
+        schema:
+          title: Asset Id
+          type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Delete an uploaded branding asset
+      tags:
+      - whitelabel
+      x-required-permissions:
+      - whitelabel_branding:manage
+  /v1/whitelabel-branding/document:
+    get:
+      operationId: get_whitelabel_document_v1_whitelabel_branding_document_get
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandingDocument'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get the stored branding document
+      tags:
+      - whitelabel
+      x-required-permissions:
+      - whitelabel_branding:read
+    post:
+      operationId: put_whitelabel_document_v1_whitelabel_branding_document_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrandingDocument'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandingDocument'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Upsert the branding document
+      tags:
+      - whitelabel
+      x-required-permissions:
+      - whitelabel_branding:manage
+    put:
+      operationId: put_whitelabel_document_v1_whitelabel_branding_document_put
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrandingDocument'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandingDocument'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Upsert the branding document
+      tags:
+      - whitelabel
+      x-required-permissions:
+      - whitelabel_branding:manage
   /v1/whitelabel-branding/email/preview:
     post:
       operationId: preview_whitelabel_email_v1_whitelabel_branding_email_preview_post
@@ -34671,16 +34890,19 @@ tags:
     "auth_subdomain": "auth", "period": {...}}`.
 
     A `label` is required for both tiers: every whitelabel keeps a managed subdomain,
-    composed by branding-service as `<label>-<hash>.<base-tier suffix>` and `<label>-<hash>-auth.<base-tier
-    suffix>`, where the hash comes from a per-organization secret it alone holds.
+    composed as `app.<label>.<base-tier suffix>` (dashboard) and `auth.<label>.<base-tier
+    suffix>` (login).
 
-    For base, that composed pair is what gets served; onboarding skips DNS verification
-    and the edge CNAME, because that zone has wildcard DNS and a wildcard certificate.
+    For base, that composed pair is what gets served: onboarding skips domain verification
+    (the zone is OpusDNS-owned) but still points each host at the whitelabel edge,
+    which issues a per-host certificate on demand.
 
     For plus, the customer''s own domain is served instead (omitting `dashboard_subdomain`
     serves the dashboard on the apex); the domain must be an OpusDNS-hosted zone owned
     by the organization, which onboarding verifies before pointing both hosts at the
-    whitelabel edge.
+    whitelabel edge. Set `create_zone: true` to have onboarding stand the zone up
+    if it does not already exist. The managed base pair is published alongside the
+    custom domain as a backup address.
 
     Labels are validated on the way in, and branding-service additionally rejects
     reserved ones (that rejection surfaces as a 400).
@@ -34718,20 +34940,22 @@ tags:
 
 
     A disabled whitelabel answers 409 to both `/recheck` and `/tier`: re-enable it
-    first (`PATCH {"enabled": true}` alone re-runs the reconcile).
+    first (`PATCH {"enabled": true}` alone re-runs onboarding).
 
 
     `PATCH /v1/whitelabel-branding` changes the config without touching its subscription
     or price.
 
-    `{"label": "newname"}` moves a base-tier whitelabel to a different subdomain,
-    accepted only before provisioning has started (a plus whitelabel has no served
-    label - it is re-pointed by its hostnames through recheck).
+    `{"label": "newname"}` moves the managed subdomain to a different label at any
+    time, including while the whitelabel is active. On base this changes the served
+    host; on plus it moves the backup pair, leaving the custom domain unchanged (re-point
+    that through recheck).
 
     `{"enabled": false}` stops serving the whitelabel: its login client is disabled
-    and OpusDNS withdraws its routing - the managed subdomain is unpublished for base,
-    the DNS edge records are removed for plus (a plus host whose DNS is pointed at
-    the edge manually keeps reaching the branded dashboard, but its login stays disabled).
+    and OpusDNS withdraws its routing - the edge records for the served hosts are
+    removed and the managed subdomain unpublished (a plus host whose DNS is still
+    pointed at the edge keeps reaching the branded dashboard, but its login stays
+    disabled).
 
     The configuration, the branding document and the provisioning history are kept,
     so `{"enabled": true}` brings it back without re-provisioning.

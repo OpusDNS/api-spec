@@ -3032,6 +3032,60 @@ export interface paths {
         patch: operations["patch_whitelabel_branding_v1_whitelabel_branding_patch"];
         trace?: never;
     };
+    "/v1/whitelabel-branding/assets": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List uploaded branding assets */
+        get: operations["list_whitelabel_assets_v1_whitelabel_branding_assets_get"];
+        put?: never;
+        /** Upload a branding asset */
+        post: operations["upload_whitelabel_asset_v1_whitelabel_branding_assets_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/whitelabel-branding/assets/{asset_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete an uploaded branding asset */
+        delete: operations["delete_whitelabel_asset_v1_whitelabel_branding_assets__asset_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/whitelabel-branding/document": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get the stored branding document */
+        get: operations["get_whitelabel_document_v1_whitelabel_branding_document_get"];
+        /** Upsert the branding document */
+        put: operations["put_whitelabel_document_v1_whitelabel_branding_document_put"];
+        /** Upsert the branding document */
+        post: operations["put_whitelabel_document_v1_whitelabel_branding_document_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/whitelabel-branding/email/preview": {
         parameters: {
             query?: never;
@@ -3456,11 +3510,48 @@ export interface components {
          * @enum {string}
          */
         BillingTransactionStatus: "pending" | "succeeded" | "failed" | "canceled";
+        /** Body_upload_whitelabel_asset_v1_whitelabel_branding_assets_post */
+        Body_upload_whitelabel_asset_v1_whitelabel_branding_assets_post: {
+            /**
+             * File
+             * @description Asset file (image/font)
+             */
+            file: string;
+        };
         /** Brand */
         Brand: {
             logo?: components["schemas"]["Logo"] | null;
             /** Name */
             name?: string | null;
+        };
+        /** BrandingAsset */
+        BrandingAsset: {
+            /**
+             * Asset Id
+             * @description Opaque handle used to delete or reference the asset
+             */
+            asset_id: string;
+            /**
+             * Asset Url
+             * @description Public URL of the asset
+             */
+            asset_url: string;
+            /**
+             * Content Type
+             * @description MIME type of the asset
+             */
+            content_type?: string | null;
+            /**
+             * Size Bytes
+             * @description Asset size in bytes
+             */
+            size_bytes: number;
+            /**
+             * Updated On
+             * Format: date-time
+             * @description Last-modified timestamp
+             */
+            updated_on: Date;
         };
         /** BrandingDocument */
         BrandingDocument: {
@@ -9399,6 +9490,14 @@ export interface components {
          * @enum {string}
          */
         LegalRequirementType: "notice" | "confirmation";
+        /** ListBrandingAssetsResponse */
+        ListBrandingAssetsResponse: {
+            /**
+             * Assets
+             * @description Uploaded assets, most recent first
+             */
+            assets?: components["schemas"]["BrandingAsset"][];
+        };
         /** ListVanityNameserverSetsRes */
         ListVanityNameserverSetsRes: {
             /** @description Pagination metadata */
@@ -9462,9 +9561,7 @@ export interface components {
         };
         /**
          * MailTemplate
-         * @description One editable transactional email template. This is the public catalog entry:
-         *     mail-service's operational fields (engine, internal, whitelabel, brand_defaults)
-         *     are deliberately not declared, so the response model drops them.
+         * @description One editable transactional email template in the catalog.
          */
         MailTemplate: {
             /**
@@ -9548,9 +9645,7 @@ export interface components {
         };
         /**
          * MailTemplateCategory
-         * @description Category a template is grouped under in the editor. mail-service owns the set
-         *     and validates it; a value it adds before this enum is updated decodes to UNKNOWN
-         *     rather than failing the catalog (see MailTemplate._coerce_category).
+         * @description Category a template is grouped under in the editor. An unrecognised value decodes to `unknown`.
          * @enum {string}
          */
         MailTemplateCategory: "organization" | "billing" | "user_account" | "icann_policy" | "tld_specific" | "unknown";
@@ -11218,10 +11313,17 @@ export interface components {
         PremiumSourceType: "EPP" | "API" | "CSV" | "manual";
         /** PreviewMailReq */
         PreviewMailReq: {
+            /** @description Draft branding document to render the preview with; omit to preview with the default OpusDNS branding. Only the fields the template uses are applied, the rest are ignored. */
             branding_document?: components["schemas"]["BrandingDocument"] | null;
-            /** Language Code */
+            /**
+             * Language Code
+             * @description Locale to render in (e.g. en); falls back to the template's default
+             */
             language_code: string;
-            /** Template Name */
+            /**
+             * Template Name
+             * @description Template to render, as listed by the template catalog
+             */
             template_name: string;
         };
         /** PreviewMailRes */
@@ -13256,9 +13358,9 @@ export interface components {
          * WhitelabelBrandingPatch
          * @description Public patch body. `label` moves the managed base subdomain to a different label (on plus the
          *     custom domain is untouched - it is re-pointed by its hostnames through recheck) and `enabled`
-         *     starts or stops serving - both applied asynchronously via the reconcile job, neither a purchase.
-         *     `renewal_mode` sets the subscription's auto-renew intent synchronously (EXPIRE = cancel at period
-         *     end, RENEW = un-cancel); it is not a purchase either - no price change. At least one must be given.
+         *     starts or stops serving - both applied asynchronously, neither a purchase. `renewal_mode` sets the
+         *     subscription's auto-renew intent synchronously (EXPIRE = cancel at period end, RENEW = un-cancel);
+         *     it is not a purchase either - no price change. At least one must be given.
          */
         WhitelabelBrandingPatch: {
             /**
@@ -13466,11 +13568,10 @@ export interface components {
         WhitelabelRenewalMode: "renew" | "expire";
         /**
          * WhitelabelSubscriptionInfo
-         * @description The whitelabel's billing-lifecycle state, a pass-through read from the subscription at the api
-         *     layer (product-service owns it; the branding row does not). Grouped into its own object so it
-         *     reads as one all-or-nothing block: the parent's `subscription` is null when the config has no live
-         *     subscription (still provisioning, or terminated). renewal_mode EXPIRE + expires_on is how a
-         *     cancelled whitelabel reads: "cancelled, served until expires_on".
+         * @description The whitelabel's billing-lifecycle state, grouped into its own block: the parent's
+         *     `subscription` is null when the config has no live subscription (still provisioning, or
+         *     terminated). A cancelled whitelabel reads as renewal_mode=expire with expires_on set to when
+         *     serving stops.
          */
         WhitelabelSubscriptionInfo: {
             /**
@@ -28439,6 +28540,228 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["WhitelabelBrandingResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_whitelabel_assets_v1_whitelabel_branding_assets_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListBrandingAssetsResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    upload_whitelabel_asset_v1_whitelabel_branding_assets_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "multipart/form-data": components["schemas"]["Body_upload_whitelabel_asset_v1_whitelabel_branding_assets_post"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BrandingAsset"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_whitelabel_asset_v1_whitelabel_branding_assets__asset_id__delete: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                asset_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_whitelabel_document_v1_whitelabel_branding_document_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BrandingDocument"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    put_whitelabel_document_v1_whitelabel_branding_document_put: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BrandingDocument"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BrandingDocument"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    put_whitelabel_document_v1_whitelabel_branding_document_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BrandingDocument"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BrandingDocument"];
                 };
             };
             /** @description Validation Error */
