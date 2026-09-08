@@ -4,6 +4,18 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 8 September 2026
+
+- Onboarded **[`.pt`](/tld-knowledge-base/cctlds/pt)** (Portugal, operated by
+  Associação DNS.PT). Published its TLD Knowledge Base page. Portuguese law
+  requires the registrant's email address and phone number to be verified before
+  the contact can be used, and that verification is valid for three years;
+  registrations, inbound transfers and contact changes are refused until it is in
+  place, while renewals are exempt. A `.pt` domain carries a domain owner only:
+  the administrative and technical roles belong to the registrar and are neither
+  accepted on a request nor reported back. Every contact also carries a fiscal
+  number, which the registry treats as the contact's unique key.
+
 ### 7 September 2026
 
 - Added **inline contact attributes to the domain response**: each entry of
