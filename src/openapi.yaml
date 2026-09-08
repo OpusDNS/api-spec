@@ -1955,6 +1955,7 @@ components:
       - DIGITAL_ATTESTATION
       - POSTAL_VER_TRANSACTION_LOG
       - EMAIL_VER_TRANSACTION_LOG
+      - PHONE_VER_TRANSACTION_LOG
       - ADDRESS_DATABASE
       title: ContactVerificationProof
       type: string
@@ -16384,7 +16385,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-08-180300
+  version: 2026-09-08-214430
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -34726,29 +34727,30 @@ tags:
     \ `PROOF_OF_ARRIVAL`, `DRIVERS_LICENCE`, `COMPANY_REGISTER`, `COMPANY_STATEMENT`,\
     \ `BANK_ACCOUNT`, `ONLINE_PAYMENT_ACCOUNT`, `UTILITY_ACCOUNT`, `BANK_STATEMENT`,\
     \ `TAX_STATEMENT`, `WRITTEN_ATTESTATION`, `DIGITAL_ATTESTATION`, `POSTAL_VER_TRANSACTION_LOG`,\
-    \ `EMAIL_VER_TRANSACTION_LOG`, `ADDRESS_DATABASE` |\n| `attestation_reference`\
-    \ | string | Caller-supplied reference (e.g. internal ticket ID, document hash).\
-    \ Up to 255 chars. |\n\n**DENIC-only constraint:** when the contact has DENIC\
-    \ verification pending, all items in a single request must share the same `method`,\
-    \ `proof`, and `attestation_reference`. DENIC's `contactUPDATE` carries one verification\
-    \ block per call; the API enforces this only when DENIC is in scope so callers\
-    \ see a synchronous 400 instead of a partial-success. Contacts not pending DENIC\
-    \ verification accept heterogeneous batches.\n\n#### Response\n\nThe endpoint\
-    \ returns **HTTP 200 OK** with an object containing the per-claim verification\
-    \ state from the contact-verification service:\n\n```json\n{\n  \"verifications\"\
-    : [\n    {\n      \"claim\": \"NAME\",\n      \"state\": \"VERIFIED\",\n     \
-    \ \"method\": \"AUTH\",\n      \"proof\": \"IDCARD\",\n      \"attestation_reference\"\
-    : \"ticket-12345\",\n      \"verified_on\": \"2026-05-15T12:00:00Z\",\n      \"\
-    expires_on\": null\n    }\n  ]\n}\n```\n\n| Field | Type | Notes |\n|-------|------|-------|\n\
-    | `claim` | enum | The claim this entry describes. |\n| `state` | enum | `UNVERIFIED`,\
-    \ `VERIFIED`, `IN_PROGRESS`, `EXPIRED`. |\n| `method` | enum or null | The method\
-    \ that produced the current state. |\n| `proof` | enum or null | The proof that\
-    \ produced the current state. |\n| `attestation_reference` | string or null |\
-    \ Reference recorded with the current state. |\n| `verified_on` | RFC3339 datetime\
-    \ or null | When the claim entered the `VERIFIED` state. |\n| `expires_on` | RFC3339\
-    \ datetime or null | When the current verification expires. |\n\nWhen DENIC verification\
-    \ was pending for the contact, the registry-side `contactUPDATE` is queued behind\
-    \ the scenes and emits a `CONTACT/VERIFICATION/SUCCESS` or `CONTACT/VERIFICATION/FAILURE`\
+    \ `EMAIL_VER_TRANSACTION_LOG`, `PHONE_VER_TRANSACTION_LOG`, `ADDRESS_DATABASE`\
+    \ |\n| `attestation_reference` | string | Caller-supplied reference (e.g. internal\
+    \ ticket ID, document hash). Up to 255 chars. |\n\n**DENIC-only constraint:**\
+    \ when the contact has DENIC verification pending, all items in a single request\
+    \ must share the same `method`, `proof`, and `attestation_reference`. DENIC's\
+    \ `contactUPDATE` carries one verification block per call; the API enforces this\
+    \ only when DENIC is in scope so callers see a synchronous 400 instead of a partial-success.\
+    \ Contacts not pending DENIC verification accept heterogeneous batches.\n\n####\
+    \ Response\n\nThe endpoint returns **HTTP 200 OK** with an object containing the\
+    \ per-claim verification state from the contact-verification service:\n\n```json\n\
+    {\n  \"verifications\": [\n    {\n      \"claim\": \"NAME\",\n      \"state\"\
+    : \"VERIFIED\",\n      \"method\": \"AUTH\",\n      \"proof\": \"IDCARD\",\n \
+    \     \"attestation_reference\": \"ticket-12345\",\n      \"verified_on\": \"\
+    2026-05-15T12:00:00Z\",\n      \"expires_on\": null\n    }\n  ]\n}\n```\n\n| Field\
+    \ | Type | Notes |\n|-------|------|-------|\n| `claim` | enum | The claim this\
+    \ entry describes. |\n| `state` | enum | `UNVERIFIED`, `VERIFIED`, `IN_PROGRESS`,\
+    \ `EXPIRED`. |\n| `method` | enum or null | The method that produced the current\
+    \ state. |\n| `proof` | enum or null | The proof that produced the current state.\
+    \ |\n| `attestation_reference` | string or null | Reference recorded with the\
+    \ current state. |\n| `verified_on` | RFC3339 datetime or null | When the claim\
+    \ entered the `VERIFIED` state. |\n| `expires_on` | RFC3339 datetime or null |\
+    \ When the current verification expires. |\n\nWhen DENIC verification was pending\
+    \ for the contact, the registry-side `contactUPDATE` is queued behind the scenes\
+    \ and emits a `CONTACT/VERIFICATION/SUCCESS` or `CONTACT/VERIFICATION/FAILURE`\
     \ poll-message event keyed on `contact_id`. The `VERIFICATION_REQUIRED` status\
     \ tag on the affected domains is cleared on success.\n\n#### Error codes\n\n|\
     \ Code | Status | Meaning |\n|------|--------|---------|\n| `ERROR_DOMAIN_VERIFICATION_INCONSISTENT_METHOD_PROOF`\
