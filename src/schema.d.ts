@@ -5733,10 +5733,10 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
+             *       a transfer-in that omits `period`, and ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -5751,11 +5751,16 @@ export interface components {
              *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
              *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"
@@ -5836,10 +5841,10 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
+             *       a transfer-in that omits `period`, and ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -5854,11 +5859,16 @@ export interface components {
              *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
              *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              */
             attributes?: {
@@ -5911,10 +5921,10 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
+             *       a transfer-in that omits `period`, and ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -5929,11 +5939,16 @@ export interface components {
              *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
              *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              */
             attributes?: {
@@ -5990,10 +6005,10 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
+             *       a transfer-in that omits `period`, and ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -6008,11 +6023,16 @@ export interface components {
              *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
              *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"
@@ -7236,10 +7256,10 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
+             *       a transfer-in that omits `period`, and ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7254,11 +7274,16 @@ export interface components {
              *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
              *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              */
             attributes?: {
@@ -7311,10 +7336,10 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
+             *       a transfer-in that omits `period`, and ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7329,11 +7354,16 @@ export interface components {
              *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
              *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              */
             attributes?: {
@@ -7386,10 +7416,10 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
+             *       a transfer-in that omits `period`, and ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7404,11 +7434,16 @@ export interface components {
              *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
              *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"
@@ -7461,10 +7496,10 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
+             *       a transfer-in that omits `period`, and ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7479,11 +7514,16 @@ export interface components {
              *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
              *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"
@@ -7568,10 +7608,10 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
+             *       a transfer-in that omits `period`, and ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7586,11 +7626,16 @@ export interface components {
              *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
              *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"
@@ -7743,10 +7788,10 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
+             *       a transfer-in that omits `period`, and ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7761,11 +7806,16 @@ export interface components {
              *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
              *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"
