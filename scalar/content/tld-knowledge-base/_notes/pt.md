@@ -16,6 +16,7 @@ These per-attribute constraints are machine-readable: each `possible_attributes`
 Practical consequences:
 
 - send the fiscal number that genuinely belongs to the contact, not a placeholder;
+- the registry applies this across every registrar, so a fiscal number already registered through another provider resolves to that existing contact, and its details are the ones published;
 - a contact whose details need correcting has to be updated rather than re-created under the same fiscal number;
 - name and fiscal number cannot be changed afterwards. The data holder has to contact `.PT` directly to correct either.
 

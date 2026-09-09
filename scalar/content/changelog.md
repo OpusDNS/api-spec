@@ -4,7 +4,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
-### 8 September 2026
+### 9 September 2026
 
 - Onboarded **[`.pt`](/tld-knowledge-base/cctlds/pt)** (Portugal, operated by
   Associação DNS.PT). Published its TLD Knowledge Base page. Portuguese law
