@@ -446,6 +446,8 @@ import type {
   WhitelabelBrandingPatch,
   WhitelabelBrandingRecheck,
   WhitelabelBranding,
+  WhitelabelDnsCheckItem,
+  WhitelabelDnsCheck,
   WhitelabelPlusCreate,
   WhitelabelSubscriptionInfo,
   WhitelabelUpgradeToPlus,
@@ -6061,6 +6063,32 @@ export const KEYS_WHITELABEL_BRANDING = [
   KEY_WHITELABEL_BRANDING_VERIFICATION_DOMAIN,
   KEY_WHITELABEL_BRANDING_WHITELABEL_BRANDING_ID,
 ] as const satisfies (keyof WhitelabelBranding)[];
+
+export const KEY_WHITELABEL_DNS_CHECK_ITEM_EXPECTED = 'expected' satisfies keyof WhitelabelDnsCheckItem;
+export const KEY_WHITELABEL_DNS_CHECK_ITEM_NAME = 'name' satisfies keyof WhitelabelDnsCheckItem;
+export const KEY_WHITELABEL_DNS_CHECK_ITEM_OBSERVED = 'observed' satisfies keyof WhitelabelDnsCheckItem;
+export const KEY_WHITELABEL_DNS_CHECK_ITEM_OK = 'ok' satisfies keyof WhitelabelDnsCheckItem;
+export const KEY_WHITELABEL_DNS_CHECK_ITEM_REASON = 'reason' satisfies keyof WhitelabelDnsCheckItem;
+export const KEY_WHITELABEL_DNS_CHECK_ITEM_REQUIRED = 'required' satisfies keyof WhitelabelDnsCheckItem;
+export const KEY_WHITELABEL_DNS_CHECK_ITEM_TYPE = 'type' satisfies keyof WhitelabelDnsCheckItem;
+
+export const KEYS_WHITELABEL_DNS_CHECK_ITEM = [
+  KEY_WHITELABEL_DNS_CHECK_ITEM_EXPECTED,
+  KEY_WHITELABEL_DNS_CHECK_ITEM_NAME,
+  KEY_WHITELABEL_DNS_CHECK_ITEM_OBSERVED,
+  KEY_WHITELABEL_DNS_CHECK_ITEM_OK,
+  KEY_WHITELABEL_DNS_CHECK_ITEM_REASON,
+  KEY_WHITELABEL_DNS_CHECK_ITEM_REQUIRED,
+  KEY_WHITELABEL_DNS_CHECK_ITEM_TYPE,
+] as const satisfies (keyof WhitelabelDnsCheckItem)[];
+
+export const KEY_WHITELABEL_DNS_CHECK_CHECKS = 'checks' satisfies keyof WhitelabelDnsCheck;
+export const KEY_WHITELABEL_DNS_CHECK_READY = 'ready' satisfies keyof WhitelabelDnsCheck;
+
+export const KEYS_WHITELABEL_DNS_CHECK = [
+  KEY_WHITELABEL_DNS_CHECK_CHECKS,
+  KEY_WHITELABEL_DNS_CHECK_READY,
+] as const satisfies (keyof WhitelabelDnsCheck)[];
 
 export const KEY_WHITELABEL_PLUS_CREATE_AUTH_SUBDOMAIN = 'auth_subdomain' satisfies keyof WhitelabelPlusCreate;
 export const KEY_WHITELABEL_PLUS_CREATE_CREATE_ZONE = 'create_zone' satisfies keyof WhitelabelPlusCreate;

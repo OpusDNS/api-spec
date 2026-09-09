@@ -123,6 +123,7 @@ import type {
   VerificationDeadlineType,
   VerificationType,
   WhitelabelBrandingTier,
+  WhitelabelDnsCheckReason,
   WhitelabelOnboardingFailureCode,
   WhitelabelOnboardingFailureType,
   WhitelabelOnboardingStatus,
@@ -2323,6 +2324,20 @@ export const WHITELABEL_BRANDING_TIER_VALUES = [
   'base',
   'plus',
 ] as const satisfies ReadonlyArray<WhitelabelBrandingTier>;
+
+export const WHITELABEL_DNS_CHECK_REASON = {
+  VERIFIED: "verified",
+  MISSING: "missing",
+  MISMATCH: "mismatch",
+  DNS_ERROR: "dns_error",
+} as const satisfies Record<string, WhitelabelDnsCheckReason>;
+
+export const WHITELABEL_DNS_CHECK_REASON_VALUES = [
+  'verified',
+  'missing',
+  'mismatch',
+  'dns_error',
+] as const satisfies ReadonlyArray<WhitelabelDnsCheckReason>;
 
 export const WHITELABEL_ONBOARDING_FAILURE_CODE = {
   ZONE_NOT_OWNED: "zone_not_owned",

@@ -120,6 +120,7 @@ import type {
   VanityNameserverSetSummaryDTO,
   VanityNsCheckRes,
   WhitelabelBranding,
+  WhitelabelDnsCheck,
 } from './schemas';
 
 export type DELETE_AiConciergeConversationsByConversationId_Response = DELETE_AiConciergeConversationsByConversationId_Response_401 | DELETE_AiConciergeConversationsByConversationId_Response_404 | DELETE_AiConciergeConversationsByConversationId_Response_422 | DELETE_AiConciergeConversationsByConversationId_Response_502;
@@ -886,6 +887,11 @@ export type GET_WhitelabelBrandingAssets_Response = GET_WhitelabelBrandingAssets
 
 export type GET_WhitelabelBrandingAssets_Response_200 = ListBrandingAssets;
 export type GET_WhitelabelBrandingAssets_Response_422 = HTTPValidationError;
+
+export type GET_WhitelabelBrandingDnsCheck_Response = GET_WhitelabelBrandingDnsCheck_Response_200 | GET_WhitelabelBrandingDnsCheck_Response_422;
+
+export type GET_WhitelabelBrandingDnsCheck_Response_200 = WhitelabelDnsCheck;
+export type GET_WhitelabelBrandingDnsCheck_Response_422 = HTTPValidationError;
 
 export type GET_WhitelabelBrandingDocument_Response = GET_WhitelabelBrandingDocument_Response_200 | GET_WhitelabelBrandingDocument_Response_422;
 

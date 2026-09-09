@@ -15673,6 +15673,64 @@ components:
       - plus
       title: WhitelabelBrandingTier
       type: string
+    WhitelabelDnsCheckItem:
+      properties:
+        expected:
+          items:
+            type: string
+          title: Expected
+          type: array
+        name:
+          title: Name
+          type: string
+        observed:
+          items:
+            type: string
+          title: Observed
+          type: array
+        ok:
+          title: Ok
+          type: boolean
+        reason:
+          $ref: '#/components/schemas/WhitelabelDnsCheckReason'
+        required:
+          default: true
+          title: Required
+          type: boolean
+        type:
+          $ref: '#/components/schemas/DnsRrsetType'
+      required:
+      - name
+      - type
+      - expected
+      - observed
+      - ok
+      - reason
+      title: WhitelabelDnsCheckItem
+      type: object
+    WhitelabelDnsCheckReason:
+      enum:
+      - verified
+      - missing
+      - mismatch
+      - dns_error
+      title: WhitelabelDnsCheckReason
+      type: string
+    WhitelabelDnsCheckResponse:
+      properties:
+        checks:
+          items:
+            $ref: '#/components/schemas/WhitelabelDnsCheckItem'
+          title: Checks
+          type: array
+        ready:
+          title: Ready
+          type: boolean
+      required:
+      - ready
+      - checks
+      title: WhitelabelDnsCheckResponse
+      type: object
     WhitelabelOnboardingFailureCode:
       description: 'Stable, frontend-facing reason a terminal onboarding failure happened.
         The free-text
@@ -16385,7 +16443,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-08-214430
+  version: 2026-09-09-151559
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -34274,6 +34332,33 @@ paths:
       - whitelabel
       x-required-permissions:
       - whitelabel_branding:manage
+  /v1/whitelabel-branding/dns-check:
+    get:
+      operationId: check_whitelabel_dns_v1_whitelabel_branding_dns_check_get
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelabelDnsCheckResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Check whether the whitelabel's DNS (delegation + serving records) resolves
+        yet
+      tags:
+      - whitelabel
+      x-required-permissions:
+      - whitelabel_branding:read
   /v1/whitelabel-branding/document:
     get:
       operationId: get_whitelabel_document_v1_whitelabel_branding_document_get
