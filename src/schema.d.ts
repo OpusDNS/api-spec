@@ -5752,8 +5752,10 @@ export interface components {
              *
              *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
-             *       a transfer-in that omits `period`, and ignored at renewal.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -5860,8 +5862,10 @@ export interface components {
              *
              *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
-             *       a transfer-in that omits `period`, and ignored at renewal.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -5940,8 +5944,10 @@ export interface components {
              *
              *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
-             *       a transfer-in that omits `period`, and ignored at renewal.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -6024,8 +6030,10 @@ export interface components {
              *
              *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
-             *       a transfer-in that omits `period`, and ignored at renewal.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7275,8 +7283,10 @@ export interface components {
              *
              *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
-             *       a transfer-in that omits `period`, and ignored at renewal.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7355,8 +7365,10 @@ export interface components {
              *
              *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
-             *       a transfer-in that omits `period`, and ignored at renewal.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7435,8 +7447,10 @@ export interface components {
              *
              *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
-             *       a transfer-in that omits `period`, and ignored at renewal.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7515,8 +7529,10 @@ export interface components {
              *
              *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
-             *       a transfer-in that omits `period`, and ignored at renewal.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7627,8 +7643,10 @@ export interface components {
              *
              *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
-             *       a transfer-in that omits `period`, and ignored at renewal.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7807,8 +7825,10 @@ export interface components {
              *
              *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. When the TLD has no month-unit renewal period, `monthly` is rejected on update and on
-             *       a transfer-in that omits `period`, and ignored at renewal.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
