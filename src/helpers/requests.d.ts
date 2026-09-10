@@ -1203,9 +1203,6 @@ export type DELETE_WhitelabelBrandingAssetsByAssetId_Request = {
 };
 export type DELETE_WhitelabelBrandingAssetsByAssetId_Request_Path = DELETE_WhitelabelBrandingAssetsByAssetId_Request['parameters']['path'];
 
-export type GET_WhitelabelBrandingDnsCheck_Request = {
-};
-
 export type GET_WhitelabelBrandingDocument_Request = {
 };
 
