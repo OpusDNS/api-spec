@@ -837,6 +837,24 @@ components:
       - error
       title: CommandError
       type: object
+    Communication:
+      properties:
+        timedelta:
+          description: The Timedeltas of when to send a verification notice of the
+            Communication Channel [+0D, +4D, +12D, +15D, +27D]
+          items:
+            type: string
+          title: Timedelta
+          type: array
+        type:
+          description: Which Communication channel is used for the Verification [email]
+          title: Type
+          type: string
+      required:
+      - type
+      - timedelta
+      title: Communication
+      type: object
     ComplianceStatus:
       enum:
       - preparing
@@ -1839,7 +1857,7 @@ components:
           title: Token
           type: string
         type:
-          $ref: '#/components/schemas/VerificationType'
+          $ref: '#/components/schemas/common__models__email_verification__email_verification__VerificationType'
           description: 'The type of verification: ''api'' for retrieving token via
             API, ''email'' for retrieving via email'
         updated_on:
@@ -1905,7 +1923,7 @@ components:
           default: pending
           description: Current status of the email verification
         type:
-          $ref: '#/components/schemas/VerificationType'
+          $ref: '#/components/schemas/common__models__email_verification__email_verification__VerificationType'
           description: 'The type of verification: ''api'' for retrieving token via
             API, ''email'' for retrieving via email'
         updated_on:
@@ -1996,7 +2014,7 @@ components:
           default: pending
           description: Current status of the email verification
         type:
-          $ref: '#/components/schemas/VerificationType'
+          $ref: '#/components/schemas/common__models__email_verification__email_verification__VerificationType'
           description: 'The type of verification: ''api'' for retrieving token via
             API, ''email'' for retrieving via email'
         updated_on:
@@ -8169,6 +8187,53 @@ components:
       - payload
       title: EmailForwardsContextCreate
       type: object
+    EmailVerificationPolicy:
+      properties:
+        communication:
+          $ref: '#/components/schemas/Communication'
+        contact_roles:
+          description: For which type of Contacts this verification needs to be done
+          items:
+            $ref: '#/components/schemas/DomainContactType'
+          title: Contact Roles
+          type: array
+        enabled:
+          description: Whether this Verification is enabled
+          title: Enabled
+          type: boolean
+        suspension_delay:
+          description: After how many Days should the domain be suspended
+          title: Suspension Delay
+          type: string
+        suspension_on_failure:
+          description: Should the Domain be suspended if the verification was not
+            successfull
+          title: Suspension On Failure
+          type: boolean
+        trigger:
+          description: The operations that will trigger this verification
+          items:
+            type: string
+          title: Trigger
+          type: array
+        validity_period:
+          anyOf:
+          - $ref: '#/components/schemas/PeriodStr'
+          - type: 'null'
+        verification_method:
+          title: Verification Method
+          type: string
+      required:
+      - enabled
+      - contact_roles
+      - trigger
+      - validity_period
+      - suspension_on_failure
+      - suspension_delay
+      - verification_method
+      - communication
+      title: EmailVerificationPolicy
+      type: object
     EmailVerificationStatus:
       enum:
       - verified
@@ -8749,6 +8814,69 @@ components:
       - v6
       title: IPAddressType
       type: string
+    IdentityVerificationPolicy:
+      description: 'A registry that requires the contact to have been identity-verified
+        before it accepts it.
+
+
+        The vocabulary is the contact-verification service''s, because that service
+        is what the claims
+
+        are checked against. What a registry accepts as evidence is a policy of its
+        own and does not
+
+        follow from the claim: `.dk` wants a photo ID for `NAME`, while a registry
+        happy with a written
+
+        attestation would leave `accepted_proofs` out.'
+      properties:
+        contact_roles:
+          description: For which type of Contacts this verification needs to be done
+          items:
+            $ref: '#/components/schemas/DomainContactType'
+          title: Contact Roles
+          type: array
+        enabled:
+          description: Whether this Verification is enabled
+          title: Enabled
+          type: boolean
+        required_claims:
+          description: The claims that must be verified before a contact can be used
+            on this TLD
+          items:
+            $ref: '#/components/schemas/RequiredClaim'
+          minItems: 1
+          title: Required Claims
+          type: array
+        suspension_delay:
+          description: After how many Days should the domain be suspended
+          title: Suspension Delay
+          type: string
+        suspension_on_failure:
+          description: Should the Domain be suspended if the verification was not
+            successfull
+          title: Suspension On Failure
+          type: boolean
+        trigger:
+          description: The operations that will trigger this verification
+          items:
+            type: string
+          title: Trigger
+          type: array
+        validity_period:
+          anyOf:
+          - $ref: '#/components/schemas/PeriodStr'
+          - type: 'null'
+      required:
+      - enabled
+      - contact_roles
+      - trigger
+      - validity_period
+      - suspension_on_failure
+      - suspension_delay
+      - required_claims
+      title: IdentityVerificationPolicy
+      type: object
     IdnBase:
       properties:
         idn_capable:
@@ -10035,6 +10163,38 @@ components:
       - hostname
       title: Nameserver
       type: object
+    NizzaClaim:
+      enum:
+      - EMAIL
+      - PHONE
+      - ADDRESS
+      - NAME
+      - LEGAL_ENTITY
+      title: NizzaClaim
+      type: string
+    NizzaVerificationProof:
+      enum:
+      - IDCARD
+      - PASSPORT
+      - POPULATION_REGISTER
+      - RESIDENCE_PERMIT
+      - PROOF_OF_ARRIVAL
+      - DRIVERS_LICENCE
+      - COMPANY_REGISTER
+      - COMPANY_STATEMENT
+      - BANK_ACCOUNT
+      - ONLINE_PAYMENT_ACCOUNT
+      - UTILITY_ACCOUNT
+      - BANK_STATEMENT
+      - TAX_STATEMENT
+      - WRITTEN_ATTESTATION
+      - DIGITAL_ATTESTATION
+      - POSTAL_VER_TRANSACTION_LOG
+      - EMAIL_VER_TRANSACTION_LOG
+      - PHONE_VER_TRANSACTION_LOG
+      - ADDRESS_DATABASE
+      title: NizzaVerificationProof
+      type: string
     NorIdDeclarationConfirmRequest:
       properties:
         accept_name:
@@ -13262,6 +13422,24 @@ components:
       - request_completed_at
       title: RequestHistorySortField
       type: string
+    RequiredClaim:
+      properties:
+        accepted_proofs:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/NizzaVerificationProof'
+            type: array
+          - type: 'null'
+          description: The evidence the registry accepts for this claim; any proof
+            is accepted when omitted
+          title: Accepted Proofs
+        claim:
+          $ref: '#/components/schemas/NizzaClaim'
+          description: Which contact claim the registry requires to have been verified
+      required:
+      - claim
+      title: RequiredClaim
+      type: object
     ReservedDomainsBase:
       properties:
         source:
@@ -13839,6 +14017,16 @@ components:
         transfer_policies:
           $ref: '#/components/schemas/TransferPoliciesBase'
           description: Transfer policies configuration
+        verification_policies:
+          anyOf:
+          - additionalProperties:
+              $ref: '#/components/schemas/VerificationPolicy'
+            propertyNames:
+              $ref: '#/components/schemas/common__services__domain__tld_configuration__VerificationPolicyBase__VerificationType'
+            type: object
+          - type: 'null'
+          description: Verification Policy Configuration
+          title: Verification Policies
         whois:
           anyOf:
           - $ref: '#/components/schemas/WhoisBase'
@@ -15398,6 +15586,10 @@ components:
       - deletion
       title: VerificationDeadlineType
       type: string
+    VerificationPolicy:
+      anyOf:
+      - $ref: '#/components/schemas/EmailVerificationPolicy'
+      - $ref: '#/components/schemas/IdentityVerificationPolicy'
     VerificationRegistrantDetails:
       properties:
         contact_id:
@@ -15433,7 +15625,7 @@ components:
       - claims
       title: VerificationResponse
       type: object
-    VerificationType:
+    VerificationType-Input:
       enum:
       - api
       - email
@@ -16367,6 +16559,18 @@ components:
       - reason
       title: DomainAvailabilityResponse
       type: object
+    common__models__email_verification__email_verification__VerificationType:
+      enum:
+      - api
+      - email
+      title: VerificationType
+      type: string
+    common__services__domain__tld_configuration__VerificationPolicyBase__VerificationType:
+      enum:
+      - email_verification
+      - identity_verification
+      title: VerificationType
+      type: string
   securitySchemes:
     APIKeyHeader:
       in: header
@@ -16437,7 +16641,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-10-120636
+  version: 2026-09-10-131833
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -19671,7 +19875,7 @@ paths:
         name: type
         required: true
         schema:
-          $ref: '#/components/schemas/VerificationType'
+          $ref: '#/components/schemas/VerificationType-Input'
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '201':

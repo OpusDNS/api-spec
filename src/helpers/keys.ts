@@ -24,6 +24,7 @@ import type {
   ClaimsNotices,
   ClearVanityNameserverSetDefaultRes,
   CommandError,
+  Communication,
   ContactAttestReq,
   ContactAttestRes,
   ContactAttestVerificationReq,
@@ -251,6 +252,7 @@ import type {
   EmailForwardZone,
   EmailForwardsContext,
   EmailForwardsContextCreate,
+  EmailVerificationPolicy,
   EventData,
   EventError,
   EventResponse,
@@ -268,6 +270,7 @@ import type {
   HttpRedirectRemove,
   HttpRedirectRequest,
   HttpRedirectUpsert,
+  IdentityVerificationPolicy,
   IdnBase,
   Invoice,
   IpRestrictionCreate,
@@ -383,6 +386,7 @@ import type {
   RegistrarZone,
   RegistryLockBase,
   RequestHistory,
+  RequiredClaim,
   ReservedDomainsBase,
   RgpOperations,
   SetRenewalModeReq,
@@ -771,6 +775,14 @@ export const KEYS_COMMAND_ERROR = [
   KEY_COMMAND_ERROR_RESOURCE_KEY,
   KEY_COMMAND_ERROR_TYPE,
 ] as const satisfies (keyof CommandError)[];
+
+export const KEY_COMMUNICATION_TIMEDELTA = 'timedelta' satisfies keyof Communication;
+export const KEY_COMMUNICATION_TYPE = 'type' satisfies keyof Communication;
+
+export const KEYS_COMMUNICATION = [
+  KEY_COMMUNICATION_TIMEDELTA,
+  KEY_COMMUNICATION_TYPE,
+] as const satisfies (keyof Communication)[];
 
 export const KEY_CONTACT_ATTEST_REQ_ATTESTATIONS = 'attestations' satisfies keyof ContactAttestReq;
 
@@ -3474,6 +3486,26 @@ export const KEYS_EMAIL_FORWARDS_CONTEXT_CREATE = [
   KEY_EMAIL_FORWARDS_CONTEXT_CREATE_PAYLOAD,
 ] as const satisfies (keyof EmailForwardsContextCreate)[];
 
+export const KEY_EMAIL_VERIFICATION_POLICY_COMMUNICATION = 'communication' satisfies keyof EmailVerificationPolicy;
+export const KEY_EMAIL_VERIFICATION_POLICY_CONTACT_ROLES = 'contact_roles' satisfies keyof EmailVerificationPolicy;
+export const KEY_EMAIL_VERIFICATION_POLICY_ENABLED = 'enabled' satisfies keyof EmailVerificationPolicy;
+export const KEY_EMAIL_VERIFICATION_POLICY_SUSPENSION_DELAY = 'suspension_delay' satisfies keyof EmailVerificationPolicy;
+export const KEY_EMAIL_VERIFICATION_POLICY_SUSPENSION_ON_FAILURE = 'suspension_on_failure' satisfies keyof EmailVerificationPolicy;
+export const KEY_EMAIL_VERIFICATION_POLICY_TRIGGER = 'trigger' satisfies keyof EmailVerificationPolicy;
+export const KEY_EMAIL_VERIFICATION_POLICY_VALIDITY_PERIOD = 'validity_period' satisfies keyof EmailVerificationPolicy;
+export const KEY_EMAIL_VERIFICATION_POLICY_VERIFICATION_METHOD = 'verification_method' satisfies keyof EmailVerificationPolicy;
+
+export const KEYS_EMAIL_VERIFICATION_POLICY = [
+  KEY_EMAIL_VERIFICATION_POLICY_COMMUNICATION,
+  KEY_EMAIL_VERIFICATION_POLICY_CONTACT_ROLES,
+  KEY_EMAIL_VERIFICATION_POLICY_ENABLED,
+  KEY_EMAIL_VERIFICATION_POLICY_SUSPENSION_DELAY,
+  KEY_EMAIL_VERIFICATION_POLICY_SUSPENSION_ON_FAILURE,
+  KEY_EMAIL_VERIFICATION_POLICY_TRIGGER,
+  KEY_EMAIL_VERIFICATION_POLICY_VALIDITY_PERIOD,
+  KEY_EMAIL_VERIFICATION_POLICY_VERIFICATION_METHOD,
+] as const satisfies (keyof EmailVerificationPolicy)[];
+
 export const KEY_EVENT_DATA_DETAILS = 'details' satisfies keyof EventData;
 export const KEY_EVENT_DATA_ERROR = 'error' satisfies keyof EventData;
 export const KEY_EVENT_DATA_MESSAGE = 'message' satisfies keyof EventData;
@@ -3685,6 +3717,24 @@ export const KEYS_HTTP_REDIRECT_UPSERT = [
   KEY_HTTP_REDIRECT_UPSERT_TARGET_PATH,
   KEY_HTTP_REDIRECT_UPSERT_TARGET_PROTOCOL,
 ] as const satisfies (keyof HttpRedirectUpsert)[];
+
+export const KEY_IDENTITY_VERIFICATION_POLICY_CONTACT_ROLES = 'contact_roles' satisfies keyof IdentityVerificationPolicy;
+export const KEY_IDENTITY_VERIFICATION_POLICY_ENABLED = 'enabled' satisfies keyof IdentityVerificationPolicy;
+export const KEY_IDENTITY_VERIFICATION_POLICY_REQUIRED_CLAIMS = 'required_claims' satisfies keyof IdentityVerificationPolicy;
+export const KEY_IDENTITY_VERIFICATION_POLICY_SUSPENSION_DELAY = 'suspension_delay' satisfies keyof IdentityVerificationPolicy;
+export const KEY_IDENTITY_VERIFICATION_POLICY_SUSPENSION_ON_FAILURE = 'suspension_on_failure' satisfies keyof IdentityVerificationPolicy;
+export const KEY_IDENTITY_VERIFICATION_POLICY_TRIGGER = 'trigger' satisfies keyof IdentityVerificationPolicy;
+export const KEY_IDENTITY_VERIFICATION_POLICY_VALIDITY_PERIOD = 'validity_period' satisfies keyof IdentityVerificationPolicy;
+
+export const KEYS_IDENTITY_VERIFICATION_POLICY = [
+  KEY_IDENTITY_VERIFICATION_POLICY_CONTACT_ROLES,
+  KEY_IDENTITY_VERIFICATION_POLICY_ENABLED,
+  KEY_IDENTITY_VERIFICATION_POLICY_REQUIRED_CLAIMS,
+  KEY_IDENTITY_VERIFICATION_POLICY_SUSPENSION_DELAY,
+  KEY_IDENTITY_VERIFICATION_POLICY_SUSPENSION_ON_FAILURE,
+  KEY_IDENTITY_VERIFICATION_POLICY_TRIGGER,
+  KEY_IDENTITY_VERIFICATION_POLICY_VALIDITY_PERIOD,
+] as const satisfies (keyof IdentityVerificationPolicy)[];
 
 export const KEY_IDN_BASE_IDN_CAPABLE = 'idn_capable' satisfies keyof IdnBase;
 export const KEY_IDN_BASE_IDN_TABLES = 'idn_tables' satisfies keyof IdnBase;
@@ -5194,6 +5244,14 @@ export const KEYS_REQUEST_HISTORY = [
   KEY_REQUEST_HISTORY_STATUS_CODE,
 ] as const satisfies (keyof RequestHistory)[];
 
+export const KEY_REQUIRED_CLAIM_ACCEPTED_PROOFS = 'accepted_proofs' satisfies keyof RequiredClaim;
+export const KEY_REQUIRED_CLAIM_CLAIM = 'claim' satisfies keyof RequiredClaim;
+
+export const KEYS_REQUIRED_CLAIM = [
+  KEY_REQUIRED_CLAIM_ACCEPTED_PROOFS,
+  KEY_REQUIRED_CLAIM_CLAIM,
+] as const satisfies (keyof RequiredClaim)[];
+
 export const KEY_RESERVED_DOMAINS_BASE_SOURCE = 'source' satisfies keyof ReservedDomainsBase;
 export const KEY_RESERVED_DOMAINS_BASE_SUPPORTED = 'supported' satisfies keyof ReservedDomainsBase;
 export const KEY_RESERVED_DOMAINS_BASE_URL = 'url' satisfies keyof ReservedDomainsBase;
@@ -5406,6 +5464,7 @@ export const KEY_TLD_SPECIFICATION_REGISTRY_LOCK = 'registry_lock' satisfies key
 export const KEY_TLD_SPECIFICATION_RESERVED_DOMAINS = 'reserved_domains' satisfies keyof TldSpecification;
 export const KEY_TLD_SPECIFICATION_TLDS = 'tlds' satisfies keyof TldSpecification;
 export const KEY_TLD_SPECIFICATION_TRANSFER_POLICIES = 'transfer_policies' satisfies keyof TldSpecification;
+export const KEY_TLD_SPECIFICATION_VERIFICATION_POLICIES = 'verification_policies' satisfies keyof TldSpecification;
 export const KEY_TLD_SPECIFICATION_WHOIS = 'whois' satisfies keyof TldSpecification;
 
 export const KEYS_TLD_SPECIFICATION = [
@@ -5425,6 +5484,7 @@ export const KEYS_TLD_SPECIFICATION = [
   KEY_TLD_SPECIFICATION_RESERVED_DOMAINS,
   KEY_TLD_SPECIFICATION_TLDS,
   KEY_TLD_SPECIFICATION_TRANSFER_POLICIES,
+  KEY_TLD_SPECIFICATION_VERIFICATION_POLICIES,
   KEY_TLD_SPECIFICATION_WHOIS,
 ] as const satisfies (keyof TldSpecification)[];
 

@@ -3712,6 +3712,19 @@ export interface components {
              */
             type?: string | null;
         };
+        /** Communication */
+        Communication: {
+            /**
+             * Timedelta
+             * @description The Timedeltas of when to send a verification notice of the Communication Channel [+0D, +4D, +12D, +15D, +27D]
+             */
+            timedelta: string[];
+            /**
+             * Type
+             * @description Which Communication channel is used for the Verification [email]
+             */
+            type: string;
+        };
         /**
          * ComplianceStatus
          * @enum {string}
@@ -4426,7 +4439,7 @@ export interface components {
              */
             token: string;
             /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
-            type: components["schemas"]["VerificationType"];
+            type: components["schemas"]["common__models__email_verification__email_verification__VerificationType"];
             /**
              * Updated On
              * Format: date-time
@@ -4477,7 +4490,7 @@ export interface components {
              */
             status: components["schemas"]["EmailVerificationStatus"];
             /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
-            type: components["schemas"]["VerificationType"];
+            type: components["schemas"]["common__models__email_verification__email_verification__VerificationType"];
             /**
              * Updated On
              * Format: date-time
@@ -4533,7 +4546,7 @@ export interface components {
              */
             status: components["schemas"]["EmailVerificationStatus"];
             /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
-            type: components["schemas"]["VerificationType"];
+            type: components["schemas"]["common__models__email_verification__email_verification__VerificationType"];
             /**
              * Updated On
              * Format: date-time
@@ -8643,6 +8656,38 @@ export interface components {
             kind: "email_forwards";
             payload: components["schemas"]["ContextPayload_EmailForwardResponse_"];
         };
+        /** EmailVerificationPolicy */
+        EmailVerificationPolicy: {
+            communication: components["schemas"]["Communication"];
+            /**
+             * Contact Roles
+             * @description For which type of Contacts this verification needs to be done
+             */
+            contact_roles: components["schemas"]["DomainContactType"][];
+            /**
+             * Enabled
+             * @description Whether this Verification is enabled
+             */
+            enabled: boolean;
+            /**
+             * Suspension Delay
+             * @description After how many Days should the domain be suspended
+             */
+            suspension_delay: string;
+            /**
+             * Suspension On Failure
+             * @description Should the Domain be suspended if the verification was not successfull
+             */
+            suspension_on_failure: boolean;
+            /**
+             * Trigger
+             * @description The operations that will trigger this verification
+             */
+            trigger: string[];
+            validity_period: components["schemas"]["PeriodStr"] | null;
+            /** Verification Method */
+            verification_method: string;
+        };
         /**
          * EmailVerificationStatus
          * @enum {string}
@@ -9005,6 +9050,48 @@ export interface components {
          * @enum {string}
          */
         IPAddressType: "v4" | "v6";
+        /**
+         * IdentityVerificationPolicy
+         * @description A registry that requires the contact to have been identity-verified before it accepts it.
+         *
+         *     The vocabulary is the contact-verification service's, because that service is what the claims
+         *     are checked against. What a registry accepts as evidence is a policy of its own and does not
+         *     follow from the claim: `.dk` wants a photo ID for `NAME`, while a registry happy with a written
+         *     attestation would leave `accepted_proofs` out.
+         */
+        IdentityVerificationPolicy: {
+            /**
+             * Contact Roles
+             * @description For which type of Contacts this verification needs to be done
+             */
+            contact_roles: components["schemas"]["DomainContactType"][];
+            /**
+             * Enabled
+             * @description Whether this Verification is enabled
+             */
+            enabled: boolean;
+            /**
+             * Required Claims
+             * @description The claims that must be verified before a contact can be used on this TLD
+             */
+            required_claims: components["schemas"]["RequiredClaim"][];
+            /**
+             * Suspension Delay
+             * @description After how many Days should the domain be suspended
+             */
+            suspension_delay: string;
+            /**
+             * Suspension On Failure
+             * @description Should the Domain be suspended if the verification was not successfull
+             */
+            suspension_on_failure: boolean;
+            /**
+             * Trigger
+             * @description The operations that will trigger this verification
+             */
+            trigger: string[];
+            validity_period: components["schemas"]["PeriodStr"] | null;
+        };
         /** IdnBase */
         IdnBase: {
             /**
@@ -9890,6 +9977,16 @@ export interface components {
              */
             ip_addresses?: string[];
         };
+        /**
+         * NizzaClaim
+         * @enum {string}
+         */
+        NizzaClaim: "EMAIL" | "PHONE" | "ADDRESS" | "NAME" | "LEGAL_ENTITY";
+        /**
+         * NizzaVerificationProof
+         * @enum {string}
+         */
+        NizzaVerificationProof: "IDCARD" | "PASSPORT" | "POPULATION_REGISTER" | "RESIDENCE_PERMIT" | "PROOF_OF_ARRIVAL" | "DRIVERS_LICENCE" | "COMPANY_REGISTER" | "COMPANY_STATEMENT" | "BANK_ACCOUNT" | "ONLINE_PAYMENT_ACCOUNT" | "UTILITY_ACCOUNT" | "BANK_STATEMENT" | "TAX_STATEMENT" | "WRITTEN_ATTESTATION" | "DIGITAL_ATTESTATION" | "POSTAL_VER_TRANSACTION_LOG" | "EMAIL_VER_TRANSACTION_LOG" | "PHONE_VER_TRANSACTION_LOG" | "ADDRESS_DATABASE";
         /** NorIdDeclarationConfirmRequest */
         NorIdDeclarationConfirmRequest: {
             /**
@@ -11877,6 +11974,16 @@ export interface components {
          * @enum {string}
          */
         RequestHistorySortField: "method" | "path" | "status_code" | "duration" | "server_request_id" | "performed_by_type" | "performed_by_id" | "created_on" | "request_started_at" | "request_completed_at";
+        /** RequiredClaim */
+        RequiredClaim: {
+            /**
+             * Accepted Proofs
+             * @description The evidence the registry accepts for this claim; any proof is accepted when omitted
+             */
+            accepted_proofs?: components["schemas"]["NizzaVerificationProof"][] | null;
+            /** @description Which contact claim the registry requires to have been verified */
+            claim: components["schemas"]["NizzaClaim"];
+        };
         /** ReservedDomainsBase */
         ReservedDomainsBase: {
             /** @description Source of reserved domain information */
@@ -12247,6 +12354,13 @@ export interface components {
             tlds: components["schemas"]["TldBase"][];
             /** @description Transfer policies configuration */
             transfer_policies: components["schemas"]["TransferPoliciesBase"];
+            /**
+             * Verification Policies
+             * @description Verification Policy Configuration
+             */
+            verification_policies?: {
+                [key: string]: components["schemas"]["VerificationPolicy"];
+            } | null;
             /** @description WHOIS configuration */
             whois?: components["schemas"]["WhoisBase"] | null;
         };
@@ -13381,6 +13495,7 @@ export interface components {
          * @enum {string}
          */
         VerificationDeadlineType: "dedelegation" | "deletion";
+        VerificationPolicy: components["schemas"]["EmailVerificationPolicy"] | components["schemas"]["IdentityVerificationPolicy"];
         /** VerificationRegistrantDetails */
         VerificationRegistrantDetails: {
             /** Contact Id */
@@ -13407,7 +13522,7 @@ export interface components {
          * VerificationType
          * @enum {string}
          */
-        VerificationType: "api" | "email";
+        "VerificationType-Input": "api" | "email";
         /** VisitsByKeyBucket */
         VisitsByKeyBucket: {
             /** Key */
@@ -14037,6 +14152,16 @@ export interface components {
              */
             reason: string | null;
         };
+        /**
+         * VerificationType
+         * @enum {string}
+         */
+        common__models__email_verification__email_verification__VerificationType: "api" | "email";
+        /**
+         * VerificationType
+         * @enum {string}
+         */
+        common__services__domain__tld_configuration__VerificationPolicyBase__VerificationType: "email_verification" | "identity_verification";
     };
     responses: never;
     parameters: {
@@ -16880,7 +17005,7 @@ export interface operations {
     start_contact_verification_v1_contacts__contact_id__verification_post: {
         parameters: {
             query: {
-                type: components["schemas"]["VerificationType"];
+                type: components["schemas"]["VerificationType-Input"];
             };
             header?: {
                 /**

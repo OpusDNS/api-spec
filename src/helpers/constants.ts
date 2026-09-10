@@ -70,6 +70,8 @@ import type {
   MemoryFactKind,
   MessageRole,
   MetricsGrouping,
+  NizzaClaim,
+  NizzaVerificationProof,
   NorIdDeclarationStatus,
   ObjectEventType,
   ObjectLogSortField,
@@ -121,7 +123,7 @@ import type {
   VanityNsCheckSummaryState,
   VerificationClaimType,
   VerificationDeadlineType,
-  VerificationType,
+  VerificationTypeInput,
   WhitelabelBrandingTier,
   WhitelabelOnboardingFailureCode,
   WhitelabelOnboardingFailureType,
@@ -129,6 +131,8 @@ import type {
   WhitelabelRenewalMode,
   ZoneIncludeField,
   ZoneSortField,
+  VerificationType,
+  VerificationType2,
 } from './schemas';
 
 export const AGREEMENT_TYPE = {
@@ -1307,6 +1311,66 @@ export const METRICS_GROUPING_VALUES = [
   'rule',
 ] as const satisfies ReadonlyArray<MetricsGrouping>;
 
+export const NIZZA_CLAIM = {
+  EMAIL: "EMAIL",
+  PHONE: "PHONE",
+  ADDRESS: "ADDRESS",
+  NAME: "NAME",
+  LEGAL_ENTITY: "LEGAL_ENTITY",
+} as const satisfies Record<string, NizzaClaim>;
+
+export const NIZZA_CLAIM_VALUES = [
+  'EMAIL',
+  'PHONE',
+  'ADDRESS',
+  'NAME',
+  'LEGAL_ENTITY',
+] as const satisfies ReadonlyArray<NizzaClaim>;
+
+export const NIZZA_VERIFICATION_PROOF = {
+  IDCARD: "IDCARD",
+  PASSPORT: "PASSPORT",
+  POPULATION_REGISTER: "POPULATION_REGISTER",
+  RESIDENCE_PERMIT: "RESIDENCE_PERMIT",
+  PROOF_OF_ARRIVAL: "PROOF_OF_ARRIVAL",
+  DRIVERS_LICENCE: "DRIVERS_LICENCE",
+  COMPANY_REGISTER: "COMPANY_REGISTER",
+  COMPANY_STATEMENT: "COMPANY_STATEMENT",
+  BANK_ACCOUNT: "BANK_ACCOUNT",
+  ONLINE_PAYMENT_ACCOUNT: "ONLINE_PAYMENT_ACCOUNT",
+  UTILITY_ACCOUNT: "UTILITY_ACCOUNT",
+  BANK_STATEMENT: "BANK_STATEMENT",
+  TAX_STATEMENT: "TAX_STATEMENT",
+  WRITTEN_ATTESTATION: "WRITTEN_ATTESTATION",
+  DIGITAL_ATTESTATION: "DIGITAL_ATTESTATION",
+  POSTAL_VER_TRANSACTION_LOG: "POSTAL_VER_TRANSACTION_LOG",
+  EMAIL_VER_TRANSACTION_LOG: "EMAIL_VER_TRANSACTION_LOG",
+  PHONE_VER_TRANSACTION_LOG: "PHONE_VER_TRANSACTION_LOG",
+  ADDRESS_DATABASE: "ADDRESS_DATABASE",
+} as const satisfies Record<string, NizzaVerificationProof>;
+
+export const NIZZA_VERIFICATION_PROOF_VALUES = [
+  'IDCARD',
+  'PASSPORT',
+  'POPULATION_REGISTER',
+  'RESIDENCE_PERMIT',
+  'PROOF_OF_ARRIVAL',
+  'DRIVERS_LICENCE',
+  'COMPANY_REGISTER',
+  'COMPANY_STATEMENT',
+  'BANK_ACCOUNT',
+  'ONLINE_PAYMENT_ACCOUNT',
+  'UTILITY_ACCOUNT',
+  'BANK_STATEMENT',
+  'TAX_STATEMENT',
+  'WRITTEN_ATTESTATION',
+  'DIGITAL_ATTESTATION',
+  'POSTAL_VER_TRANSACTION_LOG',
+  'EMAIL_VER_TRANSACTION_LOG',
+  'PHONE_VER_TRANSACTION_LOG',
+  'ADDRESS_DATABASE',
+] as const satisfies ReadonlyArray<NizzaVerificationProof>;
+
 export const NOR_ID_DECLARATION_STATUS = {
   PENDING: "pending",
   CONFIRMED: "confirmed",
@@ -2304,15 +2368,15 @@ export const VERIFICATION_DEADLINE_TYPE_VALUES = [
   'deletion',
 ] as const satisfies ReadonlyArray<VerificationDeadlineType>;
 
-export const VERIFICATION_TYPE = {
+export const VERIFICATION_TYPE-INPUT = {
   API: "api",
   EMAIL: "email",
-} as const satisfies Record<string, VerificationType>;
+} as const satisfies Record<string, VerificationTypeInput>;
 
-export const VERIFICATION_TYPE_VALUES = [
+export const VERIFICATION_TYPE-INPUT_VALUES = [
   'api',
   'email',
-] as const satisfies ReadonlyArray<VerificationType>;
+] as const satisfies ReadonlyArray<VerificationTypeInput>;
 
 export const WHITELABEL_BRANDING_TIER = {
   BASE: "base",
@@ -2409,3 +2473,23 @@ export const ZONE_SORT_FIELD_VALUES = [
   'updated_on',
   'dnssec_status',
 ] as const satisfies ReadonlyArray<ZoneSortField>;
+
+export const COMMON_MODELS_EMAIL_VERIFICATION_EMAIL_VERIFICATION_VERIFICATION_TYPE = {
+  API: "api",
+  EMAIL: "email",
+} as const satisfies Record<string, VerificationType>;
+
+export const COMMON_MODELS_EMAIL_VERIFICATION_EMAIL_VERIFICATION_VERIFICATION_TYPE_VALUES = [
+  'api',
+  'email',
+] as const satisfies ReadonlyArray<VerificationType>;
+
+export const COMMON_SERVICES_DOMAIN_TLD_CONFIGURATION_VERIFICATION_POLICY_BASE_VERIFICATION_TYPE = {
+  EMAIL_VERIFICATION: "email_verification",
+  IDENTITY_VERIFICATION: "identity_verification",
+} as const satisfies Record<string, VerificationType2>;
+
+export const COMMON_SERVICES_DOMAIN_TLD_CONFIGURATION_VERIFICATION_POLICY_BASE_VERIFICATION_TYPE_VALUES = [
+  'email_verification',
+  'identity_verification',
+] as const satisfies ReadonlyArray<VerificationType2>;
