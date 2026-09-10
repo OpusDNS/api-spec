@@ -9958,6 +9958,13 @@ export interface components {
              * @description The subscriber identity (organization number or Person-ID)
              */
             identity_value?: string | null;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description The organization that owns the domain; used to brand the page
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
             /** @description The declaration status */
             status: components["schemas"]["NorIdDeclarationStatus"];
             /**
