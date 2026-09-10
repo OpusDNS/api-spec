@@ -16641,7 +16641,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-10-131833
+  version: 2026-09-10-161526
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -27374,16 +27374,13 @@ paths:
                     title: Email Forward Error
                     type: email-forward-validation
                 email_forward_domain_rejected:
-                  description: Check that the domain is registered and resolves in
-                    public DNS, then retry.
+                  description: The hostname could not be set up for email forwarding.
+                    Contact support.
                   summary: Email forwarding could not be set up for the hostname
                   value:
                     code: ERROR_EMAIL_FORWARD_VALIDATION
                     detail: Email forwarding could not be set up for this domain.
-                      This usually means the domain is not yet registered or does
-                      not resolve in public DNS; a recently registered or transferred
-                      domain may need time to propagate. Retry once it resolves, or
-                      contact support if the problem persists.
+                      Please contact support.
                     status: 400
                     title: Email Forward Error
                     type: email-forward-validation
