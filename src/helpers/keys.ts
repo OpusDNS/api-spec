@@ -5281,10 +5281,14 @@ export const KEYS_STATUS_TAG = [
 ] as const satisfies (keyof StatusTag)[];
 
 export const KEY_SUPPORT_EMAIL = 'email' satisfies keyof Support;
+export const KEY_SUPPORT_HELP_CENTER_URL = 'help_center_url' satisfies keyof Support;
+export const KEY_SUPPORT_STATUS_URL = 'status_url' satisfies keyof Support;
 export const KEY_SUPPORT_URL = 'url' satisfies keyof Support;
 
 export const KEYS_SUPPORT = [
   KEY_SUPPORT_EMAIL,
+  KEY_SUPPORT_HELP_CENTER_URL,
+  KEY_SUPPORT_STATUS_URL,
   KEY_SUPPORT_URL,
 ] as const satisfies (keyof Support)[];
 

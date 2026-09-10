@@ -12007,6 +12007,10 @@ export interface components {
         Support: {
             /** Email */
             email?: string | null;
+            /** Help Center Url */
+            help_center_url?: string | null;
+            /** Status Url */
+            status_url?: string | null;
             /** Url */
             url?: string | null;
         };
