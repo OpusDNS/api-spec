@@ -16641,7 +16641,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-10-161526
+  version: 2026-09-11-074214
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -20083,9 +20083,15 @@ paths:
         '422':
           content:
             application/problem+json:
+              example:
+                code: ERROR_CONTACT_VERIFICATION_VALIDATION
+                detail: Additional error context.
+                status: 422
+                title: Contact Verification Validation Failed
+                type: contact-verification-validation
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
         '502':
           content:
             application/problem+json:
@@ -20180,9 +20186,24 @@ paths:
         '422':
           content:
             application/problem+json:
+              examples:
+                Contact Verification Attestation Validation Failed:
+                  value:
+                    code: ERROR_CONTACT_VERIFICATION_ATTESTATION_VALIDATION
+                    detail: Additional error context.
+                    status: 422
+                    title: Contact Verification Attestation Validation Failed
+                    type: contact-verification-attestation-validation
+                Contact Verification Validation Failed:
+                  value:
+                    code: ERROR_CONTACT_VERIFICATION_VALIDATION
+                    detail: Additional error context.
+                    status: 422
+                    title: Contact Verification Validation Failed
+                    type: contact-verification-validation
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
         '502':
           content:
             application/problem+json:

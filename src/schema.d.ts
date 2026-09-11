@@ -17217,13 +17217,20 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_VERIFICATION_VALIDATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 422,
+                     *       "title": "Contact Verification Validation Failed",
+                     *       "type": "contact-verification-validation"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Bad Gateway */
@@ -17324,13 +17331,13 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Bad Gateway */
