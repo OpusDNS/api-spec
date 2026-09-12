@@ -983,6 +983,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/pr.md",
                 "showInSidebar": true
               },
+              "/pt": {
+                "type": "page",
+                "title": "🇵🇹 .pt",
+                "filepath": "content/tld-knowledge-base/cctlds/pt.md",
+                "showInSidebar": true
+              },
               "/radio.am": {
                 "type": "page",
                 "title": "🇦🇲 .radio.am",
