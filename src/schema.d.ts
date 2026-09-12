@@ -3422,7 +3422,7 @@ export interface components {
          * BillingTransactionAction
          * @enum {string}
          */
-        BillingTransactionAction: "create" | "transfer" | "renew" | "restore" | "trade" | "application" | "service_fee" | "upgrade_fee" | "wallet_top_up";
+        BillingTransactionAction: "create" | "transfer" | "import" | "renew" | "restore" | "trade" | "application" | "service_fee" | "upgrade_fee" | "wallet_top_up";
         /**
          * BillingTransactionProductType
          * @enum {string}

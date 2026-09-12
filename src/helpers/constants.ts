@@ -232,6 +232,7 @@ export const BILLING_MODE_VALUES = [
 export const BILLING_TRANSACTION_ACTION = {
   CREATE: "create",
   TRANSFER: "transfer",
+  IMPORT: "import",
   RENEW: "renew",
   RESTORE: "restore",
   TRADE: "trade",
@@ -244,6 +245,7 @@ export const BILLING_TRANSACTION_ACTION = {
 export const BILLING_TRANSACTION_ACTION_VALUES = [
   'create',
   'transfer',
+  'import',
   'renew',
   'restore',
   'trade',
