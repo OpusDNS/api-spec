@@ -2974,6 +2974,7 @@ export const KEYS_DOMAIN_UPDATE_BULK_COMMAND = [
   KEY_DOMAIN_UPDATE_BULK_COMMAND_VERSION,
 ] as const satisfies (keyof DomainUpdateBulkCommand)[];
 
+export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_ATTRIBUTES = 'attributes' satisfies keyof DomainUpdateBulkInstance;
 export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_AUTH_CODE = 'auth_code' satisfies keyof DomainUpdateBulkInstance;
 export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_CONTACTS = 'contacts' satisfies keyof DomainUpdateBulkInstance;
 export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_DOMAIN_ID = 'domain_id' satisfies keyof DomainUpdateBulkInstance;
@@ -2984,6 +2985,7 @@ export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_STATUS_CHANGES = 'status_changes' s
 export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_STATUSES = 'statuses' satisfies keyof DomainUpdateBulkInstance;
 
 export const KEYS_DOMAIN_UPDATE_BULK_INSTANCE = [
+  KEY_DOMAIN_UPDATE_BULK_INSTANCE_ATTRIBUTES,
   KEY_DOMAIN_UPDATE_BULK_INSTANCE_AUTH_CODE,
   KEY_DOMAIN_UPDATE_BULK_INSTANCE_CONTACTS,
   KEY_DOMAIN_UPDATE_BULK_INSTANCE_DOMAIN_ID,
@@ -3002,6 +3004,7 @@ export const KEYS_DOMAIN_UPDATE_BULK_PAYLOAD = [
   KEY_DOMAIN_UPDATE_BULK_PAYLOAD_TEMPLATE,
 ] as const satisfies (keyof DomainUpdateBulkPayload)[];
 
+export const KEY_DOMAIN_UPDATE_BULK_TEMPLATE_ATTRIBUTES = 'attributes' satisfies keyof DomainUpdateBulkTemplate;
 export const KEY_DOMAIN_UPDATE_BULK_TEMPLATE_CONTACTS = 'contacts' satisfies keyof DomainUpdateBulkTemplate;
 export const KEY_DOMAIN_UPDATE_BULK_TEMPLATE_NAMESERVERS = 'nameservers' satisfies keyof DomainUpdateBulkTemplate;
 export const KEY_DOMAIN_UPDATE_BULK_TEMPLATE_RENEWAL_MODE = 'renewal_mode' satisfies keyof DomainUpdateBulkTemplate;
@@ -3009,6 +3012,7 @@ export const KEY_DOMAIN_UPDATE_BULK_TEMPLATE_STATUS_CHANGES = 'status_changes' s
 export const KEY_DOMAIN_UPDATE_BULK_TEMPLATE_STATUSES = 'statuses' satisfies keyof DomainUpdateBulkTemplate;
 
 export const KEYS_DOMAIN_UPDATE_BULK_TEMPLATE = [
+  KEY_DOMAIN_UPDATE_BULK_TEMPLATE_ATTRIBUTES,
   KEY_DOMAIN_UPDATE_BULK_TEMPLATE_CONTACTS,
   KEY_DOMAIN_UPDATE_BULK_TEMPLATE_NAMESERVERS,
   KEY_DOMAIN_UPDATE_BULK_TEMPLATE_RENEWAL_MODE,
