@@ -1858,7 +1858,7 @@ components:
           title: Token
           type: string
         type:
-          $ref: '#/components/schemas/common__models__email_verification__email_verification__VerificationType'
+          $ref: '#/components/schemas/VerificationType'
           description: 'The type of verification: ''api'' for retrieving token via
             API, ''email'' for retrieving via email'
         updated_on:
@@ -1924,7 +1924,7 @@ components:
           default: pending
           description: Current status of the email verification
         type:
-          $ref: '#/components/schemas/common__models__email_verification__email_verification__VerificationType'
+          $ref: '#/components/schemas/VerificationType'
           description: 'The type of verification: ''api'' for retrieving token via
             API, ''email'' for retrieving via email'
         updated_on:
@@ -2015,7 +2015,7 @@ components:
           default: pending
           description: Current status of the email verification
         type:
-          $ref: '#/components/schemas/common__models__email_verification__email_verification__VerificationType'
+          $ref: '#/components/schemas/VerificationType'
           description: 'The type of verification: ''api'' for retrieving token via
             API, ''email'' for retrieving via email'
         updated_on:
@@ -14114,7 +14114,7 @@ components:
           - additionalProperties:
               $ref: '#/components/schemas/VerificationPolicy'
             propertyNames:
-              $ref: '#/components/schemas/common__services__domain__tld_configuration__VerificationPolicyBase__VerificationType'
+              $ref: '#/components/schemas/VerificationPolicyType'
             type: object
           - type: 'null'
           description: Verification Policy Configuration
@@ -15682,6 +15682,12 @@ components:
       anyOf:
       - $ref: '#/components/schemas/EmailVerificationPolicy'
       - $ref: '#/components/schemas/IdentityVerificationPolicy'
+    VerificationPolicyType:
+      enum:
+      - email_verification
+      - identity_verification
+      title: VerificationPolicyType
+      type: string
     VerificationRegistrantDetails:
       properties:
         contact_id:
@@ -15717,7 +15723,7 @@ components:
       - claims
       title: VerificationResponse
       type: object
-    VerificationType-Input:
+    VerificationType:
       enum:
       - api
       - email
@@ -16651,18 +16657,6 @@ components:
       - reason
       title: DomainAvailabilityResponse
       type: object
-    common__models__email_verification__email_verification__VerificationType:
-      enum:
-      - api
-      - email
-      title: VerificationType
-      type: string
-    common__services__domain__tld_configuration__VerificationPolicyBase__VerificationType:
-      enum:
-      - email_verification
-      - identity_verification
-      title: VerificationType
-      type: string
   securitySchemes:
     APIKeyHeader:
       in: header
@@ -16733,7 +16727,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-12-211011
+  version: 2026-09-13-202947
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -19967,7 +19961,7 @@ paths:
         name: type
         required: true
         schema:
-          $ref: '#/components/schemas/VerificationType-Input'
+          $ref: '#/components/schemas/VerificationType'
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '201':

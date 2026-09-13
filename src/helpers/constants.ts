@@ -123,7 +123,8 @@ import type {
   VanityNsCheckSummaryState,
   VerificationClaimType,
   VerificationDeadlineType,
-  VerificationTypeInput,
+  VerificationPolicyType,
+  VerificationType,
   WhitelabelBrandingTier,
   WhitelabelOnboardingFailureCode,
   WhitelabelOnboardingFailureType,
@@ -131,8 +132,6 @@ import type {
   WhitelabelRenewalMode,
   ZoneIncludeField,
   ZoneSortField,
-  VerificationType,
-  VerificationType2,
 } from './schemas';
 
 export const AGREEMENT_TYPE = {
@@ -2370,15 +2369,25 @@ export const VERIFICATION_DEADLINE_TYPE_VALUES = [
   'deletion',
 ] as const satisfies ReadonlyArray<VerificationDeadlineType>;
 
-export const VERIFICATION_TYPE_INPUT = {
+export const VERIFICATION_POLICY_TYPE = {
+  EMAIL_VERIFICATION: "email_verification",
+  IDENTITY_VERIFICATION: "identity_verification",
+} as const satisfies Record<string, VerificationPolicyType>;
+
+export const VERIFICATION_POLICY_TYPE_VALUES = [
+  'email_verification',
+  'identity_verification',
+] as const satisfies ReadonlyArray<VerificationPolicyType>;
+
+export const VERIFICATION_TYPE = {
   API: "api",
   EMAIL: "email",
-} as const satisfies Record<string, VerificationTypeInput>;
+} as const satisfies Record<string, VerificationType>;
 
-export const VERIFICATION_TYPE_INPUT_VALUES = [
+export const VERIFICATION_TYPE_VALUES = [
   'api',
   'email',
-] as const satisfies ReadonlyArray<VerificationTypeInput>;
+] as const satisfies ReadonlyArray<VerificationType>;
 
 export const WHITELABEL_BRANDING_TIER = {
   BASE: "base",
@@ -2475,23 +2484,3 @@ export const ZONE_SORT_FIELD_VALUES = [
   'updated_on',
   'dnssec_status',
 ] as const satisfies ReadonlyArray<ZoneSortField>;
-
-export const COMMON_MODELS_EMAIL_VERIFICATION_EMAIL_VERIFICATION_VERIFICATION_TYPE = {
-  API: "api",
-  EMAIL: "email",
-} as const satisfies Record<string, VerificationType>;
-
-export const COMMON_MODELS_EMAIL_VERIFICATION_EMAIL_VERIFICATION_VERIFICATION_TYPE_VALUES = [
-  'api',
-  'email',
-] as const satisfies ReadonlyArray<VerificationType>;
-
-export const COMMON_SERVICES_DOMAIN_TLD_CONFIGURATION_VERIFICATION_POLICY_BASE_VERIFICATION_TYPE = {
-  EMAIL_VERIFICATION: "email_verification",
-  IDENTITY_VERIFICATION: "identity_verification",
-} as const satisfies Record<string, VerificationType2>;
-
-export const COMMON_SERVICES_DOMAIN_TLD_CONFIGURATION_VERIFICATION_POLICY_BASE_VERIFICATION_TYPE_VALUES = [
-  'email_verification',
-  'identity_verification',
-] as const satisfies ReadonlyArray<VerificationType2>;

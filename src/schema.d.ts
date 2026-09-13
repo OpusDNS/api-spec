@@ -4439,7 +4439,7 @@ export interface components {
              */
             token: string;
             /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
-            type: components["schemas"]["common__models__email_verification__email_verification__VerificationType"];
+            type: components["schemas"]["VerificationType"];
             /**
              * Updated On
              * Format: date-time
@@ -4490,7 +4490,7 @@ export interface components {
              */
             status: components["schemas"]["EmailVerificationStatus"];
             /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
-            type: components["schemas"]["common__models__email_verification__email_verification__VerificationType"];
+            type: components["schemas"]["VerificationType"];
             /**
              * Updated On
              * Format: date-time
@@ -4546,7 +4546,7 @@ export interface components {
              */
             status: components["schemas"]["EmailVerificationStatus"];
             /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
-            type: components["schemas"]["common__models__email_verification__email_verification__VerificationType"];
+            type: components["schemas"]["VerificationType"];
             /**
              * Updated On
              * Format: date-time
@@ -13580,6 +13580,11 @@ export interface components {
          */
         VerificationDeadlineType: "dedelegation" | "deletion";
         VerificationPolicy: components["schemas"]["EmailVerificationPolicy"] | components["schemas"]["IdentityVerificationPolicy"];
+        /**
+         * VerificationPolicyType
+         * @enum {string}
+         */
+        VerificationPolicyType: "email_verification" | "identity_verification";
         /** VerificationRegistrantDetails */
         VerificationRegistrantDetails: {
             /** Contact Id */
@@ -13606,7 +13611,7 @@ export interface components {
          * VerificationType
          * @enum {string}
          */
-        "VerificationType-Input": "api" | "email";
+        VerificationType: "api" | "email";
         /** VisitsByKeyBucket */
         VisitsByKeyBucket: {
             /** Key */
@@ -14236,16 +14241,6 @@ export interface components {
              */
             reason: string | null;
         };
-        /**
-         * VerificationType
-         * @enum {string}
-         */
-        common__models__email_verification__email_verification__VerificationType: "api" | "email";
-        /**
-         * VerificationType
-         * @enum {string}
-         */
-        common__services__domain__tld_configuration__VerificationPolicyBase__VerificationType: "email_verification" | "identity_verification";
     };
     responses: never;
     parameters: {
@@ -17089,7 +17084,7 @@ export interface operations {
     start_contact_verification_v1_contacts__contact_id__verification_post: {
         parameters: {
             query: {
-                type: components["schemas"]["VerificationType-Input"];
+                type: components["schemas"]["VerificationType"];
             };
             header?: {
                 /**
