@@ -2370,12 +2370,12 @@ export const VERIFICATION_DEADLINE_TYPE_VALUES = [
   'deletion',
 ] as const satisfies ReadonlyArray<VerificationDeadlineType>;
 
-export const VERIFICATION_TYPE-INPUT = {
+export const VERIFICATION_TYPE_INPUT = {
   API: "api",
   EMAIL: "email",
 } as const satisfies Record<string, VerificationTypeInput>;
 
-export const VERIFICATION_TYPE-INPUT_VALUES = [
+export const VERIFICATION_TYPE_INPUT_VALUES = [
   'api',
   'email',
 ] as const satisfies ReadonlyArray<VerificationTypeInput>;
