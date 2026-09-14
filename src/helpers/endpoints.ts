@@ -56,6 +56,7 @@ export const DOMAIN_SEARCH_SUGGEST_ENDPOINT = '/v1/domain-search/suggest';
 export const DOMAINS_ENDPOINT = '/v1/domains';
 export const DOMAINS_CHECK_ENDPOINT = '/v1/domains/check';
 export const DOMAINS_CLAIMS_NOTICES_ENDPOINT = '/v1/domains/claims-notices';
+export const DOMAINS_STATISTICS_ENDPOINT = '/v1/domains/statistics';
 export const DOMAINS_SUMMARY_ENDPOINT = '/v1/domains/summary';
 export const DOMAINS_TLD_SPECIFIC_AT_BY_DOMAIN_REFERENCE_WITHDRAW_ENDPOINT = '/v1/domains/tld-specific/at/{domain_reference}/withdraw';
 export const DOMAINS_TLD_SPECIFIC_BE_BY_DOMAIN_REFERENCE_AUTH_CODE_REQUEST_ENDPOINT = '/v1/domains/tld-specific/be/{domain_reference}/auth_code/request';
@@ -147,6 +148,9 @@ export const VANITY_NAMESERVER_SETS_BY_SET_ID_RESTORE_ENDPOINT = '/v1/vanity-nam
 export const VANITY_NAMESERVER_SETS_BY_SET_ID_RETRY_ENDPOINT = '/v1/vanity-nameserver-sets/{set_id}/retry';
 export const VANITY_NAMESERVER_SETS_BY_SET_ID_ZONES_ENDPOINT = '/v1/vanity-nameserver-sets/{set_id}/zones';
 export const WHITELABEL_BRANDING_ENDPOINT = '/v1/whitelabel-branding';
+export const WHITELABEL_BRANDING_ASSETS_ENDPOINT = '/v1/whitelabel-branding/assets';
+export const WHITELABEL_BRANDING_ASSETS_BY_ASSET_ID_ENDPOINT = '/v1/whitelabel-branding/assets/{asset_id}';
+export const WHITELABEL_BRANDING_DOCUMENT_ENDPOINT = '/v1/whitelabel-branding/document';
 export const WHITELABEL_BRANDING_EMAIL_PREVIEW_ENDPOINT = '/v1/whitelabel-branding/email/preview';
 export const WHITELABEL_BRANDING_EMAIL_TEMPLATES_ENDPOINT = '/v1/whitelabel-branding/email/templates';
 export const WHITELABEL_BRANDING_RECHECK_ENDPOINT = '/v1/whitelabel-branding/recheck';
@@ -212,6 +216,7 @@ export type Endpoint =
   | typeof DOMAINS_ENDPOINT
   | typeof DOMAINS_CHECK_ENDPOINT
   | typeof DOMAINS_CLAIMS_NOTICES_ENDPOINT
+  | typeof DOMAINS_STATISTICS_ENDPOINT
   | typeof DOMAINS_SUMMARY_ENDPOINT
   | typeof DOMAINS_TLD_SPECIFIC_AT_BY_DOMAIN_REFERENCE_WITHDRAW_ENDPOINT
   | typeof DOMAINS_TLD_SPECIFIC_BE_BY_DOMAIN_REFERENCE_AUTH_CODE_REQUEST_ENDPOINT
@@ -303,6 +308,9 @@ export type Endpoint =
   | typeof VANITY_NAMESERVER_SETS_BY_SET_ID_RETRY_ENDPOINT
   | typeof VANITY_NAMESERVER_SETS_BY_SET_ID_ZONES_ENDPOINT
   | typeof WHITELABEL_BRANDING_ENDPOINT
+  | typeof WHITELABEL_BRANDING_ASSETS_ENDPOINT
+  | typeof WHITELABEL_BRANDING_ASSETS_BY_ASSET_ID_ENDPOINT
+  | typeof WHITELABEL_BRANDING_DOCUMENT_ENDPOINT
   | typeof WHITELABEL_BRANDING_EMAIL_PREVIEW_ENDPOINT
   | typeof WHITELABEL_BRANDING_EMAIL_TEMPLATES_ENDPOINT
   | typeof WHITELABEL_BRANDING_RECHECK_ENDPOINT

@@ -1,5 +1,6 @@
 import type { operations } from '../schema';
 import type {
+  BrandingDocument,
   BulkObjectTagChanges,
   ClaimsNoticesRequest,
   ContactAttestReq,
@@ -584,6 +585,11 @@ export type GET_DomainSearchSuggest_Request = {
   parameters: operations['suggest_v1_domain_search_suggest_get']['parameters'];
 };
 export type GET_DomainSearchSuggest_Request_Query = GET_DomainSearchSuggest_Request['parameters']['query'];
+
+export type GET_DomainsStatistics_Request = {
+  parameters: operations['get_domain_statistics_v1_domains_statistics_get']['parameters'];
+};
+export type GET_DomainsStatistics_Request_Query = GET_DomainsStatistics_Request['parameters']['query'];
 
 export type GET_DomainsSummary_Request = {
 };
@@ -1190,6 +1196,30 @@ export type PATCH_WhitelabelBranding_Request_Body = PATCH_WhitelabelBranding_Req
 
 export type POST_WhitelabelBranding_Request = {
 };
+
+export type GET_WhitelabelBrandingAssets_Request = {
+};
+
+export type POST_WhitelabelBrandingAssets_Request = {
+};
+
+export type DELETE_WhitelabelBrandingAssetsByAssetId_Request = {
+  parameters: operations['delete_whitelabel_asset_v1_whitelabel_branding_assets__asset_id__delete']['parameters'];
+};
+export type DELETE_WhitelabelBrandingAssetsByAssetId_Request_Path = DELETE_WhitelabelBrandingAssetsByAssetId_Request['parameters']['path'];
+
+export type GET_WhitelabelBrandingDocument_Request = {
+};
+
+export type POST_WhitelabelBrandingDocument_Request = {
+  requestBody: BrandingDocument;
+};
+export type POST_WhitelabelBrandingDocument_Request_Body = POST_WhitelabelBrandingDocument_Request['requestBody'];
+
+export type PUT_WhitelabelBrandingDocument_Request = {
+  requestBody: BrandingDocument;
+};
+export type PUT_WhitelabelBrandingDocument_Request_Body = PUT_WhitelabelBrandingDocument_Request['requestBody'];
 
 export type POST_WhitelabelBrandingEmailPreview_Request = {
   requestBody: PreviewMailReq;

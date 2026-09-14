@@ -30,11 +30,20 @@ Track notable updates to the OpusDNS API and developer documentation here.
     (`/v1/whitelabel-branding/assets`) and preview any transactional email
     against a draft document before you save
     (`/v1/whitelabel-branding/email/preview`).
+    
+### 7 September 2026
 
-  - **Managed lifecycle.** Relabel, disable, and re-enable without
-    re-provisioning; upgrade a base whitelabel to plus in place; retry
-    onboarding after fixing DNS; and restore a terminated whitelabel from its
-    preserved state.
+- Added **inline contact attributes to the domain response**: each entry of
+  `contacts[]` returned by
+  [`GET /v1/domains/{domain_reference}`](/api-reference#tag/domain/GET/v1/domains/{domain_reference}),
+  [`GET /v1/domains`](/api-reference#tag/domain/GET/v1/domains) and the domain
+  create, transfer and update responses can now carry an `attributes` map
+  holding the registry-specific attributes you supplied inline on that contact
+  for that role, for example `{"contact_id": "contact_01…", "contact_type":
+  "tech", "attributes": {"AFNIC_CONTACT_TYPE": "PM"}}`. The key is omitted for
+  contacts submitted without inline attributes, so existing responses are
+  unchanged, and attributes applied from a linked contact attribute set are not
+  reported.
 
 ### 2 September 2026
 

@@ -1176,6 +1176,30 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/domains/statistics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get domain statistics
+         * @description Counts the domains your organization acquired in a window of whole days, split into creates (new registrations) and inbound transfers and bucketed by the requested granularity.
+         *
+         *     Counts cover your organization and its sub-organizations, like the domain summary; `breakdown=organization` shows how they divide between them. A create is counted on the day OpusDNS took the order and a transfer on the day it completed, so domains that have since been deleted still appear in the window they were acquired in. Imported domains count as creates on the day they were imported. Domains held at a connected external registrar are not included.
+         *
+         *     Every bucket the window touches is present, so the series can be charted as is. A bucket marked `partial` reaches outside the window and covers only part of its span.
+         */
+        get: operations["get_domain_statistics_v1_domains_statistics_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/domains/summary": {
         parameters: {
             query?: never;
@@ -3032,6 +3056,60 @@ export interface paths {
         patch: operations["patch_whitelabel_branding_v1_whitelabel_branding_patch"];
         trace?: never;
     };
+    "/v1/whitelabel-branding/assets": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List uploaded branding assets */
+        get: operations["list_whitelabel_assets_v1_whitelabel_branding_assets_get"];
+        put?: never;
+        /** Upload a branding asset */
+        post: operations["upload_whitelabel_asset_v1_whitelabel_branding_assets_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/whitelabel-branding/assets/{asset_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete an uploaded branding asset */
+        delete: operations["delete_whitelabel_asset_v1_whitelabel_branding_assets__asset_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/whitelabel-branding/document": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get the stored branding document */
+        get: operations["get_whitelabel_document_v1_whitelabel_branding_document_get"];
+        /** Upsert the branding document */
+        put: operations["put_whitelabel_document_v1_whitelabel_branding_document_put"];
+        /** Upsert the branding document */
+        post: operations["put_whitelabel_document_v1_whitelabel_branding_document_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/whitelabel-branding/email/preview": {
         parameters: {
             query?: never;
@@ -3368,12 +3446,12 @@ export interface components {
          * BillingTransactionAction
          * @enum {string}
          */
-        BillingTransactionAction: "create" | "transfer" | "renew" | "restore" | "trade" | "application" | "service_fee" | "upgrade_fee" | "wallet_top_up";
+        BillingTransactionAction: "create" | "transfer" | "import" | "renew" | "restore" | "trade" | "application" | "service_fee" | "upgrade_fee" | "wallet_top_up";
         /**
          * BillingTransactionProductType
          * @enum {string}
          */
-        BillingTransactionProductType: "domain" | "zones" | "email_forward" | "domain_forward" | "account_wallet" | "vanity_nameserver" | "whitelabel_branding" | "whitelabel_branding_plus" | "ras_domain_lifecycle";
+        BillingTransactionProductType: "domain" | "zones" | "email_forward" | "domain_forward" | "account_wallet" | "vanity_nameserver" | "whitelabel_branding" | "whitelabel_branding_plus" | "ras_domain_lifecycle" | "ams_domain_lifecycle";
         /** BillingTransactionResponse */
         BillingTransactionResponse: {
             /** @description The action performed in the transaction */
@@ -3456,11 +3534,48 @@ export interface components {
          * @enum {string}
          */
         BillingTransactionStatus: "pending" | "succeeded" | "failed" | "canceled";
+        /** Body_upload_whitelabel_asset_v1_whitelabel_branding_assets_post */
+        Body_upload_whitelabel_asset_v1_whitelabel_branding_assets_post: {
+            /**
+             * File
+             * @description Asset file (image/font)
+             */
+            file: string;
+        };
         /** Brand */
         Brand: {
             logo?: components["schemas"]["Logo"] | null;
             /** Name */
             name?: string | null;
+        };
+        /** BrandingAsset */
+        BrandingAsset: {
+            /**
+             * Asset Id
+             * @description Opaque handle used to delete or reference the asset
+             */
+            asset_id: string;
+            /**
+             * Asset Url
+             * @description Public URL of the asset
+             */
+            asset_url: string;
+            /**
+             * Content Type
+             * @description MIME type of the asset
+             */
+            content_type?: string | null;
+            /**
+             * Size Bytes
+             * @description Asset size in bytes
+             */
+            size_bytes: number;
+            /**
+             * Updated On
+             * Format: date-time
+             * @description Last-modified timestamp
+             */
+            updated_on: Date;
         };
         /** BrandingDocument */
         BrandingDocument: {
@@ -3621,6 +3736,19 @@ export interface components {
              */
             type?: string | null;
         };
+        /** Communication */
+        Communication: {
+            /**
+             * Timedelta
+             * @description The Timedeltas of when to send a verification notice of the Communication Channel [+0D, +4D, +12D, +15D, +27D]
+             */
+            timedelta: string[];
+            /**
+             * Type
+             * @description Which Communication channel is used for the Verification [email]
+             */
+            type: string;
+        };
         /**
          * ComplianceStatus
          * @enum {string}
@@ -3646,6 +3774,7 @@ export interface components {
             /** Attestation Reference */
             attestation_reference: string;
             claim: components["schemas"]["ContactVerificationClaim"];
+            eid?: components["schemas"]["ContactVerificationEidInformation"] | null;
             method: components["schemas"]["ContactVerificationMethod"];
             proof: components["schemas"]["ContactVerificationProof"];
         };
@@ -4353,6 +4482,12 @@ export interface components {
          * @enum {string}
          */
         ContactVerificationClaim: "NAME" | "ADDRESS" | "EMAIL" | "PHONE" | "LEGAL_ENTITY";
+        /** ContactVerificationEidInformation */
+        ContactVerificationEidInformation: {
+            /** Eid Scheme */
+            eid_scheme: string;
+            level_of_assurance: components["schemas"]["LevelOfAssurance"];
+        };
         /** ContactVerificationEmailResponse */
         ContactVerificationEmailResponse: {
             /**
@@ -4408,7 +4543,7 @@ export interface components {
          * ContactVerificationProof
          * @enum {string}
          */
-        ContactVerificationProof: "IDCARD" | "PASSPORT" | "POPULATION_REGISTER" | "RESIDENCE_PERMIT" | "PROOF_OF_ARRIVAL" | "DRIVERS_LICENCE" | "COMPANY_REGISTER" | "COMPANY_STATEMENT" | "BANK_ACCOUNT" | "ONLINE_PAYMENT_ACCOUNT" | "UTILITY_ACCOUNT" | "BANK_STATEMENT" | "TAX_STATEMENT" | "WRITTEN_ATTESTATION" | "DIGITAL_ATTESTATION" | "POSTAL_VER_TRANSACTION_LOG" | "EMAIL_VER_TRANSACTION_LOG" | "ADDRESS_DATABASE";
+        ContactVerificationProof: "IDCARD" | "PASSPORT" | "POPULATION_REGISTER" | "RESIDENCE_PERMIT" | "PROOF_OF_ARRIVAL" | "DRIVERS_LICENCE" | "COMPANY_REGISTER" | "COMPANY_STATEMENT" | "BANK_ACCOUNT" | "ONLINE_PAYMENT_ACCOUNT" | "UTILITY_ACCOUNT" | "BANK_STATEMENT" | "TAX_STATEMENT" | "WRITTEN_ATTESTATION" | "DIGITAL_ATTESTATION" | "POSTAL_VER_TRANSACTION_LOG" | "EMAIL_VER_TRANSACTION_LOG" | "PHONE_VER_TRANSACTION_LOG" | "ADDRESS_DATABASE";
         /** ContactVerificationResponse */
         ContactVerificationResponse: {
             /**
@@ -4465,6 +4600,7 @@ export interface components {
             /** Attestation Reference */
             attestation_reference?: string | null;
             claim: components["schemas"]["ContactVerificationClaim"];
+            eid?: components["schemas"]["ContactVerificationEidInformation"] | null;
             /** Expires On */
             expires_on?: Date | null;
             method?: components["schemas"]["ContactVerificationMethod"] | null;
@@ -5557,7 +5693,7 @@ export interface components {
          * DomainAttributeKey
          * @enum {string}
          */
-        DomainAttributeKey: "auto_renew_period" | "music_registrant_attestation" | "nic_it_compliance_confirmation" | "travel_industry_acknowledgement" | "verification_required" | "de_general_request_contact" | "de_abuse_contact" | "nor_id_applicant_version" | "nor_id_applicant_accept_name" | "nor_id_applicant_accept_date" | "nor_id_declaration" | "nor_id_declaration_token" | "punktum_dk_terms_acceptance" | "punktum_dk_tracking_no" | "internet_ee_registrant_agreement" | "promotion" | "promotion_eligibility";
+        DomainAttributeKey: "auto_renew_period" | "music_registrant_attestation" | "nic_it_compliance_confirmation" | "travel_industry_acknowledgement" | "verification_required" | "de_general_request_contact" | "de_abuse_contact" | "nor_id_applicant_version" | "nor_id_applicant_accept_name" | "nor_id_applicant_accept_date" | "nor_id_declaration" | "nor_id_declaration_token" | "punktum_dk_terms_acceptance" | "punktum_dk_tracking_no" | "internet_ee_registrant_agreement" | "promotion" | "promotion_eligibility" | "domain_contact_attributes";
         /** DomainAvailability */
         DomainAvailability: {
             /** Domain */
@@ -5613,6 +5749,13 @@ export interface components {
         /** DomainContactResponse */
         DomainContactResponse: {
             /**
+             * Attributes
+             * @description Registry-specific attributes supplied inline for this contact in this role. Omitted when the contact was submitted without inline attributes; attributes taken from a linked contact attribute set are not reported here.
+             */
+            attributes?: {
+                [key: string]: string;
+            } | null;
+            /**
              * Contact Id
              * Format: typeid
              * @description The contact id of the contact
@@ -5635,10 +5778,12 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -5650,13 +5795,19 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"
@@ -5737,10 +5888,12 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -5752,13 +5905,19 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              */
             attributes?: {
@@ -5811,10 +5970,12 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -5826,13 +5987,19 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              */
             attributes?: {
@@ -5889,10 +6056,12 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -5904,13 +6073,19 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"
@@ -7021,6 +7196,107 @@ export interface components {
          */
         DomainSortField: "name" | "created_on" | "updated_on" | "expires_on" | "registered_on" | "transferred_on";
         /**
+         * DomainStatisticsBreakdown
+         * @enum {string}
+         */
+        DomainStatisticsBreakdown: "none" | "organization" | "tld";
+        /** DomainStatisticsBreakdownRowResponse */
+        DomainStatisticsBreakdownRowResponse: {
+            /** Create */
+            create: number;
+            /**
+             * Key
+             * @description Organization id, or the TLD without the leading dot
+             */
+            key: string;
+            /**
+             * Label
+             * @description Organization name; absent for TLD rows
+             */
+            label: string | null;
+            /** Total */
+            total: number;
+            /** Transfer */
+            transfer: number;
+        };
+        /** DomainStatisticsBucketResponse */
+        DomainStatisticsBucketResponse: {
+            /**
+             * Create
+             * @description Domains created in this bucket
+             */
+            create: number;
+            /**
+             * Partial
+             * @description The bucket reaches outside the requested window, so its counts cover only part of its span and must not be read as a rise or fall against its neighbours
+             */
+            partial: boolean;
+            /**
+             * Period Start
+             * Format: date
+             * @description First day of the bucket (UTC)
+             */
+            period_start: string;
+            /**
+             * Transfer
+             * @description Domains transferred in during this bucket
+             */
+            transfer: number;
+        };
+        /** DomainStatisticsResponse */
+        DomainStatisticsResponse: {
+            /**
+             * Breakdown
+             * @description Top organizations or TLDs by acquisitions in the window; empty unless requested
+             */
+            breakdown: components["schemas"]["DomainStatisticsBreakdownRowResponse"][];
+            /**
+             * Buckets
+             * @description One entry per bucket the window touches, oldest first, including empty buckets
+             */
+            buckets: components["schemas"]["DomainStatisticsBucketResponse"][];
+            /**
+             * End Date
+             * Format: date
+             * @description Last day of the window, inclusive
+             */
+            end_date: string;
+            /** @description Time-bucket size of the series */
+            granularity: components["schemas"]["UsageGranularity"];
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description The organization the counts are scoped to
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /**
+             * Start Date
+             * Format: date
+             * @description First day of the window, inclusive
+             */
+            start_date: string;
+            totals: components["schemas"]["DomainStatisticsTotalsResponse"];
+        };
+        /** DomainStatisticsTotalsResponse */
+        DomainStatisticsTotalsResponse: {
+            /**
+             * Create
+             * @description Domains created (newly registered) in the window
+             */
+            create: number;
+            /**
+             * Total
+             * @description Created plus transferred
+             */
+            total: number;
+            /**
+             * Transfer
+             * @description Domains transferred to OpusDNS in the window
+             */
+            transfer: number;
+        };
+        /**
          * DomainStatus
          * @enum {string}
          */
@@ -7134,10 +7410,12 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7149,13 +7427,19 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              */
             attributes?: {
@@ -7208,10 +7492,12 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7223,13 +7509,19 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              */
             attributes?: {
@@ -7282,10 +7574,12 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7297,13 +7591,19 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"
@@ -7356,10 +7656,12 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7371,13 +7673,19 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"
@@ -7462,10 +7770,12 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7477,13 +7787,19 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"
@@ -7547,6 +7863,49 @@ export interface components {
         /** DomainUpdateBulkInstance */
         DomainUpdateBulkInstance: {
             /**
+             * Attributes
+             * @description Override attributes for this domain.
+             *
+             *     Additional attributes of the domain, keyed by attribute name. Values are strings.
+             *
+             *     Customer-settable keys:
+             *
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
+             *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
+             *     - `music_registrant_attestation`: `true`. `.music` registration.
+             *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
+             *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
+             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration.
+             *     - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant change.
+             *     - `de_general_request_contact`, `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` =
+             *       `REQUEST`. `.de` only.
+             *
+             *     Boolean keys also accept `1` and `yes`.
+             *
+             *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
+             *
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
+             *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
+             *
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
+             *
+             */
+            attributes?: {
+                [key: string]: string;
+            } | null;
+            /**
              * Auth Code
              * @description Override auth code for this domain
              */
@@ -7590,6 +7949,47 @@ export interface components {
         };
         /** DomainUpdateBulkTemplate */
         DomainUpdateBulkTemplate: {
+            /**
+             * Attributes
+             * @description Additional attributes of the domain, keyed by attribute name. Values are strings.
+             *
+             *     Customer-settable keys:
+             *
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
+             *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
+             *     - `music_registrant_attestation`: `true`. `.music` registration.
+             *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
+             *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
+             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration.
+             *     - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant change.
+             *     - `de_general_request_contact`, `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` =
+             *       `REQUEST`. `.de` only.
+             *
+             *     Boolean keys also accept `1` and `yes`.
+             *
+             *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
+             *
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
+             *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
+             *
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
+             *
+             */
+            attributes?: {
+                [key: string]: string;
+            } | null;
             /** @description The new contacts of the domain */
             contacts?: components["schemas"]["DomainContactHandles"] | null;
             /**
@@ -7636,10 +8036,12 @@ export interface components {
              *
              *     Customer-settable keys:
              *
-             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create and transfer-in, `.de` only on update. Selects the
+             *     - `auto_renew_period`: `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects the
              *       period of the next renewal; the current expiry date does not move. On transfer-in without `period` it also sets the
-             *       period added by the transfer. `monthly` is rejected on transfer-in and ignored at renewal when the TLD has no
-             *       month-unit renewal period.
+             *       period added by the transfer. Omitted on create or transfer-in, it follows the term being bought: a one-month
+             *       `period` renews monthly and anything else yearly, except a longer month-unit term, which leaves it unset so that the
+             *       product's default billing period decides. Supplying `monthly` where the TLD sells no one-month renewal is rejected on
+             *       create, transfer-in and update; a `monthly` stored before that rule applied is ignored at renewal.
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
@@ -7651,13 +8053,19 @@ export interface components {
              *     Boolean keys also accept `1` and `yes`.
              *
              *     Written by the platform and rejected if supplied: `verification_required`, `promotion`, `promotion_eligibility`,
-             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`. They are never returned under `attributes`.
+             *     `nor_id_declaration`, `nor_id_declaration_token`, `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never
+             *     returned under `attributes`; inline contact attributes surface on the matching `contacts` entry instead.
              *
-             *     Derived from the signed `.no` applicant declaration and ignored if supplied: `nor_id_applicant_version`,
+             *     Derived from the signed `.no` applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,
              *     `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.
              *
-             *     On update, only `.de` stores attributes and an empty value removes the stored attribute; `.dk` reads
-             *     `punktum_dk_terms_acceptance` to confirm a registrant change and other registries ignore attributes.
+             *     On update, every registry stores the supplied attributes, and the update is not sent to the registry unless they
+             *     store; a registry that rejects the change stores nothing. An empty value removes the stored attribute, except for
+             *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
+             *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
+             *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
+             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
+             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"
@@ -8465,6 +8873,38 @@ export interface components {
             kind: "email_forwards";
             payload: components["schemas"]["ContextPayload_EmailForwardResponse_"];
         };
+        /** EmailVerificationPolicy */
+        EmailVerificationPolicy: {
+            communication: components["schemas"]["Communication"];
+            /**
+             * Contact Roles
+             * @description For which type of Contacts this verification needs to be done
+             */
+            contact_roles: components["schemas"]["DomainContactType"][];
+            /**
+             * Enabled
+             * @description Whether this Verification is enabled
+             */
+            enabled: boolean;
+            /**
+             * Suspension Delay
+             * @description After how many Days should the domain be suspended
+             */
+            suspension_delay: string;
+            /**
+             * Suspension On Failure
+             * @description Should the Domain be suspended if the verification was not successfull
+             */
+            suspension_on_failure: boolean;
+            /**
+             * Trigger
+             * @description The operations that will trigger this verification
+             */
+            trigger: string[];
+            validity_period: components["schemas"]["PeriodStr"] | null;
+            /** Verification Method */
+            verification_method: string;
+        };
         /**
          * EmailVerificationStatus
          * @enum {string}
@@ -8827,6 +9267,48 @@ export interface components {
          * @enum {string}
          */
         IPAddressType: "v4" | "v6";
+        /**
+         * IdentityVerificationPolicy
+         * @description A registry that requires the contact to have been identity-verified before it accepts it.
+         *
+         *     The vocabulary is the contact-verification service's, because that service is what the claims
+         *     are checked against. What a registry accepts as evidence is a policy of its own and does not
+         *     follow from the claim: `.dk` wants a photo ID for `NAME`, while a registry happy with a written
+         *     attestation would leave `accepted_proofs` out.
+         */
+        IdentityVerificationPolicy: {
+            /**
+             * Contact Roles
+             * @description For which type of Contacts this verification needs to be done
+             */
+            contact_roles: components["schemas"]["DomainContactType"][];
+            /**
+             * Enabled
+             * @description Whether this Verification is enabled
+             */
+            enabled: boolean;
+            /**
+             * Required Claims
+             * @description The claims that must be verified before a contact can be used on this TLD
+             */
+            required_claims: components["schemas"]["RequiredClaim"][];
+            /**
+             * Suspension Delay
+             * @description After how many Days should the domain be suspended
+             */
+            suspension_delay: string;
+            /**
+             * Suspension On Failure
+             * @description Should the Domain be suspended if the verification was not successfull
+             */
+            suspension_on_failure: boolean;
+            /**
+             * Trigger
+             * @description The operations that will trigger this verification
+             */
+            trigger: string[];
+            validity_period: components["schemas"]["PeriodStr"] | null;
+        };
         /** IdnBase */
         IdnBase: {
             /**
@@ -9382,6 +9864,19 @@ export interface components {
          * @enum {string}
          */
         LegalRequirementType: "notice" | "confirmation";
+        /**
+         * LevelOfAssurance
+         * @enum {string}
+         */
+        LevelOfAssurance: "HIGH" | "LOW" | "SUBSTANTIAL";
+        /** ListBrandingAssetsResponse */
+        ListBrandingAssetsResponse: {
+            /**
+             * Assets
+             * @description Uploaded assets, most recent first
+             */
+            assets?: components["schemas"]["BrandingAsset"][];
+        };
         /** ListVanityNameserverSetsRes */
         ListVanityNameserverSetsRes: {
             /** @description Pagination metadata */
@@ -9445,9 +9940,7 @@ export interface components {
         };
         /**
          * MailTemplate
-         * @description One editable transactional email template. This is the public catalog entry:
-         *     mail-service's operational fields (engine, internal, whitelabel, brand_defaults)
-         *     are deliberately not declared, so the response model drops them.
+         * @description One editable transactional email template in the catalog.
          */
         MailTemplate: {
             /**
@@ -9457,6 +9950,11 @@ export interface components {
             blocks?: {
                 [key: string]: components["schemas"]["MailTemplateBlock"];
             };
+            /**
+             * @description Template category for grouping in the editor
+             * @default unknown
+             */
+            category: components["schemas"]["MailTemplateCategory"];
             /**
              * Label
              * @description Human-readable template name for display
@@ -9524,6 +10022,12 @@ export interface components {
         MailTemplateCatalogRes: {
             [key: string]: components["schemas"]["MailTemplate"];
         };
+        /**
+         * MailTemplateCategory
+         * @description Category a template is grouped under in the editor. An unrecognised value decodes to `unknown`.
+         * @enum {string}
+         */
+        MailTemplateCategory: "organization" | "billing" | "user_account" | "icann_policy" | "tld_specific" | "unknown";
         /** MailTemplateVariable */
         MailTemplateVariable: {
             /**
@@ -9695,6 +10199,16 @@ export interface components {
              */
             ip_addresses?: string[];
         };
+        /**
+         * NizzaClaim
+         * @enum {string}
+         */
+        NizzaClaim: "EMAIL" | "PHONE" | "ADDRESS" | "NAME" | "LEGAL_ENTITY";
+        /**
+         * NizzaVerificationProof
+         * @enum {string}
+         */
+        NizzaVerificationProof: "IDCARD" | "PASSPORT" | "POPULATION_REGISTER" | "RESIDENCE_PERMIT" | "PROOF_OF_ARRIVAL" | "DRIVERS_LICENCE" | "COMPANY_REGISTER" | "COMPANY_STATEMENT" | "BANK_ACCOUNT" | "ONLINE_PAYMENT_ACCOUNT" | "UTILITY_ACCOUNT" | "BANK_STATEMENT" | "TAX_STATEMENT" | "WRITTEN_ATTESTATION" | "DIGITAL_ATTESTATION" | "POSTAL_VER_TRANSACTION_LOG" | "EMAIL_VER_TRANSACTION_LOG" | "PHONE_VER_TRANSACTION_LOG" | "ADDRESS_DATABASE";
         /** NorIdDeclarationConfirmRequest */
         NorIdDeclarationConfirmRequest: {
             /**
@@ -9746,6 +10260,13 @@ export interface components {
              * @description The subscriber identity (organization number or Person-ID)
              */
             identity_value?: string | null;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description The organization that owns the domain; used to brand the page
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
             /** @description The declaration status */
             status: components["schemas"]["NorIdDeclarationStatus"];
             /**
@@ -10619,6 +11140,10 @@ export interface components {
             accent_foreground?: string | null;
             /** Background */
             background?: string | null;
+            /** Body */
+            body?: string | null;
+            /** Body Foreground */
+            body_foreground?: string | null;
             /** Border */
             border?: string | null;
             /** Card */
@@ -10635,6 +11160,8 @@ export interface components {
             info?: string | null;
             /** Input */
             input?: string | null;
+            /** Link */
+            link?: string | null;
             /** Muted */
             muted?: string | null;
             /** Muted Foreground */
@@ -10649,10 +11176,24 @@ export interface components {
             secondary_foreground?: string | null;
             /** Sidebar */
             sidebar?: string | null;
+            /** Sidebar Accent */
+            sidebar_accent?: string | null;
+            /** Sidebar Accent Foreground */
+            sidebar_accent_foreground?: string | null;
+            /** Sidebar Border */
+            sidebar_border?: string | null;
             /** Sidebar Foreground */
             sidebar_foreground?: string | null;
             /** Success */
             success?: string | null;
+            /** Table */
+            table?: string | null;
+            /** Table Header */
+            table_header?: string | null;
+            /** Table Row */
+            table_row?: string | null;
+            /** Table Row Interactive */
+            table_row_interactive?: string | null;
             /** Tag Colors */
             tag_colors?: string[] | null;
             /** Warning */
@@ -11188,10 +11729,17 @@ export interface components {
         PremiumSourceType: "EPP" | "API" | "CSV" | "manual";
         /** PreviewMailReq */
         PreviewMailReq: {
+            /** @description Draft branding document to render the preview with; omit to preview with the default OpusDNS branding. Only the fields the template uses are applied, the rest are ignored. */
             branding_document?: components["schemas"]["BrandingDocument"] | null;
-            /** Language Code */
+            /**
+             * Language Code
+             * @description Locale to render in (e.g. en); falls back to the template's default
+             */
             language_code: string;
-            /** Template Name */
+            /**
+             * Template Name
+             * @description Template to render, as listed by the template catalog
+             */
             template_name: string;
         };
         /** PreviewMailRes */
@@ -11668,6 +12216,16 @@ export interface components {
          * @enum {string}
          */
         RequestHistorySortField: "method" | "path" | "status_code" | "duration" | "server_request_id" | "performed_by_type" | "performed_by_id" | "created_on" | "request_started_at" | "request_completed_at";
+        /** RequiredClaim */
+        RequiredClaim: {
+            /**
+             * Accepted Proofs
+             * @description The evidence the registry accepts for this claim; any proof is accepted when omitted
+             */
+            accepted_proofs?: components["schemas"]["NizzaVerificationProof"][] | null;
+            /** @description Which contact claim the registry requires to have been verified */
+            claim: components["schemas"]["NizzaClaim"];
+        };
         /** ReservedDomainsBase */
         ReservedDomainsBase: {
             /** @description Source of reserved domain information */
@@ -11798,6 +12356,10 @@ export interface components {
         Support: {
             /** Email */
             email?: string | null;
+            /** Help Center Url */
+            help_center_url?: string | null;
+            /** Status Url */
+            status_url?: string | null;
             /** Url */
             url?: string | null;
         };
@@ -12034,6 +12596,13 @@ export interface components {
             tlds: components["schemas"]["TldBase"][];
             /** @description Transfer policies configuration */
             transfer_policies: components["schemas"]["TransferPoliciesBase"];
+            /**
+             * Verification Policies
+             * @description Verification Policy Configuration
+             */
+            verification_policies?: {
+                [key: string]: components["schemas"]["VerificationPolicy"];
+            } | null;
             /** @description WHOIS configuration */
             whois?: components["schemas"]["WhoisBase"] | null;
         };
@@ -13168,6 +13737,12 @@ export interface components {
          * @enum {string}
          */
         VerificationDeadlineType: "dedelegation" | "deletion";
+        VerificationPolicy: components["schemas"]["EmailVerificationPolicy"] | components["schemas"]["IdentityVerificationPolicy"];
+        /**
+         * VerificationPolicyType
+         * @enum {string}
+         */
+        VerificationPolicyType: "email_verification" | "identity_verification";
         /** VerificationRegistrantDetails */
         VerificationRegistrantDetails: {
             /** Contact Id */
@@ -13226,9 +13801,9 @@ export interface components {
          * WhitelabelBrandingPatch
          * @description Public patch body. `label` moves the managed base subdomain to a different label (on plus the
          *     custom domain is untouched - it is re-pointed by its hostnames through recheck) and `enabled`
-         *     starts or stops serving - both applied asynchronously via the reconcile job, neither a purchase.
-         *     `renewal_mode` sets the subscription's auto-renew intent synchronously (EXPIRE = cancel at period
-         *     end, RENEW = un-cancel); it is not a purchase either - no price change. At least one must be given.
+         *     starts or stops serving - both applied asynchronously, neither a purchase. `renewal_mode` sets the
+         *     subscription's auto-renew intent synchronously (EXPIRE = cancel at period end, RENEW = un-cancel);
+         *     it is not a purchase either - no price change. At least one must be given.
          */
         WhitelabelBrandingPatch: {
             /**
@@ -13436,11 +14011,10 @@ export interface components {
         WhitelabelRenewalMode: "renew" | "expire";
         /**
          * WhitelabelSubscriptionInfo
-         * @description The whitelabel's billing-lifecycle state, a pass-through read from the subscription at the api
-         *     layer (product-service owns it; the branding row does not). Grouped into its own object so it
-         *     reads as one all-or-nothing block: the parent's `subscription` is null when the config has no live
-         *     subscription (still provisioning, or terminated). renewal_mode EXPIRE + expires_on is how a
-         *     cancelled whitelabel reads: "cancelled, served until expires_on".
+         * @description The whitelabel's billing-lifecycle state, grouped into its own block: the parent's
+         *     `subscription` is null when the config has no live subscription (still provisioning, or
+         *     terminated). A cancelled whitelabel reads as renewal_mode=expire with expires_on set to when
+         *     serving stops.
          */
         WhitelabelSubscriptionInfo: {
             /**
@@ -16880,13 +17454,20 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_VERIFICATION_VALIDATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 422,
+                     *       "title": "Contact Verification Validation Failed",
+                     *       "type": "contact-verification-validation"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Bad Gateway */
@@ -16987,13 +17568,13 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Bad Gateway */
@@ -20197,6 +20778,48 @@ export interface operations {
                      *       "type": "claims-service"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    get_domain_statistics_v1_domains_statistics_get: {
+        parameters: {
+            query: {
+                start_date: string;
+                end_date: string;
+                granularity?: components["schemas"]["UsageGranularity"];
+                tld?: string | null;
+                breakdown?: components["schemas"]["DomainStatisticsBreakdown"];
+                breakdown_limit?: number;
+            };
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainStatisticsResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
@@ -28409,6 +29032,228 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["WhitelabelBrandingResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_whitelabel_assets_v1_whitelabel_branding_assets_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListBrandingAssetsResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    upload_whitelabel_asset_v1_whitelabel_branding_assets_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "multipart/form-data": components["schemas"]["Body_upload_whitelabel_asset_v1_whitelabel_branding_assets_post"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BrandingAsset"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_whitelabel_asset_v1_whitelabel_branding_assets__asset_id__delete: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                asset_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_whitelabel_document_v1_whitelabel_branding_document_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BrandingDocument"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    put_whitelabel_document_v1_whitelabel_branding_document_put: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BrandingDocument"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BrandingDocument"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    put_whitelabel_document_v1_whitelabel_branding_document_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BrandingDocument"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BrandingDocument"];
                 };
             };
             /** @description Validation Error */

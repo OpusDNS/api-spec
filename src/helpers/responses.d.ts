@@ -2,6 +2,8 @@ import type {
   AiInferenceUsageSeries,
   AiInferenceUsageSummary,
   BillingTransaction,
+  BrandingAsset,
+  BrandingDocument,
   ClaimsNotices,
   ClearVanityNameserverSetDefaultRes,
   Contact,
@@ -36,6 +38,7 @@ import type {
   DomainRenew,
   DomainRestore,
   DomainSearch,
+  DomainStatistics,
   DomainSummary,
   DomainTransit,
   DomainWithdraw,
@@ -51,6 +54,7 @@ import type {
   Job,
   JobBatchRetry,
   JobBatchStatus,
+  ListBrandingAssets,
   ListVanityNameserverSetsRes,
   ListZonesReferencingSetRes,
   MailTemplateCatalogRes,
@@ -256,6 +260,10 @@ export type DELETE_VanityNameserverSetsDefault_Response = DELETE_VanityNameserve
 export type DELETE_VanityNameserverSetsDefault_Response_200 = ClearVanityNameserverSetDefaultRes;
 export type DELETE_VanityNameserverSetsDefault_Response_422 = HTTPValidationError;
 
+export type DELETE_WhitelabelBrandingAssetsByAssetId_Response = DELETE_WhitelabelBrandingAssetsByAssetId_Response_422;
+
+export type DELETE_WhitelabelBrandingAssetsByAssetId_Response_422 = HTTPValidationError;
+
 export type GET_AiConciergeContextsByContextId_Response = GET_AiConciergeContextsByContextId_Response_401 | GET_AiConciergeContextsByContextId_Response_404 | GET_AiConciergeContextsByContextId_Response_422 | GET_AiConciergeContextsByContextId_Response_502;
 
 export type GET_AiConciergeContextsByContextId_Response_401 = Problem;
@@ -387,7 +395,7 @@ export type GET_ContactsByContactIdVerifications_Response = GET_ContactsByContac
 export type GET_ContactsByContactIdVerifications_Response_200 = ContactAttestRes;
 export type GET_ContactsByContactIdVerifications_Response_401 = Problem;
 export type GET_ContactsByContactIdVerifications_Response_404 = Problem;
-export type GET_ContactsByContactIdVerifications_Response_422 = HTTPValidationError;
+export type GET_ContactsByContactIdVerifications_Response_422 = Problem;
 export type GET_ContactsByContactIdVerifications_Response_502 = Problem;
 
 export type GET_ContactsVerification_Response = GET_ContactsVerification_Response_200 | GET_ContactsVerification_Response_401 | GET_ContactsVerification_Response_404 | GET_ContactsVerification_Response_422;
@@ -567,6 +575,11 @@ export type GET_DomainsCheck_Response = GET_DomainsCheck_Response_200 | GET_Doma
 
 export type GET_DomainsCheck_Response_200 = DomainCheck;
 export type GET_DomainsCheck_Response_422 = HTTPValidationError;
+
+export type GET_DomainsStatistics_Response = GET_DomainsStatistics_Response_200 | GET_DomainsStatistics_Response_422;
+
+export type GET_DomainsStatistics_Response_200 = DomainStatistics;
+export type GET_DomainsStatistics_Response_422 = HTTPValidationError;
 
 export type GET_DomainsSummary_Response = GET_DomainsSummary_Response_200 | GET_DomainsSummary_Response_422;
 
@@ -875,6 +888,16 @@ export type GET_WhitelabelBranding_Response = GET_WhitelabelBranding_Response_20
 export type GET_WhitelabelBranding_Response_200 = WhitelabelBranding;
 export type GET_WhitelabelBranding_Response_422 = HTTPValidationError;
 
+export type GET_WhitelabelBrandingAssets_Response = GET_WhitelabelBrandingAssets_Response_200 | GET_WhitelabelBrandingAssets_Response_422;
+
+export type GET_WhitelabelBrandingAssets_Response_200 = ListBrandingAssets;
+export type GET_WhitelabelBrandingAssets_Response_422 = HTTPValidationError;
+
+export type GET_WhitelabelBrandingDocument_Response = GET_WhitelabelBrandingDocument_Response_200 | GET_WhitelabelBrandingDocument_Response_422;
+
+export type GET_WhitelabelBrandingDocument_Response_200 = BrandingDocument;
+export type GET_WhitelabelBrandingDocument_Response_422 = HTTPValidationError;
+
 export type GET_WhitelabelBrandingEmailTemplates_Response = GET_WhitelabelBrandingEmailTemplates_Response_200 | GET_WhitelabelBrandingEmailTemplates_Response_422;
 
 export type GET_WhitelabelBrandingEmailTemplates_Response_200 = MailTemplateCatalogRes;
@@ -1108,7 +1131,7 @@ export type POST_ContactsByContactIdVerificationsAttest_Response_200 = ContactAt
 export type POST_ContactsByContactIdVerificationsAttest_Response_400 = Problem;
 export type POST_ContactsByContactIdVerificationsAttest_Response_401 = Problem;
 export type POST_ContactsByContactIdVerificationsAttest_Response_404 = Problem;
-export type POST_ContactsByContactIdVerificationsAttest_Response_422 = HTTPValidationError;
+export type POST_ContactsByContactIdVerificationsAttest_Response_422 = Problem;
 export type POST_ContactsByContactIdVerificationsAttest_Response_502 = Problem;
 
 export type POST_Dns_Response = POST_Dns_Response_400 | POST_Dns_Response_422;
@@ -1446,6 +1469,16 @@ export type POST_WhitelabelBranding_Response = POST_WhitelabelBranding_Response_
 export type POST_WhitelabelBranding_Response_202 = ProductCreateRes;
 export type POST_WhitelabelBranding_Response_422 = HTTPValidationError;
 
+export type POST_WhitelabelBrandingAssets_Response = POST_WhitelabelBrandingAssets_Response_200 | POST_WhitelabelBrandingAssets_Response_422;
+
+export type POST_WhitelabelBrandingAssets_Response_200 = BrandingAsset;
+export type POST_WhitelabelBrandingAssets_Response_422 = HTTPValidationError;
+
+export type POST_WhitelabelBrandingDocument_Response = POST_WhitelabelBrandingDocument_Response_200 | POST_WhitelabelBrandingDocument_Response_422;
+
+export type POST_WhitelabelBrandingDocument_Response_200 = BrandingDocument;
+export type POST_WhitelabelBrandingDocument_Response_422 = HTTPValidationError;
+
 export type POST_WhitelabelBrandingEmailPreview_Response = POST_WhitelabelBrandingEmailPreview_Response_200 | POST_WhitelabelBrandingEmailPreview_Response_422;
 
 export type POST_WhitelabelBrandingEmailPreview_Response_200 = PreviewMailRes;
@@ -1529,3 +1562,8 @@ export type PUT_UsersByUserIdRole_Response_200 = PublicRoleAssignment;
 export type PUT_UsersByUserIdRole_Response_403 = Problem;
 export type PUT_UsersByUserIdRole_Response_404 = Problem;
 export type PUT_UsersByUserIdRole_Response_422 = HTTPValidationError;
+
+export type PUT_WhitelabelBrandingDocument_Response = PUT_WhitelabelBrandingDocument_Response_200 | PUT_WhitelabelBrandingDocument_Response_422;
+
+export type PUT_WhitelabelBrandingDocument_Response_200 = BrandingDocument;
+export type PUT_WhitelabelBrandingDocument_Response_422 = HTTPValidationError;
