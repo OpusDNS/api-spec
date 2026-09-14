@@ -31,8 +31,6 @@ Track notable updates to the OpusDNS API and developer documentation here.
     against a draft document before you save
     (`/v1/whitelabel-branding/email/preview`).
 
-### 9 September 2026
-
 - Onboarded **[`.pt`](/tld-knowledge-base/cctlds/pt)** (Portugal, operated by
   Associação DNS.PT). Published its TLD Knowledge Base page. Portuguese law
   requires the registrant's email address and phone number to be verified before
