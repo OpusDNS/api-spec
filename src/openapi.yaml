@@ -6170,7 +6170,7 @@ components:
       - tld
       title: DomainStatisticsBreakdown
       type: string
-    DomainStatisticsBreakdownResponse:
+    DomainStatisticsBreakdownRowResponse:
       properties:
         create:
           title: Create
@@ -6197,7 +6197,7 @@ components:
       - create
       - transfer
       - total
-      title: DomainStatisticsBreakdownResponse
+      title: DomainStatisticsBreakdownRowResponse
       type: object
     DomainStatisticsBucketResponse:
       properties:
@@ -6233,7 +6233,7 @@ components:
           description: Top organizations or TLDs by acquisitions in the window; empty
             unless requested
           items:
-            $ref: '#/components/schemas/DomainStatisticsBreakdownResponse'
+            $ref: '#/components/schemas/DomainStatisticsBreakdownRowResponse'
           title: Breakdown
           type: array
         buckets:
@@ -16949,7 +16949,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-14-120239
+  version: 2026-09-14-124237
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

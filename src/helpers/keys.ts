@@ -193,7 +193,7 @@ import type {
   DomainSearch,
   DomainSearchSuggestionPriceData,
   DomainSearchSuggestionWithPrice,
-  DomainStatisticsBreakdown2,
+  DomainStatisticsBreakdownRow,
   DomainStatisticsBucket,
   DomainStatistics,
   DomainStatisticsTotals,
@@ -2783,19 +2783,19 @@ export const KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE = [
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_RENEWAL_PRICE,
 ] as const satisfies (keyof DomainSearchSuggestionWithPrice)[];
 
-export const KEY_DOMAIN_STATISTICS_BREAKDOWN2_CREATE = 'create' satisfies keyof DomainStatisticsBreakdown2;
-export const KEY_DOMAIN_STATISTICS_BREAKDOWN2_KEY = 'key' satisfies keyof DomainStatisticsBreakdown2;
-export const KEY_DOMAIN_STATISTICS_BREAKDOWN2_LABEL = 'label' satisfies keyof DomainStatisticsBreakdown2;
-export const KEY_DOMAIN_STATISTICS_BREAKDOWN2_TOTAL = 'total' satisfies keyof DomainStatisticsBreakdown2;
-export const KEY_DOMAIN_STATISTICS_BREAKDOWN2_TRANSFER = 'transfer' satisfies keyof DomainStatisticsBreakdown2;
+export const KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_CREATE = 'create' satisfies keyof DomainStatisticsBreakdownRow;
+export const KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_KEY = 'key' satisfies keyof DomainStatisticsBreakdownRow;
+export const KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_LABEL = 'label' satisfies keyof DomainStatisticsBreakdownRow;
+export const KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_TOTAL = 'total' satisfies keyof DomainStatisticsBreakdownRow;
+export const KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_TRANSFER = 'transfer' satisfies keyof DomainStatisticsBreakdownRow;
 
-export const KEYS_DOMAIN_STATISTICS_BREAKDOWN2 = [
-  KEY_DOMAIN_STATISTICS_BREAKDOWN2_CREATE,
-  KEY_DOMAIN_STATISTICS_BREAKDOWN2_KEY,
-  KEY_DOMAIN_STATISTICS_BREAKDOWN2_LABEL,
-  KEY_DOMAIN_STATISTICS_BREAKDOWN2_TOTAL,
-  KEY_DOMAIN_STATISTICS_BREAKDOWN2_TRANSFER,
-] as const satisfies (keyof DomainStatisticsBreakdown2)[];
+export const KEYS_DOMAIN_STATISTICS_BREAKDOWN_ROW = [
+  KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_CREATE,
+  KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_KEY,
+  KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_LABEL,
+  KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_TOTAL,
+  KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_TRANSFER,
+] as const satisfies (keyof DomainStatisticsBreakdownRow)[];
 
 export const KEY_DOMAIN_STATISTICS_BUCKET_CREATE = 'create' satisfies keyof DomainStatisticsBucket;
 export const KEY_DOMAIN_STATISTICS_BUCKET_PARTIAL = 'partial' satisfies keyof DomainStatisticsBucket;

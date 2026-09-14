@@ -7200,8 +7200,8 @@ export interface components {
          * @enum {string}
          */
         DomainStatisticsBreakdown: "none" | "organization" | "tld";
-        /** DomainStatisticsBreakdownResponse */
-        DomainStatisticsBreakdownResponse: {
+        /** DomainStatisticsBreakdownRowResponse */
+        DomainStatisticsBreakdownRowResponse: {
             /** Create */
             create: number;
             /**
@@ -7249,7 +7249,7 @@ export interface components {
              * Breakdown
              * @description Top organizations or TLDs by acquisitions in the window; empty unless requested
              */
-            breakdown: components["schemas"]["DomainStatisticsBreakdownResponse"][];
+            breakdown: components["schemas"]["DomainStatisticsBreakdownRowResponse"][];
             /**
              * Buckets
              * @description One entry per bucket the window touches, oldest first, including empty buckets
