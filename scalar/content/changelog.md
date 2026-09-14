@@ -9,12 +9,14 @@ Track notable updates to the OpusDNS API and developer documentation here.
 - Added **domain statistics**:
   [`GET /v1/domains/statistics`](/api-reference#tag/domain/GET/v1/domains/statistics)
   returns how many domains your organization and its sub-organizations
-  registered or transferred to OpusDNS per day, week or month in a window of up
-  to 400 days, optionally restricted to one TLD (`tld=com`) or broken down by
-  TLD (`breakdown=tld`). Every bucket the window touches is present, so the
-  series can be charted as is; a bucket marked `partial` reaches outside the
-  window. Domains held at a connected external registrar are not counted yet.
-  Complements [`GET /v1/domains/summary`](/api-reference#tag/domain/GET/v1/domains/summary),
+  created or transferred to OpusDNS per day, week or month (`granularity`)
+  between `start_date` and `end_date` (inclusive, up to 400 days), optionally
+  restricted to one TLD (`tld=com`) or broken down by sub-organization or TLD
+  (`breakdown=organization|tld`). Every bucket the window touches is present,
+  so the series can be charted as is; a bucket marked `partial` reaches
+  outside the window. Domains held at a connected external registrar are not
+  counted yet. Complements
+  [`GET /v1/domains/summary`](/api-reference#tag/domain/GET/v1/domains/summary),
   which reports the current portfolio.
 
 ### 7 September 2026
