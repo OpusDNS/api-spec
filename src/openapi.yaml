@@ -11756,6 +11756,18 @@ components:
             type: string
           - type: 'null'
           title: Background
+        body:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Body
+        body_foreground:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Body Foreground
         border:
           anyOf:
           - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
@@ -11806,6 +11818,12 @@ components:
             type: string
           - type: 'null'
           title: Input
+        link:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Link
         muted:
           anyOf:
           - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
@@ -11848,6 +11866,24 @@ components:
             type: string
           - type: 'null'
           title: Sidebar
+        sidebar_accent:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Sidebar Accent
+        sidebar_accent_foreground:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Sidebar Accent Foreground
+        sidebar_border:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Sidebar Border
         sidebar_foreground:
           anyOf:
           - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
@@ -11860,6 +11896,30 @@ components:
             type: string
           - type: 'null'
           title: Success
+        table:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Table
+        table_header:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Table Header
+        table_row:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Table Row
+        table_row_interactive:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Table Row Interactive
         tag_colors:
           anyOf:
           - items:
@@ -16728,7 +16788,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-14-085040
+  version: 2026-09-14-103507
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

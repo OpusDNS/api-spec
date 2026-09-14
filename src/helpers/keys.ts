@@ -4605,6 +4605,8 @@ export const KEYS_PAGINATION_METADATA_DTO = [
 export const KEY_PALETTE_ACCENT = 'accent' satisfies keyof Palette;
 export const KEY_PALETTE_ACCENT_FOREGROUND = 'accent_foreground' satisfies keyof Palette;
 export const KEY_PALETTE_BACKGROUND = 'background' satisfies keyof Palette;
+export const KEY_PALETTE_BODY = 'body' satisfies keyof Palette;
+export const KEY_PALETTE_BODY_FOREGROUND = 'body_foreground' satisfies keyof Palette;
 export const KEY_PALETTE_BORDER = 'border' satisfies keyof Palette;
 export const KEY_PALETTE_CARD = 'card' satisfies keyof Palette;
 export const KEY_PALETTE_CARD_FOREGROUND = 'card_foreground' satisfies keyof Palette;
@@ -4613,6 +4615,7 @@ export const KEY_PALETTE_DANGER = 'danger' satisfies keyof Palette;
 export const KEY_PALETTE_FOREGROUND = 'foreground' satisfies keyof Palette;
 export const KEY_PALETTE_INFO = 'info' satisfies keyof Palette;
 export const KEY_PALETTE_INPUT = 'input' satisfies keyof Palette;
+export const KEY_PALETTE_LINK = 'link' satisfies keyof Palette;
 export const KEY_PALETTE_MUTED = 'muted' satisfies keyof Palette;
 export const KEY_PALETTE_MUTED_FOREGROUND = 'muted_foreground' satisfies keyof Palette;
 export const KEY_PALETTE_PRIMARY = 'primary' satisfies keyof Palette;
@@ -4620,8 +4623,15 @@ export const KEY_PALETTE_PRIMARY_FOREGROUND = 'primary_foreground' satisfies key
 export const KEY_PALETTE_SECONDARY = 'secondary' satisfies keyof Palette;
 export const KEY_PALETTE_SECONDARY_FOREGROUND = 'secondary_foreground' satisfies keyof Palette;
 export const KEY_PALETTE_SIDEBAR = 'sidebar' satisfies keyof Palette;
+export const KEY_PALETTE_SIDEBAR_ACCENT = 'sidebar_accent' satisfies keyof Palette;
+export const KEY_PALETTE_SIDEBAR_ACCENT_FOREGROUND = 'sidebar_accent_foreground' satisfies keyof Palette;
+export const KEY_PALETTE_SIDEBAR_BORDER = 'sidebar_border' satisfies keyof Palette;
 export const KEY_PALETTE_SIDEBAR_FOREGROUND = 'sidebar_foreground' satisfies keyof Palette;
 export const KEY_PALETTE_SUCCESS = 'success' satisfies keyof Palette;
+export const KEY_PALETTE_TABLE = 'table' satisfies keyof Palette;
+export const KEY_PALETTE_TABLE_HEADER = 'table_header' satisfies keyof Palette;
+export const KEY_PALETTE_TABLE_ROW = 'table_row' satisfies keyof Palette;
+export const KEY_PALETTE_TABLE_ROW_INTERACTIVE = 'table_row_interactive' satisfies keyof Palette;
 export const KEY_PALETTE_TAG_COLORS = 'tag_colors' satisfies keyof Palette;
 export const KEY_PALETTE_WARNING = 'warning' satisfies keyof Palette;
 
@@ -4629,6 +4639,8 @@ export const KEYS_PALETTE = [
   KEY_PALETTE_ACCENT,
   KEY_PALETTE_ACCENT_FOREGROUND,
   KEY_PALETTE_BACKGROUND,
+  KEY_PALETTE_BODY,
+  KEY_PALETTE_BODY_FOREGROUND,
   KEY_PALETTE_BORDER,
   KEY_PALETTE_CARD,
   KEY_PALETTE_CARD_FOREGROUND,
@@ -4637,6 +4649,7 @@ export const KEYS_PALETTE = [
   KEY_PALETTE_FOREGROUND,
   KEY_PALETTE_INFO,
   KEY_PALETTE_INPUT,
+  KEY_PALETTE_LINK,
   KEY_PALETTE_MUTED,
   KEY_PALETTE_MUTED_FOREGROUND,
   KEY_PALETTE_PRIMARY,
@@ -4644,8 +4657,15 @@ export const KEYS_PALETTE = [
   KEY_PALETTE_SECONDARY,
   KEY_PALETTE_SECONDARY_FOREGROUND,
   KEY_PALETTE_SIDEBAR,
+  KEY_PALETTE_SIDEBAR_ACCENT,
+  KEY_PALETTE_SIDEBAR_ACCENT_FOREGROUND,
+  KEY_PALETTE_SIDEBAR_BORDER,
   KEY_PALETTE_SIDEBAR_FOREGROUND,
   KEY_PALETTE_SUCCESS,
+  KEY_PALETTE_TABLE,
+  KEY_PALETTE_TABLE_HEADER,
+  KEY_PALETTE_TABLE_ROW,
+  KEY_PALETTE_TABLE_ROW_INTERACTIVE,
   KEY_PALETTE_TAG_COLORS,
   KEY_PALETTE_WARNING,
 ] as const satisfies (keyof Palette)[];

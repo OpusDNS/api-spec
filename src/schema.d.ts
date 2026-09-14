@@ -11002,6 +11002,10 @@ export interface components {
             accent_foreground?: string | null;
             /** Background */
             background?: string | null;
+            /** Body */
+            body?: string | null;
+            /** Body Foreground */
+            body_foreground?: string | null;
             /** Border */
             border?: string | null;
             /** Card */
@@ -11018,6 +11022,8 @@ export interface components {
             info?: string | null;
             /** Input */
             input?: string | null;
+            /** Link */
+            link?: string | null;
             /** Muted */
             muted?: string | null;
             /** Muted Foreground */
@@ -11032,10 +11038,24 @@ export interface components {
             secondary_foreground?: string | null;
             /** Sidebar */
             sidebar?: string | null;
+            /** Sidebar Accent */
+            sidebar_accent?: string | null;
+            /** Sidebar Accent Foreground */
+            sidebar_accent_foreground?: string | null;
+            /** Sidebar Border */
+            sidebar_border?: string | null;
             /** Sidebar Foreground */
             sidebar_foreground?: string | null;
             /** Success */
             success?: string | null;
+            /** Table */
+            table?: string | null;
+            /** Table Header */
+            table_header?: string | null;
+            /** Table Row */
+            table_row?: string | null;
+            /** Table Row Interactive */
+            table_row_interactive?: string | null;
             /** Tag Colors */
             tag_colors?: string[] | null;
             /** Warning */
