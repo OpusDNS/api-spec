@@ -907,6 +907,10 @@ components:
           type: string
         claim:
           $ref: '#/components/schemas/ContactVerificationClaim'
+        eid:
+          anyOf:
+          - $ref: '#/components/schemas/ContactVerificationEidInformation'
+          - type: 'null'
         method:
           $ref: '#/components/schemas/ContactVerificationMethod'
         proof:
@@ -1888,6 +1892,18 @@ components:
       - LEGAL_ENTITY
       title: ContactVerificationClaim
       type: string
+    ContactVerificationEidInformation:
+      properties:
+        eid_scheme:
+          title: Eid Scheme
+          type: string
+        level_of_assurance:
+          $ref: '#/components/schemas/LevelOfAssurance'
+      required:
+      - eid_scheme
+      - level_of_assurance
+      title: ContactVerificationEidInformation
+      type: object
     ContactVerificationEmailResponse:
       properties:
         canceled_on:
@@ -2052,6 +2068,10 @@ components:
           title: Attestation Reference
         claim:
           $ref: '#/components/schemas/ContactVerificationClaim'
+        eid:
+          anyOf:
+          - $ref: '#/components/schemas/ContactVerificationEidInformation'
+          - type: 'null'
         expires_on:
           anyOf:
           - format: date-time
@@ -9806,6 +9826,13 @@ components:
       - confirmation
       title: LegalRequirementType
       type: string
+    LevelOfAssurance:
+      enum:
+      - HIGH
+      - LOW
+      - SUBSTANTIAL
+      title: LevelOfAssurance
+      type: string
     ListBrandingAssetsResponse:
       properties:
         assets:
@@ -16788,7 +16815,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-14-103507
+  version: 2026-09-14-110602
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

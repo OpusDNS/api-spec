@@ -3750,6 +3750,7 @@ export interface components {
             /** Attestation Reference */
             attestation_reference: string;
             claim: components["schemas"]["ContactVerificationClaim"];
+            eid?: components["schemas"]["ContactVerificationEidInformation"] | null;
             method: components["schemas"]["ContactVerificationMethod"];
             proof: components["schemas"]["ContactVerificationProof"];
         };
@@ -4457,6 +4458,12 @@ export interface components {
          * @enum {string}
          */
         ContactVerificationClaim: "NAME" | "ADDRESS" | "EMAIL" | "PHONE" | "LEGAL_ENTITY";
+        /** ContactVerificationEidInformation */
+        ContactVerificationEidInformation: {
+            /** Eid Scheme */
+            eid_scheme: string;
+            level_of_assurance: components["schemas"]["LevelOfAssurance"];
+        };
         /** ContactVerificationEmailResponse */
         ContactVerificationEmailResponse: {
             /**
@@ -4569,6 +4576,7 @@ export interface components {
             /** Attestation Reference */
             attestation_reference?: string | null;
             claim: components["schemas"]["ContactVerificationClaim"];
+            eid?: components["schemas"]["ContactVerificationEidInformation"] | null;
             /** Expires On */
             expires_on?: Date | null;
             method?: components["schemas"]["ContactVerificationMethod"] | null;
@@ -9731,6 +9739,11 @@ export interface components {
          * @enum {string}
          */
         LegalRequirementType: "notice" | "confirmation";
+        /**
+         * LevelOfAssurance
+         * @enum {string}
+         */
+        LevelOfAssurance: "HIGH" | "LOW" | "SUBSTANTIAL";
         /** ListBrandingAssetsResponse */
         ListBrandingAssetsResponse: {
             /**

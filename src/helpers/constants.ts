@@ -65,6 +65,7 @@ import type {
   LaunchPhaseType,
   LegalRequirementOperationType,
   LegalRequirementType,
+  LevelOfAssurance,
   LocalPresenceRequirementType,
   MailTemplateCategory,
   MemoryFactKind,
@@ -1243,6 +1244,18 @@ export const LEGAL_REQUIREMENT_TYPE_VALUES = [
   'notice',
   'confirmation',
 ] as const satisfies ReadonlyArray<LegalRequirementType>;
+
+export const LEVEL_OF_ASSURANCE = {
+  HIGH: "HIGH",
+  LOW: "LOW",
+  SUBSTANTIAL: "SUBSTANTIAL",
+} as const satisfies Record<string, LevelOfAssurance>;
+
+export const LEVEL_OF_ASSURANCE_VALUES = [
+  'HIGH',
+  'LOW',
+  'SUBSTANTIAL',
+] as const satisfies ReadonlyArray<LevelOfAssurance>;
 
 export const LOCAL_PRESENCE_REQUIREMENT_TYPE = {
   PHYSICAL_ADDRESS: "physical_address",

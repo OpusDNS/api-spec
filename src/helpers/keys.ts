@@ -47,6 +47,7 @@ import type {
   ContactHandle,
   Contact,
   ContactVerificationApi,
+  ContactVerificationEidInformation,
   ContactVerificationEmail,
   ContactVerification,
   ContactVerificationStatus,
@@ -798,12 +799,14 @@ export const KEYS_CONTACT_ATTEST_RES = [
 
 export const KEY_CONTACT_ATTEST_VERIFICATION_REQ_ATTESTATION_REFERENCE = 'attestation_reference' satisfies keyof ContactAttestVerificationReq;
 export const KEY_CONTACT_ATTEST_VERIFICATION_REQ_CLAIM = 'claim' satisfies keyof ContactAttestVerificationReq;
+export const KEY_CONTACT_ATTEST_VERIFICATION_REQ_EID = 'eid' satisfies keyof ContactAttestVerificationReq;
 export const KEY_CONTACT_ATTEST_VERIFICATION_REQ_METHOD = 'method' satisfies keyof ContactAttestVerificationReq;
 export const KEY_CONTACT_ATTEST_VERIFICATION_REQ_PROOF = 'proof' satisfies keyof ContactAttestVerificationReq;
 
 export const KEYS_CONTACT_ATTEST_VERIFICATION_REQ = [
   KEY_CONTACT_ATTEST_VERIFICATION_REQ_ATTESTATION_REFERENCE,
   KEY_CONTACT_ATTEST_VERIFICATION_REQ_CLAIM,
+  KEY_CONTACT_ATTEST_VERIFICATION_REQ_EID,
   KEY_CONTACT_ATTEST_VERIFICATION_REQ_METHOD,
   KEY_CONTACT_ATTEST_VERIFICATION_REQ_PROOF,
 ] as const satisfies (keyof ContactAttestVerificationReq)[];
@@ -1122,6 +1125,14 @@ export const KEYS_CONTACT_VERIFICATION_API = [
   KEY_CONTACT_VERIFICATION_API_VERIFIED_ON,
 ] as const satisfies (keyof ContactVerificationApi)[];
 
+export const KEY_CONTACT_VERIFICATION_EID_INFORMATION_EID_SCHEME = 'eid_scheme' satisfies keyof ContactVerificationEidInformation;
+export const KEY_CONTACT_VERIFICATION_EID_INFORMATION_LEVEL_OF_ASSURANCE = 'level_of_assurance' satisfies keyof ContactVerificationEidInformation;
+
+export const KEYS_CONTACT_VERIFICATION_EID_INFORMATION = [
+  KEY_CONTACT_VERIFICATION_EID_INFORMATION_EID_SCHEME,
+  KEY_CONTACT_VERIFICATION_EID_INFORMATION_LEVEL_OF_ASSURANCE,
+] as const satisfies (keyof ContactVerificationEidInformation)[];
+
 export const KEY_CONTACT_VERIFICATION_EMAIL_CANCELED_ON = 'canceled_on' satisfies keyof ContactVerificationEmail;
 export const KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_ID = 'contact_id' satisfies keyof ContactVerificationEmail;
 export const KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_VERIFICATION_ID = 'contact_verification_id' satisfies keyof ContactVerificationEmail;
@@ -1164,6 +1175,7 @@ export const KEYS_CONTACT_VERIFICATION = [
 
 export const KEY_CONTACT_VERIFICATION_STATUS_ATTESTATION_REFERENCE = 'attestation_reference' satisfies keyof ContactVerificationStatus;
 export const KEY_CONTACT_VERIFICATION_STATUS_CLAIM = 'claim' satisfies keyof ContactVerificationStatus;
+export const KEY_CONTACT_VERIFICATION_STATUS_EID = 'eid' satisfies keyof ContactVerificationStatus;
 export const KEY_CONTACT_VERIFICATION_STATUS_EXPIRES_ON = 'expires_on' satisfies keyof ContactVerificationStatus;
 export const KEY_CONTACT_VERIFICATION_STATUS_METHOD = 'method' satisfies keyof ContactVerificationStatus;
 export const KEY_CONTACT_VERIFICATION_STATUS_PROOF = 'proof' satisfies keyof ContactVerificationStatus;
@@ -1173,6 +1185,7 @@ export const KEY_CONTACT_VERIFICATION_STATUS_VERIFIED_ON = 'verified_on' satisfi
 export const KEYS_CONTACT_VERIFICATION_STATUS = [
   KEY_CONTACT_VERIFICATION_STATUS_ATTESTATION_REFERENCE,
   KEY_CONTACT_VERIFICATION_STATUS_CLAIM,
+  KEY_CONTACT_VERIFICATION_STATUS_EID,
   KEY_CONTACT_VERIFICATION_STATUS_EXPIRES_ON,
   KEY_CONTACT_VERIFICATION_STATUS_METHOD,
   KEY_CONTACT_VERIFICATION_STATUS_PROOF,
