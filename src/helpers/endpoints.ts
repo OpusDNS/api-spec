@@ -56,6 +56,7 @@ export const DOMAIN_SEARCH_SUGGEST_ENDPOINT = '/v1/domain-search/suggest';
 export const DOMAINS_ENDPOINT = '/v1/domains';
 export const DOMAINS_CHECK_ENDPOINT = '/v1/domains/check';
 export const DOMAINS_CLAIMS_NOTICES_ENDPOINT = '/v1/domains/claims-notices';
+export const DOMAINS_STATISTICS_ENDPOINT = '/v1/domains/statistics';
 export const DOMAINS_SUMMARY_ENDPOINT = '/v1/domains/summary';
 export const DOMAINS_TLD_SPECIFIC_AT_BY_DOMAIN_REFERENCE_WITHDRAW_ENDPOINT = '/v1/domains/tld-specific/at/{domain_reference}/withdraw';
 export const DOMAINS_TLD_SPECIFIC_BE_BY_DOMAIN_REFERENCE_AUTH_CODE_REQUEST_ENDPOINT = '/v1/domains/tld-specific/be/{domain_reference}/auth_code/request';
@@ -215,6 +216,7 @@ export type Endpoint =
   | typeof DOMAINS_ENDPOINT
   | typeof DOMAINS_CHECK_ENDPOINT
   | typeof DOMAINS_CLAIMS_NOTICES_ENDPOINT
+  | typeof DOMAINS_STATISTICS_ENDPOINT
   | typeof DOMAINS_SUMMARY_ENDPOINT
   | typeof DOMAINS_TLD_SPECIFIC_AT_BY_DOMAIN_REFERENCE_WITHDRAW_ENDPOINT
   | typeof DOMAINS_TLD_SPECIFIC_BE_BY_DOMAIN_REFERENCE_AUTH_CODE_REQUEST_ENDPOINT

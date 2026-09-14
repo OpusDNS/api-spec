@@ -1176,6 +1176,30 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/domains/statistics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get domain statistics
+         * @description Counts the domains your organization acquired in a window of whole days, split into creates (new registrations) and inbound transfers and bucketed by the requested granularity.
+         *
+         *     Counts cover your organization and its sub-organizations, like the domain summary; `breakdown=organization` shows how they divide between them. A create is counted on the day OpusDNS took the order and a transfer on the day it completed, so domains that have since been deleted still appear in the window they were acquired in. Imported domains count as creates on the day they were imported. Domains held at a connected external registrar are not included.
+         *
+         *     Every bucket the window touches is present, so the series can be charted as is. A bucket marked `partial` reaches outside the window and covers only part of its span.
+         */
+        get: operations["get_domain_statistics_v1_domains_statistics_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/domains/summary": {
         parameters: {
             query?: never;
@@ -3750,6 +3774,7 @@ export interface components {
             /** Attestation Reference */
             attestation_reference: string;
             claim: components["schemas"]["ContactVerificationClaim"];
+            eid?: components["schemas"]["ContactVerificationEidInformation"] | null;
             method: components["schemas"]["ContactVerificationMethod"];
             proof: components["schemas"]["ContactVerificationProof"];
         };
@@ -4457,6 +4482,12 @@ export interface components {
          * @enum {string}
          */
         ContactVerificationClaim: "NAME" | "ADDRESS" | "EMAIL" | "PHONE" | "LEGAL_ENTITY";
+        /** ContactVerificationEidInformation */
+        ContactVerificationEidInformation: {
+            /** Eid Scheme */
+            eid_scheme: string;
+            level_of_assurance: components["schemas"]["LevelOfAssurance"];
+        };
         /** ContactVerificationEmailResponse */
         ContactVerificationEmailResponse: {
             /**
@@ -4569,6 +4600,7 @@ export interface components {
             /** Attestation Reference */
             attestation_reference?: string | null;
             claim: components["schemas"]["ContactVerificationClaim"];
+            eid?: components["schemas"]["ContactVerificationEidInformation"] | null;
             /** Expires On */
             expires_on?: Date | null;
             method?: components["schemas"]["ContactVerificationMethod"] | null;
@@ -7164,6 +7196,107 @@ export interface components {
          */
         DomainSortField: "name" | "created_on" | "updated_on" | "expires_on" | "registered_on" | "transferred_on";
         /**
+         * DomainStatisticsBreakdown
+         * @enum {string}
+         */
+        DomainStatisticsBreakdown: "none" | "organization" | "tld";
+        /** DomainStatisticsBreakdownRowResponse */
+        DomainStatisticsBreakdownRowResponse: {
+            /** Create */
+            create: number;
+            /**
+             * Key
+             * @description Organization id, or the TLD without the leading dot
+             */
+            key: string;
+            /**
+             * Label
+             * @description Organization name; absent for TLD rows
+             */
+            label: string | null;
+            /** Total */
+            total: number;
+            /** Transfer */
+            transfer: number;
+        };
+        /** DomainStatisticsBucketResponse */
+        DomainStatisticsBucketResponse: {
+            /**
+             * Create
+             * @description Domains created in this bucket
+             */
+            create: number;
+            /**
+             * Partial
+             * @description The bucket reaches outside the requested window, so its counts cover only part of its span and must not be read as a rise or fall against its neighbours
+             */
+            partial: boolean;
+            /**
+             * Period Start
+             * Format: date
+             * @description First day of the bucket (UTC)
+             */
+            period_start: string;
+            /**
+             * Transfer
+             * @description Domains transferred in during this bucket
+             */
+            transfer: number;
+        };
+        /** DomainStatisticsResponse */
+        DomainStatisticsResponse: {
+            /**
+             * Breakdown
+             * @description Top organizations or TLDs by acquisitions in the window; empty unless requested
+             */
+            breakdown: components["schemas"]["DomainStatisticsBreakdownRowResponse"][];
+            /**
+             * Buckets
+             * @description One entry per bucket the window touches, oldest first, including empty buckets
+             */
+            buckets: components["schemas"]["DomainStatisticsBucketResponse"][];
+            /**
+             * End Date
+             * Format: date
+             * @description Last day of the window, inclusive
+             */
+            end_date: string;
+            /** @description Time-bucket size of the series */
+            granularity: components["schemas"]["UsageGranularity"];
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description The organization the counts are scoped to
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /**
+             * Start Date
+             * Format: date
+             * @description First day of the window, inclusive
+             */
+            start_date: string;
+            totals: components["schemas"]["DomainStatisticsTotalsResponse"];
+        };
+        /** DomainStatisticsTotalsResponse */
+        DomainStatisticsTotalsResponse: {
+            /**
+             * Create
+             * @description Domains created (newly registered) in the window
+             */
+            create: number;
+            /**
+             * Total
+             * @description Created plus transferred
+             */
+            total: number;
+            /**
+             * Transfer
+             * @description Domains transferred to OpusDNS in the window
+             */
+            transfer: number;
+        };
+        /**
          * DomainStatus
          * @enum {string}
          */
@@ -9731,6 +9864,11 @@ export interface components {
          * @enum {string}
          */
         LegalRequirementType: "notice" | "confirmation";
+        /**
+         * LevelOfAssurance
+         * @enum {string}
+         */
+        LevelOfAssurance: "HIGH" | "LOW" | "SUBSTANTIAL";
         /** ListBrandingAssetsResponse */
         ListBrandingAssetsResponse: {
             /**
@@ -20640,6 +20778,48 @@ export interface operations {
                      *       "type": "claims-service"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    get_domain_statistics_v1_domains_statistics_get: {
+        parameters: {
+            query: {
+                start_date: string;
+                end_date: string;
+                granularity?: components["schemas"]["UsageGranularity"];
+                tld?: string | null;
+                breakdown?: components["schemas"]["DomainStatisticsBreakdown"];
+                breakdown_limit?: number;
+            };
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainStatisticsResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

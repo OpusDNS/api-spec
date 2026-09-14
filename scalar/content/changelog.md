@@ -28,6 +28,31 @@ Track notable updates to the OpusDNS API and developer documentation here.
   [`GET /v1/domains/summary`](/api-reference#tag/domain/GET/v1/domains/summary),
   which reports the current portfolio.
 
+- Launched **whitelabel branding**! Serve the OpusDNS dashboard and its
+  transactional emails under your own brand - name, logo, colors, fonts, and
+  support links - on a hostname you choose, so your customers never see OpusDNS.
+  Manage it end to end from `/v1/whitelabel-branding`. See
+  [Whitelabel branding](/account/whitelabel).
+
+  - **Two tiers.** The **base** tier serves you on a subdomain of an
+    OpusDNS-owned zone - nothing needed but a name. The **plus** tier serves you
+    on your own domain for a fully unbranded experience, verified and provisioned
+    for you (with `create_zone` to stand the DNS zone up if needed).
+
+  - **A branding document** (`/v1/whitelabel-branding/document`) drives the look
+    and content: your `brand` name and logos, a `theme` with light/dark color
+    palettes, radius, and fonts, and `content` for support and legal links,
+    footer, email signature, and per-template email copy. Every field is
+    optional and falls back to the OpusDNS defaults. The palette covers brand,
+    surface, sidebar, table, status, and chart colors - including
+    `sidebar_accent`, `sidebar_border`, `table_header`, `table_row`, `body`, and
+    `link`. See [Palette colors](/account/whitelabel#palette-colors).
+
+  - **Assets and email previews.** Upload your logos and fonts
+    (`/v1/whitelabel-branding/assets`) and preview any transactional email
+    against a draft document before you save
+    (`/v1/whitelabel-branding/email/preview`).
+    
 ### 7 September 2026
 
 - Added **inline contact attributes to the domain response**: each entry of

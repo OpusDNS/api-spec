@@ -40,6 +40,7 @@ import type {
   DomainIncludeField,
   DomainListIncludeField,
   DomainSortField,
+  DomainStatisticsBreakdown,
   DomainStatus,
   EmailForwardLogSortField,
   EmailForwardLogStatus,
@@ -65,6 +66,7 @@ import type {
   LaunchPhaseType,
   LegalRequirementOperationType,
   LegalRequirementType,
+  LevelOfAssurance,
   LocalPresenceRequirementType,
   MailTemplateCategory,
   MemoryFactKind,
@@ -818,6 +820,18 @@ export const DOMAIN_SORT_FIELD_VALUES = [
   'transferred_on',
 ] as const satisfies ReadonlyArray<DomainSortField>;
 
+export const DOMAIN_STATISTICS_BREAKDOWN = {
+  NONE: "none",
+  ORGANIZATION: "organization",
+  TLD: "tld",
+} as const satisfies Record<string, DomainStatisticsBreakdown>;
+
+export const DOMAIN_STATISTICS_BREAKDOWN_VALUES = [
+  'none',
+  'organization',
+  'tld',
+] as const satisfies ReadonlyArray<DomainStatisticsBreakdown>;
+
 export const DOMAIN_STATUS = {
   OK: "ok",
   SERVER_TRANSFER_PROHIBITED: "serverTransferProhibited",
@@ -1243,6 +1257,18 @@ export const LEGAL_REQUIREMENT_TYPE_VALUES = [
   'notice',
   'confirmation',
 ] as const satisfies ReadonlyArray<LegalRequirementType>;
+
+export const LEVEL_OF_ASSURANCE = {
+  HIGH: "HIGH",
+  LOW: "LOW",
+  SUBSTANTIAL: "SUBSTANTIAL",
+} as const satisfies Record<string, LevelOfAssurance>;
+
+export const LEVEL_OF_ASSURANCE_VALUES = [
+  'HIGH',
+  'LOW',
+  'SUBSTANTIAL',
+] as const satisfies ReadonlyArray<LevelOfAssurance>;
 
 export const LOCAL_PRESENCE_REQUIREMENT_TYPE = {
   PHYSICAL_ADDRESS: "physical_address",
