@@ -403,6 +403,7 @@ components:
       enum:
       - create
       - transfer
+      - import
       - renew
       - restore
       - trade
@@ -423,6 +424,7 @@ components:
       - whitelabel_branding
       - whitelabel_branding_plus
       - ras_domain_lifecycle
+      - ams_domain_lifecycle
       title: BillingTransactionProductType
       type: string
     BillingTransactionResponse:
@@ -837,6 +839,24 @@ components:
       - error
       title: CommandError
       type: object
+    Communication:
+      properties:
+        timedelta:
+          description: The Timedeltas of when to send a verification notice of the
+            Communication Channel [+0D, +4D, +12D, +15D, +27D]
+          items:
+            type: string
+          title: Timedelta
+          type: array
+        type:
+          description: Which Communication channel is used for the Verification [email]
+          title: Type
+          type: string
+      required:
+      - type
+      - timedelta
+      title: Communication
+      type: object
     ComplianceStatus:
       enum:
       - preparing
@@ -887,6 +907,10 @@ components:
           type: string
         claim:
           $ref: '#/components/schemas/ContactVerificationClaim'
+        eid:
+          anyOf:
+          - $ref: '#/components/schemas/ContactVerificationEidInformation'
+          - type: 'null'
         method:
           $ref: '#/components/schemas/ContactVerificationMethod'
         proof:
@@ -1868,6 +1892,18 @@ components:
       - LEGAL_ENTITY
       title: ContactVerificationClaim
       type: string
+    ContactVerificationEidInformation:
+      properties:
+        eid_scheme:
+          title: Eid Scheme
+          type: string
+        level_of_assurance:
+          $ref: '#/components/schemas/LevelOfAssurance'
+      required:
+      - eid_scheme
+      - level_of_assurance
+      title: ContactVerificationEidInformation
+      type: object
     ContactVerificationEmailResponse:
       properties:
         canceled_on:
@@ -1955,6 +1991,7 @@ components:
       - DIGITAL_ATTESTATION
       - POSTAL_VER_TRANSACTION_LOG
       - EMAIL_VER_TRANSACTION_LOG
+      - PHONE_VER_TRANSACTION_LOG
       - ADDRESS_DATABASE
       title: ContactVerificationProof
       type: string
@@ -2031,6 +2068,10 @@ components:
           title: Attestation Reference
         claim:
           $ref: '#/components/schemas/ContactVerificationClaim'
+        eid:
+          anyOf:
+          - $ref: '#/components/schemas/ContactVerificationEidInformation'
+          - type: 'null'
         expires_on:
           anyOf:
           - format: date-time
@@ -4048,18 +4089,21 @@ components:
             \ `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects\
             \ the\n  period of the next renewal; the current expiry date does not\
             \ move. On transfer-in without `period` it also sets the\n  period added\
-            \ by the transfer. When the TLD has no month-unit renewal period, `monthly`\
-            \ is rejected on update and on\n  a transfer-in that omits `period`, and\
-            \ ignored at renewal.\n- `music_registrant_attestation`: `true`. `.music`\
-            \ registration.\n- `nic_it_compliance_confirmation`: `true`. `.it` registration\
-            \ and transfer.\n- `travel_industry_acknowledgement`: `true`. `.travel`\
-            \ registration.\n- `internet_ee_registrant_agreement`: `true`. `.ee` registration.\n\
-            - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant\
-            \ change.\n- `de_general_request_contact`, `de_abuse_contact`: id of a\
-            \ contact whose `.de` attribute set has `DE_CONTACT_TYPE` =\n  `REQUEST`.\
-            \ `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\nWritten by\
-            \ the platform and rejected if supplied: `verification_required`, `promotion`,\
-            \ `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
+            \ by the transfer. Omitted on create or transfer-in, it follows the term\
+            \ being bought: a one-month\n  `period` renews monthly and anything else\
+            \ yearly, except a longer month-unit term, which leaves it unset so that\
+            \ the\n  product's default billing period decides. Supplying `monthly`\
+            \ where the TLD sells no one-month renewal is rejected on\n  create, transfer-in\
+            \ and update; a `monthly` stored before that rule applied is ignored at\
+            \ renewal.\n- `music_registrant_attestation`: `true`. `.music` registration.\n\
+            - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.\n\
+            - `travel_industry_acknowledgement`: `true`. `.travel` registration.\n\
+            - `internet_ee_registrant_agreement`: `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
+            \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
+            \nWritten by the platform and rejected if supplied: `verification_required`,\
+            \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
             \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
             returned under `attributes`; inline contact attributes surface on the\
             \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
@@ -4177,9 +4221,13 @@ components:
             \ keys:\n\n- `auto_renew_period`: `monthly` or `yearly`. All TLDs on create,\
             \ transfer-in and update. Selects the\n  period of the next renewal; the\
             \ current expiry date does not move. On transfer-in without `period` it\
-            \ also sets the\n  period added by the transfer. When the TLD has no month-unit\
-            \ renewal period, `monthly` is rejected on update and on\n  a transfer-in\
-            \ that omits `period`, and ignored at renewal.\n- `music_registrant_attestation`:\
+            \ also sets the\n  period added by the transfer. Omitted on create or\
+            \ transfer-in, it follows the term being bought: a one-month\n  `period`\
+            \ renews monthly and anything else yearly, except a longer month-unit\
+            \ term, which leaves it unset so that the\n  product's default billing\
+            \ period decides. Supplying `monthly` where the TLD sells no one-month\
+            \ renewal is rejected on\n  create, transfer-in and update; a `monthly`\
+            \ stored before that rule applied is ignored at renewal.\n- `music_registrant_attestation`:\
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
             \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
@@ -4291,18 +4339,21 @@ components:
             \ `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects\
             \ the\n  period of the next renewal; the current expiry date does not\
             \ move. On transfer-in without `period` it also sets the\n  period added\
-            \ by the transfer. When the TLD has no month-unit renewal period, `monthly`\
-            \ is rejected on update and on\n  a transfer-in that omits `period`, and\
-            \ ignored at renewal.\n- `music_registrant_attestation`: `true`. `.music`\
-            \ registration.\n- `nic_it_compliance_confirmation`: `true`. `.it` registration\
-            \ and transfer.\n- `travel_industry_acknowledgement`: `true`. `.travel`\
-            \ registration.\n- `internet_ee_registrant_agreement`: `true`. `.ee` registration.\n\
-            - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant\
-            \ change.\n- `de_general_request_contact`, `de_abuse_contact`: id of a\
-            \ contact whose `.de` attribute set has `DE_CONTACT_TYPE` =\n  `REQUEST`.\
-            \ `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\nWritten by\
-            \ the platform and rejected if supplied: `verification_required`, `promotion`,\
-            \ `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
+            \ by the transfer. Omitted on create or transfer-in, it follows the term\
+            \ being bought: a one-month\n  `period` renews monthly and anything else\
+            \ yearly, except a longer month-unit term, which leaves it unset so that\
+            \ the\n  product's default billing period decides. Supplying `monthly`\
+            \ where the TLD sells no one-month renewal is rejected on\n  create, transfer-in\
+            \ and update; a `monthly` stored before that rule applied is ignored at\
+            \ renewal.\n- `music_registrant_attestation`: `true`. `.music` registration.\n\
+            - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.\n\
+            - `travel_industry_acknowledgement`: `true`. `.travel` registration.\n\
+            - `internet_ee_registrant_agreement`: `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
+            \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
+            \nWritten by the platform and rejected if supplied: `verification_required`,\
+            \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
             \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
             returned under `attributes`; inline contact attributes surface on the\
             \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
@@ -4395,18 +4446,21 @@ components:
             \ `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects\
             \ the\n  period of the next renewal; the current expiry date does not\
             \ move. On transfer-in without `period` it also sets the\n  period added\
-            \ by the transfer. When the TLD has no month-unit renewal period, `monthly`\
-            \ is rejected on update and on\n  a transfer-in that omits `period`, and\
-            \ ignored at renewal.\n- `music_registrant_attestation`: `true`. `.music`\
-            \ registration.\n- `nic_it_compliance_confirmation`: `true`. `.it` registration\
-            \ and transfer.\n- `travel_industry_acknowledgement`: `true`. `.travel`\
-            \ registration.\n- `internet_ee_registrant_agreement`: `true`. `.ee` registration.\n\
-            - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant\
-            \ change.\n- `de_general_request_contact`, `de_abuse_contact`: id of a\
-            \ contact whose `.de` attribute set has `DE_CONTACT_TYPE` =\n  `REQUEST`.\
-            \ `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\nWritten by\
-            \ the platform and rejected if supplied: `verification_required`, `promotion`,\
-            \ `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
+            \ by the transfer. Omitted on create or transfer-in, it follows the term\
+            \ being bought: a one-month\n  `period` renews monthly and anything else\
+            \ yearly, except a longer month-unit term, which leaves it unset so that\
+            \ the\n  product's default billing period decides. Supplying `monthly`\
+            \ where the TLD sells no one-month renewal is rejected on\n  create, transfer-in\
+            \ and update; a `monthly` stored before that rule applied is ignored at\
+            \ renewal.\n- `music_registrant_attestation`: `true`. `.music` registration.\n\
+            - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.\n\
+            - `travel_industry_acknowledgement`: `true`. `.travel` registration.\n\
+            - `internet_ee_registrant_agreement`: `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
+            \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
+            \nWritten by the platform and rejected if supplied: `verification_required`,\
+            \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
             \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
             returned under `attributes`; inline contact attributes surface on the\
             \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
@@ -6109,6 +6163,140 @@ components:
       - transferred_on
       title: DomainSortField
       type: string
+    DomainStatisticsBreakdown:
+      enum:
+      - none
+      - organization
+      - tld
+      title: DomainStatisticsBreakdown
+      type: string
+    DomainStatisticsBreakdownRowResponse:
+      properties:
+        create:
+          title: Create
+          type: integer
+        key:
+          description: Organization id, or the TLD without the leading dot
+          title: Key
+          type: string
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Organization name; absent for TLD rows
+          title: Label
+        total:
+          title: Total
+          type: integer
+        transfer:
+          title: Transfer
+          type: integer
+      required:
+      - key
+      - label
+      - create
+      - transfer
+      - total
+      title: DomainStatisticsBreakdownRowResponse
+      type: object
+    DomainStatisticsBucketResponse:
+      properties:
+        create:
+          description: Domains created in this bucket
+          title: Create
+          type: integer
+        partial:
+          description: The bucket reaches outside the requested window, so its counts
+            cover only part of its span and must not be read as a rise or fall against
+            its neighbours
+          title: Partial
+          type: boolean
+        period_start:
+          description: First day of the bucket (UTC)
+          format: date
+          title: Period Start
+          type: string
+        transfer:
+          description: Domains transferred in during this bucket
+          title: Transfer
+          type: integer
+      required:
+      - period_start
+      - create
+      - transfer
+      - partial
+      title: DomainStatisticsBucketResponse
+      type: object
+    DomainStatisticsResponse:
+      properties:
+        breakdown:
+          description: Top organizations or TLDs by acquisitions in the window; empty
+            unless requested
+          items:
+            $ref: '#/components/schemas/DomainStatisticsBreakdownRowResponse'
+          title: Breakdown
+          type: array
+        buckets:
+          description: One entry per bucket the window touches, oldest first, including
+            empty buckets
+          items:
+            $ref: '#/components/schemas/DomainStatisticsBucketResponse'
+          title: Buckets
+          type: array
+        end_date:
+          description: Last day of the window, inclusive
+          format: date
+          title: End Date
+          type: string
+        granularity:
+          $ref: '#/components/schemas/UsageGranularity'
+          description: Time-bucket size of the series
+        organization_id:
+          description: The organization the counts are scoped to
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        start_date:
+          description: First day of the window, inclusive
+          format: date
+          title: Start Date
+          type: string
+        totals:
+          $ref: '#/components/schemas/DomainStatisticsTotalsResponse'
+      required:
+      - organization_id
+      - granularity
+      - start_date
+      - end_date
+      - totals
+      - buckets
+      - breakdown
+      title: DomainStatisticsResponse
+      type: object
+    DomainStatisticsTotalsResponse:
+      properties:
+        create:
+          description: Domains created (newly registered) in the window
+          title: Create
+          type: integer
+        total:
+          description: Created plus transferred
+          title: Total
+          type: integer
+        transfer:
+          description: Domains transferred to OpusDNS in the window
+          title: Transfer
+          type: integer
+      required:
+      - create
+      - transfer
+      - total
+      title: DomainStatisticsTotalsResponse
+      type: object
     DomainStatus:
       enum:
       - ok
@@ -6286,9 +6474,13 @@ components:
             \ keys:\n\n- `auto_renew_period`: `monthly` or `yearly`. All TLDs on create,\
             \ transfer-in and update. Selects the\n  period of the next renewal; the\
             \ current expiry date does not move. On transfer-in without `period` it\
-            \ also sets the\n  period added by the transfer. When the TLD has no month-unit\
-            \ renewal period, `monthly` is rejected on update and on\n  a transfer-in\
-            \ that omits `period`, and ignored at renewal.\n- `music_registrant_attestation`:\
+            \ also sets the\n  period added by the transfer. Omitted on create or\
+            \ transfer-in, it follows the term being bought: a one-month\n  `period`\
+            \ renews monthly and anything else yearly, except a longer month-unit\
+            \ term, which leaves it unset so that the\n  product's default billing\
+            \ period decides. Supplying `monthly` where the TLD sells no one-month\
+            \ renewal is rejected on\n  create, transfer-in and update; a `monthly`\
+            \ stored before that rule applied is ignored at renewal.\n- `music_registrant_attestation`:\
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
             \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
@@ -6400,18 +6592,21 @@ components:
             \ `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects\
             \ the\n  period of the next renewal; the current expiry date does not\
             \ move. On transfer-in without `period` it also sets the\n  period added\
-            \ by the transfer. When the TLD has no month-unit renewal period, `monthly`\
-            \ is rejected on update and on\n  a transfer-in that omits `period`, and\
-            \ ignored at renewal.\n- `music_registrant_attestation`: `true`. `.music`\
-            \ registration.\n- `nic_it_compliance_confirmation`: `true`. `.it` registration\
-            \ and transfer.\n- `travel_industry_acknowledgement`: `true`. `.travel`\
-            \ registration.\n- `internet_ee_registrant_agreement`: `true`. `.ee` registration.\n\
-            - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant\
-            \ change.\n- `de_general_request_contact`, `de_abuse_contact`: id of a\
-            \ contact whose `.de` attribute set has `DE_CONTACT_TYPE` =\n  `REQUEST`.\
-            \ `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\nWritten by\
-            \ the platform and rejected if supplied: `verification_required`, `promotion`,\
-            \ `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
+            \ by the transfer. Omitted on create or transfer-in, it follows the term\
+            \ being bought: a one-month\n  `period` renews monthly and anything else\
+            \ yearly, except a longer month-unit term, which leaves it unset so that\
+            \ the\n  product's default billing period decides. Supplying `monthly`\
+            \ where the TLD sells no one-month renewal is rejected on\n  create, transfer-in\
+            \ and update; a `monthly` stored before that rule applied is ignored at\
+            \ renewal.\n- `music_registrant_attestation`: `true`. `.music` registration.\n\
+            - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.\n\
+            - `travel_industry_acknowledgement`: `true`. `.travel` registration.\n\
+            - `internet_ee_registrant_agreement`: `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
+            \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
+            \nWritten by the platform and rejected if supplied: `verification_required`,\
+            \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
             \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
             returned under `attributes`; inline contact attributes surface on the\
             \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
@@ -6498,18 +6693,21 @@ components:
             \ `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects\
             \ the\n  period of the next renewal; the current expiry date does not\
             \ move. On transfer-in without `period` it also sets the\n  period added\
-            \ by the transfer. When the TLD has no month-unit renewal period, `monthly`\
-            \ is rejected on update and on\n  a transfer-in that omits `period`, and\
-            \ ignored at renewal.\n- `music_registrant_attestation`: `true`. `.music`\
-            \ registration.\n- `nic_it_compliance_confirmation`: `true`. `.it` registration\
-            \ and transfer.\n- `travel_industry_acknowledgement`: `true`. `.travel`\
-            \ registration.\n- `internet_ee_registrant_agreement`: `true`. `.ee` registration.\n\
-            - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant\
-            \ change.\n- `de_general_request_contact`, `de_abuse_contact`: id of a\
-            \ contact whose `.de` attribute set has `DE_CONTACT_TYPE` =\n  `REQUEST`.\
-            \ `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\nWritten by\
-            \ the platform and rejected if supplied: `verification_required`, `promotion`,\
-            \ `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
+            \ by the transfer. Omitted on create or transfer-in, it follows the term\
+            \ being bought: a one-month\n  `period` renews monthly and anything else\
+            \ yearly, except a longer month-unit term, which leaves it unset so that\
+            \ the\n  product's default billing period decides. Supplying `monthly`\
+            \ where the TLD sells no one-month renewal is rejected on\n  create, transfer-in\
+            \ and update; a `monthly` stored before that rule applied is ignored at\
+            \ renewal.\n- `music_registrant_attestation`: `true`. `.music` registration.\n\
+            - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.\n\
+            - `travel_industry_acknowledgement`: `true`. `.travel` registration.\n\
+            - `internet_ee_registrant_agreement`: `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
+            \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
+            \nWritten by the platform and rejected if supplied: `verification_required`,\
+            \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
             \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
             returned under `attributes`; inline contact attributes surface on the\
             \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
@@ -6596,18 +6794,21 @@ components:
             \ `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects\
             \ the\n  period of the next renewal; the current expiry date does not\
             \ move. On transfer-in without `period` it also sets the\n  period added\
-            \ by the transfer. When the TLD has no month-unit renewal period, `monthly`\
-            \ is rejected on update and on\n  a transfer-in that omits `period`, and\
-            \ ignored at renewal.\n- `music_registrant_attestation`: `true`. `.music`\
-            \ registration.\n- `nic_it_compliance_confirmation`: `true`. `.it` registration\
-            \ and transfer.\n- `travel_industry_acknowledgement`: `true`. `.travel`\
-            \ registration.\n- `internet_ee_registrant_agreement`: `true`. `.ee` registration.\n\
-            - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant\
-            \ change.\n- `de_general_request_contact`, `de_abuse_contact`: id of a\
-            \ contact whose `.de` attribute set has `DE_CONTACT_TYPE` =\n  `REQUEST`.\
-            \ `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\nWritten by\
-            \ the platform and rejected if supplied: `verification_required`, `promotion`,\
-            \ `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
+            \ by the transfer. Omitted on create or transfer-in, it follows the term\
+            \ being bought: a one-month\n  `period` renews monthly and anything else\
+            \ yearly, except a longer month-unit term, which leaves it unset so that\
+            \ the\n  product's default billing period decides. Supplying `monthly`\
+            \ where the TLD sells no one-month renewal is rejected on\n  create, transfer-in\
+            \ and update; a `monthly` stored before that rule applied is ignored at\
+            \ renewal.\n- `music_registrant_attestation`: `true`. `.music` registration.\n\
+            - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.\n\
+            - `travel_industry_acknowledgement`: `true`. `.travel` registration.\n\
+            - `internet_ee_registrant_agreement`: `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
+            \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
+            \nWritten by the platform and rejected if supplied: `verification_required`,\
+            \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
             \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
             returned under `attributes`; inline contact attributes surface on the\
             \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
@@ -6739,18 +6940,21 @@ components:
             \ `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects\
             \ the\n  period of the next renewal; the current expiry date does not\
             \ move. On transfer-in without `period` it also sets the\n  period added\
-            \ by the transfer. When the TLD has no month-unit renewal period, `monthly`\
-            \ is rejected on update and on\n  a transfer-in that omits `period`, and\
-            \ ignored at renewal.\n- `music_registrant_attestation`: `true`. `.music`\
-            \ registration.\n- `nic_it_compliance_confirmation`: `true`. `.it` registration\
-            \ and transfer.\n- `travel_industry_acknowledgement`: `true`. `.travel`\
-            \ registration.\n- `internet_ee_registrant_agreement`: `true`. `.ee` registration.\n\
-            - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant\
-            \ change.\n- `de_general_request_contact`, `de_abuse_contact`: id of a\
-            \ contact whose `.de` attribute set has `DE_CONTACT_TYPE` =\n  `REQUEST`.\
-            \ `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\nWritten by\
-            \ the platform and rejected if supplied: `verification_required`, `promotion`,\
-            \ `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
+            \ by the transfer. Omitted on create or transfer-in, it follows the term\
+            \ being bought: a one-month\n  `period` renews monthly and anything else\
+            \ yearly, except a longer month-unit term, which leaves it unset so that\
+            \ the\n  product's default billing period decides. Supplying `monthly`\
+            \ where the TLD sells no one-month renewal is rejected on\n  create, transfer-in\
+            \ and update; a `monthly` stored before that rule applied is ignored at\
+            \ renewal.\n- `music_registrant_attestation`: `true`. `.music` registration.\n\
+            - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.\n\
+            - `travel_industry_acknowledgement`: `true`. `.travel` registration.\n\
+            - `internet_ee_registrant_agreement`: `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
+            \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
+            \nWritten by the platform and rejected if supplied: `verification_required`,\
+            \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
             \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
             returned under `attributes`; inline contact attributes surface on the\
             \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
@@ -6845,6 +7049,52 @@ components:
       type: object
     DomainUpdateBulkInstance:
       properties:
+        attributes:
+          anyOf:
+          - additionalProperties:
+              type: string
+            propertyNames:
+              $ref: '#/components/schemas/DomainAttributeKey'
+            type: object
+          - type: 'null'
+          description: "Override attributes for this domain.\n\nAdditional attributes\
+            \ of the domain, keyed by attribute name. Values are strings.\n\nCustomer-settable\
+            \ keys:\n\n- `auto_renew_period`: `monthly` or `yearly`. All TLDs on create,\
+            \ transfer-in and update. Selects the\n  period of the next renewal; the\
+            \ current expiry date does not move. On transfer-in without `period` it\
+            \ also sets the\n  period added by the transfer. Omitted on create or\
+            \ transfer-in, it follows the term being bought: a one-month\n  `period`\
+            \ renews monthly and anything else yearly, except a longer month-unit\
+            \ term, which leaves it unset so that the\n  product's default billing\
+            \ period decides. Supplying `monthly` where the TLD sells no one-month\
+            \ renewal is rejected on\n  create, transfer-in and update; a `monthly`\
+            \ stored before that rule applied is ignored at renewal.\n- `music_registrant_attestation`:\
+            \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
+            \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
+            \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
+            \ `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`: `true`.\
+            \ `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
+            \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
+            \nWritten by the platform and rejected if supplied: `verification_required`,\
+            \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
+            \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
+            returned under `attributes`; inline contact attributes surface on the\
+            \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
+            \ applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,\n\
+            `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\nOn\
+            \ update, every registry stores the supplied attributes, and the update\
+            \ is not sent to the registry unless they\nstore; a registry that rejects\
+            \ the change stores nothing. An empty value removes the stored attribute,\
+            \ except for\n`auto_renew_period`, whose only accepted values are `monthly`\
+            \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
+            \ a registrant change. An update cannot change what the registrant accepted\
+            \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
+            \ `internet_ee_registrant_agreement` and the three `nor_id_applicant_*`\
+            \ keys.\n`punktum_dk_terms_acceptance` stays settable for a registrant\
+            \ change but cannot be removed with an empty value.\n"
+          title: Attributes
         auth_code:
           anyOf:
           - maxLength: 255
@@ -6918,6 +7168,51 @@ components:
       type: object
     DomainUpdateBulkTemplate:
       properties:
+        attributes:
+          anyOf:
+          - additionalProperties:
+              type: string
+            propertyNames:
+              $ref: '#/components/schemas/DomainAttributeKey'
+            type: object
+          - type: 'null'
+          description: "Additional attributes of the domain, keyed by attribute name.\
+            \ Values are strings.\n\nCustomer-settable keys:\n\n- `auto_renew_period`:\
+            \ `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects\
+            \ the\n  period of the next renewal; the current expiry date does not\
+            \ move. On transfer-in without `period` it also sets the\n  period added\
+            \ by the transfer. Omitted on create or transfer-in, it follows the term\
+            \ being bought: a one-month\n  `period` renews monthly and anything else\
+            \ yearly, except a longer month-unit term, which leaves it unset so that\
+            \ the\n  product's default billing period decides. Supplying `monthly`\
+            \ where the TLD sells no one-month renewal is rejected on\n  create, transfer-in\
+            \ and update; a `monthly` stored before that rule applied is ignored at\
+            \ renewal.\n- `music_registrant_attestation`: `true`. `.music` registration.\n\
+            - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.\n\
+            - `travel_industry_acknowledgement`: `true`. `.travel` registration.\n\
+            - `internet_ee_registrant_agreement`: `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
+            \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
+            \nWritten by the platform and rejected if supplied: `verification_required`,\
+            \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
+            \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
+            returned under `attributes`; inline contact attributes surface on the\
+            \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
+            \ applicant declaration and ignored if supplied on create: `nor_id_applicant_version`,\n\
+            `nor_id_applicant_accept_name`, `nor_id_applicant_accept_date`.\n\nOn\
+            \ update, every registry stores the supplied attributes, and the update\
+            \ is not sent to the registry unless they\nstore; a registry that rejects\
+            \ the change stores nothing. An empty value removes the stored attribute,\
+            \ except for\n`auto_renew_period`, whose only accepted values are `monthly`\
+            \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
+            \ a registrant change. An update cannot change what the registrant accepted\
+            \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
+            \ `internet_ee_registrant_agreement` and the three `nor_id_applicant_*`\
+            \ keys.\n`punktum_dk_terms_acceptance` stays settable for a registrant\
+            \ change but cannot be removed with an empty value.\n"
+          title: Attributes
         contacts:
           anyOf:
           - $ref: '#/components/schemas/DomainContactHandles'
@@ -6991,18 +7286,21 @@ components:
             \ `monthly` or `yearly`. All TLDs on create, transfer-in and update. Selects\
             \ the\n  period of the next renewal; the current expiry date does not\
             \ move. On transfer-in without `period` it also sets the\n  period added\
-            \ by the transfer. When the TLD has no month-unit renewal period, `monthly`\
-            \ is rejected on update and on\n  a transfer-in that omits `period`, and\
-            \ ignored at renewal.\n- `music_registrant_attestation`: `true`. `.music`\
-            \ registration.\n- `nic_it_compliance_confirmation`: `true`. `.it` registration\
-            \ and transfer.\n- `travel_industry_acknowledgement`: `true`. `.travel`\
-            \ registration.\n- `internet_ee_registrant_agreement`: `true`. `.ee` registration.\n\
-            - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant\
-            \ change.\n- `de_general_request_contact`, `de_abuse_contact`: id of a\
-            \ contact whose `.de` attribute set has `DE_CONTACT_TYPE` =\n  `REQUEST`.\
-            \ `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\nWritten by\
-            \ the platform and rejected if supplied: `verification_required`, `promotion`,\
-            \ `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
+            \ by the transfer. Omitted on create or transfer-in, it follows the term\
+            \ being bought: a one-month\n  `period` renews monthly and anything else\
+            \ yearly, except a longer month-unit term, which leaves it unset so that\
+            \ the\n  product's default billing period decides. Supplying `monthly`\
+            \ where the TLD sells no one-month renewal is rejected on\n  create, transfer-in\
+            \ and update; a `monthly` stored before that rule applied is ignored at\
+            \ renewal.\n- `music_registrant_attestation`: `true`. `.music` registration.\n\
+            - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.\n\
+            - `travel_industry_acknowledgement`: `true`. `.travel` registration.\n\
+            - `internet_ee_registrant_agreement`: `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
+            \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
+            \nWritten by the platform and rejected if supplied: `verification_required`,\
+            \ `promotion`, `promotion_eligibility`,\n`nor_id_declaration`, `nor_id_declaration_token`,\
             \ `punktum_dk_tracking_no`, `domain_contact_attributes`. They are never\n\
             returned under `attributes`; inline contact attributes surface on the\
             \ matching `contacts` entry instead.\n\nDerived from the signed `.no`\
@@ -8136,6 +8434,53 @@ components:
       - payload
       title: EmailForwardsContextCreate
       type: object
+    EmailVerificationPolicy:
+      properties:
+        communication:
+          $ref: '#/components/schemas/Communication'
+        contact_roles:
+          description: For which type of Contacts this verification needs to be done
+          items:
+            $ref: '#/components/schemas/DomainContactType'
+          title: Contact Roles
+          type: array
+        enabled:
+          description: Whether this Verification is enabled
+          title: Enabled
+          type: boolean
+        suspension_delay:
+          description: After how many Days should the domain be suspended
+          title: Suspension Delay
+          type: string
+        suspension_on_failure:
+          description: Should the Domain be suspended if the verification was not
+            successfull
+          title: Suspension On Failure
+          type: boolean
+        trigger:
+          description: The operations that will trigger this verification
+          items:
+            type: string
+          title: Trigger
+          type: array
+        validity_period:
+          anyOf:
+          - $ref: '#/components/schemas/PeriodStr'
+          - type: 'null'
+        verification_method:
+          title: Verification Method
+          type: string
+      required:
+      - enabled
+      - contact_roles
+      - trigger
+      - validity_period
+      - suspension_on_failure
+      - suspension_delay
+      - verification_method
+      - communication
+      title: EmailVerificationPolicy
+      type: object
     EmailVerificationStatus:
       enum:
       - verified
@@ -8716,6 +9061,69 @@ components:
       - v6
       title: IPAddressType
       type: string
+    IdentityVerificationPolicy:
+      description: 'A registry that requires the contact to have been identity-verified
+        before it accepts it.
+
+
+        The vocabulary is the contact-verification service''s, because that service
+        is what the claims
+
+        are checked against. What a registry accepts as evidence is a policy of its
+        own and does not
+
+        follow from the claim: `.dk` wants a photo ID for `NAME`, while a registry
+        happy with a written
+
+        attestation would leave `accepted_proofs` out.'
+      properties:
+        contact_roles:
+          description: For which type of Contacts this verification needs to be done
+          items:
+            $ref: '#/components/schemas/DomainContactType'
+          title: Contact Roles
+          type: array
+        enabled:
+          description: Whether this Verification is enabled
+          title: Enabled
+          type: boolean
+        required_claims:
+          description: The claims that must be verified before a contact can be used
+            on this TLD
+          items:
+            $ref: '#/components/schemas/RequiredClaim'
+          minItems: 1
+          title: Required Claims
+          type: array
+        suspension_delay:
+          description: After how many Days should the domain be suspended
+          title: Suspension Delay
+          type: string
+        suspension_on_failure:
+          description: Should the Domain be suspended if the verification was not
+            successfull
+          title: Suspension On Failure
+          type: boolean
+        trigger:
+          description: The operations that will trigger this verification
+          items:
+            type: string
+          title: Trigger
+          type: array
+        validity_period:
+          anyOf:
+          - $ref: '#/components/schemas/PeriodStr'
+          - type: 'null'
+      required:
+      - enabled
+      - contact_roles
+      - trigger
+      - validity_period
+      - suspension_on_failure
+      - suspension_delay
+      - required_claims
+      title: IdentityVerificationPolicy
+      type: object
     IdnBase:
       properties:
         idn_capable:
@@ -9552,6 +9960,13 @@ components:
       - confirmation
       title: LegalRequirementType
       type: string
+    LevelOfAssurance:
+      enum:
+      - HIGH
+      - LOW
+      - SUBSTANTIAL
+      title: LevelOfAssurance
+      type: string
     ListBrandingAssetsResponse:
       properties:
         assets:
@@ -10002,6 +10417,38 @@ components:
       - hostname
       title: Nameserver
       type: object
+    NizzaClaim:
+      enum:
+      - EMAIL
+      - PHONE
+      - ADDRESS
+      - NAME
+      - LEGAL_ENTITY
+      title: NizzaClaim
+      type: string
+    NizzaVerificationProof:
+      enum:
+      - IDCARD
+      - PASSPORT
+      - POPULATION_REGISTER
+      - RESIDENCE_PERMIT
+      - PROOF_OF_ARRIVAL
+      - DRIVERS_LICENCE
+      - COMPANY_REGISTER
+      - COMPANY_STATEMENT
+      - BANK_ACCOUNT
+      - ONLINE_PAYMENT_ACCOUNT
+      - UTILITY_ACCOUNT
+      - BANK_STATEMENT
+      - TAX_STATEMENT
+      - WRITTEN_ATTESTATION
+      - DIGITAL_ATTESTATION
+      - POSTAL_VER_TRANSACTION_LOG
+      - EMAIL_VER_TRANSACTION_LOG
+      - PHONE_VER_TRANSACTION_LOG
+      - ADDRESS_DATABASE
+      title: NizzaVerificationProof
+      type: string
     NorIdDeclarationConfirmRequest:
       properties:
         accept_name:
@@ -10055,6 +10502,15 @@ components:
           - type: 'null'
           description: The subscriber identity (organization number or Person-ID)
           title: Identity Value
+        organization_id:
+          description: The organization that owns the domain; used to brand the page
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
         status:
           $ref: '#/components/schemas/NorIdDeclarationStatus'
           description: The declaration status
@@ -10063,6 +10519,7 @@ components:
           title: Subscriber Name
           type: string
       required:
+      - organization_id
       - domain_name
       - subscriber_name
       - declaration_version
@@ -11460,6 +11917,18 @@ components:
             type: string
           - type: 'null'
           title: Background
+        body:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Body
+        body_foreground:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Body Foreground
         border:
           anyOf:
           - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
@@ -11510,6 +11979,12 @@ components:
             type: string
           - type: 'null'
           title: Input
+        link:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Link
         muted:
           anyOf:
           - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
@@ -11552,6 +12027,24 @@ components:
             type: string
           - type: 'null'
           title: Sidebar
+        sidebar_accent:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Sidebar Accent
+        sidebar_accent_foreground:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Sidebar Accent Foreground
+        sidebar_border:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Sidebar Border
         sidebar_foreground:
           anyOf:
           - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
@@ -11564,6 +12057,30 @@ components:
             type: string
           - type: 'null'
           title: Success
+        table:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Table
+        table_header:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Table Header
+        table_row:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Table Row
+        table_row_interactive:
+          anyOf:
+          - pattern: ^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$
+            type: string
+          - type: 'null'
+          title: Table Row Interactive
         tag_colors:
           anyOf:
           - items:
@@ -13219,6 +13736,24 @@ components:
       - request_completed_at
       title: RequestHistorySortField
       type: string
+    RequiredClaim:
+      properties:
+        accepted_proofs:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/NizzaVerificationProof'
+            type: array
+          - type: 'null'
+          description: The evidence the registry accepts for this claim; any proof
+            is accepted when omitted
+          title: Accepted Proofs
+        claim:
+          $ref: '#/components/schemas/NizzaClaim'
+          description: Which contact claim the registry requires to have been verified
+      required:
+      - claim
+      title: RequiredClaim
+      type: object
     ReservedDomainsBase:
       properties:
         source:
@@ -13424,6 +13959,16 @@ components:
             type: string
           - type: 'null'
           title: Email
+        help_center_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Help Center Url
+        status_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status Url
         url:
           anyOf:
           - type: string
@@ -13786,6 +14331,16 @@ components:
         transfer_policies:
           $ref: '#/components/schemas/TransferPoliciesBase'
           description: Transfer policies configuration
+        verification_policies:
+          anyOf:
+          - additionalProperties:
+              $ref: '#/components/schemas/VerificationPolicy'
+            propertyNames:
+              $ref: '#/components/schemas/VerificationPolicyType'
+            type: object
+          - type: 'null'
+          description: Verification Policy Configuration
+          title: Verification Policies
         whois:
           anyOf:
           - $ref: '#/components/schemas/WhoisBase'
@@ -15345,6 +15900,16 @@ components:
       - deletion
       title: VerificationDeadlineType
       type: string
+    VerificationPolicy:
+      anyOf:
+      - $ref: '#/components/schemas/EmailVerificationPolicy'
+      - $ref: '#/components/schemas/IdentityVerificationPolicy'
+    VerificationPolicyType:
+      enum:
+      - email_verification
+      - identity_verification
+      title: VerificationPolicyType
+      type: string
     VerificationRegistrantDetails:
       properties:
         contact_id:
@@ -16384,7 +16949,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-08-180300
+  version: 2026-09-14-124237
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -19826,9 +20391,15 @@ paths:
         '422':
           content:
             application/problem+json:
+              example:
+                code: ERROR_CONTACT_VERIFICATION_VALIDATION
+                detail: Additional error context.
+                status: 422
+                title: Contact Verification Validation Failed
+                type: contact-verification-validation
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
         '502':
           content:
             application/problem+json:
@@ -19923,9 +20494,24 @@ paths:
         '422':
           content:
             application/problem+json:
+              examples:
+                Contact Verification Attestation Validation Failed:
+                  value:
+                    code: ERROR_CONTACT_VERIFICATION_ATTESTATION_VALIDATION
+                    detail: Additional error context.
+                    status: 422
+                    title: Contact Verification Attestation Validation Failed
+                    type: contact-verification-attestation-validation
+                Contact Verification Validation Failed:
+                  value:
+                    code: ERROR_CONTACT_VERIFICATION_VALIDATION
+                    detail: Additional error context.
+                    status: 422
+                    title: Contact Verification Validation Failed
+                    type: contact-verification-validation
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
         '502':
           content:
             application/problem+json:
@@ -24953,6 +25539,91 @@ paths:
       - domain
       x-required-permissions:
       - domains:manage
+  /v1/domains/statistics:
+    get:
+      description: 'Counts the domains your organization acquired in a window of whole
+        days, split into creates (new registrations) and inbound transfers and bucketed
+        by the requested granularity.
+
+
+        Counts cover your organization and its sub-organizations, like the domain
+        summary; `breakdown=organization` shows how they divide between them. A create
+        is counted on the day OpusDNS took the order and a transfer on the day it
+        completed, so domains that have since been deleted still appear in the window
+        they were acquired in. Imported domains count as creates on the day they were
+        imported. Domains held at a connected external registrar are not included.
+
+
+        Every bucket the window touches is present, so the series can be charted as
+        is. A bucket marked `partial` reaches outside the window and covers only part
+        of its span.'
+      operationId: get_domain_statistics_v1_domains_statistics_get
+      parameters:
+      - in: query
+        name: start_date
+        required: true
+        schema:
+          format: date
+          title: Start Date
+          type: string
+      - in: query
+        name: end_date
+        required: true
+        schema:
+          format: date
+          title: End Date
+          type: string
+      - in: query
+        name: granularity
+        required: false
+        schema:
+          $ref: '#/components/schemas/UsageGranularity'
+          default: day
+      - in: query
+        name: tld
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tld
+      - in: query
+        name: breakdown
+        required: false
+        schema:
+          $ref: '#/components/schemas/DomainStatisticsBreakdown'
+          default: none
+      - in: query
+        name: breakdown_limit
+        required: false
+        schema:
+          default: 10
+          maximum: 50
+          minimum: 1
+          title: Breakdown Limit
+          type: integer
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainStatisticsResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get domain statistics
+      tags:
+      - domain
+      x-required-permissions:
+      - domains:read
   /v1/domains/summary:
     get:
       description: Retrieves a summary of domains including counts by status, TLD,
@@ -27117,16 +27788,13 @@ paths:
                     title: Email Forward Error
                     type: email-forward-validation
                 email_forward_domain_rejected:
-                  description: Check that the domain is registered and resolves in
-                    public DNS, then retry.
+                  description: The hostname could not be set up for email forwarding.
+                    Contact support.
                   summary: Email forwarding could not be set up for the hostname
                   value:
                     code: ERROR_EMAIL_FORWARD_VALIDATION
                     detail: Email forwarding could not be set up for this domain.
-                      This usually means the domain is not yet registered or does
-                      not resolve in public DNS; a recently registered or transferred
-                      domain may need time to propagate. Retry once it resolves, or
-                      contact support if the problem persists.
+                      Please contact support.
                     status: 400
                     title: Email Forward Error
                     type: email-forward-validation
@@ -34726,29 +35394,30 @@ tags:
     \ `PROOF_OF_ARRIVAL`, `DRIVERS_LICENCE`, `COMPANY_REGISTER`, `COMPANY_STATEMENT`,\
     \ `BANK_ACCOUNT`, `ONLINE_PAYMENT_ACCOUNT`, `UTILITY_ACCOUNT`, `BANK_STATEMENT`,\
     \ `TAX_STATEMENT`, `WRITTEN_ATTESTATION`, `DIGITAL_ATTESTATION`, `POSTAL_VER_TRANSACTION_LOG`,\
-    \ `EMAIL_VER_TRANSACTION_LOG`, `ADDRESS_DATABASE` |\n| `attestation_reference`\
-    \ | string | Caller-supplied reference (e.g. internal ticket ID, document hash).\
-    \ Up to 255 chars. |\n\n**DENIC-only constraint:** when the contact has DENIC\
-    \ verification pending, all items in a single request must share the same `method`,\
-    \ `proof`, and `attestation_reference`. DENIC's `contactUPDATE` carries one verification\
-    \ block per call; the API enforces this only when DENIC is in scope so callers\
-    \ see a synchronous 400 instead of a partial-success. Contacts not pending DENIC\
-    \ verification accept heterogeneous batches.\n\n#### Response\n\nThe endpoint\
-    \ returns **HTTP 200 OK** with an object containing the per-claim verification\
-    \ state from the contact-verification service:\n\n```json\n{\n  \"verifications\"\
-    : [\n    {\n      \"claim\": \"NAME\",\n      \"state\": \"VERIFIED\",\n     \
-    \ \"method\": \"AUTH\",\n      \"proof\": \"IDCARD\",\n      \"attestation_reference\"\
-    : \"ticket-12345\",\n      \"verified_on\": \"2026-05-15T12:00:00Z\",\n      \"\
-    expires_on\": null\n    }\n  ]\n}\n```\n\n| Field | Type | Notes |\n|-------|------|-------|\n\
-    | `claim` | enum | The claim this entry describes. |\n| `state` | enum | `UNVERIFIED`,\
-    \ `VERIFIED`, `IN_PROGRESS`, `EXPIRED`. |\n| `method` | enum or null | The method\
-    \ that produced the current state. |\n| `proof` | enum or null | The proof that\
-    \ produced the current state. |\n| `attestation_reference` | string or null |\
-    \ Reference recorded with the current state. |\n| `verified_on` | RFC3339 datetime\
-    \ or null | When the claim entered the `VERIFIED` state. |\n| `expires_on` | RFC3339\
-    \ datetime or null | When the current verification expires. |\n\nWhen DENIC verification\
-    \ was pending for the contact, the registry-side `contactUPDATE` is queued behind\
-    \ the scenes and emits a `CONTACT/VERIFICATION/SUCCESS` or `CONTACT/VERIFICATION/FAILURE`\
+    \ `EMAIL_VER_TRANSACTION_LOG`, `PHONE_VER_TRANSACTION_LOG`, `ADDRESS_DATABASE`\
+    \ |\n| `attestation_reference` | string | Caller-supplied reference (e.g. internal\
+    \ ticket ID, document hash). Up to 255 chars. |\n\n**DENIC-only constraint:**\
+    \ when the contact has DENIC verification pending, all items in a single request\
+    \ must share the same `method`, `proof`, and `attestation_reference`. DENIC's\
+    \ `contactUPDATE` carries one verification block per call; the API enforces this\
+    \ only when DENIC is in scope so callers see a synchronous 400 instead of a partial-success.\
+    \ Contacts not pending DENIC verification accept heterogeneous batches.\n\n####\
+    \ Response\n\nThe endpoint returns **HTTP 200 OK** with an object containing the\
+    \ per-claim verification state from the contact-verification service:\n\n```json\n\
+    {\n  \"verifications\": [\n    {\n      \"claim\": \"NAME\",\n      \"state\"\
+    : \"VERIFIED\",\n      \"method\": \"AUTH\",\n      \"proof\": \"IDCARD\",\n \
+    \     \"attestation_reference\": \"ticket-12345\",\n      \"verified_on\": \"\
+    2026-05-15T12:00:00Z\",\n      \"expires_on\": null\n    }\n  ]\n}\n```\n\n| Field\
+    \ | Type | Notes |\n|-------|------|-------|\n| `claim` | enum | The claim this\
+    \ entry describes. |\n| `state` | enum | `UNVERIFIED`, `VERIFIED`, `IN_PROGRESS`,\
+    \ `EXPIRED`. |\n| `method` | enum or null | The method that produced the current\
+    \ state. |\n| `proof` | enum or null | The proof that produced the current state.\
+    \ |\n| `attestation_reference` | string or null | Reference recorded with the\
+    \ current state. |\n| `verified_on` | RFC3339 datetime or null | When the claim\
+    \ entered the `VERIFIED` state. |\n| `expires_on` | RFC3339 datetime or null |\
+    \ When the current verification expires. |\n\nWhen DENIC verification was pending\
+    \ for the contact, the registry-side `contactUPDATE` is queued behind the scenes\
+    \ and emits a `CONTACT/VERIFICATION/SUCCESS` or `CONTACT/VERIFICATION/FAILURE`\
     \ poll-message event keyed on `contact_id`. The `VERIFICATION_REQUIRED` status\
     \ tag on the affected domains is cleared on success.\n\n#### Error codes\n\n|\
     \ Code | Status | Meaning |\n|------|--------|---------|\n| `ERROR_DOMAIN_VERIFICATION_INCONSISTENT_METHOD_PROOF`\

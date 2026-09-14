@@ -586,6 +586,11 @@ export type GET_DomainSearchSuggest_Request = {
 };
 export type GET_DomainSearchSuggest_Request_Query = GET_DomainSearchSuggest_Request['parameters']['query'];
 
+export type GET_DomainsStatistics_Request = {
+  parameters: operations['get_domain_statistics_v1_domains_statistics_get']['parameters'];
+};
+export type GET_DomainsStatistics_Request_Query = GET_DomainsStatistics_Request['parameters']['query'];
+
 export type GET_DomainsSummary_Request = {
 };
 

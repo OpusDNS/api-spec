@@ -240,6 +240,13 @@
                 "icon": "line/interface-lock-closed",
                 "filepath": "content/account/account-security.md",
                 "showInSidebar": true
+              },
+              "/whitelabel": {
+                "type": "page",
+                "title": "Whitelabel branding",
+                "icon": "phosphor/regular/palette",
+                "filepath": "content/account/whitelabel.md",
+                "showInSidebar": true
               }
             }
           },

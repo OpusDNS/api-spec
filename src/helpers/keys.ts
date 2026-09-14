@@ -24,6 +24,7 @@ import type {
   ClaimsNotices,
   ClearVanityNameserverSetDefaultRes,
   CommandError,
+  Communication,
   ContactAttestReq,
   ContactAttestRes,
   ContactAttestVerificationReq,
@@ -46,6 +47,7 @@ import type {
   ContactHandle,
   Contact,
   ContactVerificationApi,
+  ContactVerificationEidInformation,
   ContactVerificationEmail,
   ContactVerification,
   ContactVerificationStatus,
@@ -191,6 +193,10 @@ import type {
   DomainSearch,
   DomainSearchSuggestionPriceData,
   DomainSearchSuggestionWithPrice,
+  DomainStatisticsBreakdownRow,
+  DomainStatisticsBucket,
+  DomainStatistics,
+  DomainStatisticsTotals,
   DomainStatus2,
   DomainStatusesBase,
   DomainSummaryData,
@@ -251,6 +257,7 @@ import type {
   EmailForwardZone,
   EmailForwardsContext,
   EmailForwardsContextCreate,
+  EmailVerificationPolicy,
   EventData,
   EventError,
   EventResponse,
@@ -268,6 +275,7 @@ import type {
   HttpRedirectRemove,
   HttpRedirectRequest,
   HttpRedirectUpsert,
+  IdentityVerificationPolicy,
   IdnBase,
   Invoice,
   IpRestrictionCreate,
@@ -383,6 +391,7 @@ import type {
   RegistrarZone,
   RegistryLockBase,
   RequestHistory,
+  RequiredClaim,
   ReservedDomainsBase,
   RgpOperations,
   SetRenewalModeReq,
@@ -772,6 +781,14 @@ export const KEYS_COMMAND_ERROR = [
   KEY_COMMAND_ERROR_TYPE,
 ] as const satisfies (keyof CommandError)[];
 
+export const KEY_COMMUNICATION_TIMEDELTA = 'timedelta' satisfies keyof Communication;
+export const KEY_COMMUNICATION_TYPE = 'type' satisfies keyof Communication;
+
+export const KEYS_COMMUNICATION = [
+  KEY_COMMUNICATION_TIMEDELTA,
+  KEY_COMMUNICATION_TYPE,
+] as const satisfies (keyof Communication)[];
+
 export const KEY_CONTACT_ATTEST_REQ_ATTESTATIONS = 'attestations' satisfies keyof ContactAttestReq;
 
 export const KEYS_CONTACT_ATTEST_REQ = [
@@ -786,12 +803,14 @@ export const KEYS_CONTACT_ATTEST_RES = [
 
 export const KEY_CONTACT_ATTEST_VERIFICATION_REQ_ATTESTATION_REFERENCE = 'attestation_reference' satisfies keyof ContactAttestVerificationReq;
 export const KEY_CONTACT_ATTEST_VERIFICATION_REQ_CLAIM = 'claim' satisfies keyof ContactAttestVerificationReq;
+export const KEY_CONTACT_ATTEST_VERIFICATION_REQ_EID = 'eid' satisfies keyof ContactAttestVerificationReq;
 export const KEY_CONTACT_ATTEST_VERIFICATION_REQ_METHOD = 'method' satisfies keyof ContactAttestVerificationReq;
 export const KEY_CONTACT_ATTEST_VERIFICATION_REQ_PROOF = 'proof' satisfies keyof ContactAttestVerificationReq;
 
 export const KEYS_CONTACT_ATTEST_VERIFICATION_REQ = [
   KEY_CONTACT_ATTEST_VERIFICATION_REQ_ATTESTATION_REFERENCE,
   KEY_CONTACT_ATTEST_VERIFICATION_REQ_CLAIM,
+  KEY_CONTACT_ATTEST_VERIFICATION_REQ_EID,
   KEY_CONTACT_ATTEST_VERIFICATION_REQ_METHOD,
   KEY_CONTACT_ATTEST_VERIFICATION_REQ_PROOF,
 ] as const satisfies (keyof ContactAttestVerificationReq)[];
@@ -1110,6 +1129,14 @@ export const KEYS_CONTACT_VERIFICATION_API = [
   KEY_CONTACT_VERIFICATION_API_VERIFIED_ON,
 ] as const satisfies (keyof ContactVerificationApi)[];
 
+export const KEY_CONTACT_VERIFICATION_EID_INFORMATION_EID_SCHEME = 'eid_scheme' satisfies keyof ContactVerificationEidInformation;
+export const KEY_CONTACT_VERIFICATION_EID_INFORMATION_LEVEL_OF_ASSURANCE = 'level_of_assurance' satisfies keyof ContactVerificationEidInformation;
+
+export const KEYS_CONTACT_VERIFICATION_EID_INFORMATION = [
+  KEY_CONTACT_VERIFICATION_EID_INFORMATION_EID_SCHEME,
+  KEY_CONTACT_VERIFICATION_EID_INFORMATION_LEVEL_OF_ASSURANCE,
+] as const satisfies (keyof ContactVerificationEidInformation)[];
+
 export const KEY_CONTACT_VERIFICATION_EMAIL_CANCELED_ON = 'canceled_on' satisfies keyof ContactVerificationEmail;
 export const KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_ID = 'contact_id' satisfies keyof ContactVerificationEmail;
 export const KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_VERIFICATION_ID = 'contact_verification_id' satisfies keyof ContactVerificationEmail;
@@ -1152,6 +1179,7 @@ export const KEYS_CONTACT_VERIFICATION = [
 
 export const KEY_CONTACT_VERIFICATION_STATUS_ATTESTATION_REFERENCE = 'attestation_reference' satisfies keyof ContactVerificationStatus;
 export const KEY_CONTACT_VERIFICATION_STATUS_CLAIM = 'claim' satisfies keyof ContactVerificationStatus;
+export const KEY_CONTACT_VERIFICATION_STATUS_EID = 'eid' satisfies keyof ContactVerificationStatus;
 export const KEY_CONTACT_VERIFICATION_STATUS_EXPIRES_ON = 'expires_on' satisfies keyof ContactVerificationStatus;
 export const KEY_CONTACT_VERIFICATION_STATUS_METHOD = 'method' satisfies keyof ContactVerificationStatus;
 export const KEY_CONTACT_VERIFICATION_STATUS_PROOF = 'proof' satisfies keyof ContactVerificationStatus;
@@ -1161,6 +1189,7 @@ export const KEY_CONTACT_VERIFICATION_STATUS_VERIFIED_ON = 'verified_on' satisfi
 export const KEYS_CONTACT_VERIFICATION_STATUS = [
   KEY_CONTACT_VERIFICATION_STATUS_ATTESTATION_REFERENCE,
   KEY_CONTACT_VERIFICATION_STATUS_CLAIM,
+  KEY_CONTACT_VERIFICATION_STATUS_EID,
   KEY_CONTACT_VERIFICATION_STATUS_EXPIRES_ON,
   KEY_CONTACT_VERIFICATION_STATUS_METHOD,
   KEY_CONTACT_VERIFICATION_STATUS_PROOF,
@@ -2754,6 +2783,60 @@ export const KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE = [
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_RENEWAL_PRICE,
 ] as const satisfies (keyof DomainSearchSuggestionWithPrice)[];
 
+export const KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_CREATE = 'create' satisfies keyof DomainStatisticsBreakdownRow;
+export const KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_KEY = 'key' satisfies keyof DomainStatisticsBreakdownRow;
+export const KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_LABEL = 'label' satisfies keyof DomainStatisticsBreakdownRow;
+export const KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_TOTAL = 'total' satisfies keyof DomainStatisticsBreakdownRow;
+export const KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_TRANSFER = 'transfer' satisfies keyof DomainStatisticsBreakdownRow;
+
+export const KEYS_DOMAIN_STATISTICS_BREAKDOWN_ROW = [
+  KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_CREATE,
+  KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_KEY,
+  KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_LABEL,
+  KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_TOTAL,
+  KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_TRANSFER,
+] as const satisfies (keyof DomainStatisticsBreakdownRow)[];
+
+export const KEY_DOMAIN_STATISTICS_BUCKET_CREATE = 'create' satisfies keyof DomainStatisticsBucket;
+export const KEY_DOMAIN_STATISTICS_BUCKET_PARTIAL = 'partial' satisfies keyof DomainStatisticsBucket;
+export const KEY_DOMAIN_STATISTICS_BUCKET_PERIOD_START = 'period_start' satisfies keyof DomainStatisticsBucket;
+export const KEY_DOMAIN_STATISTICS_BUCKET_TRANSFER = 'transfer' satisfies keyof DomainStatisticsBucket;
+
+export const KEYS_DOMAIN_STATISTICS_BUCKET = [
+  KEY_DOMAIN_STATISTICS_BUCKET_CREATE,
+  KEY_DOMAIN_STATISTICS_BUCKET_PARTIAL,
+  KEY_DOMAIN_STATISTICS_BUCKET_PERIOD_START,
+  KEY_DOMAIN_STATISTICS_BUCKET_TRANSFER,
+] as const satisfies (keyof DomainStatisticsBucket)[];
+
+export const KEY_DOMAIN_STATISTICS_BREAKDOWN = 'breakdown' satisfies keyof DomainStatistics;
+export const KEY_DOMAIN_STATISTICS_BUCKETS = 'buckets' satisfies keyof DomainStatistics;
+export const KEY_DOMAIN_STATISTICS_END_DATE = 'end_date' satisfies keyof DomainStatistics;
+export const KEY_DOMAIN_STATISTICS_GRANULARITY = 'granularity' satisfies keyof DomainStatistics;
+export const KEY_DOMAIN_STATISTICS_ORGANIZATION_ID = 'organization_id' satisfies keyof DomainStatistics;
+export const KEY_DOMAIN_STATISTICS_START_DATE = 'start_date' satisfies keyof DomainStatistics;
+export const KEY_DOMAIN_STATISTICS_TOTALS = 'totals' satisfies keyof DomainStatistics;
+
+export const KEYS_DOMAIN_STATISTICS = [
+  KEY_DOMAIN_STATISTICS_BREAKDOWN,
+  KEY_DOMAIN_STATISTICS_BUCKETS,
+  KEY_DOMAIN_STATISTICS_END_DATE,
+  KEY_DOMAIN_STATISTICS_GRANULARITY,
+  KEY_DOMAIN_STATISTICS_ORGANIZATION_ID,
+  KEY_DOMAIN_STATISTICS_START_DATE,
+  KEY_DOMAIN_STATISTICS_TOTALS,
+] as const satisfies (keyof DomainStatistics)[];
+
+export const KEY_DOMAIN_STATISTICS_TOTALS_CREATE = 'create' satisfies keyof DomainStatisticsTotals;
+export const KEY_DOMAIN_STATISTICS_TOTALS_TOTAL = 'total' satisfies keyof DomainStatisticsTotals;
+export const KEY_DOMAIN_STATISTICS_TOTALS_TRANSFER = 'transfer' satisfies keyof DomainStatisticsTotals;
+
+export const KEYS_DOMAIN_STATISTICS_TOTALS = [
+  KEY_DOMAIN_STATISTICS_TOTALS_CREATE,
+  KEY_DOMAIN_STATISTICS_TOTALS_TOTAL,
+  KEY_DOMAIN_STATISTICS_TOTALS_TRANSFER,
+] as const satisfies (keyof DomainStatisticsTotals)[];
+
 export const KEY_DOMAIN_STATUS2_STATUS = 'status' satisfies keyof DomainStatus2;
 
 export const KEYS_DOMAIN_STATUS2 = [
@@ -2962,6 +3045,7 @@ export const KEYS_DOMAIN_UPDATE_BULK_COMMAND = [
   KEY_DOMAIN_UPDATE_BULK_COMMAND_VERSION,
 ] as const satisfies (keyof DomainUpdateBulkCommand)[];
 
+export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_ATTRIBUTES = 'attributes' satisfies keyof DomainUpdateBulkInstance;
 export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_AUTH_CODE = 'auth_code' satisfies keyof DomainUpdateBulkInstance;
 export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_CONTACTS = 'contacts' satisfies keyof DomainUpdateBulkInstance;
 export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_DOMAIN_ID = 'domain_id' satisfies keyof DomainUpdateBulkInstance;
@@ -2972,6 +3056,7 @@ export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_STATUS_CHANGES = 'status_changes' s
 export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_STATUSES = 'statuses' satisfies keyof DomainUpdateBulkInstance;
 
 export const KEYS_DOMAIN_UPDATE_BULK_INSTANCE = [
+  KEY_DOMAIN_UPDATE_BULK_INSTANCE_ATTRIBUTES,
   KEY_DOMAIN_UPDATE_BULK_INSTANCE_AUTH_CODE,
   KEY_DOMAIN_UPDATE_BULK_INSTANCE_CONTACTS,
   KEY_DOMAIN_UPDATE_BULK_INSTANCE_DOMAIN_ID,
@@ -2990,6 +3075,7 @@ export const KEYS_DOMAIN_UPDATE_BULK_PAYLOAD = [
   KEY_DOMAIN_UPDATE_BULK_PAYLOAD_TEMPLATE,
 ] as const satisfies (keyof DomainUpdateBulkPayload)[];
 
+export const KEY_DOMAIN_UPDATE_BULK_TEMPLATE_ATTRIBUTES = 'attributes' satisfies keyof DomainUpdateBulkTemplate;
 export const KEY_DOMAIN_UPDATE_BULK_TEMPLATE_CONTACTS = 'contacts' satisfies keyof DomainUpdateBulkTemplate;
 export const KEY_DOMAIN_UPDATE_BULK_TEMPLATE_NAMESERVERS = 'nameservers' satisfies keyof DomainUpdateBulkTemplate;
 export const KEY_DOMAIN_UPDATE_BULK_TEMPLATE_RENEWAL_MODE = 'renewal_mode' satisfies keyof DomainUpdateBulkTemplate;
@@ -2997,6 +3083,7 @@ export const KEY_DOMAIN_UPDATE_BULK_TEMPLATE_STATUS_CHANGES = 'status_changes' s
 export const KEY_DOMAIN_UPDATE_BULK_TEMPLATE_STATUSES = 'statuses' satisfies keyof DomainUpdateBulkTemplate;
 
 export const KEYS_DOMAIN_UPDATE_BULK_TEMPLATE = [
+  KEY_DOMAIN_UPDATE_BULK_TEMPLATE_ATTRIBUTES,
   KEY_DOMAIN_UPDATE_BULK_TEMPLATE_CONTACTS,
   KEY_DOMAIN_UPDATE_BULK_TEMPLATE_NAMESERVERS,
   KEY_DOMAIN_UPDATE_BULK_TEMPLATE_RENEWAL_MODE,
@@ -3474,6 +3561,26 @@ export const KEYS_EMAIL_FORWARDS_CONTEXT_CREATE = [
   KEY_EMAIL_FORWARDS_CONTEXT_CREATE_PAYLOAD,
 ] as const satisfies (keyof EmailForwardsContextCreate)[];
 
+export const KEY_EMAIL_VERIFICATION_POLICY_COMMUNICATION = 'communication' satisfies keyof EmailVerificationPolicy;
+export const KEY_EMAIL_VERIFICATION_POLICY_CONTACT_ROLES = 'contact_roles' satisfies keyof EmailVerificationPolicy;
+export const KEY_EMAIL_VERIFICATION_POLICY_ENABLED = 'enabled' satisfies keyof EmailVerificationPolicy;
+export const KEY_EMAIL_VERIFICATION_POLICY_SUSPENSION_DELAY = 'suspension_delay' satisfies keyof EmailVerificationPolicy;
+export const KEY_EMAIL_VERIFICATION_POLICY_SUSPENSION_ON_FAILURE = 'suspension_on_failure' satisfies keyof EmailVerificationPolicy;
+export const KEY_EMAIL_VERIFICATION_POLICY_TRIGGER = 'trigger' satisfies keyof EmailVerificationPolicy;
+export const KEY_EMAIL_VERIFICATION_POLICY_VALIDITY_PERIOD = 'validity_period' satisfies keyof EmailVerificationPolicy;
+export const KEY_EMAIL_VERIFICATION_POLICY_VERIFICATION_METHOD = 'verification_method' satisfies keyof EmailVerificationPolicy;
+
+export const KEYS_EMAIL_VERIFICATION_POLICY = [
+  KEY_EMAIL_VERIFICATION_POLICY_COMMUNICATION,
+  KEY_EMAIL_VERIFICATION_POLICY_CONTACT_ROLES,
+  KEY_EMAIL_VERIFICATION_POLICY_ENABLED,
+  KEY_EMAIL_VERIFICATION_POLICY_SUSPENSION_DELAY,
+  KEY_EMAIL_VERIFICATION_POLICY_SUSPENSION_ON_FAILURE,
+  KEY_EMAIL_VERIFICATION_POLICY_TRIGGER,
+  KEY_EMAIL_VERIFICATION_POLICY_VALIDITY_PERIOD,
+  KEY_EMAIL_VERIFICATION_POLICY_VERIFICATION_METHOD,
+] as const satisfies (keyof EmailVerificationPolicy)[];
+
 export const KEY_EVENT_DATA_DETAILS = 'details' satisfies keyof EventData;
 export const KEY_EVENT_DATA_ERROR = 'error' satisfies keyof EventData;
 export const KEY_EVENT_DATA_MESSAGE = 'message' satisfies keyof EventData;
@@ -3685,6 +3792,24 @@ export const KEYS_HTTP_REDIRECT_UPSERT = [
   KEY_HTTP_REDIRECT_UPSERT_TARGET_PATH,
   KEY_HTTP_REDIRECT_UPSERT_TARGET_PROTOCOL,
 ] as const satisfies (keyof HttpRedirectUpsert)[];
+
+export const KEY_IDENTITY_VERIFICATION_POLICY_CONTACT_ROLES = 'contact_roles' satisfies keyof IdentityVerificationPolicy;
+export const KEY_IDENTITY_VERIFICATION_POLICY_ENABLED = 'enabled' satisfies keyof IdentityVerificationPolicy;
+export const KEY_IDENTITY_VERIFICATION_POLICY_REQUIRED_CLAIMS = 'required_claims' satisfies keyof IdentityVerificationPolicy;
+export const KEY_IDENTITY_VERIFICATION_POLICY_SUSPENSION_DELAY = 'suspension_delay' satisfies keyof IdentityVerificationPolicy;
+export const KEY_IDENTITY_VERIFICATION_POLICY_SUSPENSION_ON_FAILURE = 'suspension_on_failure' satisfies keyof IdentityVerificationPolicy;
+export const KEY_IDENTITY_VERIFICATION_POLICY_TRIGGER = 'trigger' satisfies keyof IdentityVerificationPolicy;
+export const KEY_IDENTITY_VERIFICATION_POLICY_VALIDITY_PERIOD = 'validity_period' satisfies keyof IdentityVerificationPolicy;
+
+export const KEYS_IDENTITY_VERIFICATION_POLICY = [
+  KEY_IDENTITY_VERIFICATION_POLICY_CONTACT_ROLES,
+  KEY_IDENTITY_VERIFICATION_POLICY_ENABLED,
+  KEY_IDENTITY_VERIFICATION_POLICY_REQUIRED_CLAIMS,
+  KEY_IDENTITY_VERIFICATION_POLICY_SUSPENSION_DELAY,
+  KEY_IDENTITY_VERIFICATION_POLICY_SUSPENSION_ON_FAILURE,
+  KEY_IDENTITY_VERIFICATION_POLICY_TRIGGER,
+  KEY_IDENTITY_VERIFICATION_POLICY_VALIDITY_PERIOD,
+] as const satisfies (keyof IdentityVerificationPolicy)[];
 
 export const KEY_IDN_BASE_IDN_CAPABLE = 'idn_capable' satisfies keyof IdnBase;
 export const KEY_IDN_BASE_IDN_TABLES = 'idn_tables' satisfies keyof IdnBase;
@@ -4128,6 +4253,7 @@ export const KEY_NOR_ID_DECLARATION_DOMAIN_NAME = 'domain_name' satisfies keyof 
 export const KEY_NOR_ID_DECLARATION_EXPIRES_ON = 'expires_on' satisfies keyof NorIdDeclaration;
 export const KEY_NOR_ID_DECLARATION_IDENTITY_TYPE = 'identity_type' satisfies keyof NorIdDeclaration;
 export const KEY_NOR_ID_DECLARATION_IDENTITY_VALUE = 'identity_value' satisfies keyof NorIdDeclaration;
+export const KEY_NOR_ID_DECLARATION_ORGANIZATION_ID = 'organization_id' satisfies keyof NorIdDeclaration;
 export const KEY_NOR_ID_DECLARATION_STATUS = 'status' satisfies keyof NorIdDeclaration;
 export const KEY_NOR_ID_DECLARATION_SUBSCRIBER_NAME = 'subscriber_name' satisfies keyof NorIdDeclaration;
 
@@ -4140,6 +4266,7 @@ export const KEYS_NOR_ID_DECLARATION = [
   KEY_NOR_ID_DECLARATION_EXPIRES_ON,
   KEY_NOR_ID_DECLARATION_IDENTITY_TYPE,
   KEY_NOR_ID_DECLARATION_IDENTITY_VALUE,
+  KEY_NOR_ID_DECLARATION_ORGANIZATION_ID,
   KEY_NOR_ID_DECLARATION_STATUS,
   KEY_NOR_ID_DECLARATION_SUBSCRIBER_NAME,
 ] as const satisfies (keyof NorIdDeclaration)[];
@@ -4549,6 +4676,8 @@ export const KEYS_PAGINATION_METADATA_DTO = [
 export const KEY_PALETTE_ACCENT = 'accent' satisfies keyof Palette;
 export const KEY_PALETTE_ACCENT_FOREGROUND = 'accent_foreground' satisfies keyof Palette;
 export const KEY_PALETTE_BACKGROUND = 'background' satisfies keyof Palette;
+export const KEY_PALETTE_BODY = 'body' satisfies keyof Palette;
+export const KEY_PALETTE_BODY_FOREGROUND = 'body_foreground' satisfies keyof Palette;
 export const KEY_PALETTE_BORDER = 'border' satisfies keyof Palette;
 export const KEY_PALETTE_CARD = 'card' satisfies keyof Palette;
 export const KEY_PALETTE_CARD_FOREGROUND = 'card_foreground' satisfies keyof Palette;
@@ -4557,6 +4686,7 @@ export const KEY_PALETTE_DANGER = 'danger' satisfies keyof Palette;
 export const KEY_PALETTE_FOREGROUND = 'foreground' satisfies keyof Palette;
 export const KEY_PALETTE_INFO = 'info' satisfies keyof Palette;
 export const KEY_PALETTE_INPUT = 'input' satisfies keyof Palette;
+export const KEY_PALETTE_LINK = 'link' satisfies keyof Palette;
 export const KEY_PALETTE_MUTED = 'muted' satisfies keyof Palette;
 export const KEY_PALETTE_MUTED_FOREGROUND = 'muted_foreground' satisfies keyof Palette;
 export const KEY_PALETTE_PRIMARY = 'primary' satisfies keyof Palette;
@@ -4564,8 +4694,15 @@ export const KEY_PALETTE_PRIMARY_FOREGROUND = 'primary_foreground' satisfies key
 export const KEY_PALETTE_SECONDARY = 'secondary' satisfies keyof Palette;
 export const KEY_PALETTE_SECONDARY_FOREGROUND = 'secondary_foreground' satisfies keyof Palette;
 export const KEY_PALETTE_SIDEBAR = 'sidebar' satisfies keyof Palette;
+export const KEY_PALETTE_SIDEBAR_ACCENT = 'sidebar_accent' satisfies keyof Palette;
+export const KEY_PALETTE_SIDEBAR_ACCENT_FOREGROUND = 'sidebar_accent_foreground' satisfies keyof Palette;
+export const KEY_PALETTE_SIDEBAR_BORDER = 'sidebar_border' satisfies keyof Palette;
 export const KEY_PALETTE_SIDEBAR_FOREGROUND = 'sidebar_foreground' satisfies keyof Palette;
 export const KEY_PALETTE_SUCCESS = 'success' satisfies keyof Palette;
+export const KEY_PALETTE_TABLE = 'table' satisfies keyof Palette;
+export const KEY_PALETTE_TABLE_HEADER = 'table_header' satisfies keyof Palette;
+export const KEY_PALETTE_TABLE_ROW = 'table_row' satisfies keyof Palette;
+export const KEY_PALETTE_TABLE_ROW_INTERACTIVE = 'table_row_interactive' satisfies keyof Palette;
 export const KEY_PALETTE_TAG_COLORS = 'tag_colors' satisfies keyof Palette;
 export const KEY_PALETTE_WARNING = 'warning' satisfies keyof Palette;
 
@@ -4573,6 +4710,8 @@ export const KEYS_PALETTE = [
   KEY_PALETTE_ACCENT,
   KEY_PALETTE_ACCENT_FOREGROUND,
   KEY_PALETTE_BACKGROUND,
+  KEY_PALETTE_BODY,
+  KEY_PALETTE_BODY_FOREGROUND,
   KEY_PALETTE_BORDER,
   KEY_PALETTE_CARD,
   KEY_PALETTE_CARD_FOREGROUND,
@@ -4581,6 +4720,7 @@ export const KEYS_PALETTE = [
   KEY_PALETTE_FOREGROUND,
   KEY_PALETTE_INFO,
   KEY_PALETTE_INPUT,
+  KEY_PALETTE_LINK,
   KEY_PALETTE_MUTED,
   KEY_PALETTE_MUTED_FOREGROUND,
   KEY_PALETTE_PRIMARY,
@@ -4588,8 +4728,15 @@ export const KEYS_PALETTE = [
   KEY_PALETTE_SECONDARY,
   KEY_PALETTE_SECONDARY_FOREGROUND,
   KEY_PALETTE_SIDEBAR,
+  KEY_PALETTE_SIDEBAR_ACCENT,
+  KEY_PALETTE_SIDEBAR_ACCENT_FOREGROUND,
+  KEY_PALETTE_SIDEBAR_BORDER,
   KEY_PALETTE_SIDEBAR_FOREGROUND,
   KEY_PALETTE_SUCCESS,
+  KEY_PALETTE_TABLE,
+  KEY_PALETTE_TABLE_HEADER,
+  KEY_PALETTE_TABLE_ROW,
+  KEY_PALETTE_TABLE_ROW_INTERACTIVE,
   KEY_PALETTE_TAG_COLORS,
   KEY_PALETTE_WARNING,
 ] as const satisfies (keyof Palette)[];
@@ -5192,6 +5339,14 @@ export const KEYS_REQUEST_HISTORY = [
   KEY_REQUEST_HISTORY_STATUS_CODE,
 ] as const satisfies (keyof RequestHistory)[];
 
+export const KEY_REQUIRED_CLAIM_ACCEPTED_PROOFS = 'accepted_proofs' satisfies keyof RequiredClaim;
+export const KEY_REQUIRED_CLAIM_CLAIM = 'claim' satisfies keyof RequiredClaim;
+
+export const KEYS_REQUIRED_CLAIM = [
+  KEY_REQUIRED_CLAIM_ACCEPTED_PROOFS,
+  KEY_REQUIRED_CLAIM_CLAIM,
+] as const satisfies (keyof RequiredClaim)[];
+
 export const KEY_RESERVED_DOMAINS_BASE_SOURCE = 'source' satisfies keyof ReservedDomainsBase;
 export const KEY_RESERVED_DOMAINS_BASE_SUPPORTED = 'supported' satisfies keyof ReservedDomainsBase;
 export const KEY_RESERVED_DOMAINS_BASE_URL = 'url' satisfies keyof ReservedDomainsBase;
@@ -5279,10 +5434,14 @@ export const KEYS_STATUS_TAG = [
 ] as const satisfies (keyof StatusTag)[];
 
 export const KEY_SUPPORT_EMAIL = 'email' satisfies keyof Support;
+export const KEY_SUPPORT_HELP_CENTER_URL = 'help_center_url' satisfies keyof Support;
+export const KEY_SUPPORT_STATUS_URL = 'status_url' satisfies keyof Support;
 export const KEY_SUPPORT_URL = 'url' satisfies keyof Support;
 
 export const KEYS_SUPPORT = [
   KEY_SUPPORT_EMAIL,
+  KEY_SUPPORT_HELP_CENTER_URL,
+  KEY_SUPPORT_STATUS_URL,
   KEY_SUPPORT_URL,
 ] as const satisfies (keyof Support)[];
 
@@ -5400,6 +5559,7 @@ export const KEY_TLD_SPECIFICATION_REGISTRY_LOCK = 'registry_lock' satisfies key
 export const KEY_TLD_SPECIFICATION_RESERVED_DOMAINS = 'reserved_domains' satisfies keyof TldSpecification;
 export const KEY_TLD_SPECIFICATION_TLDS = 'tlds' satisfies keyof TldSpecification;
 export const KEY_TLD_SPECIFICATION_TRANSFER_POLICIES = 'transfer_policies' satisfies keyof TldSpecification;
+export const KEY_TLD_SPECIFICATION_VERIFICATION_POLICIES = 'verification_policies' satisfies keyof TldSpecification;
 export const KEY_TLD_SPECIFICATION_WHOIS = 'whois' satisfies keyof TldSpecification;
 
 export const KEYS_TLD_SPECIFICATION = [
@@ -5419,6 +5579,7 @@ export const KEYS_TLD_SPECIFICATION = [
   KEY_TLD_SPECIFICATION_RESERVED_DOMAINS,
   KEY_TLD_SPECIFICATION_TLDS,
   KEY_TLD_SPECIFICATION_TRANSFER_POLICIES,
+  KEY_TLD_SPECIFICATION_VERIFICATION_POLICIES,
   KEY_TLD_SPECIFICATION_WHOIS,
 ] as const satisfies (keyof TldSpecification)[];
 

@@ -38,6 +38,7 @@ import type {
   DomainRenew,
   DomainRestore,
   DomainSearch,
+  DomainStatistics,
   DomainSummary,
   DomainTransit,
   DomainWithdraw,
@@ -394,7 +395,7 @@ export type GET_ContactsByContactIdVerifications_Response = GET_ContactsByContac
 export type GET_ContactsByContactIdVerifications_Response_200 = ContactAttestRes;
 export type GET_ContactsByContactIdVerifications_Response_401 = Problem;
 export type GET_ContactsByContactIdVerifications_Response_404 = Problem;
-export type GET_ContactsByContactIdVerifications_Response_422 = HTTPValidationError;
+export type GET_ContactsByContactIdVerifications_Response_422 = Problem;
 export type GET_ContactsByContactIdVerifications_Response_502 = Problem;
 
 export type GET_ContactsVerification_Response = GET_ContactsVerification_Response_200 | GET_ContactsVerification_Response_401 | GET_ContactsVerification_Response_404 | GET_ContactsVerification_Response_422;
@@ -574,6 +575,11 @@ export type GET_DomainsCheck_Response = GET_DomainsCheck_Response_200 | GET_Doma
 
 export type GET_DomainsCheck_Response_200 = DomainCheck;
 export type GET_DomainsCheck_Response_422 = HTTPValidationError;
+
+export type GET_DomainsStatistics_Response = GET_DomainsStatistics_Response_200 | GET_DomainsStatistics_Response_422;
+
+export type GET_DomainsStatistics_Response_200 = DomainStatistics;
+export type GET_DomainsStatistics_Response_422 = HTTPValidationError;
 
 export type GET_DomainsSummary_Response = GET_DomainsSummary_Response_200 | GET_DomainsSummary_Response_422;
 
@@ -1125,7 +1131,7 @@ export type POST_ContactsByContactIdVerificationsAttest_Response_200 = ContactAt
 export type POST_ContactsByContactIdVerificationsAttest_Response_400 = Problem;
 export type POST_ContactsByContactIdVerificationsAttest_Response_401 = Problem;
 export type POST_ContactsByContactIdVerificationsAttest_Response_404 = Problem;
-export type POST_ContactsByContactIdVerificationsAttest_Response_422 = HTTPValidationError;
+export type POST_ContactsByContactIdVerificationsAttest_Response_422 = Problem;
 export type POST_ContactsByContactIdVerificationsAttest_Response_502 = Problem;
 
 export type POST_Dns_Response = POST_Dns_Response_400 | POST_Dns_Response_422;

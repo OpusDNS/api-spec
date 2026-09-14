@@ -40,6 +40,7 @@ import type {
   DomainIncludeField,
   DomainListIncludeField,
   DomainSortField,
+  DomainStatisticsBreakdown,
   DomainStatus,
   EmailForwardLogSortField,
   EmailForwardLogStatus,
@@ -65,11 +66,14 @@ import type {
   LaunchPhaseType,
   LegalRequirementOperationType,
   LegalRequirementType,
+  LevelOfAssurance,
   LocalPresenceRequirementType,
   MailTemplateCategory,
   MemoryFactKind,
   MessageRole,
   MetricsGrouping,
+  NizzaClaim,
+  NizzaVerificationProof,
   NorIdDeclarationStatus,
   ObjectEventType,
   ObjectLogSortField,
@@ -121,6 +125,7 @@ import type {
   VanityNsCheckSummaryState,
   VerificationClaimType,
   VerificationDeadlineType,
+  VerificationPolicyType,
   VerificationType,
   WhitelabelBrandingTier,
   WhitelabelOnboardingFailureCode,
@@ -228,6 +233,7 @@ export const BILLING_MODE_VALUES = [
 export const BILLING_TRANSACTION_ACTION = {
   CREATE: "create",
   TRANSFER: "transfer",
+  IMPORT: "import",
   RENEW: "renew",
   RESTORE: "restore",
   TRADE: "trade",
@@ -240,6 +246,7 @@ export const BILLING_TRANSACTION_ACTION = {
 export const BILLING_TRANSACTION_ACTION_VALUES = [
   'create',
   'transfer',
+  'import',
   'renew',
   'restore',
   'trade',
@@ -259,6 +266,7 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE = {
   WHITELABEL_BRANDING: "whitelabel_branding",
   WHITELABEL_BRANDING_PLUS: "whitelabel_branding_plus",
   RAS_DOMAIN_LIFECYCLE: "ras_domain_lifecycle",
+  AMS_DOMAIN_LIFECYCLE: "ams_domain_lifecycle",
 } as const satisfies Record<string, BillingTransactionProductType>;
 
 export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
@@ -271,6 +279,7 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
   'whitelabel_branding',
   'whitelabel_branding_plus',
   'ras_domain_lifecycle',
+  'ams_domain_lifecycle',
 ] as const satisfies ReadonlyArray<BillingTransactionProductType>;
 
 export const BILLING_TRANSACTION_SORT_FIELD = {
@@ -437,6 +446,7 @@ export const CONTACT_VERIFICATION_PROOF = {
   DIGITAL_ATTESTATION: "DIGITAL_ATTESTATION",
   POSTAL_VER_TRANSACTION_LOG: "POSTAL_VER_TRANSACTION_LOG",
   EMAIL_VER_TRANSACTION_LOG: "EMAIL_VER_TRANSACTION_LOG",
+  PHONE_VER_TRANSACTION_LOG: "PHONE_VER_TRANSACTION_LOG",
   ADDRESS_DATABASE: "ADDRESS_DATABASE",
 } as const satisfies Record<string, ContactVerificationProof>;
 
@@ -458,6 +468,7 @@ export const CONTACT_VERIFICATION_PROOF_VALUES = [
   'DIGITAL_ATTESTATION',
   'POSTAL_VER_TRANSACTION_LOG',
   'EMAIL_VER_TRANSACTION_LOG',
+  'PHONE_VER_TRANSACTION_LOG',
   'ADDRESS_DATABASE',
 ] as const satisfies ReadonlyArray<ContactVerificationProof>;
 
@@ -808,6 +819,18 @@ export const DOMAIN_SORT_FIELD_VALUES = [
   'registered_on',
   'transferred_on',
 ] as const satisfies ReadonlyArray<DomainSortField>;
+
+export const DOMAIN_STATISTICS_BREAKDOWN = {
+  NONE: "none",
+  ORGANIZATION: "organization",
+  TLD: "tld",
+} as const satisfies Record<string, DomainStatisticsBreakdown>;
+
+export const DOMAIN_STATISTICS_BREAKDOWN_VALUES = [
+  'none',
+  'organization',
+  'tld',
+] as const satisfies ReadonlyArray<DomainStatisticsBreakdown>;
 
 export const DOMAIN_STATUS = {
   OK: "ok",
@@ -1235,6 +1258,18 @@ export const LEGAL_REQUIREMENT_TYPE_VALUES = [
   'confirmation',
 ] as const satisfies ReadonlyArray<LegalRequirementType>;
 
+export const LEVEL_OF_ASSURANCE = {
+  HIGH: "HIGH",
+  LOW: "LOW",
+  SUBSTANTIAL: "SUBSTANTIAL",
+} as const satisfies Record<string, LevelOfAssurance>;
+
+export const LEVEL_OF_ASSURANCE_VALUES = [
+  'HIGH',
+  'LOW',
+  'SUBSTANTIAL',
+] as const satisfies ReadonlyArray<LevelOfAssurance>;
+
 export const LOCAL_PRESENCE_REQUIREMENT_TYPE = {
   PHYSICAL_ADDRESS: "physical_address",
   BUSINESS_ENTITY: "business_entity",
@@ -1304,6 +1339,66 @@ export const METRICS_GROUPING_VALUES = [
   'forward',
   'rule',
 ] as const satisfies ReadonlyArray<MetricsGrouping>;
+
+export const NIZZA_CLAIM = {
+  EMAIL: "EMAIL",
+  PHONE: "PHONE",
+  ADDRESS: "ADDRESS",
+  NAME: "NAME",
+  LEGAL_ENTITY: "LEGAL_ENTITY",
+} as const satisfies Record<string, NizzaClaim>;
+
+export const NIZZA_CLAIM_VALUES = [
+  'EMAIL',
+  'PHONE',
+  'ADDRESS',
+  'NAME',
+  'LEGAL_ENTITY',
+] as const satisfies ReadonlyArray<NizzaClaim>;
+
+export const NIZZA_VERIFICATION_PROOF = {
+  IDCARD: "IDCARD",
+  PASSPORT: "PASSPORT",
+  POPULATION_REGISTER: "POPULATION_REGISTER",
+  RESIDENCE_PERMIT: "RESIDENCE_PERMIT",
+  PROOF_OF_ARRIVAL: "PROOF_OF_ARRIVAL",
+  DRIVERS_LICENCE: "DRIVERS_LICENCE",
+  COMPANY_REGISTER: "COMPANY_REGISTER",
+  COMPANY_STATEMENT: "COMPANY_STATEMENT",
+  BANK_ACCOUNT: "BANK_ACCOUNT",
+  ONLINE_PAYMENT_ACCOUNT: "ONLINE_PAYMENT_ACCOUNT",
+  UTILITY_ACCOUNT: "UTILITY_ACCOUNT",
+  BANK_STATEMENT: "BANK_STATEMENT",
+  TAX_STATEMENT: "TAX_STATEMENT",
+  WRITTEN_ATTESTATION: "WRITTEN_ATTESTATION",
+  DIGITAL_ATTESTATION: "DIGITAL_ATTESTATION",
+  POSTAL_VER_TRANSACTION_LOG: "POSTAL_VER_TRANSACTION_LOG",
+  EMAIL_VER_TRANSACTION_LOG: "EMAIL_VER_TRANSACTION_LOG",
+  PHONE_VER_TRANSACTION_LOG: "PHONE_VER_TRANSACTION_LOG",
+  ADDRESS_DATABASE: "ADDRESS_DATABASE",
+} as const satisfies Record<string, NizzaVerificationProof>;
+
+export const NIZZA_VERIFICATION_PROOF_VALUES = [
+  'IDCARD',
+  'PASSPORT',
+  'POPULATION_REGISTER',
+  'RESIDENCE_PERMIT',
+  'PROOF_OF_ARRIVAL',
+  'DRIVERS_LICENCE',
+  'COMPANY_REGISTER',
+  'COMPANY_STATEMENT',
+  'BANK_ACCOUNT',
+  'ONLINE_PAYMENT_ACCOUNT',
+  'UTILITY_ACCOUNT',
+  'BANK_STATEMENT',
+  'TAX_STATEMENT',
+  'WRITTEN_ATTESTATION',
+  'DIGITAL_ATTESTATION',
+  'POSTAL_VER_TRANSACTION_LOG',
+  'EMAIL_VER_TRANSACTION_LOG',
+  'PHONE_VER_TRANSACTION_LOG',
+  'ADDRESS_DATABASE',
+] as const satisfies ReadonlyArray<NizzaVerificationProof>;
 
 export const NOR_ID_DECLARATION_STATUS = {
   PENDING: "pending",
@@ -2301,6 +2396,16 @@ export const VERIFICATION_DEADLINE_TYPE_VALUES = [
   'dedelegation',
   'deletion',
 ] as const satisfies ReadonlyArray<VerificationDeadlineType>;
+
+export const VERIFICATION_POLICY_TYPE = {
+  EMAIL_VERIFICATION: "email_verification",
+  IDENTITY_VERIFICATION: "identity_verification",
+} as const satisfies Record<string, VerificationPolicyType>;
+
+export const VERIFICATION_POLICY_TYPE_VALUES = [
+  'email_verification',
+  'identity_verification',
+] as const satisfies ReadonlyArray<VerificationPolicyType>;
 
 export const VERIFICATION_TYPE = {
   API: "api",
