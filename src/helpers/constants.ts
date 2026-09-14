@@ -40,6 +40,7 @@ import type {
   DomainIncludeField,
   DomainListIncludeField,
   DomainSortField,
+  DomainStatisticsBreakdown,
   DomainStatus,
   EmailForwardLogSortField,
   EmailForwardLogStatus,
@@ -818,6 +819,18 @@ export const DOMAIN_SORT_FIELD_VALUES = [
   'registered_on',
   'transferred_on',
 ] as const satisfies ReadonlyArray<DomainSortField>;
+
+export const DOMAIN_STATISTICS_BREAKDOWN = {
+  NONE: "none",
+  ORGANIZATION: "organization",
+  TLD: "tld",
+} as const satisfies Record<string, DomainStatisticsBreakdown>;
+
+export const DOMAIN_STATISTICS_BREAKDOWN_VALUES = [
+  'none',
+  'organization',
+  'tld',
+] as const satisfies ReadonlyArray<DomainStatisticsBreakdown>;
 
 export const DOMAIN_STATUS = {
   OK: "ok",

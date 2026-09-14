@@ -193,6 +193,10 @@ import type {
   DomainSearch,
   DomainSearchSuggestionPriceData,
   DomainSearchSuggestionWithPrice,
+  DomainStatisticsBreakdown2,
+  DomainStatisticsBucket,
+  DomainStatistics,
+  DomainStatisticsTotals,
   DomainStatus2,
   DomainStatusesBase,
   DomainSummaryData,
@@ -2778,6 +2782,60 @@ export const KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE = [
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PRICE,
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_RENEWAL_PRICE,
 ] as const satisfies (keyof DomainSearchSuggestionWithPrice)[];
+
+export const KEY_DOMAIN_STATISTICS_BREAKDOWN2_CREATE = 'create' satisfies keyof DomainStatisticsBreakdown2;
+export const KEY_DOMAIN_STATISTICS_BREAKDOWN2_KEY = 'key' satisfies keyof DomainStatisticsBreakdown2;
+export const KEY_DOMAIN_STATISTICS_BREAKDOWN2_LABEL = 'label' satisfies keyof DomainStatisticsBreakdown2;
+export const KEY_DOMAIN_STATISTICS_BREAKDOWN2_TOTAL = 'total' satisfies keyof DomainStatisticsBreakdown2;
+export const KEY_DOMAIN_STATISTICS_BREAKDOWN2_TRANSFER = 'transfer' satisfies keyof DomainStatisticsBreakdown2;
+
+export const KEYS_DOMAIN_STATISTICS_BREAKDOWN2 = [
+  KEY_DOMAIN_STATISTICS_BREAKDOWN2_CREATE,
+  KEY_DOMAIN_STATISTICS_BREAKDOWN2_KEY,
+  KEY_DOMAIN_STATISTICS_BREAKDOWN2_LABEL,
+  KEY_DOMAIN_STATISTICS_BREAKDOWN2_TOTAL,
+  KEY_DOMAIN_STATISTICS_BREAKDOWN2_TRANSFER,
+] as const satisfies (keyof DomainStatisticsBreakdown2)[];
+
+export const KEY_DOMAIN_STATISTICS_BUCKET_CREATE = 'create' satisfies keyof DomainStatisticsBucket;
+export const KEY_DOMAIN_STATISTICS_BUCKET_PARTIAL = 'partial' satisfies keyof DomainStatisticsBucket;
+export const KEY_DOMAIN_STATISTICS_BUCKET_PERIOD_START = 'period_start' satisfies keyof DomainStatisticsBucket;
+export const KEY_DOMAIN_STATISTICS_BUCKET_TRANSFER = 'transfer' satisfies keyof DomainStatisticsBucket;
+
+export const KEYS_DOMAIN_STATISTICS_BUCKET = [
+  KEY_DOMAIN_STATISTICS_BUCKET_CREATE,
+  KEY_DOMAIN_STATISTICS_BUCKET_PARTIAL,
+  KEY_DOMAIN_STATISTICS_BUCKET_PERIOD_START,
+  KEY_DOMAIN_STATISTICS_BUCKET_TRANSFER,
+] as const satisfies (keyof DomainStatisticsBucket)[];
+
+export const KEY_DOMAIN_STATISTICS_BREAKDOWN = 'breakdown' satisfies keyof DomainStatistics;
+export const KEY_DOMAIN_STATISTICS_BUCKETS = 'buckets' satisfies keyof DomainStatistics;
+export const KEY_DOMAIN_STATISTICS_END_DATE = 'end_date' satisfies keyof DomainStatistics;
+export const KEY_DOMAIN_STATISTICS_GRANULARITY = 'granularity' satisfies keyof DomainStatistics;
+export const KEY_DOMAIN_STATISTICS_ORGANIZATION_ID = 'organization_id' satisfies keyof DomainStatistics;
+export const KEY_DOMAIN_STATISTICS_START_DATE = 'start_date' satisfies keyof DomainStatistics;
+export const KEY_DOMAIN_STATISTICS_TOTALS = 'totals' satisfies keyof DomainStatistics;
+
+export const KEYS_DOMAIN_STATISTICS = [
+  KEY_DOMAIN_STATISTICS_BREAKDOWN,
+  KEY_DOMAIN_STATISTICS_BUCKETS,
+  KEY_DOMAIN_STATISTICS_END_DATE,
+  KEY_DOMAIN_STATISTICS_GRANULARITY,
+  KEY_DOMAIN_STATISTICS_ORGANIZATION_ID,
+  KEY_DOMAIN_STATISTICS_START_DATE,
+  KEY_DOMAIN_STATISTICS_TOTALS,
+] as const satisfies (keyof DomainStatistics)[];
+
+export const KEY_DOMAIN_STATISTICS_TOTALS_CREATE = 'create' satisfies keyof DomainStatisticsTotals;
+export const KEY_DOMAIN_STATISTICS_TOTALS_TOTAL = 'total' satisfies keyof DomainStatisticsTotals;
+export const KEY_DOMAIN_STATISTICS_TOTALS_TRANSFER = 'transfer' satisfies keyof DomainStatisticsTotals;
+
+export const KEYS_DOMAIN_STATISTICS_TOTALS = [
+  KEY_DOMAIN_STATISTICS_TOTALS_CREATE,
+  KEY_DOMAIN_STATISTICS_TOTALS_TOTAL,
+  KEY_DOMAIN_STATISTICS_TOTALS_TRANSFER,
+] as const satisfies (keyof DomainStatisticsTotals)[];
 
 export const KEY_DOMAIN_STATUS2_STATUS = 'status' satisfies keyof DomainStatus2;
 

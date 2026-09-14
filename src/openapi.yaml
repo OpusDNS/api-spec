@@ -6163,6 +6163,140 @@ components:
       - transferred_on
       title: DomainSortField
       type: string
+    DomainStatisticsBreakdown:
+      enum:
+      - none
+      - organization
+      - tld
+      title: DomainStatisticsBreakdown
+      type: string
+    DomainStatisticsBreakdownResponse:
+      properties:
+        create:
+          title: Create
+          type: integer
+        key:
+          description: Organization id, or the TLD without the leading dot
+          title: Key
+          type: string
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Organization name; absent for TLD rows
+          title: Label
+        total:
+          title: Total
+          type: integer
+        transfer:
+          title: Transfer
+          type: integer
+      required:
+      - key
+      - label
+      - create
+      - transfer
+      - total
+      title: DomainStatisticsBreakdownResponse
+      type: object
+    DomainStatisticsBucketResponse:
+      properties:
+        create:
+          description: Domains created in this bucket
+          title: Create
+          type: integer
+        partial:
+          description: The bucket reaches outside the requested window, so its counts
+            cover only part of its span and must not be read as a rise or fall against
+            its neighbours
+          title: Partial
+          type: boolean
+        period_start:
+          description: First day of the bucket (UTC)
+          format: date
+          title: Period Start
+          type: string
+        transfer:
+          description: Domains transferred in during this bucket
+          title: Transfer
+          type: integer
+      required:
+      - period_start
+      - create
+      - transfer
+      - partial
+      title: DomainStatisticsBucketResponse
+      type: object
+    DomainStatisticsResponse:
+      properties:
+        breakdown:
+          description: Top organizations or TLDs by acquisitions in the window; empty
+            unless requested
+          items:
+            $ref: '#/components/schemas/DomainStatisticsBreakdownResponse'
+          title: Breakdown
+          type: array
+        buckets:
+          description: One entry per bucket the window touches, oldest first, including
+            empty buckets
+          items:
+            $ref: '#/components/schemas/DomainStatisticsBucketResponse'
+          title: Buckets
+          type: array
+        end_date:
+          description: Last day of the window, inclusive
+          format: date
+          title: End Date
+          type: string
+        granularity:
+          $ref: '#/components/schemas/UsageGranularity'
+          description: Time-bucket size of the series
+        organization_id:
+          description: The organization the counts are scoped to
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        start_date:
+          description: First day of the window, inclusive
+          format: date
+          title: Start Date
+          type: string
+        totals:
+          $ref: '#/components/schemas/DomainStatisticsTotalsResponse'
+      required:
+      - organization_id
+      - granularity
+      - start_date
+      - end_date
+      - totals
+      - buckets
+      - breakdown
+      title: DomainStatisticsResponse
+      type: object
+    DomainStatisticsTotalsResponse:
+      properties:
+        create:
+          description: Domains created (newly registered) in the window
+          title: Create
+          type: integer
+        total:
+          description: Created plus transferred
+          title: Total
+          type: integer
+        transfer:
+          description: Domains transferred to OpusDNS in the window
+          title: Transfer
+          type: integer
+      required:
+      - create
+      - transfer
+      - total
+      title: DomainStatisticsTotalsResponse
+      type: object
     DomainStatus:
       enum:
       - ok
@@ -16815,7 +16949,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-14-110602
+  version: 2026-09-14-120239
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -25405,6 +25539,91 @@ paths:
       - domain
       x-required-permissions:
       - domains:manage
+  /v1/domains/statistics:
+    get:
+      description: 'Counts the domains your organization acquired in a window of whole
+        days, split into creates (new registrations) and inbound transfers and bucketed
+        by the requested granularity.
+
+
+        Counts cover your organization and its sub-organizations, like the domain
+        summary; `breakdown=organization` shows how they divide between them. A create
+        is counted on the day OpusDNS took the order and a transfer on the day it
+        completed, so domains that have since been deleted still appear in the window
+        they were acquired in. Imported domains count as creates on the day they were
+        imported. Domains held at a connected external registrar are not included.
+
+
+        Every bucket the window touches is present, so the series can be charted as
+        is. A bucket marked `partial` reaches outside the window and covers only part
+        of its span.'
+      operationId: get_domain_statistics_v1_domains_statistics_get
+      parameters:
+      - in: query
+        name: start_date
+        required: true
+        schema:
+          format: date
+          title: Start Date
+          type: string
+      - in: query
+        name: end_date
+        required: true
+        schema:
+          format: date
+          title: End Date
+          type: string
+      - in: query
+        name: granularity
+        required: false
+        schema:
+          $ref: '#/components/schemas/UsageGranularity'
+          default: day
+      - in: query
+        name: tld
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tld
+      - in: query
+        name: breakdown
+        required: false
+        schema:
+          $ref: '#/components/schemas/DomainStatisticsBreakdown'
+          default: none
+      - in: query
+        name: breakdown_limit
+        required: false
+        schema:
+          default: 10
+          maximum: 50
+          minimum: 1
+          title: Breakdown Limit
+          type: integer
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainStatisticsResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get domain statistics
+      tags:
+      - domain
+      x-required-permissions:
+      - domains:read
   /v1/domains/summary:
     get:
       description: Retrieves a summary of domains including counts by status, TLD,
