@@ -8,14 +8,23 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 - Added **domain statistics**:
   [`GET /v1/domains/statistics`](/api-reference#tag/domain/GET/v1/domains/statistics)
-  returns how many domains your organization and its sub-organizations
-  created or transferred to OpusDNS per day, week or month (`granularity`)
-  between `start_date` and `end_date` (inclusive, up to 400 days), optionally
-  restricted to one TLD (`tld=com`) or broken down by sub-organization or TLD
-  (`breakdown=organization|tld`). Every bucket the window touches is present,
-  so the series can be charted as is; a bucket marked `partial` reaches
-  outside the window. Domains held at a connected external registrar are not
-  counted yet. Complements
+  returns how the portfolio of your organization and its sub-organizations
+  moved per day, week or month (`granularity`) between `start_date` and
+  `end_date` (inclusive, up to 400 days): domains `create`d and `transfer`red
+  to OpusDNS, `delete`d and `transfer_out`, plus `renew`als and `restore`s,
+  and `net` (created and transferred in, minus deleted and transferred out).
+  Optionally restricted to one TLD (`tld=com`) or broken down by
+  sub-organization or TLD (`breakdown=organization|tld`).
+
+  Every bucket the window touches is present, so the series can be charted as
+  is; a bucket marked `partial` reaches outside the window. A domain can be
+  renewed more than once in a window, so renewals count events rather than
+  domains. Domains held at a connected external registrar are not counted yet.
+
+  These counts are read from the domain event log, which begins later than the
+  domains themselves. `data_available_from` reports the oldest event it holds:
+  a window reaching further back is empty before that instant rather than
+  genuinely zero. Complements
   [`GET /v1/domains/summary`](/api-reference#tag/domain/GET/v1/domains/summary),
   which reports the current portfolio.
 
