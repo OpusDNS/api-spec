@@ -1185,11 +1185,13 @@ export interface paths {
         };
         /**
          * Get domain statistics
-         * @description Counts the domains your organization acquired in a window of whole days, split into creates (new registrations) and inbound transfers and bucketed by the requested granularity.
+         * @description Counts the domains that moved in or out of your organization's portfolio in a window of whole days, bucketed by the requested granularity: creates (new registrations), inbound transfers, deletes, outbound transfers, renewals and restores, plus `net` (created and transferred in, minus deleted and transferred out).
          *
-         *     Counts cover your organization and its sub-organizations, like the domain summary; `breakdown=organization` shows how they divide between them. A create is counted on the day OpusDNS took the order and a transfer on the day it completed, so domains that have since been deleted still appear in the window they were acquired in. Imported domains count as creates on the day they were imported. Domains held at a connected external registrar are not included.
+         *     Counts cover your organization and its sub-organizations, like the domain summary; `breakdown=organization` shows how they divide between them. A create is counted on the day OpusDNS took the order and a transfer on the day it completed, so domains that have since been deleted still appear in the window they were acquired in. Imported domains count as creates on the day they were imported. Renewals and restores are counted once per day a domain was renewed or restored, so a domain renewed in two different months counts in both. Domains held at a connected external registrar are not included.
          *
          *     Every bucket the window touches is present, so the series can be charted as is. A bucket marked `partial` reaches outside the window and covers only part of its span.
+         *
+         *     These counts are read from the domain event log, which begins later than the domains themselves. `data_available_from` reports the oldest event it holds: a window reaching further back is empty before that instant rather than genuinely zero.
          */
         get: operations["get_domain_statistics_v1_domains_statistics_get"];
         put?: never;
@@ -7204,6 +7206,8 @@ export interface components {
         DomainStatisticsBreakdownRowResponse: {
             /** Create */
             create: number;
+            /** Delete */
+            delete: number;
             /**
              * Key
              * @description Organization id, or the TLD without the leading dot
@@ -7214,10 +7218,24 @@ export interface components {
              * @description Organization name; absent for TLD rows
              */
             label: string | null;
-            /** Total */
+            /**
+             * Net
+             * @description Created plus transferred in, minus deleted and transferred out
+             */
+            net: number;
+            /** Renew */
+            renew: number;
+            /** Restore */
+            restore: number;
+            /**
+             * Total
+             * @description Created plus transferred
+             */
             total: number;
             /** Transfer */
             transfer: number;
+            /** Transfer Out */
+            transfer_out: number;
         };
         /** DomainStatisticsBucketResponse */
         DomainStatisticsBucketResponse: {
@@ -7226,6 +7244,16 @@ export interface components {
              * @description Domains created in this bucket
              */
             create: number;
+            /**
+             * Delete
+             * @description Domains deleted in this bucket
+             */
+            delete: number;
+            /**
+             * Net
+             * @description Created plus transferred in, minus deleted and transferred out
+             */
+            net: number;
             /**
              * Partial
              * @description The bucket reaches outside the requested window, so its counts cover only part of its span and must not be read as a rise or fall against its neighbours
@@ -7238,10 +7266,25 @@ export interface components {
              */
             period_start: string;
             /**
+             * Renew
+             * @description Domain renewals in this bucket
+             */
+            renew: number;
+            /**
+             * Restore
+             * @description Domains restored in this bucket
+             */
+            restore: number;
+            /**
              * Transfer
              * @description Domains transferred in during this bucket
              */
             transfer: number;
+            /**
+             * Transfer Out
+             * @description Domains transferred away during this bucket
+             */
+            transfer_out: number;
         };
         /** DomainStatisticsResponse */
         DomainStatisticsResponse: {
@@ -7255,6 +7298,11 @@ export interface components {
              * @description One entry per bucket the window touches, oldest first, including empty buckets
              */
             buckets: components["schemas"]["DomainStatisticsBucketResponse"][];
+            /**
+             * Data Available From
+             * @description Oldest day these statistics can report on. They are read from the domain event log, which starts later than the domains themselves, so a window reaching further back is empty before this instant rather than zero.
+             */
+            data_available_from: Date | null;
             /**
              * End Date
              * Format: date
@@ -7286,6 +7334,26 @@ export interface components {
              */
             create: number;
             /**
+             * Delete
+             * @description Domains deleted in the window
+             */
+            delete: number;
+            /**
+             * Net
+             * @description Created plus transferred in, minus deleted and transferred out
+             */
+            net: number;
+            /**
+             * Renew
+             * @description Domains renewed in the window, counted once per day a domain was renewed
+             */
+            renew: number;
+            /**
+             * Restore
+             * @description Domains restored from redemption in the window
+             */
+            restore: number;
+            /**
              * Total
              * @description Created plus transferred
              */
@@ -7295,6 +7363,11 @@ export interface components {
              * @description Domains transferred to OpusDNS in the window
              */
             transfer: number;
+            /**
+             * Transfer Out
+             * @description Domains transferred away from OpusDNS in the window
+             */
+            transfer_out: number;
         };
         /**
          * DomainStatus

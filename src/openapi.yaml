@@ -6175,6 +6175,9 @@ components:
         create:
           title: Create
           type: integer
+        delete:
+          title: Delete
+          type: integer
         key:
           description: Organization id, or the TLD without the leading dot
           title: Key
@@ -6185,11 +6188,26 @@ components:
           - type: 'null'
           description: Organization name; absent for TLD rows
           title: Label
+        net:
+          description: Created plus transferred in, minus deleted and transferred
+            out
+          title: Net
+          type: integer
+        renew:
+          title: Renew
+          type: integer
+        restore:
+          title: Restore
+          type: integer
         total:
+          description: Created plus transferred
           title: Total
           type: integer
         transfer:
           title: Transfer
+          type: integer
+        transfer_out:
+          title: Transfer Out
           type: integer
       required:
       - key
@@ -6197,6 +6215,11 @@ components:
       - create
       - transfer
       - total
+      - delete
+      - transfer_out
+      - renew
+      - restore
+      - net
       title: DomainStatisticsBreakdownRowResponse
       type: object
     DomainStatisticsBucketResponse:
@@ -6204,6 +6227,15 @@ components:
         create:
           description: Domains created in this bucket
           title: Create
+          type: integer
+        delete:
+          description: Domains deleted in this bucket
+          title: Delete
+          type: integer
+        net:
+          description: Created plus transferred in, minus deleted and transferred
+            out
+          title: Net
           type: integer
         partial:
           description: The bucket reaches outside the requested window, so its counts
@@ -6216,14 +6248,31 @@ components:
           format: date
           title: Period Start
           type: string
+        renew:
+          description: Domain renewals in this bucket
+          title: Renew
+          type: integer
+        restore:
+          description: Domains restored in this bucket
+          title: Restore
+          type: integer
         transfer:
           description: Domains transferred in during this bucket
           title: Transfer
+          type: integer
+        transfer_out:
+          description: Domains transferred away during this bucket
+          title: Transfer Out
           type: integer
       required:
       - period_start
       - create
       - transfer
+      - delete
+      - transfer_out
+      - renew
+      - restore
+      - net
       - partial
       title: DomainStatisticsBucketResponse
       type: object
@@ -6243,6 +6292,16 @@ components:
             $ref: '#/components/schemas/DomainStatisticsBucketResponse'
           title: Buckets
           type: array
+        data_available_from:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Oldest day these statistics can report on. They are read from
+            the domain event log, which starts later than the domains themselves,
+            so a window reaching further back is empty before this instant rather
+            than zero.
+          title: Data Available From
         end_date:
           description: Last day of the window, inclusive
           format: date
@@ -6275,6 +6334,7 @@ components:
       - totals
       - buckets
       - breakdown
+      - data_available_from
       title: DomainStatisticsResponse
       type: object
     DomainStatisticsTotalsResponse:
@@ -6282,6 +6342,24 @@ components:
         create:
           description: Domains created (newly registered) in the window
           title: Create
+          type: integer
+        delete:
+          description: Domains deleted in the window
+          title: Delete
+          type: integer
+        net:
+          description: Created plus transferred in, minus deleted and transferred
+            out
+          title: Net
+          type: integer
+        renew:
+          description: Domains renewed in the window, counted once per day a domain
+            was renewed
+          title: Renew
+          type: integer
+        restore:
+          description: Domains restored from redemption in the window
+          title: Restore
           type: integer
         total:
           description: Created plus transferred
@@ -6291,10 +6369,19 @@ components:
           description: Domains transferred to OpusDNS in the window
           title: Transfer
           type: integer
+        transfer_out:
+          description: Domains transferred away from OpusDNS in the window
+          title: Transfer Out
+          type: integer
       required:
       - create
       - transfer
       - total
+      - delete
+      - transfer_out
+      - renew
+      - restore
+      - net
       title: DomainStatisticsTotalsResponse
       type: object
     DomainStatus:
@@ -16949,7 +17036,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-14-124237
+  version: 2026-09-14-164748
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -25541,9 +25628,11 @@ paths:
       - domains:manage
   /v1/domains/statistics:
     get:
-      description: 'Counts the domains your organization acquired in a window of whole
-        days, split into creates (new registrations) and inbound transfers and bucketed
-        by the requested granularity.
+      description: 'Counts the domains that moved in or out of your organization''s
+        portfolio in a window of whole days, bucketed by the requested granularity:
+        creates (new registrations), inbound transfers, deletes, outbound transfers,
+        renewals and restores, plus `net` (created and transferred in, minus deleted
+        and transferred out).
 
 
         Counts cover your organization and its sub-organizations, like the domain
@@ -25551,12 +25640,20 @@ paths:
         is counted on the day OpusDNS took the order and a transfer on the day it
         completed, so domains that have since been deleted still appear in the window
         they were acquired in. Imported domains count as creates on the day they were
-        imported. Domains held at a connected external registrar are not included.
+        imported. Renewals and restores are counted once per day a domain was renewed
+        or restored, so a domain renewed in two different months counts in both. Domains
+        held at a connected external registrar are not included.
 
 
         Every bucket the window touches is present, so the series can be charted as
         is. A bucket marked `partial` reaches outside the window and covers only part
-        of its span.'
+        of its span.
+
+
+        These counts are read from the domain event log, which begins later than the
+        domains themselves. `data_available_from` reports the oldest event it holds:
+        a window reaching further back is empty before that instant rather than genuinely
+        zero.'
       operationId: get_domain_statistics_v1_domains_statistics_get
       parameters:
       - in: query
