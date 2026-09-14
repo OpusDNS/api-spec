@@ -17,9 +17,10 @@ Track notable updates to the OpusDNS API and developer documentation here.
   sub-organization or TLD (`breakdown=organization|tld`).
 
   Every bucket the window touches is present, so the series can be charted as
-  is; a bucket marked `partial` reaches outside the window. A domain can be
-  renewed more than once in a window, so renewals count events rather than
-  domains. Domains held at a connected external registrar are not counted yet.
+  is; a bucket marked `partial` reaches outside the window. Renewals and
+  restores are counted once per day a domain was renewed or restored, so a
+  domain renewed in two different months counts in both. Domains held at a
+  connected external registrar are not counted yet.
 
   These counts are read from the domain event log, which begins later than the
   domains themselves. `data_available_from` reports the oldest event it holds:
