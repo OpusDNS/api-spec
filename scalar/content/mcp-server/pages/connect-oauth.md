@@ -38,7 +38,7 @@ curl https://api.opusdns.com/.well-known/oauth-protected-resource
 ```json
 {
   "resource": "https://api.opusdns.com/mcp",
-  "authorization_servers": ["https://auth.opusdns.com/realms/opusdns"],
+  "authorization_servers": ["https://auth.opusdns.com/realms/production"],
   "bearer_methods_supported": ["header"],
   "scopes_supported": ["profile", "email", "opusdns:mcp", "offline_access"],
   "resource_documentation": "https://developers.opusdns.com/mcp-server"
@@ -46,7 +46,7 @@ curl https://api.opusdns.com/.well-known/oauth-protected-resource
 ```
 
 Sandbox differs in two fields: the authorization server is
-`https://auth.opusdns.com/realms/opusdns-sandbox` and the resource is
+`https://auth.opusdns.com/realms/sandbox` and the resource is
 `https://sandbox.opusdns.com/mcp`.
 
 The document is also served at
@@ -56,7 +56,7 @@ resource path.
 ### 3. Fetch the authorization-server metadata
 
 ```bash
-curl https://auth.opusdns.com/realms/opusdns/.well-known/openid-configuration
+curl https://auth.opusdns.com/realms/production/.well-known/openid-configuration
 ```
 
 Supported grants include authorization code with PKCE (`S256`), refresh token,
@@ -69,7 +69,7 @@ Dynamic Client Registration is enabled, so a client can register itself:
 
 ```bash
 curl -X POST \
-  https://auth.opusdns.com/realms/opusdns/clients-registrations/openid-connect \
+  https://auth.opusdns.com/realms/production/clients-registrations/openid-connect \
   --header 'Content-Type: application/json' \
   --data '{"client_name":"my-agent","redirect_uris":["http://127.0.0.1:8976/callback"]}'
 ```
