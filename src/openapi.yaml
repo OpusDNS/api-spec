@@ -17036,7 +17036,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-14-164748
+  version: 2026-09-15-153517
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -25111,6 +25111,14 @@ paths:
           - type: string
           - type: 'null'
           title: Sld
+      - in: query
+        name: nameserver
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Nameserver
       - in: query
         name: transfer_lock
         required: false

@@ -20593,6 +20593,7 @@ export interface operations {
                 /** @description Filter by top-level domain (e.g., 'com', 'org'). Can be specified multiple times (union of all provided values). */
                 tld?: string[] | null;
                 sld?: string | null;
+                nameserver?: string | null;
                 transfer_lock?: boolean | null;
                 read_only?: boolean | null;
                 is_premium?: boolean | null;
