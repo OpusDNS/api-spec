@@ -22,6 +22,10 @@ Track notable updates to the OpusDNS API and developer documentation here.
   filter combines with the others as usual, for example
   `?nameserver=cloudflare&tld=com`.
 
+  One thing to expect: unlike the other filters, this one reads the nameservers
+  of every domain in scope rather than a field on the domain itself, so the
+  response is slower - the more so the larger your portfolio.
+
 ### 14 September 2026
 
 - Launched **whitelabel branding**! Serve the OpusDNS dashboard and its
