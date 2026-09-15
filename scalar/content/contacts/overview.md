@@ -44,7 +44,7 @@ How the identity claim is proven:
 
 | Method | Description |
 | --- | --- |
-| `AUTH` | Authentication-based verification. |
+| `AUTH` | Authentication-based verification. See [Attesting an eIDAS-based verification](/products/contacts/attestation-workflow#attesting-an-eidas-based-verification). |
 | `VDIG` | Video identification (online ID check). |
 | `ELECTRONIC_DOCUMENT` | Electronic or digital document verification. |
 | `PHYSICAL_DOCUMENT` | Physical document verification (scanned or photographed). |
@@ -76,6 +76,7 @@ The specific type of evidence used:
 | `DIGITAL_ATTESTATION` | Digital attestation. |
 | `POSTAL_VER_TRANSACTION_LOG` | Postal verification transaction log. |
 | `EMAIL_VER_TRANSACTION_LOG` | Email verification transaction log. |
+| `PHONE_VER_TRANSACTION_LOG` | Phone verification transaction log. |
 | `ADDRESS_DATABASE` | Address database verification. |
 
 ## Common attestation examples
