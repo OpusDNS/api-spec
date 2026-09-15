@@ -15,8 +15,12 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
   Only the nameservers a domain currently delegates to are matched - the ones
   reported in its `nameservers` field - so a host it used to point at does not
-  bring it back. Matching ignores case and a trailing dot, and combines with the
-  other filters as usual, for example `?nameserver=cloudflare&tld=com`.
+  bring it back. Matching ignores case, and the text is taken literally, so `%`
+  and `_` are not wildcards. A rooted hostname such as `ns1.example.com.` loses
+  its trailing dot, but a trailing dot after a single label anchors at a label
+  boundary: `ns1.` matches `ns1.example.com` and not `ns10.example.com`. The
+  filter combines with the others as usual, for example
+  `?nameserver=cloudflare&tld=com`.
 
 ### 14 September 2026
 
