@@ -124,7 +124,7 @@ For a programmatic agent rather than the ChatGPT app:
 This path takes a bearer token you have already obtained — it does not run an
 interactive OAuth flow, and the MCP endpoint does not accept API keys. You have
 to mint an access token yourself against
-<code>https://auth.opusdns.com/realms/opusdns</code>. The device-code grant is
+<code>https://auth.opusdns.com/realms/production</code>. The device-code grant is
 the practical option for a headless agent; request <code>offline_access</code> so
 you can refresh, because access tokens are short-lived. See
 <a href="/mcp-server/connect/oauth">OAuth details</a>.
