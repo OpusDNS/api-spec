@@ -4,6 +4,28 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 15 September 2026
+
+- Added a **nameserver filter to the domain list**:
+  [`GET /v1/domains`](/api-reference#tag/domain/GET/v1/domains) now takes
+  `nameserver`, and returns the domains with a nameserver whose hostname
+  contains that text. `nameserver=ns1.example.com` finds the domains delegating
+  to that one host; `nameserver=cloudflare` finds every domain on that provider,
+  which is the quickest way to see what a nameserver migration has left to move.
+
+  Only the nameservers a domain currently delegates to are matched - the ones
+  reported in its `nameservers` field - so a host it used to point at does not
+  bring it back. Matching ignores case, and the text is taken literally, so `%`
+  and `_` are not wildcards. A rooted hostname such as `ns1.example.com.` loses
+  its trailing dot, but a trailing dot after a single label anchors at a label
+  boundary: `ns1.` matches `ns1.example.com` and not `ns10.example.com`. The
+  filter combines with the others as usual, for example
+  `?nameserver=cloudflare&tld=com`.
+
+  One thing to expect: unlike the other filters, this one reads the nameservers
+  of every domain in scope rather than a field on the domain itself, so the
+  response is slower - the more so the larger your portfolio.
+
 ### 14 September 2026
 
 - Launched **whitelabel branding**! Serve the OpusDNS dashboard and its
