@@ -204,6 +204,86 @@ curl "$OPUSDNS_API_BASE/v1/contacts/$CONTACT_ID/verifications/attest" \
 | `attestations[].proof` | Yes | The specific evidence type used. See [Proofs](/products/contacts/verification#verification-proofs). |
 | `attestations[].attestation_reference` | Yes | Your reference identifier for the attestation (max 255 characters). |
 
+### Attesting an eIDAS-based verification
+
+Use method `AUTH` when the claim was verified by an eID provider under an
+eIDAS-notified scheme.
+
+For method `AUTH`, the `eid` object is required. A request that sets
+`"method": "AUTH"` without an `eid` object is rejected.
+
+```json
+{
+  "attestations": [
+    {
+      "claim": "NAME",
+      "method": "AUTH",
+      "proof": "IDCARD",
+      "attestation_reference": "REF-2026-001",
+      "eid": {
+        "eid_scheme": "de-eid",
+        "level_of_assurance": "HIGH"
+      }
+    }
+  ]
+}
+```
+
+| Field | Required | Description |
+| --- | --- | --- |
+| `attestations[].eid` | For method `AUTH` | Details of the eID scheme used. |
+| `attestations[].eid.eid_scheme` | Yes | Scheme identifier from the table below. |
+| `attestations[].eid.level_of_assurance` | Yes | `LOW`, `SUBSTANTIAL`, or `HIGH`. Must be a level the scheme is notified for. |
+
+#### eID scheme identifiers
+
+eIDAS schemes have no official machine-readable identifiers, so use the
+identifiers below. The level columns show which levels of assurance each scheme
+is notified for.
+
+The notified schemes and their levels of assurance are maintained by the
+European Commission. For the authoritative source, see the
+[eIDAS Dashboard](https://eidas.ec.europa.eu/efda/notified-eid/); for a
+consolidated overview, see
+[Overview of pre-notified and notified eID schemes under eIDAS](https://ec.europa.eu/digital-building-blocks/sites/display/EIDCOMMUNITY/Overview+of+pre-notified+and+notified+eID+schemes+under+eIDAS)
+in the eID User Community.
+
+| eid_scheme              | country | scheme_name                                                   | LOW | SUBSTANTIAL | HIGH |
+| ----------------------- | ------- | ------------------------------------------------------------- | --- | ----------- | ---- |
+| `at-id-austria`         | AT      | ID Austria                                                    |     |             | ✓    |
+| `be-fas-ecards`         | BE      | Belgian eID (FAS / eCards)                                    |     |             | ✓    |
+| `be-fas-itsme`          | BE      | Belgian eID (FAS / itsme®)                                    |     |             | ✓    |
+| `bg-evrotrust`          | BG      | Evrotrust eID                                                 | ✓   | ✓           | ✓    |
+| `hr-nias`               | HR      | NIAS                                                          |     |             | ✓    |
+| `cy-national-eid`       | CY      | Cyprus National eID                                           |     |             | ✓    |
+| `cz-national`           | CZ      | National identification scheme                                |     |             | ✓    |
+| `cz-mojeid`             | CZ      | Mobile eGovernment Key (mojeID)                               | ✓   | ✓           | ✓    |
+| `dk-mitid`              | DK      | MitID eID                                                     |     | ✓           | ✓    |
+| `ee-eid`                | EE      | Estonian eID (ID card, Digi-ID, Mobile-ID, e-Residency, etc.) |     |             | ✓    |
+| `fi-citizen-cert`       | FI      | Citizen Certificate                                           |     |             | ✓    |
+| `fr-franceconnect-plus` | FR      | FranceConnect+ / La Poste Digital Identity                    |     | ✓           |      |
+| `fr-france-identite`    | FR      | France Identité                                               |     |             | ✓    |
+| `de-eid`                | DE      | German eID (Extended Access Control)                          |     |             | ✓    |
+| `it-cie`                | IT      | Italian eID - National ID card (CIE)                          | ✓   | ✓           | ✓    |
+| `it-spid`               | IT      | SPID - Public System of Digital Identity                      | ✓   | ✓           | ✓    |
+| `lv-eid`                | LV      | Latvian eID scheme                                            |     | ✓           | ✓    |
+| `li-eid`                | LI      | eID.li                                                        |     | ✓           | ✓    |
+| `lt-eid`                | LT      | Lithuanian National Identity card (eID/ATK)                   |     |             | ✓    |
+| `lu-eid-card`           | LU      | Luxembourg national identity card                             |     |             | ✓    |
+| `mt-identity-malta`     | MT      | Identity Malta                                                |     |             | ✓    |
+| `nl-digid`              | NL      | DigiD                                                         |     | ✓           | ✓    |
+| `nl-eherkenning`        | NL      | eHerkenning (Trust Framework)                                 |     | ✓           | ✓    |
+| `no-bankid`             | NO      | Norwegian eID - BankID                                        |     |             | ✓    |
+| `no-buypass`            | NO      | Norwegian eID - Buypass ID                                    |     |             | ✓    |
+| `pl-peis`               | PL      | Public Electronic Identification System                       |     | ✓           | ✓    |
+| `pt-cmd`                | PT      | Chave Móvel Digital                                           |     |             | ✓    |
+| `pt-cartao-cidadao`     | PT      | Cartão de Cidadão                                             |     |             | ✓    |
+| `ro-eid`                | RO      | Romanian eID scheme                                           |     | ✓           |      |
+| `sk-national`           | SK      | National identity scheme                                      |     |             | ✓    |
+| `si-eid-card`           | SI      | Slovenian eID card                                            |     |             | ✓    |
+| `es-dnie`               | ES      | DNIe                                                          |     |             | ✓    |
+| `se-eid`                | SE      | Swedish eID (Svensk e-legitimation)                           |     | ✓           | ✓    |
+
 ### Registry-specific constraints
 
 Some registries impose extra rules on top of the request format above. These
