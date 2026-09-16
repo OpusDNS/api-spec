@@ -2064,6 +2064,7 @@ export const REPORT_TYPE = {
   BILLING_TRANSACTIONS: "billing_transactions",
   BILLING_TRANSACTIONS_MONTHLY: "billing_transactions_monthly",
   SUBORG_BILLING_TRANSACTIONS_MONTHLY: "suborg_billing_transactions_monthly",
+  AGP_DELETIONS: "agp_deletions",
 } as const satisfies Record<string, ReportType>;
 
 export const REPORT_TYPE_VALUES = [
@@ -2077,6 +2078,7 @@ export const REPORT_TYPE_VALUES = [
   'billing_transactions',
   'billing_transactions_monthly',
   'suborg_billing_transactions_monthly',
+  'agp_deletions',
 ] as const satisfies ReadonlyArray<ReportType>;
 
 export const REQUEST_HISTORY_SORT_FIELD = {
