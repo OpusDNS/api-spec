@@ -1,11 +1,9 @@
 components:
   parameters:
     DatetimeFormatHeader:
-      description: Opt in to RFC 3339 datetime serialization. When set to `rfc3339`,
-        response datetimes are normalized to UTC and serialized with a `Z` suffix.
-        This is opt-in until the announced default cutover date, after which RFC 3339
-        becomes the default and this header is accepted as a no-op. Any other value
-        or omission uses the current default serialization.
+      description: Accepted for backwards compatibility; has no effect. Response datetimes
+        are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix,
+        whether or not this header is sent.
       example: rfc3339
       in: header
       name: X-Datetime-Format
@@ -17058,7 +17056,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-17-075228
+  version: 2026-09-17-133343
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -22452,12 +22450,12 @@ paths:
                       total_items: 3
                       total_pages: 1
                     results:
-                    - created_on: '2025-02-20T10:30:45'
+                    - created_on: '2025-02-20T10:30:45Z'
                       domain_forward_id: domain_forward_01jx0000000000000000000001
                       enabled: true
                       hostname: example.com.
                       http:
-                        created_on: '2025-02-20T10:30:45'
+                        created_on: '2025-02-20T10:30:45Z'
                         redirects:
                         - protected: false
                           redirect_code: 301
@@ -22467,9 +22465,9 @@ paths:
                           target_hostname: example.com
                           target_path: /
                           target_protocol: https
-                        updated_on: '2025-02-20T10:30:45'
+                        updated_on: '2025-02-20T10:30:45Z'
                       https:
-                        created_on: '2025-02-20T10:30:45'
+                        created_on: '2025-02-20T10:30:45Z'
                         redirects:
                         - protected: false
                           redirect_code: 302
@@ -22479,14 +22477,14 @@ paths:
                           target_hostname: www.example.com
                           target_path: /
                           target_protocol: https
-                        updated_on: '2025-02-20T10:30:45'
-                      updated_on: '2025-02-20T10:30:45'
-                    - created_on: '2025-02-20T10:30:45'
+                        updated_on: '2025-02-20T10:30:45Z'
+                      updated_on: '2025-02-20T10:30:45Z'
+                    - created_on: '2025-02-20T10:30:45Z'
                       domain_forward_id: domain_forward_01jx0000000000000000000002
                       enabled: false
                       hostname: api.example.com.
                       https:
-                        created_on: '2025-02-20T10:30:45'
+                        created_on: '2025-02-20T10:30:45Z'
                         redirects:
                         - protected: false
                           redirect_code: 308
@@ -22496,14 +22494,14 @@ paths:
                           target_hostname: api-v2.example.com
                           target_path: /v1
                           target_protocol: https
-                        updated_on: '2025-02-20T10:30:45'
-                      updated_on: '2025-02-20T10:30:45'
-                    - created_on: '2025-02-20T10:30:45'
+                        updated_on: '2025-02-20T10:30:45Z'
+                      updated_on: '2025-02-20T10:30:45Z'
+                    - created_on: '2025-02-20T10:30:45Z'
                       domain_forward_id: domain_forward_01jx0000000000000000000003
                       enabled: true
                       hostname: old.example.com.
                       http:
-                        created_on: '2025-02-20T10:30:45'
+                        created_on: '2025-02-20T10:30:45Z'
                         redirects:
                         - protected: false
                           redirect_code: 301
@@ -22521,9 +22519,9 @@ paths:
                           target_hostname: example.com
                           target_path: /
                           target_protocol: https
-                        updated_on: '2025-02-20T10:30:45'
+                        updated_on: '2025-02-20T10:30:45Z'
                       https:
-                        created_on: '2025-02-20T10:30:45'
+                        created_on: '2025-02-20T10:30:45Z'
                         redirects:
                         - protected: false
                           redirect_code: 301
@@ -22533,8 +22531,8 @@ paths:
                           target_hostname: example.com
                           target_path: /
                           target_protocol: https
-                        updated_on: '2025-02-20T10:30:45'
-                      updated_on: '2025-02-20T10:30:45'
+                        updated_on: '2025-02-20T10:30:45Z'
+                      updated_on: '2025-02-20T10:30:45Z'
               schema:
                 $ref: '#/components/schemas/Pagination_DomainForward_'
           description: List of domain forwards retrieved successfully
@@ -22704,12 +22702,12 @@ paths:
                     (enabled=false) until DNS records are provisioned.
                   summary: Response for HTTP and HTTPS forwards
                   value:
-                    created_on: '2025-02-20T10:30:45'
+                    created_on: '2025-02-20T10:30:45Z'
                     domain_forward_id: domain_forward_01jx0000000000000000000001
                     enabled: false
                     hostname: example.com.
                     http:
-                      created_on: '2025-02-20T10:30:45'
+                      created_on: '2025-02-20T10:30:45Z'
                       redirects:
                       - protected: false
                         redirect_code: 301
@@ -22719,9 +22717,9 @@ paths:
                         target_hostname: example.com
                         target_path: /
                         target_protocol: https
-                      updated_on: '2025-02-20T10:30:45'
+                      updated_on: '2025-02-20T10:30:45Z'
                     https:
-                      created_on: '2025-02-20T10:30:45'
+                      created_on: '2025-02-20T10:30:45Z'
                       redirects:
                       - protected: false
                         redirect_code: 302
@@ -22731,19 +22729,19 @@ paths:
                         target_hostname: auth.example.com
                         target_path: /
                         target_protocol: https
-                      updated_on: '2025-02-20T10:30:45'
-                    updated_on: '2025-02-20T10:30:45'
+                      updated_on: '2025-02-20T10:30:45Z'
+                    updated_on: '2025-02-20T10:30:45Z'
                 https_only_response:
                   description: Response when creating a HTTPS-only domain forward
                     with minimal protocol configuration.
                   summary: Response for HTTPS-only forward
                   value:
-                    created_on: '2025-02-20T10:30:45'
+                    created_on: '2025-02-20T10:30:45Z'
                     domain_forward_id: domain_forward_01jx0000000000000000000002
                     enabled: false
                     hostname: example.com.
                     http:
-                      created_on: '2025-02-20T10:30:45'
+                      created_on: '2025-02-20T10:30:45Z'
                       redirects:
                       - protected: false
                         redirect_code: 301
@@ -22753,8 +22751,8 @@ paths:
                         target_hostname: example.com
                         target_path: /
                         target_protocol: https
-                      updated_on: '2025-02-20T10:30:45'
-                    updated_on: '2025-02-20T10:30:45'
+                      updated_on: '2025-02-20T10:30:45Z'
+                    updated_on: '2025-02-20T10:30:45Z'
               schema:
                 $ref: '#/components/schemas/DomainForward'
           description: Domain forward created successfully
@@ -23777,19 +23775,19 @@ paths:
                   summary: Daily time series example
                   value:
                     results:
-                    - timestamp: '2025-02-20T12:00:00'
+                    - timestamp: '2025-02-20T12:00:00Z'
                       total: 2500
-                    - timestamp: '2025-02-19T12:00:00'
+                    - timestamp: '2025-02-19T12:00:00Z'
                       total: 2350
-                    - timestamp: '2025-02-18T12:00:00'
+                    - timestamp: '2025-02-18T12:00:00Z'
                       total: 2200
-                    - timestamp: '2025-02-17T12:00:00'
+                    - timestamp: '2025-02-17T12:00:00Z'
                       total: 2050
-                    - timestamp: '2025-02-16T12:00:00'
+                    - timestamp: '2025-02-16T12:00:00Z'
                       total: 1900
-                    - timestamp: '2025-02-15T12:00:00'
+                    - timestamp: '2025-02-15T12:00:00Z'
                       total: 1750
-                    - timestamp: '2025-02-14T12:00:00'
+                    - timestamp: '2025-02-14T12:00:00Z'
                       total: 1600
                 hourly_time_series:
                   description: Shows visit counts bucketed by hour over a 24-hour
@@ -23797,53 +23795,53 @@ paths:
                   summary: Hourly time series example
                   value:
                     results:
-                    - timestamp: '2025-02-20T12:00:00'
+                    - timestamp: '2025-02-20T12:00:00Z'
                       total: 150
-                    - timestamp: '2025-02-20T11:00:00'
+                    - timestamp: '2025-02-20T11:00:00Z'
                       total: 140
-                    - timestamp: '2025-02-20T10:00:00'
+                    - timestamp: '2025-02-20T10:00:00Z'
                       total: 130
-                    - timestamp: '2025-02-20T09:00:00'
+                    - timestamp: '2025-02-20T09:00:00Z'
                       total: 120
-                    - timestamp: '2025-02-20T08:00:00'
+                    - timestamp: '2025-02-20T08:00:00Z'
                       total: 110
-                    - timestamp: '2025-02-20T07:00:00'
+                    - timestamp: '2025-02-20T07:00:00Z'
                       total: 100
-                    - timestamp: '2025-02-20T06:00:00'
+                    - timestamp: '2025-02-20T06:00:00Z'
                       total: 90
-                    - timestamp: '2025-02-20T05:00:00'
+                    - timestamp: '2025-02-20T05:00:00Z'
                       total: 80
-                    - timestamp: '2025-02-20T04:00:00'
+                    - timestamp: '2025-02-20T04:00:00Z'
                       total: 70
-                    - timestamp: '2025-02-20T03:00:00'
+                    - timestamp: '2025-02-20T03:00:00Z'
                       total: 60
-                    - timestamp: '2025-02-20T02:00:00'
+                    - timestamp: '2025-02-20T02:00:00Z'
                       total: 50
-                    - timestamp: '2025-02-20T01:00:00'
+                    - timestamp: '2025-02-20T01:00:00Z'
                       total: 40
-                    - timestamp: '2025-02-20T00:00:00'
+                    - timestamp: '2025-02-20T00:00:00Z'
                       total: 30
-                    - timestamp: '2025-02-19T23:00:00'
+                    - timestamp: '2025-02-19T23:00:00Z'
                       total: 20
-                    - timestamp: '2025-02-19T22:00:00'
+                    - timestamp: '2025-02-19T22:00:00Z'
                       total: 10
-                    - timestamp: '2025-02-19T21:00:00'
+                    - timestamp: '2025-02-19T21:00:00Z'
                       total: 0
-                    - timestamp: '2025-02-19T20:00:00'
+                    - timestamp: '2025-02-19T20:00:00Z'
                       total: -10
-                    - timestamp: '2025-02-19T19:00:00'
+                    - timestamp: '2025-02-19T19:00:00Z'
                       total: -20
-                    - timestamp: '2025-02-19T18:00:00'
+                    - timestamp: '2025-02-19T18:00:00Z'
                       total: -30
-                    - timestamp: '2025-02-19T17:00:00'
+                    - timestamp: '2025-02-19T17:00:00Z'
                       total: -40
-                    - timestamp: '2025-02-19T16:00:00'
+                    - timestamp: '2025-02-19T16:00:00Z'
                       total: -50
-                    - timestamp: '2025-02-19T15:00:00'
+                    - timestamp: '2025-02-19T15:00:00Z'
                       total: -60
-                    - timestamp: '2025-02-19T14:00:00'
+                    - timestamp: '2025-02-19T14:00:00Z'
                       total: -70
-                    - timestamp: '2025-02-19T13:00:00'
+                    - timestamp: '2025-02-19T13:00:00Z'
                       total: -80
               schema:
                 $ref: '#/components/schemas/DomainForwardMetricsTimeSeriesResponse'
@@ -24315,12 +24313,12 @@ paths:
                     and redirects
                   summary: Single domain forward
                   value:
-                    created_on: '2025-02-20T10:30:45'
+                    created_on: '2025-02-20T10:30:45Z'
                     domain_forward_id: domain_forward_01jx0000000000000000000001
                     enabled: true
                     hostname: example.com.
                     http:
-                      created_on: '2025-02-20T10:30:45'
+                      created_on: '2025-02-20T10:30:45Z'
                       redirects:
                       - protected: false
                         redirect_code: 301
@@ -24330,9 +24328,9 @@ paths:
                         target_hostname: example.com
                         target_path: /
                         target_protocol: https
-                      updated_on: '2025-02-20T10:30:45'
+                      updated_on: '2025-02-20T10:30:45Z'
                     https:
-                      created_on: '2025-02-20T10:30:45'
+                      created_on: '2025-02-20T10:30:45Z'
                       redirects:
                       - protected: false
                         redirect_code: 302
@@ -24342,8 +24340,8 @@ paths:
                         target_hostname: www.example.com
                         target_path: /
                         target_protocol: https
-                      updated_on: '2025-02-20T10:30:45'
-                    updated_on: '2025-02-20T10:30:45'
+                      updated_on: '2025-02-20T10:30:45Z'
+                    updated_on: '2025-02-20T10:30:45Z'
               schema:
                 $ref: '#/components/schemas/DomainForward'
           description: Domain forward retrieved successfully
@@ -24426,7 +24424,7 @@ paths:
                   description: New domain forward protocol set with HTTP redirects
                   summary: Protocol set created
                   value:
-                    created_on: '2025-02-20T10:30:45'
+                    created_on: '2025-02-20T10:30:45Z'
                     hostname: example.com.
                     protocol: http
                     redirects:
@@ -24438,7 +24436,7 @@ paths:
                       target_hostname: example.com
                       target_path: /
                       target_protocol: https
-                    updated_on: '2025-02-20T10:30:45'
+                    updated_on: '2025-02-20T10:30:45Z'
               schema:
                 $ref: '#/components/schemas/DomainForwardSetResponse'
           description: Domain forward protocol set created successfully
@@ -24718,7 +24716,7 @@ paths:
                   description: Domain forward set containing HTTP protocol redirects
                   summary: HTTP protocol set
                   value:
-                    created_on: '2025-02-20T10:30:45'
+                    created_on: '2025-02-20T10:30:45Z'
                     hostname: example.com.
                     protocol: http
                     redirects:
@@ -24730,12 +24728,12 @@ paths:
                       target_hostname: example.com
                       target_path: /
                       target_protocol: https
-                    updated_on: '2025-02-20T10:30:45'
+                    updated_on: '2025-02-20T10:30:45Z'
                 https_protocol_set:
                   description: Domain forward set containing HTTPS protocol redirects
                   summary: HTTPS protocol set
                   value:
-                    created_on: '2025-02-20T10:30:45'
+                    created_on: '2025-02-20T10:30:45Z'
                     hostname: example.com.
                     protocol: https
                     redirects:
@@ -24747,7 +24745,7 @@ paths:
                       target_hostname: www.example.com
                       target_path: /
                       target_protocol: https
-                    updated_on: '2025-02-20T10:30:45'
+                    updated_on: '2025-02-20T10:30:45Z'
               schema:
                 $ref: '#/components/schemas/DomainForwardSetResponse'
           description: Domain forward set retrieved successfully
@@ -24837,7 +24835,7 @@ paths:
                     configuration
                   summary: Protocol set updated
                   value:
-                    created_on: '2025-02-20T10:30:45'
+                    created_on: '2025-02-20T10:30:45Z'
                     hostname: example.com.
                     protocol: https
                     redirects:
@@ -24849,7 +24847,7 @@ paths:
                       target_hostname: www.example.com
                       target_path: /
                       target_protocol: https
-                    updated_on: '2025-02-20T10:30:45'
+                    updated_on: '2025-02-20T10:30:45Z'
               schema:
                 $ref: '#/components/schemas/DomainForwardSetResponse'
           description: Domain forward protocol set updated successfully
@@ -27872,11 +27870,11 @@ paths:
                       email_forward_alias_id: email_forward_alias_01jx0000000000000000000003
                       forward_to:
                       - inbox@example.net
-                    created_on: '2025-11-14T09:01:38'
+                    created_on: '2025-11-14T09:01:38Z'
                     email_forward_id: email_forward_01jx0000000000000000000002
                     enabled: true
                     hostname: example.com.
-                    updated_on: '2025-11-14T09:01:38'
+                    updated_on: '2025-11-14T09:01:38Z'
                 standard_email_forwarding_response:
                   description: Response when creating email forwarding with named
                     aliases.
@@ -27892,11 +27890,11 @@ paths:
                       forward_to:
                       - support@example.net
                       - oncall@example.net
-                    created_on: '2025-11-14T09:01:38'
+                    created_on: '2025-11-14T09:01:38Z'
                     email_forward_id: email_forward_01jx0000000000000000000001
                     enabled: false
                     hostname: mail.example.com.
-                    updated_on: '2025-11-14T09:01:38'
+                    updated_on: '2025-11-14T09:01:38Z'
               schema:
                 $ref: '#/components/schemas/EmailForwardResponse'
           description: Email forwarding created successfully

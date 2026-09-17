@@ -14488,7 +14488,7 @@ export interface components {
     responses: never;
     parameters: {
         /**
-         * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+         * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
          * @example rfc3339
          */
         DatetimeFormatHeader: "rfc3339";
@@ -14504,7 +14504,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -14596,7 +14596,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -14679,7 +14679,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -14766,7 +14766,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -14851,7 +14851,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -14935,7 +14935,7 @@ export interface operations {
             header?: {
                 "If-Match"?: string | null;
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15027,7 +15027,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15112,7 +15112,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15208,7 +15208,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15293,7 +15293,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15382,7 +15382,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15472,7 +15472,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15555,7 +15555,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15642,7 +15642,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15725,7 +15725,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15823,7 +15823,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15868,7 +15868,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15919,7 +15919,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15967,7 +15967,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16022,7 +16022,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16057,7 +16057,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16108,7 +16108,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16203,7 +16203,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16255,7 +16255,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16311,7 +16311,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16362,7 +16362,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16438,7 +16438,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16473,7 +16473,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16519,7 +16519,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16554,7 +16554,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16610,7 +16610,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16664,7 +16664,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16716,7 +16716,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16793,7 +16793,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16863,7 +16863,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16940,7 +16940,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16977,7 +16977,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17031,7 +17031,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17099,7 +17099,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17164,7 +17164,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17236,7 +17236,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17331,7 +17331,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17417,7 +17417,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17485,7 +17485,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17578,7 +17578,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17704,7 +17704,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17739,7 +17739,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17800,7 +17800,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17873,7 +17873,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17940,7 +17940,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17977,7 +17977,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18015,7 +18015,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18051,7 +18051,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18105,7 +18105,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18186,7 +18186,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18256,7 +18256,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18326,7 +18326,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18410,7 +18410,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18495,7 +18495,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18583,7 +18583,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18647,7 +18647,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18714,7 +18714,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18818,7 +18818,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18912,7 +18912,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19016,7 +19016,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19120,7 +19120,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19224,7 +19224,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19328,7 +19328,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19432,7 +19432,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19536,7 +19536,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19640,7 +19640,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19746,7 +19746,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19841,7 +19841,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19927,7 +19927,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20033,7 +20033,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20117,7 +20117,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20185,7 +20185,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20253,7 +20253,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20340,7 +20340,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20431,7 +20431,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20525,7 +20525,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20633,7 +20633,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20668,7 +20668,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20767,7 +20767,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20802,7 +20802,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20880,7 +20880,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20915,7 +20915,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20950,7 +20950,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21008,7 +21008,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21080,7 +21080,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21152,7 +21152,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21224,7 +21224,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21282,7 +21282,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21354,7 +21354,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21426,7 +21426,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21500,7 +21500,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21553,7 +21553,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21640,7 +21640,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21724,7 +21724,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21785,7 +21785,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21857,7 +21857,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21929,7 +21929,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22001,7 +22001,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22103,7 +22103,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22157,7 +22157,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22227,7 +22227,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22277,7 +22277,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22331,7 +22331,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22389,7 +22389,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22441,7 +22441,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22493,7 +22493,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22565,7 +22565,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22606,7 +22606,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22647,7 +22647,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22717,7 +22717,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22808,7 +22808,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22875,7 +22875,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22990,7 +22990,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23075,7 +23075,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23142,7 +23142,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23247,7 +23247,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23338,7 +23338,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23423,7 +23423,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23506,7 +23506,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23592,7 +23592,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23687,7 +23687,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23738,7 +23738,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23808,7 +23808,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23876,7 +23876,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23990,7 +23990,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24068,7 +24068,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24150,7 +24150,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24243,7 +24243,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24298,7 +24298,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24351,7 +24351,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24404,7 +24404,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24459,7 +24459,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24541,7 +24541,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24576,7 +24576,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24648,7 +24648,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24720,7 +24720,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24784,7 +24784,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24856,7 +24856,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24909,7 +24909,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24965,7 +24965,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25027,7 +25027,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25094,7 +25094,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25168,7 +25168,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25235,7 +25235,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25314,7 +25314,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25381,7 +25381,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25452,7 +25452,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25521,7 +25521,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25588,7 +25588,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25661,7 +25661,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25728,7 +25728,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25795,7 +25795,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25882,7 +25882,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25968,7 +25968,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26070,7 +26070,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26183,7 +26183,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26250,7 +26250,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26319,7 +26319,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26386,7 +26386,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26462,7 +26462,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26531,7 +26531,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26615,7 +26615,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26655,7 +26655,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26695,7 +26695,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26778,7 +26778,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26847,7 +26847,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26924,7 +26924,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26999,7 +26999,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27079,7 +27079,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27149,7 +27149,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27216,7 +27216,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27287,7 +27287,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27357,7 +27357,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27450,7 +27450,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27485,7 +27485,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27524,7 +27524,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27561,7 +27561,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27606,7 +27606,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27657,7 +27657,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27729,7 +27729,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27818,7 +27818,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27888,7 +27888,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27956,7 +27956,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28047,7 +28047,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28124,7 +28124,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28163,7 +28163,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28205,7 +28205,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28258,7 +28258,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28299,7 +28299,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28336,7 +28336,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28373,7 +28373,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28417,7 +28417,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28458,7 +28458,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28495,7 +28495,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28532,7 +28532,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28609,7 +28609,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28644,7 +28644,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28683,7 +28683,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28722,7 +28722,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28757,7 +28757,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28794,7 +28794,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28831,7 +28831,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28872,7 +28872,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28909,7 +28909,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28946,7 +28946,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28986,7 +28986,7 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29023,7 +29023,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29058,7 +29058,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29097,7 +29097,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29136,7 +29136,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29171,7 +29171,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29210,7 +29210,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29245,7 +29245,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29280,7 +29280,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29319,7 +29319,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29358,7 +29358,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29397,7 +29397,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29432,7 +29432,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29471,7 +29471,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29506,7 +29506,7 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
