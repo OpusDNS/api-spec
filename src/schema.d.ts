@@ -6809,8 +6809,8 @@ export interface components {
          *     costs a registry check plus a billing call per premium domain, which a page
          *     of results would multiply into a registry rate-limit problem.
          *
-         *     Also typed on the internal domains-service list request, which implements
-         *     only `TAGS`; the public list route is the only consumer of every member.
+         *     Both the public list route and the internal domains-service list request
+         *     implement every member.
          * @enum {string}
          */
         DomainListIncludeField: "tags" | "registrar_credential";
