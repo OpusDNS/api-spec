@@ -4,6 +4,49 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 18 September 2026
+
+- Fixed **cancelling an inbound `.uk` transfer**.
+  [`DELETE /v1/domains/{domain_reference}/transfer`](/api-reference#tag/domain/DELETE/v1/domains/{domain_reference}/transfer)
+  answered `400 ERROR_REGISTRY_REQUEST` for every `.uk` domain, leaving the
+  domain in `pendingTransfer` with the transfer's billing reservation held and
+  no way out through the API. A `.uk` transfer-in sends no EPP transfer command
+  in the first place - completion comes from the losing registrar releasing the
+  IPS tag - so there was no registry-side transfer to cancel, and the registry
+  refused the attempt before any of the local cleanup ran. The cancel now skips
+  that registry call for `.uk` and does what it always meant to: release the
+  pending transfer transaction, drop the inbound transfer tag, and remove the
+  domain. Every other registry is unchanged. See
+  [.uk operations](/products/tld-operations/uk).
+
+- Fixed **the signup rejection when a VAT ID fails its qualified check**. A VAT
+  ID that is valid in itself but whose registered company name or city does not
+  match the organization you submitted was answered with no `errors` array and a
+  message stating the VAT ID was valid - nothing a client could attach to a
+  field, and nothing that explained the rejection.
+  [`POST /v1/auth/signup`](/api-reference#tag/authentication/POST/v1/auth/signup)
+  and
+  [`POST /v1/organizations`](/api-reference#tag/organization/POST/v1/organizations)
+  now answer with an entry whose `loc` is `["body", "organization", "tax_id"]`,
+  typed `vat-company-details-mismatch`, whose `msg` names the detail that
+  failed, for example "VAT ID is valid, but its registered company name did not
+  match the submitted organization details." Where the member state confirmed
+  neither
+  field, the message says the details could not be confirmed rather than naming
+  one. The VAT ID itself being invalid, unassigned or malformed is unchanged.
+
+### 17 September 2026
+
+- Fixed **DNSSEC key material longer than 255 characters**. A `KEY_DATA` record
+  submitted to
+  [`PUT /v1/domains/{domain_reference}/dnssec`](/api-reference#tag/domain/PUT/v1/domains/{domain_reference}/dnssec)
+  failed with a `500` whenever its `public_key` ran past 255 characters - which
+  is every RSA key of 2048 bits or more, at 348 characters for RSA-2048, 520 for
+  RSA-3072 and 688 for RSA-4096. Only ECDSA and Ed25519 keys, at 44 to 128
+  characters, were short enough to be stored. `public_key` now has no length
+  limit, so a key of any algorithm and size is accepted. `DS_DATA` records were
+  never affected. See [DNSSEC](/products/domains/dnssec).
+
 ### 15 September 2026
 
 - Added a **nameserver filter to the domain list**:
@@ -76,6 +119,32 @@ Track notable updates to the OpusDNS API and developer documentation here.
     against a draft document before you save
     (`/v1/whitelabel-branding/email/preview`).
 
+- Added **eIDAS-based attestation of a contact verification**: an entry sent to
+  [`POST /v1/contacts/{contact_id}/verifications/attest`](/api-reference#tag/contact/POST/v1/contacts/{contact_id}/verifications/attest)
+  with `"method": "AUTH"` now carries an `eid` object naming the scheme the
+  claim was verified under - `eid_scheme` plus a `level_of_assurance` of `LOW`,
+  `SUBSTANTIAL` or `HIGH`, which has to be a level that scheme is notified for.
+  An `AUTH` attestation without it is rejected, and the stored verification
+  reports the eID details back. eIDAS schemes have no official machine-readable
+  identifiers, so the ones to use are listed per country, with the levels each
+  scheme is notified for. `PHONE_VER_TRANSACTION_LOG` was added to the proofs at
+  the same time. See
+  [Attesting an eIDAS-based verification](/products/contacts/attestation-workflow#attesting-an-eidas-based-verification).
+
+- Added **verification policies to the TLD specification**:
+  [`GET /v1/tlds/{tld}`](/api-reference#tag/tld/GET/v1/tlds/{tld}) now returns
+  `verification_policies`, keyed by `identity_verification` and
+  `email_verification`, so the verification a registry imposes can be read
+  before you send anything rather than discovered from a rejection. Each policy
+  states whether it is `enabled`, the `contact_roles` it covers, the `trigger`
+  operations that set it off (`domain_registration`, `domain_inbound_transfer`,
+  `domain_modification`), its `validity_period`, whether the domain is suspended
+  on failure and after what `suspension_delay`, and its `required_claims` - each
+  a claim such as `EMAIL`, `PHONE`, `NAME` or `LEGAL_ENTITY`, with the
+  `accepted_proofs` the registry takes for it where it restricts them - `.pt`,
+  onboarded the same week, is the first TLD to carry one. See
+  [TLD specifications](/products/tlds/specifications).
+
 - Onboarded **[`.pt`](/tld-knowledge-base/cctlds/pt)** (Portugal, operated by
   Associação DNS.PT). Published its TLD Knowledge Base page. Portuguese law
   requires the registrant's email address and phone number to be verified before
@@ -85,6 +154,76 @@ Track notable updates to the OpusDNS API and developer documentation here.
   the administrative and technical roles belong to the registrar and are neither
   accepted on a request nor reported back. Every contact also carries a fiscal
   number, which the registry treats as the contact's unique key.
+
+### 11 September 2026
+
+- Added **domain `attributes` to the bulk update command**: the
+  `domain_update_bulk` command submitted to
+  [`POST /v1/jobs`](/api-reference#tag/jobs/POST/v1/jobs) takes `attributes` on
+  its template and on each instance, validated exactly as
+  [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference})
+  validates them, and merged the way the command's other fields are. Until now
+  the key was discarded on the way in, so a batch that set one reported success
+  having written nothing. The single `domain_update` command takes it too.
+
+  A system-owned or registration-time key, or an empty value clearing a
+  protected one, on the template or on any instance rejects the whole batch at
+  submit with a `422`, as it already did for bulk create and transfer. Checks
+  that depend on the TLD - `monthly` where the registry sells no one-month
+  renewal - can only run once the instance resolves to a domain, so they fail
+  that instance's job, without a retry, and leave the rest of the batch running.
+  See [Domain commands](/automation/jobs/domain-commands).
+
+### 9 September 2026
+
+- Changed **`auto_renew_period` to be the authoritative renewal cadence on every
+  write path**. `period` is the term you are buying now; `auto_renew_period` is
+  the cadence of the next renewal. They are separate facts, but three paths
+  conflated them: a create recorded no cadence at all unless you sent one, the
+  `.de` create derived one from `period.unit` and overwrote the value you sent,
+  and a transfer-in preferred `period` over the attribute - so a monthly cadence
+  asked for on a two-year transfer was silently stored as yearly.
+
+  One rule now applies to every create and transfer-in, `.no` and the retried
+  ones included: a cadence you supply wins; otherwise a one-month term derives
+  `monthly`, a year-unit or absent term derives `yearly`, and a longer
+  month-unit term derives nothing. A cadence already stored is never
+  overwritten. An explicit `monthly` on a TLD whose registry sells no one-month
+  renewal is refused with a `422` on create and transfer-in, matching the update
+  path. Such a request used to answer `201`/`200` and store `yearly`.
+
+### 8 September 2026
+
+- Changed **DNS zone-validation failures to answer `422` with an array of
+  errors**. [`POST /v1/dns`](/api-reference#tag/dns/POST/v1/dns),
+  [`PATCH /v1/dns/{zone_name}/records`](/api-reference#tag/dns/PATCH/v1/dns/{zone_name}/records)
+  and the two rrset routes answered `400`, with `errors` as a dict keyed by
+  check name and then by rrset name - a shape that was never documented and that
+  no client parsed, so a rejected write surfaced as a generic failure with the
+  reason nowhere useful.
+
+  These now answer `422` with `errors` as an array of entries shaped exactly
+  like the request-validation errors the API already raises by itself: a `loc`
+  anchoring the offending element, such as `["body", "rrsets", 0]`, an `msg`
+  spelling the rule out, a `type` naming it (`cname_conflict`), and an `input`
+  echoing what you sent. The `type` `dns-zone-validation`, the `code`
+  `ERROR_ZONE_VALIDATION_FAILED` and `zone_name` keep the values they had, so
+  one parser now covers both kinds of `422` a DNS write can return. Both
+  variants are documented side by side on the routes that raise them.
+
+- Fixed **domain `attributes` being dropped on update for every registry but
+  DENIC**.
+  [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference})
+  accepted an `attributes` body for any TLD, but only the `.de` path stored it:
+  a PATCH setting `auto_renew_period` on a `.com` answered `200`, wrote nothing
+  and logged nothing, and the next renewal kept the old cadence. Every registry
+  now stores what you send.
+
+  Two rules come with it. `monthly` is refused where the TLD has no month-unit
+  renewal period, so a stored cadence is always one the renewal can honour. And
+  records the platform writes at registration - the attestation keys and the
+  derived `.no` applicant values - are not writable on update, nor can a
+  protected attribute be cleared by sending an empty value.
 
 ### 7 September 2026
 
