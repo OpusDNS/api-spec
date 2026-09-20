@@ -1527,7 +1527,11 @@ export interface paths {
          * Update a domain
          * @description Updates various attributes of an existing domain. Only the fields provided in the request
          *     will be updated; all other fields will remain unchanged. <br>
-         *     Providing `clientTransferProhibited` as a status will set the `transfer_lock` property
+         *     Providing `clientTransferProhibited` as a status will set the `transfer_lock` property. <br>
+         *     `transfer_lock` is read-only and cannot be set here: send it in the request body and it is
+         *     ignored, leaving the lock unchanged. Use `status_changes` to release a lock before a
+         *     transfer out, for example
+         *     `{"status_changes": {"remove": ["clientTransferProhibited"]}}`.
          */
         patch: operations["update_domain_v1_domains__domain_reference__patch"];
         trace?: never;
