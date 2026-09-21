@@ -30,8 +30,8 @@ the credential behind. Remove the cache directory too.
 Signing out at the OpusDNS identity provider ends the session your client
 renews against:
 
-- Production — `https://auth.opusdns.com/realms/opusdns/account`
-- Sandbox — `https://auth.opusdns.com/realms/opusdns-sandbox/account`
+- Production — `https://auth.opusdns.com/realms/production/account`
+- Sandbox — `https://auth.opusdns.com/realms/sandbox/account`
 
 An access token that has already been issued keeps working until it expires.
 Signing out stops the client obtaining a new one; it does not reach back and
