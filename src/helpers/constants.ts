@@ -1637,6 +1637,7 @@ export const PUBLIC_RESOURCE = {
   VANITY_NS: "vanity_ns",
   WHITELABEL_BRANDING: "whitelabel_branding",
   AI_CONCIERGE: "ai_concierge",
+  AI_CONCIERGE_WAITLIST: "ai_concierge_waitlist",
 } as const satisfies Record<string, PublicResource>;
 
 export const PUBLIC_RESOURCE_VALUES = [
@@ -1660,6 +1661,7 @@ export const PUBLIC_RESOURCE_VALUES = [
   'vanity_ns',
   'whitelabel_branding',
   'ai_concierge',
+  'ai_concierge_waitlist',
 ] as const satisfies ReadonlyArray<PublicResource>;
 
 export const PUBLIC_ROLE = {
