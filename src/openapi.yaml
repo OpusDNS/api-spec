@@ -17191,7 +17191,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-22-153526
+  version: 2026-09-22-171442
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -36244,8 +36244,12 @@ tags:
     which applies would be accepted.
 
 
-    Being granted a product means every user of your organization gains access to
-    it, including users created afterwards.
+    Being granted a product means the user who applied gains access to it. Ask OpusDNS
+    if the rest of your organization should have it too.
+
+
+    A decision is not final: OpusDNS can approve an application it rejected, and can
+    withdraw a product it granted, which puts the application back to `rejected`.
 
     '
   name: product_waitlist
