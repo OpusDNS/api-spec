@@ -4,6 +4,11 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 22 September 2026
+
+- Onboarded **`.com.pt`**, the Portuguese second-level extension. See the
+  [`.pt` TLD Knowledge Base](/tld-knowledge-base/cctlds/pt) page.
+
 ### 18 September 2026
 
 - Fixed **cancelling an inbound `.uk` transfer**.
