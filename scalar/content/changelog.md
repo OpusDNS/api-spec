@@ -4,6 +4,21 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 22 September 2026
+
+- Added the **[OpusDNS PHP client](https://github.com/OpusDNS/opusdns-php-client)**,
+  the official PHP library for the API, alongside the
+  [Go client](https://github.com/OpusDNS/opusdns-go-client). It installs with
+  `composer require opusdns/php-client guzzlehttp/guzzle`. The client is generated
+  from the OpenAPI specification published here, so every operation, model and
+  enumeration is typed: one service per tag (`$client->domain()`,
+  `$client->dns()`), `final readonly class` models with `\DateTimeImmutable`
+  timestamps, backed enums, `Paginator` to walk a listing, and a typed exception
+  per error status. See the
+  [README](https://github.com/OpusDNS/opusdns-php-client) for the full tour.
+
+  - **PHP 8.3 or newer** is required.
+
 ### 18 September 2026
 
 - Fixed **cancelling an inbound `.uk` transfer**.
