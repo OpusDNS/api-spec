@@ -25,8 +25,9 @@ Track notable updates to the OpusDNS API and developer documentation here.
   applying again.
 
   The first product on the waitlist is the **AI Concierge**. A granted
-  application enables it for everyone in your organization - there is nothing
-  further to accept, and it appears the next time the dashboard is loaded.
+  application enables it for the person who applied - there is nothing further
+  to accept, and it appears the next time they load the dashboard. Colleagues
+  who also want it apply themselves, or ask us to add them.
 
   One thing to expect: the set you see is the set you can apply for. A product
   your organization has not been invited to is left out of the list entirely,
