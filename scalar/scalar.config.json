@@ -3463,6 +3463,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/tires.md",
                 "showInSidebar": true
               },
+              "/tirol": {
+                "type": "page",
+                "title": "🌐 .tirol",
+                "filepath": "content/tld-knowledge-base/gtlds/tirol.md",
+                "showInSidebar": true
+              },
               "/today": {
                 "type": "page",
                 "title": "🌐 .today",
@@ -3665,6 +3671,12 @@
                 "type": "page",
                 "title": "🌐 .wedding",
                 "filepath": "content/tld-knowledge-base/gtlds/wedding.md",
+                "showInSidebar": true
+              },
+              "/wien": {
+                "type": "page",
+                "title": "🌐 .wien",
+                "filepath": "content/tld-knowledge-base/gtlds/wien.md",
                 "showInSidebar": true
               },
               "/wiki": {
