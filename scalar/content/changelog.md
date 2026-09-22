@@ -4,6 +4,35 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 23 September 2026
+
+- Added **the product waitlist**. Some products are not generally available yet,
+  and reach their first customers through a waitlist rather than a switch you
+  can flip yourself.
+  [`GET /v1/organizations/product-waitlist`](/api-reference#tag/product_waitlist/GET/v1/organizations/product-waitlist)
+  lists the waitlisted products your organization can see and where it stands on
+  each: `can_apply` when it may apply, then `pending` once it has, `granted`
+  once OpusDNS has switched the product on, or `rejected`.
+  [`POST /v1/organizations/product-waitlist/{product}/apply`](/api-reference#tag/product_waitlist/POST/v1/organizations/product-waitlist/{product}/apply)
+  applies, optionally with a `note` of up to 1000 characters saying what you
+  would use the product for - the one thing that helps most when we work through
+  the queue.
+
+  An organization applies once per product. A second apply is refused with `409
+  ERROR_WAITLIST_ALREADY_APPLIED` rather than returning the application you
+  already have, so read the list for your current state instead of re-applying
+  to check it. A rejected application is reconsidered by OpusDNS, never by
+  applying again.
+
+  The first product on the waitlist is the **AI Concierge**. A granted
+  application enables it for everyone in your organization - there is nothing
+  further to accept, and it appears the next time the dashboard is loaded.
+
+  One thing to expect: the set you see is the set you can apply for. A product
+  your organization has not been invited to is left out of the list entirely,
+  and its apply route answers `404`, so neither response tells you whether such
+  a product exists.
+
 ### 22 September 2026
 
 - Onboarded **`.com.pt`**, the Portuguese second-level extension. See the
