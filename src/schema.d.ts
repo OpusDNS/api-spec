@@ -2213,7 +2213,7 @@ export interface paths {
         };
         /**
          * List product waitlists
-         * @description Lists the waitlisted products your organization has been invited to, or has already applied for, with where your organization stands on each. Any other product is omitted entirely.
+         * @description Lists the waitlisted products your organization has been invited to, or that you have already applied for, with where your own application stands on each. Any other product is omitted entirely. An API key sees the invited products but has no application of its own: `status` is null and `can_apply` is false.
          */
         get: operations["list_product_waitlists_v1_organizations_product_waitlist_get"];
         put?: never;
@@ -2235,7 +2235,7 @@ export interface paths {
         put?: never;
         /**
          * Apply for a product waitlist
-         * @description Applies your organization to a product's waitlist, optionally saying what you would use the product for. The application is recorded as `pending` until OpusDNS decides on it. One application per organization per product: a second apply is refused, and a rejection is reconsidered by OpusDNS rather than by applying again.
+         * @description Applies you for a product's waitlist, optionally saying what you would use the product for. Any member of an invited organization may apply. The application is recorded as `pending` until OpusDNS decides on it. One application per user per product: a second apply is refused, and a rejection is reconsidered by OpusDNS rather than by applying again. A colleague's application does not stand in for yours, nor block it.
          */
         post: operations["apply_for_product_waitlist_v1_organizations_product_waitlist__product__apply_post"];
         delete?: never;
@@ -13930,25 +13930,25 @@ export interface components {
         };
         /**
          * WaitlistApplyRequest
-         * @description What an organization says when applying for a product.
+         * @description What you say when applying for a product.
          */
         WaitlistApplyRequest: {
             /**
              * Note
-             * @description What your organization would use the product for
+             * @description What you would use the product for
              * @example We manage 12k domains for agency clients and triage renewals by hand.
              */
             note?: string | null;
         };
         /**
          * WaitlistEntryResponse
-         * @description An organization's own waitlist application.
+         * @description Your own waitlist application.
          */
         WaitlistEntryResponse: {
             /**
              * Applied On
              * Format: date-time
-             * @description When the organization applied
+             * @description When you applied
              */
             applied_on: Date;
             /**
@@ -13977,33 +13977,33 @@ export interface components {
         WaitlistProduct: "ai_concierge";
         /**
          * WaitlistProductListResponse
-         * @description The waitlisted products an organization may see.
+         * @description The waitlisted products you may see.
          */
         WaitlistProductListResponse: {
             /**
              * Products
-             * @description Waitlisted products this organization may see
+             * @description Waitlisted products you may see
              */
             products?: components["schemas"]["WaitlistProductState"][];
         };
         /**
          * WaitlistProductState
-         * @description A waitlisted product, and where the organization stands with it.
+         * @description A waitlisted product, and where your own application for it stands.
          */
         WaitlistProductState: {
             /**
              * Applied On
-             * @description When the organization applied, if it has
+             * @description When you applied, if you have
              */
             applied_on?: Date | null;
             /**
              * Can Apply
-             * @description Whether an apply would be accepted right now
+             * @description Whether an apply from you would be accepted right now; false for an API key
              */
             can_apply: boolean;
             /**
              * Decided On
-             * @description When the application was decided, if it was
+             * @description When your application was decided, if it was
              */
             decided_on?: Date | null;
             /**
@@ -14018,7 +14018,7 @@ export interface components {
             display_name: string;
             /** @description Product key, used in the apply path */
             product: components["schemas"]["WaitlistProduct"];
-            /** @description Where the organization's application stands; null until it applies */
+            /** @description Where your application stands; null until you apply, and for an API key */
             status?: components["schemas"]["WaitlistEntryStatus"] | null;
         };
         /**

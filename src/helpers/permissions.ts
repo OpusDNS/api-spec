@@ -1054,7 +1054,7 @@ export const REQUIRED_PERMISSIONS = {
   },
   [ORGANIZATIONS_PRODUCT_WAITLIST_BY_PRODUCT_APPLY_ENDPOINT]: {
     get: [],
-    post: [],
+    post: [PUBLIC_PERMISSION.ORGANIZATION_READ],
     put: [],
     patch: [],
     delete: [],

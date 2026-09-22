@@ -16092,7 +16092,7 @@ components:
       title: VisitsByKeyBucket
       type: object
     WaitlistApplyRequest:
-      description: What an organization says when applying for a product.
+      description: What you say when applying for a product.
       properties:
         note:
           anyOf:
@@ -16100,17 +16100,17 @@ components:
             minLength: 1
             type: string
           - type: 'null'
-          description: What your organization would use the product for
+          description: What you would use the product for
           examples:
           - We manage 12k domains for agency clients and triage renewals by hand.
           title: Note
       title: WaitlistApplyRequest
       type: object
     WaitlistEntryResponse:
-      description: An organization's own waitlist application.
+      description: Your own waitlist application.
       properties:
         applied_on:
-          description: When the organization applied
+          description: When you applied
           format: date-time
           title: Applied On
           type: string
@@ -16155,10 +16155,10 @@ components:
       title: WaitlistProduct
       type: string
     WaitlistProductListResponse:
-      description: The waitlisted products an organization may see.
+      description: The waitlisted products you may see.
       properties:
         products:
-          description: Waitlisted products this organization may see
+          description: Waitlisted products you may see
           items:
             $ref: '#/components/schemas/WaitlistProductState'
           title: Products
@@ -16166,17 +16166,18 @@ components:
       title: WaitlistProductListResponse
       type: object
     WaitlistProductState:
-      description: A waitlisted product, and where the organization stands with it.
+      description: A waitlisted product, and where your own application for it stands.
       properties:
         applied_on:
           anyOf:
           - format: date-time
             type: string
           - type: 'null'
-          description: When the organization applied, if it has
+          description: When you applied, if you have
           title: Applied On
         can_apply:
-          description: Whether an apply would be accepted right now
+          description: Whether an apply from you would be accepted right now; false
+            for an API key
           title: Can Apply
           type: boolean
         decided_on:
@@ -16184,7 +16185,7 @@ components:
           - format: date-time
             type: string
           - type: 'null'
-          description: When the application was decided, if it was
+          description: When your application was decided, if it was
           title: Decided On
         description:
           description: What the product does
@@ -16201,8 +16202,8 @@ components:
           anyOf:
           - $ref: '#/components/schemas/WaitlistEntryStatus'
           - type: 'null'
-          description: Where the organization's application stands; null until it
-            applies
+          description: Where your application stands; null until you apply, and for
+            an API key
       required:
       - product
       - display_name
@@ -17191,7 +17192,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-22-171442
+  version: 2026-09-22-220605
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -31504,9 +31505,11 @@ paths:
       - organization
   /v1/organizations/product-waitlist:
     get:
-      description: Lists the waitlisted products your organization has been invited
-        to, or has already applied for, with where your organization stands on each.
-        Any other product is omitted entirely.
+      description: 'Lists the waitlisted products your organization has been invited
+        to, or that you have already applied for, with where your own application
+        stands on each. Any other product is omitted entirely. An API key sees the
+        invited products but has no application of its own: `status` is null and `can_apply`
+        is false.'
       operationId: list_product_waitlists_v1_organizations_product_waitlist_get
       parameters:
       - $ref: '#/components/parameters/DatetimeFormatHeader'
@@ -31558,11 +31561,12 @@ paths:
       - organization:read
   /v1/organizations/product-waitlist/{product}/apply:
     post:
-      description: 'Applies your organization to a product''s waitlist, optionally
-        saying what you would use the product for. The application is recorded as
-        `pending` until OpusDNS decides on it. One application per organization per
-        product: a second apply is refused, and a rejection is reconsidered by OpusDNS
-        rather than by applying again.'
+      description: 'Applies you for a product''s waitlist, optionally saying what
+        you would use the product for. Any member of an invited organization may apply.
+        The application is recorded as `pending` until OpusDNS decides on it. One
+        application per user per product: a second apply is refused, and a rejection
+        is reconsidered by OpusDNS rather than by applying again. A colleague''s application
+        does not stand in for yours, nor block it.'
       operationId: apply_for_product_waitlist_v1_organizations_product_waitlist__product__apply_post
       parameters:
       - in: path
@@ -31630,7 +31634,7 @@ paths:
                 Waitlist Error:
                   value:
                     code: ERROR_WAITLIST_ENTRY_REJECTED
-                    detail: This organization's application for ai_concierge was rejected
+                    detail: Your application for ai_concierge was rejected
                     product: ai_concierge
                     status: 409
                     title: Waitlist Error
@@ -31650,6 +31654,8 @@ paths:
       tags:
       - organization
       - product_waitlist
+      x-required-permissions:
+      - organization:read
   /v1/organizations/role-permissions:
     get:
       description: Retrieves the catalog of `resource:scope` permissions a custom
@@ -36170,11 +36176,11 @@ tags:
     reached through a waitlist.
 
 
-    A waitlisted product is invitation-only: OpusDNS invites an organization, the
-    organization applies, and OpusDNS decides. Until your organization is invited,
-    the product does not exist as far as this API is concerned - it is left out of
-    the listing, and applying for it answers `404`. Once your organization has applied,
-    the product stays in its listing whatever happens to the invite afterwards.
+    A waitlisted product is invitation-only: OpusDNS invites an organization, its
+    members apply, and OpusDNS decides on each application. Until your organization
+    is invited, the product does not exist as far as this API is concerned - it is
+    left out of the listing, and applying for it answers `404`. Once you have applied,
+    the product stays in your listing whatever happens to the invite afterwards.
 
 
     ### Endpoints
@@ -36184,22 +36190,24 @@ tags:
 
     |--------|------|-------------|
 
-    | `GET` | `/v1/organizations/product-waitlist` | The waitlisted products your
-    organization may see, and where it stands on each |
+    | `GET` | `/v1/organizations/product-waitlist` | The waitlisted products you may
+    see, and where your own application stands on each |
 
-    | `POST` | `/v1/organizations/product-waitlist/{product}/apply` | Apply your organization
-    to one product''s waitlist |
+    | `POST` | `/v1/organizations/product-waitlist/{product}/apply` | Apply for one
+    product''s waitlist |
 
 
-    Both routes act on the organization the request is authenticated for; neither
+    Both routes act on your own organization - the one you authenticated as - even
+    when an `X-Organization-Context` header names one of its sub-organizations. Neither
     takes an organization in the path.
 
 
     ### Product state
 
 
-    Each entry in the listing describes one product and your organization''s standing
-    with it:
+    Each entry in the listing describes one product and your own standing with it.
+    Applications are per user, so two members of one organization can see different
+    states for the same product:
 
 
     | Field | Description |
@@ -36212,40 +36220,44 @@ tags:
 
     | `description` | What the product does |
 
-    | `status` | `pending`, `granted` or `rejected`, or `null` while your organization
-    has not applied |
+    | `status` | `pending`, `granted` or `rejected`, or `null` while you have not
+    applied |
 
-    | `applied_on` | When your organization applied, or `null` |
+    | `applied_on` | When you applied, or `null` |
 
     | `decided_on` | When OpusDNS decided, or `null` |
 
-    | `can_apply` | Whether an apply would be accepted right now, from this caller:
-    it also takes the `organization:write` the apply route requires |
+    | `can_apply` | Whether an apply from you would be accepted right now |
+
+
+    An API key has no application of its own: it sees the products your organization
+    is invited to, with `status` `null` and `can_apply` `false`.
 
 
     ### Applying
 
 
-    `POST /v1/organizations/product-waitlist/{product}/apply` records the application
-    as `pending`, together with the applying user. It requires a user token: an API-key
-    token has no user to record.
+    `POST /v1/organizations/product-waitlist/{product}/apply` records your application
+    as `pending`. Any member of an invited organization may apply. It requires a user
+    token: an API-key token has no user to record.
 
 
-    The body is optional. Send `{"note": "..."}` to say what your organization would
-    use the product for - it is the one thing OpusDNS has to go on when deciding,
-    so it is worth filling in. A note is trimmed and may be up to 1000 characters;
-    a blank or whitespace-only one is rejected rather than stored. Posting no body
-    at all applies without a note.
+    The body is optional. Send `{"note": "..."}` to say what you would use the product
+    for - it is the one thing OpusDNS has to go on when deciding, so it is worth filling
+    in. A note is trimmed and may be up to 1000 characters; a blank or whitespace-only
+    one is rejected rather than stored. Posting no body at all applies without a note.
 
 
-    One application per organization per product. A second apply answers `409`, whatever
-    state the first one reached - a rejection is reconsidered by OpusDNS approving
-    it after all, not by applying again. `can_apply` in the listing tells you in advance
-    which applies would be accepted.
+    One application per user per product. A second apply answers `409`, whatever state
+    the first one reached - a rejection is reconsidered by OpusDNS approving it after
+    all, not by applying again. A colleague''s application neither stands in for yours
+    nor blocks it. `can_apply` in the listing tells you in advance whether an apply
+    would be accepted.
 
 
-    Being granted a product means the user who applied gains access to it. Ask OpusDNS
-    if the rest of your organization should have it too.
+    Being granted a product means you, the user who applied, gain access to it. Your
+    colleagues apply on their own, or ask OpusDNS if the whole organization should
+    have it.
 
 
     A decision is not final: OpusDNS can approve an application it rejected, and can
