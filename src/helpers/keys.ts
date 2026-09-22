@@ -451,6 +451,10 @@ import type {
   VerificationRegistrantDetails,
   Verification,
   VisitsByKeyBucket,
+  WaitlistApplyRequest,
+  WaitlistEntry,
+  WaitlistProductList,
+  WaitlistProductState,
   WhitelabelBaseCreate,
   WhitelabelBrandingPatch,
   WhitelabelBrandingRecheck,
@@ -6182,6 +6186,48 @@ export const KEYS_VISITS_BY_KEY_BUCKET = [
   KEY_VISITS_BY_KEY_BUCKET_TOTAL,
   KEY_VISITS_BY_KEY_BUCKET_UNIQUE,
 ] as const satisfies (keyof VisitsByKeyBucket)[];
+
+export const KEY_WAITLIST_APPLY_REQUEST_NOTE = 'note' satisfies keyof WaitlistApplyRequest;
+
+export const KEYS_WAITLIST_APPLY_REQUEST = [
+  KEY_WAITLIST_APPLY_REQUEST_NOTE,
+] as const satisfies (keyof WaitlistApplyRequest)[];
+
+export const KEY_WAITLIST_ENTRY_APPLIED_ON = 'applied_on' satisfies keyof WaitlistEntry;
+export const KEY_WAITLIST_ENTRY_DECIDED_ON = 'decided_on' satisfies keyof WaitlistEntry;
+export const KEY_WAITLIST_ENTRY_PRODUCT = 'product' satisfies keyof WaitlistEntry;
+export const KEY_WAITLIST_ENTRY_STATUS = 'status' satisfies keyof WaitlistEntry;
+
+export const KEYS_WAITLIST_ENTRY = [
+  KEY_WAITLIST_ENTRY_APPLIED_ON,
+  KEY_WAITLIST_ENTRY_DECIDED_ON,
+  KEY_WAITLIST_ENTRY_PRODUCT,
+  KEY_WAITLIST_ENTRY_STATUS,
+] as const satisfies (keyof WaitlistEntry)[];
+
+export const KEY_WAITLIST_PRODUCT_LIST_PRODUCTS = 'products' satisfies keyof WaitlistProductList;
+
+export const KEYS_WAITLIST_PRODUCT_LIST = [
+  KEY_WAITLIST_PRODUCT_LIST_PRODUCTS,
+] as const satisfies (keyof WaitlistProductList)[];
+
+export const KEY_WAITLIST_PRODUCT_STATE_APPLIED_ON = 'applied_on' satisfies keyof WaitlistProductState;
+export const KEY_WAITLIST_PRODUCT_STATE_CAN_APPLY = 'can_apply' satisfies keyof WaitlistProductState;
+export const KEY_WAITLIST_PRODUCT_STATE_DECIDED_ON = 'decided_on' satisfies keyof WaitlistProductState;
+export const KEY_WAITLIST_PRODUCT_STATE_DESCRIPTION = 'description' satisfies keyof WaitlistProductState;
+export const KEY_WAITLIST_PRODUCT_STATE_DISPLAY_NAME = 'display_name' satisfies keyof WaitlistProductState;
+export const KEY_WAITLIST_PRODUCT_STATE_PRODUCT = 'product' satisfies keyof WaitlistProductState;
+export const KEY_WAITLIST_PRODUCT_STATE_STATUS = 'status' satisfies keyof WaitlistProductState;
+
+export const KEYS_WAITLIST_PRODUCT_STATE = [
+  KEY_WAITLIST_PRODUCT_STATE_APPLIED_ON,
+  KEY_WAITLIST_PRODUCT_STATE_CAN_APPLY,
+  KEY_WAITLIST_PRODUCT_STATE_DECIDED_ON,
+  KEY_WAITLIST_PRODUCT_STATE_DESCRIPTION,
+  KEY_WAITLIST_PRODUCT_STATE_DISPLAY_NAME,
+  KEY_WAITLIST_PRODUCT_STATE_PRODUCT,
+  KEY_WAITLIST_PRODUCT_STATE_STATUS,
+] as const satisfies (keyof WaitlistProductState)[];
 
 export const KEY_WHITELABEL_BASE_CREATE_LABEL = 'label' satisfies keyof WhitelabelBaseCreate;
 export const KEY_WHITELABEL_BASE_CREATE_PERIOD = 'period' satisfies keyof WhitelabelBaseCreate;

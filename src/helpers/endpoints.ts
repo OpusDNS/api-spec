@@ -106,6 +106,8 @@ export const ORGANIZATIONS_ENDPOINT = '/v1/organizations';
 export const ORGANIZATIONS_ATTRIBUTES_ENDPOINT = '/v1/organizations/attributes';
 export const ORGANIZATIONS_IP_RESTRICTIONS_ENDPOINT = '/v1/organizations/ip-restrictions';
 export const ORGANIZATIONS_IP_RESTRICTIONS_BY_IP_RESTRICTION_ID_ENDPOINT = '/v1/organizations/ip-restrictions/{ip_restriction_id}';
+export const ORGANIZATIONS_PRODUCT_WAITLIST_ENDPOINT = '/v1/organizations/product-waitlist';
+export const ORGANIZATIONS_PRODUCT_WAITLIST_BY_PRODUCT_APPLY_ENDPOINT = '/v1/organizations/product-waitlist/{product}/apply';
 export const ORGANIZATIONS_ROLE_PERMISSIONS_ENDPOINT = '/v1/organizations/role-permissions';
 export const ORGANIZATIONS_ROLES_ENDPOINT = '/v1/organizations/roles';
 export const ORGANIZATIONS_ROLES_BY_LABEL_ENDPOINT = '/v1/organizations/roles/{label}';
@@ -266,6 +268,8 @@ export type Endpoint =
   | typeof ORGANIZATIONS_ATTRIBUTES_ENDPOINT
   | typeof ORGANIZATIONS_IP_RESTRICTIONS_ENDPOINT
   | typeof ORGANIZATIONS_IP_RESTRICTIONS_BY_IP_RESTRICTION_ID_ENDPOINT
+  | typeof ORGANIZATIONS_PRODUCT_WAITLIST_ENDPOINT
+  | typeof ORGANIZATIONS_PRODUCT_WAITLIST_BY_PRODUCT_APPLY_ENDPOINT
   | typeof ORGANIZATIONS_ROLE_PERMISSIONS_ENDPOINT
   | typeof ORGANIZATIONS_ROLES_ENDPOINT
   | typeof ORGANIZATIONS_ROLES_BY_LABEL_ENDPOINT

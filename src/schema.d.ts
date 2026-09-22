@@ -2204,6 +2204,46 @@ export interface paths {
         patch: operations["update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch"];
         trace?: never;
     };
+    "/v1/organizations/product-waitlist": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List product waitlists
+         * @description Lists the waitlisted products your organization has been invited to, or has already applied for, with where your organization stands on each. Any other product is omitted entirely.
+         */
+        get: operations["list_product_waitlists_v1_organizations_product_waitlist_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/product-waitlist/{product}/apply": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Apply for a product waitlist
+         * @description Applies your organization to a product's waitlist, optionally saying what you would use the product for. The application is recorded as `pending` until OpusDNS decides on it. One application per organization per product: a second apply is refused, and a rejection is reconsidered by OpusDNS rather than by applying again.
+         */
+        post: operations["apply_for_product_waitlist_v1_organizations_product_waitlist__product__apply_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/organizations/role-permissions": {
         parameters: {
             query?: never;
@@ -13879,6 +13919,99 @@ export interface components {
             total: number;
             /** Unique */
             unique: number;
+        };
+        /**
+         * WaitlistApplyRequest
+         * @description What an organization says when applying for a product.
+         */
+        WaitlistApplyRequest: {
+            /**
+             * Note
+             * @description What your organization would use the product for
+             * @example We manage 12k domains for agency clients and triage renewals by hand.
+             */
+            note?: string | null;
+        };
+        /**
+         * WaitlistEntryResponse
+         * @description An organization's own waitlist application.
+         */
+        WaitlistEntryResponse: {
+            /**
+             * Applied On
+             * Format: date-time
+             * @description When the organization applied
+             */
+            applied_on: Date;
+            /**
+             * Decided On
+             * @description When the application was decided; null while it is pending
+             */
+            decided_on?: Date | null;
+            /** @description Product the application is for */
+            product: components["schemas"]["WaitlistProduct"];
+            /** @description Where the application stands */
+            status: components["schemas"]["WaitlistEntryStatus"];
+        };
+        /**
+         * WaitlistEntryStatus
+         * @enum {string}
+         */
+        WaitlistEntryStatus: "pending" | "granted" | "rejected";
+        /**
+         * WaitlistProduct
+         * @description A product that is not generally available and is reached through the waitlist.
+         *
+         *     The member value is the wire form used in URLs and API bodies; the column persists the
+         *     member NAME (StringEnum binds `value.name`), so renaming a member is a data migration.
+         * @enum {string}
+         */
+        WaitlistProduct: "ai_concierge";
+        /**
+         * WaitlistProductListResponse
+         * @description The waitlisted products an organization may see.
+         */
+        WaitlistProductListResponse: {
+            /**
+             * Products
+             * @description Waitlisted products this organization may see
+             */
+            products?: components["schemas"]["WaitlistProductState"][];
+        };
+        /**
+         * WaitlistProductState
+         * @description A waitlisted product, and where the organization stands with it.
+         */
+        WaitlistProductState: {
+            /**
+             * Applied On
+             * @description When the organization applied, if it has
+             */
+            applied_on?: Date | null;
+            /**
+             * Can Apply
+             * @description Whether an apply would be accepted right now
+             */
+            can_apply: boolean;
+            /**
+             * Decided On
+             * @description When the application was decided, if it was
+             */
+            decided_on?: Date | null;
+            /**
+             * Description
+             * @description What the product does
+             */
+            description: string;
+            /**
+             * Display Name
+             * @description Human-readable product name
+             */
+            display_name: string;
+            /** @description Product key, used in the apply path */
+            product: components["schemas"]["WaitlistProduct"];
+            /** @description Where the organization's application stands; null until it applies */
+            status?: components["schemas"]["WaitlistEntryStatus"] | null;
         };
         /**
          * WhitelabelBaseCreate
@@ -25658,6 +25791,172 @@ export interface operations {
                      *       "title": "Permission Denied",
                      *       "type": "permission-denied"
                      *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_product_waitlists_v1_organizations_product_waitlist_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WaitlistProductListResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    apply_for_product_waitlist_v1_organizations_product_waitlist__product__apply_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                product: components["schemas"]["WaitlistProduct"];
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["WaitlistApplyRequest"] | null;
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WaitlistEntryResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_WAITLIST_NOT_INVITED",
+                     *       "detail": "No waitlist is available for ai_concierge",
+                     *       "product": "ai_concierge",
+                     *       "status": 404,
+                     *       "title": "Waitlist Error",
+                     *       "type": "waitlist-not-invited"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };

@@ -16078,6 +16078,125 @@ components:
       - unique
       title: VisitsByKeyBucket
       type: object
+    WaitlistApplyRequest:
+      description: What an organization says when applying for a product.
+      properties:
+        note:
+          anyOf:
+          - maxLength: 1000
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: What your organization would use the product for
+          examples:
+          - We manage 12k domains for agency clients and triage renewals by hand.
+          title: Note
+      title: WaitlistApplyRequest
+      type: object
+    WaitlistEntryResponse:
+      description: An organization's own waitlist application.
+      properties:
+        applied_on:
+          description: When the organization applied
+          format: date-time
+          title: Applied On
+          type: string
+        decided_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: When the application was decided; null while it is pending
+          title: Decided On
+        product:
+          $ref: '#/components/schemas/WaitlistProduct'
+          description: Product the application is for
+        status:
+          $ref: '#/components/schemas/WaitlistEntryStatus'
+          description: Where the application stands
+      required:
+      - product
+      - status
+      - applied_on
+      title: WaitlistEntryResponse
+      type: object
+    WaitlistEntryStatus:
+      enum:
+      - pending
+      - granted
+      - rejected
+      title: WaitlistEntryStatus
+      type: string
+    WaitlistProduct:
+      description: 'A product that is not generally available and is reached through
+        the waitlist.
+
+
+        The member value is the wire form used in URLs and API bodies; the column
+        persists the
+
+        member NAME (StringEnum binds `value.name`), so renaming a member is a data
+        migration.'
+      enum:
+      - ai_concierge
+      title: WaitlistProduct
+      type: string
+    WaitlistProductListResponse:
+      description: The waitlisted products an organization may see.
+      properties:
+        products:
+          description: Waitlisted products this organization may see
+          items:
+            $ref: '#/components/schemas/WaitlistProductState'
+          title: Products
+          type: array
+      title: WaitlistProductListResponse
+      type: object
+    WaitlistProductState:
+      description: A waitlisted product, and where the organization stands with it.
+      properties:
+        applied_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: When the organization applied, if it has
+          title: Applied On
+        can_apply:
+          description: Whether an apply would be accepted right now
+          title: Can Apply
+          type: boolean
+        decided_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: When the application was decided, if it was
+          title: Decided On
+        description:
+          description: What the product does
+          title: Description
+          type: string
+        display_name:
+          description: Human-readable product name
+          title: Display Name
+          type: string
+        product:
+          $ref: '#/components/schemas/WaitlistProduct'
+          description: Product key, used in the apply path
+        status:
+          anyOf:
+          - $ref: '#/components/schemas/WaitlistEntryStatus'
+          - type: 'null'
+          description: Where the organization's application stands; null until it
+            applies
+      required:
+      - product
+      - display_name
+      - description
+      - can_apply
+      title: WaitlistProductState
+      type: object
     WhitelabelBaseCreate:
       additionalProperties: false
       description: 'Create the base tier: served on a managed subdomain composed from
@@ -17059,7 +17178,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-22-090818
+  version: 2026-09-22-143714
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -31370,6 +31489,154 @@ paths:
       summary: Update an IP restriction
       tags:
       - organization
+  /v1/organizations/product-waitlist:
+    get:
+      description: Lists the waitlisted products your organization has been invited
+        to, or has already applied for, with where your organization stands on each.
+        Any other product is omitted entirely.
+      operationId: list_product_waitlists_v1_organizations_product_waitlist_get
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WaitlistProductListResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List product waitlists
+      tags:
+      - organization
+      - product_waitlist
+      x-required-permissions:
+      - organization:read
+  /v1/organizations/product-waitlist/{product}/apply:
+    post:
+      description: 'Applies your organization to a product''s waitlist, optionally
+        saying what you would use the product for. The application is recorded as
+        `pending` until OpusDNS decides on it. One application per organization per
+        product: a second apply is refused, and a rejection is reconsidered by OpusDNS
+        rather than by applying again.'
+      operationId: apply_for_product_waitlist_v1_organizations_product_waitlist__product__apply_post
+      parameters:
+      - in: path
+        name: product
+        required: true
+        schema:
+          $ref: '#/components/schemas/WaitlistProduct'
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - $ref: '#/components/schemas/WaitlistApplyRequest'
+              - type: 'null'
+              title: Body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WaitlistEntryResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_WAITLIST_NOT_INVITED
+                detail: No waitlist is available for ai_concierge
+                product: ai_concierge
+                status: 404
+                title: Waitlist Error
+                type: waitlist-not-invited
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              examples:
+                Waitlist Error:
+                  value:
+                    code: ERROR_WAITLIST_ENTRY_REJECTED
+                    detail: This organization's application for ai_concierge was rejected
+                    product: ai_concierge
+                    status: 409
+                    title: Waitlist Error
+                    type: waitlist-entry-rejected
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Apply for a product waitlist
+      tags:
+      - organization
+      - product_waitlist
   /v1/organizations/role-permissions:
     get:
       description: Retrieves the catalog of `resource:scope` permissions a custom
@@ -35886,6 +36153,90 @@ tags:
     '
   name: organization
   x-displayName: Organizations
+- description: 'Endpoints for products that are not generally available yet and are
+    reached through a waitlist.
+
+
+    A waitlisted product is invitation-only: OpusDNS invites an organization, the
+    organization applies, and OpusDNS decides. Until your organization is invited,
+    the product does not exist as far as this API is concerned - it is left out of
+    the listing, and applying for it answers `404`. Once your organization has applied,
+    the product stays in its listing whatever happens to the invite afterwards.
+
+
+    ### Endpoints
+
+
+    | Method | Path | Description |
+
+    |--------|------|-------------|
+
+    | `GET` | `/v1/organizations/product-waitlist` | The waitlisted products your
+    organization may see, and where it stands on each |
+
+    | `POST` | `/v1/organizations/product-waitlist/{product}/apply` | Apply your organization
+    to one product''s waitlist |
+
+
+    Both routes act on the organization the request is authenticated for; neither
+    takes an organization in the path.
+
+
+    ### Product state
+
+
+    Each entry in the listing describes one product and your organization''s standing
+    with it:
+
+
+    | Field | Description |
+
+    |-------|-------------|
+
+    | `product` | The product key, used as `{product}` in the apply path |
+
+    | `display_name` | Human-readable product name |
+
+    | `description` | What the product does |
+
+    | `status` | `pending`, `granted` or `rejected`, or `null` while your organization
+    has not applied |
+
+    | `applied_on` | When your organization applied, or `null` |
+
+    | `decided_on` | When OpusDNS decided, or `null` |
+
+    | `can_apply` | Whether an apply would be accepted right now, from this caller:
+    it also takes the `organization:write` the apply route requires |
+
+
+    ### Applying
+
+
+    `POST /v1/organizations/product-waitlist/{product}/apply` records the application
+    as `pending`, together with the applying user. It requires a user token: an API-key
+    token has no user to record.
+
+
+    The body is optional. Send `{"note": "..."}` to say what your organization would
+    use the product for - it is the one thing OpusDNS has to go on when deciding,
+    so it is worth filling in. A note is trimmed and may be up to 1000 characters;
+    a blank or whitespace-only one is rejected rather than stored. Posting no body
+    at all applies without a note.
+
+
+    One application per organization per product. A second apply answers `409`, whatever
+    state the first one reached - a rejection is reconsidered by OpusDNS approving
+    it after all, not by applying again. `can_apply` in the listing tells you in advance
+    which applies would be accepted.
+
+
+    Being granted a product means every user of your organization gains access to
+    it, including users created afterwards.
+
+    '
+  name: product_waitlist
+  x-displayName: Product waitlist
 - description: 'Endpoints for retrieving TLD specifications.
 
     '
@@ -36063,6 +36414,7 @@ x-tagGroups:
   - authentication
   - user
   - organization
+  - product_waitlist
   - usage
 - name: Domains
   tags:

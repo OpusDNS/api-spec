@@ -957,6 +957,14 @@ export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request = {
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request_Path = PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request['parameters']['path'];
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request_Body = PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request['requestBody'];
 
+export type GET_OrganizationsProductWaitlist_Request = {
+};
+
+export type POST_OrganizationsProductWaitlistByProductApply_Request = {
+  parameters: operations['apply_for_product_waitlist_v1_organizations_product_waitlist__product__apply_post']['parameters'];
+};
+export type POST_OrganizationsProductWaitlistByProductApply_Request_Path = POST_OrganizationsProductWaitlistByProductApply_Request['parameters']['path'];
+
 export type GET_OrganizationsRolePermissions_Request = {
 };
 

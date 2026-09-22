@@ -120,6 +120,8 @@ import type {
   UserPublicWithAttributes,
   VanityNameserverSetSummaryDTO,
   VanityNsCheckRes,
+  WaitlistEntry,
+  WaitlistProductList,
   WhitelabelBranding,
 } from './schemas';
 
@@ -747,6 +749,13 @@ export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 = IpRe
 export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_401 = Problem;
 export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_403 = Problem;
 export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTPValidationError;
+
+export type GET_OrganizationsProductWaitlist_Response = GET_OrganizationsProductWaitlist_Response_200 | GET_OrganizationsProductWaitlist_Response_401 | GET_OrganizationsProductWaitlist_Response_403 | GET_OrganizationsProductWaitlist_Response_422;
+
+export type GET_OrganizationsProductWaitlist_Response_200 = WaitlistProductList;
+export type GET_OrganizationsProductWaitlist_Response_401 = Problem;
+export type GET_OrganizationsProductWaitlist_Response_403 = Problem;
+export type GET_OrganizationsProductWaitlist_Response_422 = HTTPValidationError;
 
 export type GET_OrganizationsRolePermissions_Response = GET_OrganizationsRolePermissions_Response_200 | GET_OrganizationsRolePermissions_Response_401 | GET_OrganizationsRolePermissions_Response_403 | GET_OrganizationsRolePermissions_Response_422;
 
@@ -1397,6 +1406,15 @@ export type POST_OrganizationsIpRestrictions_Response_200 = IpRestriction;
 export type POST_OrganizationsIpRestrictions_Response_401 = Problem;
 export type POST_OrganizationsIpRestrictions_Response_403 = Problem;
 export type POST_OrganizationsIpRestrictions_Response_422 = HTTPValidationError;
+
+export type POST_OrganizationsProductWaitlistByProductApply_Response = POST_OrganizationsProductWaitlistByProductApply_Response_200 | POST_OrganizationsProductWaitlistByProductApply_Response_401 | POST_OrganizationsProductWaitlistByProductApply_Response_403 | POST_OrganizationsProductWaitlistByProductApply_Response_404 | POST_OrganizationsProductWaitlistByProductApply_Response_409 | POST_OrganizationsProductWaitlistByProductApply_Response_422;
+
+export type POST_OrganizationsProductWaitlistByProductApply_Response_200 = WaitlistEntry;
+export type POST_OrganizationsProductWaitlistByProductApply_Response_401 = Problem;
+export type POST_OrganizationsProductWaitlistByProductApply_Response_403 = Problem;
+export type POST_OrganizationsProductWaitlistByProductApply_Response_404 = Problem;
+export type POST_OrganizationsProductWaitlistByProductApply_Response_409 = Problem;
+export type POST_OrganizationsProductWaitlistByProductApply_Response_422 = HTTPValidationError;
 
 export type POST_OrganizationsRoles_Response = POST_OrganizationsRoles_Response_201 | POST_OrganizationsRoles_Response_401 | POST_OrganizationsRoles_Response_403 | POST_OrganizationsRoles_Response_409 | POST_OrganizationsRoles_Response_422;
 

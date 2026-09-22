@@ -127,6 +127,8 @@ import type {
   VerificationDeadlineType,
   VerificationPolicyType,
   VerificationType,
+  WaitlistEntryStatus,
+  WaitlistProduct,
   WhitelabelBrandingTier,
   WhitelabelOnboardingFailureCode,
   WhitelabelOnboardingFailureType,
@@ -2424,6 +2426,26 @@ export const VERIFICATION_TYPE_VALUES = [
   'api',
   'email',
 ] as const satisfies ReadonlyArray<VerificationType>;
+
+export const WAITLIST_ENTRY_STATUS = {
+  PENDING: "pending",
+  GRANTED: "granted",
+  REJECTED: "rejected",
+} as const satisfies Record<string, WaitlistEntryStatus>;
+
+export const WAITLIST_ENTRY_STATUS_VALUES = [
+  'pending',
+  'granted',
+  'rejected',
+] as const satisfies ReadonlyArray<WaitlistEntryStatus>;
+
+export const WAITLIST_PRODUCT = {
+  AI_CONCIERGE: "ai_concierge",
+} as const satisfies Record<string, WaitlistProduct>;
+
+export const WAITLIST_PRODUCT_VALUES = [
+  'ai_concierge',
+] as const satisfies ReadonlyArray<WaitlistProduct>;
 
 export const WHITELABEL_BRANDING_TIER = {
   BASE: "base",
