@@ -4,5 +4,3 @@
 # Excluded TLDs stay fully usable at runtime; this only hides the docs page.
 ua # WIP
 ee
-wien
-tirol
