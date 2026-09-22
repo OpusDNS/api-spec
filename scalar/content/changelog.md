@@ -4,6 +4,13 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 22 September 2026
+
+- Onboarded **[`.wien`](/tld-knowledge-base/gtlds/wien)** (punkt.wien GmbH) and
+  **[`.tirol`](/tld-knowledge-base/gtlds/tirol)** (punkt Tirol GmbH), both served
+  over the RyCE registry backend. Published their TLD Knowledge Base pages. Both
+  lock a domain for 60 days after a registration or a transfer.
+
 ### 18 September 2026
 
 - Fixed **cancelling an inbound `.uk` transfer**.
