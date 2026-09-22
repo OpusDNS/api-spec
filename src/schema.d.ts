@@ -6772,7 +6772,7 @@ export interface components {
          * DomainIncludeField
          * @enum {string}
          */
-        DomainIncludeField: "tags" | "renewal_price" | "registrar_credential";
+        DomainIncludeField: "tags" | "renewal_price" | "connected_account";
         /** DomainLifecycleBase */
         DomainLifecycleBase: {
             /**
@@ -6861,7 +6861,7 @@ export interface components {
          *     implement every member.
          * @enum {string}
          */
-        DomainListIncludeField: "tags" | "registrar_credential";
+        DomainListIncludeField: "tags" | "connected_account";
         /** DomainNameParts */
         DomainNameParts: {
             /**
@@ -6949,6 +6949,11 @@ export interface components {
              * @example registrar_credential_01h45ytscbebyvny4gc8cr8ma2
              */
             registrar_credential_id: TypeId<"registrar_credential">;
+            /**
+             * @description Kind of connected account. `ras`: a registrar credential managed under `/v1/connect/registrars`. (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            type: "ras";
         };
         /** DomainRenewRequest */
         DomainRenewRequest: {
@@ -7035,6 +7040,11 @@ export interface components {
              */
             canceled_on?: Date | null;
             /**
+             * Connected Account
+             * @description The connected account this domain is synced from. Null unless `include=connected_account` is requested, and null even then for natively registered domains, for domains on operator-managed registry accounts, and when the connected account was deleted.
+             */
+            connected_account?: components["schemas"]["DomainRegistrarCredentialResponse"] | null;
+            /**
              * Contacts
              * @description The contacts of the domain
              */
@@ -7102,8 +7112,6 @@ export interface components {
              * @description When the domain was registered
              */
             registered_on?: Date | null;
-            /** @description The connected registrar credential this domain is synced from. Null unless `include=registrar_credential` is requested, and null even then for natively registered domains, for domains on operator-managed registry accounts, and when the credential was deleted. */
-            registrar_credential?: components["schemas"]["DomainRegistrarCredentialResponse"] | null;
             /**
              * Registry Account Id
              * Format: typeid
@@ -20773,11 +20781,11 @@ export interface operations {
                 transferred_before?: Date | null;
                 /** @description Filter domains by registry status. Can be specified multiple times (union of all provided values). */
                 registry_statuses?: string[] | null;
-                /** @description Filter domains held at an external registrar by the connected registrar credential they were synced from. Can be specified multiple times (union of all provided values); combined with `registrar`, both must match. Matches exactly the domains whose `registrar_credential` field carries the id, so domains OpusDNS sponsors never match. */
+                /** @description Filter domains held at an external registrar by the connected registrar credential they were synced from. Can be specified multiple times (union of all provided values); combined with `registrar`, both must match. Matches exactly the domains whose `connected_account` field carries the id, so domains OpusDNS sponsors never match. */
                 registrar_credential_id?: TypeId<"registrar_credential">[] | null;
-                /** @description Filter domains held at an external registrar by that registrar. Can be specified multiple times (union of all provided values); combined with `registrar_credential_id`, both must match. Matches exactly the domains whose `registrar_credential` field carries the registrar, so domains OpusDNS sponsors never match. */
+                /** @description Filter domains held at an external registrar by that registrar. Can be specified multiple times (union of all provided values); combined with `registrar_credential_id`, both must match. Matches exactly the domains whose `connected_account` field carries the registrar, so domains OpusDNS sponsors never match. */
                 registrar?: components["schemas"]["Registrar"][] | null;
-                /** @description Extra data to include in each result. `tags` populates the `tags` (user tags) and `status_tags` fields, which are otherwise null; filtering by `tag_ids` or `status_tags` alone does not populate them. `registrar_credential` populates the `registrar_credential` field for domains held at an external registrar. */
+                /** @description Extra data to include in each result. `tags` populates the `tags` (user tags) and `status_tags` fields, which are otherwise null; filtering by `tag_ids` or `status_tags` alone does not populate them. `connected_account` populates the `connected_account` field for domains held at an external registrar. */
                 include?: components["schemas"]["DomainListIncludeField"][] | null;
             };
             header?: {
@@ -22247,7 +22255,7 @@ export interface operations {
     get_domain_v1_domains__domain_reference__get: {
         parameters: {
             query?: {
-                /** @description Extra data to include in the response. `tags` populates the `tags` and `status_tags` fields, which are otherwise null. `renewal_price` resolves the domain's renewal price. `registrar_credential` populates the `registrar_credential` field for domains held at an external registrar. */
+                /** @description Extra data to include in the response. `tags` populates the `tags` and `status_tags` fields, which are otherwise null. `renewal_price` resolves the domain's renewal price. `connected_account` populates the `connected_account` field for domains held at an external registrar. */
                 include?: components["schemas"]["DomainIncludeField"][] | null;
             };
             header?: {

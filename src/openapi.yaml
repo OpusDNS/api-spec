@@ -5442,7 +5442,7 @@ components:
       enum:
       - tags
       - renewal_price
-      - registrar_credential
+      - connected_account
       title: DomainIncludeField
       type: string
     DomainLifecycleBase:
@@ -5604,7 +5604,7 @@ components:
         implement every member.'
       enum:
       - tags
-      - registrar_credential
+      - connected_account
       title: DomainListIncludeField
       type: string
     DomainNameParts:
@@ -5727,7 +5727,14 @@ components:
           title: Registrar Credential Id
           type: string
           x-typeid-prefix: registrar_credential
+        type:
+          const: ras
+          description: 'Kind of connected account. `ras`: a registrar credential managed
+            under `/v1/connect/registrars`.'
+          title: Type
+          type: string
       required:
+      - type
       - registrar_credential_id
       - name
       - registrar
@@ -5844,6 +5851,20 @@ components:
           - type: 'null'
           description: When the domain was deleted
           title: Canceled On
+        connected_account:
+          anyOf:
+          - discriminator:
+              mapping:
+                ras: '#/components/schemas/DomainRegistrarCredentialResponse'
+              propertyName: type
+            oneOf:
+            - $ref: '#/components/schemas/DomainRegistrarCredentialResponse'
+          - type: 'null'
+          description: The connected account this domain is synced from. Null unless
+            `include=connected_account` is requested, and null even then for natively
+            registered domains, for domains on operator-managed registry accounts,
+            and when the connected account was deleted.
+          title: Connected Account
         contacts:
           description: The contacts of the domain
           items:
@@ -5931,14 +5952,6 @@ components:
           - type: 'null'
           description: When the domain was registered
           title: Registered On
-        registrar_credential:
-          anyOf:
-          - $ref: '#/components/schemas/DomainRegistrarCredentialResponse'
-          - type: 'null'
-          description: The connected registrar credential this domain is synced from.
-            Null unless `include=registrar_credential` is requested, and null even
-            then for natively registered domains, for domains on operator-managed
-            registry accounts, and when the credential was deleted.
         registry_account_id:
           default: None
           examples:
@@ -17178,7 +17191,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-22-143714
+  version: 2026-09-22-153526
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -25416,7 +25429,7 @@ paths:
       - description: Filter domains held at an external registrar by the connected
           registrar credential they were synced from. Can be specified multiple times
           (union of all provided values); combined with `registrar`, both must match.
-          Matches exactly the domains whose `registrar_credential` field carries the
+          Matches exactly the domains whose `connected_account` field carries the
           id, so domains OpusDNS sponsors never match.
         in: query
         name: registrar_credential_id
@@ -25435,13 +25448,13 @@ paths:
           description: Filter domains held at an external registrar by the connected
             registrar credential they were synced from. Can be specified multiple
             times (union of all provided values); combined with `registrar`, both
-            must match. Matches exactly the domains whose `registrar_credential` field
+            must match. Matches exactly the domains whose `connected_account` field
             carries the id, so domains OpusDNS sponsors never match.
           title: Registrar Credential Id
       - description: Filter domains held at an external registrar by that registrar.
           Can be specified multiple times (union of all provided values); combined
           with `registrar_credential_id`, both must match. Matches exactly the domains
-          whose `registrar_credential` field carries the registrar, so domains OpusDNS
+          whose `connected_account` field carries the registrar, so domains OpusDNS
           sponsors never match.
         in: query
         name: registrar
@@ -25455,13 +25468,13 @@ paths:
           description: Filter domains held at an external registrar by that registrar.
             Can be specified multiple times (union of all provided values); combined
             with `registrar_credential_id`, both must match. Matches exactly the domains
-            whose `registrar_credential` field carries the registrar, so domains OpusDNS
+            whose `connected_account` field carries the registrar, so domains OpusDNS
             sponsors never match.
           title: Registrar
       - description: Extra data to include in each result. `tags` populates the `tags`
           (user tags) and `status_tags` fields, which are otherwise null; filtering
-          by `tag_ids` or `status_tags` alone does not populate them. `registrar_credential`
-          populates the `registrar_credential` field for domains held at an external
+          by `tag_ids` or `status_tags` alone does not populate them. `connected_account`
+          populates the `connected_account` field for domains held at an external
           registrar.
         in: query
         name: include
@@ -25475,8 +25488,8 @@ paths:
           description: Extra data to include in each result. `tags` populates the
             `tags` (user tags) and `status_tags` fields, which are otherwise null;
             filtering by `tag_ids` or `status_tags` alone does not populate them.
-            `registrar_credential` populates the `registrar_credential` field for
-            domains held at an external registrar.
+            `connected_account` populates the `connected_account` field for domains
+            held at an external registrar.
           title: Include
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -27131,7 +27144,7 @@ paths:
           title: Domain Reference
       - description: Extra data to include in the response. `tags` populates the `tags`
           and `status_tags` fields, which are otherwise null. `renewal_price` resolves
-          the domain's renewal price. `registrar_credential` populates the `registrar_credential`
+          the domain's renewal price. `connected_account` populates the `connected_account`
           field for domains held at an external registrar.
         in: query
         name: include
@@ -27144,8 +27157,8 @@ paths:
           - type: 'null'
           description: Extra data to include in the response. `tags` populates the
             `tags` and `status_tags` fields, which are otherwise null. `renewal_price`
-            resolves the domain's renewal price. `registrar_credential` populates
-            the `registrar_credential` field for domains held at an external registrar.
+            resolves the domain's renewal price. `connected_account` populates the
+            `connected_account` field for domains held at an external registrar.
           title: Include
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
