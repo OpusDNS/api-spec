@@ -3624,6 +3624,169 @@ export interface components {
              */
             updated_on: Date;
         };
+        /** BrandingDesignActions */
+        BrandingDesignActions: {
+            /** Can Activate */
+            can_activate?: boolean | null;
+            /** Download Filename */
+            download_filename?: string | null;
+            write?: components["schemas"]["BrandingDesignWrite"] | null;
+        };
+        /** BrandingDesignContext */
+        BrandingDesignContext: {
+            /**
+             * Context Id
+             * Format: typeid
+             * @example ctx_01h45ytscbebyvny4gc8cr8ma2
+             */
+            context_id: TypeId<"ctx">;
+            /**
+             * Conversation Id
+             * Format: typeid
+             * @example conv_01h45ytscbebyvny4gc8cr8ma2
+             */
+            conversation_id: TypeId<"conv">;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: Date;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "branding_design";
+            /**
+             * Organization Id
+             * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            payload: components["schemas"]["BrandingDesignContextPayload"];
+            /** User Id */
+            user_id: string;
+        };
+        /** BrandingDesignContextPayload */
+        BrandingDesignContextPayload: {
+            actions?: components["schemas"]["BrandingDesignActions"] | null;
+            diff?: components["schemas"]["BrandingDesignDiff"] | null;
+            /** Results */
+            results: components["schemas"]["BrandingDesignVariant"][];
+            source?: components["schemas"]["BrandingDesignSource"] | null;
+            /**
+             * Summary
+             * @default
+             */
+            summary: string;
+            /** Warnings */
+            warnings?: string[];
+        };
+        /** BrandingDesignContrast */
+        BrandingDesignContrast: {
+            /** All Pass */
+            all_pass?: boolean | null;
+            /** Checks */
+            checks?: components["schemas"]["BrandingDesignContrastCheck"][];
+            /** Min Ratio */
+            min_ratio?: number | null;
+        };
+        /** BrandingDesignContrastCheck */
+        BrandingDesignContrastCheck: {
+            /** Bg */
+            bg?: string | null;
+            /** Fg */
+            fg?: string | null;
+            /** Hard */
+            hard?: boolean | null;
+            /** Kind */
+            kind?: string | null;
+            /** Max */
+            max?: number | null;
+            /** Min */
+            min?: number | null;
+            /** Mode */
+            mode?: string | null;
+            /** Ok */
+            ok?: boolean | null;
+            /** Ratio */
+            ratio?: number | null;
+        };
+        /** BrandingDesignDiff */
+        BrandingDesignDiff: {
+            /** Changed Paths */
+            changed_paths?: string[];
+            /** Merged With Current */
+            merged_with_current?: boolean | null;
+        };
+        /** BrandingDesignDocument */
+        BrandingDesignDocument: {
+            [key: string]: unknown;
+        };
+        /** BrandingDesignPreview */
+        BrandingDesignPreview: {
+            /** Font Family */
+            font_family?: string | null;
+            /** Mood */
+            mood?: string | null;
+            /** Preset Base */
+            preset_base?: string | null;
+            /** Radius Rem */
+            radius_rem?: number | null;
+            swatches?: components["schemas"]["BrandingDesignSwatches"] | null;
+        };
+        /** BrandingDesignSource */
+        BrandingDesignSource: {
+            /** Confidence */
+            confidence?: string | null;
+            /** Kind */
+            kind?: string | null;
+            /** Logo Asset Url */
+            logo_asset_url?: string | null;
+            /** Preset Id */
+            preset_id?: string | null;
+            /** Signals */
+            signals?: string[];
+            /** Url */
+            url?: string | null;
+        };
+        /** BrandingDesignSwatches */
+        BrandingDesignSwatches: {
+            /** Dark */
+            dark?: {
+                [key: string]: string;
+            };
+            /** Light */
+            light?: {
+                [key: string]: string;
+            };
+        };
+        /** BrandingDesignVariant */
+        BrandingDesignVariant: {
+            contrast?: components["schemas"]["BrandingDesignContrast"] | null;
+            document: components["schemas"]["BrandingDesignDocument"];
+            /**
+             * Label
+             * @default
+             */
+            label: string;
+            preview?: components["schemas"]["BrandingDesignPreview"] | null;
+            /**
+             * Rationale
+             * @default
+             */
+            rationale: string;
+            /** Variant Id */
+            variant_id: string;
+        };
+        /** BrandingDesignWrite */
+        BrandingDesignWrite: {
+            /** Method */
+            method?: string | null;
+            /** Path */
+            path?: string | null;
+            /** Permission */
+            permission?: string | null;
+        };
         /** BrandingDocument */
         BrandingDocument: {
             auth?: components["schemas"]["Auth"] | null;
@@ -4779,7 +4942,7 @@ export interface components {
         ContextListResponse: {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
-            results: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"])[];
+            results: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"])[];
         };
         /** ContextMeta */
         ContextMeta: {
@@ -13063,6 +13226,40 @@ export interface components {
              */
             transfer_time?: string | null;
         };
+        /** UnknownContext */
+        UnknownContext: {
+            /**
+             * Context Id
+             * Format: typeid
+             * @example ctx_01h45ytscbebyvny4gc8cr8ma2
+             */
+            context_id: TypeId<"ctx">;
+            /**
+             * Conversation Id
+             * Format: typeid
+             * @example conv_01h45ytscbebyvny4gc8cr8ma2
+             */
+            conversation_id: TypeId<"conv">;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: Date;
+            /** Kind */
+            kind: string;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /** Payload */
+            payload: {
+                [key: string]: unknown;
+            };
+            /** User Id */
+            user_id: string;
+        };
         /**
          * UsageGranularity
          * @enum {string}
@@ -14680,7 +14877,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"];
+                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"];
                 };
             };
             /** @description Unauthorized */
@@ -15292,7 +15489,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"];
+                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"];
                 };
             };
             /** @description Unauthorized */

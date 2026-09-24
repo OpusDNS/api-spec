@@ -16,6 +16,17 @@ import type {
   Body_upload_whitelabel_asset_v1_whitelabel_branding_assets_post,
   Brand,
   BrandingAsset,
+  BrandingDesignActions,
+  BrandingDesignContext,
+  BrandingDesignContextPayload,
+  BrandingDesignContrast,
+  BrandingDesignContrastCheck,
+  BrandingDesignDiff,
+  BrandingDesignPreview,
+  BrandingDesignSource,
+  BrandingDesignSwatches,
+  BrandingDesignVariant,
+  BrandingDesignWrite,
   BrandingDocument,
   BrowserStatsBucket,
   BulkObjectTagChanges,
@@ -425,6 +436,7 @@ import type {
   TrademarkClaimsBase,
   TransferLockPolicyBase,
   TransferPoliciesBase,
+  UnknownContext,
   User,
   UserAgentStatsBucket,
   UserAgreementAcceptance,
@@ -688,6 +700,154 @@ export const KEYS_BRANDING_ASSET = [
   KEY_BRANDING_ASSET_SIZE_BYTES,
   KEY_BRANDING_ASSET_UPDATED_ON,
 ] as const satisfies (keyof BrandingAsset)[];
+
+export const KEY_BRANDING_DESIGN_ACTIONS_CAN_ACTIVATE = 'can_activate' satisfies keyof BrandingDesignActions;
+export const KEY_BRANDING_DESIGN_ACTIONS_DOWNLOAD_FILENAME = 'download_filename' satisfies keyof BrandingDesignActions;
+export const KEY_BRANDING_DESIGN_ACTIONS_WRITE = 'write' satisfies keyof BrandingDesignActions;
+
+export const KEYS_BRANDING_DESIGN_ACTIONS = [
+  KEY_BRANDING_DESIGN_ACTIONS_CAN_ACTIVATE,
+  KEY_BRANDING_DESIGN_ACTIONS_DOWNLOAD_FILENAME,
+  KEY_BRANDING_DESIGN_ACTIONS_WRITE,
+] as const satisfies (keyof BrandingDesignActions)[];
+
+export const KEY_BRANDING_DESIGN_CONTEXT_CONTEXT_ID = 'context_id' satisfies keyof BrandingDesignContext;
+export const KEY_BRANDING_DESIGN_CONTEXT_CONVERSATION_ID = 'conversation_id' satisfies keyof BrandingDesignContext;
+export const KEY_BRANDING_DESIGN_CONTEXT_CREATED_AT = 'created_at' satisfies keyof BrandingDesignContext;
+export const KEY_BRANDING_DESIGN_CONTEXT_KIND = 'kind' satisfies keyof BrandingDesignContext;
+export const KEY_BRANDING_DESIGN_CONTEXT_ORGANIZATION_ID = 'organization_id' satisfies keyof BrandingDesignContext;
+export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD = 'payload' satisfies keyof BrandingDesignContext;
+export const KEY_BRANDING_DESIGN_CONTEXT_USER_ID = 'user_id' satisfies keyof BrandingDesignContext;
+
+export const KEYS_BRANDING_DESIGN_CONTEXT = [
+  KEY_BRANDING_DESIGN_CONTEXT_CONTEXT_ID,
+  KEY_BRANDING_DESIGN_CONTEXT_CONVERSATION_ID,
+  KEY_BRANDING_DESIGN_CONTEXT_CREATED_AT,
+  KEY_BRANDING_DESIGN_CONTEXT_KIND,
+  KEY_BRANDING_DESIGN_CONTEXT_ORGANIZATION_ID,
+  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD,
+  KEY_BRANDING_DESIGN_CONTEXT_USER_ID,
+] as const satisfies (keyof BrandingDesignContext)[];
+
+export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_ACTIONS = 'actions' satisfies keyof BrandingDesignContextPayload;
+export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_DIFF = 'diff' satisfies keyof BrandingDesignContextPayload;
+export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_RESULTS = 'results' satisfies keyof BrandingDesignContextPayload;
+export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SOURCE = 'source' satisfies keyof BrandingDesignContextPayload;
+export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SUMMARY = 'summary' satisfies keyof BrandingDesignContextPayload;
+export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_WARNINGS = 'warnings' satisfies keyof BrandingDesignContextPayload;
+
+export const KEYS_BRANDING_DESIGN_CONTEXT_PAYLOAD = [
+  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_ACTIONS,
+  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_DIFF,
+  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_RESULTS,
+  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SOURCE,
+  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SUMMARY,
+  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_WARNINGS,
+] as const satisfies (keyof BrandingDesignContextPayload)[];
+
+export const KEY_BRANDING_DESIGN_CONTRAST_ALL_PASS = 'all_pass' satisfies keyof BrandingDesignContrast;
+export const KEY_BRANDING_DESIGN_CONTRAST_CHECKS = 'checks' satisfies keyof BrandingDesignContrast;
+export const KEY_BRANDING_DESIGN_CONTRAST_MIN_RATIO = 'min_ratio' satisfies keyof BrandingDesignContrast;
+
+export const KEYS_BRANDING_DESIGN_CONTRAST = [
+  KEY_BRANDING_DESIGN_CONTRAST_ALL_PASS,
+  KEY_BRANDING_DESIGN_CONTRAST_CHECKS,
+  KEY_BRANDING_DESIGN_CONTRAST_MIN_RATIO,
+] as const satisfies (keyof BrandingDesignContrast)[];
+
+export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_BG = 'bg' satisfies keyof BrandingDesignContrastCheck;
+export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_FG = 'fg' satisfies keyof BrandingDesignContrastCheck;
+export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_HARD = 'hard' satisfies keyof BrandingDesignContrastCheck;
+export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_KIND = 'kind' satisfies keyof BrandingDesignContrastCheck;
+export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_MAX = 'max' satisfies keyof BrandingDesignContrastCheck;
+export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_MIN = 'min' satisfies keyof BrandingDesignContrastCheck;
+export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_MODE = 'mode' satisfies keyof BrandingDesignContrastCheck;
+export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_OK = 'ok' satisfies keyof BrandingDesignContrastCheck;
+export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_RATIO = 'ratio' satisfies keyof BrandingDesignContrastCheck;
+
+export const KEYS_BRANDING_DESIGN_CONTRAST_CHECK = [
+  KEY_BRANDING_DESIGN_CONTRAST_CHECK_BG,
+  KEY_BRANDING_DESIGN_CONTRAST_CHECK_FG,
+  KEY_BRANDING_DESIGN_CONTRAST_CHECK_HARD,
+  KEY_BRANDING_DESIGN_CONTRAST_CHECK_KIND,
+  KEY_BRANDING_DESIGN_CONTRAST_CHECK_MAX,
+  KEY_BRANDING_DESIGN_CONTRAST_CHECK_MIN,
+  KEY_BRANDING_DESIGN_CONTRAST_CHECK_MODE,
+  KEY_BRANDING_DESIGN_CONTRAST_CHECK_OK,
+  KEY_BRANDING_DESIGN_CONTRAST_CHECK_RATIO,
+] as const satisfies (keyof BrandingDesignContrastCheck)[];
+
+export const KEY_BRANDING_DESIGN_DIFF_CHANGED_PATHS = 'changed_paths' satisfies keyof BrandingDesignDiff;
+export const KEY_BRANDING_DESIGN_DIFF_MERGED_WITH_CURRENT = 'merged_with_current' satisfies keyof BrandingDesignDiff;
+
+export const KEYS_BRANDING_DESIGN_DIFF = [
+  KEY_BRANDING_DESIGN_DIFF_CHANGED_PATHS,
+  KEY_BRANDING_DESIGN_DIFF_MERGED_WITH_CURRENT,
+] as const satisfies (keyof BrandingDesignDiff)[];
+
+export const KEY_BRANDING_DESIGN_PREVIEW_FONT_FAMILY = 'font_family' satisfies keyof BrandingDesignPreview;
+export const KEY_BRANDING_DESIGN_PREVIEW_MOOD = 'mood' satisfies keyof BrandingDesignPreview;
+export const KEY_BRANDING_DESIGN_PREVIEW_PRESET_BASE = 'preset_base' satisfies keyof BrandingDesignPreview;
+export const KEY_BRANDING_DESIGN_PREVIEW_RADIUS_REM = 'radius_rem' satisfies keyof BrandingDesignPreview;
+export const KEY_BRANDING_DESIGN_PREVIEW_SWATCHES = 'swatches' satisfies keyof BrandingDesignPreview;
+
+export const KEYS_BRANDING_DESIGN_PREVIEW = [
+  KEY_BRANDING_DESIGN_PREVIEW_FONT_FAMILY,
+  KEY_BRANDING_DESIGN_PREVIEW_MOOD,
+  KEY_BRANDING_DESIGN_PREVIEW_PRESET_BASE,
+  KEY_BRANDING_DESIGN_PREVIEW_RADIUS_REM,
+  KEY_BRANDING_DESIGN_PREVIEW_SWATCHES,
+] as const satisfies (keyof BrandingDesignPreview)[];
+
+export const KEY_BRANDING_DESIGN_SOURCE_CONFIDENCE = 'confidence' satisfies keyof BrandingDesignSource;
+export const KEY_BRANDING_DESIGN_SOURCE_KIND = 'kind' satisfies keyof BrandingDesignSource;
+export const KEY_BRANDING_DESIGN_SOURCE_LOGO_ASSET_URL = 'logo_asset_url' satisfies keyof BrandingDesignSource;
+export const KEY_BRANDING_DESIGN_SOURCE_PRESET_ID = 'preset_id' satisfies keyof BrandingDesignSource;
+export const KEY_BRANDING_DESIGN_SOURCE_SIGNALS = 'signals' satisfies keyof BrandingDesignSource;
+export const KEY_BRANDING_DESIGN_SOURCE_URL = 'url' satisfies keyof BrandingDesignSource;
+
+export const KEYS_BRANDING_DESIGN_SOURCE = [
+  KEY_BRANDING_DESIGN_SOURCE_CONFIDENCE,
+  KEY_BRANDING_DESIGN_SOURCE_KIND,
+  KEY_BRANDING_DESIGN_SOURCE_LOGO_ASSET_URL,
+  KEY_BRANDING_DESIGN_SOURCE_PRESET_ID,
+  KEY_BRANDING_DESIGN_SOURCE_SIGNALS,
+  KEY_BRANDING_DESIGN_SOURCE_URL,
+] as const satisfies (keyof BrandingDesignSource)[];
+
+export const KEY_BRANDING_DESIGN_SWATCHES_DARK = 'dark' satisfies keyof BrandingDesignSwatches;
+export const KEY_BRANDING_DESIGN_SWATCHES_LIGHT = 'light' satisfies keyof BrandingDesignSwatches;
+
+export const KEYS_BRANDING_DESIGN_SWATCHES = [
+  KEY_BRANDING_DESIGN_SWATCHES_DARK,
+  KEY_BRANDING_DESIGN_SWATCHES_LIGHT,
+] as const satisfies (keyof BrandingDesignSwatches)[];
+
+export const KEY_BRANDING_DESIGN_VARIANT_CONTRAST = 'contrast' satisfies keyof BrandingDesignVariant;
+export const KEY_BRANDING_DESIGN_VARIANT_DOCUMENT = 'document' satisfies keyof BrandingDesignVariant;
+export const KEY_BRANDING_DESIGN_VARIANT_LABEL = 'label' satisfies keyof BrandingDesignVariant;
+export const KEY_BRANDING_DESIGN_VARIANT_PREVIEW = 'preview' satisfies keyof BrandingDesignVariant;
+export const KEY_BRANDING_DESIGN_VARIANT_RATIONALE = 'rationale' satisfies keyof BrandingDesignVariant;
+export const KEY_BRANDING_DESIGN_VARIANT_VARIANT_ID = 'variant_id' satisfies keyof BrandingDesignVariant;
+
+export const KEYS_BRANDING_DESIGN_VARIANT = [
+  KEY_BRANDING_DESIGN_VARIANT_CONTRAST,
+  KEY_BRANDING_DESIGN_VARIANT_DOCUMENT,
+  KEY_BRANDING_DESIGN_VARIANT_LABEL,
+  KEY_BRANDING_DESIGN_VARIANT_PREVIEW,
+  KEY_BRANDING_DESIGN_VARIANT_RATIONALE,
+  KEY_BRANDING_DESIGN_VARIANT_VARIANT_ID,
+] as const satisfies (keyof BrandingDesignVariant)[];
+
+export const KEY_BRANDING_DESIGN_WRITE_METHOD = 'method' satisfies keyof BrandingDesignWrite;
+export const KEY_BRANDING_DESIGN_WRITE_PATH = 'path' satisfies keyof BrandingDesignWrite;
+export const KEY_BRANDING_DESIGN_WRITE_PERMISSION = 'permission' satisfies keyof BrandingDesignWrite;
+
+export const KEYS_BRANDING_DESIGN_WRITE = [
+  KEY_BRANDING_DESIGN_WRITE_METHOD,
+  KEY_BRANDING_DESIGN_WRITE_PATH,
+  KEY_BRANDING_DESIGN_WRITE_PERMISSION,
+] as const satisfies (keyof BrandingDesignWrite)[];
 
 export const KEY_BRANDING_DOCUMENT_AUTH = 'auth' satisfies keyof BrandingDocument;
 export const KEY_BRANDING_DOCUMENT_BRAND = 'brand' satisfies keyof BrandingDocument;
@@ -5794,6 +5954,24 @@ export const KEYS_TRANSFER_POLICIES_BASE = [
   KEY_TRANSFER_POLICIES_BASE_TRANSFER_RENEWS_DOMAIN,
   KEY_TRANSFER_POLICIES_BASE_TRANSFER_TIME,
 ] as const satisfies (keyof TransferPoliciesBase)[];
+
+export const KEY_UNKNOWN_CONTEXT_CONTEXT_ID = 'context_id' satisfies keyof UnknownContext;
+export const KEY_UNKNOWN_CONTEXT_CONVERSATION_ID = 'conversation_id' satisfies keyof UnknownContext;
+export const KEY_UNKNOWN_CONTEXT_CREATED_AT = 'created_at' satisfies keyof UnknownContext;
+export const KEY_UNKNOWN_CONTEXT_KIND = 'kind' satisfies keyof UnknownContext;
+export const KEY_UNKNOWN_CONTEXT_ORGANIZATION_ID = 'organization_id' satisfies keyof UnknownContext;
+export const KEY_UNKNOWN_CONTEXT_PAYLOAD = 'payload' satisfies keyof UnknownContext;
+export const KEY_UNKNOWN_CONTEXT_USER_ID = 'user_id' satisfies keyof UnknownContext;
+
+export const KEYS_UNKNOWN_CONTEXT = [
+  KEY_UNKNOWN_CONTEXT_CONTEXT_ID,
+  KEY_UNKNOWN_CONTEXT_CONVERSATION_ID,
+  KEY_UNKNOWN_CONTEXT_CREATED_AT,
+  KEY_UNKNOWN_CONTEXT_KIND,
+  KEY_UNKNOWN_CONTEXT_ORGANIZATION_ID,
+  KEY_UNKNOWN_CONTEXT_PAYLOAD,
+  KEY_UNKNOWN_CONTEXT_USER_ID,
+] as const satisfies (keyof UnknownContext)[];
 
 export const KEY_USER_CREATED_ON = 'created_on' satisfies keyof User;
 export const KEY_USER_EMAIL = 'email' satisfies keyof User;

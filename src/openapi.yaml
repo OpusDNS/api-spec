@@ -594,6 +594,314 @@ components:
       - updated_on
       title: BrandingAsset
       type: object
+    BrandingDesignActions:
+      properties:
+        can_activate:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Can Activate
+        download_filename:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Download Filename
+        write:
+          anyOf:
+          - $ref: '#/components/schemas/BrandingDesignWrite'
+          - type: 'null'
+      title: BrandingDesignActions
+      type: object
+    BrandingDesignContext:
+      properties:
+        context_id:
+          examples:
+          - ctx_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^ctx_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Context Id
+          type: string
+          x-typeid-prefix: ctx
+        conversation_id:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        kind:
+          const: branding_design
+          default: branding_design
+          title: Kind
+          type: string
+        organization_id:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        payload:
+          $ref: '#/components/schemas/BrandingDesignContextPayload'
+        user_id:
+          title: User Id
+          type: string
+      required:
+      - context_id
+      - conversation_id
+      - organization_id
+      - user_id
+      - created_at
+      - payload
+      title: BrandingDesignContext
+      type: object
+    BrandingDesignContextPayload:
+      properties:
+        actions:
+          anyOf:
+          - $ref: '#/components/schemas/BrandingDesignActions'
+          - type: 'null'
+        diff:
+          anyOf:
+          - $ref: '#/components/schemas/BrandingDesignDiff'
+          - type: 'null'
+        results:
+          items:
+            $ref: '#/components/schemas/BrandingDesignVariant'
+          title: Results
+          type: array
+        source:
+          anyOf:
+          - $ref: '#/components/schemas/BrandingDesignSource'
+          - type: 'null'
+        summary:
+          default: ''
+          title: Summary
+          type: string
+        warnings:
+          items:
+            type: string
+          title: Warnings
+          type: array
+      required:
+      - results
+      title: BrandingDesignContextPayload
+      type: object
+    BrandingDesignContrast:
+      properties:
+        all_pass:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: All Pass
+        checks:
+          items:
+            $ref: '#/components/schemas/BrandingDesignContrastCheck'
+          title: Checks
+          type: array
+        min_ratio:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Min Ratio
+      title: BrandingDesignContrast
+      type: object
+    BrandingDesignContrastCheck:
+      properties:
+        bg:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bg
+        fg:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Fg
+        hard:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Hard
+        kind:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Kind
+        max:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max
+        min:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Min
+        mode:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mode
+        ok:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Ok
+        ratio:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Ratio
+      title: BrandingDesignContrastCheck
+      type: object
+    BrandingDesignDiff:
+      properties:
+        changed_paths:
+          items:
+            type: string
+          title: Changed Paths
+          type: array
+        merged_with_current:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Merged With Current
+      title: BrandingDesignDiff
+      type: object
+    BrandingDesignDocument:
+      additionalProperties: true
+      title: BrandingDesignDocument
+      type: object
+    BrandingDesignPreview:
+      properties:
+        font_family:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Font Family
+        mood:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mood
+        preset_base:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Preset Base
+        radius_rem:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Radius Rem
+        swatches:
+          anyOf:
+          - $ref: '#/components/schemas/BrandingDesignSwatches'
+          - type: 'null'
+      title: BrandingDesignPreview
+      type: object
+    BrandingDesignSource:
+      properties:
+        confidence:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Confidence
+        kind:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Kind
+        logo_asset_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Logo Asset Url
+        preset_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Preset Id
+        signals:
+          items:
+            type: string
+          title: Signals
+          type: array
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+      title: BrandingDesignSource
+      type: object
+    BrandingDesignSwatches:
+      properties:
+        dark:
+          additionalProperties:
+            type: string
+          title: Dark
+          type: object
+        light:
+          additionalProperties:
+            type: string
+          title: Light
+          type: object
+      title: BrandingDesignSwatches
+      type: object
+    BrandingDesignVariant:
+      properties:
+        contrast:
+          anyOf:
+          - $ref: '#/components/schemas/BrandingDesignContrast'
+          - type: 'null'
+        document:
+          $ref: '#/components/schemas/BrandingDesignDocument'
+        label:
+          default: ''
+          title: Label
+          type: string
+        preview:
+          anyOf:
+          - $ref: '#/components/schemas/BrandingDesignPreview'
+          - type: 'null'
+        rationale:
+          default: ''
+          title: Rationale
+          type: string
+        variant_id:
+          title: Variant Id
+          type: string
+      required:
+      - variant_id
+      - document
+      title: BrandingDesignVariant
+      type: object
+    BrandingDesignWrite:
+      properties:
+        method:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Method
+        path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Path
+        permission:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Permission
+      title: BrandingDesignWrite
+      type: object
     BrandingDocument:
       properties:
         auth:
@@ -2294,6 +2602,7 @@ components:
             discriminator:
               mapping:
                 aggregations: '#/components/schemas/AggregationsContext'
+                branding_design: '#/components/schemas/BrandingDesignContext'
                 contacts: '#/components/schemas/ContactsContext'
                 domain_forwards: '#/components/schemas/DomainForwardsContext'
                 domain_recommendations: '#/components/schemas/DomainRecommendationsContext'
@@ -2309,6 +2618,7 @@ components:
             - $ref: '#/components/schemas/EmailForwardsContext'
             - $ref: '#/components/schemas/DomainRecommendationsContext'
             - $ref: '#/components/schemas/AggregationsContext'
+            - $ref: '#/components/schemas/BrandingDesignContext'
           title: Results
           type: array
       required:
@@ -14914,6 +15224,56 @@ components:
       - authinfo_required
       title: TransferPoliciesBase
       type: object
+    UnknownContext:
+      properties:
+        context_id:
+          examples:
+          - ctx_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^ctx_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Context Id
+          type: string
+          x-typeid-prefix: ctx
+        conversation_id:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        kind:
+          title: Kind
+          type: string
+        organization_id:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        payload:
+          additionalProperties: true
+          title: Payload
+          type: object
+        user_id:
+          title: User Id
+          type: string
+      required:
+      - context_id
+      - conversation_id
+      - organization_id
+      - user_id
+      - created_at
+      - kind
+      - payload
+      title: UnknownContext
+      type: object
     UsageGranularity:
       enum:
       - day
@@ -17193,7 +17553,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-24-012549
+  version: 2026-09-24-121530
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -17223,6 +17583,7 @@ paths:
                 discriminator:
                   mapping:
                     aggregations: '#/components/schemas/AggregationsContext'
+                    branding_design: '#/components/schemas/BrandingDesignContext'
                     contacts: '#/components/schemas/ContactsContext'
                     domain_forwards: '#/components/schemas/DomainForwardsContext'
                     domain_recommendations: '#/components/schemas/DomainRecommendationsContext'
@@ -17238,6 +17599,7 @@ paths:
                 - $ref: '#/components/schemas/EmailForwardsContext'
                 - $ref: '#/components/schemas/DomainRecommendationsContext'
                 - $ref: '#/components/schemas/AggregationsContext'
+                - $ref: '#/components/schemas/BrandingDesignContext'
                 title: Response Get Context V1 Ai Concierge Contexts  Context Id  Get
           description: Successful Response
         '401':
@@ -17825,6 +18187,7 @@ paths:
                 discriminator:
                   mapping:
                     aggregations: '#/components/schemas/AggregationsContext'
+                    branding_design: '#/components/schemas/BrandingDesignContext'
                     contacts: '#/components/schemas/ContactsContext'
                     domain_forwards: '#/components/schemas/DomainForwardsContext'
                     domain_recommendations: '#/components/schemas/DomainRecommendationsContext'
@@ -17840,6 +18203,7 @@ paths:
                 - $ref: '#/components/schemas/EmailForwardsContext'
                 - $ref: '#/components/schemas/DomainRecommendationsContext'
                 - $ref: '#/components/schemas/AggregationsContext'
+                - $ref: '#/components/schemas/BrandingDesignContext'
                 title: Response Create Context V1 Ai Concierge Conversations  Conversation
                   Id  Contexts Post
           description: Successful Response
