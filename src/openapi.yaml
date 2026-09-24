@@ -6481,20 +6481,21 @@ components:
         by_organization:
           additionalProperties:
             type: integer
-          description: 'Domain counts by organization name (name: count)'
+          description: 'Domain counts for the organization and its sub-organizations,
+            by name (name: count), only organizations with at least one domain'
           title: By Organization
           type: object
         by_status:
           additionalProperties:
             type: integer
-          description: 'Domain counts by status (status: count)'
+          description: 'The organization''s domain counts by status (status: count)'
           title: By Status
           type: object
         by_status_tag:
           additionalProperties:
             type: integer
-          description: 'Domain counts by status tag (status_tag: count), only status
-            tags with at least one domain'
+          description: 'The organization''s domain counts by status tag (status_tag:
+            count), only status tags with at least one domain'
           propertyNames:
             $ref: '#/components/schemas/StatusTagType'
           title: By Status Tag
@@ -6502,14 +6503,14 @@ components:
         by_tld:
           additionalProperties:
             type: integer
-          description: 'Domain counts by TLD (tld: count)'
+          description: 'The organization''s domain counts by TLD (tld: count)'
           title: By Tld
           type: object
         expiring_soon:
           $ref: '#/components/schemas/DomainsExpiringSoon'
-          description: Domains expiring soon
+          description: The organization's domains expiring soon
         total_count:
-          description: Total number of domains including sub-organizations
+          description: Total number of domains owned by the organization
           title: Total Count
           type: integer
       required:
@@ -17192,7 +17193,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-22-220605
+  version: 2026-09-24-012549
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -25799,14 +25800,14 @@ paths:
         and transferred out).
 
 
-        Counts cover your organization and its sub-organizations, like the domain
-        summary; `breakdown=organization` shows how they divide between them. A create
-        is counted on the day OpusDNS took the order and a transfer on the day it
-        completed, so domains that have since been deleted still appear in the window
-        they were acquired in. Imported domains count as creates on the day they were
-        imported. Renewals and restores are counted once per day a domain was renewed
-        or restored, so a domain renewed in two different months counts in both. Domains
-        held at a connected external registrar are not included.
+        Counts cover your organization and its sub-organizations; `breakdown=organization`
+        shows how they divide between them. A create is counted on the day OpusDNS
+        took the order and a transfer on the day it completed, so domains that have
+        since been deleted still appear in the window they were acquired in. Imported
+        domains count as creates on the day they were imported. Renewals and restores
+        are counted once per day a domain was renewed or restored, so a domain renewed
+        in two different months counts in both. Domains held at a connected external
+        registrar are not included.
 
 
         Every bucket the window touches is present, so the series can be charted as
@@ -25887,8 +25888,10 @@ paths:
       - domains:read
   /v1/domains/summary:
     get:
-      description: Retrieves a summary of domains including counts by status, TLD,
-        and expiration timeframes
+      description: 'Retrieves a summary of your organization''s domains, with counts
+        by status, status tag, TLD and
+
+        expiration timeframe. Only `by_organization` includes sub-organizations.'
       operationId: get_domain_summary_v1_domains_summary_get
       parameters:
       - $ref: '#/components/parameters/DatetimeFormatHeader'

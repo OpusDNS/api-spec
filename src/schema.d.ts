@@ -1187,7 +1187,7 @@ export interface paths {
          * Get domain statistics
          * @description Counts the domains that moved in or out of your organization's portfolio in a window of whole days, bucketed by the requested granularity: creates (new registrations), inbound transfers, deletes, outbound transfers, renewals and restores, plus `net` (created and transferred in, minus deleted and transferred out).
          *
-         *     Counts cover your organization and its sub-organizations, like the domain summary; `breakdown=organization` shows how they divide between them. A create is counted on the day OpusDNS took the order and a transfer on the day it completed, so domains that have since been deleted still appear in the window they were acquired in. Imported domains count as creates on the day they were imported. Renewals and restores are counted once per day a domain was renewed or restored, so a domain renewed in two different months counts in both. Domains held at a connected external registrar are not included.
+         *     Counts cover your organization and its sub-organizations; `breakdown=organization` shows how they divide between them. A create is counted on the day OpusDNS took the order and a transfer on the day it completed, so domains that have since been deleted still appear in the window they were acquired in. Imported domains count as creates on the day they were imported. Renewals and restores are counted once per day a domain was renewed or restored, so a domain renewed in two different months counts in both. Domains held at a connected external registrar are not included.
          *
          *     Every bucket the window touches is present, so the series can be charted as is. A bucket marked `partial` reaches outside the window and covers only part of its span.
          *
@@ -1211,7 +1211,8 @@ export interface paths {
         };
         /**
          * Get domain summary
-         * @description Retrieves a summary of domains including counts by status, TLD, and expiration timeframes
+         * @description Retrieves a summary of your organization's domains, with counts by status, status tag, TLD and
+         *     expiration timeframe. Only `by_organization` includes sub-organizations.
          */
         get: operations["get_domain_summary_v1_domains_summary_get"];
         put?: never;
@@ -7466,37 +7467,37 @@ export interface components {
         DomainSummaryData: {
             /**
              * By Organization
-             * @description Domain counts by organization name (name: count)
+             * @description Domain counts for the organization and its sub-organizations, by name (name: count), only organizations with at least one domain
              */
             by_organization: {
                 [key: string]: number;
             };
             /**
              * By Status
-             * @description Domain counts by status (status: count)
+             * @description The organization's domain counts by status (status: count)
              */
             by_status: {
                 [key: string]: number;
             };
             /**
              * By Status Tag
-             * @description Domain counts by status tag (status_tag: count), only status tags with at least one domain
+             * @description The organization's domain counts by status tag (status_tag: count), only status tags with at least one domain
              */
             by_status_tag: {
                 [key: string]: number;
             };
             /**
              * By Tld
-             * @description Domain counts by TLD (tld: count)
+             * @description The organization's domain counts by TLD (tld: count)
              */
             by_tld: {
                 [key: string]: number;
             };
-            /** @description Domains expiring soon */
+            /** @description The organization's domains expiring soon */
             expiring_soon: components["schemas"]["DomainsExpiringSoon"];
             /**
              * Total Count
-             * @description Total number of domains including sub-organizations
+             * @description Total number of domains owned by the organization
              */
             total_count: number;
         };
