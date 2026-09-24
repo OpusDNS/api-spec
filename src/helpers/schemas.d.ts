@@ -35,6 +35,7 @@ export type BrandingDesignContrast = components['schemas']['BrandingDesignContra
 export type BrandingDesignContrastCheck = components['schemas']['BrandingDesignContrastCheck'];
 export type BrandingDesignDiff = components['schemas']['BrandingDesignDiff'];
 export type BrandingDesignDocument = components['schemas']['BrandingDesignDocument'];
+export type BrandingDesignNotice = components['schemas']['BrandingDesignNotice'];
 export type BrandingDesignPreview = components['schemas']['BrandingDesignPreview'];
 export type BrandingDesignSource = components['schemas']['BrandingDesignSource'];
 export type BrandingDesignSwatches = components['schemas']['BrandingDesignSwatches'];

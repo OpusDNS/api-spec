@@ -3670,6 +3670,8 @@ export interface components {
         BrandingDesignContextPayload: {
             actions?: components["schemas"]["BrandingDesignActions"] | null;
             diff?: components["schemas"]["BrandingDesignDiff"] | null;
+            /** Notices */
+            notices?: components["schemas"]["BrandingDesignNotice"][];
             /** Results */
             results: components["schemas"]["BrandingDesignVariant"][];
             source?: components["schemas"]["BrandingDesignSource"] | null;
@@ -3722,6 +3724,22 @@ export interface components {
         BrandingDesignDocument: {
             [key: string]: unknown;
         };
+        /** BrandingDesignNotice */
+        BrandingDesignNotice: {
+            /** Code */
+            code: string;
+            /**
+             * Message
+             * @default
+             */
+            message: string;
+            /** Params */
+            params?: {
+                [key: string]: string | number | boolean | string[];
+            };
+            /** Severity */
+            severity: string;
+        };
         /** BrandingDesignPreview */
         BrandingDesignPreview: {
             /** Font Family */
@@ -3762,6 +3780,8 @@ export interface components {
         };
         /** BrandingDesignVariant */
         BrandingDesignVariant: {
+            /** Changed Seeds */
+            changed_seeds?: string[];
             contrast?: components["schemas"]["BrandingDesignContrast"] | null;
             document: components["schemas"]["BrandingDesignDocument"];
             /**

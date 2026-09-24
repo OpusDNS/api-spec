@@ -22,6 +22,7 @@ import type {
   BrandingDesignContrast,
   BrandingDesignContrastCheck,
   BrandingDesignDiff,
+  BrandingDesignNotice,
   BrandingDesignPreview,
   BrandingDesignSource,
   BrandingDesignSwatches,
@@ -731,6 +732,7 @@ export const KEYS_BRANDING_DESIGN_CONTEXT = [
 
 export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_ACTIONS = 'actions' satisfies keyof BrandingDesignContextPayload;
 export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_DIFF = 'diff' satisfies keyof BrandingDesignContextPayload;
+export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_NOTICES = 'notices' satisfies keyof BrandingDesignContextPayload;
 export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_RESULTS = 'results' satisfies keyof BrandingDesignContextPayload;
 export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SOURCE = 'source' satisfies keyof BrandingDesignContextPayload;
 export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SUMMARY = 'summary' satisfies keyof BrandingDesignContextPayload;
@@ -739,6 +741,7 @@ export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_WARNINGS = 'warnings' satisfies
 export const KEYS_BRANDING_DESIGN_CONTEXT_PAYLOAD = [
   KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_ACTIONS,
   KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_DIFF,
+  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_NOTICES,
   KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_RESULTS,
   KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SOURCE,
   KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SUMMARY,
@@ -785,6 +788,18 @@ export const KEYS_BRANDING_DESIGN_DIFF = [
   KEY_BRANDING_DESIGN_DIFF_MERGED_WITH_CURRENT,
 ] as const satisfies (keyof BrandingDesignDiff)[];
 
+export const KEY_BRANDING_DESIGN_NOTICE_CODE = 'code' satisfies keyof BrandingDesignNotice;
+export const KEY_BRANDING_DESIGN_NOTICE_MESSAGE = 'message' satisfies keyof BrandingDesignNotice;
+export const KEY_BRANDING_DESIGN_NOTICE_PARAMS = 'params' satisfies keyof BrandingDesignNotice;
+export const KEY_BRANDING_DESIGN_NOTICE_SEVERITY = 'severity' satisfies keyof BrandingDesignNotice;
+
+export const KEYS_BRANDING_DESIGN_NOTICE = [
+  KEY_BRANDING_DESIGN_NOTICE_CODE,
+  KEY_BRANDING_DESIGN_NOTICE_MESSAGE,
+  KEY_BRANDING_DESIGN_NOTICE_PARAMS,
+  KEY_BRANDING_DESIGN_NOTICE_SEVERITY,
+] as const satisfies (keyof BrandingDesignNotice)[];
+
 export const KEY_BRANDING_DESIGN_PREVIEW_FONT_FAMILY = 'font_family' satisfies keyof BrandingDesignPreview;
 export const KEY_BRANDING_DESIGN_PREVIEW_MOOD = 'mood' satisfies keyof BrandingDesignPreview;
 export const KEY_BRANDING_DESIGN_PREVIEW_PRESET_BASE = 'preset_base' satisfies keyof BrandingDesignPreview;
@@ -823,6 +838,7 @@ export const KEYS_BRANDING_DESIGN_SWATCHES = [
   KEY_BRANDING_DESIGN_SWATCHES_LIGHT,
 ] as const satisfies (keyof BrandingDesignSwatches)[];
 
+export const KEY_BRANDING_DESIGN_VARIANT_CHANGED_SEEDS = 'changed_seeds' satisfies keyof BrandingDesignVariant;
 export const KEY_BRANDING_DESIGN_VARIANT_CONTRAST = 'contrast' satisfies keyof BrandingDesignVariant;
 export const KEY_BRANDING_DESIGN_VARIANT_DOCUMENT = 'document' satisfies keyof BrandingDesignVariant;
 export const KEY_BRANDING_DESIGN_VARIANT_LABEL = 'label' satisfies keyof BrandingDesignVariant;
@@ -831,6 +847,7 @@ export const KEY_BRANDING_DESIGN_VARIANT_RATIONALE = 'rationale' satisfies keyof
 export const KEY_BRANDING_DESIGN_VARIANT_VARIANT_ID = 'variant_id' satisfies keyof BrandingDesignVariant;
 
 export const KEYS_BRANDING_DESIGN_VARIANT = [
+  KEY_BRANDING_DESIGN_VARIANT_CHANGED_SEEDS,
   KEY_BRANDING_DESIGN_VARIANT_CONTRAST,
   KEY_BRANDING_DESIGN_VARIANT_DOCUMENT,
   KEY_BRANDING_DESIGN_VARIANT_LABEL,
