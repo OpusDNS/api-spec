@@ -17612,7 +17612,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-25-092504
+  version: 2026-09-25-095209
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -31557,7 +31557,9 @@ paths:
       x-required-permissions:
       - organization:read
     patch:
-      description: Updates one or more organization attributes for the current organization
+      description: Updates one or more organization attributes for the current organization.
+        Setting a billing, pricing or abuse notification email requires the organization
+        owner or an admin of a parent organization.
       operationId: update_current_organization_attributes_v1_organizations_attributes_patch
       parameters:
       - $ref: '#/components/parameters/DatetimeFormatHeader'
@@ -32843,7 +32845,9 @@ paths:
       x-required-permissions:
       - organization:read
     patch:
-      description: Updates one or more organization attributes for the specified organization
+      description: Updates one or more organization attributes for the specified organization.
+        Setting a billing, pricing or abuse notification email requires the organization
+        owner or an admin of a parent organization.
       operationId: update_organization_attributes_v1_organizations__organization_id__attributes_patch
       parameters:
       - in: path

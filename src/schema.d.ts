@@ -2134,7 +2134,7 @@ export interface paths {
         head?: never;
         /**
          * Update organization attributes
-         * @description Updates one or more organization attributes for the current organization
+         * @description Updates one or more organization attributes for the current organization. Setting a billing, pricing or abuse notification email requires the organization owner or an admin of a parent organization.
          */
         patch: operations["update_current_organization_attributes_v1_organizations_attributes_patch"];
         trace?: never;
@@ -2384,7 +2384,7 @@ export interface paths {
         head?: never;
         /**
          * Update organization attributes
-         * @description Updates one or more organization attributes for the specified organization
+         * @description Updates one or more organization attributes for the specified organization. Setting a billing, pricing or abuse notification email requires the organization owner or an admin of a parent organization.
          */
         patch: operations["update_organization_attributes_v1_organizations__organization_id__attributes_patch"];
         trace?: never;
