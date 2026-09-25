@@ -6,6 +6,18 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ### 25 September 2026
 
+- Changed **the domain summary to count only your own organization's
+  domains**.
+  [`GET /v1/domains/summary`](/api-reference#tag/domain/GET/v1/domains/summary)
+  counted your organization and all of its sub-organizations in every field.
+  `total_count`, `by_status`, `by_status_tag`, `by_tld` and `expiring_soon`
+  now cover your own organization's domains alone. `by_organization` still
+  lists your organization and each of its sub-organizations with their counts,
+  so the whole tree stays visible there, and a sub-organization that shares
+  your organization's name no longer takes the bare name as its key. The
+  response shape is unchanged; if you have sub-organizations, the numbers are
+  lower.
+
 - Changed **domain statistics to count only your own organization's domains by
   default**, the same scope as the domain summary.
   [`GET /v1/domains/statistics`](/api-reference#tag/domain/GET/v1/domains/statistics)
@@ -19,20 +31,6 @@ Track notable updates to the OpusDNS API and developer documentation here.
   parameter your counts are lower than they were. `breakdown=organization`
   ranks your organization against its sub-organizations, so it now needs
   `include_sub_organizations=true` and is refused with `422` without it.
-
-### 24 September 2026
-
-- Changed **the domain summary to count only your own organization's
-  domains**.
-  [`GET /v1/domains/summary`](/api-reference#tag/domain/GET/v1/domains/summary)
-  counted your organization and all of its sub-organizations in every field.
-  `total_count`, `by_status`, `by_status_tag`, `by_tld` and `expiring_soon`
-  now cover your own organization's domains alone. `by_organization` still
-  lists your organization and each of its sub-organizations with their counts,
-  so the whole tree stays visible there, and a sub-organization that shares
-  your organization's name no longer takes the bare name as its key. The
-  response shape is unchanged; if you have sub-organizations, the numbers are
-  lower.
 
 ### 23 September 2026
 
