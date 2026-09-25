@@ -792,12 +792,14 @@ export const KEY_BRANDING_DESIGN_NOTICE_CODE = 'code' satisfies keyof BrandingDe
 export const KEY_BRANDING_DESIGN_NOTICE_MESSAGE = 'message' satisfies keyof BrandingDesignNotice;
 export const KEY_BRANDING_DESIGN_NOTICE_PARAMS = 'params' satisfies keyof BrandingDesignNotice;
 export const KEY_BRANDING_DESIGN_NOTICE_SEVERITY = 'severity' satisfies keyof BrandingDesignNotice;
+export const KEY_BRANDING_DESIGN_NOTICE_VARIANTS = 'variants' satisfies keyof BrandingDesignNotice;
 
 export const KEYS_BRANDING_DESIGN_NOTICE = [
   KEY_BRANDING_DESIGN_NOTICE_CODE,
   KEY_BRANDING_DESIGN_NOTICE_MESSAGE,
   KEY_BRANDING_DESIGN_NOTICE_PARAMS,
   KEY_BRANDING_DESIGN_NOTICE_SEVERITY,
+  KEY_BRANDING_DESIGN_NOTICE_VARIANTS,
 ] as const satisfies (keyof BrandingDesignNotice)[];
 
 export const KEY_BRANDING_DESIGN_PREVIEW_DARK_STRATEGY = 'dark_strategy' satisfies keyof BrandingDesignPreview;

@@ -808,6 +808,11 @@ components:
         severity:
           title: Severity
           type: string
+        variants:
+          items:
+            type: string
+          title: Variants
+          type: array
       required:
       - code
       - severity
@@ -17612,7 +17617,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-25-103501
+  version: 2026-09-25-131841
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

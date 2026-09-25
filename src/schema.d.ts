@@ -3739,6 +3739,8 @@ export interface components {
             };
             /** Severity */
             severity: string;
+            /** Variants */
+            variants?: string[];
         };
         /** BrandingDesignPreview */
         BrandingDesignPreview: {
