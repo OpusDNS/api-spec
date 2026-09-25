@@ -3680,6 +3680,8 @@ export interface components {
              * @default
              */
             summary: string;
+            /** Summary Parts */
+            summary_parts?: components["schemas"]["BrandingDesignPhrase"][];
             /** Warnings */
             warnings?: string[];
         };
@@ -3741,6 +3743,15 @@ export interface components {
             severity: string;
             /** Variants */
             variants?: string[];
+        };
+        /** BrandingDesignPhrase */
+        BrandingDesignPhrase: {
+            /** Code */
+            code: string;
+            /** Params */
+            params?: {
+                [key: string]: string | number | boolean | string[];
+            };
         };
         /** BrandingDesignPreview */
         BrandingDesignPreview: {
@@ -3805,6 +3816,8 @@ export interface components {
              * @default
              */
             rationale: string;
+            /** Rationale Parts */
+            rationale_parts?: components["schemas"]["BrandingDesignPhrase"][];
             /** Variant Id */
             variant_id: string;
         };

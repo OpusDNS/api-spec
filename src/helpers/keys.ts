@@ -23,6 +23,7 @@ import type {
   BrandingDesignContrastCheck,
   BrandingDesignDiff,
   BrandingDesignNotice,
+  BrandingDesignPhrase,
   BrandingDesignPreview,
   BrandingDesignSource,
   BrandingDesignSwatches,
@@ -736,6 +737,7 @@ export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_NOTICES = 'notices' satisfies k
 export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_RESULTS = 'results' satisfies keyof BrandingDesignContextPayload;
 export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SOURCE = 'source' satisfies keyof BrandingDesignContextPayload;
 export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SUMMARY = 'summary' satisfies keyof BrandingDesignContextPayload;
+export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SUMMARY_PARTS = 'summary_parts' satisfies keyof BrandingDesignContextPayload;
 export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_WARNINGS = 'warnings' satisfies keyof BrandingDesignContextPayload;
 
 export const KEYS_BRANDING_DESIGN_CONTEXT_PAYLOAD = [
@@ -745,6 +747,7 @@ export const KEYS_BRANDING_DESIGN_CONTEXT_PAYLOAD = [
   KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_RESULTS,
   KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SOURCE,
   KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SUMMARY,
+  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SUMMARY_PARTS,
   KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_WARNINGS,
 ] as const satisfies (keyof BrandingDesignContextPayload)[];
 
@@ -802,6 +805,14 @@ export const KEYS_BRANDING_DESIGN_NOTICE = [
   KEY_BRANDING_DESIGN_NOTICE_VARIANTS,
 ] as const satisfies (keyof BrandingDesignNotice)[];
 
+export const KEY_BRANDING_DESIGN_PHRASE_CODE = 'code' satisfies keyof BrandingDesignPhrase;
+export const KEY_BRANDING_DESIGN_PHRASE_PARAMS = 'params' satisfies keyof BrandingDesignPhrase;
+
+export const KEYS_BRANDING_DESIGN_PHRASE = [
+  KEY_BRANDING_DESIGN_PHRASE_CODE,
+  KEY_BRANDING_DESIGN_PHRASE_PARAMS,
+] as const satisfies (keyof BrandingDesignPhrase)[];
+
 export const KEY_BRANDING_DESIGN_PREVIEW_DARK_STRATEGY = 'dark_strategy' satisfies keyof BrandingDesignPreview;
 export const KEY_BRANDING_DESIGN_PREVIEW_FONT_FAMILY = 'font_family' satisfies keyof BrandingDesignPreview;
 export const KEY_BRANDING_DESIGN_PREVIEW_MOOD = 'mood' satisfies keyof BrandingDesignPreview;
@@ -854,6 +865,7 @@ export const KEY_BRANDING_DESIGN_VARIANT_DOCUMENT = 'document' satisfies keyof B
 export const KEY_BRANDING_DESIGN_VARIANT_LABEL = 'label' satisfies keyof BrandingDesignVariant;
 export const KEY_BRANDING_DESIGN_VARIANT_PREVIEW = 'preview' satisfies keyof BrandingDesignVariant;
 export const KEY_BRANDING_DESIGN_VARIANT_RATIONALE = 'rationale' satisfies keyof BrandingDesignVariant;
+export const KEY_BRANDING_DESIGN_VARIANT_RATIONALE_PARTS = 'rationale_parts' satisfies keyof BrandingDesignVariant;
 export const KEY_BRANDING_DESIGN_VARIANT_VARIANT_ID = 'variant_id' satisfies keyof BrandingDesignVariant;
 
 export const KEYS_BRANDING_DESIGN_VARIANT = [
@@ -863,6 +875,7 @@ export const KEYS_BRANDING_DESIGN_VARIANT = [
   KEY_BRANDING_DESIGN_VARIANT_LABEL,
   KEY_BRANDING_DESIGN_VARIANT_PREVIEW,
   KEY_BRANDING_DESIGN_VARIANT_RATIONALE,
+  KEY_BRANDING_DESIGN_VARIANT_RATIONALE_PARTS,
   KEY_BRANDING_DESIGN_VARIANT_VARIANT_ID,
 ] as const satisfies (keyof BrandingDesignVariant)[];
 

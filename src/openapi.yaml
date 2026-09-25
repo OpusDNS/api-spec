@@ -689,6 +689,11 @@ components:
           default: ''
           title: Summary
           type: string
+        summary_parts:
+          items:
+            $ref: '#/components/schemas/BrandingDesignPhrase'
+          title: Summary Parts
+          type: array
         warnings:
           items:
             type: string
@@ -818,6 +823,27 @@ components:
       - severity
       title: BrandingDesignNotice
       type: object
+    BrandingDesignPhrase:
+      properties:
+        code:
+          title: Code
+          type: string
+        params:
+          additionalProperties:
+            anyOf:
+            - type: string
+            - type: integer
+            - type: number
+            - type: boolean
+            - items:
+                type: string
+              type: array
+          title: Params
+          type: object
+      required:
+      - code
+      title: BrandingDesignPhrase
+      type: object
     BrandingDesignPreview:
       properties:
         dark_strategy:
@@ -939,6 +965,11 @@ components:
           default: ''
           title: Rationale
           type: string
+        rationale_parts:
+          items:
+            $ref: '#/components/schemas/BrandingDesignPhrase'
+          title: Rationale Parts
+          type: array
         variant_id:
           title: Variant Id
           type: string
@@ -17617,7 +17648,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-25-131841
+  version: 2026-09-25-185651
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
