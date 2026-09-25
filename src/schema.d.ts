@@ -1187,7 +1187,7 @@ export interface paths {
          * Get domain statistics
          * @description Counts the domains that moved in or out of your organization's portfolio in a window of whole days, bucketed by the requested granularity: creates (new registrations), inbound transfers, deletes, outbound transfers, renewals and restores, plus `net` (created and transferred in, minus deleted and transferred out).
          *
-         *     Counts cover your organization and its sub-organizations; `breakdown=organization` shows how they divide between them. A create is counted on the day OpusDNS took the order and a transfer on the day it completed, so domains that have since been deleted still appear in the window they were acquired in. Imported domains count as creates on the day they were imported. Renewals and restores are counted once per day a domain was renewed or restored, so a domain renewed in two different months counts in both. Domains held at a connected external registrar are not included.
+         *     Counts cover your organization's own domains, like the domain summary. With `include_sub_organizations=true` they cover its sub-organizations too, and `breakdown=organization` shows how they divide between them. A create is counted on the day OpusDNS took the order and a transfer on the day it completed, so domains that have since been deleted still appear in the window they were acquired in. Imported domains count as creates on the day they were imported. Renewals and restores are counted once per day a domain was renewed or restored, so a domain renewed in two different months counts in both. Domains held at a connected external registrar are not included.
          *
          *     Every bucket the window touches is present, so the series can be charted as is. A bucket marked `partial` reaches outside the window and covers only part of its span.
          *
@@ -21260,6 +21260,7 @@ export interface operations {
                 tld?: string | null;
                 breakdown?: components["schemas"]["DomainStatisticsBreakdown"];
                 breakdown_limit?: number;
+                include_sub_organizations?: boolean;
             };
             header?: {
                 /**

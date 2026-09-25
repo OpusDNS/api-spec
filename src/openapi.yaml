@@ -17612,7 +17612,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-25-095209
+  version: 2026-09-25-103501
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -26223,14 +26223,15 @@ paths:
         and transferred out).
 
 
-        Counts cover your organization and its sub-organizations; `breakdown=organization`
-        shows how they divide between them. A create is counted on the day OpusDNS
-        took the order and a transfer on the day it completed, so domains that have
-        since been deleted still appear in the window they were acquired in. Imported
-        domains count as creates on the day they were imported. Renewals and restores
-        are counted once per day a domain was renewed or restored, so a domain renewed
-        in two different months counts in both. Domains held at a connected external
-        registrar are not included.
+        Counts cover your organization''s own domains, like the domain summary. With
+        `include_sub_organizations=true` they cover its sub-organizations too, and
+        `breakdown=organization` shows how they divide between them. A create is counted
+        on the day OpusDNS took the order and a transfer on the day it completed,
+        so domains that have since been deleted still appear in the window they were
+        acquired in. Imported domains count as creates on the day they were imported.
+        Renewals and restores are counted once per day a domain was renewed or restored,
+        so a domain renewed in two different months counts in both. Domains held at
+        a connected external registrar are not included.
 
 
         Every bucket the window touches is present, so the series can be charted as
@@ -26287,6 +26288,13 @@ paths:
           minimum: 1
           title: Breakdown Limit
           type: integer
+      - in: query
+        name: include_sub_organizations
+        required: false
+        schema:
+          default: false
+          title: Include Sub Organizations
+          type: boolean
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
