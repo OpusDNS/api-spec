@@ -815,6 +815,11 @@ components:
       type: object
     BrandingDesignPreview:
       properties:
+        dark_strategy:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Dark Strategy
         font_family:
           anyOf:
           - type: string
@@ -825,16 +830,31 @@ components:
           - type: string
           - type: 'null'
           title: Mood
+        neutral_tint:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Neutral Tint
         preset_base:
           anyOf:
           - type: string
           - type: 'null'
           title: Preset Base
+        primary_color:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Primary Color
         radius_rem:
           anyOf:
           - type: number
           - type: 'null'
           title: Radius Rem
+        recolor_preset:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Recolor Preset
         swatches:
           anyOf:
           - $ref: '#/components/schemas/BrandingDesignSwatches'
@@ -17592,7 +17612,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-24-132444
+  version: 2026-09-25-092504
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

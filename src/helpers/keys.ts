@@ -800,17 +800,25 @@ export const KEYS_BRANDING_DESIGN_NOTICE = [
   KEY_BRANDING_DESIGN_NOTICE_SEVERITY,
 ] as const satisfies (keyof BrandingDesignNotice)[];
 
+export const KEY_BRANDING_DESIGN_PREVIEW_DARK_STRATEGY = 'dark_strategy' satisfies keyof BrandingDesignPreview;
 export const KEY_BRANDING_DESIGN_PREVIEW_FONT_FAMILY = 'font_family' satisfies keyof BrandingDesignPreview;
 export const KEY_BRANDING_DESIGN_PREVIEW_MOOD = 'mood' satisfies keyof BrandingDesignPreview;
+export const KEY_BRANDING_DESIGN_PREVIEW_NEUTRAL_TINT = 'neutral_tint' satisfies keyof BrandingDesignPreview;
 export const KEY_BRANDING_DESIGN_PREVIEW_PRESET_BASE = 'preset_base' satisfies keyof BrandingDesignPreview;
+export const KEY_BRANDING_DESIGN_PREVIEW_PRIMARY_COLOR = 'primary_color' satisfies keyof BrandingDesignPreview;
 export const KEY_BRANDING_DESIGN_PREVIEW_RADIUS_REM = 'radius_rem' satisfies keyof BrandingDesignPreview;
+export const KEY_BRANDING_DESIGN_PREVIEW_RECOLOR_PRESET = 'recolor_preset' satisfies keyof BrandingDesignPreview;
 export const KEY_BRANDING_DESIGN_PREVIEW_SWATCHES = 'swatches' satisfies keyof BrandingDesignPreview;
 
 export const KEYS_BRANDING_DESIGN_PREVIEW = [
+  KEY_BRANDING_DESIGN_PREVIEW_DARK_STRATEGY,
   KEY_BRANDING_DESIGN_PREVIEW_FONT_FAMILY,
   KEY_BRANDING_DESIGN_PREVIEW_MOOD,
+  KEY_BRANDING_DESIGN_PREVIEW_NEUTRAL_TINT,
   KEY_BRANDING_DESIGN_PREVIEW_PRESET_BASE,
+  KEY_BRANDING_DESIGN_PREVIEW_PRIMARY_COLOR,
   KEY_BRANDING_DESIGN_PREVIEW_RADIUS_REM,
+  KEY_BRANDING_DESIGN_PREVIEW_RECOLOR_PRESET,
   KEY_BRANDING_DESIGN_PREVIEW_SWATCHES,
 ] as const satisfies (keyof BrandingDesignPreview)[];
 

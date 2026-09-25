@@ -3742,14 +3742,22 @@ export interface components {
         };
         /** BrandingDesignPreview */
         BrandingDesignPreview: {
+            /** Dark Strategy */
+            dark_strategy?: string | null;
             /** Font Family */
             font_family?: string | null;
             /** Mood */
             mood?: string | null;
+            /** Neutral Tint */
+            neutral_tint?: string | null;
             /** Preset Base */
             preset_base?: string | null;
+            /** Primary Color */
+            primary_color?: string | null;
             /** Radius Rem */
             radius_rem?: number | null;
+            /** Recolor Preset */
+            recolor_preset?: boolean | null;
             swatches?: components["schemas"]["BrandingDesignSwatches"] | null;
         };
         /** BrandingDesignSource */
