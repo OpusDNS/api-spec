@@ -32,6 +32,7 @@ import type {
   BrandingDocument,
   BrowserStatsBucket,
   BulkObjectTagChanges,
+  CallOperationResultContext,
   ClaimsNotice,
   ClaimsNoticesRequest,
   ClaimsNotices,
@@ -926,6 +927,24 @@ export const KEYS_BULK_OBJECT_TAG_CHANGES = [
   KEY_BULK_OBJECT_TAG_CHANGES_REPLACE,
   KEY_BULK_OBJECT_TAG_CHANGES_TYPE,
 ] as const satisfies (keyof BulkObjectTagChanges)[];
+
+export const KEY_CALL_OPERATION_RESULT_CONTEXT_CONTEXT_ID = 'context_id' satisfies keyof CallOperationResultContext;
+export const KEY_CALL_OPERATION_RESULT_CONTEXT_CONVERSATION_ID = 'conversation_id' satisfies keyof CallOperationResultContext;
+export const KEY_CALL_OPERATION_RESULT_CONTEXT_CREATED_AT = 'created_at' satisfies keyof CallOperationResultContext;
+export const KEY_CALL_OPERATION_RESULT_CONTEXT_KIND = 'kind' satisfies keyof CallOperationResultContext;
+export const KEY_CALL_OPERATION_RESULT_CONTEXT_ORGANIZATION_ID = 'organization_id' satisfies keyof CallOperationResultContext;
+export const KEY_CALL_OPERATION_RESULT_CONTEXT_PAYLOAD = 'payload' satisfies keyof CallOperationResultContext;
+export const KEY_CALL_OPERATION_RESULT_CONTEXT_USER_ID = 'user_id' satisfies keyof CallOperationResultContext;
+
+export const KEYS_CALL_OPERATION_RESULT_CONTEXT = [
+  KEY_CALL_OPERATION_RESULT_CONTEXT_CONTEXT_ID,
+  KEY_CALL_OPERATION_RESULT_CONTEXT_CONVERSATION_ID,
+  KEY_CALL_OPERATION_RESULT_CONTEXT_CREATED_AT,
+  KEY_CALL_OPERATION_RESULT_CONTEXT_KIND,
+  KEY_CALL_OPERATION_RESULT_CONTEXT_ORGANIZATION_ID,
+  KEY_CALL_OPERATION_RESULT_CONTEXT_PAYLOAD,
+  KEY_CALL_OPERATION_RESULT_CONTEXT_USER_ID,
+] as const satisfies (keyof CallOperationResultContext)[];
 
 export const KEY_CLAIMS_NOTICE_CLAIMS = 'claims' satisfies keyof ClaimsNotice;
 export const KEY_CLAIMS_NOTICE_CLAIMS_KEY = 'claims_key' satisfies keyof ClaimsNotice;
