@@ -14768,7 +14768,7 @@ export interface components {
         /** EventData */
         EventData: {
             /** Details */
-            details?: (components["schemas"]["DomainRenewalDetails"] | components["schemas"]["DomainVerificationDetails"]) | null;
+            details?: (components["schemas"]["DomainRenewalDetails"] | components["schemas"]["DomainVerificationDetails"] | components["schemas"]["RegistrantChangeDetails"]) | null;
             error?: components["schemas"]["EventError"] | null;
             /** Message */
             message: string;
@@ -14836,7 +14836,7 @@ export interface components {
          * EventType
          * @enum {string}
          */
-        EventType: "REGISTRATION" | "RENEWAL" | "MODIFICATION" | "DELETION" | "INBOUND_TRANSFER" | "OUTBOUND_TRANSFER" | "TRANSIT" | "WITHDRAW" | "VERIFICATION" | "BALANCE" | "VANITY_NS_PROVISION" | "VANITY_NS_SUSPENSION" | "VANITY_NS_RESTORATION" | "VANITY_NS_TERMINATION" | "CLONE";
+        EventType: "REGISTRATION" | "RENEWAL" | "MODIFICATION" | "DELETION" | "INBOUND_TRANSFER" | "OUTBOUND_TRANSFER" | "TRANSIT" | "WITHDRAW" | "VERIFICATION" | "BALANCE" | "VANITY_NS_PROVISION" | "VANITY_NS_SUSPENSION" | "VANITY_NS_RESTORATION" | "VANITY_NS_TERMINATION" | "CLONE" | "REGISTRANT_CHANGE";
         /**
          * EventVersion
          * @enum {string}
@@ -17825,6 +17825,55 @@ export interface components {
             /** Unique */
             unique: number;
         };
+        /**
+         * RegistrantChangeConfirmationMethod
+         * @enum {string}
+         */
+        RegistrantChangeConfirmationMethod: "designated_agent" | "email" | "api";
+        /** RegistrantChangeDetails */
+        RegistrantChangeDetails: {
+            /** Confirmation Deadline */
+            confirmation_deadline?: Date | null;
+            confirmation_method: components["schemas"]["RegistrantChangeConfirmationMethod"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            detail_type: "registrant_change";
+            /**
+             * New Registrant Id
+             * Format: typeid
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
+             */
+            new_registrant_id: TypeId<"contact">;
+            /** Notification Type */
+            notification_type?: string | null;
+            /**
+             * Prior Registrant Id
+             * Format: typeid
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
+             */
+            prior_registrant_id: TypeId<"contact">;
+            /**
+             * Registrant Change Id
+             * Format: typeid
+             * @example registrant_change_01h45ytscbebyvny4gc8cr8ma2
+             */
+            registrant_change_id: TypeId<"registrant_change">;
+            status: components["schemas"]["RegistrantChangeStatus"];
+            /**
+             * Transfer Lock Opt Out
+             * @default false
+             */
+            transfer_lock_opt_out: boolean;
+            /** Transfer Lock Until */
+            transfer_lock_until?: Date | null;
+        };
+        /**
+         * RegistrantChangeStatus
+         * @enum {string}
+         */
+        RegistrantChangeStatus: "pending_confirmation" | "confirmed" | "executing" | "registry_pending" | "completed" | "not_material" | "expired" | "canceled" | "rejected" | "failed";
         /**
          * RegistrantChangeType
          * @enum {string}

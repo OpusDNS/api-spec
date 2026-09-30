@@ -16185,10 +16185,12 @@ components:
               mapping:
                 domain_renewal: '#/components/schemas/DomainRenewalDetails'
                 domain_verification: '#/components/schemas/DomainVerificationDetails'
+                registrant_change: '#/components/schemas/RegistrantChangeDetails'
               propertyName: detail_type
             oneOf:
             - $ref: '#/components/schemas/DomainRenewalDetails'
             - $ref: '#/components/schemas/DomainVerificationDetails'
+            - $ref: '#/components/schemas/RegistrantChangeDetails'
           - type: 'null'
           title: Details
         error:
@@ -16312,6 +16314,7 @@ components:
       - VANITY_NS_RESTORATION
       - VANITY_NS_TERMINATION
       - CLONE
+      - REGISTRANT_CHANGE
       title: EventType
       type: string
     EventVersion:
@@ -20919,6 +20922,91 @@ components:
       - unique
       title: ReferrerStatsBucket
       type: object
+    RegistrantChangeConfirmationMethod:
+      enum:
+      - designated_agent
+      - email
+      - api
+      title: RegistrantChangeConfirmationMethod
+      type: string
+    RegistrantChangeDetails:
+      properties:
+        confirmation_deadline:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Confirmation Deadline
+        confirmation_method:
+          $ref: '#/components/schemas/RegistrantChangeConfirmationMethod'
+        detail_type:
+          const: registrant_change
+          default: registrant_change
+          title: Detail Type
+          type: string
+        new_registrant_id:
+          examples:
+          - contact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: New Registrant Id
+          type: string
+          x-typeid-prefix: contact
+        notification_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Notification Type
+        prior_registrant_id:
+          examples:
+          - contact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Prior Registrant Id
+          type: string
+          x-typeid-prefix: contact
+        registrant_change_id:
+          examples:
+          - registrant_change_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^registrant_change_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Registrant Change Id
+          type: string
+          x-typeid-prefix: registrant_change
+        status:
+          $ref: '#/components/schemas/RegistrantChangeStatus'
+        transfer_lock_opt_out:
+          default: false
+          title: Transfer Lock Opt Out
+          type: boolean
+        transfer_lock_until:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Transfer Lock Until
+      required:
+      - registrant_change_id
+      - status
+      - prior_registrant_id
+      - new_registrant_id
+      - confirmation_method
+      title: RegistrantChangeDetails
+      type: object
+    RegistrantChangeStatus:
+      enum:
+      - pending_confirmation
+      - confirmed
+      - executing
+      - registry_pending
+      - completed
+      - not_material
+      - expired
+      - canceled
+      - rejected
+      - failed
+      title: RegistrantChangeStatus
+      type: string
     RegistrantChangeType:
       enum:
       - update
@@ -24812,7 +24900,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-29-104327
+  version: 2026-09-30-211013
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

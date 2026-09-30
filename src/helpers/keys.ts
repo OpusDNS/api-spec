@@ -397,6 +397,7 @@ import type {
   PublicRoleDefinition,
   RdapBase,
   ReferrerStatsBucket,
+  RegistrantChangeDetails,
   RegistrarContact,
   RegistrarDomain,
   RegistrarNameserver,
@@ -5469,6 +5470,30 @@ export const KEYS_REFERRER_STATS_BUCKET = [
   KEY_REFERRER_STATS_BUCKET_TOTAL,
   KEY_REFERRER_STATS_BUCKET_UNIQUE,
 ] as const satisfies (keyof ReferrerStatsBucket)[];
+
+export const KEY_REGISTRANT_CHANGE_DETAILS_CONFIRMATION_DEADLINE = 'confirmation_deadline' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_CONFIRMATION_METHOD = 'confirmation_method' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_DETAIL_TYPE = 'detail_type' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_NEW_REGISTRANT_ID = 'new_registrant_id' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_NOTIFICATION_TYPE = 'notification_type' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_PRIOR_REGISTRANT_ID = 'prior_registrant_id' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_REGISTRANT_CHANGE_ID = 'registrant_change_id' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_STATUS = 'status' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_TRANSFER_LOCK_OPT_OUT = 'transfer_lock_opt_out' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_TRANSFER_LOCK_UNTIL = 'transfer_lock_until' satisfies keyof RegistrantChangeDetails;
+
+export const KEYS_REGISTRANT_CHANGE_DETAILS = [
+  KEY_REGISTRANT_CHANGE_DETAILS_CONFIRMATION_DEADLINE,
+  KEY_REGISTRANT_CHANGE_DETAILS_CONFIRMATION_METHOD,
+  KEY_REGISTRANT_CHANGE_DETAILS_DETAIL_TYPE,
+  KEY_REGISTRANT_CHANGE_DETAILS_NEW_REGISTRANT_ID,
+  KEY_REGISTRANT_CHANGE_DETAILS_NOTIFICATION_TYPE,
+  KEY_REGISTRANT_CHANGE_DETAILS_PRIOR_REGISTRANT_ID,
+  KEY_REGISTRANT_CHANGE_DETAILS_REGISTRANT_CHANGE_ID,
+  KEY_REGISTRANT_CHANGE_DETAILS_STATUS,
+  KEY_REGISTRANT_CHANGE_DETAILS_TRANSFER_LOCK_OPT_OUT,
+  KEY_REGISTRANT_CHANGE_DETAILS_TRANSFER_LOCK_UNTIL,
+] as const satisfies (keyof RegistrantChangeDetails)[];
 
 export const KEY_REGISTRAR_CONTACT_CITY = 'city' satisfies keyof RegistrarContact;
 export const KEY_REGISTRAR_CONTACT_COUNTRY = 'country' satisfies keyof RegistrarContact;

@@ -93,6 +93,8 @@ import type {
   PublicRole,
   PublicScope,
   RedirectCode,
+  RegistrantChangeConfirmationMethod,
+  RegistrantChangeStatus,
   RegistrantChangeType,
   Registrar,
   RegistryHandleAttributeType,
@@ -1036,6 +1038,7 @@ export const EVENT_TYPE = {
   VANITY_NS_RESTORATION: "VANITY_NS_RESTORATION",
   VANITY_NS_TERMINATION: "VANITY_NS_TERMINATION",
   CLONE: "CLONE",
+  REGISTRANT_CHANGE: "REGISTRANT_CHANGE",
 } as const satisfies Record<string, EventType>;
 
 export const EVENT_TYPE_VALUES = [
@@ -1054,6 +1057,7 @@ export const EVENT_TYPE_VALUES = [
   'VANITY_NS_RESTORATION',
   'VANITY_NS_TERMINATION',
   'CLONE',
+  'REGISTRANT_CHANGE',
 ] as const satisfies ReadonlyArray<EventType>;
 
 export const EVENT_VERSION = {
@@ -1704,6 +1708,44 @@ export const REDIRECT_CODE = [
   307,
   308,
 ] as const satisfies ReadonlyArray<RedirectCode>;
+
+export const REGISTRANT_CHANGE_CONFIRMATION_METHOD = {
+  DESIGNATED_AGENT: "designated_agent",
+  EMAIL: "email",
+  API: "api",
+} as const satisfies Record<string, RegistrantChangeConfirmationMethod>;
+
+export const REGISTRANT_CHANGE_CONFIRMATION_METHOD_VALUES = [
+  'designated_agent',
+  'email',
+  'api',
+] as const satisfies ReadonlyArray<RegistrantChangeConfirmationMethod>;
+
+export const REGISTRANT_CHANGE_STATUS = {
+  PENDING_CONFIRMATION: "pending_confirmation",
+  CONFIRMED: "confirmed",
+  EXECUTING: "executing",
+  REGISTRY_PENDING: "registry_pending",
+  COMPLETED: "completed",
+  NOT_MATERIAL: "not_material",
+  EXPIRED: "expired",
+  CANCELED: "canceled",
+  REJECTED: "rejected",
+  FAILED: "failed",
+} as const satisfies Record<string, RegistrantChangeStatus>;
+
+export const REGISTRANT_CHANGE_STATUS_VALUES = [
+  'pending_confirmation',
+  'confirmed',
+  'executing',
+  'registry_pending',
+  'completed',
+  'not_material',
+  'expired',
+  'canceled',
+  'rejected',
+  'failed',
+] as const satisfies ReadonlyArray<RegistrantChangeStatus>;
 
 export const REGISTRANT_CHANGE_TYPE = {
   UPDATE: "update",
