@@ -10391,6 +10391,8 @@ export interface components {
             privacy_proxy?: boolean | null;
             /** @description Whether the registrant can change through update or trade */
             registrant_change?: components["schemas"]["RegistrantChangeType"] | null;
+            /** @description Change of registrant policy. When absent, the defaults of the TLD type apply. */
+            registrant_change_policy?: components["schemas"]["RegistrantChangePolicyBase"] | null;
             /**
              * Support Check
              * @description Whether the registry supports contact checks
@@ -17830,6 +17832,11 @@ export interface components {
          * @enum {string}
          */
         RegistrantChangeConfirmationMethod: "designated_agent" | "email" | "api";
+        /**
+         * RegistrantChangeConfirmationType
+         * @enum {string}
+         */
+        RegistrantChangeConfirmationType: "registrar" | "registry" | "none";
         /** RegistrantChangeDetails */
         RegistrantChangeDetails: {
             /** Confirmation Deadline */
@@ -17868,6 +17875,45 @@ export interface components {
             transfer_lock_opt_out: boolean;
             /** Transfer Lock Until */
             transfer_lock_until?: Date | null;
+        };
+        /**
+         * RegistrantChangeFeeType
+         * @enum {string}
+         */
+        RegistrantChangeFeeType: "none" | "trade";
+        /** RegistrantChangePolicyBase */
+        RegistrantChangePolicyBase: {
+            /** @description Who confirms a change of registrant before it is executed */
+            confirmation: components["schemas"]["RegistrantChangeConfirmationType"];
+            /**
+             * Confirmation Window
+             * @description How long the parties have to confirm the change (e.g., '14D'), at most 60 days
+             */
+            confirmation_window?: string | null;
+            /**
+             * Designated Agent Allowed
+             * @description Whether a Designated Agent may confirm the change on behalf of a registrant
+             */
+            designated_agent_allowed: boolean;
+            /** @description Whether the change is charged as a trade */
+            fee: components["schemas"]["RegistrantChangeFeeType"];
+            /**
+             * Prior Registrant Notice
+             * @description Whether the prior registrant is notified of the change
+             */
+            prior_registrant_notice: boolean;
+            /**
+             * Renews Domain
+             * @description Whether the change renews the domain
+             */
+            renews_domain: boolean;
+            /**
+             * Transfer Lock After Change
+             * @description Inter-registrar transfer lock applied after the change (e.g., '60D'), '0D' disables it
+             * @example P5D
+             * @example P1Y
+             */
+            transfer_lock_after_change: string;
         };
         /**
          * RegistrantChangeStatus

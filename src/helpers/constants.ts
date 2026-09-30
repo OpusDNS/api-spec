@@ -94,6 +94,8 @@ import type {
   PublicScope,
   RedirectCode,
   RegistrantChangeConfirmationMethod,
+  RegistrantChangeConfirmationType,
+  RegistrantChangeFeeType,
   RegistrantChangeStatus,
   RegistrantChangeType,
   Registrar,
@@ -1720,6 +1722,28 @@ export const REGISTRANT_CHANGE_CONFIRMATION_METHOD_VALUES = [
   'email',
   'api',
 ] as const satisfies ReadonlyArray<RegistrantChangeConfirmationMethod>;
+
+export const REGISTRANT_CHANGE_CONFIRMATION_TYPE = {
+  REGISTRAR: "registrar",
+  REGISTRY: "registry",
+  NONE: "none",
+} as const satisfies Record<string, RegistrantChangeConfirmationType>;
+
+export const REGISTRANT_CHANGE_CONFIRMATION_TYPE_VALUES = [
+  'registrar',
+  'registry',
+  'none',
+] as const satisfies ReadonlyArray<RegistrantChangeConfirmationType>;
+
+export const REGISTRANT_CHANGE_FEE_TYPE = {
+  NONE: "none",
+  TRADE: "trade",
+} as const satisfies Record<string, RegistrantChangeFeeType>;
+
+export const REGISTRANT_CHANGE_FEE_TYPE_VALUES = [
+  'none',
+  'trade',
+] as const satisfies ReadonlyArray<RegistrantChangeFeeType>;
 
 export const REGISTRANT_CHANGE_STATUS = {
   PENDING_CONFIRMATION: "pending_confirmation",

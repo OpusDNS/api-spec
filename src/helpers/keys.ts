@@ -398,6 +398,7 @@ import type {
   RdapBase,
   ReferrerStatsBucket,
   RegistrantChangeDetails,
+  RegistrantChangePolicyBase,
   RegistrarContact,
   RegistrarDomain,
   RegistrarNameserver,
@@ -1427,6 +1428,7 @@ export const KEY_CONTACTS_BASE_IS_THICK = 'is_thick' satisfies keyof ContactsBas
 export const KEY_CONTACTS_BASE_POSSIBLE_ATTRIBUTES = 'possible_attributes' satisfies keyof ContactsBase;
 export const KEY_CONTACTS_BASE_PRIVACY_PROXY = 'privacy_proxy' satisfies keyof ContactsBase;
 export const KEY_CONTACTS_BASE_REGISTRANT_CHANGE = 'registrant_change' satisfies keyof ContactsBase;
+export const KEY_CONTACTS_BASE_REGISTRANT_CHANGE_POLICY = 'registrant_change_policy' satisfies keyof ContactsBase;
 export const KEY_CONTACTS_BASE_SUPPORT_CHECK = 'support_check' satisfies keyof ContactsBase;
 export const KEY_CONTACTS_BASE_SUPPORT_CLIENT_CONTACT_ID = 'support_client_contact_id' satisfies keyof ContactsBase;
 export const KEY_CONTACTS_BASE_SUPPORT_TRANSFER = 'support_transfer' satisfies keyof ContactsBase;
@@ -1442,6 +1444,7 @@ export const KEYS_CONTACTS_BASE = [
   KEY_CONTACTS_BASE_POSSIBLE_ATTRIBUTES,
   KEY_CONTACTS_BASE_PRIVACY_PROXY,
   KEY_CONTACTS_BASE_REGISTRANT_CHANGE,
+  KEY_CONTACTS_BASE_REGISTRANT_CHANGE_POLICY,
   KEY_CONTACTS_BASE_SUPPORT_CHECK,
   KEY_CONTACTS_BASE_SUPPORT_CLIENT_CONTACT_ID,
   KEY_CONTACTS_BASE_SUPPORT_TRANSFER,
@@ -5494,6 +5497,24 @@ export const KEYS_REGISTRANT_CHANGE_DETAILS = [
   KEY_REGISTRANT_CHANGE_DETAILS_TRANSFER_LOCK_OPT_OUT,
   KEY_REGISTRANT_CHANGE_DETAILS_TRANSFER_LOCK_UNTIL,
 ] as const satisfies (keyof RegistrantChangeDetails)[];
+
+export const KEY_REGISTRANT_CHANGE_POLICY_BASE_CONFIRMATION = 'confirmation' satisfies keyof RegistrantChangePolicyBase;
+export const KEY_REGISTRANT_CHANGE_POLICY_BASE_CONFIRMATION_WINDOW = 'confirmation_window' satisfies keyof RegistrantChangePolicyBase;
+export const KEY_REGISTRANT_CHANGE_POLICY_BASE_DESIGNATED_AGENT_ALLOWED = 'designated_agent_allowed' satisfies keyof RegistrantChangePolicyBase;
+export const KEY_REGISTRANT_CHANGE_POLICY_BASE_FEE = 'fee' satisfies keyof RegistrantChangePolicyBase;
+export const KEY_REGISTRANT_CHANGE_POLICY_BASE_PRIOR_REGISTRANT_NOTICE = 'prior_registrant_notice' satisfies keyof RegistrantChangePolicyBase;
+export const KEY_REGISTRANT_CHANGE_POLICY_BASE_RENEWS_DOMAIN = 'renews_domain' satisfies keyof RegistrantChangePolicyBase;
+export const KEY_REGISTRANT_CHANGE_POLICY_BASE_TRANSFER_LOCK_AFTER_CHANGE = 'transfer_lock_after_change' satisfies keyof RegistrantChangePolicyBase;
+
+export const KEYS_REGISTRANT_CHANGE_POLICY_BASE = [
+  KEY_REGISTRANT_CHANGE_POLICY_BASE_CONFIRMATION,
+  KEY_REGISTRANT_CHANGE_POLICY_BASE_CONFIRMATION_WINDOW,
+  KEY_REGISTRANT_CHANGE_POLICY_BASE_DESIGNATED_AGENT_ALLOWED,
+  KEY_REGISTRANT_CHANGE_POLICY_BASE_FEE,
+  KEY_REGISTRANT_CHANGE_POLICY_BASE_PRIOR_REGISTRANT_NOTICE,
+  KEY_REGISTRANT_CHANGE_POLICY_BASE_RENEWS_DOMAIN,
+  KEY_REGISTRANT_CHANGE_POLICY_BASE_TRANSFER_LOCK_AFTER_CHANGE,
+] as const satisfies (keyof RegistrantChangePolicyBase)[];
 
 export const KEY_REGISTRAR_CONTACT_CITY = 'city' satisfies keyof RegistrarContact;
 export const KEY_REGISTRAR_CONTACT_COUNTRY = 'country' satisfies keyof RegistrarContact;

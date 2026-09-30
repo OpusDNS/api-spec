@@ -9697,6 +9697,12 @@ components:
           - $ref: '#/components/schemas/RegistrantChangeType'
           - type: 'null'
           description: Whether the registrant can change through update or trade
+        registrant_change_policy:
+          anyOf:
+          - $ref: '#/components/schemas/RegistrantChangePolicyBase'
+          - type: 'null'
+          description: Change of registrant policy. When absent, the defaults of the
+            TLD type apply.
         support_check:
           anyOf:
           - type: boolean
@@ -20929,6 +20935,13 @@ components:
       - api
       title: RegistrantChangeConfirmationMethod
       type: string
+    RegistrantChangeConfirmationType:
+      enum:
+      - registrar
+      - registry
+      - none
+      title: RegistrantChangeConfirmationType
+      type: string
     RegistrantChangeDetails:
       properties:
         confirmation_deadline:
@@ -20992,6 +21005,62 @@ components:
       - new_registrant_id
       - confirmation_method
       title: RegistrantChangeDetails
+      type: object
+    RegistrantChangeFeeType:
+      enum:
+      - none
+      - trade
+      title: RegistrantChangeFeeType
+      type: string
+    RegistrantChangePolicyBase:
+      properties:
+        confirmation:
+          $ref: '#/components/schemas/RegistrantChangeConfirmationType'
+          description: Who confirms a change of registrant before it is executed
+        confirmation_window:
+          anyOf:
+          - examples:
+            - P5D
+            - P1Y
+            pattern: ^\-?P?(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$
+            type: string
+          - type: 'null'
+          description: How long the parties have to confirm the change (e.g., '14D'),
+            at most 60 days
+          title: Confirmation Window
+        designated_agent_allowed:
+          description: Whether a Designated Agent may confirm the change on behalf
+            of a registrant
+          title: Designated Agent Allowed
+          type: boolean
+        fee:
+          $ref: '#/components/schemas/RegistrantChangeFeeType'
+          description: Whether the change is charged as a trade
+        prior_registrant_notice:
+          description: Whether the prior registrant is notified of the change
+          title: Prior Registrant Notice
+          type: boolean
+        renews_domain:
+          description: Whether the change renews the domain
+          title: Renews Domain
+          type: boolean
+        transfer_lock_after_change:
+          description: Inter-registrar transfer lock applied after the change (e.g.,
+            '60D'), '0D' disables it
+          examples:
+          - P5D
+          - P1Y
+          pattern: ^\-?P?(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$
+          title: Transfer Lock After Change
+          type: string
+      required:
+      - confirmation
+      - prior_registrant_notice
+      - designated_agent_allowed
+      - transfer_lock_after_change
+      - fee
+      - renews_domain
+      title: RegistrantChangePolicyBase
       type: object
     RegistrantChangeStatus:
       enum:
@@ -24900,7 +24969,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-30-211013
+  version: 2026-09-30-221011
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
