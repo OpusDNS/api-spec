@@ -21827,12 +21827,19 @@ export interface operations {
         parameters: {
             query: {
                 email_forward_id: TypeId<"email_forward">;
+                /** @description Sort field (log_id, domain, sender_email, recipient_email, forward_email, final_status, created_on, synced_on) */
                 sort_by?: components["schemas"]["EmailForwardLogSortField"];
+                /** @description Sort order (asc, desc) */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Records per page */
                 page_size?: number;
+                /** @description Page number */
                 page?: number;
+                /** @description Filter by final status (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE, HARD-BOUNCE) */
                 final_status?: components["schemas"]["EmailForwardLogStatus"] | null;
+                /** @description Filter logs after (RFC3339) */
                 start_time?: Date | null;
+                /** @description Filter logs before (RFC3339) */
                 end_time?: Date | null;
             };
             header?: {
@@ -21872,12 +21879,19 @@ export interface operations {
     get_email_forward_logs_v1_archive_email_forward_logs__email_forward_id__get: {
         parameters: {
             query?: {
+                /** @description Sort field (log_id, domain, sender_email, recipient_email, forward_email, final_status, created_on, synced_on) */
                 sort_by?: components["schemas"]["EmailForwardLogSortField"];
+                /** @description Sort order (asc, desc) */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Records per page */
                 page_size?: number;
+                /** @description Page number */
                 page?: number;
+                /** @description Filter by final status (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE, HARD-BOUNCE) */
                 final_status?: components["schemas"]["EmailForwardLogStatus"] | null;
+                /** @description Filter logs after (RFC3339) */
                 start_time?: Date | null;
+                /** @description Filter logs before (RFC3339) */
                 end_time?: Date | null;
             };
             header?: {
@@ -21917,18 +21931,31 @@ export interface operations {
     get_object_logs_v1_archive_object_logs_get: {
         parameters: {
             query?: {
+                /** @description Sort field (object_log_id, object_id, object_type, action, created_on, organization_id, server_request_id, performed_by_type, performed_by_id) */
                 sort_by?: components["schemas"]["ObjectLogSortField"];
+                /** @description Sort order (asc, desc) */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Records per page */
                 page_size?: number;
+                /** @description Page number */
                 page?: number;
+                /** @description Filter by specific log UUID */
                 object_log_id?: string | null;
+                /** @description Filter by object type */
                 object_type?: string | null;
+                /** @description Filter by action */
                 action?: components["schemas"]["ObjectEventType"] | null;
+                /** @description Filter by server request ID */
                 server_request_id?: string | null;
+                /** @description Filter by performer type */
                 performed_by_type?: components["schemas"]["ExecutingEntity"] | null;
+                /** @description Filter by performer ID (TypeID) */
                 performed_by_id?: string | null;
+                /** @description Upper bound: created_on <= value (RFC3339) */
                 created_before?: Date | null;
+                /** @description Lower bound: created_on >= value (RFC3339) */
                 created_after?: Date | null;
+                /** @description Filter by object ID (TypeID) */
                 object_id?: string | null;
             };
             header?: {
@@ -21966,17 +21993,29 @@ export interface operations {
     get_object_logs_by_object_id_v1_archive_object_logs__object_id__get: {
         parameters: {
             query?: {
+                /** @description Sort field (object_log_id, object_id, object_type, action, created_on, organization_id, server_request_id, performed_by_type, performed_by_id) */
                 sort_by?: components["schemas"]["ObjectLogSortField"];
+                /** @description Sort order (asc, desc) */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Records per page */
                 page_size?: number;
+                /** @description Page number */
                 page?: number;
+                /** @description Filter by specific log UUID */
                 object_log_id?: string | null;
+                /** @description Filter by object type */
                 object_type?: string | null;
+                /** @description Filter by action */
                 action?: components["schemas"]["ObjectEventType"] | null;
+                /** @description Filter by server request ID */
                 server_request_id?: string | null;
+                /** @description Filter by performer type */
                 performed_by_type?: components["schemas"]["ExecutingEntity"] | null;
+                /** @description Filter by performer ID (TypeID) */
                 performed_by_id?: string | null;
+                /** @description Upper bound: created_on <= value (RFC3339) */
                 created_before?: Date | null;
+                /** @description Lower bound: created_on >= value (RFC3339) */
                 created_after?: Date | null;
             };
             header?: {
@@ -22016,22 +22055,37 @@ export interface operations {
     get_request_history_v1_archive_request_history_get: {
         parameters: {
             query?: {
+                /** @description Sort field (request_history_id, method, path, status_code, duration, client_ip, server_request_id, performed_by_type, performed_by_id, created_on, request_started_at, request_completed_at, organization_id) */
                 sort_by?: components["schemas"]["RequestHistorySortField"];
+                /** @description Sort order (asc, desc) */
                 sort_order?: components["schemas"]["SortOrder"];
                 page_size?: number;
                 page?: number;
+                /** @description HTTP method filter (GET, POST, etc.) */
                 method?: components["schemas"]["HTTPMethod"] | null;
+                /** @description Path filter (supports LIKE queries) */
                 path?: string | null;
+                /** @description Exact status code filter */
                 status_code?: number | null;
+                /** @description Minimum status code filter */
                 min_status_code?: number | null;
+                /** @description Maximum status code filter */
                 max_status_code?: number | null;
+                /** @description Minimum duration in milliseconds */
                 min_duration?: number | null;
+                /** @description Maximum duration in milliseconds */
                 max_duration?: number | null;
+                /** @description Client IP address filter */
                 client_ip?: string | null;
+                /** @description Server request ID filter */
                 server_request_id?: string | null;
+                /** @description Performed by type filter */
                 performed_by_type?: components["schemas"]["ExecutingEntity"] | null;
+                /** @description Performed by ID filter */
                 performed_by_id?: string | null;
+                /** @description Upper bound: request_started_at <= value (RFC3339) */
                 request_started_before?: Date | null;
+                /** @description Lower bound: request_started_at >= value (RFC3339) */
                 request_started_after?: Date | null;
             };
             header?: {
@@ -22431,22 +22485,35 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["ContactSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
                 /** @description Filter by contact status tag types. Can be specified multiple times. */
                 status_tags?: components["schemas"]["ContactStatusTagType"][] | null;
+                /** @description How to combine status_tags: 'match_any' returns objects with at least one of the tags, 'match_all' returns objects with every tag, 'match_none' returns objects with none of the tags, including objects that carry no status tags at all. Has no effect unless one or more status_tags are supplied. */
                 status_tag_mode?: components["schemas"]["TagFilterMode"];
                 /** @description Filter by user tag IDs. Can be specified multiple times. */
                 tag_ids?: TypeId<"tag">[] | null;
+                /** @description How to combine tag_ids: 'match_any' returns objects with at least one of the tags, 'match_all' returns objects with every tag, 'match_none' returns objects with none of the tags, including objects that carry no user tags at all. Has no effect unless one or more tag_ids are supplied; to filter on whether an object has any user tag, use has_tags. */
                 tag_mode?: components["schemas"]["TagFilterMode"];
+                /** @description true returns only objects that carry at least one user tag, false only objects that carry none. Status tags are not counted. Combines with tag_ids and the other filters. */
                 has_tags?: boolean | null;
+                /** @description Filter by exact first name */
                 first_name?: string | null;
+                /** @description Filter by exact last name */
                 last_name?: string | null;
+                /** @description Filter by exact email address */
                 email?: string | null;
+                /** @description Search contacts by name, email, organization, or contact ID. Multiple whitespace-separated terms must all match (as substrings), so a full "First Last" name matches across the separate first- and last-name columns. A contact ID is matched exactly. */
                 search?: string | null;
+                /** @description Filter by country */
                 country?: string | null;
+                /** @description Filter by whether the contact is in use by any domain (true = has domains, false = none) */
                 in_use?: boolean | null;
+                /** @description Filter contacts created after this date */
                 created_after?: Date | null;
+                /** @description Filter contacts created before this date */
                 created_before?: Date | null;
                 /** @description Include additional data in the response. Can be specified multiple times. */
                 include?: components["schemas"]["ContactIncludeField"][] | null;
@@ -22527,9 +22594,13 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["ContactAttributeSetSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Filter by exact TLD (e.g. 'de', '.de', 'DE') */
                 tld?: string | null;
+                /** @description Filter by label (contains, case-insensitive) */
                 label?: string | null;
             };
             header?: {
@@ -23700,20 +23771,33 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["ZoneSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
                 /** @description Filter by user tag IDs. Can be specified multiple times. */
                 tag_ids?: TypeId<"tag">[] | null;
+                /** @description How to combine tag_ids: 'match_any' returns objects with at least one of the tags, 'match_all' returns objects with every tag, 'match_none' returns objects with none of the tags, including objects that carry no user tags at all. Has no effect unless one or more tag_ids are supplied; to filter on whether an object has any user tag, use has_tags. */
                 tag_mode?: components["schemas"]["TagFilterMode"];
+                /** @description true returns only objects that carry at least one user tag, false only objects that carry none. Status tags are not counted. Combines with tag_ids and the other filters. */
                 has_tags?: boolean | null;
+                /** @description Filter by DNSSEC status */
                 dnssec_status?: components["schemas"]["DnssecStatus"] | null;
+                /** @description Filter by exact zone name */
                 name?: string | null;
+                /** @description Search zones by name (contains) */
                 search?: string | null;
+                /** @description Filter zones by TLD/suffix (e.g., 'com', 'io', 'co.uk') */
                 suffix?: string | null;
+                /** @description Filter zones by the vanity nameserver set branding them */
                 vanity_nameserver_set_id?: TypeId<"vns"> | null;
+                /** @description Filter zones created after this date */
                 created_after?: Date | null;
+                /** @description Filter zones created before this date */
                 created_before?: Date | null;
+                /** @description Filter zones updated after this date */
                 updated_after?: Date | null;
+                /** @description Filter zones updated before this date */
                 updated_before?: Date | null;
                 /** @description Include additional data in the response. Can be specified multiple times. */
                 include?: components["schemas"]["ZoneIncludeField"][] | null;
@@ -23810,8 +23894,11 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Search by zone name */
                 search?: string | null;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["DomainForwardZoneSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
             };
             header?: {
@@ -23883,8 +23970,11 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Search by zone name */
                 search?: string | null;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["EmailForwardZoneSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
             };
             header?: {
@@ -24657,8 +24747,11 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Search by hostname */
                 search?: string | null;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["DomainForwardSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
             };
             header?: {
@@ -26608,36 +26701,61 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["DomainSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
                 /** @description Filter by status tag types. Can be specified multiple times. */
                 status_tags?: components["schemas"]["StatusTagType"][] | null;
+                /** @description How to combine status_tags: 'match_any' returns objects with at least one of the tags, 'match_all' returns objects with every tag, 'match_none' returns objects with none of the tags, including objects that carry no status tags at all. Has no effect unless one or more status_tags are supplied. */
                 status_tag_mode?: components["schemas"]["TagFilterMode"];
                 /** @description Filter by user tag IDs. Can be specified multiple times. */
                 tag_ids?: TypeId<"tag">[] | null;
+                /** @description How to combine tag_ids: 'match_any' returns objects with at least one of the tags, 'match_all' returns objects with every tag, 'match_none' returns objects with none of the tags, including objects that carry no user tags at all. Has no effect unless one or more tag_ids are supplied; to filter on whether an object has any user tag, use has_tags. */
                 tag_mode?: components["schemas"]["TagFilterMode"];
+                /** @description true returns only objects that carry at least one user tag, false only objects that carry none. Status tags are not counted. Combines with tag_ids and the other filters. */
                 has_tags?: boolean | null;
+                /** @description Filter by exact domain name */
                 name?: string | null;
+                /** @description Search domains by name (contains) or domain ID (exact match) */
                 search?: string | null;
                 /** @description Filter by top-level domain (e.g., 'com', 'org'). Can be specified multiple times (union of all provided values). */
                 tld?: string[] | null;
+                /** @description Filter by second-level domain */
                 sld?: string | null;
+                /** @description Filter domains whose nameserver hostnames contain this text, e.g. `cloudflare` or `ns1.example.com`. Matches the nameservers the domain currently delegates to. The text is matched literally, so `%` and `_` are not wildcards; a trailing dot on a single label anchors at a label boundary, so `ns1.` matches `ns1.example.com` but not `ns10.example.com`. Unlike the other filters this one reads the nameservers of every domain in scope, so expect a slower response, the more so the larger the portfolio. */
                 nameserver?: string | null;
+                /** @description Filter by transfer lock status */
                 transfer_lock?: boolean | null;
+                /** @description Filter by read-only status */
                 read_only?: boolean | null;
+                /** @description Filter by premium domain status */
                 is_premium?: boolean | null;
+                /** @description Filter domains created after this date */
                 created_after?: Date | null;
+                /** @description Filter domains created before this date */
                 created_before?: Date | null;
+                /** @description Filter domains updated after this date */
                 updated_after?: Date | null;
+                /** @description Filter domains updated before this date */
                 updated_before?: Date | null;
+                /** @description Filter domains expiring after this date */
                 expires_after?: Date | null;
+                /** @description Filter domains expiring before this date */
                 expires_before?: Date | null;
+                /** @description Filter domains expiring within the next 30 days */
                 expires_in_30_days?: boolean | null;
+                /** @description Filter domains expiring within the next 60 days */
                 expires_in_60_days?: boolean | null;
+                /** @description Filter domains expiring within the next 90 days */
                 expires_in_90_days?: boolean | null;
+                /** @description Filter domains registered after this date */
                 registered_after?: Date | null;
+                /** @description Filter domains registered before this date */
                 registered_before?: Date | null;
+                /** @description Filter domains transferred in after this date */
                 transferred_after?: Date | null;
+                /** @description Filter domains transferred in before this date */
                 transferred_before?: Date | null;
                 /** @description Filter domains by registry status. Can be specified multiple times (union of all provided values). */
                 registry_statuses?: string[] | null;
@@ -26888,12 +27006,19 @@ export interface operations {
     get_domain_statistics_v1_domains_statistics_get: {
         parameters: {
             query: {
+                /** @description First day of the window, inclusive (YYYY-MM-DD, UTC) */
                 start_date: string;
+                /** @description Last day of the window, inclusive (YYYY-MM-DD, UTC). How far it may reach depends on `granularity`: at most 92 days for `day`, 371 days for `week`, 396 days for `month`. */
                 end_date: string;
+                /** @description Time-bucket size. Weeks start on Monday and months on the 1st, in UTC. */
                 granularity?: components["schemas"]["UsageGranularity"];
+                /** @description Restrict the counts to one top-level domain, e.g. `com`. */
                 tld?: string | null;
+                /** @description Adds a top-N list to the response: `organization` ranks your organization and its sub-organizations (so it needs `include_sub_organizations=true`), `tld` ranks the top-level domains. */
                 breakdown?: components["schemas"]["DomainStatisticsBreakdown"];
+                /** @description How many rows the breakdown lists. */
                 breakdown_limit?: number;
+                /** @description Count your sub-organizations' domains too. By default only your own organization's domains are counted, as in the domain summary. */
                 include_sub_organizations?: boolean;
             };
             header?: {
@@ -28819,9 +28944,13 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Search by hostname */
                 search?: string | null;
+                /** @description Filter by enabled status */
                 enabled?: boolean | null;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["EmailForwardSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
             };
             header?: {
@@ -29605,7 +29734,9 @@ export interface operations {
     get_email_forward_metrics_v1_email_forwards__email_forward_id__metrics_get: {
         parameters: {
             query?: {
+                /** @description Filter metrics after (RFC3339) */
                 start_time?: Date | null;
+                /** @description Filter metrics before (RFC3339) */
                 end_time?: Date | null;
             };
             header?: {
@@ -29695,12 +29826,19 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["EventSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Filter by */
                 object_type?: components["schemas"]["EventObjectType"] | null;
+                /** @description Filter by specific domain/contact/host name */
                 object_id?: string | null;
+                /** @description Filter by event type */
                 type?: components["schemas"]["EventType"] | null;
+                /** @description Filter by subtype */
                 subtype?: components["schemas"]["EventSubtype"] | null;
+                /** @description Filter by acknowledgment status */
                 acknowledged?: boolean | null;
             };
             header?: {
@@ -31038,9 +31176,13 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["OrganizationSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Search across organization name, address, and city */
                 search?: string | null;
+                /** @description Filter by country code */
                 country_code?: string | null;
             };
             header?: {
@@ -32361,8 +32503,11 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["UserSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Search across username, email, first name, and last name */
                 search?: string | null;
             };
             header?: {
@@ -32949,15 +33094,25 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["BillingTransactionSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Filter by product reference */
                 product_reference?: string | null;
+                /** @description Filter by product type */
                 product_type?: components["schemas"]["BillingTransactionProductType"] | null;
+                /** @description Filter by action */
                 action?: components["schemas"]["BillingTransactionAction"] | null;
+                /** @description Filter by status */
                 status?: components["schemas"]["BillingTransactionStatus"] | null;
+                /** @description Filter by transactions created after this date */
                 created_after?: Date | null;
+                /** @description Filter by transactions created before this date */
                 created_before?: Date | null;
+                /** @description Filter by transactions completed after this date */
                 completed_after?: Date | null;
+                /** @description Filter by transactions completed before this date */
                 completed_before?: Date | null;
             };
             header?: {
@@ -33255,10 +33410,15 @@ export interface operations {
                 page?: number;
                 /** @description Page size */
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["ParkingSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Search parking entries by domain name (contains) */
                 search?: string | null;
+                /** @description Filter by enabled status */
                 enabled?: boolean | null;
+                /** @description Filter by compliance status */
                 compliance_status?: components["schemas"]["ComplianceStatus"] | null;
             };
             header?: {
@@ -33328,7 +33488,9 @@ export interface operations {
     get_total_parking_metrics_v1_parking_metrics_get: {
         parameters: {
             query?: {
+                /** @description Filter metrics after (RFC3339) */
                 start_time?: Date | null;
+                /** @description Filter metrics before (RFC3339) */
                 end_time?: Date | null;
             };
             header?: {
@@ -33536,7 +33698,9 @@ export interface operations {
     get_parking_metrics_v1_parking__parking_reference__metrics_get: {
         parameters: {
             query?: {
+                /** @description Filter metrics after (RFC3339) */
                 start_time?: Date | null;
+                /** @description Filter metrics before (RFC3339) */
                 end_time?: Date | null;
             };
             header?: {
@@ -33782,10 +33946,13 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["TagSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
                 /** @description Filter by tag types (OR semantics) */
                 tag_types?: components["schemas"]["TagType"][] | null;
+                /** @description Search tags by label (contains) */
                 search?: string | null;
             };
             header?: {

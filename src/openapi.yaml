@@ -25000,7 +25000,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-01-130224
+  version: 2026-10-01-204618
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -26316,44 +26316,59 @@ paths:
           title: Email Forward Id
           type: string
           x-typeid-prefix: email_forward
-      - in: query
+      - description: Sort field (log_id, domain, sender_email, recipient_email, forward_email,
+          final_status, created_on, synced_on)
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/EmailForwardLogSortField'
           default: created_on
-      - in: query
+          description: Sort field (log_id, domain, sender_email, recipient_email,
+            forward_email, final_status, created_on, synced_on)
+      - description: Sort order (asc, desc)
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
+          description: Sort order (asc, desc)
+      - description: Records per page
+        in: query
         name: page_size
         required: false
         schema:
           default: 50
+          description: Records per page
           maximum: 1000
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Page number
+        in: query
         name: page
         required: false
         schema:
           default: 1
+          description: Page number
           minimum: 1
           title: Page
           type: integer
-      - in: query
+      - description: Filter by final status (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE,
+          HARD-BOUNCE)
+        in: query
         name: final_status
         required: false
         schema:
           anyOf:
           - $ref: '#/components/schemas/EmailForwardLogStatus'
           - type: 'null'
+          description: Filter by final status (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE,
+            HARD-BOUNCE)
           title: Final Status
-      - in: query
+      - description: Filter logs after (RFC3339)
+        in: query
         name: start_time
         required: false
         schema:
@@ -26361,8 +26376,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter logs after (RFC3339)
           title: Start Time
-      - in: query
+      - description: Filter logs before (RFC3339)
+        in: query
         name: end_time
         required: false
         schema:
@@ -26370,6 +26387,7 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter logs before (RFC3339)
           title: End Time
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -26410,44 +26428,59 @@ paths:
           title: Email Forward Id
           type: string
           x-typeid-prefix: email_forward
-      - in: query
+      - description: Sort field (log_id, domain, sender_email, recipient_email, forward_email,
+          final_status, created_on, synced_on)
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/EmailForwardLogSortField'
           default: created_on
-      - in: query
+          description: Sort field (log_id, domain, sender_email, recipient_email,
+            forward_email, final_status, created_on, synced_on)
+      - description: Sort order (asc, desc)
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
+          description: Sort order (asc, desc)
+      - description: Records per page
+        in: query
         name: page_size
         required: false
         schema:
           default: 50
+          description: Records per page
           maximum: 1000
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Page number
+        in: query
         name: page
         required: false
         schema:
           default: 1
+          description: Page number
           minimum: 1
           title: Page
           type: integer
-      - in: query
+      - description: Filter by final status (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE,
+          HARD-BOUNCE)
+        in: query
         name: final_status
         required: false
         schema:
           anyOf:
           - $ref: '#/components/schemas/EmailForwardLogStatus'
           - type: 'null'
+          description: Filter by final status (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE,
+            HARD-BOUNCE)
           title: Final Status
-      - in: query
+      - description: Filter logs after (RFC3339)
+        in: query
         name: start_time
         required: false
         schema:
@@ -26455,8 +26488,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter logs after (RFC3339)
           title: Start Time
-      - in: query
+      - description: Filter logs before (RFC3339)
+        in: query
         name: end_time
         required: false
         schema:
@@ -26464,6 +26499,7 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter logs before (RFC3339)
           title: End Time
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -26492,84 +26528,107 @@ paths:
       description: Retrieve all paginated audit logs with optional filtering and sorting
       operationId: get_object_logs_v1_archive_object_logs_get
       parameters:
-      - in: query
+      - description: Sort field (object_log_id, object_id, object_type, action, created_on,
+          organization_id, server_request_id, performed_by_type, performed_by_id)
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/ObjectLogSortField'
           default: created_on
-      - in: query
+          description: Sort field (object_log_id, object_id, object_type, action,
+            created_on, organization_id, server_request_id, performed_by_type, performed_by_id)
+      - description: Sort order (asc, desc)
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
+          description: Sort order (asc, desc)
+      - description: Records per page
+        in: query
         name: page_size
         required: false
         schema:
           default: 50
+          description: Records per page
           maximum: 1000
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Page number
+        in: query
         name: page
         required: false
         schema:
           default: 1
+          description: Page number
           minimum: 1
           title: Page
           type: integer
-      - in: query
+      - description: Filter by specific log UUID
+        in: query
         name: object_log_id
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by specific log UUID
           title: Object Log Id
-      - in: query
+      - description: Filter by object type
+        in: query
         name: object_type
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by object type
           title: Object Type
-      - in: query
+      - description: Filter by action
+        in: query
         name: action
         required: false
         schema:
           anyOf:
           - $ref: '#/components/schemas/ObjectEventType'
           - type: 'null'
+          description: Filter by action
           title: Action
-      - in: query
+      - description: Filter by server request ID
+        in: query
         name: server_request_id
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by server request ID
           title: Server Request Id
-      - in: query
+      - description: Filter by performer type
+        in: query
         name: performed_by_type
         required: false
         schema:
           anyOf:
           - $ref: '#/components/schemas/ExecutingEntity'
           - type: 'null'
+          description: Filter by performer type
           title: Performed By Type
-      - in: query
+      - description: Filter by performer ID (TypeID)
+        in: query
         name: performed_by_id
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by performer ID (TypeID)
           title: Performed By Id
-      - in: query
+      - description: 'Upper bound: created_on <= value (RFC3339)'
+        in: query
         name: created_before
         required: false
         schema:
@@ -26577,8 +26636,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: 'Upper bound: created_on <= value (RFC3339)'
           title: Created Before
-      - in: query
+      - description: 'Lower bound: created_on >= value (RFC3339)'
+        in: query
         name: created_after
         required: false
         schema:
@@ -26586,14 +26647,17 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: 'Lower bound: created_on >= value (RFC3339)'
           title: Created After
-      - in: query
+      - description: Filter by object ID (TypeID)
+        in: query
         name: object_id
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by object ID (TypeID)
           title: Object Id
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -26629,84 +26693,107 @@ paths:
         schema:
           title: Object Id
           type: string
-      - in: query
+      - description: Sort field (object_log_id, object_id, object_type, action, created_on,
+          organization_id, server_request_id, performed_by_type, performed_by_id)
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/ObjectLogSortField'
           default: created_on
-      - in: query
+          description: Sort field (object_log_id, object_id, object_type, action,
+            created_on, organization_id, server_request_id, performed_by_type, performed_by_id)
+      - description: Sort order (asc, desc)
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
+          description: Sort order (asc, desc)
+      - description: Records per page
+        in: query
         name: page_size
         required: false
         schema:
           default: 50
+          description: Records per page
           maximum: 1000
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Page number
+        in: query
         name: page
         required: false
         schema:
           default: 1
+          description: Page number
           minimum: 1
           title: Page
           type: integer
-      - in: query
+      - description: Filter by specific log UUID
+        in: query
         name: object_log_id
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by specific log UUID
           title: Object Log Id
-      - in: query
+      - description: Filter by object type
+        in: query
         name: object_type
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by object type
           title: Object Type
-      - in: query
+      - description: Filter by action
+        in: query
         name: action
         required: false
         schema:
           anyOf:
           - $ref: '#/components/schemas/ObjectEventType'
           - type: 'null'
+          description: Filter by action
           title: Action
-      - in: query
+      - description: Filter by server request ID
+        in: query
         name: server_request_id
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by server request ID
           title: Server Request Id
-      - in: query
+      - description: Filter by performer type
+        in: query
         name: performed_by_type
         required: false
         schema:
           anyOf:
           - $ref: '#/components/schemas/ExecutingEntity'
           - type: 'null'
+          description: Filter by performer type
           title: Performed By Type
-      - in: query
+      - description: Filter by performer ID (TypeID)
+        in: query
         name: performed_by_id
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by performer ID (TypeID)
           title: Performed By Id
-      - in: query
+      - description: 'Upper bound: created_on <= value (RFC3339)'
+        in: query
         name: created_before
         required: false
         schema:
@@ -26714,8 +26801,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: 'Upper bound: created_on <= value (RFC3339)'
           title: Created Before
-      - in: query
+      - description: 'Lower bound: created_on >= value (RFC3339)'
+        in: query
         name: created_after
         required: false
         schema:
@@ -26723,6 +26812,7 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: 'Lower bound: created_on >= value (RFC3339)'
           title: Created After
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -26751,18 +26841,26 @@ paths:
       description: Retrieves a paginated list of request history logs
       operationId: get_request_history_v1_archive_request_history_get
       parameters:
-      - in: query
+      - description: Sort field (request_history_id, method, path, status_code, duration,
+          client_ip, server_request_id, performed_by_type, performed_by_id, created_on,
+          request_started_at, request_completed_at, organization_id)
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/RequestHistorySortField'
           default: created_on
-      - in: query
+          description: Sort field (request_history_id, method, path, status_code,
+            duration, client_ip, server_request_id, performed_by_type, performed_by_id,
+            created_on, request_started_at, request_completed_at, organization_id)
+      - description: Sort order (asc, desc)
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+          description: Sort order (asc, desc)
       - in: query
         name: page_size
         required: false
@@ -26780,63 +26878,78 @@ paths:
           minimum: 1
           title: Page
           type: integer
-      - in: query
+      - description: HTTP method filter (GET, POST, etc.)
+        in: query
         name: method
         required: false
         schema:
           anyOf:
           - $ref: '#/components/schemas/HTTPMethod'
           - type: 'null'
+          description: HTTP method filter (GET, POST, etc.)
           title: Method
-      - in: query
+      - description: Path filter (supports LIKE queries)
+        in: query
         name: path
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Path filter (supports LIKE queries)
           title: Path
-      - in: query
+      - description: Exact status code filter
+        in: query
         name: status_code
         required: false
         schema:
           anyOf:
           - type: integer
           - type: 'null'
+          description: Exact status code filter
           title: Status Code
-      - in: query
+      - description: Minimum status code filter
+        in: query
         name: min_status_code
         required: false
         schema:
           anyOf:
           - type: integer
           - type: 'null'
+          description: Minimum status code filter
           title: Min Status Code
-      - in: query
+      - description: Maximum status code filter
+        in: query
         name: max_status_code
         required: false
         schema:
           anyOf:
           - type: integer
           - type: 'null'
+          description: Maximum status code filter
           title: Max Status Code
-      - in: query
+      - description: Minimum duration in milliseconds
+        in: query
         name: min_duration
         required: false
         schema:
           anyOf:
           - type: number
           - type: 'null'
+          description: Minimum duration in milliseconds
           title: Min Duration
-      - in: query
+      - description: Maximum duration in milliseconds
+        in: query
         name: max_duration
         required: false
         schema:
           anyOf:
           - type: number
           - type: 'null'
+          description: Maximum duration in milliseconds
           title: Max Duration
-      - in: query
+      - description: Client IP address filter
+        in: query
         name: client_ip
         required: false
         schema:
@@ -26844,32 +26957,40 @@ paths:
           - format: ipvanyaddress
             type: string
           - type: 'null'
+          description: Client IP address filter
           title: Client Ip
-      - in: query
+      - description: Server request ID filter
+        in: query
         name: server_request_id
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Server request ID filter
           title: Server Request Id
-      - in: query
+      - description: Performed by type filter
+        in: query
         name: performed_by_type
         required: false
         schema:
           anyOf:
           - $ref: '#/components/schemas/ExecutingEntity'
           - type: 'null'
+          description: Performed by type filter
           title: Performed By Type
-      - in: query
+      - description: Performed by ID filter
+        in: query
         name: performed_by_id
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Performed by ID filter
           title: Performed By Id
-      - in: query
+      - description: 'Upper bound: request_started_at <= value (RFC3339)'
+        in: query
         name: request_started_before
         required: false
         schema:
@@ -26877,8 +26998,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: 'Upper bound: request_started_at <= value (RFC3339)'
           title: Request Started Before
-      - in: query
+      - description: 'Lower bound: request_started_at >= value (RFC3339)'
+        in: query
         name: request_started_after
         required: false
         schema:
@@ -26886,6 +27009,7 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: 'Lower bound: request_started_at >= value (RFC3339)'
           title: Request Started After
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -27271,18 +27395,22 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Field to sort by
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/ContactSortField'
           default: created_on
-      - in: query
+          description: Field to sort by
+      - description: Sort order direction
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+          description: Sort order direction
       - description: Filter by contact status tag types. Can be specified multiple
           times.
         in: query
@@ -27297,12 +27425,22 @@ paths:
           description: Filter by contact status tag types. Can be specified multiple
             times.
           title: Status Tags
-      - in: query
+      - description: 'How to combine status_tags: ''match_any'' returns objects with
+          at least one of the tags, ''match_all'' returns objects with every tag,
+          ''match_none'' returns objects with none of the tags, including objects
+          that carry no status tags at all. Has no effect unless one or more status_tags
+          are supplied.'
+        in: query
         name: status_tag_mode
         required: false
         schema:
           $ref: '#/components/schemas/TagFilterMode'
           default: match_any
+          description: 'How to combine status_tags: ''match_any'' returns objects
+            with at least one of the tags, ''match_all'' returns objects with every
+            tag, ''match_none'' returns objects with none of the tags, including objects
+            that carry no status tags at all. Has no effect unless one or more status_tags
+            are supplied.'
       - description: Filter by user tag IDs. Can be specified multiple times.
         in: query
         name: tag_ids
@@ -27320,69 +27458,106 @@ paths:
           - type: 'null'
           description: Filter by user tag IDs. Can be specified multiple times.
           title: Tag Ids
-      - in: query
+      - description: 'How to combine tag_ids: ''match_any'' returns objects with at
+          least one of the tags, ''match_all'' returns objects with every tag, ''match_none''
+          returns objects with none of the tags, including objects that carry no user
+          tags at all. Has no effect unless one or more tag_ids are supplied; to filter
+          on whether an object has any user tag, use has_tags.'
+        in: query
         name: tag_mode
         required: false
         schema:
           $ref: '#/components/schemas/TagFilterMode'
           default: match_any
-      - in: query
+          description: 'How to combine tag_ids: ''match_any'' returns objects with
+            at least one of the tags, ''match_all'' returns objects with every tag,
+            ''match_none'' returns objects with none of the tags, including objects
+            that carry no user tags at all. Has no effect unless one or more tag_ids
+            are supplied; to filter on whether an object has any user tag, use has_tags.'
+      - description: true returns only objects that carry at least one user tag, false
+          only objects that carry none. Status tags are not counted. Combines with
+          tag_ids and the other filters.
+        in: query
         name: has_tags
         required: false
         schema:
           anyOf:
           - type: boolean
           - type: 'null'
+          description: true returns only objects that carry at least one user tag,
+            false only objects that carry none. Status tags are not counted. Combines
+            with tag_ids and the other filters.
           title: Has Tags
-      - in: query
+      - description: Filter by exact first name
+        in: query
         name: first_name
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by exact first name
           title: First Name
-      - in: query
+      - description: Filter by exact last name
+        in: query
         name: last_name
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by exact last name
           title: Last Name
-      - in: query
+      - description: Filter by exact email address
+        in: query
         name: email
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by exact email address
           title: Email
-      - in: query
+      - description: Search contacts by name, email, organization, or contact ID.
+          Multiple whitespace-separated terms must all match (as substrings), so a
+          full "First Last" name matches across the separate first- and last-name
+          columns. A contact ID is matched exactly.
+        in: query
         name: search
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Search contacts by name, email, organization, or contact ID.
+            Multiple whitespace-separated terms must all match (as substrings), so
+            a full "First Last" name matches across the separate first- and last-name
+            columns. A contact ID is matched exactly.
           title: Search
-      - in: query
+      - description: Filter by country
+        in: query
         name: country
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by country
           title: Country
-      - in: query
+      - description: Filter by whether the contact is in use by any domain (true =
+          has domains, false = none)
+        in: query
         name: in_use
         required: false
         schema:
           anyOf:
           - type: boolean
           - type: 'null'
+          description: Filter by whether the contact is in use by any domain (true
+            = has domains, false = none)
           title: In Use
-      - in: query
+      - description: Filter contacts created after this date
+        in: query
         name: created_after
         required: false
         schema:
@@ -27390,8 +27565,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter contacts created after this date
           title: Created After
-      - in: query
+      - description: Filter contacts created before this date
+        in: query
         name: created_before
         required: false
         schema:
@@ -27399,6 +27576,7 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter contacts created before this date
           title: Created Before
       - description: Include additional data in the response. Can be specified multiple
           times.
@@ -27511,33 +27689,41 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Field to sort by
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/ContactAttributeSetSortField'
           default: created_on
-      - in: query
+          description: Field to sort by
+      - description: Sort order direction
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
+          description: Sort order direction
+      - description: Filter by exact TLD (e.g. 'de', '.de', 'DE')
+        in: query
         name: tld
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by exact TLD (e.g. 'de', '.de', 'DE')
           title: Tld
-      - in: query
+      - description: Filter by label (contains, case-insensitive)
+        in: query
         name: label
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by label (contains, case-insensitive)
           title: Label
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -28622,18 +28808,22 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Field to sort by
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/ZoneSortField'
           default: created_on
-      - in: query
+          description: Field to sort by
+      - description: Sort order direction
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+          description: Sort order direction
       - description: Filter by user tag IDs. Can be specified multiple times.
         in: query
         name: tag_ids
@@ -28651,53 +28841,78 @@ paths:
           - type: 'null'
           description: Filter by user tag IDs. Can be specified multiple times.
           title: Tag Ids
-      - in: query
+      - description: 'How to combine tag_ids: ''match_any'' returns objects with at
+          least one of the tags, ''match_all'' returns objects with every tag, ''match_none''
+          returns objects with none of the tags, including objects that carry no user
+          tags at all. Has no effect unless one or more tag_ids are supplied; to filter
+          on whether an object has any user tag, use has_tags.'
+        in: query
         name: tag_mode
         required: false
         schema:
           $ref: '#/components/schemas/TagFilterMode'
           default: match_any
-      - in: query
+          description: 'How to combine tag_ids: ''match_any'' returns objects with
+            at least one of the tags, ''match_all'' returns objects with every tag,
+            ''match_none'' returns objects with none of the tags, including objects
+            that carry no user tags at all. Has no effect unless one or more tag_ids
+            are supplied; to filter on whether an object has any user tag, use has_tags.'
+      - description: true returns only objects that carry at least one user tag, false
+          only objects that carry none. Status tags are not counted. Combines with
+          tag_ids and the other filters.
+        in: query
         name: has_tags
         required: false
         schema:
           anyOf:
           - type: boolean
           - type: 'null'
+          description: true returns only objects that carry at least one user tag,
+            false only objects that carry none. Status tags are not counted. Combines
+            with tag_ids and the other filters.
           title: Has Tags
-      - in: query
+      - description: Filter by DNSSEC status
+        in: query
         name: dnssec_status
         required: false
         schema:
           anyOf:
           - $ref: '#/components/schemas/DnssecStatus'
           - type: 'null'
+          description: Filter by DNSSEC status
           title: Dnssec Status
-      - in: query
+      - description: Filter by exact zone name
+        in: query
         name: name
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by exact zone name
           title: Name
-      - in: query
+      - description: Search zones by name (contains)
+        in: query
         name: search
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Search zones by name (contains)
           title: Search
-      - in: query
+      - description: Filter zones by TLD/suffix (e.g., 'com', 'io', 'co.uk')
+        in: query
         name: suffix
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter zones by TLD/suffix (e.g., 'com', 'io', 'co.uk')
           title: Suffix
-      - in: query
+      - description: Filter zones by the vanity nameserver set branding them
+        in: query
         name: vanity_nameserver_set_id
         required: false
         schema:
@@ -28709,8 +28924,10 @@ paths:
             type: string
             x-typeid-prefix: vns
           - type: 'null'
+          description: Filter zones by the vanity nameserver set branding them
           title: Vanity Nameserver Set Id
-      - in: query
+      - description: Filter zones created after this date
+        in: query
         name: created_after
         required: false
         schema:
@@ -28718,8 +28935,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter zones created after this date
           title: Created After
-      - in: query
+      - description: Filter zones created before this date
+        in: query
         name: created_before
         required: false
         schema:
@@ -28727,8 +28946,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter zones created before this date
           title: Created Before
-      - in: query
+      - description: Filter zones updated after this date
+        in: query
         name: updated_after
         required: false
         schema:
@@ -28736,8 +28957,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter zones updated after this date
           title: Updated After
-      - in: query
+      - description: Filter zones updated before this date
+        in: query
         name: updated_before
         required: false
         schema:
@@ -28745,6 +28968,7 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter zones updated before this date
           title: Updated Before
       - description: Include additional data in the response. Can be specified multiple
           times.
@@ -29133,26 +29357,32 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Search by zone name
+        in: query
         name: search
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Search by zone name
           title: Search
-      - in: query
+      - description: Field to sort by
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/DomainForwardZoneSortField'
           default: created_on
-      - in: query
+          description: Field to sort by
+      - description: Sort order direction
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+          description: Sort order direction
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
@@ -29255,26 +29485,32 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Search by zone name
+        in: query
         name: search
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Search by zone name
           title: Search
-      - in: query
+      - description: Field to sort by
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/EmailForwardZoneSortField'
           default: created_on
-      - in: query
+          description: Field to sort by
+      - description: Sort order direction
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+          description: Sort order direction
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
@@ -30381,26 +30617,32 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Search by hostname
+        in: query
         name: search
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Search by hostname
           title: Search
-      - in: query
+      - description: Field to sort by
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/DomainForwardSortField'
           default: created_on
-      - in: query
+          description: Field to sort by
+      - description: Sort order direction
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+          description: Sort order direction
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
@@ -33010,18 +33252,22 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Field to sort by
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/DomainSortField'
           default: created_on
-      - in: query
+          description: Field to sort by
+      - description: Sort order direction
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+          description: Sort order direction
       - description: Filter by status tag types. Can be specified multiple times.
         in: query
         name: status_tags
@@ -33034,12 +33280,22 @@ paths:
           - type: 'null'
           description: Filter by status tag types. Can be specified multiple times.
           title: Status Tags
-      - in: query
+      - description: 'How to combine status_tags: ''match_any'' returns objects with
+          at least one of the tags, ''match_all'' returns objects with every tag,
+          ''match_none'' returns objects with none of the tags, including objects
+          that carry no status tags at all. Has no effect unless one or more status_tags
+          are supplied.'
+        in: query
         name: status_tag_mode
         required: false
         schema:
           $ref: '#/components/schemas/TagFilterMode'
           default: match_any
+          description: 'How to combine status_tags: ''match_any'' returns objects
+            with at least one of the tags, ''match_all'' returns objects with every
+            tag, ''match_none'' returns objects with none of the tags, including objects
+            that carry no status tags at all. Has no effect unless one or more status_tags
+            are supplied.'
       - description: Filter by user tag IDs. Can be specified multiple times.
         in: query
         name: tag_ids
@@ -33057,35 +33313,55 @@ paths:
           - type: 'null'
           description: Filter by user tag IDs. Can be specified multiple times.
           title: Tag Ids
-      - in: query
+      - description: 'How to combine tag_ids: ''match_any'' returns objects with at
+          least one of the tags, ''match_all'' returns objects with every tag, ''match_none''
+          returns objects with none of the tags, including objects that carry no user
+          tags at all. Has no effect unless one or more tag_ids are supplied; to filter
+          on whether an object has any user tag, use has_tags.'
+        in: query
         name: tag_mode
         required: false
         schema:
           $ref: '#/components/schemas/TagFilterMode'
           default: match_any
-      - in: query
+          description: 'How to combine tag_ids: ''match_any'' returns objects with
+            at least one of the tags, ''match_all'' returns objects with every tag,
+            ''match_none'' returns objects with none of the tags, including objects
+            that carry no user tags at all. Has no effect unless one or more tag_ids
+            are supplied; to filter on whether an object has any user tag, use has_tags.'
+      - description: true returns only objects that carry at least one user tag, false
+          only objects that carry none. Status tags are not counted. Combines with
+          tag_ids and the other filters.
+        in: query
         name: has_tags
         required: false
         schema:
           anyOf:
           - type: boolean
           - type: 'null'
+          description: true returns only objects that carry at least one user tag,
+            false only objects that carry none. Status tags are not counted. Combines
+            with tag_ids and the other filters.
           title: Has Tags
-      - in: query
+      - description: Filter by exact domain name
+        in: query
         name: name
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by exact domain name
           title: Name
-      - in: query
+      - description: Search domains by name (contains) or domain ID (exact match)
+        in: query
         name: search
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Search domains by name (contains) or domain ID (exact match)
           title: Search
       - description: Filter by top-level domain (e.g., 'com', 'org'). Can be specified
           multiple times (union of all provided values).
@@ -33101,47 +33377,70 @@ paths:
           description: Filter by top-level domain (e.g., 'com', 'org'). Can be specified
             multiple times (union of all provided values).
           title: Tld
-      - in: query
+      - description: Filter by second-level domain
+        in: query
         name: sld
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by second-level domain
           title: Sld
-      - in: query
+      - description: Filter domains whose nameserver hostnames contain this text,
+          e.g. `cloudflare` or `ns1.example.com`. Matches the nameservers the domain
+          currently delegates to. The text is matched literally, so `%` and `_` are
+          not wildcards; a trailing dot on a single label anchors at a label boundary,
+          so `ns1.` matches `ns1.example.com` but not `ns10.example.com`. Unlike the
+          other filters this one reads the nameservers of every domain in scope, so
+          expect a slower response, the more so the larger the portfolio.
+        in: query
         name: nameserver
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter domains whose nameserver hostnames contain this text,
+            e.g. `cloudflare` or `ns1.example.com`. Matches the nameservers the domain
+            currently delegates to. The text is matched literally, so `%` and `_`
+            are not wildcards; a trailing dot on a single label anchors at a label
+            boundary, so `ns1.` matches `ns1.example.com` but not `ns10.example.com`.
+            Unlike the other filters this one reads the nameservers of every domain
+            in scope, so expect a slower response, the more so the larger the portfolio.
           title: Nameserver
-      - in: query
+      - description: Filter by transfer lock status
+        in: query
         name: transfer_lock
         required: false
         schema:
           anyOf:
           - type: boolean
           - type: 'null'
+          description: Filter by transfer lock status
           title: Transfer Lock
-      - in: query
+      - description: Filter by read-only status
+        in: query
         name: read_only
         required: false
         schema:
           anyOf:
           - type: boolean
           - type: 'null'
+          description: Filter by read-only status
           title: Read Only
-      - in: query
+      - description: Filter by premium domain status
+        in: query
         name: is_premium
         required: false
         schema:
           anyOf:
           - type: boolean
           - type: 'null'
+          description: Filter by premium domain status
           title: Is Premium
-      - in: query
+      - description: Filter domains created after this date
+        in: query
         name: created_after
         required: false
         schema:
@@ -33149,8 +33448,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter domains created after this date
           title: Created After
-      - in: query
+      - description: Filter domains created before this date
+        in: query
         name: created_before
         required: false
         schema:
@@ -33158,8 +33459,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter domains created before this date
           title: Created Before
-      - in: query
+      - description: Filter domains updated after this date
+        in: query
         name: updated_after
         required: false
         schema:
@@ -33167,8 +33470,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter domains updated after this date
           title: Updated After
-      - in: query
+      - description: Filter domains updated before this date
+        in: query
         name: updated_before
         required: false
         schema:
@@ -33176,8 +33481,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter domains updated before this date
           title: Updated Before
-      - in: query
+      - description: Filter domains expiring after this date
+        in: query
         name: expires_after
         required: false
         schema:
@@ -33185,8 +33492,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter domains expiring after this date
           title: Expires After
-      - in: query
+      - description: Filter domains expiring before this date
+        in: query
         name: expires_before
         required: false
         schema:
@@ -33194,32 +33503,40 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter domains expiring before this date
           title: Expires Before
-      - in: query
+      - description: Filter domains expiring within the next 30 days
+        in: query
         name: expires_in_30_days
         required: false
         schema:
           anyOf:
           - type: boolean
           - type: 'null'
+          description: Filter domains expiring within the next 30 days
           title: Expires In 30 Days
-      - in: query
+      - description: Filter domains expiring within the next 60 days
+        in: query
         name: expires_in_60_days
         required: false
         schema:
           anyOf:
           - type: boolean
           - type: 'null'
+          description: Filter domains expiring within the next 60 days
           title: Expires In 60 Days
-      - in: query
+      - description: Filter domains expiring within the next 90 days
+        in: query
         name: expires_in_90_days
         required: false
         schema:
           anyOf:
           - type: boolean
           - type: 'null'
+          description: Filter domains expiring within the next 90 days
           title: Expires In 90 Days
-      - in: query
+      - description: Filter domains registered after this date
+        in: query
         name: registered_after
         required: false
         schema:
@@ -33227,8 +33544,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter domains registered after this date
           title: Registered After
-      - in: query
+      - description: Filter domains registered before this date
+        in: query
         name: registered_before
         required: false
         schema:
@@ -33236,8 +33555,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter domains registered before this date
           title: Registered Before
-      - in: query
+      - description: Filter domains transferred in after this date
+        in: query
         name: transferred_after
         required: false
         schema:
@@ -33245,8 +33566,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter domains transferred in after this date
           title: Transferred After
-      - in: query
+      - description: Filter domains transferred in before this date
+        in: query
         name: transferred_before
         required: false
         schema:
@@ -33254,6 +33577,7 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter domains transferred in before this date
           title: Transferred Before
       - description: Filter domains by registry status. Can be specified multiple
           times (union of all provided values).
@@ -33663,54 +33987,80 @@ paths:
         zero.'
       operationId: get_domain_statistics_v1_domains_statistics_get
       parameters:
-      - in: query
+      - description: First day of the window, inclusive (YYYY-MM-DD, UTC)
+        in: query
         name: start_date
         required: true
         schema:
+          description: First day of the window, inclusive (YYYY-MM-DD, UTC)
           format: date
           title: Start Date
           type: string
-      - in: query
+      - description: 'Last day of the window, inclusive (YYYY-MM-DD, UTC). How far
+          it may reach depends on `granularity`: at most 92 days for `day`, 371 days
+          for `week`, 396 days for `month`.'
+        in: query
         name: end_date
         required: true
         schema:
+          description: 'Last day of the window, inclusive (YYYY-MM-DD, UTC). How far
+            it may reach depends on `granularity`: at most 92 days for `day`, 371
+            days for `week`, 396 days for `month`.'
           format: date
           title: End Date
           type: string
-      - in: query
+      - description: Time-bucket size. Weeks start on Monday and months on the 1st,
+          in UTC.
+        in: query
         name: granularity
         required: false
         schema:
           $ref: '#/components/schemas/UsageGranularity'
           default: day
-      - in: query
+          description: Time-bucket size. Weeks start on Monday and months on the 1st,
+            in UTC.
+      - description: Restrict the counts to one top-level domain, e.g. `com`.
+        in: query
         name: tld
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Restrict the counts to one top-level domain, e.g. `com`.
           title: Tld
-      - in: query
+      - description: 'Adds a top-N list to the response: `organization` ranks your
+          organization and its sub-organizations (so it needs `include_sub_organizations=true`),
+          `tld` ranks the top-level domains.'
+        in: query
         name: breakdown
         required: false
         schema:
           $ref: '#/components/schemas/DomainStatisticsBreakdown'
           default: none
-      - in: query
+          description: 'Adds a top-N list to the response: `organization` ranks your
+            organization and its sub-organizations (so it needs `include_sub_organizations=true`),
+            `tld` ranks the top-level domains.'
+      - description: How many rows the breakdown lists.
+        in: query
         name: breakdown_limit
         required: false
         schema:
           default: 10
+          description: How many rows the breakdown lists.
           maximum: 50
           minimum: 1
           title: Breakdown Limit
           type: integer
-      - in: query
+      - description: Count your sub-organizations' domains too. By default only your
+          own organization's domains are counted, as in the domain summary.
+        in: query
         name: include_sub_organizations
         required: false
         schema:
           default: false
+          description: Count your sub-organizations' domains too. By default only
+            your own organization's domains are counted, as in the domain summary.
           title: Include Sub Organizations
           type: boolean
       - $ref: '#/components/parameters/DatetimeFormatHeader'
@@ -35740,34 +36090,42 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Search by hostname
+        in: query
         name: search
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Search by hostname
           title: Search
-      - in: query
+      - description: Filter by enabled status
+        in: query
         name: enabled
         required: false
         schema:
           anyOf:
           - type: boolean
           - type: 'null'
+          description: Filter by enabled status
           title: Enabled
-      - in: query
+      - description: Field to sort by
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/EmailForwardSortField'
           default: created_on
-      - in: query
+          description: Field to sort by
+      - description: Sort order direction
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+          description: Sort order direction
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
@@ -36632,7 +36990,8 @@ paths:
           title: Email Forward Id
           type: string
           x-typeid-prefix: email_forward
-      - in: query
+      - description: Filter metrics after (RFC3339)
+        in: query
         name: start_time
         required: false
         schema:
@@ -36640,8 +36999,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter metrics after (RFC3339)
           title: Start Time
-      - in: query
+      - description: Filter metrics before (RFC3339)
+        in: query
         name: end_time
         required: false
         schema:
@@ -36649,6 +37010,7 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter metrics before (RFC3339)
           title: End Time
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -36730,51 +37092,64 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Field to sort by
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/EventSortField'
           default: created_on
-      - in: query
+          description: Field to sort by
+      - description: Sort order direction
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
+          description: Sort order direction
+      - description: Filter by
+        in: query
         name: object_type
         required: false
         schema:
           anyOf:
           - $ref: '#/components/schemas/EventObjectType'
           - type: 'null'
+          description: Filter by
           title: Object Type
-      - in: query
+      - description: Filter by specific domain/contact/host name
+        in: query
         name: object_id
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Filter by specific domain/contact/host name
           title: Object Id
-      - in: query
+      - description: Filter by event type
+        in: query
         name: type
         required: false
         schema:
           anyOf:
           - $ref: '#/components/schemas/EventType'
           - type: 'null'
+          description: Filter by event type
           title: Type
-      - in: query
+      - description: Filter by subtype
+        in: query
         name: subtype
         required: false
         schema:
           anyOf:
           - $ref: '#/components/schemas/EventSubtype'
           - type: 'null'
+          description: Filter by subtype
           title: Subtype
-      - in: query
+      - description: Filter by acknowledgment status
+        in: query
         name: acknowledged
         required: false
         schema:
@@ -36782,6 +37157,7 @@ paths:
           - type: boolean
           - type: 'null'
           default: false
+          description: Filter by acknowledgment status
           title: Acknowledged
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -38776,19 +39152,24 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Field to sort by
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/OrganizationSortField'
           default: created_on
-      - in: query
+          description: Field to sort by
+      - description: Sort order direction
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
+          description: Sort order direction
+      - description: Search across organization name, address, and city
+        in: query
         name: search
         required: false
         schema:
@@ -38796,8 +39177,10 @@ paths:
           - maxLength: 200
             type: string
           - type: 'null'
+          description: Search across organization name, address, and city
           title: Search
-      - in: query
+      - description: Filter by country code
+        in: query
         name: country_code
         required: false
         schema:
@@ -38805,6 +39188,7 @@ paths:
           - pattern: ^\w{2}$
             type: string
           - type: 'null'
+          description: Filter by country code
           title: Country Code
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -39943,19 +40327,24 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Field to sort by
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/UserSortField'
           default: created_on
-      - in: query
+          description: Field to sort by
+      - description: Sort order direction
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
+          description: Sort order direction
+      - description: Search across username, email, first name, and last name
+        in: query
         name: search
         required: false
         schema:
@@ -39963,6 +40352,7 @@ paths:
           - maxLength: 200
             type: string
           - type: 'null'
+          description: Search across username, email, first name, and last name
           title: Search
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -40579,19 +40969,24 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Field to sort by
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/BillingTransactionSortField'
           default: created_on
-      - in: query
+          description: Field to sort by
+      - description: Sort order direction
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
+          description: Sort order direction
+      - description: Filter by product reference
+        in: query
         name: product_reference
         required: false
         schema:
@@ -40600,32 +40995,40 @@ paths:
             minLength: 1
             type: string
           - type: 'null'
+          description: Filter by product reference
           title: Product Reference
-      - in: query
+      - description: Filter by product type
+        in: query
         name: product_type
         required: false
         schema:
           anyOf:
           - $ref: '#/components/schemas/BillingTransactionProductType'
           - type: 'null'
+          description: Filter by product type
           title: Product Type
-      - in: query
+      - description: Filter by action
+        in: query
         name: action
         required: false
         schema:
           anyOf:
           - $ref: '#/components/schemas/BillingTransactionAction'
           - type: 'null'
+          description: Filter by action
           title: Action
-      - in: query
+      - description: Filter by status
+        in: query
         name: status
         required: false
         schema:
           anyOf:
           - $ref: '#/components/schemas/BillingTransactionStatus'
           - type: 'null'
+          description: Filter by status
           title: Status
-      - in: query
+      - description: Filter by transactions created after this date
+        in: query
         name: created_after
         required: false
         schema:
@@ -40633,8 +41036,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter by transactions created after this date
           title: Created After
-      - in: query
+      - description: Filter by transactions created before this date
+        in: query
         name: created_before
         required: false
         schema:
@@ -40642,8 +41047,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter by transactions created before this date
           title: Created Before
-      - in: query
+      - description: Filter by transactions completed after this date
+        in: query
         name: completed_after
         required: false
         schema:
@@ -40651,8 +41058,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter by transactions completed after this date
           title: Completed After
-      - in: query
+      - description: Filter by transactions completed before this date
+        in: query
         name: completed_before
         required: false
         schema:
@@ -40660,6 +41069,7 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter by transactions completed before this date
           title: Completed Before
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -40989,41 +41399,51 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Field to sort by
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/ParkingSortField'
           default: created_on
-      - in: query
+          description: Field to sort by
+      - description: Sort order direction
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
+          description: Sort order direction
+      - description: Search parking entries by domain name (contains)
+        in: query
         name: search
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Search parking entries by domain name (contains)
           title: Search
-      - in: query
+      - description: Filter by enabled status
+        in: query
         name: enabled
         required: false
         schema:
           anyOf:
           - type: boolean
           - type: 'null'
+          description: Filter by enabled status
           title: Enabled
-      - in: query
+      - description: Filter by compliance status
+        in: query
         name: compliance_status
         required: false
         schema:
           anyOf:
           - $ref: '#/components/schemas/ComplianceStatus'
           - type: 'null'
+          description: Filter by compliance status
           title: Compliance Status
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -41076,7 +41496,8 @@ paths:
       description: Retrieves aggregated metrics for all parking entries of the organization.
       operationId: get_total_parking_metrics_v1_parking_metrics_get
       parameters:
-      - in: query
+      - description: Filter metrics after (RFC3339)
+        in: query
         name: start_time
         required: false
         schema:
@@ -41084,8 +41505,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter metrics after (RFC3339)
           title: Start Time
-      - in: query
+      - description: Filter metrics before (RFC3339)
+        in: query
         name: end_time
         required: false
         schema:
@@ -41093,6 +41516,7 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter metrics before (RFC3339)
           title: End Time
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -41267,7 +41691,8 @@ paths:
             x-typeid-prefix: parking
           - type: string
           title: Parking Reference
-      - in: query
+      - description: Filter metrics after (RFC3339)
+        in: query
         name: start_time
         required: false
         schema:
@@ -41275,8 +41700,10 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter metrics after (RFC3339)
           title: Start Time
-      - in: query
+      - description: Filter metrics before (RFC3339)
+        in: query
         name: end_time
         required: false
         schema:
@@ -41284,6 +41711,7 @@ paths:
           - format: date-time
             type: string
           - type: 'null'
+          description: Filter metrics before (RFC3339)
           title: End Time
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -41549,18 +41977,22 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
-      - in: query
+      - description: Field to sort by
+        in: query
         name: sort_by
         required: false
         schema:
           $ref: '#/components/schemas/TagSortField'
           default: label
-      - in: query
+          description: Field to sort by
+      - description: Sort order direction
+        in: query
         name: sort_order
         required: false
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: asc
+          description: Sort order direction
       - description: Filter by tag types (OR semantics)
         in: query
         name: tag_types
@@ -41573,13 +42005,15 @@ paths:
           - type: 'null'
           description: Filter by tag types (OR semantics)
           title: Tag Types
-      - in: query
+      - description: Search tags by label (contains)
+        in: query
         name: search
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
+          description: Search tags by label (contains)
           title: Search
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
