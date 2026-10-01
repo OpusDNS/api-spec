@@ -48,7 +48,7 @@
 | Property | Value |
 | --- | --- |
 | Domain Length | 2–63 characters |
-| IDN Support | ❌ No |
+| IDN Support | ✅ Yes (1 tables) |
 | Premium Domains | ❌ No |
 | Reserved Domains | ❌ No |
 | Registry Lock | ❌ No |
@@ -62,7 +62,7 @@
 | Thick WHOIS | ✅ Yes |
 | Privacy Proxy Allowed | ❌ No |
 | Contacts Transferable | ❌ No |
-| Allowed Postal Types | International |
+| Allowed Postal Types | International, Local |
 | AuthInfo Required | ✅ Yes (1–255 characters) |
 
 ## Nameservers & DNS
@@ -81,7 +81,7 @@
 
 | Property | Value |
 | --- | --- |
-| Transfer Lock Enabled | ✅ Yes (0 days after registration; 0 days after transfer) |
+| Transfer Lock Enabled | ❌ No |
 | Transfer Duration | 0 days |
 | Transfer Extends Domain | ❌ No |
 | Transfer via AuthInfo | ❌ No |

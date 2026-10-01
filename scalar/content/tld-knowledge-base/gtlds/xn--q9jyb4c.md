@@ -49,7 +49,7 @@
 
 | Property | Value |
 | --- | --- |
-| Domain Length | 3–15 characters |
+| Domain Length | 3–63 characters |
 | IDN Support | ✅ Yes |
 | Premium Domains | ✅ Yes |
 | Reserved Domains | ✅ Yes |
