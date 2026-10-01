@@ -22417,6 +22417,7 @@ export interface operations {
                 /** @description Filter by user tag IDs. Can be specified multiple times. */
                 tag_ids?: TypeId<"tag">[] | null;
                 tag_mode?: components["schemas"]["TagFilterMode"];
+                has_tags?: boolean | null;
                 first_name?: string | null;
                 last_name?: string | null;
                 email?: string | null;
@@ -23682,6 +23683,7 @@ export interface operations {
                 /** @description Filter by user tag IDs. Can be specified multiple times. */
                 tag_ids?: TypeId<"tag">[] | null;
                 tag_mode?: components["schemas"]["TagFilterMode"];
+                has_tags?: boolean | null;
                 dnssec_status?: components["schemas"]["DnssecStatus"] | null;
                 name?: string | null;
                 search?: string | null;
@@ -26592,6 +26594,7 @@ export interface operations {
                 /** @description Filter by user tag IDs. Can be specified multiple times. */
                 tag_ids?: TypeId<"tag">[] | null;
                 tag_mode?: components["schemas"]["TagFilterMode"];
+                has_tags?: boolean | null;
                 name?: string | null;
                 search?: string | null;
                 /** @description Filter by top-level domain (e.g., 'com', 'org'). Can be specified multiple times (union of all provided values). */

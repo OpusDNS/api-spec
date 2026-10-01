@@ -24969,7 +24969,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-09-30-221011
+  version: 2026-10-01-020708
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -27294,6 +27294,14 @@ paths:
           $ref: '#/components/schemas/TagFilterMode'
           default: match_any
       - in: query
+        name: has_tags
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Has Tags
+      - in: query
         name: first_name
         required: false
         schema:
@@ -28616,6 +28624,14 @@ paths:
         schema:
           $ref: '#/components/schemas/TagFilterMode'
           default: match_any
+      - in: query
+        name: has_tags
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Has Tags
       - in: query
         name: dnssec_status
         required: false
@@ -33014,6 +33030,14 @@ paths:
         schema:
           $ref: '#/components/schemas/TagFilterMode'
           default: match_any
+      - in: query
+        name: has_tags
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Has Tags
       - in: query
         name: name
         required: false
