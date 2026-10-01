@@ -9327,7 +9327,7 @@ components:
         status_tags:
           anyOf:
           - items:
-              $ref: '#/components/schemas/StatusTagResponse'
+              $ref: '#/components/schemas/ContactStatusTagResponse'
             type: array
           - type: 'null'
           description: Status tags assigned to this contact. Only included when ?include=tags
@@ -9374,6 +9374,37 @@ components:
       - email
       - created_on
       title: ContactSortField
+      type: string
+    ContactStatusTagResponse:
+      properties:
+        color:
+          $ref: '#/components/schemas/TagColor'
+          description: The color of the tag
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Additional information about this status tag
+          title: Description
+        label:
+          description: The label of the tag
+          maxLength: 255
+          minLength: 1
+          title: Label
+          type: string
+        tag_type:
+          $ref: '#/components/schemas/ContactStatusTagType'
+          description: The status tag type identifier
+      required:
+      - tag_type
+      - label
+      - color
+      title: ContactStatusTagResponse
+      type: object
+    ContactStatusTagType:
+      enum:
+      - VERIFICATION_REQUIRED
+      title: ContactStatusTagType
       type: string
     ContactType:
       enum:
@@ -24969,7 +25000,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-01-020708
+  version: 2026-10-01-130224
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -27252,17 +27283,19 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - description: Filter by status tag types. Can be specified multiple times.
+      - description: Filter by contact status tag types. Can be specified multiple
+          times.
         in: query
         name: status_tags
         required: false
         schema:
           anyOf:
           - items:
-              $ref: '#/components/schemas/StatusTagType'
+              $ref: '#/components/schemas/ContactStatusTagType'
             type: array
           - type: 'null'
-          description: Filter by status tag types. Can be specified multiple times.
+          description: Filter by contact status tag types. Can be specified multiple
+            times.
           title: Status Tags
       - in: query
         name: status_tag_mode

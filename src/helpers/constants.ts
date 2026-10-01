@@ -15,6 +15,7 @@ import type {
   ContactAttributeSetSortField,
   ContactIncludeField,
   ContactSortField,
+  ContactStatusTagType,
   ContactType,
   ContactVerificationClaim,
   ContactVerificationMethod,
@@ -383,6 +384,14 @@ export const CONTACT_SORT_FIELD_VALUES = [
   'email',
   'created_on',
 ] as const satisfies ReadonlyArray<ContactSortField>;
+
+export const CONTACT_STATUS_TAG_TYPE = {
+  VERIFICATION_REQUIRED: "VERIFICATION_REQUIRED",
+} as const satisfies Record<string, ContactStatusTagType>;
+
+export const CONTACT_STATUS_TAG_TYPE_VALUES = [
+  'VERIFICATION_REQUIRED',
+] as const satisfies ReadonlyArray<ContactStatusTagType>;
 
 export const CONTACT_TYPE = {
   OWNER: "owner",

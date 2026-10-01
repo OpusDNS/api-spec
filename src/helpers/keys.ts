@@ -60,6 +60,7 @@ import type {
   ContactCreateWorkerResult,
   ContactHandle,
   Contact,
+  ContactStatusTag,
   ContactVerificationApi,
   ContactVerificationEidInformation,
   ContactVerificationEmail,
@@ -1331,6 +1332,18 @@ export const KEYS_CONTACT = [
   KEY_CONTACT_TAGS,
   KEY_CONTACT_TITLE,
 ] as const satisfies (keyof Contact)[];
+
+export const KEY_CONTACT_STATUS_TAG_COLOR = 'color' satisfies keyof ContactStatusTag;
+export const KEY_CONTACT_STATUS_TAG_DESCRIPTION = 'description' satisfies keyof ContactStatusTag;
+export const KEY_CONTACT_STATUS_TAG_LABEL = 'label' satisfies keyof ContactStatusTag;
+export const KEY_CONTACT_STATUS_TAG_TAG_TYPE = 'tag_type' satisfies keyof ContactStatusTag;
+
+export const KEYS_CONTACT_STATUS_TAG = [
+  KEY_CONTACT_STATUS_TAG_COLOR,
+  KEY_CONTACT_STATUS_TAG_DESCRIPTION,
+  KEY_CONTACT_STATUS_TAG_LABEL,
+  KEY_CONTACT_STATUS_TAG_TAG_TYPE,
+] as const satisfies (keyof ContactStatusTag)[];
 
 export const KEY_CONTACT_VERIFICATION_API_CANCELED_ON = 'canceled_on' satisfies keyof ContactVerificationApi;
 export const KEY_CONTACT_VERIFICATION_API_CONTACT_ID = 'contact_id' satisfies keyof ContactVerificationApi;

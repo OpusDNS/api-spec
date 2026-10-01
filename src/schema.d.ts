@@ -10151,7 +10151,7 @@ export interface components {
              * Status Tags
              * @description Status tags assigned to this contact. Only included when ?include=tags is specified.
              */
-            status_tags?: components["schemas"]["StatusTagResponse"][] | null;
+            status_tags?: components["schemas"]["ContactStatusTagResponse"][] | null;
             /**
              * Street
              * @description The address of the contact
@@ -10173,6 +10173,28 @@ export interface components {
          * @enum {string}
          */
         ContactSortField: "first_name" | "last_name" | "email" | "created_on";
+        /** ContactStatusTagResponse */
+        ContactStatusTagResponse: {
+            /** @description The color of the tag */
+            color: components["schemas"]["TagColor"];
+            /**
+             * Description
+             * @description Additional information about this status tag
+             */
+            description?: string | null;
+            /**
+             * Label
+             * @description The label of the tag
+             */
+            label: string;
+            /** @description The status tag type identifier */
+            tag_type: components["schemas"]["ContactStatusTagType"];
+        };
+        /**
+         * ContactStatusTagType
+         * @enum {string}
+         */
+        ContactStatusTagType: "VERIFICATION_REQUIRED";
         /**
          * ContactType
          * @enum {string}
@@ -22411,8 +22433,8 @@ export interface operations {
                 page_size?: number;
                 sort_by?: components["schemas"]["ContactSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
-                /** @description Filter by status tag types. Can be specified multiple times. */
-                status_tags?: components["schemas"]["StatusTagType"][] | null;
+                /** @description Filter by contact status tag types. Can be specified multiple times. */
+                status_tags?: components["schemas"]["ContactStatusTagType"][] | null;
                 status_tag_mode?: components["schemas"]["TagFilterMode"];
                 /** @description Filter by user tag IDs. Can be specified multiple times. */
                 tag_ids?: TypeId<"tag">[] | null;
