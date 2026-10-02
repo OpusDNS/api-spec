@@ -3670,50 +3670,9 @@ export interface components {
         BrandingDesignContextPayload: {
             actions?: components["schemas"]["BrandingDesignActions"] | null;
             diff?: components["schemas"]["BrandingDesignDiff"] | null;
-            /** Notices */
-            notices?: components["schemas"]["BrandingDesignNotice"][];
             /** Results */
             results: components["schemas"]["BrandingDesignVariant"][];
             source?: components["schemas"]["BrandingDesignSource"] | null;
-            /**
-             * Summary
-             * @default
-             */
-            summary: string;
-            /** Summary Parts */
-            summary_parts?: components["schemas"]["BrandingDesignPhrase"][];
-            /** Warnings */
-            warnings?: string[];
-        };
-        /** BrandingDesignContrast */
-        BrandingDesignContrast: {
-            /** All Pass */
-            all_pass?: boolean | null;
-            /** Checks */
-            checks?: components["schemas"]["BrandingDesignContrastCheck"][];
-            /** Min Ratio */
-            min_ratio?: number | null;
-        };
-        /** BrandingDesignContrastCheck */
-        BrandingDesignContrastCheck: {
-            /** Bg */
-            bg?: string | null;
-            /** Fg */
-            fg?: string | null;
-            /** Hard */
-            hard?: boolean | null;
-            /** Kind */
-            kind?: string | null;
-            /** Max */
-            max?: number | null;
-            /** Min */
-            min?: number | null;
-            /** Mode */
-            mode?: string | null;
-            /** Ok */
-            ok?: boolean | null;
-            /** Ratio */
-            ratio?: number | null;
         };
         /** BrandingDesignDiff */
         BrandingDesignDiff: {
@@ -3725,33 +3684,6 @@ export interface components {
         /** BrandingDesignDocument */
         BrandingDesignDocument: {
             [key: string]: unknown;
-        };
-        /** BrandingDesignNotice */
-        BrandingDesignNotice: {
-            /** Code */
-            code: string;
-            /**
-             * Message
-             * @default
-             */
-            message: string;
-            /** Params */
-            params?: {
-                [key: string]: string | number | boolean | string[];
-            };
-            /** Severity */
-            severity: string;
-            /** Variants */
-            variants?: string[];
-        };
-        /** BrandingDesignPhrase */
-        BrandingDesignPhrase: {
-            /** Code */
-            code: string;
-            /** Params */
-            params?: {
-                [key: string]: string | number | boolean | string[];
-            };
         };
         /** BrandingDesignPreview */
         BrandingDesignPreview: {
@@ -3775,8 +3707,6 @@ export interface components {
         };
         /** BrandingDesignSource */
         BrandingDesignSource: {
-            /** Confidence */
-            confidence?: string | null;
             /** Kind */
             kind?: string | null;
             /** Logo Asset Url */
@@ -3801,23 +3731,8 @@ export interface components {
         };
         /** BrandingDesignVariant */
         BrandingDesignVariant: {
-            /** Changed Seeds */
-            changed_seeds?: string[];
-            contrast?: components["schemas"]["BrandingDesignContrast"] | null;
             document: components["schemas"]["BrandingDesignDocument"];
-            /**
-             * Label
-             * @default
-             */
-            label: string;
             preview?: components["schemas"]["BrandingDesignPreview"] | null;
-            /**
-             * Rationale
-             * @default
-             */
-            rationale: string;
-            /** Rationale Parts */
-            rationale_parts?: components["schemas"]["BrandingDesignPhrase"][];
             /** Variant Id */
             variant_id: string;
         };

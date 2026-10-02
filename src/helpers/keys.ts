@@ -19,11 +19,7 @@ import type {
   BrandingDesignActions,
   BrandingDesignContext,
   BrandingDesignContextPayload,
-  BrandingDesignContrast,
-  BrandingDesignContrastCheck,
   BrandingDesignDiff,
-  BrandingDesignNotice,
-  BrandingDesignPhrase,
   BrandingDesignPreview,
   BrandingDesignSource,
   BrandingDesignSwatches,
@@ -737,55 +733,15 @@ export const KEYS_BRANDING_DESIGN_CONTEXT = [
 
 export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_ACTIONS = 'actions' satisfies keyof BrandingDesignContextPayload;
 export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_DIFF = 'diff' satisfies keyof BrandingDesignContextPayload;
-export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_NOTICES = 'notices' satisfies keyof BrandingDesignContextPayload;
 export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_RESULTS = 'results' satisfies keyof BrandingDesignContextPayload;
 export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SOURCE = 'source' satisfies keyof BrandingDesignContextPayload;
-export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SUMMARY = 'summary' satisfies keyof BrandingDesignContextPayload;
-export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SUMMARY_PARTS = 'summary_parts' satisfies keyof BrandingDesignContextPayload;
-export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_WARNINGS = 'warnings' satisfies keyof BrandingDesignContextPayload;
 
 export const KEYS_BRANDING_DESIGN_CONTEXT_PAYLOAD = [
   KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_ACTIONS,
   KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_DIFF,
-  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_NOTICES,
   KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_RESULTS,
   KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SOURCE,
-  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SUMMARY,
-  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SUMMARY_PARTS,
-  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_WARNINGS,
 ] as const satisfies (keyof BrandingDesignContextPayload)[];
-
-export const KEY_BRANDING_DESIGN_CONTRAST_ALL_PASS = 'all_pass' satisfies keyof BrandingDesignContrast;
-export const KEY_BRANDING_DESIGN_CONTRAST_CHECKS = 'checks' satisfies keyof BrandingDesignContrast;
-export const KEY_BRANDING_DESIGN_CONTRAST_MIN_RATIO = 'min_ratio' satisfies keyof BrandingDesignContrast;
-
-export const KEYS_BRANDING_DESIGN_CONTRAST = [
-  KEY_BRANDING_DESIGN_CONTRAST_ALL_PASS,
-  KEY_BRANDING_DESIGN_CONTRAST_CHECKS,
-  KEY_BRANDING_DESIGN_CONTRAST_MIN_RATIO,
-] as const satisfies (keyof BrandingDesignContrast)[];
-
-export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_BG = 'bg' satisfies keyof BrandingDesignContrastCheck;
-export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_FG = 'fg' satisfies keyof BrandingDesignContrastCheck;
-export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_HARD = 'hard' satisfies keyof BrandingDesignContrastCheck;
-export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_KIND = 'kind' satisfies keyof BrandingDesignContrastCheck;
-export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_MAX = 'max' satisfies keyof BrandingDesignContrastCheck;
-export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_MIN = 'min' satisfies keyof BrandingDesignContrastCheck;
-export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_MODE = 'mode' satisfies keyof BrandingDesignContrastCheck;
-export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_OK = 'ok' satisfies keyof BrandingDesignContrastCheck;
-export const KEY_BRANDING_DESIGN_CONTRAST_CHECK_RATIO = 'ratio' satisfies keyof BrandingDesignContrastCheck;
-
-export const KEYS_BRANDING_DESIGN_CONTRAST_CHECK = [
-  KEY_BRANDING_DESIGN_CONTRAST_CHECK_BG,
-  KEY_BRANDING_DESIGN_CONTRAST_CHECK_FG,
-  KEY_BRANDING_DESIGN_CONTRAST_CHECK_HARD,
-  KEY_BRANDING_DESIGN_CONTRAST_CHECK_KIND,
-  KEY_BRANDING_DESIGN_CONTRAST_CHECK_MAX,
-  KEY_BRANDING_DESIGN_CONTRAST_CHECK_MIN,
-  KEY_BRANDING_DESIGN_CONTRAST_CHECK_MODE,
-  KEY_BRANDING_DESIGN_CONTRAST_CHECK_OK,
-  KEY_BRANDING_DESIGN_CONTRAST_CHECK_RATIO,
-] as const satisfies (keyof BrandingDesignContrastCheck)[];
 
 export const KEY_BRANDING_DESIGN_DIFF_CHANGED_PATHS = 'changed_paths' satisfies keyof BrandingDesignDiff;
 export const KEY_BRANDING_DESIGN_DIFF_MERGED_WITH_CURRENT = 'merged_with_current' satisfies keyof BrandingDesignDiff;
@@ -794,28 +750,6 @@ export const KEYS_BRANDING_DESIGN_DIFF = [
   KEY_BRANDING_DESIGN_DIFF_CHANGED_PATHS,
   KEY_BRANDING_DESIGN_DIFF_MERGED_WITH_CURRENT,
 ] as const satisfies (keyof BrandingDesignDiff)[];
-
-export const KEY_BRANDING_DESIGN_NOTICE_CODE = 'code' satisfies keyof BrandingDesignNotice;
-export const KEY_BRANDING_DESIGN_NOTICE_MESSAGE = 'message' satisfies keyof BrandingDesignNotice;
-export const KEY_BRANDING_DESIGN_NOTICE_PARAMS = 'params' satisfies keyof BrandingDesignNotice;
-export const KEY_BRANDING_DESIGN_NOTICE_SEVERITY = 'severity' satisfies keyof BrandingDesignNotice;
-export const KEY_BRANDING_DESIGN_NOTICE_VARIANTS = 'variants' satisfies keyof BrandingDesignNotice;
-
-export const KEYS_BRANDING_DESIGN_NOTICE = [
-  KEY_BRANDING_DESIGN_NOTICE_CODE,
-  KEY_BRANDING_DESIGN_NOTICE_MESSAGE,
-  KEY_BRANDING_DESIGN_NOTICE_PARAMS,
-  KEY_BRANDING_DESIGN_NOTICE_SEVERITY,
-  KEY_BRANDING_DESIGN_NOTICE_VARIANTS,
-] as const satisfies (keyof BrandingDesignNotice)[];
-
-export const KEY_BRANDING_DESIGN_PHRASE_CODE = 'code' satisfies keyof BrandingDesignPhrase;
-export const KEY_BRANDING_DESIGN_PHRASE_PARAMS = 'params' satisfies keyof BrandingDesignPhrase;
-
-export const KEYS_BRANDING_DESIGN_PHRASE = [
-  KEY_BRANDING_DESIGN_PHRASE_CODE,
-  KEY_BRANDING_DESIGN_PHRASE_PARAMS,
-] as const satisfies (keyof BrandingDesignPhrase)[];
 
 export const KEY_BRANDING_DESIGN_PREVIEW_DARK_STRATEGY = 'dark_strategy' satisfies keyof BrandingDesignPreview;
 export const KEY_BRANDING_DESIGN_PREVIEW_FONT_FAMILY = 'font_family' satisfies keyof BrandingDesignPreview;
@@ -839,7 +773,6 @@ export const KEYS_BRANDING_DESIGN_PREVIEW = [
   KEY_BRANDING_DESIGN_PREVIEW_SWATCHES,
 ] as const satisfies (keyof BrandingDesignPreview)[];
 
-export const KEY_BRANDING_DESIGN_SOURCE_CONFIDENCE = 'confidence' satisfies keyof BrandingDesignSource;
 export const KEY_BRANDING_DESIGN_SOURCE_KIND = 'kind' satisfies keyof BrandingDesignSource;
 export const KEY_BRANDING_DESIGN_SOURCE_LOGO_ASSET_URL = 'logo_asset_url' satisfies keyof BrandingDesignSource;
 export const KEY_BRANDING_DESIGN_SOURCE_PRESET_ID = 'preset_id' satisfies keyof BrandingDesignSource;
@@ -847,7 +780,6 @@ export const KEY_BRANDING_DESIGN_SOURCE_SIGNALS = 'signals' satisfies keyof Bran
 export const KEY_BRANDING_DESIGN_SOURCE_URL = 'url' satisfies keyof BrandingDesignSource;
 
 export const KEYS_BRANDING_DESIGN_SOURCE = [
-  KEY_BRANDING_DESIGN_SOURCE_CONFIDENCE,
   KEY_BRANDING_DESIGN_SOURCE_KIND,
   KEY_BRANDING_DESIGN_SOURCE_LOGO_ASSET_URL,
   KEY_BRANDING_DESIGN_SOURCE_PRESET_ID,
@@ -863,23 +795,13 @@ export const KEYS_BRANDING_DESIGN_SWATCHES = [
   KEY_BRANDING_DESIGN_SWATCHES_LIGHT,
 ] as const satisfies (keyof BrandingDesignSwatches)[];
 
-export const KEY_BRANDING_DESIGN_VARIANT_CHANGED_SEEDS = 'changed_seeds' satisfies keyof BrandingDesignVariant;
-export const KEY_BRANDING_DESIGN_VARIANT_CONTRAST = 'contrast' satisfies keyof BrandingDesignVariant;
 export const KEY_BRANDING_DESIGN_VARIANT_DOCUMENT = 'document' satisfies keyof BrandingDesignVariant;
-export const KEY_BRANDING_DESIGN_VARIANT_LABEL = 'label' satisfies keyof BrandingDesignVariant;
 export const KEY_BRANDING_DESIGN_VARIANT_PREVIEW = 'preview' satisfies keyof BrandingDesignVariant;
-export const KEY_BRANDING_DESIGN_VARIANT_RATIONALE = 'rationale' satisfies keyof BrandingDesignVariant;
-export const KEY_BRANDING_DESIGN_VARIANT_RATIONALE_PARTS = 'rationale_parts' satisfies keyof BrandingDesignVariant;
 export const KEY_BRANDING_DESIGN_VARIANT_VARIANT_ID = 'variant_id' satisfies keyof BrandingDesignVariant;
 
 export const KEYS_BRANDING_DESIGN_VARIANT = [
-  KEY_BRANDING_DESIGN_VARIANT_CHANGED_SEEDS,
-  KEY_BRANDING_DESIGN_VARIANT_CONTRAST,
   KEY_BRANDING_DESIGN_VARIANT_DOCUMENT,
-  KEY_BRANDING_DESIGN_VARIANT_LABEL,
   KEY_BRANDING_DESIGN_VARIANT_PREVIEW,
-  KEY_BRANDING_DESIGN_VARIANT_RATIONALE,
-  KEY_BRANDING_DESIGN_VARIANT_RATIONALE_PARTS,
   KEY_BRANDING_DESIGN_VARIANT_VARIANT_ID,
 ] as const satisfies (keyof BrandingDesignVariant)[];
 
