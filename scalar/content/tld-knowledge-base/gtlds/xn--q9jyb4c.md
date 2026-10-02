@@ -49,7 +49,8 @@
 
 | Property | Value |
 | --- | --- |
-| Domain Length | 3–63 characters |
+| Domain Length | 3–63 characters (ASCII) |
+| IDN Length | 1–15 characters |
 | IDN Support | ✅ Yes |
 | Premium Domains | ✅ Yes |
 | Reserved Domains | ✅ Yes |
