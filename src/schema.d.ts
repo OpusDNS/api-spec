@@ -29745,7 +29745,7 @@ export interface operations {
                 sort_by?: components["schemas"]["EventSortField"];
                 /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
-                /** @description Filter by */
+                /** @description Filter by the type of object the event is about */
                 object_type?: components["schemas"]["EventObjectType"] | null;
                 /** @description Filter by specific domain/contact/host name */
                 object_id?: string | null;

@@ -24831,7 +24831,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-02-161543
+  version: 2026-10-02-174435
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -36939,7 +36939,7 @@ paths:
           $ref: '#/components/schemas/SortOrder'
           default: desc
           description: Sort order direction
-      - description: Filter by
+      - description: Filter by the type of object the event is about
         in: query
         name: object_type
         required: false
@@ -36947,7 +36947,7 @@ paths:
           anyOf:
           - $ref: '#/components/schemas/EventObjectType'
           - type: 'null'
-          description: Filter by
+          description: Filter by the type of object the event is about
           title: Object Type
       - description: Filter by specific domain/contact/host name
         in: query
