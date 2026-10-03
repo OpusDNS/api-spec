@@ -99,6 +99,7 @@ error:
 | `upstream_unavailable` | The OpusDNS API could not be reached, or its response broke off before it was complete | Retry with backoff |
 | `request_canceled` | The client gave up on the call before the API answered | Nothing to do; call again if it is still wanted |
 | `selector_page_truncated` | One page of the domain list was too large for the response cap while resolving a bulk selector, so the selection could not be resolved completely | Narrow the selector, for example one TLD at a time |
+| `result_too_large` | The answer is too large for one tool result (clients refuse anything over 1 MB), so it was not sent | Narrow the request: fewer `fields`, a smaller page size or limit, tighter filters |
 | `tool_error` | Anything else the tool itself rejected | Read the message |
 
 <scalar-callout type="info">
