@@ -36,6 +36,7 @@ import type {
   DomainForwardVisitsByKey,
   DomainForwardZone,
   DomainRenew,
+  DomainRenewTransferPending,
   DomainRestore,
   DomainSearch,
   DomainStatistics,
@@ -1201,10 +1202,13 @@ export type POST_DomainsByDomainReferenceDnssecEnable_Response_404 = Problem;
 export type POST_DomainsByDomainReferenceDnssecEnable_Response_409 = Problem;
 export type POST_DomainsByDomainReferenceDnssecEnable_Response_422 = Problem;
 
-export type POST_DomainsByDomainReferenceRenew_Response = POST_DomainsByDomainReferenceRenew_Response_200 | POST_DomainsByDomainReferenceRenew_Response_422;
+export type POST_DomainsByDomainReferenceRenew_Response = POST_DomainsByDomainReferenceRenew_Response_200 | POST_DomainsByDomainReferenceRenew_Response_202 | POST_DomainsByDomainReferenceRenew_Response_409 | POST_DomainsByDomainReferenceRenew_Response_422 | POST_DomainsByDomainReferenceRenew_Response_503;
 
 export type POST_DomainsByDomainReferenceRenew_Response_200 = DomainRenew;
-export type POST_DomainsByDomainReferenceRenew_Response_422 = HTTPValidationError;
+export type POST_DomainsByDomainReferenceRenew_Response_202 = DomainRenewTransferPending;
+export type POST_DomainsByDomainReferenceRenew_Response_409 = Problem;
+export type POST_DomainsByDomainReferenceRenew_Response_422 = Problem;
+export type POST_DomainsByDomainReferenceRenew_Response_503 = Problem;
 
 export type POST_DomainsByDomainReferenceRestore_Response = POST_DomainsByDomainReferenceRestore_Response_200 | POST_DomainsByDomainReferenceRestore_Response_422;
 

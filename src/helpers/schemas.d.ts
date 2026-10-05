@@ -242,6 +242,7 @@ export type DomainRecommendationsContextCreate = components['schemas']['DomainRe
 export type DomainRegistrarCredential = components['schemas']['DomainRegistrarCredentialResponse'];
 export type DomainRenewRequest = components['schemas']['DomainRenewRequest'];
 export type DomainRenew = components['schemas']['DomainRenewResponse'];
+export type DomainRenewTransferPending = components['schemas']['DomainRenewTransferPendingResponse'];
 export type DomainRenewalDetails = components['schemas']['DomainRenewalDetails'];
 export type DomainRenewalPrice = components['schemas']['DomainRenewalPriceResponse'];
 export type Domain = components['schemas']['DomainResponse'];

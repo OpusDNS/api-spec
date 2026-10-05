@@ -6308,6 +6308,7 @@ components:
           data:
             anyOf:
             - $ref: '#/components/schemas/DomainRenewResponse'
+            - $ref: '#/components/schemas/DomainRenewTransferPendingResponse'
             - type: string
           headers:
             additionalProperties:
@@ -13216,6 +13217,28 @@ components:
       - new_expiry_date
       - period_extended
       title: DomainRenewResponse
+      type: object
+    DomainRenewTransferPendingResponse:
+      properties:
+        name:
+          description: The domain name the renewal was requested for
+          title: Name
+          type: string
+        request_id:
+          description: Identifier of the transfer this renewal started
+          title: Request Id
+          type: string
+        status:
+          const: transfer_pending
+          default: transfer_pending
+          description: The domain is held at another registrar, so the renewal transfers
+            it into OpusDNS. The outcome is reported as domain events.
+          title: Status
+          type: string
+      required:
+      - name
+      - request_id
+      title: DomainRenewTransferPendingResponse
       type: object
     DomainRenewalDetails:
       properties:
@@ -21656,6 +21679,7 @@ components:
       - IMPORT_REQUESTED
       - IMPORT_PENDING
       - DNSSEC_PENDING
+      - TRANSFER_ON_RENEW_PENDING
       title: StatusTagType
       type: string
     StrictMoneyDecimal:
@@ -24831,7 +24855,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-02-174435
+  version: 2026-10-05-214656
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -35667,7 +35691,13 @@ paths:
       description: 'Extends the registration period of an existing domain. The renewal
         period is added
 
-        to the current expiration date of the domain.'
+        to the current expiration date of the domain.
+
+
+        For a domain held at another registrar, the renewal transfers the domain into
+        OpusDNS
+
+        and answers 202 before the transfer starts.'
       operationId: renew_domain_v1_domains__domain_reference__renew_post
       parameters:
       - in: path
@@ -35697,12 +35727,65 @@ paths:
               schema:
                 $ref: '#/components/schemas/DomainRenewResponse'
           description: Successful Response
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainRenewTransferPendingResponse'
+          description: 'The domain is held at another registrar, so the renewal transfers
+            it into OpusDNS: it is unlocked there, its auth code and contacts are
+            copied, and a transfer-in is requested at the transfer price. The transfer''s
+            progress and outcome are reported as domain events, including an inbound-transfer
+            failure event if any step fails.'
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_TRANSFER_ON_RENEW_PENDING
+                detail: A renewal already started the transfer of this domain into
+                  OpusDNS
+                domain_name: example.com
+                status: 409
+                title: Domain Management Error
+                type: domain-transfer-on-renew-pending
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
         '422':
           content:
             application/problem+json:
+              example:
+                code: ERROR_REGISTRAR_CREDENTIAL_REJECTED
+                detail: INTERNETX rejected the connected registrar credential holding
+                  the domain. Update the credential under Connected Registrars, then
+                  retry the renewal
+                domain_name: example.com
+                registrar: INTERNETX
+                status: 422
+                title: Registrar Credential Rejected
+                type: domain-registrar-credential-rejected
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_REGISTRAR_UNAVAILABLE
+                detail: The registrar currently holding the domain is unavailable,
+                  please retry later
+                domain_name: example.com
+                status: 503
+                title: Registrar Unavailable
+                type: domain-registrar-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
+          headers:
+            Retry-After:
+              description: Seconds to wait before retrying the renewal
+              schema:
+                type: integer
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []

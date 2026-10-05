@@ -195,6 +195,7 @@ import type {
   DomainRegistrarCredential,
   DomainRenewRequest,
   DomainRenew,
+  DomainRenewTransferPending,
   DomainRenewalDetails,
   DomainRenewalPrice,
   Domain,
@@ -2802,6 +2803,16 @@ export const KEYS_DOMAIN_RENEW = [
   KEY_DOMAIN_RENEW_NEW_EXPIRY_DATE,
   KEY_DOMAIN_RENEW_PERIOD_EXTENDED,
 ] as const satisfies (keyof DomainRenew)[];
+
+export const KEY_DOMAIN_RENEW_TRANSFER_PENDING_NAME = 'name' satisfies keyof DomainRenewTransferPending;
+export const KEY_DOMAIN_RENEW_TRANSFER_PENDING_REQUEST_ID = 'request_id' satisfies keyof DomainRenewTransferPending;
+export const KEY_DOMAIN_RENEW_TRANSFER_PENDING_STATUS = 'status' satisfies keyof DomainRenewTransferPending;
+
+export const KEYS_DOMAIN_RENEW_TRANSFER_PENDING = [
+  KEY_DOMAIN_RENEW_TRANSFER_PENDING_NAME,
+  KEY_DOMAIN_RENEW_TRANSFER_PENDING_REQUEST_ID,
+  KEY_DOMAIN_RENEW_TRANSFER_PENDING_STATUS,
+] as const satisfies (keyof DomainRenewTransferPending)[];
 
 export const KEY_DOMAIN_RENEWAL_DETAILS_DETAIL_TYPE = 'detail_type' satisfies keyof DomainRenewalDetails;
 export const KEY_DOMAIN_RENEWAL_DETAILS_EXPIRES_ON = 'expires_on' satisfies keyof DomainRenewalDetails;

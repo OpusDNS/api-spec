@@ -1612,6 +1612,9 @@ export interface paths {
          * Renew a domain
          * @description Extends the registration period of an existing domain. The renewal period is added
          *     to the current expiration date of the domain.
+         *
+         *     For a domain held at another registrar, the renewal transfers the domain into OpusDNS
+         *     and answers 202 before the transfer starts.
          */
         post: operations["renew_domain_v1_domains__domain_reference__renew_post"];
         delete?: never;
@@ -7912,7 +7915,7 @@ export interface components {
              */
             truncated: boolean;
         } | {
-            data?: components["schemas"]["DomainRenewResponse"] | string;
+            data?: components["schemas"]["DomainRenewResponse"] | components["schemas"]["DomainRenewTransferPendingResponse"] | string;
             /**
              * Headers
              * @description Selected response headers
@@ -12631,6 +12634,26 @@ export interface components {
             new_expiry_date: Date;
             /** @description The period by which the domain was extended */
             period_extended: components["schemas"]["DomainPeriod"];
+        };
+        /** DomainRenewTransferPendingResponse */
+        DomainRenewTransferPendingResponse: {
+            /**
+             * Name
+             * @description The domain name the renewal was requested for
+             */
+            name: string;
+            /**
+             * Request Id
+             * @description Identifier of the transfer this renewal started
+             */
+            request_id: string;
+            /**
+             * Status
+             * @description The domain is held at another registrar, so the renewal transfers it into OpusDNS. The outcome is reported as domain events.
+             * @default transfer_pending
+             * @constant
+             */
+            status: "transfer_pending";
         };
         /** DomainRenewalDetails */
         DomainRenewalDetails: {
@@ -18236,7 +18259,7 @@ export interface components {
          * StatusTagType
          * @enum {string}
          */
-        StatusTagType: "VERIFICATION_REQUIRED" | "CREATE_REQUESTED" | "INBOUND_TRANSFER_PENDING" | "OUTBOUND_TRANSFER_PENDING" | "EXTERNAL" | "IMPORT_REQUESTED" | "IMPORT_PENDING" | "DNSSEC_PENDING";
+        StatusTagType: "VERIFICATION_REQUIRED" | "CREATE_REQUESTED" | "INBOUND_TRANSFER_PENDING" | "OUTBOUND_TRANSFER_PENDING" | "EXTERNAL" | "IMPORT_REQUESTED" | "IMPORT_PENDING" | "DNSSEC_PENDING" | "TRANSFER_ON_RENEW_PENDING";
         /** @example 12.50 */
         StrictMoneyDecimal: string;
         /** Support */
@@ -28648,13 +28671,67 @@ export interface operations {
                     "application/json": components["schemas"]["DomainRenewResponse"];
                 };
             };
-            /** @description Validation Error */
+            /** @description The domain is held at another registrar, so the renewal transfers it into OpusDNS: it is unlocked there, its auth code and contacts are copied, and a transfer-in is requested at the transfer price. The transfer's progress and outcome are reported as domain events, including an inbound-transfer failure event if any step fails. */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainRenewTransferPendingResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_TRANSFER_ON_RENEW_PENDING",
+                     *       "detail": "A renewal already started the transfer of this domain into OpusDNS",
+                     *       "domain_name": "example.com",
+                     *       "status": 409,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-transfer-on-renew-pending"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    /** @example {
+                     *       "code": "ERROR_REGISTRAR_CREDENTIAL_REJECTED",
+                     *       "detail": "INTERNETX rejected the connected registrar credential holding the domain. Update the credential under Connected Registrars, then retry the renewal",
+                     *       "domain_name": "example.com",
+                     *       "registrar": "INTERNETX",
+                     *       "status": 422,
+                     *       "title": "Registrar Credential Rejected",
+                     *       "type": "domain-registrar-credential-rejected"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    /** @description Seconds to wait before retrying the renewal */
+                    "Retry-After"?: number;
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_REGISTRAR_UNAVAILABLE",
+                     *       "detail": "The registrar currently holding the domain is unavailable, please retry later",
+                     *       "domain_name": "example.com",
+                     *       "status": 503,
+                     *       "title": "Registrar Unavailable",
+                     *       "type": "domain-registrar-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
