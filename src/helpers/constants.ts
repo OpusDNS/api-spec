@@ -274,6 +274,7 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE = {
   WHITELABEL_BRANDING_PLUS: "whitelabel_branding_plus",
   RAS_DOMAIN_LIFECYCLE: "ras_domain_lifecycle",
   AMS_DOMAIN_LIFECYCLE: "ams_domain_lifecycle",
+  AMS_MAINTENANCE_FEE: "ams_maintenance_fee",
 } as const satisfies Record<string, BillingTransactionProductType>;
 
 export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
@@ -287,6 +288,7 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
   'whitelabel_branding_plus',
   'ras_domain_lifecycle',
   'ams_domain_lifecycle',
+  'ams_maintenance_fee',
 ] as const satisfies ReadonlyArray<BillingTransactionProductType>;
 
 export const BILLING_TRANSACTION_SORT_FIELD = {
