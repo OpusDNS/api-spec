@@ -4,6 +4,14 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 7 October 2026
+
+- Made the **`contacts` section optional on [`.io`](/tld-knowledge-base/cctlds/io)
+  transfers**. Every contact role on an inbound `.io` transfer now has a minimum
+  of `0`, so you can omit `contacts` entirely on
+  [`POST /v1/domains/transfer`](/api-reference#tag/domain/POST/v1/domains/transfer)
+  and on the `domain_transfer` and `domain_transfer_bulk` job commands.
+
 ### 28 September 2026
 
 - Onboarded **[`.wien`](/tld-knowledge-base/gtlds/wien)** (punkt.wien GmbH) and
