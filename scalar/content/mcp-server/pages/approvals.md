@@ -20,19 +20,22 @@ Each approval names the risk of the operation:
 | Operation | Risk shown |
 | --- | --- |
 | Register a domain (`POST /v1/domains`) | can create costs, writes data |
-| Renew a domain | can create costs, writes data |
-| Update a domain (`PATCH /v1/domains/{domain_reference}`) | writes data, can delete or transfer resources |
-| Submit a batch (`POST /v1/jobs`) | writes data |
+| Renew a domain | can create costs, writes data, can delete or transfer resources |
+| Update a domain (`PATCH /v1/domains/{domain_reference}`) | writes data |
+| Transfer a domain in (`POST /v1/domains/transfer`) | can create costs, writes data, can delete or transfer resources |
+| Submit a batch (`POST /v1/jobs`) | writes data; plus "can create costs" or "can delete or transfer resources" when the batch registers, transfers or deletes, naming each such command and its count, e.g. `(domain_create_bulk ×12)` |
 | Cancel a batch (`DELETE /v1/jobs/{batch_id}`) | writes data, can delete or transfer resources |
 | Pause a batch | writes data |
 | Patch zone RRsets | writes data |
 
 <scalar-callout type="info">
-The risk wording is derived from the operation's own description, so it
-occasionally reads more alarming than the operation is. <strong>Update a
-domain</strong> is labelled "can delete or transfer resources" because setting a
-transfer lock is one of the things it does. The wording changes what the prompt
-says, never whether approval is required.
+The risk wording comes from two fixed lists in the server: the operations that
+reserve a billing transaction, and the operations that remove a resource or move
+a domain between registrars (plus every `DELETE`). Renewing a domain held at
+another registrar transfers it in, so a renewal reads "can delete or transfer
+resources" as well. A batch is judged by its commands, not by the Jobs
+endpoint, so a mass delete or a batch of registrations says so. The wording
+changes what the prompt says, never whether approval is required.
 </scalar-callout>
 
 ## Which path your client takes
@@ -64,7 +67,7 @@ client renders its own approval prompt.
       "method": "elicitation/create",
       "params": {
         "mode": "form",
-        "message": "Approve: Renew a domain (POST /v1/domains/{domain_reference}/renew)? Risk: can create costs, writes data.",
+        "message": "Approve: Renew a domain (POST /v1/domains/{domain_reference}/renew)? Risk: can create costs, writes data, can delete or transfer resources.",
         "requestedSchema": {
           "type": "object",
           "properties": {
@@ -117,11 +120,11 @@ Every other client gets a payload the model has to relay to you:
 ```json
 {
   "status": "confirmation_required",
-  "message": "Confirmation required before executing POST /v1/domains/{domain_reference}/renew (Renew a domain). Risk: can create costs, writes data. Ask the user for explicit approval, then retry the exact same action with this confirmation token.",
+  "message": "Confirmation required before executing POST /v1/domains/{domain_reference}/renew (Renew a domain). Risk: can create costs, writes data, can delete or transfer resources. Ask the user for explicit approval, then retry the exact same action with this confirmation token.",
   "confirmationToken": "eyJ2IjoxLCJvcGVyYXRpb25JZCI6…",
   "expiresAt": "2026-08-25T14:35:12Z",
   "operationId": "renew_domain_v1_domains__domain_reference__renew_post",
-  "safety": { "read": false, "write": true, "cost": true, "destructive": false }
+  "safety": { "read": false, "write": true, "cost": true, "destructive": true }
 }
 ```
 
@@ -165,6 +168,12 @@ There is one token type. On Path A it travels as `requestState`; on Path B as
 
 It is also **single use**, and it is consumed only after every other check has
 passed — so a retry that does not match never burns a token that is still valid.
+
+Single use holds for the action, not just the token: once an action is approved,
+any other approval prompt for the very same action is refused for the next 5
+minutes with `action_already_approved`, so a request proposed twice cannot run
+twice. If the API rejects the approved request (a `4xx`), nothing ran and the
+action can be approved again right away.
 
 <scalar-callout type="danger">
 Approval is enforced by the server, before any request reaches the OpusDNS API.
