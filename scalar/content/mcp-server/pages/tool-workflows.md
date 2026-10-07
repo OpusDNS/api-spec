@@ -29,7 +29,7 @@ comes back as:
       "path": "/v1/domains/{domain_reference}/renew",
       "tags": ["domain"],
       "summary": "Renew a domain",
-      "safety": { "read": false, "write": true, "cost": true, "destructive": false }
+      "safety": { "read": false, "write": true, "cost": true, "destructive": true }
     },
     {
       "operationId": "epp_check_domain_v1_domains_check_get",
