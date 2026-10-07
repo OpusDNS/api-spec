@@ -24856,7 +24856,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-07-124213
+  version: 2026-10-07-204706
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -37664,6 +37664,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_BATCH_STATUS_FETCH_FAILED
+                correlation_id: Additional error context.
+                detail: Failed to fetch batch status for correlation_id 'Additional
+                  error context.'
+                status: 503
+                title: Batch Operation Error
+                type: batch-status-fetch
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []

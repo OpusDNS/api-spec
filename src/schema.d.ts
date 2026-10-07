@@ -30439,6 +30439,23 @@ export interface operations {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_BATCH_STATUS_FETCH_FAILED",
+                     *       "correlation_id": "Additional error context.",
+                     *       "detail": "Failed to fetch batch status for correlation_id 'Additional error context.'",
+                     *       "status": 503,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "batch-status-fetch"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
         };
     };
     delete_job_v1_job__job_id__delete: {

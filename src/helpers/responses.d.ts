@@ -639,11 +639,12 @@ export type GET_HostsByHostReference_Response_403 = Problem;
 export type GET_HostsByHostReference_Response_404 = Problem;
 export type GET_HostsByHostReference_Response_422 = HTTPValidationError;
 
-export type GET_JobByJobId_Response = GET_JobByJobId_Response_200 | GET_JobByJobId_Response_404 | GET_JobByJobId_Response_422;
+export type GET_JobByJobId_Response = GET_JobByJobId_Response_200 | GET_JobByJobId_Response_404 | GET_JobByJobId_Response_422 | GET_JobByJobId_Response_503;
 
 export type GET_JobByJobId_Response_200 = Job;
 export type GET_JobByJobId_Response_404 = Problem;
 export type GET_JobByJobId_Response_422 = HTTPValidationError;
+export type GET_JobByJobId_Response_503 = Problem;
 
 export type GET_Jobs_Response = GET_Jobs_Response_200 | GET_Jobs_Response_422;
 
