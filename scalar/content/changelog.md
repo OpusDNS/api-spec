@@ -4,6 +4,15 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 8 October 2026
+
+- Made the **auth code required on [`.wales`](/tld-knowledge-base/gtlds/wales)
+  and [`.cymru`](/tld-knowledge-base/gtlds/cymru) transfers**. Both registries
+  transfer a domain against its auth code, so an inbound transfer on
+  [`POST /v1/domains/transfer`](/api-reference#tag/domain/POST/v1/domains/transfer)
+  now needs `auth_code`. The TLD Knowledge Base pages listed it as not
+  required.
+
 ### 7 October 2026
 
 - Made the **`contacts` section optional on [`.io`](/tld-knowledge-base/cctlds/io)
