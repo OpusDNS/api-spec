@@ -3060,6 +3060,7 @@ export const KEYS_DOMAIN_STATUSES_BASE = [
   KEY_DOMAIN_STATUSES_BASE_SUPPORTED_STATUSES,
 ] as const satisfies (keyof DomainStatusesBase)[];
 
+export const KEY_DOMAIN_SUMMARY_DATA_BY_ACCOUNT_TYPE = 'by_account_type' satisfies keyof DomainSummaryData;
 export const KEY_DOMAIN_SUMMARY_DATA_BY_ORGANIZATION = 'by_organization' satisfies keyof DomainSummaryData;
 export const KEY_DOMAIN_SUMMARY_DATA_BY_STATUS = 'by_status' satisfies keyof DomainSummaryData;
 export const KEY_DOMAIN_SUMMARY_DATA_BY_STATUS_TAG = 'by_status_tag' satisfies keyof DomainSummaryData;
@@ -3068,6 +3069,7 @@ export const KEY_DOMAIN_SUMMARY_DATA_EXPIRING_SOON = 'expiring_soon' satisfies k
 export const KEY_DOMAIN_SUMMARY_DATA_TOTAL_COUNT = 'total_count' satisfies keyof DomainSummaryData;
 
 export const KEYS_DOMAIN_SUMMARY_DATA = [
+  KEY_DOMAIN_SUMMARY_DATA_BY_ACCOUNT_TYPE,
   KEY_DOMAIN_SUMMARY_DATA_BY_ORGANIZATION,
   KEY_DOMAIN_SUMMARY_DATA_BY_STATUS,
   KEY_DOMAIN_SUMMARY_DATA_BY_STATUS_TAG,

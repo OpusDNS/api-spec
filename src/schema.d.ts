@@ -1211,8 +1211,8 @@ export interface paths {
         };
         /**
          * Get domain summary
-         * @description Retrieves a summary of your organization's domains, with counts by status, status tag, TLD and
-         *     expiration timeframe. Only `by_organization` includes sub-organizations.
+         * @description Retrieves a summary of your organization's domains, with counts by status, status tag, TLD,
+         *     registry account type and expiration timeframe. Only `by_organization` includes sub-organizations.
          */
         get: operations["get_domain_summary_v1_domains_summary_get"];
         put?: never;
@@ -9429,6 +9429,15 @@ export interface components {
          * @enum {string}
          */
         ConditionOperator: "equals" | "not_equals" | "in" | "not_in";
+        /**
+         * ConnectedAccountType
+         * @description Which domain-lifecycle product family an account bills against, orthogonal to the EPP backend.
+         *
+         *     DEFAULT = the native `domain_lifecycle` product; AMS = the per-TLD `ams_domain_lifecycle`
+         *     product for domains migrated onto an OpusDNS account; RAS = the mirror / management-fee family.
+         * @enum {string}
+         */
+        ConnectedAccountType: "default" | "ams" | "ras";
         /** ContactAttestReq */
         ContactAttestReq: {
             /** Attestations */
@@ -13132,6 +13141,13 @@ export interface components {
         };
         /** DomainSummaryData */
         DomainSummaryData: {
+            /**
+             * By Account Type
+             * @description The organization's domain counts by the type of registry account they are held on (account_type: count), only account types with at least one domain; the types are those of the `account_type` list filter
+             */
+            by_account_type: {
+                [key: string]: number;
+            };
             /**
              * By Organization
              * @description Domain counts for the organization and its sub-organizations, by name (name: count), only organizations with at least one domain
@@ -26701,6 +26717,10 @@ export interface operations {
                 registrar_credential_id?: TypeId<"registrar_credential">[] | null;
                 /** @description Filter domains held at an external registrar by that registrar. Can be specified multiple times (union of all provided values); combined with `registrar_credential_id`, both must match. Matches exactly the domains whose `connected_account` field carries the registrar, so domains OpusDNS sponsors never match. */
                 registrar?: components["schemas"]["Registrar"][] | null;
+                /** @description Filter domains by the type of the registry account they are held on: `ras` for domains on a registrar-abstraction (RAS) account synced from a connected external registrar, including those whose credential has since been deleted (their `connected_account` is null); `ams` for domains managed on a customer's own registry accreditation; `default` for all others, manually managed domains included (their accounts are typed `default`). Can be specified multiple times (union of all provided values). */
+                account_type?: components["schemas"]["ConnectedAccountType"][] | null;
+                /** @description How to apply `account_type`: `match_any` keeps the domains on any of the listed types, `match_none` the domains on none of them (so `account_type=ras&account_type_mode=match_none` lists every domain not on a RAS account, and listing every type returns nothing). Has no effect without `account_type`. `match_all` is refused: a domain has exactly one account type. */
+                account_type_mode?: components["schemas"]["TagFilterMode"];
                 /** @description Extra data to include in each result. `tags` populates the `tags` (user tags) and `status_tags` fields, which are otherwise null; filtering by `tag_ids` or `status_tags` alone does not populate them. `connected_account` populates the `connected_account` field for domains held at an external registrar. */
                 include?: components["schemas"]["DomainListIncludeField"][] | null;
             };

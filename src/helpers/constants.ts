@@ -12,6 +12,7 @@ import type {
   BillingTransactionStatus,
   ComplianceStatus,
   ConditionOperator,
+  ConnectedAccountType,
   ContactAttributeSetSortField,
   ContactIncludeField,
   ContactSortField,
@@ -350,6 +351,18 @@ export const CONDITION_OPERATOR_VALUES = [
   'in',
   'not_in',
 ] as const satisfies ReadonlyArray<ConditionOperator>;
+
+export const CONNECTED_ACCOUNT_TYPE = {
+  DEFAULT: "default",
+  AMS: "ams",
+  RAS: "ras",
+} as const satisfies Record<string, ConnectedAccountType>;
+
+export const CONNECTED_ACCOUNT_TYPE_VALUES = [
+  'default',
+  'ams',
+  'ras',
+] as const satisfies ReadonlyArray<ConnectedAccountType>;
 
 export const CONTACT_ATTRIBUTE_SET_SORT_FIELD = {
   LABEL: "label",

@@ -51,6 +51,7 @@ export type CommandError = components['schemas']['CommandError'];
 export type Communication = components['schemas']['Communication'];
 export type ComplianceStatus = components['schemas']['ComplianceStatus'];
 export type ConditionOperator = components['schemas']['ConditionOperator'];
+export type ConnectedAccountType = components['schemas']['ConnectedAccountType'];
 export type ContactAttestReq = components['schemas']['ContactAttestReq'];
 export type ContactAttestRes = components['schemas']['ContactAttestRes'];
 export type ContactAttestVerificationReq = components['schemas']['ContactAttestVerificationReq'];
