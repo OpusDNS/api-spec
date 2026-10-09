@@ -74,6 +74,7 @@ export const DOMAINS_TLD_SPECIFIC_SE_BY_DOMAIN_REFERENCE_AUTH_CODE_REQUEST_ENDPO
 export const DOMAINS_TLD_SPECIFIC_WALES_BY_DOMAIN_REFERENCE_AUTH_CODE_REQUEST_ENDPOINT = '/v1/domains/tld-specific/wales/{domain_reference}/auth_code/request';
 export const DOMAINS_TRANSFER_ENDPOINT = '/v1/domains/transfer';
 export const DOMAINS_BY_DOMAIN_REFERENCE_ENDPOINT = '/v1/domains/{domain_reference}';
+export const DOMAINS_BY_DOMAIN_REFERENCE_AUTH_CODE_ENDPOINT = '/v1/domains/{domain_reference}/auth-code';
 export const DOMAINS_BY_DOMAIN_REFERENCE_DNSSEC_ENDPOINT = '/v1/domains/{domain_reference}/dnssec';
 export const DOMAINS_BY_DOMAIN_REFERENCE_DNSSEC_DISABLE_ENDPOINT = '/v1/domains/{domain_reference}/dnssec/disable';
 export const DOMAINS_BY_DOMAIN_REFERENCE_DNSSEC_ENABLE_ENDPOINT = '/v1/domains/{domain_reference}/dnssec/enable';
@@ -236,6 +237,7 @@ export type Endpoint =
   | typeof DOMAINS_TLD_SPECIFIC_WALES_BY_DOMAIN_REFERENCE_AUTH_CODE_REQUEST_ENDPOINT
   | typeof DOMAINS_TRANSFER_ENDPOINT
   | typeof DOMAINS_BY_DOMAIN_REFERENCE_ENDPOINT
+  | typeof DOMAINS_BY_DOMAIN_REFERENCE_AUTH_CODE_ENDPOINT
   | typeof DOMAINS_BY_DOMAIN_REFERENCE_DNSSEC_ENDPOINT
   | typeof DOMAINS_BY_DOMAIN_REFERENCE_DNSSEC_DISABLE_ENDPOINT
   | typeof DOMAINS_BY_DOMAIN_REFERENCE_DNSSEC_ENABLE_ENDPOINT

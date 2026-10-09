@@ -3,6 +3,7 @@ import type {
   AllocationMethodType,
   AssignablePublicRole,
   AttributeType,
+  AuthCodeDelivery,
   BatchSortField,
   BatchStatus,
   BillingMode,
@@ -205,6 +206,16 @@ export const ATTRIBUTE_TYPE_VALUES = [
   'country_code',
   'uri_template',
 ] as const satisfies ReadonlyArray<AttributeType>;
+
+export const AUTH_CODE_DELIVERY = {
+  RESPONSE: "response",
+  REGISTRANT_EMAIL: "registrant_email",
+} as const satisfies Record<string, AuthCodeDelivery>;
+
+export const AUTH_CODE_DELIVERY_VALUES = [
+  'response',
+  'registrant_email',
+] as const satisfies ReadonlyArray<AuthCodeDelivery>;
 
 export const BATCH_SORT_FIELD = {
   CREATED_ON: "created_on",

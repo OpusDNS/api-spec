@@ -518,6 +518,11 @@ export type PATCH_DomainsByDomainReference_Request = {
 export type PATCH_DomainsByDomainReference_Request_Path = PATCH_DomainsByDomainReference_Request['parameters']['path'];
 export type PATCH_DomainsByDomainReference_Request_Body = PATCH_DomainsByDomainReference_Request['requestBody'];
 
+export type POST_DomainsByDomainReferenceAuthCode_Request = {
+  parameters: operations['request_domain_auth_code_v1_domains__domain_reference__auth_code_post']['parameters'];
+};
+export type POST_DomainsByDomainReferenceAuthCode_Request_Path = POST_DomainsByDomainReferenceAuthCode_Request['parameters']['path'];
+
 export type DELETE_DomainsByDomainReferenceDnssec_Request = {
   parameters: operations['delete_dnssec_v1_domains__domain_reference__dnssec_delete']['parameters'];
 };

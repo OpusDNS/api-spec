@@ -20,6 +20,7 @@ import type {
   DnsZoneSummary,
   DnsZoneVanitySetUpdateRes,
   Domain,
+  DomainAuthCode,
   DomainAvailabilityList,
   DomainCheck,
   DomainDnssecData,
@@ -1189,6 +1190,14 @@ export type POST_Domains_Response_404 = Problem;
 export type POST_Domains_Response_409 = Problem;
 export type POST_Domains_Response_422 = Problem;
 export type POST_Domains_Response_503 = Problem;
+
+export type POST_DomainsByDomainReferenceAuthCode_Response = POST_DomainsByDomainReferenceAuthCode_Response_200 | POST_DomainsByDomainReferenceAuthCode_Response_400 | POST_DomainsByDomainReferenceAuthCode_Response_404 | POST_DomainsByDomainReferenceAuthCode_Response_422 | POST_DomainsByDomainReferenceAuthCode_Response_502;
+
+export type POST_DomainsByDomainReferenceAuthCode_Response_200 = DomainAuthCode;
+export type POST_DomainsByDomainReferenceAuthCode_Response_400 = Problem;
+export type POST_DomainsByDomainReferenceAuthCode_Response_404 = Problem;
+export type POST_DomainsByDomainReferenceAuthCode_Response_422 = Problem;
+export type POST_DomainsByDomainReferenceAuthCode_Response_502 = Problem;
 
 export type POST_DomainsByDomainReferenceDnssecDisable_Response = POST_DomainsByDomainReferenceDnssecDisable_Response_404 | POST_DomainsByDomainReferenceDnssecDisable_Response_422;
 

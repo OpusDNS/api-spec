@@ -131,6 +131,7 @@ import type {
   DnsZoneUpdatePayloadData,
   DnsZoneUpdateWorkerPayload,
   DnsZoneVanitySetUpdateRes,
+  DomainAuthCode,
   DomainAvailability,
   DomainAvailabilityError,
   DomainAvailabilityMeta,
@@ -2105,6 +2106,20 @@ export const KEY_DNS_ZONE_VANITY_SET_UPDATE_RES_ZONE = 'zone' satisfies keyof Dn
 export const KEYS_DNS_ZONE_VANITY_SET_UPDATE_RES = [
   KEY_DNS_ZONE_VANITY_SET_UPDATE_RES_ZONE,
 ] as const satisfies (keyof DnsZoneVanitySetUpdateRes)[];
+
+export const KEY_DOMAIN_AUTH_CODE_AUTH_CODE = 'auth_code' satisfies keyof DomainAuthCode;
+export const KEY_DOMAIN_AUTH_CODE_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' satisfies keyof DomainAuthCode;
+export const KEY_DOMAIN_AUTH_CODE_DELIVERY = 'delivery' satisfies keyof DomainAuthCode;
+export const KEY_DOMAIN_AUTH_CODE_NAME = 'name' satisfies keyof DomainAuthCode;
+export const KEY_DOMAIN_AUTH_CODE_RECIPIENTS = 'recipients' satisfies keyof DomainAuthCode;
+
+export const KEYS_DOMAIN_AUTH_CODE = [
+  KEY_DOMAIN_AUTH_CODE_AUTH_CODE,
+  KEY_DOMAIN_AUTH_CODE_AUTH_CODE_EXPIRES_ON,
+  KEY_DOMAIN_AUTH_CODE_DELIVERY,
+  KEY_DOMAIN_AUTH_CODE_NAME,
+  KEY_DOMAIN_AUTH_CODE_RECIPIENTS,
+] as const satisfies (keyof DomainAuthCode)[];
 
 export const KEY_DOMAIN_AVAILABILITY_DOMAIN = 'domain' satisfies keyof DomainAvailability;
 export const KEY_DOMAIN_AVAILABILITY_ERROR = 'error' satisfies keyof DomainAvailability;

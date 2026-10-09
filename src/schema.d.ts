@@ -1249,7 +1249,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Requests your auth code directly from DNS Belgium (registry) */
+        /**
+         * Requests your auth code directly from DNS Belgium (registry)
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD.
+         */
         post: operations["request_auth_code_v1_domains_tld_specific_be__domain_reference__auth_code_request_post"];
         delete?: never;
         options?: never;
@@ -1268,7 +1272,8 @@ export interface paths {
         put?: never;
         /**
          * Generates a fresh auth code at Nominet (.cymru)
-         * @description Nominet expires a Transfer Authorisation Code after 14 days or on use in a transfer, and enforces complexity requirements on it. This endpoint mints a compliant code, sets it through a `domain:update` and returns it, invalidating any previous one. It is the only way to change a `.cymru` auth code.
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD. Nominet expires a Transfer Authorisation Code after 14 days or on use in a transfer, and enforces complexity requirements on it. This endpoint mints a compliant code, sets it through a `domain:update` and returns it, invalidating any previous one. It is the only way to change a `.cymru` auth code.
          */
         post: operations["request_auth_code_v1_domains_tld_specific_cymru__domain_reference__auth_code_request_post"];
         delete?: never;
@@ -1286,7 +1291,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Requests your auth code directly from CZ.NIC (registry) */
+        /**
+         * Requests your auth code directly from CZ.NIC (registry)
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD.
+         */
         post: operations["request_auth_code_v1_domains_tld_specific_cz__domain_reference__auth_code_request_post"];
         delete?: never;
         options?: never;
@@ -1320,7 +1329,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Requests your auth code directly from Punktum dk (registry) */
+        /**
+         * Requests your auth code directly from Punktum dk (registry)
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD.
+         */
         post: operations["request_auth_code_v1_domains_tld_specific_dk__domain_reference__auth_code_request_post"];
         delete?: never;
         options?: never;
@@ -1337,7 +1350,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Requests your auth code directly from EURid (registry) */
+        /**
+         * Requests your auth code directly from EURid (registry)
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD.
+         */
         post: operations["request_auth_code_v1_domains_tld_specific_eu__domain_reference__auth_code_request_post"];
         delete?: never;
         options?: never;
@@ -1354,7 +1371,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Requests your auth code directly from DOMREG (registry) */
+        /**
+         * Requests your auth code directly from DOMREG (registry)
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD.
+         */
         post: operations["request_auth_code_v1_domains_tld_specific_lt__domain_reference__auth_code_request_post"];
         delete?: never;
         options?: never;
@@ -1431,7 +1452,8 @@ export interface paths {
         put?: never;
         /**
          * Generates a fresh auth code at Internetstiftelsen (.nu)
-         * @description `.nu` auth codes are owned by the registry: registrars can only send the literal `auto`, and the generated code is returned in the `iis:updData` extension of a `domain:update`. This endpoint runs that update and stores the fresh code, invalidating any previous one.
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD. `.nu` auth codes are owned by the registry: registrars can only send the literal `auto`, and the generated code is returned in the `iis:updData` extension of a `domain:update`. This endpoint runs that update and stores the fresh code, invalidating any previous one.
          */
         post: operations["request_auth_code_v1_domains_tld_specific_nu__domain_reference__auth_code_request_post"];
         delete?: never;
@@ -1451,7 +1473,8 @@ export interface paths {
         put?: never;
         /**
          * Generates a fresh auth code at Internetstiftelsen (.se)
-         * @description `.se` auth codes are owned by the registry: registrars can only send the literal `auto`, and the generated code is returned in the `iis:updData` extension of a `domain:update`. This endpoint runs that update and stores the fresh code, invalidating any previous one.
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD. `.se` auth codes are owned by the registry: registrars can only send the literal `auto`, and the generated code is returned in the `iis:updData` extension of a `domain:update`. This endpoint runs that update and stores the fresh code, invalidating any previous one.
          */
         post: operations["request_auth_code_v1_domains_tld_specific_se__domain_reference__auth_code_request_post"];
         delete?: never;
@@ -1471,7 +1494,8 @@ export interface paths {
         put?: never;
         /**
          * Generates a fresh auth code at Nominet (.wales)
-         * @description Nominet expires a Transfer Authorisation Code after 14 days or on use in a transfer, and enforces complexity requirements on it. This endpoint mints a compliant code, sets it through a `domain:update` and returns it, invalidating any previous one. It is the only way to change a `.wales` auth code.
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD. Nominet expires a Transfer Authorisation Code after 14 days or on use in a transfer, and enforces complexity requirements on it. This endpoint mints a compliant code, sets it through a `domain:update` and returns it, invalidating any previous one. It is the only way to change a `.wales` auth code.
          */
         post: operations["request_auth_code_v1_domains_tld_specific_wales__domain_reference__auth_code_request_post"];
         delete?: never;
@@ -1535,6 +1559,26 @@ export interface paths {
          *     `{"status_changes": {"remove": ["clientTransferProhibited"]}}`.
          */
         patch: operations["update_domain_v1_domains__domain_reference__patch"];
+        trace?: never;
+    };
+    "/v1/domains/{domain_reference}/auth-code": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Request a fresh auth code
+         * @description Gets the domain a fresh auth code, whatever the registry's model. Where the registrar sets the code, one is generated, set at the registry and returned, invalidating the previous one. Where the registry generates it, it is requested there and returned, or, for registries that only send it to the registrant (`.be`, `.cz`), `delivery` is `registrant_email` and no code is returned. TLDs without auth codes answer 422. `auth_code` is hidden when the caller cannot view the domain's auth codes.
+         */
+        post: operations["request_domain_auth_code_v1_domains__domain_reference__auth_code_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
     "/v1/domains/{domain_reference}/dnssec": {
@@ -3459,6 +3503,11 @@ export interface components {
             /** Client Id */
             client_id?: string | null;
         };
+        /**
+         * AuthCodeDelivery
+         * @enum {string}
+         */
+        AuthCodeDelivery: "response" | "registrant_email";
         /**
          * BatchSortField
          * @enum {string}
@@ -8155,6 +8204,30 @@ export interface components {
              */
             truncated: boolean;
         } | {
+            data?: components["schemas"]["DomainAuthCodeResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "request_domain_auth_code_v1_domains__domain_reference__auth_code_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
             data?: string;
             /**
              * Headers
@@ -11397,6 +11470,31 @@ export interface components {
          * @enum {string}
          */
         DomainAttributeKey: "auto_renew_period" | "music_registrant_attestation" | "nic_it_compliance_confirmation" | "travel_industry_acknowledgement" | "verification_required" | "de_general_request_contact" | "de_abuse_contact" | "nor_id_applicant_version" | "nor_id_applicant_accept_name" | "nor_id_applicant_accept_date" | "nor_id_declaration" | "nor_id_declaration_token" | "punktum_dk_terms_acceptance" | "punktum_dk_tracking_no" | "internet_ee_registrant_agreement" | "promotion" | "promotion_eligibility" | "domain_contact_attributes" | "registry_reseller_id";
+        /** DomainAuthCodeResponse */
+        DomainAuthCodeResponse: {
+            /**
+             * Auth Code
+             * @description The auth code, when `delivery` is `response`. Hidden when the caller cannot view the domain's auth codes
+             */
+            auth_code?: string | null;
+            /**
+             * Auth Code Expires On
+             * @description When the auth code expires, if the registry limits its validity
+             */
+            auth_code_expires_on?: Date | null;
+            /** @description Where the auth code ends up: `response` returns it in `auth_code`, `registrant_email` means the registry emails it to the registrant and it never reaches us */
+            delivery: components["schemas"]["AuthCodeDelivery"];
+            /**
+             * Name
+             * @description The domain name the auth code belongs to
+             */
+            name: string;
+            /**
+             * Recipients
+             * @description The addresses the registry sent the auth code to, when it reports them
+             */
+            recipients?: string[] | null;
+        };
         /** DomainAvailability */
         DomainAvailability: {
             /** Domain */
@@ -28369,6 +28467,105 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    request_domain_auth_code_v1_domains__domain_reference__auth_code_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                domain_reference: TypeId<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainAuthCodeResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_TRANSFER",
+                     *       "detail": "There was an error transferring the domain",
+                     *       "domain_name": "Additional error context.",
+                     *       "reason": "An unspecified error occurred",
+                     *       "status": 400,
+                     *       "title": "Domain Transfer Error",
+                     *       "type": "domain-transfer"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_NOT_FOUND",
+                     *       "detail": "Domain not found",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_AUTH_CODE_NOT_SUPPORTED",
+                     *       "detail": "Auth codes are not used",
+                     *       "domain_name": "example.lu",
+                     *       "status": 422,
+                     *       "title": "Domain Management Error",
+                     *       "tld": "lu",
+                     *       "type": "domain-auth-code-not-supported"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTH_CODE",
+                     *       "detail": "The registry did not return an auth code",
+                     *       "domain_name": "example.eu",
+                     *       "reason": "No auth code returned",
+                     *       "status": 502,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-auth-code-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };

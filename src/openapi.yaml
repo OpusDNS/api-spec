@@ -356,6 +356,12 @@ components:
           title: Client Id
       title: Auth
       type: object
+    AuthCodeDelivery:
+      enum:
+      - response
+      - registrant_email
+      title: AuthCodeDelivery
+      type: string
     BatchSortField:
       enum:
       - created_on
@@ -6619,6 +6625,37 @@ components:
       - properties:
           data:
             anyOf:
+            - $ref: '#/components/schemas/DomainAuthCodeResponse'
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
+            const: request_domain_auth_code_v1_domains__domain_reference__auth_code_post
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: request_domain_auth_code_v1_domains__domain_reference__auth_code_post
+        type: object
+      - properties:
+          data:
+            anyOf:
             - type: string
           headers:
             additionalProperties:
@@ -11387,6 +11424,45 @@ components:
       - registry_reseller_id
       title: DomainAttributeKey
       type: string
+    DomainAuthCodeResponse:
+      properties:
+        auth_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The auth code, when `delivery` is `response`. Hidden when the
+            caller cannot view the domain's auth codes
+          title: Auth Code
+        auth_code_expires_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: When the auth code expires, if the registry limits its validity
+          title: Auth Code Expires On
+        delivery:
+          $ref: '#/components/schemas/AuthCodeDelivery'
+          description: 'Where the auth code ends up: `response` returns it in `auth_code`,
+            `registrant_email` means the registry emails it to the registrant and
+            it never reaches us'
+        name:
+          description: The domain name the auth code belongs to
+          title: Name
+          type: string
+        recipients:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: The addresses the registry sent the auth code to, when it reports
+            them
+          title: Recipients
+      required:
+      - name
+      - delivery
+      title: DomainAuthCodeResponse
+      type: object
     DomainAvailability:
       properties:
         domain:
@@ -24882,7 +24958,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-08-191153
+  version: 2026-10-09-182429
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -34101,6 +34177,9 @@ paths:
       - domains:manage
   /v1/domains/tld-specific/be/{domain_reference}/auth_code/request:
     post:
+      deprecated: true
+      description: 'Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`,
+        which handles every TLD.'
       operationId: request_auth_code_v1_domains_tld_specific_be__domain_reference__auth_code_request_post
       parameters:
       - in: path
@@ -34168,11 +34247,13 @@ paths:
       - domains:manage
   /v1/domains/tld-specific/cymru/{domain_reference}/auth_code/request:
     post:
-      description: Nominet expires a Transfer Authorisation Code after 14 days or
-        on use in a transfer, and enforces complexity requirements on it. This endpoint
-        mints a compliant code, sets it through a `domain:update` and returns it,
-        invalidating any previous one. It is the only way to change a `.cymru` auth
-        code.
+      deprecated: true
+      description: 'Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`,
+        which handles every TLD. Nominet expires a Transfer Authorisation Code after
+        14 days or on use in a transfer, and enforces complexity requirements on it.
+        This endpoint mints a compliant code, sets it through a `domain:update` and
+        returns it, invalidating any previous one. It is the only way to change a
+        `.cymru` auth code.'
       operationId: request_auth_code_v1_domains_tld_specific_cymru__domain_reference__auth_code_request_post
       parameters:
       - in: path
@@ -34240,6 +34321,9 @@ paths:
       - domains:manage
   /v1/domains/tld-specific/cz/{domain_reference}/auth_code/request:
     post:
+      deprecated: true
+      description: 'Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`,
+        which handles every TLD.'
       operationId: request_auth_code_v1_domains_tld_specific_cz__domain_reference__auth_code_request_post
       parameters:
       - in: path
@@ -34366,6 +34450,9 @@ paths:
       - domains:manage
   /v1/domains/tld-specific/dk/{domain_reference}/auth_code/request:
     post:
+      deprecated: true
+      description: 'Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`,
+        which handles every TLD.'
       operationId: request_auth_code_v1_domains_tld_specific_dk__domain_reference__auth_code_request_post
       parameters:
       - in: path
@@ -34433,6 +34520,9 @@ paths:
       - domains:manage
   /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request:
     post:
+      deprecated: true
+      description: 'Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`,
+        which handles every TLD.'
       operationId: request_auth_code_v1_domains_tld_specific_eu__domain_reference__auth_code_request_post
       parameters:
       - in: path
@@ -34500,6 +34590,9 @@ paths:
       - domains:manage
   /v1/domains/tld-specific/lt/{domain_reference}/auth_code/request:
     post:
+      deprecated: true
+      description: 'Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`,
+        which handles every TLD.'
       operationId: request_auth_code_v1_domains_tld_specific_lt__domain_reference__auth_code_request_post
       parameters:
       - in: path
@@ -34828,10 +34921,12 @@ paths:
       - domains:manage
   /v1/domains/tld-specific/nu/{domain_reference}/auth_code/request:
     post:
-      description: '`.nu` auth codes are owned by the registry: registrars can only
-        send the literal `auto`, and the generated code is returned in the `iis:updData`
-        extension of a `domain:update`. This endpoint runs that update and stores
-        the fresh code, invalidating any previous one.'
+      deprecated: true
+      description: 'Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`,
+        which handles every TLD. `.nu` auth codes are owned by the registry: registrars
+        can only send the literal `auto`, and the generated code is returned in the
+        `iis:updData` extension of a `domain:update`. This endpoint runs that update
+        and stores the fresh code, invalidating any previous one.'
       operationId: request_auth_code_v1_domains_tld_specific_nu__domain_reference__auth_code_request_post
       parameters:
       - in: path
@@ -34899,10 +34994,12 @@ paths:
       - domains:manage
   /v1/domains/tld-specific/se/{domain_reference}/auth_code/request:
     post:
-      description: '`.se` auth codes are owned by the registry: registrars can only
-        send the literal `auto`, and the generated code is returned in the `iis:updData`
-        extension of a `domain:update`. This endpoint runs that update and stores
-        the fresh code, invalidating any previous one.'
+      deprecated: true
+      description: 'Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`,
+        which handles every TLD. `.se` auth codes are owned by the registry: registrars
+        can only send the literal `auto`, and the generated code is returned in the
+        `iis:updData` extension of a `domain:update`. This endpoint runs that update
+        and stores the fresh code, invalidating any previous one.'
       operationId: request_auth_code_v1_domains_tld_specific_se__domain_reference__auth_code_request_post
       parameters:
       - in: path
@@ -34970,11 +35067,13 @@ paths:
       - domains:manage
   /v1/domains/tld-specific/wales/{domain_reference}/auth_code/request:
     post:
-      description: Nominet expires a Transfer Authorisation Code after 14 days or
-        on use in a transfer, and enforces complexity requirements on it. This endpoint
-        mints a compliant code, sets it through a `domain:update` and returns it,
-        invalidating any previous one. It is the only way to change a `.wales` auth
-        code.
+      deprecated: true
+      description: 'Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`,
+        which handles every TLD. Nominet expires a Transfer Authorisation Code after
+        14 days or on use in a transfer, and enforces complexity requirements on it.
+        This endpoint mints a compliant code, sets it through a `domain:update` and
+        returns it, invalidating any previous one. It is the only way to change a
+        `.wales` auth code.'
       operationId: request_auth_code_v1_domains_tld_specific_wales__domain_reference__auth_code_request_post
       parameters:
       - in: path
@@ -35404,6 +35503,102 @@ paths:
       - APIKeyHeader: []
       summary: Update a domain
       tags:
+      - domain
+      x-required-permissions:
+      - domains:manage
+  /v1/domains/{domain_reference}/auth-code:
+    post:
+      description: Gets the domain a fresh auth code, whatever the registry's model.
+        Where the registrar sets the code, one is generated, set at the registry and
+        returned, invalidating the previous one. Where the registry generates it,
+        it is requested there and returned, or, for registries that only send it to
+        the registrant (`.be`, `.cz`), `delivery` is `registrant_email` and no code
+        is returned. TLDs without auth codes answer 422. `auth_code` is hidden when
+        the caller cannot view the domain's auth codes.
+      operationId: request_domain_auth_code_v1_domains__domain_reference__auth_code_post
+      parameters:
+      - in: path
+        name: domain_reference
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - domain_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: domain
+          - type: string
+          title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainAuthCodeResponse'
+          description: Successful Response
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_TRANSFER
+                detail: There was an error transferring the domain
+                domain_name: Additional error context.
+                reason: An unspecified error occurred
+                status: 400
+                title: Domain Transfer Error
+                type: domain-transfer
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_NOT_FOUND
+                detail: Domain not found
+                domain_name: Additional error context.
+                status: 404
+                title: Domain Management Error
+                type: domain-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_AUTH_CODE_NOT_SUPPORTED
+                detail: Auth codes are not used
+                domain_name: example.lu
+                status: 422
+                title: Domain Management Error
+                tld: lu
+                type: domain-auth-code-not-supported
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTH_CODE
+                detail: The registry did not return an auth code
+                domain_name: example.eu
+                reason: No auth code returned
+                status: 502
+                title: Domain Management Error
+                type: domain-auth-code-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Request a fresh auth code
+      tags:
+      - domain
       - domain
       x-required-permissions:
       - domains:manage
