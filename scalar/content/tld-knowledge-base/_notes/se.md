@@ -37,7 +37,7 @@ When the holder has no organization name and the country code is `[SE]`, the reg
 
 `.se` auth codes are owned by the registry. A registrar cannot choose the value: the registry generates it, returns it in the registration response, and does not expose it in a later domain info request.
 
-Request a fresh code with [`POST /v1/domains/tld-specific/se/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/se/{domain_reference}/auth_code/request), which returns the code directly and **invalidates the previous one**. This is how a code consumed by a transfer is replaced.
+Request a fresh code with [`POST /v1/domains/{domain_reference}/auth-code`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/auth-code), which returns the code directly and **invalidates the previous one**. This is how a code consumed by a transfer is replaced.
 
 ## Transfers
 

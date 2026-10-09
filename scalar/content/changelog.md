@@ -4,7 +4,40 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 9 October 2026
+
+- Added **[`POST /v1/domains/{domain_reference}/auth-code`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/auth-code)**,
+  one endpoint that gets a domain a fresh auth code on every TLD. `delivery`
+  says where the code ends up: `response` returns it in `auth_code`, with
+  `auth_code_expires_on` when the registry limits its validity, and
+  `registrant_email` means the registry emails it to the registrant (`.be`,
+  `.cz`), listing `recipients` when the registry reports them. On `.nl` the
+  registry generates the token, so the endpoint returns the current one, and
+  on `.eu` a request while a code is still valid returns that code. `.lu`,
+  `.uk` and `.ro` have no auth code that can be issued this way and answer
+  `422` with `ERROR_DOMAIN_AUTH_CODE_NOT_SUPPORTED`.
+
+- Deprecated **the TLD-specific auth code routes** in favor of the new
+  endpoint. `POST /v1/domains/tld-specific/<tld>/{domain_reference}/auth_code/request`
+  for `.be`, `.cymru`, `.cz`, `.dk`, `.eu`, `.lt`, `.nu`, `.se` and `.wales`
+  keeps working until it is removed.
+
+- Changed **`auth_code` on
+  [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference})
+  to be refused on `.nl`, `.eu` and `.ro`** with `422` and
+  `ERROR_REGISTRY_POLICY`, since none of these registries accepts a code set
+  by the registrar. `.nl` and `.eu` used to fail with a registry error, and
+  `.ro` accepted the request without changing anything. Use the new endpoint
+  instead.
+
 ### 8 October 2026
+
+- Stopped **issuing auth codes on [`.lu`](/tld-knowledge-base/cctlds/lu) and
+  [`.uk`](/tld-knowledge-base/cctlds/uk)**. Neither registry uses an auth code
+  for transfers, so new domains are stored without `auth_code`, and setting
+  one with
+  [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference})
+  is refused with `422`.
 
 - Made the **auth code required on [`.wales`](/tld-knowledge-base/gtlds/wales)
   and [`.cymru`](/tld-knowledge-base/gtlds/cymru) transfers**. Both registries
