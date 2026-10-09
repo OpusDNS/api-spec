@@ -597,7 +597,9 @@ export type GET_DomainsStatistics_Request = {
 export type GET_DomainsStatistics_Request_Query = GET_DomainsStatistics_Request['parameters']['query'];
 
 export type GET_DomainsSummary_Request = {
+  parameters: operations['get_domain_summary_v1_domains_summary_get']['parameters'];
 };
+export type GET_DomainsSummary_Request_Query = GET_DomainsSummary_Request['parameters']['query'];
 
 export type POST_DomainsTldSpecificAtByDomainReferenceWithdraw_Request = {
   parameters: operations['withdraw_domain_v1_domains_tld_specific_at__domain_reference__withdraw_post']['parameters'];

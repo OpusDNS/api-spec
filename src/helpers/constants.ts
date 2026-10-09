@@ -1,4 +1,5 @@
 import type {
+  AccountTypeFilterMode,
   AgreementType,
   AllocationMethodType,
   AssignablePublicRole,
@@ -144,6 +145,16 @@ import type {
   ZoneIncludeField,
   ZoneSortField,
 } from './schemas';
+
+export const ACCOUNT_TYPE_FILTER_MODE = {
+  MATCH_ANY: "match_any",
+  MATCH_NONE: "match_none",
+} as const satisfies Record<string, AccountTypeFilterMode>;
+
+export const ACCOUNT_TYPE_FILTER_MODE_VALUES = [
+  'match_any',
+  'match_none',
+] as const satisfies ReadonlyArray<AccountTypeFilterMode>;
 
 export const AGREEMENT_TYPE = {
   TERMS_AND_CONDITIONS: "terms_and_conditions",

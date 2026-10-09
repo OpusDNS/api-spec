@@ -1,5 +1,6 @@
 import { components } from '../schema';
 
+export type AccountTypeFilterMode = components['schemas']['AccountTypeFilterMode'];
 export type AggregationResult = components['schemas']['AggregationResult'];
 export type AggregationRow = components['schemas']['AggregationRow'];
 export type AggregationsContext = components['schemas']['AggregationsContext'];

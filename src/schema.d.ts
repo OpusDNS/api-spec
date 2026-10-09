@@ -1213,6 +1213,8 @@ export interface paths {
          * Get domain summary
          * @description Retrieves a summary of your organization's domains, with counts by status, status tag, TLD,
          *     registry account type and expiration timeframe. Only `by_organization` includes sub-organizations.
+         *     With `account_type`, every count covers only the domains that filter keeps, so a sub-organization
+         *     whose domains all fall outside it is left out of `by_organization`, as one without domains always is.
          */
         get: operations["get_domain_summary_v1_domains_summary_get"];
         put?: never;
@@ -3293,6 +3295,12 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /**
+         * AccountTypeFilterMode
+         * @description How an `account_type` filter applies; no `match_all`, since a domain has exactly one account type.
+         * @enum {string}
+         */
+        AccountTypeFilterMode: "match_any" | "match_none";
         /** AggregationResult */
         AggregationResult: {
             /** Field */
@@ -26815,10 +26823,10 @@ export interface operations {
                 registrar_credential_id?: TypeId<"registrar_credential">[] | null;
                 /** @description Filter domains held at an external registrar by that registrar. Can be specified multiple times (union of all provided values); combined with `registrar_credential_id`, both must match. Matches exactly the domains whose `connected_account` field carries the registrar, so domains OpusDNS sponsors never match. */
                 registrar?: components["schemas"]["Registrar"][] | null;
-                /** @description Filter domains by the type of the registry account they are held on: `ras` for domains on a registrar-abstraction (RAS) account synced from a connected external registrar, including those whose credential has since been deleted (their `connected_account` is null); `ams` for domains managed on a customer's own registry accreditation; `default` for all others, manually managed domains included (their accounts are typed `default`). Can be specified multiple times (union of all provided values). */
+                /** @description Filter domains by the type of the registry account they are held on: `ras` for domains on a registrar-abstraction (RAS) account synced from a connected external registrar, including those whose credential has since been deleted; `ams` for domains managed on a customer's own registry accreditation; `default` for all others, manually managed domains included (their accounts are typed `default`). Can be specified multiple times (union of all provided values). */
                 account_type?: components["schemas"]["ConnectedAccountType"][] | null;
-                /** @description How to apply `account_type`: `match_any` keeps the domains on any of the listed types, `match_none` the domains on none of them (so `account_type=ras&account_type_mode=match_none` lists every domain not on a RAS account, and listing every type returns nothing). Has no effect without `account_type`. `match_all` is refused: a domain has exactly one account type. */
-                account_type_mode?: components["schemas"]["TagFilterMode"];
+                /** @description How to apply `account_type`: `match_any` keeps the domains on any of the listed types, `match_none` the domains on none of them (so `account_type=ras&account_type_mode=match_none` keeps every domain not on a RAS account, and naming every type keeps none). Has no effect without `account_type`. */
+                account_type_mode?: components["schemas"]["AccountTypeFilterMode"];
                 /** @description Extra data to include in each result. `tags` populates the `tags` (user tags) and `status_tags` fields, which are otherwise null; filtering by `tag_ids` or `status_tags` alone does not populate them. `connected_account` populates the `connected_account` field for domains held at an external registrar. */
                 include?: components["schemas"]["DomainListIncludeField"][] | null;
             };
@@ -27111,7 +27119,12 @@ export interface operations {
     };
     get_domain_summary_v1_domains_summary_get: {
         parameters: {
-            query?: never;
+            query?: {
+                /** @description Filter domains by the type of the registry account they are held on: `ras` for domains on a registrar-abstraction (RAS) account synced from a connected external registrar, including those whose credential has since been deleted; `ams` for domains managed on a customer's own registry accreditation; `default` for all others, manually managed domains included (their accounts are typed `default`). Can be specified multiple times (union of all provided values). */
+                account_type?: components["schemas"]["ConnectedAccountType"][] | null;
+                /** @description How to apply `account_type`: `match_any` keeps the domains on any of the listed types, `match_none` the domains on none of them (so `account_type=ras&account_type_mode=match_none` keeps every domain not on a RAS account, and naming every type keeps none). Has no effect without `account_type`. */
+                account_type_mode?: components["schemas"]["AccountTypeFilterMode"];
+            };
             header?: {
                 /**
                  * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
