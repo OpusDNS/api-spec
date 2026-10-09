@@ -1573,8 +1573,8 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * Request a fresh auth code
-         * @description Gets the domain a fresh auth code, whatever the registry's model. Where the registrar sets the code, one is generated, set at the registry and returned, invalidating the previous one. Where the registry generates it, it is requested there and returned, or, for registries that only send it to the registrant (`.be`, `.cz`), `delivery` is `registrant_email` and no code is returned. TLDs without auth codes answer 422. `auth_code` is hidden when the caller cannot view the domain's auth codes.
+         * Request an auth code
+         * @description Gets an auth code for the domain, following the registry's model. Where the registrar sets the code, a new one is generated, set at the registry and returned, invalidating the previous one. Where the registry generates it, it is requested there: `.eu` and `.lt` return the code already issued while it is still valid, and `.nl` domains on SIDN DRS return the current token, which only SIDN can reset. Registries that only send the code to the registrant (`.be`, `.cz`) answer with `delivery` `registrant_email` and no code. TLDs without auth codes answer 422. `auth_code` is hidden when the caller cannot view the domain's auth codes.
          */
         post: operations["request_domain_auth_code_v1_domains__domain_reference__auth_code_post"];
         delete?: never;

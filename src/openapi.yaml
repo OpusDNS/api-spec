@@ -24968,7 +24968,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-09-220959
+  version: 2026-10-09-225956
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -35560,13 +35560,15 @@ paths:
       - domains:manage
   /v1/domains/{domain_reference}/auth-code:
     post:
-      description: Gets the domain a fresh auth code, whatever the registry's model.
-        Where the registrar sets the code, one is generated, set at the registry and
-        returned, invalidating the previous one. Where the registry generates it,
-        it is requested there and returned, or, for registries that only send it to
-        the registrant (`.be`, `.cz`), `delivery` is `registrant_email` and no code
-        is returned. TLDs without auth codes answer 422. `auth_code` is hidden when
-        the caller cannot view the domain's auth codes.
+      description: 'Gets an auth code for the domain, following the registry''s model.
+        Where the registrar sets the code, a new one is generated, set at the registry
+        and returned, invalidating the previous one. Where the registry generates
+        it, it is requested there: `.eu` and `.lt` return the code already issued
+        while it is still valid, and `.nl` domains on SIDN DRS return the current
+        token, which only SIDN can reset. Registries that only send the code to the
+        registrant (`.be`, `.cz`) answer with `delivery` `registrant_email` and no
+        code. TLDs without auth codes answer 422. `auth_code` is hidden when the caller
+        cannot view the domain''s auth codes.'
       operationId: request_domain_auth_code_v1_domains__domain_reference__auth_code_post
       parameters:
       - in: path
@@ -35648,9 +35650,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
-      summary: Request a fresh auth code
+      summary: Request an auth code
       tags:
-      - domain
       - domain
       x-required-permissions:
       - domains:manage
