@@ -19551,7 +19551,7 @@ export interface components {
         VanityNameserverSetCreate: {
             /**
              * Hostnames
-             * @description Fully-qualified vanity NS hostnames, ordered by intended position.
+             * @description Fully-qualified vanity NS hostnames, ordered by intended position. A set may not have more hostnames than there are anycast address pairs (each hostname gets its own IPs); a larger set is rejected with 400.
              */
             hostnames: string[];
             /**

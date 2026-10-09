@@ -23451,6 +23451,8 @@ components:
       properties:
         hostnames:
           description: Fully-qualified vanity NS hostnames, ordered by intended position.
+            A set may not have more hostnames than there are anycast address pairs
+            (each hostname gets its own IPs); a larger set is rejected with 400.
           items:
             type: string
           maxItems: 4
@@ -24966,7 +24968,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-09-190403
+  version: 2026-10-09-220959
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -43247,15 +43249,14 @@ paths:
         content:
           application/json:
             examples:
-              three_nameservers:
-                description: A set with three branded hostnames under a different
-                  parent domain.
-                summary: Three-nameserver set
+              other_parent:
+                description: A set with two branded hostnames under a different parent
+                  domain.
+                summary: Set under another parent domain
                 value:
                   hostnames:
                   - ns1.acme.example
                   - ns2.acme.example
-                  - ns3.acme.example
                   name: Acme nameservers
                   parent_domain_name: acme.example
                   soa_rname: hostmaster.acme.example
