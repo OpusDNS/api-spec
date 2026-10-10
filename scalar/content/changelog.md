@@ -7,15 +7,15 @@ Track notable updates to the OpusDNS API and developer documentation here.
 ### 9 October 2026
 
 - Added **[`POST /v1/domains/{domain_reference}/auth-code`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/auth-code)**,
-  one endpoint that gets a domain a fresh auth code on every TLD. `delivery`
+  one endpoint that gets an auth code for a domain on every TLD. `delivery`
   says where the code ends up: `response` returns it in `auth_code`, with
   `auth_code_expires_on` when the registry limits its validity, and
   `registrant_email` means the registry emails it to the registrant (`.be`,
   `.cz`), listing `recipients` when the registry reports them. On `.nl` the
   registry generates the token, so the endpoint returns the current one, and
-  on `.eu` a request while a code is still valid returns that code. `.lu`,
-  `.uk` and `.ro` have no auth code that can be issued this way and answer
-  `422` with `ERROR_DOMAIN_AUTH_CODE_NOT_SUPPORTED`.
+  on `.eu` and `.lt` a request while a code is still valid returns that code.
+  `.lu`, `.uk` and `.ro` have no auth code that can be issued this way and
+  answer `422` with `ERROR_DOMAIN_AUTH_CODE_NOT_SUPPORTED`.
 
 - Deprecated **the TLD-specific auth code routes** in favor of the new
   endpoint. `POST /v1/domains/tld-specific/<tld>/{domain_reference}/auth_code/request`
