@@ -95,7 +95,7 @@ action — including the exact resolved list of domains for a bulk operation. Se
 
 | Limit | Value |
 | --- | --- |
-| Approval lifetime | About 5 minutes, single use |
+| Approval lifetime | About 5 minutes, single use; the same action runs at most once in that window |
 | Domains one bulk selector may resolve to | 1,000 |
 | `portfolio_query` page size | 200 maximum |
 | Concurrent in-flight requests per server instance | 32; above that, `503` with `Retry-After: 1` |

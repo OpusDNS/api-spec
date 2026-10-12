@@ -95,10 +95,12 @@ error:
 | `invalid_request` | The arguments do not match the operation — a missing required field, a wrong type, a query or path parameter the operation does not declare (a misspelled selector filter), an unknown `templateType` or `action`, a selector that matched nothing or too much | Fix the arguments. Retrying unchanged fails again |
 | `unknown_operation` | No operation in the catalog has that `operationId` | `search_operations` for the right id |
 | `authentication_required` | No usable credentials for an API call | Sign in again |
+| `action_already_approved` | This exact action was already approved in the last 5 minutes — through another approval prompt for it, or the same one sent again — so it was not run a second time | Nothing to do if it was meant to run once. To run it twice, ask again after a few minutes |
 | `upstream_timeout` | The OpusDNS API did not answer in time | Retry once; if it persists, check status |
 | `upstream_unavailable` | The OpusDNS API could not be reached, or its response broke off before it was complete | Retry with backoff |
 | `request_canceled` | The client gave up on the call before the API answered | Nothing to do; call again if it is still wanted |
 | `selector_page_truncated` | One page of the domain list was too large for the response cap while resolving a bulk selector, so the selection could not be resolved completely | Narrow the selector, for example one TLD at a time |
+| `result_too_large` | The answer is too large for one tool result (clients refuse anything over 1 MB), so it was not sent | Narrow the request: fewer `fields`, a smaller page size or limit, tighter filters |
 | `tool_error` | Anything else the tool itself rejected | Read the message |
 
 <scalar-callout type="info">
@@ -126,12 +128,19 @@ protected-resource metadata, which is how a client knows where to sign in. See
 ## When a result is truncated
 
 ```json
-{ "status": "ok", "truncated": true, "data": "…" }
+{
+  "status": "ok",
+  "truncated": true,
+  "data": null,
+  "note": "the response was larger than 512 KiB and was cut off, so its data is left out; 587 items arrived whole before the cut: ask for fewer per page or narrow the request"
+}
 ```
 
 Responses are capped so a single call cannot flood the model's context. Past the
-cap the body is cut and `truncated` is set — and because the cut lands
-mid-document, `data` is then a **string**, not parsed JSON.
+cap the body is cut and `truncated` is set. A JSON body cut mid-document does not
+parse, so it is left out: `data` is `null`, and `note` says how many items of the
+list arrived whole before the cut, so a page smaller than that fits. A body that
+is not JSON keeps its first part, as a string.
 
 Do not retry the same call: it will be cut in the same place. Ask for less
 instead — a narrower filter, a smaller page, or `portfolio_query` with an
