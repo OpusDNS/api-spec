@@ -18263,10 +18263,16 @@ components:
       - DELETED
       - IMPORTED
       - SYNCED_AFTER_IMPORT
+      - SYNCED
       - TRANSFER_STARTED
       - TRANSFER_COMPLETED
+      - TRANSFER_CANCELLED
+      - TRANSFER_FAILED
       - TRANSFER_OUT_STARTED
       - TRANSFER_OUT_COMPLETED
+      - TRANSFER_OUT_CANCELLED
+      - TRANSFER_OUT_FAILED
+      - TRANSFER_OUT_REJECTED
       - RENEWED
       - RESTORED
       - BILLING_TRANSACTION_RESERVED
@@ -24968,7 +24974,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-09-225956
+  version: 2026-10-12-142952
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
