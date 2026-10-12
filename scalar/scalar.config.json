@@ -1609,6 +1609,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/college.md",
                 "showInSidebar": true
               },
+              "/cologne": {
+                "type": "page",
+                "title": "🌐 .cologne",
+                "filepath": "content/tld-knowledge-base/gtlds/cologne.md",
+                "showInSidebar": true
+              },
               "/com": {
                 "type": "page",
                 "title": "🌐 .com",
@@ -2495,6 +2501,12 @@
                 "type": "page",
                 "title": "🌐 .kitchen",
                 "filepath": "content/tld-knowledge-base/gtlds/kitchen.md",
+                "showInSidebar": true
+              },
+              "/koeln": {
+                "type": "page",
+                "title": "🌐 .koeln",
+                "filepath": "content/tld-knowledge-base/gtlds/koeln.md",
                 "showInSidebar": true
               },
               "/kred": {
