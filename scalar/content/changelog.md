@@ -385,7 +385,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
   datetimes by default**, completing the staged cutover: every datetime in a
   public `/v1` response now carries a trailing `Z`. The `X-Datetime-Format:
   rfc3339` header remains accepted and is now a no-op. See
-  [Timezone-aware datetimes (RFC 3339)](/upcoming-changes/rfc3339-datetimes).
+  [Timezone-aware datetimes (RFC 3339)](/introduction/datetimes).
 
 - Added **the registrar credential to domains held at a connected registrar**:
   request `include=registrar_credential` on
@@ -601,7 +601,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
   public `/v1` responses from sandbox now carries the explicit UTC designator
   (trailing `Z`); the `X-Datetime-Format: rfc3339` header remains accepted there
   and is now a no-op. Production follows on Tuesday, 2026-09-01. See
-  [Timezone-aware datetimes (RFC 3339)](/upcoming-changes/rfc3339-datetimes) for
+  [Timezone-aware datetimes (RFC 3339)](/introduction/datetimes) for
   migration guidance.
 
 - Added **a `read_only` flag to the domain object**: a domain marked read-only
@@ -733,7 +733,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
   as JavaScript's `new Date()`) that misparse today's marker-less timestamps as
   local time. The tz-aware format becomes the default per environment on a staged
   schedule, after which the header is a no-op. See
-  [Timezone-aware datetimes (RFC 3339)](/upcoming-changes/rfc3339-datetimes) for
+  [Timezone-aware datetimes (RFC 3339)](/introduction/datetimes) for
   the cutover dates and migration guidance.
 
 ### 10 July 2026
