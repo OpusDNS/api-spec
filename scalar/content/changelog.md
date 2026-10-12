@@ -4,6 +4,13 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 12 October 2026
+
+- Onboarded **[`.koeln`](/tld-knowledge-base/gtlds/koeln)** and
+  **[`.cologne`](/tld-knowledge-base/gtlds/cologne)** (dotKoeln GmbH), both
+  served over the RyCE registry backend. Published their TLD Knowledge Base
+  pages. Both lock a domain for 60 days after a registration or a transfer.
+
 ### 9 October 2026
 
 - Added **[`POST /v1/domains/{domain_reference}/auth-code`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/auth-code)**,
