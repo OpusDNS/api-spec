@@ -149,26 +149,12 @@
                 "icon": "line/interface-login-key",
                 "filepath": "content/authentication.md",
                 "showInSidebar": true
-              }
-            }
-          },
-          "/upcoming-changes": {
-            "type": "group",
-            "title": "Upcoming Changes",
-            "mode": "flat",
-            "children": {
-              "/event-v1-payloads": {
-                "type": "page",
-                "title": "Upcoming changes",
-                "icon": "phosphor/regular/bell",
-                "filepath": "content/upcoming-changes/event-v1-payloads.md",
-                "showInSidebar": true
               },
-              "/rfc3339-datetimes": {
+              "/datetimes": {
                 "type": "page",
-                "title": "RFC 3339 datetimes",
+                "title": "Datetimes",
                 "icon": "phosphor/regular/clock",
-                "filepath": "content/upcoming-changes/rfc3339-datetimes.md",
+                "filepath": "content/datetimes.md",
                 "showInSidebar": true
               }
             }
