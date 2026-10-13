@@ -17926,7 +17926,7 @@ export interface components {
         RegistrantChangeDetails: {
             /** Confirmation Deadline */
             confirmation_deadline?: Date | null;
-            confirmation_method: components["schemas"]["RegistrantChangeConfirmationMethod"];
+            confirmation_method?: components["schemas"]["RegistrantChangeConfirmationMethod"] | null;
             /**
              * @description discriminator enum property added by openapi-typescript
              * @enum {string}

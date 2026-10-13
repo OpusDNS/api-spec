@@ -20955,7 +20955,9 @@ components:
           - type: 'null'
           title: Confirmation Deadline
         confirmation_method:
-          $ref: '#/components/schemas/RegistrantChangeConfirmationMethod'
+          anyOf:
+          - $ref: '#/components/schemas/RegistrantChangeConfirmationMethod'
+          - type: 'null'
         detail_type:
           const: registrant_change
           default: registrant_change
@@ -21007,7 +21009,6 @@ components:
       - status
       - prior_registrant_id
       - new_registrant_id
-      - confirmation_method
       title: RegistrantChangeDetails
       type: object
     RegistrantChangeFeeType:
@@ -24977,7 +24978,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-13-132727
+  version: 2026-10-13-145103
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
