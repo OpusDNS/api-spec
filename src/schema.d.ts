@@ -18014,7 +18014,7 @@ export interface components {
          * Registrar
          * @enum {string}
          */
-        Registrar: "INTERNETX" | "MONIKER" | "DOMAIN_BESTELLSYSTEM" | "CENTRALNIC" | "NICMANAGER" | "OPUSDNS" | "ENOM" | "OPENSRS" | "NIC_DIRECT" | "OPENPROVIDER";
+        Registrar: "INTERNETX" | "MONIKER" | "DOMAIN_BESTELLSYSTEM" | "CENTRALNIC" | "NICMANAGER" | "OPUSDNS" | "ENOM" | "OPENSRS" | "NIC_DIRECT" | "OPENPROVIDER" | "REALTIMEREGISTER";
         /** RegistrarContact */
         RegistrarContact: {
             /** City */

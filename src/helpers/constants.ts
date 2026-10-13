@@ -1850,6 +1850,7 @@ export const REGISTRAR = {
   OPENSRS: "OPENSRS",
   NIC_DIRECT: "NIC_DIRECT",
   OPENPROVIDER: "OPENPROVIDER",
+  REALTIMEREGISTER: "REALTIMEREGISTER",
 } as const satisfies Record<string, Registrar>;
 
 export const REGISTRAR_VALUES = [
@@ -1863,6 +1864,7 @@ export const REGISTRAR_VALUES = [
   'OPENSRS',
   'NIC_DIRECT',
   'OPENPROVIDER',
+  'REALTIMEREGISTER',
 ] as const satisfies ReadonlyArray<Registrar>;
 
 export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
