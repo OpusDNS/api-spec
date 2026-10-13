@@ -20628,7 +20628,8 @@ export interface components {
     responses: never;
     parameters: {
         /**
-         * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+         * @deprecated
+         * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
          * @example rfc3339
          */
         DatetimeFormatHeader: "rfc3339";
@@ -20644,7 +20645,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20736,7 +20738,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20819,7 +20822,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20906,7 +20910,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20991,7 +20996,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21075,7 +21081,8 @@ export interface operations {
             header?: {
                 "If-Match"?: string | null;
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21167,7 +21174,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21252,7 +21260,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21348,7 +21357,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21433,7 +21443,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21522,7 +21533,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21612,7 +21624,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21695,7 +21708,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21782,7 +21796,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21865,7 +21880,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21970,7 +21986,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22022,7 +22039,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22086,7 +22104,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22146,7 +22165,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22216,7 +22236,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22251,7 +22272,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22318,7 +22340,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22413,7 +22436,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22465,7 +22489,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22521,7 +22546,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22572,7 +22598,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22662,7 +22689,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22697,7 +22725,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22747,7 +22776,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22782,7 +22812,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22838,7 +22869,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22892,7 +22924,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22944,7 +22977,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23021,7 +23055,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23091,7 +23126,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23168,7 +23204,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23205,7 +23242,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23259,7 +23297,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23327,7 +23366,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23392,7 +23432,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23464,7 +23505,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23559,7 +23601,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23645,7 +23688,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23713,7 +23757,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23806,7 +23851,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23946,7 +23992,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23981,7 +24028,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24045,7 +24093,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24121,7 +24170,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24188,7 +24238,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24225,7 +24276,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24263,7 +24315,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24299,7 +24352,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24353,7 +24407,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24434,7 +24489,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24504,7 +24560,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24574,7 +24631,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24658,7 +24716,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24743,7 +24802,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24831,7 +24891,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24898,7 +24959,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24965,7 +25027,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25069,7 +25132,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25163,7 +25227,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25267,7 +25332,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25371,7 +25437,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25475,7 +25542,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25579,7 +25647,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25683,7 +25752,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25787,7 +25857,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25891,7 +25962,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25997,7 +26069,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26092,7 +26165,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26178,7 +26252,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26284,7 +26359,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26368,7 +26444,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26436,7 +26513,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26504,7 +26582,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26591,7 +26670,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26682,7 +26762,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26776,7 +26857,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26914,7 +26996,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26949,7 +27032,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27048,7 +27132,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27083,7 +27168,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27169,7 +27255,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27209,7 +27296,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27244,7 +27332,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27302,7 +27391,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27374,7 +27464,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27446,7 +27537,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27518,7 +27610,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27576,7 +27669,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27648,7 +27742,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27720,7 +27815,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27794,7 +27890,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27847,7 +27944,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27934,7 +28032,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28018,7 +28117,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28079,7 +28179,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28151,7 +28252,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28223,7 +28325,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28295,7 +28398,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28397,7 +28501,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28451,7 +28556,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28521,7 +28627,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28571,7 +28678,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28670,7 +28778,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28724,7 +28833,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28782,7 +28892,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28834,7 +28945,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28886,7 +28998,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28958,7 +29071,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29053,7 +29167,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29094,7 +29209,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29164,7 +29280,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29259,7 +29376,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29326,7 +29444,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29441,7 +29560,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29526,7 +29646,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29593,7 +29714,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29698,7 +29820,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29789,7 +29912,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29874,7 +29998,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29957,7 +30082,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -30045,7 +30171,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -30147,7 +30274,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -30198,7 +30326,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -30268,7 +30397,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -30336,7 +30466,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -30450,7 +30581,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -30528,7 +30660,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -30610,7 +30743,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -30703,7 +30837,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -30775,7 +30910,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -30828,7 +30964,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -30881,7 +31018,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -30936,7 +31074,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -31018,7 +31157,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -31053,7 +31193,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -31125,7 +31266,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -31197,7 +31339,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -31261,7 +31404,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -31333,7 +31477,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -31386,7 +31531,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -31442,7 +31588,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -31508,7 +31655,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -31575,7 +31723,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -31649,7 +31798,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -31716,7 +31866,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -31795,7 +31946,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -31862,7 +32014,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -31933,7 +32086,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -32002,7 +32156,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -32069,7 +32224,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -32142,7 +32298,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -32209,7 +32366,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -32308,7 +32466,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -32375,7 +32534,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -32442,7 +32602,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -32529,7 +32690,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -32615,7 +32777,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -32717,7 +32880,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -32833,7 +32997,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -32900,7 +33065,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -32969,7 +33135,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -33036,7 +33203,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -33112,7 +33280,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -33181,7 +33350,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -33265,7 +33435,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -33305,7 +33476,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -33345,7 +33517,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -33438,7 +33611,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -33507,7 +33681,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -33584,7 +33759,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -33659,7 +33835,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -33744,7 +33921,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -33816,7 +33994,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -33883,7 +34062,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -33954,7 +34134,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -34026,7 +34207,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -34119,7 +34301,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -34154,7 +34337,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -34193,7 +34377,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -34230,7 +34415,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -34278,7 +34464,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -34329,7 +34516,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -34401,7 +34589,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -34490,7 +34679,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -34560,7 +34750,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -34628,7 +34819,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -34719,7 +34911,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -34796,7 +34989,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -34835,7 +35029,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -34877,7 +35072,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -34930,7 +35126,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -34971,7 +35168,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35008,7 +35206,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35045,7 +35244,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35089,7 +35289,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35130,7 +35331,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35167,7 +35369,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35204,7 +35407,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35281,7 +35485,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35316,7 +35521,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35355,7 +35561,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35394,7 +35601,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35429,7 +35637,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35466,7 +35675,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35503,7 +35713,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35544,7 +35755,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35581,7 +35793,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35618,7 +35831,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35658,7 +35872,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35695,7 +35910,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35730,7 +35946,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35769,7 +35986,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35808,7 +36026,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35843,7 +36062,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35882,7 +36102,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35917,7 +36138,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35952,7 +36174,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -35991,7 +36214,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -36030,7 +36254,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -36069,7 +36294,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -36104,7 +36330,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -36143,7 +36370,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -36178,7 +36406,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];

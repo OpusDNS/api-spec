@@ -1,9 +1,10 @@
 components:
   parameters:
     DatetimeFormatHeader:
-      description: Accepted for backwards compatibility; has no effect. Response datetimes
-        are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix,
-        whether or not this header is sent.
+      deprecated: true
+      description: 'Deprecated: has no effect and will be removed from this specification
+        on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always
+        normalized to UTC and serialized as RFC 3339 with a `Z` suffix.'
       example: rfc3339
       in: header
       name: X-Datetime-Format
@@ -25071,7 +25072,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-13-152516
+  version: 2026-10-13-190828
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
