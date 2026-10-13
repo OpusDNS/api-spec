@@ -264,7 +264,7 @@ export interface paths {
         };
         /**
          * Introspect the current API key
-         * @description Returns the stored record for the API key (or organization token) used to authenticate the request, including its organization. Requires API-key or organization-token authentication; user tokens are rejected.
+         * @description Returns the stored record for the API key (or organization token) used to authenticate the request, including its organization and the role bound to the key. Requires API-key or organization-token authentication; user tokens are rejected.
          */
         get: operations["introspect_client_credential_v1_auth_client_credentials_introspect_get"];
         put?: never;
@@ -16667,7 +16667,10 @@ export interface components {
              * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id: TypeId<"organization">;
-            /** Role */
+            /**
+             * Role
+             * @description Role bound to the API key: a built-in role name or the label of a custom role. null when the key holds no role, which grants no permissions.
+             */
             role?: components["schemas"]["PublicRole"] | components["schemas"]["CustomRoleLabel"] | null;
             /** @description The status of the organization credential. */
             readonly status: components["schemas"]["OrganizationCredentialStatus"];
@@ -22227,6 +22230,22 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHORIZATION_UNAVAILABLE",
+                     *       "detail": "Additional error context.",
+                     *       "status": 503,
+                     *       "title": "Authorization service unavailable.",
+                     *       "type": "authorization-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };

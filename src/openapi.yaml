@@ -18890,6 +18890,8 @@ components:
           - $ref: '#/components/schemas/PublicRole'
           - $ref: '#/components/schemas/CustomRoleLabel'
           - type: 'null'
+          description: 'Role bound to the API key: a built-in role name or the label
+            of a custom role. null when the key holds no role, which grants no permissions.'
           title: Role
         status:
           $ref: '#/components/schemas/OrganizationCredentialStatus'
@@ -24974,7 +24976,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-12-142952
+  version: 2026-10-13-123357
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -27010,8 +27012,9 @@ paths:
   /v1/auth/client_credentials/introspect:
     get:
       description: Returns the stored record for the API key (or organization token)
-        used to authenticate the request, including its organization. Requires API-key
-        or organization-token authentication; user tokens are rejected.
+        used to authenticate the request, including its organization and the role
+        bound to the key. Requires API-key or organization-token authentication; user
+        tokens are rejected.
       operationId: introspect_client_credential_v1_auth_client_credentials_introspect_get
       parameters:
       - $ref: '#/components/parameters/DatetimeFormatHeader'
@@ -27040,6 +27043,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHORIZATION_UNAVAILABLE
+                detail: Additional error context.
+                status: 503
+                title: Authorization service unavailable.
+                type: authorization-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
