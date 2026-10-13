@@ -4,6 +4,15 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 13 October 2026
+
+- Deprecated **the `X-Datetime-Format` request header**. It has had no effect
+  since the RFC 3339 cutover and will be removed from the OpenAPI specification
+  and the generated clients on 12 November 2026. The API keeps ignoring the
+  header if you send it, but you can stop sending it now. Responses no longer
+  list it in `Vary`. See
+  [Timezone-aware datetimes (RFC 3339)](/introduction/datetimes).
+
 ### 12 October 2026
 
 - Onboarded **[`.koeln`](/tld-knowledge-base/gtlds/koeln)** and
