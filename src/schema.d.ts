@@ -12535,7 +12535,7 @@ export interface components {
          * DomainIncludeField
          * @enum {string}
          */
-        DomainIncludeField: "tags" | "renewal_price" | "connected_account";
+        DomainIncludeField: "tags" | "renewal_price" | "connected_account" | "registrant_change";
         /** DomainLifecycleBase */
         DomainLifecycleBase: {
             /**
@@ -12695,6 +12695,67 @@ export interface components {
              */
             kind: "domain_recommendations";
             payload: components["schemas"]["ContextPayload_DomainSearchSuggestionWithPrice_"];
+        };
+        /** DomainRegistrantChangeResponse */
+        DomainRegistrantChangeResponse: {
+            /**
+             * Confirmation Deadline
+             * @description When the request expires if not confirmed
+             */
+            confirmation_deadline: Date | null;
+            /** @description How the change was confirmed, null when no confirmation applies */
+            confirmation_method: components["schemas"]["RegistrantChangeConfirmationMethod"] | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description When the request was created
+             */
+            created_on: Date;
+            /**
+             * Domain Id
+             * Format: typeid
+             * @description The ID of the domain
+             * @example domain_01h45ytscbebyvny4gc8cr8ma2
+             */
+            domain_id: TypeId<"domain">;
+            /**
+             * Failure Reason
+             * @description Why the registrant change failed
+             */
+            failure_reason: string | null;
+            /**
+             * Material
+             * @description Whether the name, organization or email of the registrant changes
+             */
+            material: boolean;
+            /**
+             * New Registrant
+             * Format: typeid
+             * @description The registrant after the change
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
+             */
+            new_registrant: TypeId<"contact">;
+            /**
+             * Previous Registrant
+             * Format: typeid
+             * @description The registrant before the change
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
+             */
+            previous_registrant: TypeId<"contact">;
+            /**
+             * Registrant Change Id
+             * Format: typeid
+             * @description The ID of the registrant change
+             * @example registrant_change_01h45ytscbebyvny4gc8cr8ma2
+             */
+            registrant_change_id: TypeId<"registrant_change">;
+            /** @description The status of the registrant change */
+            status: components["schemas"]["RegistrantChangeStatus"];
+            /**
+             * Transfer Lock Opt Out
+             * @description Whether the transfer lock after the change was opted out of
+             */
+            transfer_lock_opt_out: boolean;
         };
         /** DomainRegistrarCredentialResponse */
         DomainRegistrarCredentialResponse: {
@@ -12895,6 +12956,8 @@ export interface components {
              * @description When the domain was registered
              */
             registered_on?: Date | null;
+            /** @description The change of registrant in progress. Null unless `include=registrant_change` is requested, and null even then when no change of registrant is in progress. */
+            registrant_change?: components["schemas"]["DomainRegistrantChangeResponse"] | null;
             /**
              * Registry Account Id
              * Format: typeid
@@ -28329,7 +28392,7 @@ export interface operations {
     get_domain_v1_domains__domain_reference__get: {
         parameters: {
             query?: {
-                /** @description Extra data to include in the response. `tags` populates the `tags` and `status_tags` fields, which are otherwise null. `renewal_price` resolves the domain's renewal price. `connected_account` populates the `connected_account` field for domains held at an external registrar. */
+                /** @description Extra data to include in the response. `tags` populates the `tags` and `status_tags` fields, which are otherwise null. `renewal_price` resolves the domain's renewal price. `connected_account` populates the `connected_account` field for domains held at an external registrar. `registrant_change` populates the `registrant_change` field with the change of registrant in progress. */
                 include?: components["schemas"]["DomainIncludeField"][] | null;
             };
             header?: {

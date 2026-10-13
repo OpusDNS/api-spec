@@ -243,6 +243,7 @@ export type DomainNameParts = components['schemas']['DomainNameParts'];
 export type DomainPeriod = components['schemas']['DomainPeriod'];
 export type DomainRecommendationsContext = components['schemas']['DomainRecommendationsContext'];
 export type DomainRecommendationsContextCreate = components['schemas']['DomainRecommendationsContextCreate'];
+export type DomainRegistrantChange = components['schemas']['DomainRegistrantChangeResponse'];
 export type DomainRegistrarCredential = components['schemas']['DomainRegistrarCredentialResponse'];
 export type DomainRenewRequest = components['schemas']['DomainRenewRequest'];
 export type DomainRenew = components['schemas']['DomainRenewResponse'];

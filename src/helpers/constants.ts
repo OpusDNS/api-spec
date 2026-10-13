@@ -838,12 +838,14 @@ export const DOMAIN_INCLUDE_FIELD = {
   TAGS: "tags",
   RENEWAL_PRICE: "renewal_price",
   CONNECTED_ACCOUNT: "connected_account",
+  REGISTRANT_CHANGE: "registrant_change",
 } as const satisfies Record<string, DomainIncludeField>;
 
 export const DOMAIN_INCLUDE_FIELD_VALUES = [
   'tags',
   'renewal_price',
   'connected_account',
+  'registrant_change',
 ] as const satisfies ReadonlyArray<DomainIncludeField>;
 
 export const DOMAIN_LIST_INCLUDE_FIELD = {

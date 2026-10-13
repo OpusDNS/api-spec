@@ -193,6 +193,7 @@ import type {
   DomainPeriod,
   DomainRecommendationsContext,
   DomainRecommendationsContextCreate,
+  DomainRegistrantChange,
   DomainRegistrarCredential,
   DomainRenewRequest,
   DomainRenew,
@@ -2787,6 +2788,32 @@ export const KEYS_DOMAIN_RECOMMENDATIONS_CONTEXT_CREATE = [
   KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_CREATE_PAYLOAD,
 ] as const satisfies (keyof DomainRecommendationsContextCreate)[];
 
+export const KEY_DOMAIN_REGISTRANT_CHANGE_CONFIRMATION_DEADLINE = 'confirmation_deadline' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_CONFIRMATION_METHOD = 'confirmation_method' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_CREATED_ON = 'created_on' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_DOMAIN_ID = 'domain_id' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_FAILURE_REASON = 'failure_reason' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_MATERIAL = 'material' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_NEW_REGISTRANT = 'new_registrant' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_PREVIOUS_REGISTRANT = 'previous_registrant' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_REGISTRANT_CHANGE_ID = 'registrant_change_id' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_STATUS = 'status' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_TRANSFER_LOCK_OPT_OUT = 'transfer_lock_opt_out' satisfies keyof DomainRegistrantChange;
+
+export const KEYS_DOMAIN_REGISTRANT_CHANGE = [
+  KEY_DOMAIN_REGISTRANT_CHANGE_CONFIRMATION_DEADLINE,
+  KEY_DOMAIN_REGISTRANT_CHANGE_CONFIRMATION_METHOD,
+  KEY_DOMAIN_REGISTRANT_CHANGE_CREATED_ON,
+  KEY_DOMAIN_REGISTRANT_CHANGE_DOMAIN_ID,
+  KEY_DOMAIN_REGISTRANT_CHANGE_FAILURE_REASON,
+  KEY_DOMAIN_REGISTRANT_CHANGE_MATERIAL,
+  KEY_DOMAIN_REGISTRANT_CHANGE_NEW_REGISTRANT,
+  KEY_DOMAIN_REGISTRANT_CHANGE_PREVIOUS_REGISTRANT,
+  KEY_DOMAIN_REGISTRANT_CHANGE_REGISTRANT_CHANGE_ID,
+  KEY_DOMAIN_REGISTRANT_CHANGE_STATUS,
+  KEY_DOMAIN_REGISTRANT_CHANGE_TRANSFER_LOCK_OPT_OUT,
+] as const satisfies (keyof DomainRegistrantChange)[];
+
 export const KEY_DOMAIN_REGISTRAR_CREDENTIAL_NAME = 'name' satisfies keyof DomainRegistrarCredential;
 export const KEY_DOMAIN_REGISTRAR_CREDENTIAL_REGISTRAR = 'registrar' satisfies keyof DomainRegistrarCredential;
 export const KEY_DOMAIN_REGISTRAR_CREDENTIAL_REGISTRAR_CREDENTIAL_ID = 'registrar_credential_id' satisfies keyof DomainRegistrarCredential;
@@ -2865,6 +2892,7 @@ export const KEY_DOMAIN_NAMESERVERS = 'nameservers' satisfies keyof Domain;
 export const KEY_DOMAIN_OWNER_ID = 'owner_id' satisfies keyof Domain;
 export const KEY_DOMAIN_READ_ONLY = 'read_only' satisfies keyof Domain;
 export const KEY_DOMAIN_REGISTERED_ON = 'registered_on' satisfies keyof Domain;
+export const KEY_DOMAIN_REGISTRANT_CHANGE = 'registrant_change' satisfies keyof Domain;
 export const KEY_DOMAIN_REGISTRY_ACCOUNT_ID = 'registry_account_id' satisfies keyof Domain;
 export const KEY_DOMAIN_REGISTRY_STATUSES = 'registry_statuses' satisfies keyof Domain;
 export const KEY_DOMAIN_RENEWAL_MODE = 'renewal_mode' satisfies keyof Domain;
@@ -2897,6 +2925,7 @@ export const KEYS_DOMAIN = [
   KEY_DOMAIN_OWNER_ID,
   KEY_DOMAIN_READ_ONLY,
   KEY_DOMAIN_REGISTERED_ON,
+  KEY_DOMAIN_REGISTRANT_CHANGE,
   KEY_DOMAIN_REGISTRY_ACCOUNT_ID,
   KEY_DOMAIN_REGISTRY_STATUSES,
   KEY_DOMAIN_RENEWAL_MODE,
