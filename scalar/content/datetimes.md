@@ -16,9 +16,11 @@ including JavaScript's `new Date()`.
 
 ## The `X-Datetime-Format` header
 
-`X-Datetime-Format: rfc3339` is accepted on every request and has no effect.
-Responses use the format above whether or not you send it, and sending it never
-causes an error, so existing clients that set it need no change.
+`X-Datetime-Format` is deprecated. It has no effect: responses use the format
+above whether or not you send it. It will be removed from the OpenAPI
+specification and the generated clients on 12 November 2026. The API keeps
+ignoring it after that date, so sending it never causes an error, but you can
+stop sending it now.
 
 ## Before the cutover
 
