@@ -51,8 +51,11 @@ to work with TypeIDs natively.
 
 We maintain official client libraries and integrations:
 
-- [**OpusDNS Go Client**](https://github.com/OpusDNS/opusdns-go-client) — full
+- [**OpusDNS Go Client**](https://github.com/OpusDNS/opusdns-go-client) - full
   Go client covering every API endpoint.
+- [**OpusDNS PHP Client**](https://github.com/OpusDNS/opusdns-php-client) - PHP
+  8.3+ client covering every API endpoint, installed with
+  `composer require opusdns/php-client`.
 
 Check [our GitHub](https://github.com/OpusDNS/) for the latest SDKs, plugins,
 and open-source tooling.
