@@ -4,6 +4,22 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 14 October 2026
+
+- Changed **the archive endpoints to require `audit_logs:read`** instead of
+  `organization:read`:
+  [`GET /v1/archive/object-logs`](/api-reference#tag/archive/GET/v1/archive/object-logs),
+  [`GET /v1/archive/object-logs/{object_id}`](/api-reference#tag/archive/GET/v1/archive/object-logs/{object_id})
+  and
+  [`GET /v1/archive/request-history`](/api-reference#tag/archive/GET/v1/archive/request-history).
+  Object logs hold snapshots of every record type and request history holds
+  request and response bodies, so these endpoints now need the permission meant
+  for them rather than the one for viewing the organization. The built-in
+  `owner`, `admin` and `viewer` roles already have `audit_logs:read`. A custom
+  role or API key that reads these endpoints without it now gets `403`; add
+  `audit_logs:read` to it. See
+  [Roles & permissions](/account/organizations/roles).
+
 ### 13 October 2026
 
 - Deprecated **the `X-Datetime-Format` request header**. It has had no effect
