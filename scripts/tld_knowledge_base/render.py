@@ -223,6 +223,7 @@ def _launch_phases(config: dict[str, Any]) -> list[str]:
 
 def _domain_characteristics(config: dict[str, Any]) -> list[str]:
     chars = config.get("characters") or {}
+    idn_chars = chars.get("idn") or {}
     idn = config.get("idn") or {}
     premium = (config.get("premium_domains") or {}).get("supported")
     reserved = (config.get("reserved_domains") or {}).get("supported")
@@ -233,8 +234,16 @@ def _domain_characteristics(config: dict[str, Any]) -> list[str]:
     if idn.get("idn_capable") and idn_tables:
         idn_value = f"{f.YES} ({len(idn_tables)} tables)"
 
+    # characters.min/max cover ASCII labels only; labels with non-ASCII code
+    # points follow characters.idn when the registry declares a separate limit.
+    domain_length = f.char_range(chars.get("min"), chars.get("max"))
+    idn_length = f.char_range(idn_chars.get("min"), idn_chars.get("max"))
+    if idn_length and domain_length:
+        domain_length = f"{domain_length} (ASCII)"
+
     rows: list[tuple[str, str]] = [
-        ("Domain Length", f.char_range(chars.get("min"), chars.get("max"))),
+        ("Domain Length", domain_length),
+        ("IDN Length", idn_length),
         ("IDN Support", idn_value),
         ("Premium Domains", f.yes_no(premium)),
         ("Reserved Domains", f.yes_no(reserved)),

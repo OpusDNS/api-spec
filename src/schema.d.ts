@@ -264,7 +264,7 @@ export interface paths {
         };
         /**
          * Introspect the current API key
-         * @description Returns the stored record for the API key (or organization token) used to authenticate the request, including its organization. Requires API-key or organization-token authentication; user tokens are rejected.
+         * @description Returns the stored record for the API key (or organization token) used to authenticate the request, including its organization and the role bound to the key. Requires API-key or organization-token authentication; user tokens are rejected.
          */
         get: operations["introspect_client_credential_v1_auth_client_credentials_introspect_get"];
         put?: never;
@@ -1187,7 +1187,7 @@ export interface paths {
          * Get domain statistics
          * @description Counts the domains that moved in or out of your organization's portfolio in a window of whole days, bucketed by the requested granularity: creates (new registrations), inbound transfers, deletes, outbound transfers, renewals and restores, plus `net` (created and transferred in, minus deleted and transferred out).
          *
-         *     Counts cover your organization and its sub-organizations, like the domain summary; `breakdown=organization` shows how they divide between them. A create is counted on the day OpusDNS took the order and a transfer on the day it completed, so domains that have since been deleted still appear in the window they were acquired in. Imported domains count as creates on the day they were imported. Renewals and restores are counted once per day a domain was renewed or restored, so a domain renewed in two different months counts in both. Domains held at a connected external registrar are not included.
+         *     Counts cover your organization's own domains, like the domain summary. With `include_sub_organizations=true` they cover its sub-organizations too, and `breakdown=organization` shows how they divide between them. A create is counted on the day OpusDNS took the order and a transfer on the day it completed, so domains that have since been deleted still appear in the window they were acquired in. Imported domains count as creates on the day they were imported. Renewals and restores are counted once per day a domain was renewed or restored, so a domain renewed in two different months counts in both. Domains held at a connected external registrar are not included.
          *
          *     Every bucket the window touches is present, so the series can be charted as is. A bucket marked `partial` reaches outside the window and covers only part of its span.
          *
@@ -1211,7 +1211,10 @@ export interface paths {
         };
         /**
          * Get domain summary
-         * @description Retrieves a summary of domains including counts by status, TLD, and expiration timeframes
+         * @description Retrieves a summary of your organization's domains, with counts by status, status tag, TLD,
+         *     registry account type and expiration timeframe. Only `by_organization` includes sub-organizations.
+         *     With `account_type`, every count covers only the domains that filter keeps, so a sub-organization
+         *     whose domains all fall outside it is left out of `by_organization`, as one without domains always is.
          */
         get: operations["get_domain_summary_v1_domains_summary_get"];
         put?: never;
@@ -1248,7 +1251,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Requests your auth code directly from DNS Belgium (registry) */
+        /**
+         * Requests your auth code directly from DNS Belgium (registry)
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD.
+         */
         post: operations["request_auth_code_v1_domains_tld_specific_be__domain_reference__auth_code_request_post"];
         delete?: never;
         options?: never;
@@ -1267,7 +1274,8 @@ export interface paths {
         put?: never;
         /**
          * Generates a fresh auth code at Nominet (.cymru)
-         * @description Nominet expires a Transfer Authorisation Code after 14 days or on use in a transfer, and enforces complexity requirements on it. This endpoint mints a compliant code, sets it through a `domain:update` and returns it, invalidating any previous one. It is the only way to change a `.cymru` auth code.
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD. Nominet expires a Transfer Authorisation Code after 14 days or on use in a transfer, and enforces complexity requirements on it. This endpoint mints a compliant code, sets it through a `domain:update` and returns it, invalidating any previous one. It is the only way to change a `.cymru` auth code.
          */
         post: operations["request_auth_code_v1_domains_tld_specific_cymru__domain_reference__auth_code_request_post"];
         delete?: never;
@@ -1285,7 +1293,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Requests your auth code directly from CZ.NIC (registry) */
+        /**
+         * Requests your auth code directly from CZ.NIC (registry)
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD.
+         */
         post: operations["request_auth_code_v1_domains_tld_specific_cz__domain_reference__auth_code_request_post"];
         delete?: never;
         options?: never;
@@ -1319,7 +1331,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Requests your auth code directly from Punktum dk (registry) */
+        /**
+         * Requests your auth code directly from Punktum dk (registry)
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD.
+         */
         post: operations["request_auth_code_v1_domains_tld_specific_dk__domain_reference__auth_code_request_post"];
         delete?: never;
         options?: never;
@@ -1336,7 +1352,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Requests your auth code directly from EURid (registry) */
+        /**
+         * Requests your auth code directly from EURid (registry)
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD.
+         */
         post: operations["request_auth_code_v1_domains_tld_specific_eu__domain_reference__auth_code_request_post"];
         delete?: never;
         options?: never;
@@ -1353,7 +1373,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Requests your auth code directly from DOMREG (registry) */
+        /**
+         * Requests your auth code directly from DOMREG (registry)
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD.
+         */
         post: operations["request_auth_code_v1_domains_tld_specific_lt__domain_reference__auth_code_request_post"];
         delete?: never;
         options?: never;
@@ -1430,7 +1454,8 @@ export interface paths {
         put?: never;
         /**
          * Generates a fresh auth code at Internetstiftelsen (.nu)
-         * @description `.nu` auth codes are owned by the registry: registrars can only send the literal `auto`, and the generated code is returned in the `iis:updData` extension of a `domain:update`. This endpoint runs that update and stores the fresh code, invalidating any previous one.
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD. `.nu` auth codes are owned by the registry: registrars can only send the literal `auto`, and the generated code is returned in the `iis:updData` extension of a `domain:update`. This endpoint runs that update and stores the fresh code, invalidating any previous one.
          */
         post: operations["request_auth_code_v1_domains_tld_specific_nu__domain_reference__auth_code_request_post"];
         delete?: never;
@@ -1450,7 +1475,8 @@ export interface paths {
         put?: never;
         /**
          * Generates a fresh auth code at Internetstiftelsen (.se)
-         * @description `.se` auth codes are owned by the registry: registrars can only send the literal `auto`, and the generated code is returned in the `iis:updData` extension of a `domain:update`. This endpoint runs that update and stores the fresh code, invalidating any previous one.
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD. `.se` auth codes are owned by the registry: registrars can only send the literal `auto`, and the generated code is returned in the `iis:updData` extension of a `domain:update`. This endpoint runs that update and stores the fresh code, invalidating any previous one.
          */
         post: operations["request_auth_code_v1_domains_tld_specific_se__domain_reference__auth_code_request_post"];
         delete?: never;
@@ -1470,7 +1496,8 @@ export interface paths {
         put?: never;
         /**
          * Generates a fresh auth code at Nominet (.wales)
-         * @description Nominet expires a Transfer Authorisation Code after 14 days or on use in a transfer, and enforces complexity requirements on it. This endpoint mints a compliant code, sets it through a `domain:update` and returns it, invalidating any previous one. It is the only way to change a `.wales` auth code.
+         * @deprecated
+         * @description Deprecated: use `POST /v1/domains/{domain_reference}/auth-code`, which handles every TLD. Nominet expires a Transfer Authorisation Code after 14 days or on use in a transfer, and enforces complexity requirements on it. This endpoint mints a compliant code, sets it through a `domain:update` and returns it, invalidating any previous one. It is the only way to change a `.wales` auth code.
          */
         post: operations["request_auth_code_v1_domains_tld_specific_wales__domain_reference__auth_code_request_post"];
         delete?: never;
@@ -1534,6 +1561,26 @@ export interface paths {
          *     `{"status_changes": {"remove": ["clientTransferProhibited"]}}`.
          */
         patch: operations["update_domain_v1_domains__domain_reference__patch"];
+        trace?: never;
+    };
+    "/v1/domains/{domain_reference}/auth-code": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Request an auth code
+         * @description Gets an auth code for the domain, following the registry's model. Where the registrar sets the code, a new one is generated, set at the registry and returned, invalidating the previous one. Where the registry generates it, it is requested there: `.eu` and `.lt` return the code already issued while it is still valid, and `.nl` domains on SIDN DRS return the current token, which only SIDN can reset. Registries that only send the code to the registrant (`.be`, `.cz`) answer with `delivery` `registrant_email` and no code. TLDs without auth codes answer 422. `auth_code` is hidden when the caller cannot view the domain's auth codes.
+         */
+        post: operations["request_domain_auth_code_v1_domains__domain_reference__auth_code_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
     "/v1/domains/{domain_reference}/dnssec": {
@@ -1611,6 +1658,9 @@ export interface paths {
          * Renew a domain
          * @description Extends the registration period of an existing domain. The renewal period is added
          *     to the current expiration date of the domain.
+         *
+         *     For a domain held at another registrar, the renewal transfers the domain into OpusDNS
+         *     and answers 202 before the transfer starts.
          */
         post: operations["renew_domain_v1_domains__domain_reference__renew_post"];
         delete?: never;
@@ -2133,7 +2183,7 @@ export interface paths {
         head?: never;
         /**
          * Update organization attributes
-         * @description Updates one or more organization attributes for the current organization
+         * @description Updates one or more organization attributes for the current organization. Setting a billing, pricing or abuse notification email requires the organization owner or an admin of a parent organization.
          */
         patch: operations["update_current_organization_attributes_v1_organizations_attributes_patch"];
         trace?: never;
@@ -2202,6 +2252,46 @@ export interface paths {
          *     Individual IP addresses are stored and returned with CIDR notation (/32 for IPv4, /128 for IPv6).
          */
         patch: operations["update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch"];
+        trace?: never;
+    };
+    "/v1/organizations/product-waitlist": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List product waitlists
+         * @description Lists the waitlisted products your organization has been invited to, or that you have already applied for, with where your own application stands on each. Any other product is omitted entirely. An API key sees the invited products but has no application of its own: `status` is null and `can_apply` is false.
+         */
+        get: operations["list_product_waitlists_v1_organizations_product_waitlist_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/product-waitlist/{product}/apply": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Apply for a product waitlist
+         * @description Applies you for a product's waitlist, optionally saying what you would use the product for. Any member of an invited organization may apply. The application is recorded as `pending` until OpusDNS decides on it. One application per user per product: a second apply is refused, and a rejection is reconsidered by OpusDNS rather than by applying again. A colleague's application does not stand in for yours, nor block it.
+         */
+        post: operations["apply_for_product_waitlist_v1_organizations_product_waitlist__product__apply_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
     "/v1/organizations/role-permissions": {
@@ -2343,7 +2433,7 @@ export interface paths {
         head?: never;
         /**
          * Update organization attributes
-         * @description Updates one or more organization attributes for the specified organization
+         * @description Updates one or more organization attributes for the specified organization. Setting a billing, pricing or abuse notification email requires the organization owner or an admin of a parent organization.
          */
         patch: operations["update_organization_attributes_v1_organizations__organization_id__attributes_patch"];
         trace?: never;
@@ -3205,6 +3295,12 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /**
+         * AccountTypeFilterMode
+         * @description How an `account_type` filter applies; no `match_all`, since a domain has exactly one account type.
+         * @enum {string}
+         */
+        AccountTypeFilterMode: "match_any" | "match_none";
         /** AggregationResult */
         AggregationResult: {
             /** Field */
@@ -3416,6 +3512,11 @@ export interface components {
             client_id?: string | null;
         };
         /**
+         * AuthCodeDelivery
+         * @enum {string}
+         */
+        AuthCodeDelivery: "response" | "registrant_email";
+        /**
          * BatchSortField
          * @enum {string}
          */
@@ -3457,7 +3558,7 @@ export interface components {
          * BillingTransactionProductType
          * @enum {string}
          */
-        BillingTransactionProductType: "domain" | "zones" | "email_forward" | "domain_forward" | "account_wallet" | "vanity_nameserver" | "whitelabel_branding" | "whitelabel_branding_plus" | "ras_domain_lifecycle" | "ams_domain_lifecycle";
+        BillingTransactionProductType: "domain" | "zones" | "email_forward" | "domain_forward" | "account_wallet" | "vanity_nameserver" | "whitelabel_branding" | "whitelabel_branding_plus" | "ras_domain_lifecycle" | "ams_domain_lifecycle" | "ams_maintenance_fee";
         /** BillingTransactionResponse */
         BillingTransactionResponse: {
             /** @description The action performed in the transaction */
@@ -3583,6 +3684,127 @@ export interface components {
              */
             updated_on: Date;
         };
+        /** BrandingDesignActions */
+        BrandingDesignActions: {
+            /** Can Activate */
+            can_activate?: boolean | null;
+            /** Download Filename */
+            download_filename?: string | null;
+            write?: components["schemas"]["BrandingDesignWrite"] | null;
+        };
+        /** BrandingDesignContext */
+        BrandingDesignContext: {
+            /**
+             * Context Id
+             * Format: typeid
+             * @example ctx_01h45ytscbebyvny4gc8cr8ma2
+             */
+            context_id: TypeId<"ctx">;
+            /**
+             * Conversation Id
+             * Format: typeid
+             * @example conv_01h45ytscbebyvny4gc8cr8ma2
+             */
+            conversation_id: TypeId<"conv">;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: Date;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "branding_design";
+            /**
+             * Organization Id
+             * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            payload: components["schemas"]["BrandingDesignContextPayload"];
+            /** User Id */
+            user_id: string;
+        };
+        /** BrandingDesignContextPayload */
+        BrandingDesignContextPayload: {
+            actions?: components["schemas"]["BrandingDesignActions"] | null;
+            diff?: components["schemas"]["BrandingDesignDiff"] | null;
+            /** Results */
+            results: components["schemas"]["BrandingDesignVariant"][];
+            source?: components["schemas"]["BrandingDesignSource"] | null;
+        };
+        /** BrandingDesignDiff */
+        BrandingDesignDiff: {
+            /** Changed Paths */
+            changed_paths?: string[];
+            /** Merged With Current */
+            merged_with_current?: boolean | null;
+        };
+        /** BrandingDesignDocument */
+        BrandingDesignDocument: {
+            [key: string]: unknown;
+        };
+        /** BrandingDesignPreview */
+        BrandingDesignPreview: {
+            /** Dark Strategy */
+            dark_strategy?: string | null;
+            /** Font Family */
+            font_family?: string | null;
+            /** Mood */
+            mood?: string | null;
+            /** Neutral Tint */
+            neutral_tint?: string | null;
+            /** Preset Base */
+            preset_base?: string | null;
+            /** Primary Color */
+            primary_color?: string | null;
+            /** Radius Rem */
+            radius_rem?: number | null;
+            /** Recolor Preset */
+            recolor_preset?: boolean | null;
+            swatches?: components["schemas"]["BrandingDesignSwatches"] | null;
+        };
+        /** BrandingDesignSource */
+        BrandingDesignSource: {
+            /** Kind */
+            kind?: string | null;
+            /** Logo Asset Url */
+            logo_asset_url?: string | null;
+            /** Preset Id */
+            preset_id?: string | null;
+            /** Signals */
+            signals?: string[];
+            /** Url */
+            url?: string | null;
+        };
+        /** BrandingDesignSwatches */
+        BrandingDesignSwatches: {
+            /** Dark */
+            dark?: {
+                [key: string]: string;
+            };
+            /** Light */
+            light?: {
+                [key: string]: string;
+            };
+        };
+        /** BrandingDesignVariant */
+        BrandingDesignVariant: {
+            document: components["schemas"]["BrandingDesignDocument"];
+            preview?: components["schemas"]["BrandingDesignPreview"] | null;
+            /** Variant Id */
+            variant_id: string;
+        };
+        /** BrandingDesignWrite */
+        BrandingDesignWrite: {
+            /** Method */
+            method?: string | null;
+            /** Path */
+            path?: string | null;
+            /** Permission */
+            permission?: string | null;
+        };
         /** BrandingDocument */
         BrandingDocument: {
             auth?: components["schemas"]["Auth"] | null;
@@ -3628,6 +3850,5529 @@ export interface components {
             replace?: TypeId<"tag">[] | null;
             /** @description The object/tag type (e.g. DOMAIN, CONTACT, ZONE) */
             type: components["schemas"]["TagType"];
+        };
+        /**
+         * @description The gateway's call_operation result stored as a conversation context — always a success, discriminated on operationId: it narrows data (the full, uncapped body) to that operation's own response schema. The same envelope is returned as a confirmation receipt.
+         * @example {
+         *       "headers": {
+         *         "content-type": "application/json"
+         *       },
+         *       "httpStatus": 200,
+         *       "operationId": "acknowledge_event_v1_events__event_id__patch",
+         *       "status": "ok",
+         *       "truncated": false
+         *     }
+         */
+        CallOperationResult: {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "acknowledge_event_v1_events__event_id__patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["WaitlistEntryResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "apply_for_product_waitlist_v1_organizations_product_waitlist__product__apply_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ContactAttestRes"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "attest_contact_verification_v1_contacts__contact_id__verifications_attest_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainForwardBrowserStatsResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "browser_stats_v1_domain_forwards_metrics_browser_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["common__models__availability__datasource__DomainAvailabilityResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "bulk_availability_v1_availability_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ObjectTagChangesResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "bulk_update_object_tags_v1_tags_objects_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "cancel_domain_transfer_v1_domains__domain_reference__transfer_delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "cancel_verification_v1_contacts__contact_id__verification_delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["VanityNsCheckRes"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "check_vanity_nameserver_set_v1_vanity_nameserver_sets_check_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ClearVanityNameserverSetDefaultRes"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "clear_vanity_nameserver_set_default_v1_vanity_nameserver_sets_default_delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "confirm_norid_declaration_by_token_v1_domains_tld_specific_no_applicant_declaration_put";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ContactAttributeLinkResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_attribute_link_v1_contacts__contact_id__link__contact_attribute_set_id__patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ContactAttributeSetResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_attribute_set_v1_contacts_attribute_sets_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["CreateJobBatchResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_batch_v1_jobs_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ContactResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_contact_v1_contacts_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"]) | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_context_v1_ai_concierge_conversations__conversation_id__contexts_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Conversation"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_conversation_v1_ai_concierge_conversations_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainForwardSetResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_domain_forward_set_v1_domain_forwards__hostname__post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainForward"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_domain_forward_v2_v1_domain_forwards_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_domain_v1_domains_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["EmailForwardAlias"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_email_forward_alias_v1_email_forwards__email_forward_id__aliases_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["EmailForwardResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_email_forward_v1_email_forwards_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["HostResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_host_v1_hosts_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["IpRestrictionResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_ip_restriction_v1_organizations_ip_restrictions_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["MemoryFact"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_memory_fact_v1_ai_concierge_memory_facts_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Message"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_message_v1_ai_concierge_conversations__conversation_id__messages_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainDnssecDataResponse"][] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_or_update_dnssec_v1_domains__domain_reference__dnssec_put";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Organization"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_organization_v1_organizations_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: unknown | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_report_v1_reports_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PublicRoleDefinition"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_role_v1_organizations_roles_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["TagResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_tag_v1_tags_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["UserPublic"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_user_v1_users_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["VanityNameserverSetSummaryDTO"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_vanity_nameserver_set_v1_vanity_nameserver_sets_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ProductCreateRes"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_whitelabel_branding_v1_whitelabel_branding_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: (components["schemas"]["DnsChangesResponse"] | null) | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_zone_v1_dns_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_batch_v1_jobs__batch_id__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_contact_v1_contacts__contact_id__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_conversation_v1_ai_concierge_conversations__conversation_id__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_dnssec_v1_domains__domain_reference__dnssec_delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_domain_forward_set_v1_domain_forwards__hostname___protocol__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_domain_forward_v1_domain_forwards__hostname__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_domain_v1_domains__domain_reference__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_email_forward_v1_email_forwards__email_forward_id__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_host_v1_hosts__host_reference__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_job_v1_job__job_id__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_memory_fact_v1_ai_concierge_memory_facts__fact_id__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_organization_v1_organizations__organization_id__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_role_v1_organizations_roles__label__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_tag_v1_tags__tag_id__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_user_v1_users__user_id__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: unknown | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_whitelabel_asset_v1_whitelabel_branding_assets__asset_id__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_zone_v1_dns__zone_name__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "disable_and_unpublish_dnssec_records_v1_domains__domain_reference__dnssec_disable_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DnsChangesResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "disable_dnssec_v1_dns__zone_name__dnssec_disable_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "disable_domain_forward_v1_domain_forwards__hostname__disable_patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "disable_email_forward_v1_email_forwards__email_forward_id__disable_patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: unknown | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "download_report_v1_reports__report_id__download_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: unknown | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "email_verify_contact_v1_contacts_verify_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainDnssecDataResponse"][] | components["schemas"]["DomainDnssecDataResponse"][] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "enable_and_publish_dnssec_records_v1_domains__domain_reference__dnssec_enable_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DnsChangesResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "enable_dnssec_v1_dns__zone_name__dnssec_enable_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "enable_domain_forward_v1_domain_forwards__hostname__enable_patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "enable_email_forward_v1_email_forwards__email_forward_id__enable_patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainCheckResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "epp_check_domain_v1_domains_check_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainForwardGeoStatsResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "geo_stats_v1_domain_forwards_metrics_geo_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ContactAttributeSetResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PageResponse_JobResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_batch_jobs_v1_jobs__batch_id__jobs_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["JobBatchStatusResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_batch_v1_jobs__batch_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ClaimsNoticesResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_claims_notices_v1_domains_claims_notices_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ContactResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_contact_v1_contacts__contact_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ContactAttestRes"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_contact_verification_status_v1_contacts__contact_id__verifications_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_ContactResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_contacts_v1_contacts_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"]) | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_context_v1_ai_concierge_contexts__context_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Conversation"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_conversation_v1_ai_concierge_conversations__conversation_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["OrganizationAttributeResponse"][] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_current_organization_attributes_v1_organizations_attributes_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["UserProfile"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_current_user_v1_users_me_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainDnssecDataResponse"][] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_dnssec_v1_domains__domain_reference__dnssec_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainForwardSetResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_domain_forward_set_v1_domain_forwards__hostname___protocol__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainForward"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_domain_forward_v1_domain_forwards__hostname__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainStatisticsResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_domain_statistics_v1_domains_statistics_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainSummaryResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_domain_summary_v1_domains_summary_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_domain_v1_domains__domain_reference__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_DomainResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_domains_v1_domains_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PageResponse_EmailForwardLog_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_email_forward_logs_by_alias_v1_archive_email_forward_logs_aliases__email_forward_alias_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PageResponse_EmailForwardLog_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_email_forward_logs_v1_archive_email_forward_logs__email_forward_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["EmailForwardMetrics"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_email_forward_metrics_v1_email_forwards__email_forward_id__metrics_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["EmailForwardResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_email_forward_v1_email_forwards__email_forward_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["EventResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_event_v1_events__event_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_EventResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_events_v1_events_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["HostResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_host_v1_hosts__host_reference__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["IpRestrictionResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["JobResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_job_v1_job__job_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Message"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_message_v1_ai_concierge_conversations__conversation_id__messages__message_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["NorIdDeclarationResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_norid_declaration_by_token_v1_domains_tld_specific_no_applicant_declaration_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PageResponse_ObjectLog_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_object_logs_by_object_id_v1_archive_object_logs__object_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PageResponse_ObjectLog_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_object_logs_v1_archive_object_logs_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["OrganizationAttributeResponse"][] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_organization_attributes_v1_organizations__organization_id__attributes_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["OrganizationWithBillingData"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_organization_v1_organizations__organization_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ParkingMetricsResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_parking_metrics_v1_parking__parking_reference__metrics_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ParkingSignupStatusResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_parking_signup_status_v1_parking_signup_status_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["GetPricesResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_pricing_plans_v1_organizations__organization_id__pricing_product_type__product_type__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PublicReportRes"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_report_v1_reports__report_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PageResponse_RequestHistory_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_request_history_v1_archive_request_history_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PublicRoleDefinition"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_role_v1_organizations_roles__label__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PublicRoleAssignment"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_role_v1_users__user_id__role_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["TagResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_tag_v1_tags__tag_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["TldResponseShort"][] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_tld_portfolio_v1_tlds_portfolio_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["TldSpecificationResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_tld_spec_v1_tlds__tld__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: {
+                [key: string]: {
+                    [key: string]: unknown;
+                }[];
+            } | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_tld_specifications_v1_tlds__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ParkingTotalMetricsResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_total_parking_metrics_v1_parking_metrics_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["BillingTransactionResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_transaction_v1_organizations__organization_id__transactions__transaction_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_BillingTransactionResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_transactions_v1_organizations__organization_id__transactions_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["AiInferenceUsageSeriesResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_usage_series_v1_organizations__organization_id__usage__product__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["AiInferenceUsageSummaryResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_usage_summary_v1_organizations__organization_id__usage__product__summary_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PublicPermissionSet"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_user_permissions_v1_users__user_id__permissions_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["UserPublicWithAttributes"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_user_v1_users__user_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["VanityNameserverSetSummaryDTO"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ContactResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_verification_by_token_v1_contacts_verification_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ContactVerificationResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_verification_status_v1_contacts__contact_id__verification_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["WhitelabelBrandingResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_whitelabel_branding_v1_whitelabel_branding_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["BrandingDocument"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_whitelabel_document_v1_whitelabel_branding_document_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DnsZoneResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_zone_v1_dns__zone_name__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DnsZoneSummary"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_zones_summary_v1_dns_summary_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["OrganizationCredential"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "introspect_client_credential_v1_auth_client_credentials_introspect_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: (components["schemas"]["OrganizationTokenResponse"] | components["schemas"]["UserTokenResponse"]) | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "issue_organization_token_v1_auth_token_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_ContactAttributeSetResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_attribute_sets_v1_contacts_attribute_sets_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PageResponse_JobBatchMetadataResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_batches_v1_jobs_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ContextListResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_contexts_v1_ai_concierge_conversations__conversation_id__contexts_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ConversationListResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_conversations_v1_ai_concierge_conversations_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_DomainForwardZone_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_domain_forwards_by_zone_v1_dns_domain_forwards_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_DomainForward_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_domain_forwards_v1_domain_forwards_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_EmailForwardZone_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_email_forwards_by_zone_v1_dns_email_forwards_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_EmailForwardResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_email_forwards_v1_email_forwards_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_InvoiceResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_invoices_v1_organizations__organization_id__billing_invoices_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["IpRestrictionResponse"][] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_ip_restrictions_v1_organizations_ip_restrictions_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["MemoryFactListResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_memory_facts_v1_ai_concierge_memory_facts_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["MessageListResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_messages_v1_ai_concierge_conversations__conversation_id__messages_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_Organization_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_organizations_v1_organizations_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PageResponse_ParkingResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_parking_v1_parking_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["WaitlistProductListResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_product_waitlists_v1_organizations_product_waitlist_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_InvoiceResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_receipts_v1_organizations__organization_id__billing_receipts_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PublicReportListRes"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_reports_v1_reports_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PublicPermissionSet"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_role_permissions_v1_organizations_role_permissions_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PublicRoleDefinition"][] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_roles_v1_organizations_roles_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_TagResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_tags_v1_tags_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_UserPublicWithRole_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_users_v1_organizations_users_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ListVanityNameserverSetsRes"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_vanity_nameserver_sets_v1_vanity_nameserver_sets_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ListBrandingAssetsResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_whitelabel_assets_v1_whitelabel_branding_assets_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["MailTemplateCatalogRes"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_whitelabel_email_templates_v1_whitelabel_branding_email_templates_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainForwardZone"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_zone_domain_forwards_v1_dns__zone_name__domain_forwards_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["EmailForwardZone"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_zone_email_forwards_v1_dns__zone_name__email_forwards_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ListZonesReferencingSetRes"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_zones_referencing_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__zones_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_DnsZoneResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_zones_v1_dns_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainForwardMetricsResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "metrics_v1_domain_forwards_metrics_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Conversation"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "patch_conversation_v1_ai_concierge_conversations__conversation_id__patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["MemoryFact"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "patch_memory_fact_v1_ai_concierge_memory_facts__fact_id__patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "patch_redirects_v1_domain_forwards_patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["WhitelabelBrandingResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "patch_whitelabel_branding_v1_whitelabel_branding_patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "patch_zone_records_v1_dns__zone_name__records_patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "patch_zone_rrsets_v1_dns__zone_name__rrsets_patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "pause_batch_v1_jobs__batch_id__pause_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "pause_job_v1_job__job_id__pause_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainForwardPlatformStatsResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "platform_stats_v1_domain_forwards_metrics_platform_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PreviewMailRes"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "preview_whitelabel_email_v1_whitelabel_branding_email_preview_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["BrandingDocument"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "put_whitelabel_document_v1_whitelabel_branding_document_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["BrandingDocument"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "put_whitelabel_document_v1_whitelabel_branding_document_put";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["WhitelabelBrandingResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "recheck_whitelabel_branding_v1_whitelabel_branding_recheck_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainForwardReferrerStatsResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "referrer_stats_v1_domain_forwards_metrics_referrer_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainRenewResponse"] | components["schemas"]["DomainRenewTransferPendingResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "renew_domain_v1_domains__domain_reference__renew_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["api__domain__tld_specific__be__models__RequestAuthcodeResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "request_auth_code_v1_domains_tld_specific_be__domain_reference__auth_code_request_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["api__domain__tld_specific__cymru__models__RequestAuthcodeResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "request_auth_code_v1_domains_tld_specific_cymru__domain_reference__auth_code_request_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["api__domain__tld_specific__cz__models__RequestAuthcodeResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "request_auth_code_v1_domains_tld_specific_cz__domain_reference__auth_code_request_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["api__domain__tld_specific__dk__models__RequestAuthcodeResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "request_auth_code_v1_domains_tld_specific_dk__domain_reference__auth_code_request_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["api__domain__tld_specific__eu__models__RequestAuthcodeResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "request_auth_code_v1_domains_tld_specific_eu__domain_reference__auth_code_request_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["api__domain__tld_specific__lt__models__RequestAuthcodeResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "request_auth_code_v1_domains_tld_specific_lt__domain_reference__auth_code_request_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["api__domain__tld_specific__nu__models__RequestAuthcodeResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "request_auth_code_v1_domains_tld_specific_nu__domain_reference__auth_code_request_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["api__domain__tld_specific__se__models__RequestAuthcodeResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "request_auth_code_v1_domains_tld_specific_se__domain_reference__auth_code_request_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["api__domain__tld_specific__wales__models__RequestAuthcodeResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "request_auth_code_v1_domains_tld_specific_wales__domain_reference__auth_code_request_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainAuthCodeResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "request_domain_auth_code_v1_domains__domain_reference__auth_code_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "resend_norid_declaration_email_v1_domains_tld_specific_no__domain_reference__resend_declaration_email_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["OutboundTransferResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "resolve_outbound_transfer_v1_domains__domain_reference__transfer_outbound_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainRestoreResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "restore_domain_v1_domains__domain_reference__restore_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["VanityNameserverSetSummaryDTO"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "restore_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__restore_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["WhitelabelBrandingResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "restore_whitelabel_branding_v1_whitelabel_branding_restore_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "resume_batch_v1_jobs__batch_id__resume_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["JobResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "resume_job_v1_job__job_id__resume_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["JobBatchRetryResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "retry_batch_v1_jobs__batch_id__retry_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["JobResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "retry_job_v1_job__job_id__retry_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["VanityNameserverSetSummaryDTO"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "retry_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__retry_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PublicRoleAssignment"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "set_user_role_v1_users__user_id__role_put";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["SetVanityNameserverSetDefaultRes"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "set_vanity_nameserver_set_default_v1_vanity_nameserver_sets__set_id__default_patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["VanityNameserverSetSummaryDTO"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "set_vanity_nameserver_set_renewal_mode_v1_vanity_nameserver_sets__set_id__patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ParkingSignupResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "signup_for_parking_v1_parking_signup_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["SignupResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "signup_v1_auth_signup_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: (components["schemas"]["ContactVerificationEmailResponse"] | components["schemas"]["ContactVerificationApiResponse"]) | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "start_contact_verification_v1_contacts__contact_id__verification_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainForwardStatusCodeStatsResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "status_code_stats_v1_domain_forwards_metrics_status_code_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "stream_availability_post_v1_availability_stream_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "stream_availability_v1_availability_stream_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["NorIdDeclarationResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "submit_norid_declaration_v1_domains_tld_specific_no__domain_reference__applicant_declaration_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainSearchResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "suggest_v1_domain_search_suggest_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainForwardMetricsTimeSeriesResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "time_series_v1_domain_forwards_metrics_time_series_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "transfer_domain_v1_domains_transfer_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainTransitResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "transit_domain_v1_domains_tld_specific_de__domain_reference__transit_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ContactAttributeSetResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["OrganizationAttributeResponse"][] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_current_organization_attributes_v1_organizations_attributes_patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainForwardSetResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_domain_forward_set_v1_domain_forwards__hostname___protocol__put";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_domain_v1_domains__domain_reference__patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["EmailForwardAlias"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__put";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["HostResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_host_v1_hosts__host_reference__put";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["IpRestrictionResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["OrganizationAttributeResponse"][] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_organization_attributes_v1_organizations__organization_id__attributes_patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Organization"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_organization_v1_organizations__organization_id__patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PublicRoleDefinition"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_role_v1_organizations_roles__label__patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ObjectTagChangesResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_tag_objects_v1_tags__tag_id__objects_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["TagResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_tag_v1_tags__tag_id__patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["UserPublicWithAttributes"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_user_v1_users__user_id__patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_verification_by_token_v1_contacts_verification_put";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_verification_v1_contacts__contact_id__verification_put";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_zone_rrsets_v1_dns__zone_name__rrsets_put";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DnsZoneVanitySetUpdateRes"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_zone_vanity_set_v1_dns__zone_name__vanity_set_patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ProductCreateRes"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "upgrade_whitelabel_to_plus_v1_whitelabel_branding_tier_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["BrandingAsset"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "upload_whitelabel_asset_v1_whitelabel_branding_assets_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainForwardUserAgentStatsResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "user_agent_stats_v1_domain_forwards_metrics_user_agent_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainForwardVisitsByKeyResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "visits_by_key_v1_domain_forwards_metrics_visits_by_key_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainWithdrawResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "withdraw_domain_v1_domains_tld_specific_at__domain_reference__withdraw_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        };
+        /** CallOperationResultContext */
+        CallOperationResultContext: {
+            /**
+             * Context Id
+             * Format: typeid
+             * @example ctx_01h45ytscbebyvny4gc8cr8ma2
+             */
+            context_id: TypeId<"ctx">;
+            /**
+             * Conversation Id
+             * Format: typeid
+             * @example conv_01h45ytscbebyvny4gc8cr8ma2
+             */
+            conversation_id: TypeId<"conv">;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: Date;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "call_operation_result";
+            /**
+             * Organization Id
+             * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            payload: components["schemas"]["CallOperationResult"];
+            /** User Id */
+            user_id: string;
         };
         /** ClaimsNotice */
         ClaimsNotice: {
@@ -3765,6 +9510,15 @@ export interface components {
          * @enum {string}
          */
         ConditionOperator: "equals" | "not_equals" | "in" | "not_in";
+        /**
+         * ConnectedAccountType
+         * @description Which domain-lifecycle product family an account bills against, orthogonal to the EPP backend.
+         *
+         *     DEFAULT = the native `domain_lifecycle` product; AMS = the per-TLD `ams_domain_lifecycle`
+         *     product for domains migrated onto an OpusDNS account; RAS = the mirror / management-fee family.
+         * @enum {string}
+         */
+        ConnectedAccountType: "default" | "ams" | "ras";
         /** ContactAttestReq */
         ContactAttestReq: {
             /** Attestations */
@@ -4405,7 +10159,7 @@ export interface components {
              * Status Tags
              * @description Status tags assigned to this contact. Only included when ?include=tags is specified.
              */
-            status_tags?: components["schemas"]["StatusTagResponse"][] | null;
+            status_tags?: components["schemas"]["ContactStatusTagResponse"][] | null;
             /**
              * Street
              * @description The address of the contact
@@ -4427,6 +10181,28 @@ export interface components {
          * @enum {string}
          */
         ContactSortField: "first_name" | "last_name" | "email" | "created_on";
+        /** ContactStatusTagResponse */
+        ContactStatusTagResponse: {
+            /** @description The color of the tag */
+            color: components["schemas"]["TagColor"];
+            /**
+             * Description
+             * @description Additional information about this status tag
+             */
+            description?: string | null;
+            /**
+             * Label
+             * @description The label of the tag
+             */
+            label: string;
+            /** @description The status tag type identifier */
+            tag_type: components["schemas"]["ContactStatusTagType"];
+        };
+        /**
+         * ContactStatusTagType
+         * @enum {string}
+         */
+        ContactStatusTagType: "VERIFICATION_REQUIRED";
         /**
          * ContactType
          * @enum {string}
@@ -4645,6 +10421,8 @@ export interface components {
             privacy_proxy?: boolean | null;
             /** @description Whether the registrant can change through update or trade */
             registrant_change?: components["schemas"]["RegistrantChangeType"] | null;
+            /** @description Change of registrant policy. When absent, the defaults of the TLD type apply. */
+            registrant_change_policy?: components["schemas"]["RegistrantChangePolicyBase"] | null;
             /**
              * Support Check
              * @description Whether the registry supports contact checks
@@ -4738,7 +10516,7 @@ export interface components {
         ContextListResponse: {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
-            results: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"])[];
+            results: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"])[];
         };
         /** ContextMeta */
         ContextMeta: {
@@ -5700,6 +11478,31 @@ export interface components {
          * @enum {string}
          */
         DomainAttributeKey: "auto_renew_period" | "music_registrant_attestation" | "nic_it_compliance_confirmation" | "travel_industry_acknowledgement" | "verification_required" | "de_general_request_contact" | "de_abuse_contact" | "nor_id_applicant_version" | "nor_id_applicant_accept_name" | "nor_id_applicant_accept_date" | "nor_id_declaration" | "nor_id_declaration_token" | "punktum_dk_terms_acceptance" | "punktum_dk_tracking_no" | "internet_ee_registrant_agreement" | "promotion" | "promotion_eligibility" | "domain_contact_attributes" | "registry_reseller_id";
+        /** DomainAuthCodeResponse */
+        DomainAuthCodeResponse: {
+            /**
+             * Auth Code
+             * @description The auth code, when `delivery` is `response`. Hidden when the caller cannot view the domain's auth codes
+             */
+            auth_code?: string | null;
+            /**
+             * Auth Code Expires On
+             * @description When the auth code expires, if the registry limits its validity
+             */
+            auth_code_expires_on?: Date | null;
+            /** @description Where the auth code ends up: `response` returns it in `auth_code`, `registrant_email` means the registry emails it to the registrant and it never reaches us */
+            delivery: components["schemas"]["AuthCodeDelivery"];
+            /**
+             * Name
+             * @description The domain name the auth code belongs to
+             */
+            name: string;
+            /**
+             * Recipients
+             * @description The addresses the registry sent the auth code to, when it reports them
+             */
+            recipients?: string[] | null;
+        };
         /** DomainAvailability */
         DomainAvailability: {
             /** Domain */
@@ -6732,7 +12535,7 @@ export interface components {
          * DomainIncludeField
          * @enum {string}
          */
-        DomainIncludeField: "tags" | "renewal_price" | "registrar_credential";
+        DomainIncludeField: "tags" | "renewal_price" | "connected_account" | "registrant_change";
         /** DomainLifecycleBase */
         DomainLifecycleBase: {
             /**
@@ -6821,7 +12624,7 @@ export interface components {
          *     implement every member.
          * @enum {string}
          */
-        DomainListIncludeField: "tags" | "registrar_credential";
+        DomainListIncludeField: "tags" | "connected_account";
         /** DomainNameParts */
         DomainNameParts: {
             /**
@@ -6893,6 +12696,67 @@ export interface components {
             kind: "domain_recommendations";
             payload: components["schemas"]["ContextPayload_DomainSearchSuggestionWithPrice_"];
         };
+        /** DomainRegistrantChangeResponse */
+        DomainRegistrantChangeResponse: {
+            /**
+             * Confirmation Deadline
+             * @description When the request expires if not confirmed
+             */
+            confirmation_deadline: Date | null;
+            /** @description How the change was confirmed, null when no confirmation applies */
+            confirmation_method: components["schemas"]["RegistrantChangeConfirmationMethod"] | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description When the request was created
+             */
+            created_on: Date;
+            /**
+             * Domain Id
+             * Format: typeid
+             * @description The ID of the domain
+             * @example domain_01h45ytscbebyvny4gc8cr8ma2
+             */
+            domain_id: TypeId<"domain">;
+            /**
+             * Failure Reason
+             * @description Why the registrant change failed
+             */
+            failure_reason: string | null;
+            /**
+             * Material
+             * @description Whether the name, organization or email of the registrant changes
+             */
+            material: boolean;
+            /**
+             * New Registrant
+             * Format: typeid
+             * @description The registrant after the change
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
+             */
+            new_registrant: TypeId<"contact">;
+            /**
+             * Previous Registrant
+             * Format: typeid
+             * @description The registrant before the change
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
+             */
+            previous_registrant: TypeId<"contact">;
+            /**
+             * Registrant Change Id
+             * Format: typeid
+             * @description The ID of the registrant change
+             * @example registrant_change_01h45ytscbebyvny4gc8cr8ma2
+             */
+            registrant_change_id: TypeId<"registrant_change">;
+            /** @description The status of the registrant change */
+            status: components["schemas"]["RegistrantChangeStatus"];
+            /**
+             * Transfer Lock Opt Out
+             * @description Whether the transfer lock after the change was opted out of
+             */
+            transfer_lock_opt_out: boolean;
+        };
         /** DomainRegistrarCredentialResponse */
         DomainRegistrarCredentialResponse: {
             /**
@@ -6909,6 +12773,11 @@ export interface components {
              * @example registrar_credential_01h45ytscbebyvny4gc8cr8ma2
              */
             registrar_credential_id: TypeId<"registrar_credential">;
+            /**
+             * @description Kind of connected account. `ras`: a registrar credential managed under `/v1/connect/registrars`. (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            type: "ras";
         };
         /** DomainRenewRequest */
         DomainRenewRequest: {
@@ -6941,6 +12810,26 @@ export interface components {
             new_expiry_date: Date;
             /** @description The period by which the domain was extended */
             period_extended: components["schemas"]["DomainPeriod"];
+        };
+        /** DomainRenewTransferPendingResponse */
+        DomainRenewTransferPendingResponse: {
+            /**
+             * Name
+             * @description The domain name the renewal was requested for
+             */
+            name: string;
+            /**
+             * Request Id
+             * @description Identifier of the transfer this renewal started
+             */
+            request_id: string;
+            /**
+             * Status
+             * @description The domain is held at another registrar, so the renewal transfers it into OpusDNS. The outcome is reported as domain events.
+             * @default transfer_pending
+             * @constant
+             */
+            status: "transfer_pending";
         };
         /** DomainRenewalDetails */
         DomainRenewalDetails: {
@@ -6994,6 +12883,11 @@ export interface components {
              * @description When the domain was deleted
              */
             canceled_on?: Date | null;
+            /**
+             * Connected Account
+             * @description The connected account this domain is synced from. Null unless `include=connected_account` is requested, and null even then for natively registered domains, for domains on operator-managed registry accounts, and when the connected account was deleted.
+             */
+            connected_account?: components["schemas"]["DomainRegistrarCredentialResponse"] | null;
             /**
              * Contacts
              * @description The contacts of the domain
@@ -7062,8 +12956,8 @@ export interface components {
              * @description When the domain was registered
              */
             registered_on?: Date | null;
-            /** @description The connected registrar credential this domain is synced from. Null unless `include=registrar_credential` is requested, and null even then for natively registered domains, for domains on operator-managed registry accounts, and when the credential was deleted. */
-            registrar_credential?: components["schemas"]["DomainRegistrarCredentialResponse"] | null;
+            /** @description The change of registrant in progress. Null unless `include=registrant_change` is requested, and null even then when no change of registrant is in progress. */
+            registrant_change?: components["schemas"]["DomainRegistrantChangeResponse"] | null;
             /**
              * Registry Account Id
              * Format: typeid
@@ -7417,38 +13311,45 @@ export interface components {
         /** DomainSummaryData */
         DomainSummaryData: {
             /**
+             * By Account Type
+             * @description The organization's domain counts by the type of registry account they are held on (account_type: count), only account types with at least one domain; the types are those of the `account_type` list filter
+             */
+            by_account_type: {
+                [key: string]: number;
+            };
+            /**
              * By Organization
-             * @description Domain counts by organization name (name: count)
+             * @description Domain counts for the organization and its sub-organizations, by name (name: count), only organizations with at least one domain
              */
             by_organization: {
                 [key: string]: number;
             };
             /**
              * By Status
-             * @description Domain counts by status (status: count)
+             * @description The organization's domain counts by status (status: count)
              */
             by_status: {
                 [key: string]: number;
             };
             /**
              * By Status Tag
-             * @description Domain counts by status tag (status_tag: count), only status tags with at least one domain
+             * @description The organization's domain counts by status tag (status_tag: count), only status tags with at least one domain
              */
             by_status_tag: {
                 [key: string]: number;
             };
             /**
              * By Tld
-             * @description Domain counts by TLD (tld: count)
+             * @description The organization's domain counts by TLD (tld: count)
              */
             by_tld: {
                 [key: string]: number;
             };
-            /** @description Domains expiring soon */
+            /** @description The organization's domains expiring soon */
             expiring_soon: components["schemas"]["DomainsExpiringSoon"];
             /**
              * Total Count
-             * @description Total number of domains including sub-organizations
+             * @description Total number of domains owned by the organization
              */
             total_count: number;
         };
@@ -9014,7 +14915,7 @@ export interface components {
         /** EventData */
         EventData: {
             /** Details */
-            details?: (components["schemas"]["DomainRenewalDetails"] | components["schemas"]["DomainVerificationDetails"]) | null;
+            details?: (components["schemas"]["DomainRenewalDetails"] | components["schemas"]["DomainVerificationDetails"] | components["schemas"]["RegistrantChangeDetails"]) | null;
             error?: components["schemas"]["EventError"] | null;
             /** Message */
             message: string;
@@ -9082,7 +14983,7 @@ export interface components {
          * EventType
          * @enum {string}
          */
-        EventType: "REGISTRATION" | "RENEWAL" | "MODIFICATION" | "DELETION" | "INBOUND_TRANSFER" | "OUTBOUND_TRANSFER" | "TRANSIT" | "WITHDRAW" | "VERIFICATION" | "BALANCE" | "VANITY_NS_PROVISION" | "VANITY_NS_SUSPENSION" | "VANITY_NS_RESTORATION" | "VANITY_NS_TERMINATION" | "CLONE";
+        EventType: "REGISTRATION" | "RENEWAL" | "MODIFICATION" | "DELETION" | "INBOUND_TRANSFER" | "OUTBOUND_TRANSFER" | "TRANSIT" | "WITHDRAW" | "VERIFICATION" | "BALANCE" | "VANITY_NS_PROVISION" | "VANITY_NS_SUSPENSION" | "VANITY_NS_RESTORATION" | "VANITY_NS_TERMINATION" | "CLONE" | "REGISTRANT_CHANGE";
         /**
          * EventVersion
          * @enum {string}
@@ -10398,7 +16299,7 @@ export interface components {
          * ObjectEventType
          * @enum {string}
          */
-        ObjectEventType: "CREATED" | "UPDATED" | "DELETED" | "IMPORTED" | "SYNCED_AFTER_IMPORT" | "TRANSFER_STARTED" | "TRANSFER_COMPLETED" | "TRANSFER_OUT_STARTED" | "TRANSFER_OUT_COMPLETED" | "RENEWED" | "RESTORED" | "BILLING_TRANSACTION_RESERVED" | "BILLING_TRANSACTION_SUCCEEDED" | "BILLING_TRANSACTION_FAILED" | "BILLING_TRANSACTION_CANCELLED";
+        ObjectEventType: "CREATED" | "UPDATED" | "DELETED" | "IMPORTED" | "SYNCED_AFTER_IMPORT" | "SYNCED" | "TRANSFER_STARTED" | "TRANSFER_COMPLETED" | "TRANSFER_CANCELLED" | "TRANSFER_FAILED" | "TRANSFER_OUT_STARTED" | "TRANSFER_OUT_COMPLETED" | "TRANSFER_OUT_CANCELLED" | "TRANSFER_OUT_FAILED" | "TRANSFER_OUT_REJECTED" | "RENEWED" | "RESTORED" | "BILLING_TRANSACTION_RESERVED" | "BILLING_TRANSACTION_SUCCEEDED" | "BILLING_TRANSACTION_FAILED" | "BILLING_TRANSACTION_CANCELLED";
         /** ObjectLog */
         ObjectLog: {
             /** @description Action performed */
@@ -10829,7 +16730,10 @@ export interface components {
              * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id: TypeId<"organization">;
-            /** Role */
+            /**
+             * Role
+             * @description Role bound to the API key: a built-in role name or the label of a custom role. null when the key holds no role, which grants no permissions.
+             */
             role?: components["schemas"]["PublicRole"] | components["schemas"]["CustomRoleLabel"] | null;
             /** @description The status of the organization credential. */
             readonly status: components["schemas"]["OrganizationCredentialStatus"];
@@ -12072,6 +17976,99 @@ export interface components {
             unique: number;
         };
         /**
+         * RegistrantChangeConfirmationMethod
+         * @enum {string}
+         */
+        RegistrantChangeConfirmationMethod: "designated_agent" | "email" | "api";
+        /**
+         * RegistrantChangeConfirmationType
+         * @enum {string}
+         */
+        RegistrantChangeConfirmationType: "registrar" | "registry" | "none";
+        /** RegistrantChangeDetails */
+        RegistrantChangeDetails: {
+            /** Confirmation Deadline */
+            confirmation_deadline?: Date | null;
+            confirmation_method?: components["schemas"]["RegistrantChangeConfirmationMethod"] | null;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            detail_type: "registrant_change";
+            /**
+             * New Registrant Id
+             * Format: typeid
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
+             */
+            new_registrant_id: TypeId<"contact">;
+            /** Notification Type */
+            notification_type?: string | null;
+            /**
+             * Prior Registrant Id
+             * Format: typeid
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
+             */
+            prior_registrant_id: TypeId<"contact">;
+            /**
+             * Registrant Change Id
+             * Format: typeid
+             * @example registrant_change_01h45ytscbebyvny4gc8cr8ma2
+             */
+            registrant_change_id: TypeId<"registrant_change">;
+            status: components["schemas"]["RegistrantChangeStatus"];
+            /**
+             * Transfer Lock Opt Out
+             * @default false
+             */
+            transfer_lock_opt_out: boolean;
+            /** Transfer Lock Until */
+            transfer_lock_until?: Date | null;
+        };
+        /**
+         * RegistrantChangeFeeType
+         * @enum {string}
+         */
+        RegistrantChangeFeeType: "none" | "trade";
+        /** RegistrantChangePolicyBase */
+        RegistrantChangePolicyBase: {
+            /** @description Who confirms a change of registrant before it is executed */
+            confirmation: components["schemas"]["RegistrantChangeConfirmationType"];
+            /**
+             * Confirmation Window
+             * @description How long the parties have to confirm the change (e.g., '14D'), at most 60 days
+             */
+            confirmation_window?: string | null;
+            /**
+             * Designated Agent Allowed
+             * @description Whether a Designated Agent may confirm the change on behalf of a registrant
+             */
+            designated_agent_allowed: boolean;
+            /** @description Whether the change is charged as a trade */
+            fee: components["schemas"]["RegistrantChangeFeeType"];
+            /**
+             * Prior Registrant Notice
+             * @description Whether the prior registrant is notified of the change
+             */
+            prior_registrant_notice: boolean;
+            /**
+             * Renews Domain
+             * @description Whether the change renews the domain
+             */
+            renews_domain: boolean;
+            /**
+             * Transfer Lock After Change
+             * @description Inter-registrar transfer lock applied after the change (e.g., '60D'), '0D' disables it
+             * @example P5D
+             * @example P1Y
+             */
+            transfer_lock_after_change: string;
+        };
+        /**
+         * RegistrantChangeStatus
+         * @enum {string}
+         */
+        RegistrantChangeStatus: "pending_confirmation" | "confirmed" | "executing" | "registry_pending" | "completed" | "not_material" | "expired" | "canceled" | "rejected" | "failed";
+        /**
          * RegistrantChangeType
          * @enum {string}
          */
@@ -12080,7 +18077,7 @@ export interface components {
          * Registrar
          * @enum {string}
          */
-        Registrar: "INTERNETX" | "MONIKER" | "DOMAIN_BESTELLSYSTEM" | "CENTRALNIC" | "NICMANAGER" | "OPUSDNS" | "ENOM" | "OPENSRS" | "NIC_DIRECT";
+        Registrar: "INTERNETX" | "MONIKER" | "DOMAIN_BESTELLSYSTEM" | "CENTRALNIC" | "NICMANAGER" | "OPUSDNS" | "ENOM" | "OPENSRS" | "NIC_DIRECT" | "OPENPROVIDER" | "REALTIMEREGISTER";
         /** RegistrarContact */
         RegistrarContact: {
             /** City */
@@ -12450,7 +18447,7 @@ export interface components {
          * StatusTagType
          * @enum {string}
          */
-        StatusTagType: "VERIFICATION_REQUIRED" | "CREATE_REQUESTED" | "INBOUND_TRANSFER_PENDING" | "OUTBOUND_TRANSFER_PENDING" | "EXTERNAL" | "IMPORT_REQUESTED" | "IMPORT_PENDING" | "DNSSEC_PENDING";
+        StatusTagType: "VERIFICATION_REQUIRED" | "CREATE_REQUESTED" | "INBOUND_TRANSFER_PENDING" | "OUTBOUND_TRANSFER_PENDING" | "EXTERNAL" | "IMPORT_REQUESTED" | "IMPORT_PENDING" | "DNSSEC_PENDING" | "TRANSFER_ON_RENEW_PENDING";
         /** @example 12.50 */
         StrictMoneyDecimal: string;
         /** Support */
@@ -13013,6 +19010,40 @@ export interface components {
              * @description Time duration of transfers in ISO 8601 format (e.g., 5D, -7D) according to the policy, 0 = real-time
              */
             transfer_time?: string | null;
+        };
+        /** UnknownContext */
+        UnknownContext: {
+            /**
+             * Context Id
+             * Format: typeid
+             * @example ctx_01h45ytscbebyvny4gc8cr8ma2
+             */
+            context_id: TypeId<"ctx">;
+            /**
+             * Conversation Id
+             * Format: typeid
+             * @example conv_01h45ytscbebyvny4gc8cr8ma2
+             */
+            conversation_id: TypeId<"conv">;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: Date;
+            /** Kind */
+            kind: string;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /** Payload */
+            payload: {
+                [key: string]: unknown;
+            };
+            /** User Id */
+            user_id: string;
         };
         /**
          * UsageGranularity
@@ -13586,7 +19617,7 @@ export interface components {
         VanityNameserverSetCreate: {
             /**
              * Hostnames
-             * @description Fully-qualified vanity NS hostnames, ordered by intended position.
+             * @description Fully-qualified vanity NS hostnames, ordered by intended position. A set may not have more hostnames than there are anycast address pairs (each hostname gets its own IPs); a larger set is rejected with 400.
              */
             hostnames: string[];
             /**
@@ -13879,6 +19910,99 @@ export interface components {
             total: number;
             /** Unique */
             unique: number;
+        };
+        /**
+         * WaitlistApplyRequest
+         * @description What you say when applying for a product.
+         */
+        WaitlistApplyRequest: {
+            /**
+             * Note
+             * @description What you would use the product for
+             * @example We manage 12k domains for agency clients and triage renewals by hand.
+             */
+            note?: string | null;
+        };
+        /**
+         * WaitlistEntryResponse
+         * @description Your own waitlist application.
+         */
+        WaitlistEntryResponse: {
+            /**
+             * Applied On
+             * Format: date-time
+             * @description When you applied
+             */
+            applied_on: Date;
+            /**
+             * Decided On
+             * @description When the application was decided; null while it is pending
+             */
+            decided_on?: Date | null;
+            /** @description Product the application is for */
+            product: components["schemas"]["WaitlistProduct"];
+            /** @description Where the application stands */
+            status: components["schemas"]["WaitlistEntryStatus"];
+        };
+        /**
+         * WaitlistEntryStatus
+         * @enum {string}
+         */
+        WaitlistEntryStatus: "pending" | "granted" | "rejected";
+        /**
+         * WaitlistProduct
+         * @description A product that is not generally available and is reached through the waitlist.
+         *
+         *     The member value is the wire form used in URLs and API bodies; the column persists the
+         *     member NAME (StringEnum binds `value.name`), so renaming a member is a data migration.
+         * @enum {string}
+         */
+        WaitlistProduct: "ai_concierge";
+        /**
+         * WaitlistProductListResponse
+         * @description The waitlisted products you may see.
+         */
+        WaitlistProductListResponse: {
+            /**
+             * Products
+             * @description Waitlisted products you may see
+             */
+            products?: components["schemas"]["WaitlistProductState"][];
+        };
+        /**
+         * WaitlistProductState
+         * @description A waitlisted product, and where your own application for it stands.
+         */
+        WaitlistProductState: {
+            /**
+             * Applied On
+             * @description When you applied, if you have
+             */
+            applied_on?: Date | null;
+            /**
+             * Can Apply
+             * @description Whether an apply from you would be accepted right now; false for an API key
+             */
+            can_apply: boolean;
+            /**
+             * Decided On
+             * @description When your application was decided, if it was
+             */
+            decided_on?: Date | null;
+            /**
+             * Description
+             * @description What the product does
+             */
+            description: string;
+            /**
+             * Display Name
+             * @description Human-readable product name
+             */
+            display_name: string;
+            /** @description Product key, used in the apply path */
+            product: components["schemas"]["WaitlistProduct"];
+            /** @description Where your application stands; null until you apply, and for an API key */
+            status?: components["schemas"]["WaitlistEntryStatus"] | null;
         };
         /**
          * WhitelabelBaseCreate
@@ -14504,7 +20628,8 @@ export interface components {
     responses: never;
     parameters: {
         /**
-         * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+         * @deprecated
+         * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
          * @example rfc3339
          */
         DatetimeFormatHeader: "rfc3339";
@@ -14520,7 +20645,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -14538,7 +20664,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"];
+                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"];
                 };
             };
             /** @description Unauthorized */
@@ -14612,7 +20738,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -14695,7 +20822,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -14782,7 +20910,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -14867,7 +20996,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -14951,7 +21081,8 @@ export interface operations {
             header?: {
                 "If-Match"?: string | null;
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15043,7 +21174,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15128,7 +21260,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15150,7 +21283,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"];
+                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"];
                 };
             };
             /** @description Unauthorized */
@@ -15224,7 +21357,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15309,7 +21443,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15398,7 +21533,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15488,7 +21624,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15571,7 +21708,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15658,7 +21796,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15741,7 +21880,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15829,17 +21969,25 @@ export interface operations {
         parameters: {
             query: {
                 email_forward_id: TypeId<"email_forward">;
+                /** @description Sort field (log_id, domain, sender_email, recipient_email, forward_email, final_status, created_on, synced_on) */
                 sort_by?: components["schemas"]["EmailForwardLogSortField"];
+                /** @description Sort order (asc, desc) */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Records per page */
                 page_size?: number;
+                /** @description Page number */
                 page?: number;
+                /** @description Filter by final status (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE, HARD-BOUNCE) */
                 final_status?: components["schemas"]["EmailForwardLogStatus"] | null;
+                /** @description Filter logs after (RFC3339) */
                 start_time?: Date | null;
+                /** @description Filter logs before (RFC3339) */
                 end_time?: Date | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15874,17 +22022,25 @@ export interface operations {
     get_email_forward_logs_v1_archive_email_forward_logs__email_forward_id__get: {
         parameters: {
             query?: {
+                /** @description Sort field (log_id, domain, sender_email, recipient_email, forward_email, final_status, created_on, synced_on) */
                 sort_by?: components["schemas"]["EmailForwardLogSortField"];
+                /** @description Sort order (asc, desc) */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Records per page */
                 page_size?: number;
+                /** @description Page number */
                 page?: number;
+                /** @description Filter by final status (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE, HARD-BOUNCE) */
                 final_status?: components["schemas"]["EmailForwardLogStatus"] | null;
+                /** @description Filter logs after (RFC3339) */
                 start_time?: Date | null;
+                /** @description Filter logs before (RFC3339) */
                 end_time?: Date | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15919,23 +22075,37 @@ export interface operations {
     get_object_logs_v1_archive_object_logs_get: {
         parameters: {
             query?: {
+                /** @description Sort field (object_log_id, object_id, object_type, action, created_on, organization_id, server_request_id, performed_by_type, performed_by_id) */
                 sort_by?: components["schemas"]["ObjectLogSortField"];
+                /** @description Sort order (asc, desc) */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Records per page */
                 page_size?: number;
+                /** @description Page number */
                 page?: number;
+                /** @description Filter by specific log UUID */
                 object_log_id?: string | null;
+                /** @description Filter by object type */
                 object_type?: string | null;
+                /** @description Filter by action */
                 action?: components["schemas"]["ObjectEventType"] | null;
+                /** @description Filter by server request ID */
                 server_request_id?: string | null;
+                /** @description Filter by performer type */
                 performed_by_type?: components["schemas"]["ExecutingEntity"] | null;
+                /** @description Filter by performer ID (TypeID) */
                 performed_by_id?: string | null;
+                /** @description Upper bound: created_on <= value (RFC3339) */
                 created_before?: Date | null;
+                /** @description Lower bound: created_on >= value (RFC3339) */
                 created_after?: Date | null;
+                /** @description Filter by object ID (TypeID) */
                 object_id?: string | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -15968,22 +22138,35 @@ export interface operations {
     get_object_logs_by_object_id_v1_archive_object_logs__object_id__get: {
         parameters: {
             query?: {
+                /** @description Sort field (object_log_id, object_id, object_type, action, created_on, organization_id, server_request_id, performed_by_type, performed_by_id) */
                 sort_by?: components["schemas"]["ObjectLogSortField"];
+                /** @description Sort order (asc, desc) */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Records per page */
                 page_size?: number;
+                /** @description Page number */
                 page?: number;
+                /** @description Filter by specific log UUID */
                 object_log_id?: string | null;
+                /** @description Filter by object type */
                 object_type?: string | null;
+                /** @description Filter by action */
                 action?: components["schemas"]["ObjectEventType"] | null;
+                /** @description Filter by server request ID */
                 server_request_id?: string | null;
+                /** @description Filter by performer type */
                 performed_by_type?: components["schemas"]["ExecutingEntity"] | null;
+                /** @description Filter by performer ID (TypeID) */
                 performed_by_id?: string | null;
+                /** @description Upper bound: created_on <= value (RFC3339) */
                 created_before?: Date | null;
+                /** @description Lower bound: created_on >= value (RFC3339) */
                 created_after?: Date | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16018,27 +22201,43 @@ export interface operations {
     get_request_history_v1_archive_request_history_get: {
         parameters: {
             query?: {
+                /** @description Sort field (request_history_id, method, path, status_code, duration, client_ip, server_request_id, performed_by_type, performed_by_id, created_on, request_started_at, request_completed_at, organization_id) */
                 sort_by?: components["schemas"]["RequestHistorySortField"];
+                /** @description Sort order (asc, desc) */
                 sort_order?: components["schemas"]["SortOrder"];
                 page_size?: number;
                 page?: number;
+                /** @description HTTP method filter (GET, POST, etc.) */
                 method?: components["schemas"]["HTTPMethod"] | null;
+                /** @description Path filter (supports LIKE queries) */
                 path?: string | null;
+                /** @description Exact status code filter */
                 status_code?: number | null;
+                /** @description Minimum status code filter */
                 min_status_code?: number | null;
+                /** @description Maximum status code filter */
                 max_status_code?: number | null;
+                /** @description Minimum duration in milliseconds */
                 min_duration?: number | null;
+                /** @description Maximum duration in milliseconds */
                 max_duration?: number | null;
+                /** @description Client IP address filter */
                 client_ip?: string | null;
+                /** @description Server request ID filter */
                 server_request_id?: string | null;
+                /** @description Performed by type filter */
                 performed_by_type?: components["schemas"]["ExecutingEntity"] | null;
+                /** @description Performed by ID filter */
                 performed_by_id?: string | null;
+                /** @description Upper bound: request_started_at <= value (RFC3339) */
                 request_started_before?: Date | null;
+                /** @description Lower bound: request_started_at >= value (RFC3339) */
                 request_started_after?: Date | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16073,7 +22272,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16117,6 +22317,22 @@ export interface operations {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHORIZATION_UNAVAILABLE",
+                     *       "detail": "Additional error context.",
+                     *       "status": 503,
+                     *       "title": "Authorization service unavailable.",
+                     *       "type": "authorization-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
         };
     };
     signup_v1_auth_signup_post: {
@@ -16124,7 +22340,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16219,7 +22436,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16271,7 +22489,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16327,7 +22546,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16378,7 +22598,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16433,28 +22654,43 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["ContactSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
-                /** @description Filter by status tag types. Can be specified multiple times. */
-                status_tags?: components["schemas"]["StatusTagType"][] | null;
+                /** @description Filter by contact status tag types. Can be specified multiple times. */
+                status_tags?: components["schemas"]["ContactStatusTagType"][] | null;
+                /** @description How to combine status_tags: 'match_any' returns objects with at least one of the tags, 'match_all' returns objects with every tag, 'match_none' returns objects with none of the tags, including objects that carry no status tags at all. Has no effect unless one or more status_tags are supplied. */
                 status_tag_mode?: components["schemas"]["TagFilterMode"];
                 /** @description Filter by user tag IDs. Can be specified multiple times. */
                 tag_ids?: TypeId<"tag">[] | null;
+                /** @description How to combine tag_ids: 'match_any' returns objects with at least one of the tags, 'match_all' returns objects with every tag, 'match_none' returns objects with none of the tags, including objects that carry no user tags at all. Has no effect unless one or more tag_ids are supplied; to filter on whether an object has any user tag, use has_tags. */
                 tag_mode?: components["schemas"]["TagFilterMode"];
+                /** @description true returns only objects that carry at least one user tag, false only objects that carry none. Status tags are not counted. Combines with tag_ids and the other filters. */
+                has_tags?: boolean | null;
+                /** @description Filter by exact first name */
                 first_name?: string | null;
+                /** @description Filter by exact last name */
                 last_name?: string | null;
+                /** @description Filter by exact email address */
                 email?: string | null;
+                /** @description Search contacts by name, email, organization, or contact ID. Multiple whitespace-separated terms must all match (as substrings), so a full "First Last" name matches across the separate first- and last-name columns. A contact ID is matched exactly. */
                 search?: string | null;
+                /** @description Filter by country */
                 country?: string | null;
+                /** @description Filter by whether the contact is in use by any domain (true = has domains, false = none) */
                 in_use?: boolean | null;
+                /** @description Filter contacts created after this date */
                 created_after?: Date | null;
+                /** @description Filter contacts created before this date */
                 created_before?: Date | null;
                 /** @description Include additional data in the response. Can be specified multiple times. */
                 include?: components["schemas"]["ContactIncludeField"][] | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16489,7 +22725,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16528,14 +22765,19 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["ContactAttributeSetSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Filter by exact TLD (e.g. 'de', '.de', 'DE') */
                 tld?: string | null;
+                /** @description Filter by label (contains, case-insensitive) */
                 label?: string | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16570,7 +22812,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16626,7 +22869,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16680,7 +22924,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16732,7 +22977,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16809,7 +23055,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16879,7 +23126,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16956,7 +23204,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -16993,7 +23242,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17047,7 +23297,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17115,7 +23366,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17180,7 +23432,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17252,7 +23505,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17347,7 +23601,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17433,7 +23688,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17501,7 +23757,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17594,7 +23851,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17701,26 +23959,41 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["ZoneSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
                 /** @description Filter by user tag IDs. Can be specified multiple times. */
                 tag_ids?: TypeId<"tag">[] | null;
+                /** @description How to combine tag_ids: 'match_any' returns objects with at least one of the tags, 'match_all' returns objects with every tag, 'match_none' returns objects with none of the tags, including objects that carry no user tags at all. Has no effect unless one or more tag_ids are supplied; to filter on whether an object has any user tag, use has_tags. */
                 tag_mode?: components["schemas"]["TagFilterMode"];
+                /** @description true returns only objects that carry at least one user tag, false only objects that carry none. Status tags are not counted. Combines with tag_ids and the other filters. */
+                has_tags?: boolean | null;
+                /** @description Filter by DNSSEC status */
                 dnssec_status?: components["schemas"]["DnssecStatus"] | null;
+                /** @description Filter by exact zone name */
                 name?: string | null;
+                /** @description Search zones by name (contains) */
                 search?: string | null;
+                /** @description Filter zones by TLD/suffix (e.g., 'com', 'io', 'co.uk') */
                 suffix?: string | null;
+                /** @description Filter zones by the vanity nameserver set branding them */
                 vanity_nameserver_set_id?: TypeId<"vns"> | null;
+                /** @description Filter zones created after this date */
                 created_after?: Date | null;
+                /** @description Filter zones created before this date */
                 created_before?: Date | null;
+                /** @description Filter zones updated after this date */
                 updated_after?: Date | null;
+                /** @description Filter zones updated before this date */
                 updated_before?: Date | null;
                 /** @description Include additional data in the response. Can be specified multiple times. */
                 include?: components["schemas"]["ZoneIncludeField"][] | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17755,7 +24028,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17810,13 +24084,17 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Search by zone name */
                 search?: string | null;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["DomainForwardZoneSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17883,13 +24161,17 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Search by zone name */
                 search?: string | null;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["EmailForwardZoneSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17956,7 +24238,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -17993,7 +24276,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18031,7 +24315,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18067,7 +24352,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18121,7 +24407,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18202,7 +24489,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18272,7 +24560,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18342,7 +24631,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18426,7 +24716,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18511,7 +24802,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18599,7 +24891,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18657,13 +24950,17 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Search by hostname */
                 search?: string | null;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["DomainForwardSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18730,7 +25027,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18834,7 +25132,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -18928,7 +25227,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19032,7 +25332,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19136,7 +25437,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19240,7 +25542,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19344,7 +25647,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19448,7 +25752,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19552,7 +25857,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19656,7 +25962,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19762,7 +26069,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19857,7 +26165,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -19943,7 +26252,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20049,7 +26359,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20133,7 +26444,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20201,7 +26513,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20269,7 +26582,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20356,7 +26670,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20447,7 +26762,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20541,7 +26857,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20608,48 +26925,79 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["DomainSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
                 /** @description Filter by status tag types. Can be specified multiple times. */
                 status_tags?: components["schemas"]["StatusTagType"][] | null;
+                /** @description How to combine status_tags: 'match_any' returns objects with at least one of the tags, 'match_all' returns objects with every tag, 'match_none' returns objects with none of the tags, including objects that carry no status tags at all. Has no effect unless one or more status_tags are supplied. */
                 status_tag_mode?: components["schemas"]["TagFilterMode"];
                 /** @description Filter by user tag IDs. Can be specified multiple times. */
                 tag_ids?: TypeId<"tag">[] | null;
+                /** @description How to combine tag_ids: 'match_any' returns objects with at least one of the tags, 'match_all' returns objects with every tag, 'match_none' returns objects with none of the tags, including objects that carry no user tags at all. Has no effect unless one or more tag_ids are supplied; to filter on whether an object has any user tag, use has_tags. */
                 tag_mode?: components["schemas"]["TagFilterMode"];
+                /** @description true returns only objects that carry at least one user tag, false only objects that carry none. Status tags are not counted. Combines with tag_ids and the other filters. */
+                has_tags?: boolean | null;
+                /** @description Filter by exact domain name */
                 name?: string | null;
+                /** @description Search domains by name (contains) or domain ID (exact match) */
                 search?: string | null;
                 /** @description Filter by top-level domain (e.g., 'com', 'org'). Can be specified multiple times (union of all provided values). */
                 tld?: string[] | null;
+                /** @description Filter by second-level domain */
                 sld?: string | null;
+                /** @description Filter domains whose nameserver hostnames contain this text, e.g. `cloudflare` or `ns1.example.com`. Matches the nameservers the domain currently delegates to. The text is matched literally, so `%` and `_` are not wildcards; a trailing dot on a single label anchors at a label boundary, so `ns1.` matches `ns1.example.com` but not `ns10.example.com`. Unlike the other filters this one reads the nameservers of every domain in scope, so expect a slower response, the more so the larger the portfolio. */
                 nameserver?: string | null;
+                /** @description Filter by transfer lock status */
                 transfer_lock?: boolean | null;
+                /** @description Filter by read-only status */
                 read_only?: boolean | null;
+                /** @description Filter by premium domain status */
                 is_premium?: boolean | null;
+                /** @description Filter domains created after this date */
                 created_after?: Date | null;
+                /** @description Filter domains created before this date */
                 created_before?: Date | null;
+                /** @description Filter domains updated after this date */
                 updated_after?: Date | null;
+                /** @description Filter domains updated before this date */
                 updated_before?: Date | null;
+                /** @description Filter domains expiring after this date */
                 expires_after?: Date | null;
+                /** @description Filter domains expiring before this date */
                 expires_before?: Date | null;
+                /** @description Filter domains expiring within the next 30 days */
                 expires_in_30_days?: boolean | null;
+                /** @description Filter domains expiring within the next 60 days */
                 expires_in_60_days?: boolean | null;
+                /** @description Filter domains expiring within the next 90 days */
                 expires_in_90_days?: boolean | null;
+                /** @description Filter domains registered after this date */
                 registered_after?: Date | null;
+                /** @description Filter domains registered before this date */
                 registered_before?: Date | null;
+                /** @description Filter domains transferred in after this date */
                 transferred_after?: Date | null;
+                /** @description Filter domains transferred in before this date */
                 transferred_before?: Date | null;
                 /** @description Filter domains by registry status. Can be specified multiple times (union of all provided values). */
                 registry_statuses?: string[] | null;
-                /** @description Filter domains held at an external registrar by the connected registrar credential they were synced from. Can be specified multiple times (union of all provided values); combined with `registrar`, both must match. Matches exactly the domains whose `registrar_credential` field carries the id, so domains OpusDNS sponsors never match. */
+                /** @description Filter domains held at an external registrar by the connected registrar credential they were synced from. Can be specified multiple times (union of all provided values); combined with `registrar`, both must match. Matches exactly the domains whose `connected_account` field carries the id, so domains OpusDNS sponsors never match. */
                 registrar_credential_id?: TypeId<"registrar_credential">[] | null;
-                /** @description Filter domains held at an external registrar by that registrar. Can be specified multiple times (union of all provided values); combined with `registrar_credential_id`, both must match. Matches exactly the domains whose `registrar_credential` field carries the registrar, so domains OpusDNS sponsors never match. */
+                /** @description Filter domains held at an external registrar by that registrar. Can be specified multiple times (union of all provided values); combined with `registrar_credential_id`, both must match. Matches exactly the domains whose `connected_account` field carries the registrar, so domains OpusDNS sponsors never match. */
                 registrar?: components["schemas"]["Registrar"][] | null;
-                /** @description Extra data to include in each result. `tags` populates the `tags` (user tags) and `status_tags` fields, which are otherwise null; filtering by `tag_ids` or `status_tags` alone does not populate them. `registrar_credential` populates the `registrar_credential` field for domains held at an external registrar. */
+                /** @description Filter domains by the type of the registry account they are held on: `ras` for domains on a registrar-abstraction (RAS) account synced from a connected external registrar, including those whose credential has since been deleted; `ams` for domains managed on a customer's own registry accreditation; `default` for all others, manually managed domains included (their accounts are typed `default`). Can be specified multiple times (union of all provided values). */
+                account_type?: components["schemas"]["ConnectedAccountType"][] | null;
+                /** @description How to apply `account_type`: `match_any` keeps the domains on any of the listed types, `match_none` the domains on none of them (so `account_type=ras&account_type_mode=match_none` keeps every domain not on a RAS account, and naming every type keeps none). Has no effect without `account_type`. */
+                account_type_mode?: components["schemas"]["AccountTypeFilterMode"];
+                /** @description Extra data to include in each result. `tags` populates the `tags` (user tags) and `status_tags` fields, which are otherwise null; filtering by `tag_ids` or `status_tags` alone does not populate them. `connected_account` populates the `connected_account` field for domains held at an external registrar. */
                 include?: components["schemas"]["DomainListIncludeField"][] | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20684,7 +27032,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20783,7 +27132,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20818,7 +27168,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20887,16 +27238,25 @@ export interface operations {
     get_domain_statistics_v1_domains_statistics_get: {
         parameters: {
             query: {
+                /** @description First day of the window, inclusive (YYYY-MM-DD, UTC) */
                 start_date: string;
+                /** @description Last day of the window, inclusive (YYYY-MM-DD, UTC). How far it may reach depends on `granularity`: at most 92 days for `day`, 371 days for `week`, 396 days for `month`. */
                 end_date: string;
+                /** @description Time-bucket size. Weeks start on Monday and months on the 1st, in UTC. */
                 granularity?: components["schemas"]["UsageGranularity"];
+                /** @description Restrict the counts to one top-level domain, e.g. `com`. */
                 tld?: string | null;
+                /** @description Adds a top-N list to the response: `organization` ranks your organization and its sub-organizations (so it needs `include_sub_organizations=true`), `tld` ranks the top-level domains. */
                 breakdown?: components["schemas"]["DomainStatisticsBreakdown"];
+                /** @description How many rows the breakdown lists. */
                 breakdown_limit?: number;
+                /** @description Count your sub-organizations' domains too. By default only your own organization's domains are counted, as in the domain summary. */
+                include_sub_organizations?: boolean;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20928,10 +27288,16 @@ export interface operations {
     };
     get_domain_summary_v1_domains_summary_get: {
         parameters: {
-            query?: never;
+            query?: {
+                /** @description Filter domains by the type of the registry account they are held on: `ras` for domains on a registrar-abstraction (RAS) account synced from a connected external registrar, including those whose credential has since been deleted; `ams` for domains managed on a customer's own registry accreditation; `default` for all others, manually managed domains included (their accounts are typed `default`). Can be specified multiple times (union of all provided values). */
+                account_type?: components["schemas"]["ConnectedAccountType"][] | null;
+                /** @description How to apply `account_type`: `match_any` keeps the domains on any of the listed types, `match_none` the domains on none of them (so `account_type=ras&account_type_mode=match_none` keeps every domain not on a RAS account, and naming every type keeps none). Has no effect without `account_type`. */
+                account_type_mode?: components["schemas"]["AccountTypeFilterMode"];
+            };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -20966,7 +27332,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21024,7 +27391,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21096,7 +27464,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21168,7 +27537,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21240,7 +27610,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21298,7 +27669,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21370,7 +27742,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21442,7 +27815,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21516,7 +27890,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21569,7 +27944,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21656,7 +28032,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21740,7 +28117,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21801,7 +28179,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21873,7 +28252,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -21945,7 +28325,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22017,7 +28398,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22114,12 +28496,13 @@ export interface operations {
     get_domain_v1_domains__domain_reference__get: {
         parameters: {
             query?: {
-                /** @description Extra data to include in the response. `tags` populates the `tags` and `status_tags` fields, which are otherwise null. `renewal_price` resolves the domain's renewal price. `registrar_credential` populates the `registrar_credential` field for domains held at an external registrar. */
+                /** @description Extra data to include in the response. `tags` populates the `tags` and `status_tags` fields, which are otherwise null. `renewal_price` resolves the domain's renewal price. `connected_account` populates the `connected_account` field for domains held at an external registrar. `registrant_change` populates the `registrant_change` field with the change of registrant in progress. */
                 include?: components["schemas"]["DomainIncludeField"][] | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22173,7 +28556,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22243,7 +28627,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22288,12 +28673,113 @@ export interface operations {
             };
         };
     };
+    request_domain_auth_code_v1_domains__domain_reference__auth_code_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                domain_reference: TypeId<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainAuthCodeResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_TRANSFER",
+                     *       "detail": "There was an error transferring the domain",
+                     *       "domain_name": "Additional error context.",
+                     *       "reason": "An unspecified error occurred",
+                     *       "status": 400,
+                     *       "title": "Domain Transfer Error",
+                     *       "type": "domain-transfer"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_NOT_FOUND",
+                     *       "detail": "Domain not found",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_AUTH_CODE_NOT_SUPPORTED",
+                     *       "detail": "Auth codes are not used",
+                     *       "domain_name": "example.lu",
+                     *       "status": 422,
+                     *       "title": "Domain Management Error",
+                     *       "tld": "lu",
+                     *       "type": "domain-auth-code-not-supported"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTH_CODE",
+                     *       "detail": "The registry did not return an auth code",
+                     *       "domain_name": "example.eu",
+                     *       "reason": "No auth code returned",
+                     *       "status": 502,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-auth-code-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
     get_dnssec_v1_domains__domain_reference__dnssec_get: {
         parameters: {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22347,7 +28833,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22405,7 +28892,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22457,7 +28945,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22509,7 +28998,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22581,7 +29071,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22606,13 +29097,67 @@ export interface operations {
                     "application/json": components["schemas"]["DomainRenewResponse"];
                 };
             };
-            /** @description Validation Error */
+            /** @description The domain is held at another registrar, so the renewal transfers it into OpusDNS: it is unlocked there, its auth code and contacts are copied, and a transfer-in is requested at the transfer price. The transfer's progress and outcome are reported as domain events, including an inbound-transfer failure event if any step fails. */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainRenewTransferPendingResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_TRANSFER_ON_RENEW_PENDING",
+                     *       "detail": "A renewal already started the transfer of this domain into OpusDNS",
+                     *       "domain_name": "example.com",
+                     *       "status": 409,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-transfer-on-renew-pending"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    /** @example {
+                     *       "code": "ERROR_REGISTRAR_CREDENTIAL_REJECTED",
+                     *       "detail": "INTERNETX rejected the connected registrar credential holding the domain. Update the credential under Connected Registrars, then retry the renewal",
+                     *       "domain_name": "example.com",
+                     *       "registrar": "INTERNETX",
+                     *       "status": 422,
+                     *       "title": "Registrar Credential Rejected",
+                     *       "type": "domain-registrar-credential-rejected"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    /** @description Seconds to wait before retrying the renewal */
+                    "Retry-After"?: number;
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_REGISTRAR_UNAVAILABLE",
+                     *       "detail": "The registrar currently holding the domain is unavailable, please retry later",
+                     *       "domain_name": "example.com",
+                     *       "status": 503,
+                     *       "title": "Registrar Unavailable",
+                     *       "type": "domain-registrar-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
@@ -22622,7 +29167,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22663,7 +29209,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22733,7 +29280,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22817,14 +29365,19 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Search by hostname */
                 search?: string | null;
+                /** @description Filter by enabled status */
                 enabled?: boolean | null;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["EmailForwardSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -22891,7 +29444,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23006,7 +29560,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23091,7 +29646,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23158,7 +29714,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23263,7 +29820,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23354,7 +29912,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23439,7 +29998,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23522,7 +30082,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23603,12 +30164,15 @@ export interface operations {
     get_email_forward_metrics_v1_email_forwards__email_forward_id__metrics_get: {
         parameters: {
             query?: {
+                /** @description Filter metrics after (RFC3339) */
                 start_time?: Date | null;
+                /** @description Filter metrics before (RFC3339) */
                 end_time?: Date | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23693,17 +30257,25 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["EventSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Filter by the type of object the event is about */
                 object_type?: components["schemas"]["EventObjectType"] | null;
+                /** @description Filter by specific domain/contact/host name */
                 object_id?: string | null;
+                /** @description Filter by event type */
                 type?: components["schemas"]["EventType"] | null;
+                /** @description Filter by subtype */
                 subtype?: components["schemas"]["EventSubtype"] | null;
+                /** @description Filter by acknowledgment status */
                 acknowledged?: boolean | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23754,7 +30326,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23824,7 +30397,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -23892,7 +30466,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24006,7 +30581,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24084,7 +30660,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24166,7 +30743,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24259,7 +30837,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24307,6 +30886,23 @@ export interface operations {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_BATCH_STATUS_FETCH_FAILED",
+                     *       "correlation_id": "Additional error context.",
+                     *       "detail": "Failed to fetch batch status for correlation_id 'Additional error context.'",
+                     *       "status": 503,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "batch-status-fetch"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
         };
     };
     delete_job_v1_job__job_id__delete: {
@@ -24314,7 +30910,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24367,7 +30964,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24420,7 +31018,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24475,7 +31074,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24557,7 +31157,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24592,7 +31193,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24664,7 +31266,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24736,7 +31339,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24800,7 +31404,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24872,7 +31477,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24925,7 +31531,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -24981,7 +31588,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25036,14 +31644,19 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["OrganizationSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Search across organization name, address, and city */
                 search?: string | null;
+                /** @description Filter by country code */
                 country_code?: string | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25110,7 +31723,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25184,7 +31798,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25251,7 +31866,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25330,7 +31946,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25397,7 +32014,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25468,7 +32086,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25537,7 +32156,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25604,7 +32224,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25672,12 +32293,181 @@ export interface operations {
             };
         };
     };
+    list_product_waitlists_v1_organizations_product_waitlist_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WaitlistProductListResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    apply_for_product_waitlist_v1_organizations_product_waitlist__product__apply_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                product: components["schemas"]["WaitlistProduct"];
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["WaitlistApplyRequest"] | null;
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WaitlistEntryResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_WAITLIST_NOT_INVITED",
+                     *       "detail": "No waitlist is available for ai_concierge",
+                     *       "product": "ai_concierge",
+                     *       "status": 404,
+                     *       "title": "Waitlist Error",
+                     *       "type": "waitlist-not-invited"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     list_role_permissions_v1_organizations_role_permissions_get: {
         parameters: {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25744,7 +32534,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25811,7 +32602,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25898,7 +32690,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -25984,7 +32777,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26086,7 +32880,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26193,13 +32988,17 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["UserSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Search across username, email, first name, and last name */
                 search?: string | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26266,7 +33065,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26335,7 +33135,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26402,7 +33203,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26478,7 +33280,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26547,7 +33350,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26631,7 +33435,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26671,7 +33476,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26711,7 +33517,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26781,20 +33588,31 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["BillingTransactionSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Filter by product reference */
                 product_reference?: string | null;
+                /** @description Filter by product type */
                 product_type?: components["schemas"]["BillingTransactionProductType"] | null;
+                /** @description Filter by action */
                 action?: components["schemas"]["BillingTransactionAction"] | null;
+                /** @description Filter by status */
                 status?: components["schemas"]["BillingTransactionStatus"] | null;
+                /** @description Filter by transactions created after this date */
                 created_after?: Date | null;
+                /** @description Filter by transactions created before this date */
                 created_before?: Date | null;
+                /** @description Filter by transactions completed after this date */
                 completed_after?: Date | null;
+                /** @description Filter by transactions completed before this date */
                 completed_before?: Date | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26863,7 +33681,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -26940,7 +33759,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27015,7 +33835,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27087,15 +33908,21 @@ export interface operations {
                 page?: number;
                 /** @description Page size */
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["ParkingSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Search parking entries by domain name (contains) */
                 search?: string | null;
+                /** @description Filter by enabled status */
                 enabled?: boolean | null;
+                /** @description Filter by compliance status */
                 compliance_status?: components["schemas"]["ComplianceStatus"] | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27160,12 +33987,15 @@ export interface operations {
     get_total_parking_metrics_v1_parking_metrics_get: {
         parameters: {
             query?: {
+                /** @description Filter metrics after (RFC3339) */
                 start_time?: Date | null;
+                /** @description Filter metrics before (RFC3339) */
                 end_time?: Date | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27232,7 +34062,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27303,7 +34134,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27368,12 +34200,15 @@ export interface operations {
     get_parking_metrics_v1_parking__parking_reference__metrics_get: {
         parameters: {
             query?: {
+                /** @description Filter metrics after (RFC3339) */
                 start_time?: Date | null;
+                /** @description Filter metrics before (RFC3339) */
                 end_time?: Date | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27466,7 +34301,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27501,7 +34337,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27540,7 +34377,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27577,7 +34415,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27614,15 +34453,19 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                /** @description Field to sort by */
                 sort_by?: components["schemas"]["TagSortField"];
+                /** @description Sort order direction */
                 sort_order?: components["schemas"]["SortOrder"];
                 /** @description Filter by tag types (OR semantics) */
                 tag_types?: components["schemas"]["TagType"][] | null;
+                /** @description Search tags by label (contains) */
                 search?: string | null;
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27673,7 +34516,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27745,7 +34589,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27834,7 +34679,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27904,7 +34750,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -27972,7 +34819,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28063,7 +34911,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28140,7 +34989,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28179,7 +35029,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28221,7 +35072,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28274,7 +35126,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28315,7 +35168,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28352,7 +35206,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28389,7 +35244,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28433,7 +35289,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28474,7 +35331,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28511,7 +35369,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28548,7 +35407,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28625,7 +35485,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28660,7 +35521,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28699,7 +35561,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28738,7 +35601,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28773,7 +35637,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28810,7 +35675,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28847,7 +35713,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28888,7 +35755,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28925,7 +35793,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -28962,7 +35831,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29002,7 +35872,8 @@ export interface operations {
             };
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29039,7 +35910,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29074,7 +35946,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29113,7 +35986,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29152,7 +36026,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29187,7 +36062,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29226,7 +36102,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29261,7 +36138,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29296,7 +36174,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29335,7 +36214,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29374,7 +36254,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29413,7 +36294,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29448,7 +36330,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29487,7 +36370,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
@@ -29522,7 +36406,8 @@ export interface operations {
             query?: never;
             header?: {
                 /**
-                 * @description Accepted for backwards compatibility; has no effect. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix, whether or not this header is sent.
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
                  * @example rfc3339
                  */
                 "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];

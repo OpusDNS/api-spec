@@ -518,6 +518,11 @@ export type PATCH_DomainsByDomainReference_Request = {
 export type PATCH_DomainsByDomainReference_Request_Path = PATCH_DomainsByDomainReference_Request['parameters']['path'];
 export type PATCH_DomainsByDomainReference_Request_Body = PATCH_DomainsByDomainReference_Request['requestBody'];
 
+export type POST_DomainsByDomainReferenceAuthCode_Request = {
+  parameters: operations['request_domain_auth_code_v1_domains__domain_reference__auth_code_post']['parameters'];
+};
+export type POST_DomainsByDomainReferenceAuthCode_Request_Path = POST_DomainsByDomainReferenceAuthCode_Request['parameters']['path'];
+
 export type DELETE_DomainsByDomainReferenceDnssec_Request = {
   parameters: operations['delete_dnssec_v1_domains__domain_reference__dnssec_delete']['parameters'];
 };
@@ -592,7 +597,9 @@ export type GET_DomainsStatistics_Request = {
 export type GET_DomainsStatistics_Request_Query = GET_DomainsStatistics_Request['parameters']['query'];
 
 export type GET_DomainsSummary_Request = {
+  parameters: operations['get_domain_summary_v1_domains_summary_get']['parameters'];
 };
+export type GET_DomainsSummary_Request_Query = GET_DomainsSummary_Request['parameters']['query'];
 
 export type POST_DomainsTldSpecificAtByDomainReferenceWithdraw_Request = {
   parameters: operations['withdraw_domain_v1_domains_tld_specific_at__domain_reference__withdraw_post']['parameters'];
@@ -956,6 +963,14 @@ export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request = {
 };
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request_Path = PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request['parameters']['path'];
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request_Body = PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request['requestBody'];
+
+export type GET_OrganizationsProductWaitlist_Request = {
+};
+
+export type POST_OrganizationsProductWaitlistByProductApply_Request = {
+  parameters: operations['apply_for_product_waitlist_v1_organizations_product_waitlist__product__apply_post']['parameters'];
+};
+export type POST_OrganizationsProductWaitlistByProductApply_Request_Path = POST_OrganizationsProductWaitlistByProductApply_Request['parameters']['path'];
 
 export type GET_OrganizationsRolePermissions_Request = {
 };

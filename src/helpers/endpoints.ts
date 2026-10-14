@@ -74,6 +74,7 @@ export const DOMAINS_TLD_SPECIFIC_SE_BY_DOMAIN_REFERENCE_AUTH_CODE_REQUEST_ENDPO
 export const DOMAINS_TLD_SPECIFIC_WALES_BY_DOMAIN_REFERENCE_AUTH_CODE_REQUEST_ENDPOINT = '/v1/domains/tld-specific/wales/{domain_reference}/auth_code/request';
 export const DOMAINS_TRANSFER_ENDPOINT = '/v1/domains/transfer';
 export const DOMAINS_BY_DOMAIN_REFERENCE_ENDPOINT = '/v1/domains/{domain_reference}';
+export const DOMAINS_BY_DOMAIN_REFERENCE_AUTH_CODE_ENDPOINT = '/v1/domains/{domain_reference}/auth-code';
 export const DOMAINS_BY_DOMAIN_REFERENCE_DNSSEC_ENDPOINT = '/v1/domains/{domain_reference}/dnssec';
 export const DOMAINS_BY_DOMAIN_REFERENCE_DNSSEC_DISABLE_ENDPOINT = '/v1/domains/{domain_reference}/dnssec/disable';
 export const DOMAINS_BY_DOMAIN_REFERENCE_DNSSEC_ENABLE_ENDPOINT = '/v1/domains/{domain_reference}/dnssec/enable';
@@ -106,6 +107,8 @@ export const ORGANIZATIONS_ENDPOINT = '/v1/organizations';
 export const ORGANIZATIONS_ATTRIBUTES_ENDPOINT = '/v1/organizations/attributes';
 export const ORGANIZATIONS_IP_RESTRICTIONS_ENDPOINT = '/v1/organizations/ip-restrictions';
 export const ORGANIZATIONS_IP_RESTRICTIONS_BY_IP_RESTRICTION_ID_ENDPOINT = '/v1/organizations/ip-restrictions/{ip_restriction_id}';
+export const ORGANIZATIONS_PRODUCT_WAITLIST_ENDPOINT = '/v1/organizations/product-waitlist';
+export const ORGANIZATIONS_PRODUCT_WAITLIST_BY_PRODUCT_APPLY_ENDPOINT = '/v1/organizations/product-waitlist/{product}/apply';
 export const ORGANIZATIONS_ROLE_PERMISSIONS_ENDPOINT = '/v1/organizations/role-permissions';
 export const ORGANIZATIONS_ROLES_ENDPOINT = '/v1/organizations/roles';
 export const ORGANIZATIONS_ROLES_BY_LABEL_ENDPOINT = '/v1/organizations/roles/{label}';
@@ -234,6 +237,7 @@ export type Endpoint =
   | typeof DOMAINS_TLD_SPECIFIC_WALES_BY_DOMAIN_REFERENCE_AUTH_CODE_REQUEST_ENDPOINT
   | typeof DOMAINS_TRANSFER_ENDPOINT
   | typeof DOMAINS_BY_DOMAIN_REFERENCE_ENDPOINT
+  | typeof DOMAINS_BY_DOMAIN_REFERENCE_AUTH_CODE_ENDPOINT
   | typeof DOMAINS_BY_DOMAIN_REFERENCE_DNSSEC_ENDPOINT
   | typeof DOMAINS_BY_DOMAIN_REFERENCE_DNSSEC_DISABLE_ENDPOINT
   | typeof DOMAINS_BY_DOMAIN_REFERENCE_DNSSEC_ENABLE_ENDPOINT
@@ -266,6 +270,8 @@ export type Endpoint =
   | typeof ORGANIZATIONS_ATTRIBUTES_ENDPOINT
   | typeof ORGANIZATIONS_IP_RESTRICTIONS_ENDPOINT
   | typeof ORGANIZATIONS_IP_RESTRICTIONS_BY_IP_RESTRICTION_ID_ENDPOINT
+  | typeof ORGANIZATIONS_PRODUCT_WAITLIST_ENDPOINT
+  | typeof ORGANIZATIONS_PRODUCT_WAITLIST_BY_PRODUCT_APPLY_ENDPOINT
   | typeof ORGANIZATIONS_ROLE_PERMISSIONS_ENDPOINT
   | typeof ORGANIZATIONS_ROLES_ENDPOINT
   | typeof ORGANIZATIONS_ROLES_BY_LABEL_ENDPOINT

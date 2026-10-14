@@ -4,6 +4,139 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 13 October 2026
+
+- Deprecated **the `X-Datetime-Format` request header**. It has had no effect
+  since the RFC 3339 cutover and will be removed from the OpenAPI specification
+  and the generated clients on 12 November 2026. The API keeps ignoring the
+  header if you send it, but you can stop sending it now. See
+  [Timezone-aware datetimes (RFC 3339)](/introduction/datetimes).
+
+### 12 October 2026
+
+- Onboarded **[`.koeln`](/tld-knowledge-base/gtlds/koeln)** and
+  **[`.cologne`](/tld-knowledge-base/gtlds/cologne)** (dotKoeln GmbH), both
+  served over the RyCE registry backend. Published their TLD Knowledge Base
+  pages. Both lock a domain for 60 days after a registration or a transfer.
+
+### 9 October 2026
+
+- Added **[`POST /v1/domains/{domain_reference}/auth-code`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/auth-code)**,
+  one endpoint that gets an auth code for a domain on every TLD. `delivery`
+  says where the code ends up: `response` returns it in `auth_code`, with
+  `auth_code_expires_on` when the registry limits its validity, and
+  `registrant_email` means the registry emails it to the registrant (`.be`,
+  `.cz`), listing `recipients` when the registry reports them. On `.nl` the
+  registry generates the token, so the endpoint returns the current one, and
+  on `.eu` and `.lt` a request while a code is still valid returns that code.
+  `.lu`, `.uk` and `.ro` have no auth code that can be issued this way and
+  answer `422` with `ERROR_DOMAIN_AUTH_CODE_NOT_SUPPORTED`.
+
+- Deprecated **the TLD-specific auth code routes** in favor of the new
+  endpoint. `POST /v1/domains/tld-specific/<tld>/{domain_reference}/auth_code/request`
+  for `.be`, `.cymru`, `.cz`, `.dk`, `.eu`, `.lt`, `.nu`, `.se` and `.wales`
+  keeps working until it is removed.
+
+- Changed **`auth_code` on
+  [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference})
+  to be refused on `.nl`, `.eu` and `.ro`** with `422` and
+  `ERROR_REGISTRY_POLICY`, since none of these registries accepts a code set
+  by the registrar. `.nl` and `.eu` used to fail with a registry error, and
+  `.ro` accepted the request without changing anything. Use the new endpoint
+  instead.
+
+### 8 October 2026
+
+- Stopped **issuing auth codes on [`.lu`](/tld-knowledge-base/cctlds/lu) and
+  [`.uk`](/tld-knowledge-base/cctlds/uk)**. Neither registry uses an auth code
+  for transfers, so new domains are stored without `auth_code`, and setting
+  one with
+  [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference})
+  is refused with `422`.
+
+- Made the **auth code required on [`.wales`](/tld-knowledge-base/gtlds/wales)
+  and [`.cymru`](/tld-knowledge-base/gtlds/cymru) transfers**. Both registries
+  transfer a domain against its auth code, so an inbound transfer on
+  [`POST /v1/domains/transfer`](/api-reference#tag/domain/POST/v1/domains/transfer)
+  now needs `auth_code`. The TLD Knowledge Base pages listed it as not
+  required.
+
+### 7 October 2026
+
+- Made the **`contacts` section optional on [`.io`](/tld-knowledge-base/cctlds/io)
+  transfers**. Every contact role on an inbound `.io` transfer now has a minimum
+  of `0`, so you can omit `contacts` entirely on
+  [`POST /v1/domains/transfer`](/api-reference#tag/domain/POST/v1/domains/transfer)
+  and on the `domain_transfer` and `domain_transfer_bulk` job commands.
+
+### 28 September 2026
+
+- Onboarded **[`.wien`](/tld-knowledge-base/gtlds/wien)** (punkt.wien GmbH) and
+  **[`.tirol`](/tld-knowledge-base/gtlds/tirol)** (punkt Tirol GmbH), both served
+  over the RyCE registry backend. Published their TLD Knowledge Base pages. Both
+  lock a domain for 60 days after a registration or a transfer.
+
+### 25 September 2026
+
+- Changed **the domain summary to count only your own organization's
+  domains**.
+  [`GET /v1/domains/summary`](/api-reference#tag/domain/GET/v1/domains/summary)
+  counted your organization and all of its sub-organizations in every field.
+  `total_count`, `by_status`, `by_status_tag`, `by_tld` and `expiring_soon`
+  now cover your own organization's domains alone. `by_organization` still
+  lists your organization and each of its sub-organizations with their counts,
+  so the whole tree stays visible there, and a sub-organization that shares
+  your organization's name no longer takes the bare name as its key. The
+  response shape is unchanged; if you have sub-organizations, the numbers are
+  lower.
+
+- Changed **domain statistics to count only your own organization's domains by
+  default**, the same scope as the domain summary.
+  [`GET /v1/domains/statistics`](/api-reference#tag/domain/GET/v1/domains/statistics)
+  counted your organization and all of its sub-organizations, with no way to
+  ask for your organization alone, so a parent organization's activity figures
+  disagreed with its summary. The totals, `buckets` and `breakdown=tld` now
+  cover your own organization's domains. Pass `include_sub_organizations=true`
+  to count your sub-organizations too, as before.
+
+  **This is a breaking change** if you have sub-organizations: without the new
+  parameter your counts are lower than they were. `breakdown=organization`
+  ranks your organization against its sub-organizations, so it now needs
+  `include_sub_organizations=true` and is refused with `422` without it.
+
+### 23 September 2026
+
+- Added **the product waitlist**. Some products are not generally available yet,
+  and reach their first customers through a waitlist rather than a switch you
+  can flip yourself.
+  [`GET /v1/organizations/product-waitlist`](/api-reference#tag/product_waitlist/GET/v1/organizations/product-waitlist)
+  lists the waitlisted products your organization can see and where you stand
+  on each: `can_apply` when you may apply, then `pending` once you have,
+  `granted` once OpusDNS has switched the product on for you, or `rejected`.
+  [`POST /v1/organizations/product-waitlist/{product}/apply`](/api-reference#tag/product_waitlist/POST/v1/organizations/product-waitlist/{product}/apply)
+  applies, optionally with a `note` of up to 1000 characters saying what you
+  would use the product for - the one thing that helps most when we work through
+  the queue.
+
+  Applications are per person: anyone in an invited organization can apply, and
+  each of them once per product. A second apply from the same person is refused
+  with `409 ERROR_WAITLIST_ALREADY_APPLIED` rather than returning the
+  application you already have, so read the list for your current state instead
+  of re-applying to check it. A rejected application is reconsidered by OpusDNS,
+  never by applying again, and it does not stop your colleagues from applying.
+  Applying needs a signed-in user; an API key sees the list with `can_apply`
+  always `false`.
+
+  The first product on the waitlist is the **AI Concierge**. A granted
+  application enables it for the person who applied - there is nothing further
+  to accept, and it appears the next time they load the dashboard. Colleagues
+  who also want it apply themselves, or ask us to add them.
+
+  One thing to expect: the set you see is the set you can apply for. A product
+  your organization has not been invited to is left out of the list entirely,
+  and its apply route answers `404`, so neither response tells you whether such
+  a product exists.
+
 ### 22 September 2026
 
 - Added the **[OpusDNS PHP client](https://github.com/OpusDNS/opusdns-php-client)**,
@@ -18,6 +151,9 @@ Track notable updates to the OpusDNS API and developer documentation here.
   [README](https://github.com/OpusDNS/opusdns-php-client) for the full tour.
 
   - **PHP 8.3 or newer** is required.
+
+- Onboarded **`.com.pt`**, the Portuguese second-level extension. See the
+  [`.pt` TLD Knowledge Base](/tld-knowledge-base/cctlds/pt) page.
 
 ### 18 September 2026
 
@@ -270,7 +406,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
   datetimes by default**, completing the staged cutover: every datetime in a
   public `/v1` response now carries a trailing `Z`. The `X-Datetime-Format:
   rfc3339` header remains accepted and is now a no-op. See
-  [Timezone-aware datetimes (RFC 3339)](/upcoming-changes/rfc3339-datetimes).
+  [Timezone-aware datetimes (RFC 3339)](/introduction/datetimes).
 
 - Added **the registrar credential to domains held at a connected registrar**:
   request `include=registrar_credential` on
@@ -486,7 +622,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
   public `/v1` responses from sandbox now carries the explicit UTC designator
   (trailing `Z`); the `X-Datetime-Format: rfc3339` header remains accepted there
   and is now a no-op. Production follows on Tuesday, 2026-09-01. See
-  [Timezone-aware datetimes (RFC 3339)](/upcoming-changes/rfc3339-datetimes) for
+  [Timezone-aware datetimes (RFC 3339)](/introduction/datetimes) for
   migration guidance.
 
 - Added **a `read_only` flag to the domain object**: a domain marked read-only
@@ -618,7 +754,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
   as JavaScript's `new Date()`) that misparse today's marker-less timestamps as
   local time. The tz-aware format becomes the default per environment on a staged
   schedule, after which the header is a no-op. See
-  [Timezone-aware datetimes (RFC 3339)](/upcoming-changes/rfc3339-datetimes) for
+  [Timezone-aware datetimes (RFC 3339)](/introduction/datetimes) for
   the cutover dates and migration guidance.
 
 ### 10 July 2026

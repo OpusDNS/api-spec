@@ -16,9 +16,19 @@ import type {
   Body_upload_whitelabel_asset_v1_whitelabel_branding_assets_post,
   Brand,
   BrandingAsset,
+  BrandingDesignActions,
+  BrandingDesignContext,
+  BrandingDesignContextPayload,
+  BrandingDesignDiff,
+  BrandingDesignPreview,
+  BrandingDesignSource,
+  BrandingDesignSwatches,
+  BrandingDesignVariant,
+  BrandingDesignWrite,
   BrandingDocument,
   BrowserStatsBucket,
   BulkObjectTagChanges,
+  CallOperationResultContext,
   ClaimsNotice,
   ClaimsNoticesRequest,
   ClaimsNotices,
@@ -46,6 +56,7 @@ import type {
   ContactCreateWorkerResult,
   ContactHandle,
   Contact,
+  ContactStatusTag,
   ContactVerificationApi,
   ContactVerificationEidInformation,
   ContactVerificationEmail,
@@ -120,6 +131,7 @@ import type {
   DnsZoneUpdatePayloadData,
   DnsZoneUpdateWorkerPayload,
   DnsZoneVanitySetUpdateRes,
+  DomainAuthCode,
   DomainAvailability,
   DomainAvailabilityError,
   DomainAvailabilityMeta,
@@ -181,9 +193,11 @@ import type {
   DomainPeriod,
   DomainRecommendationsContext,
   DomainRecommendationsContextCreate,
+  DomainRegistrantChange,
   DomainRegistrarCredential,
   DomainRenewRequest,
   DomainRenew,
+  DomainRenewTransferPending,
   DomainRenewalDetails,
   DomainRenewalPrice,
   Domain,
@@ -383,6 +397,8 @@ import type {
   PublicRoleDefinition,
   RdapBase,
   ReferrerStatsBucket,
+  RegistrantChangeDetails,
+  RegistrantChangePolicyBase,
   RegistrarContact,
   RegistrarDomain,
   RegistrarNameserver,
@@ -425,6 +441,7 @@ import type {
   TrademarkClaimsBase,
   TransferLockPolicyBase,
   TransferPoliciesBase,
+  UnknownContext,
   User,
   UserAgentStatsBucket,
   UserAgreementAcceptance,
@@ -451,6 +468,10 @@ import type {
   VerificationRegistrantDetails,
   Verification,
   VisitsByKeyBucket,
+  WaitlistApplyRequest,
+  WaitlistEntry,
+  WaitlistProductList,
+  WaitlistProductState,
   WhitelabelBaseCreate,
   WhitelabelBrandingPatch,
   WhitelabelBrandingRecheck,
@@ -685,6 +706,118 @@ export const KEYS_BRANDING_ASSET = [
   KEY_BRANDING_ASSET_UPDATED_ON,
 ] as const satisfies (keyof BrandingAsset)[];
 
+export const KEY_BRANDING_DESIGN_ACTIONS_CAN_ACTIVATE = 'can_activate' satisfies keyof BrandingDesignActions;
+export const KEY_BRANDING_DESIGN_ACTIONS_DOWNLOAD_FILENAME = 'download_filename' satisfies keyof BrandingDesignActions;
+export const KEY_BRANDING_DESIGN_ACTIONS_WRITE = 'write' satisfies keyof BrandingDesignActions;
+
+export const KEYS_BRANDING_DESIGN_ACTIONS = [
+  KEY_BRANDING_DESIGN_ACTIONS_CAN_ACTIVATE,
+  KEY_BRANDING_DESIGN_ACTIONS_DOWNLOAD_FILENAME,
+  KEY_BRANDING_DESIGN_ACTIONS_WRITE,
+] as const satisfies (keyof BrandingDesignActions)[];
+
+export const KEY_BRANDING_DESIGN_CONTEXT_CONTEXT_ID = 'context_id' satisfies keyof BrandingDesignContext;
+export const KEY_BRANDING_DESIGN_CONTEXT_CONVERSATION_ID = 'conversation_id' satisfies keyof BrandingDesignContext;
+export const KEY_BRANDING_DESIGN_CONTEXT_CREATED_AT = 'created_at' satisfies keyof BrandingDesignContext;
+export const KEY_BRANDING_DESIGN_CONTEXT_KIND = 'kind' satisfies keyof BrandingDesignContext;
+export const KEY_BRANDING_DESIGN_CONTEXT_ORGANIZATION_ID = 'organization_id' satisfies keyof BrandingDesignContext;
+export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD = 'payload' satisfies keyof BrandingDesignContext;
+export const KEY_BRANDING_DESIGN_CONTEXT_USER_ID = 'user_id' satisfies keyof BrandingDesignContext;
+
+export const KEYS_BRANDING_DESIGN_CONTEXT = [
+  KEY_BRANDING_DESIGN_CONTEXT_CONTEXT_ID,
+  KEY_BRANDING_DESIGN_CONTEXT_CONVERSATION_ID,
+  KEY_BRANDING_DESIGN_CONTEXT_CREATED_AT,
+  KEY_BRANDING_DESIGN_CONTEXT_KIND,
+  KEY_BRANDING_DESIGN_CONTEXT_ORGANIZATION_ID,
+  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD,
+  KEY_BRANDING_DESIGN_CONTEXT_USER_ID,
+] as const satisfies (keyof BrandingDesignContext)[];
+
+export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_ACTIONS = 'actions' satisfies keyof BrandingDesignContextPayload;
+export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_DIFF = 'diff' satisfies keyof BrandingDesignContextPayload;
+export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_RESULTS = 'results' satisfies keyof BrandingDesignContextPayload;
+export const KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SOURCE = 'source' satisfies keyof BrandingDesignContextPayload;
+
+export const KEYS_BRANDING_DESIGN_CONTEXT_PAYLOAD = [
+  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_ACTIONS,
+  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_DIFF,
+  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_RESULTS,
+  KEY_BRANDING_DESIGN_CONTEXT_PAYLOAD_SOURCE,
+] as const satisfies (keyof BrandingDesignContextPayload)[];
+
+export const KEY_BRANDING_DESIGN_DIFF_CHANGED_PATHS = 'changed_paths' satisfies keyof BrandingDesignDiff;
+export const KEY_BRANDING_DESIGN_DIFF_MERGED_WITH_CURRENT = 'merged_with_current' satisfies keyof BrandingDesignDiff;
+
+export const KEYS_BRANDING_DESIGN_DIFF = [
+  KEY_BRANDING_DESIGN_DIFF_CHANGED_PATHS,
+  KEY_BRANDING_DESIGN_DIFF_MERGED_WITH_CURRENT,
+] as const satisfies (keyof BrandingDesignDiff)[];
+
+export const KEY_BRANDING_DESIGN_PREVIEW_DARK_STRATEGY = 'dark_strategy' satisfies keyof BrandingDesignPreview;
+export const KEY_BRANDING_DESIGN_PREVIEW_FONT_FAMILY = 'font_family' satisfies keyof BrandingDesignPreview;
+export const KEY_BRANDING_DESIGN_PREVIEW_MOOD = 'mood' satisfies keyof BrandingDesignPreview;
+export const KEY_BRANDING_DESIGN_PREVIEW_NEUTRAL_TINT = 'neutral_tint' satisfies keyof BrandingDesignPreview;
+export const KEY_BRANDING_DESIGN_PREVIEW_PRESET_BASE = 'preset_base' satisfies keyof BrandingDesignPreview;
+export const KEY_BRANDING_DESIGN_PREVIEW_PRIMARY_COLOR = 'primary_color' satisfies keyof BrandingDesignPreview;
+export const KEY_BRANDING_DESIGN_PREVIEW_RADIUS_REM = 'radius_rem' satisfies keyof BrandingDesignPreview;
+export const KEY_BRANDING_DESIGN_PREVIEW_RECOLOR_PRESET = 'recolor_preset' satisfies keyof BrandingDesignPreview;
+export const KEY_BRANDING_DESIGN_PREVIEW_SWATCHES = 'swatches' satisfies keyof BrandingDesignPreview;
+
+export const KEYS_BRANDING_DESIGN_PREVIEW = [
+  KEY_BRANDING_DESIGN_PREVIEW_DARK_STRATEGY,
+  KEY_BRANDING_DESIGN_PREVIEW_FONT_FAMILY,
+  KEY_BRANDING_DESIGN_PREVIEW_MOOD,
+  KEY_BRANDING_DESIGN_PREVIEW_NEUTRAL_TINT,
+  KEY_BRANDING_DESIGN_PREVIEW_PRESET_BASE,
+  KEY_BRANDING_DESIGN_PREVIEW_PRIMARY_COLOR,
+  KEY_BRANDING_DESIGN_PREVIEW_RADIUS_REM,
+  KEY_BRANDING_DESIGN_PREVIEW_RECOLOR_PRESET,
+  KEY_BRANDING_DESIGN_PREVIEW_SWATCHES,
+] as const satisfies (keyof BrandingDesignPreview)[];
+
+export const KEY_BRANDING_DESIGN_SOURCE_KIND = 'kind' satisfies keyof BrandingDesignSource;
+export const KEY_BRANDING_DESIGN_SOURCE_LOGO_ASSET_URL = 'logo_asset_url' satisfies keyof BrandingDesignSource;
+export const KEY_BRANDING_DESIGN_SOURCE_PRESET_ID = 'preset_id' satisfies keyof BrandingDesignSource;
+export const KEY_BRANDING_DESIGN_SOURCE_SIGNALS = 'signals' satisfies keyof BrandingDesignSource;
+export const KEY_BRANDING_DESIGN_SOURCE_URL = 'url' satisfies keyof BrandingDesignSource;
+
+export const KEYS_BRANDING_DESIGN_SOURCE = [
+  KEY_BRANDING_DESIGN_SOURCE_KIND,
+  KEY_BRANDING_DESIGN_SOURCE_LOGO_ASSET_URL,
+  KEY_BRANDING_DESIGN_SOURCE_PRESET_ID,
+  KEY_BRANDING_DESIGN_SOURCE_SIGNALS,
+  KEY_BRANDING_DESIGN_SOURCE_URL,
+] as const satisfies (keyof BrandingDesignSource)[];
+
+export const KEY_BRANDING_DESIGN_SWATCHES_DARK = 'dark' satisfies keyof BrandingDesignSwatches;
+export const KEY_BRANDING_DESIGN_SWATCHES_LIGHT = 'light' satisfies keyof BrandingDesignSwatches;
+
+export const KEYS_BRANDING_DESIGN_SWATCHES = [
+  KEY_BRANDING_DESIGN_SWATCHES_DARK,
+  KEY_BRANDING_DESIGN_SWATCHES_LIGHT,
+] as const satisfies (keyof BrandingDesignSwatches)[];
+
+export const KEY_BRANDING_DESIGN_VARIANT_DOCUMENT = 'document' satisfies keyof BrandingDesignVariant;
+export const KEY_BRANDING_DESIGN_VARIANT_PREVIEW = 'preview' satisfies keyof BrandingDesignVariant;
+export const KEY_BRANDING_DESIGN_VARIANT_VARIANT_ID = 'variant_id' satisfies keyof BrandingDesignVariant;
+
+export const KEYS_BRANDING_DESIGN_VARIANT = [
+  KEY_BRANDING_DESIGN_VARIANT_DOCUMENT,
+  KEY_BRANDING_DESIGN_VARIANT_PREVIEW,
+  KEY_BRANDING_DESIGN_VARIANT_VARIANT_ID,
+] as const satisfies (keyof BrandingDesignVariant)[];
+
+export const KEY_BRANDING_DESIGN_WRITE_METHOD = 'method' satisfies keyof BrandingDesignWrite;
+export const KEY_BRANDING_DESIGN_WRITE_PATH = 'path' satisfies keyof BrandingDesignWrite;
+export const KEY_BRANDING_DESIGN_WRITE_PERMISSION = 'permission' satisfies keyof BrandingDesignWrite;
+
+export const KEYS_BRANDING_DESIGN_WRITE = [
+  KEY_BRANDING_DESIGN_WRITE_METHOD,
+  KEY_BRANDING_DESIGN_WRITE_PATH,
+  KEY_BRANDING_DESIGN_WRITE_PERMISSION,
+] as const satisfies (keyof BrandingDesignWrite)[];
+
 export const KEY_BRANDING_DOCUMENT_AUTH = 'auth' satisfies keyof BrandingDocument;
 export const KEY_BRANDING_DOCUMENT_BRAND = 'brand' satisfies keyof BrandingDocument;
 export const KEY_BRANDING_DOCUMENT_CONTENT = 'content' satisfies keyof BrandingDocument;
@@ -722,6 +855,24 @@ export const KEYS_BULK_OBJECT_TAG_CHANGES = [
   KEY_BULK_OBJECT_TAG_CHANGES_REPLACE,
   KEY_BULK_OBJECT_TAG_CHANGES_TYPE,
 ] as const satisfies (keyof BulkObjectTagChanges)[];
+
+export const KEY_CALL_OPERATION_RESULT_CONTEXT_CONTEXT_ID = 'context_id' satisfies keyof CallOperationResultContext;
+export const KEY_CALL_OPERATION_RESULT_CONTEXT_CONVERSATION_ID = 'conversation_id' satisfies keyof CallOperationResultContext;
+export const KEY_CALL_OPERATION_RESULT_CONTEXT_CREATED_AT = 'created_at' satisfies keyof CallOperationResultContext;
+export const KEY_CALL_OPERATION_RESULT_CONTEXT_KIND = 'kind' satisfies keyof CallOperationResultContext;
+export const KEY_CALL_OPERATION_RESULT_CONTEXT_ORGANIZATION_ID = 'organization_id' satisfies keyof CallOperationResultContext;
+export const KEY_CALL_OPERATION_RESULT_CONTEXT_PAYLOAD = 'payload' satisfies keyof CallOperationResultContext;
+export const KEY_CALL_OPERATION_RESULT_CONTEXT_USER_ID = 'user_id' satisfies keyof CallOperationResultContext;
+
+export const KEYS_CALL_OPERATION_RESULT_CONTEXT = [
+  KEY_CALL_OPERATION_RESULT_CONTEXT_CONTEXT_ID,
+  KEY_CALL_OPERATION_RESULT_CONTEXT_CONVERSATION_ID,
+  KEY_CALL_OPERATION_RESULT_CONTEXT_CREATED_AT,
+  KEY_CALL_OPERATION_RESULT_CONTEXT_KIND,
+  KEY_CALL_OPERATION_RESULT_CONTEXT_ORGANIZATION_ID,
+  KEY_CALL_OPERATION_RESULT_CONTEXT_PAYLOAD,
+  KEY_CALL_OPERATION_RESULT_CONTEXT_USER_ID,
+] as const satisfies (keyof CallOperationResultContext)[];
 
 export const KEY_CLAIMS_NOTICE_CLAIMS = 'claims' satisfies keyof ClaimsNotice;
 export const KEY_CLAIMS_NOTICE_CLAIMS_KEY = 'claims_key' satisfies keyof ClaimsNotice;
@@ -1107,6 +1258,18 @@ export const KEYS_CONTACT = [
   KEY_CONTACT_TITLE,
 ] as const satisfies (keyof Contact)[];
 
+export const KEY_CONTACT_STATUS_TAG_COLOR = 'color' satisfies keyof ContactStatusTag;
+export const KEY_CONTACT_STATUS_TAG_DESCRIPTION = 'description' satisfies keyof ContactStatusTag;
+export const KEY_CONTACT_STATUS_TAG_LABEL = 'label' satisfies keyof ContactStatusTag;
+export const KEY_CONTACT_STATUS_TAG_TAG_TYPE = 'tag_type' satisfies keyof ContactStatusTag;
+
+export const KEYS_CONTACT_STATUS_TAG = [
+  KEY_CONTACT_STATUS_TAG_COLOR,
+  KEY_CONTACT_STATUS_TAG_DESCRIPTION,
+  KEY_CONTACT_STATUS_TAG_LABEL,
+  KEY_CONTACT_STATUS_TAG_TAG_TYPE,
+] as const satisfies (keyof ContactStatusTag)[];
+
 export const KEY_CONTACT_VERIFICATION_API_CANCELED_ON = 'canceled_on' satisfies keyof ContactVerificationApi;
 export const KEY_CONTACT_VERIFICATION_API_CONTACT_ID = 'contact_id' satisfies keyof ContactVerificationApi;
 export const KEY_CONTACT_VERIFICATION_API_CONTACT_VERIFICATION_ID = 'contact_verification_id' satisfies keyof ContactVerificationApi;
@@ -1203,6 +1366,7 @@ export const KEY_CONTACTS_BASE_IS_THICK = 'is_thick' satisfies keyof ContactsBas
 export const KEY_CONTACTS_BASE_POSSIBLE_ATTRIBUTES = 'possible_attributes' satisfies keyof ContactsBase;
 export const KEY_CONTACTS_BASE_PRIVACY_PROXY = 'privacy_proxy' satisfies keyof ContactsBase;
 export const KEY_CONTACTS_BASE_REGISTRANT_CHANGE = 'registrant_change' satisfies keyof ContactsBase;
+export const KEY_CONTACTS_BASE_REGISTRANT_CHANGE_POLICY = 'registrant_change_policy' satisfies keyof ContactsBase;
 export const KEY_CONTACTS_BASE_SUPPORT_CHECK = 'support_check' satisfies keyof ContactsBase;
 export const KEY_CONTACTS_BASE_SUPPORT_CLIENT_CONTACT_ID = 'support_client_contact_id' satisfies keyof ContactsBase;
 export const KEY_CONTACTS_BASE_SUPPORT_TRANSFER = 'support_transfer' satisfies keyof ContactsBase;
@@ -1218,6 +1382,7 @@ export const KEYS_CONTACTS_BASE = [
   KEY_CONTACTS_BASE_POSSIBLE_ATTRIBUTES,
   KEY_CONTACTS_BASE_PRIVACY_PROXY,
   KEY_CONTACTS_BASE_REGISTRANT_CHANGE,
+  KEY_CONTACTS_BASE_REGISTRANT_CHANGE_POLICY,
   KEY_CONTACTS_BASE_SUPPORT_CHECK,
   KEY_CONTACTS_BASE_SUPPORT_CLIENT_CONTACT_ID,
   KEY_CONTACTS_BASE_SUPPORT_TRANSFER,
@@ -1943,6 +2108,20 @@ export const KEYS_DNS_ZONE_VANITY_SET_UPDATE_RES = [
   KEY_DNS_ZONE_VANITY_SET_UPDATE_RES_ZONE,
 ] as const satisfies (keyof DnsZoneVanitySetUpdateRes)[];
 
+export const KEY_DOMAIN_AUTH_CODE_AUTH_CODE = 'auth_code' satisfies keyof DomainAuthCode;
+export const KEY_DOMAIN_AUTH_CODE_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' satisfies keyof DomainAuthCode;
+export const KEY_DOMAIN_AUTH_CODE_DELIVERY = 'delivery' satisfies keyof DomainAuthCode;
+export const KEY_DOMAIN_AUTH_CODE_NAME = 'name' satisfies keyof DomainAuthCode;
+export const KEY_DOMAIN_AUTH_CODE_RECIPIENTS = 'recipients' satisfies keyof DomainAuthCode;
+
+export const KEYS_DOMAIN_AUTH_CODE = [
+  KEY_DOMAIN_AUTH_CODE_AUTH_CODE,
+  KEY_DOMAIN_AUTH_CODE_AUTH_CODE_EXPIRES_ON,
+  KEY_DOMAIN_AUTH_CODE_DELIVERY,
+  KEY_DOMAIN_AUTH_CODE_NAME,
+  KEY_DOMAIN_AUTH_CODE_RECIPIENTS,
+] as const satisfies (keyof DomainAuthCode)[];
+
 export const KEY_DOMAIN_AVAILABILITY_DOMAIN = 'domain' satisfies keyof DomainAvailability;
 export const KEY_DOMAIN_AVAILABILITY_ERROR = 'error' satisfies keyof DomainAvailability;
 export const KEY_DOMAIN_AVAILABILITY_STATUS = 'status' satisfies keyof DomainAvailability;
@@ -2609,14 +2788,42 @@ export const KEYS_DOMAIN_RECOMMENDATIONS_CONTEXT_CREATE = [
   KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_CREATE_PAYLOAD,
 ] as const satisfies (keyof DomainRecommendationsContextCreate)[];
 
+export const KEY_DOMAIN_REGISTRANT_CHANGE_CONFIRMATION_DEADLINE = 'confirmation_deadline' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_CONFIRMATION_METHOD = 'confirmation_method' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_CREATED_ON = 'created_on' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_DOMAIN_ID = 'domain_id' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_FAILURE_REASON = 'failure_reason' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_MATERIAL = 'material' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_NEW_REGISTRANT = 'new_registrant' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_PREVIOUS_REGISTRANT = 'previous_registrant' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_REGISTRANT_CHANGE_ID = 'registrant_change_id' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_STATUS = 'status' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_TRANSFER_LOCK_OPT_OUT = 'transfer_lock_opt_out' satisfies keyof DomainRegistrantChange;
+
+export const KEYS_DOMAIN_REGISTRANT_CHANGE = [
+  KEY_DOMAIN_REGISTRANT_CHANGE_CONFIRMATION_DEADLINE,
+  KEY_DOMAIN_REGISTRANT_CHANGE_CONFIRMATION_METHOD,
+  KEY_DOMAIN_REGISTRANT_CHANGE_CREATED_ON,
+  KEY_DOMAIN_REGISTRANT_CHANGE_DOMAIN_ID,
+  KEY_DOMAIN_REGISTRANT_CHANGE_FAILURE_REASON,
+  KEY_DOMAIN_REGISTRANT_CHANGE_MATERIAL,
+  KEY_DOMAIN_REGISTRANT_CHANGE_NEW_REGISTRANT,
+  KEY_DOMAIN_REGISTRANT_CHANGE_PREVIOUS_REGISTRANT,
+  KEY_DOMAIN_REGISTRANT_CHANGE_REGISTRANT_CHANGE_ID,
+  KEY_DOMAIN_REGISTRANT_CHANGE_STATUS,
+  KEY_DOMAIN_REGISTRANT_CHANGE_TRANSFER_LOCK_OPT_OUT,
+] as const satisfies (keyof DomainRegistrantChange)[];
+
 export const KEY_DOMAIN_REGISTRAR_CREDENTIAL_NAME = 'name' satisfies keyof DomainRegistrarCredential;
 export const KEY_DOMAIN_REGISTRAR_CREDENTIAL_REGISTRAR = 'registrar' satisfies keyof DomainRegistrarCredential;
 export const KEY_DOMAIN_REGISTRAR_CREDENTIAL_REGISTRAR_CREDENTIAL_ID = 'registrar_credential_id' satisfies keyof DomainRegistrarCredential;
+export const KEY_DOMAIN_REGISTRAR_CREDENTIAL_TYPE = 'type' satisfies keyof DomainRegistrarCredential;
 
 export const KEYS_DOMAIN_REGISTRAR_CREDENTIAL = [
   KEY_DOMAIN_REGISTRAR_CREDENTIAL_NAME,
   KEY_DOMAIN_REGISTRAR_CREDENTIAL_REGISTRAR,
   KEY_DOMAIN_REGISTRAR_CREDENTIAL_REGISTRAR_CREDENTIAL_ID,
+  KEY_DOMAIN_REGISTRAR_CREDENTIAL_TYPE,
 ] as const satisfies (keyof DomainRegistrarCredential)[];
 
 export const KEY_DOMAIN_RENEW_REQUEST_CURRENT_EXPIRY_DATE = 'current_expiry_date' satisfies keyof DomainRenewRequest;
@@ -2638,6 +2845,16 @@ export const KEYS_DOMAIN_RENEW = [
   KEY_DOMAIN_RENEW_NEW_EXPIRY_DATE,
   KEY_DOMAIN_RENEW_PERIOD_EXTENDED,
 ] as const satisfies (keyof DomainRenew)[];
+
+export const KEY_DOMAIN_RENEW_TRANSFER_PENDING_NAME = 'name' satisfies keyof DomainRenewTransferPending;
+export const KEY_DOMAIN_RENEW_TRANSFER_PENDING_REQUEST_ID = 'request_id' satisfies keyof DomainRenewTransferPending;
+export const KEY_DOMAIN_RENEW_TRANSFER_PENDING_STATUS = 'status' satisfies keyof DomainRenewTransferPending;
+
+export const KEYS_DOMAIN_RENEW_TRANSFER_PENDING = [
+  KEY_DOMAIN_RENEW_TRANSFER_PENDING_NAME,
+  KEY_DOMAIN_RENEW_TRANSFER_PENDING_REQUEST_ID,
+  KEY_DOMAIN_RENEW_TRANSFER_PENDING_STATUS,
+] as const satisfies (keyof DomainRenewTransferPending)[];
 
 export const KEY_DOMAIN_RENEWAL_DETAILS_DETAIL_TYPE = 'detail_type' satisfies keyof DomainRenewalDetails;
 export const KEY_DOMAIN_RENEWAL_DETAILS_EXPIRES_ON = 'expires_on' satisfies keyof DomainRenewalDetails;
@@ -2662,6 +2879,7 @@ export const KEYS_DOMAIN_RENEWAL_PRICE = [
 export const KEY_DOMAIN_AUTH_CODE = 'auth_code' satisfies keyof Domain;
 export const KEY_DOMAIN_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' satisfies keyof Domain;
 export const KEY_DOMAIN_CANCELED_ON = 'canceled_on' satisfies keyof Domain;
+export const KEY_DOMAIN_CONNECTED_ACCOUNT = 'connected_account' satisfies keyof Domain;
 export const KEY_DOMAIN_CONTACTS = 'contacts' satisfies keyof Domain;
 export const KEY_DOMAIN_CREATED_ON = 'created_on' satisfies keyof Domain;
 export const KEY_DOMAIN_DELETED_ON = 'deleted_on' satisfies keyof Domain;
@@ -2674,7 +2892,7 @@ export const KEY_DOMAIN_NAMESERVERS = 'nameservers' satisfies keyof Domain;
 export const KEY_DOMAIN_OWNER_ID = 'owner_id' satisfies keyof Domain;
 export const KEY_DOMAIN_READ_ONLY = 'read_only' satisfies keyof Domain;
 export const KEY_DOMAIN_REGISTERED_ON = 'registered_on' satisfies keyof Domain;
-export const KEY_DOMAIN_REGISTRAR_CREDENTIAL = 'registrar_credential' satisfies keyof Domain;
+export const KEY_DOMAIN_REGISTRANT_CHANGE = 'registrant_change' satisfies keyof Domain;
 export const KEY_DOMAIN_REGISTRY_ACCOUNT_ID = 'registry_account_id' satisfies keyof Domain;
 export const KEY_DOMAIN_REGISTRY_STATUSES = 'registry_statuses' satisfies keyof Domain;
 export const KEY_DOMAIN_RENEWAL_MODE = 'renewal_mode' satisfies keyof Domain;
@@ -2694,6 +2912,7 @@ export const KEYS_DOMAIN = [
   KEY_DOMAIN_AUTH_CODE,
   KEY_DOMAIN_AUTH_CODE_EXPIRES_ON,
   KEY_DOMAIN_CANCELED_ON,
+  KEY_DOMAIN_CONNECTED_ACCOUNT,
   KEY_DOMAIN_CONTACTS,
   KEY_DOMAIN_CREATED_ON,
   KEY_DOMAIN_DELETED_ON,
@@ -2706,7 +2925,7 @@ export const KEYS_DOMAIN = [
   KEY_DOMAIN_OWNER_ID,
   KEY_DOMAIN_READ_ONLY,
   KEY_DOMAIN_REGISTERED_ON,
-  KEY_DOMAIN_REGISTRAR_CREDENTIAL,
+  KEY_DOMAIN_REGISTRANT_CHANGE,
   KEY_DOMAIN_REGISTRY_ACCOUNT_ID,
   KEY_DOMAIN_REGISTRY_STATUSES,
   KEY_DOMAIN_RENEWAL_MODE,
@@ -2885,6 +3104,7 @@ export const KEYS_DOMAIN_STATUSES_BASE = [
   KEY_DOMAIN_STATUSES_BASE_SUPPORTED_STATUSES,
 ] as const satisfies (keyof DomainStatusesBase)[];
 
+export const KEY_DOMAIN_SUMMARY_DATA_BY_ACCOUNT_TYPE = 'by_account_type' satisfies keyof DomainSummaryData;
 export const KEY_DOMAIN_SUMMARY_DATA_BY_ORGANIZATION = 'by_organization' satisfies keyof DomainSummaryData;
 export const KEY_DOMAIN_SUMMARY_DATA_BY_STATUS = 'by_status' satisfies keyof DomainSummaryData;
 export const KEY_DOMAIN_SUMMARY_DATA_BY_STATUS_TAG = 'by_status_tag' satisfies keyof DomainSummaryData;
@@ -2893,6 +3113,7 @@ export const KEY_DOMAIN_SUMMARY_DATA_EXPIRING_SOON = 'expiring_soon' satisfies k
 export const KEY_DOMAIN_SUMMARY_DATA_TOTAL_COUNT = 'total_count' satisfies keyof DomainSummaryData;
 
 export const KEYS_DOMAIN_SUMMARY_DATA = [
+  KEY_DOMAIN_SUMMARY_DATA_BY_ACCOUNT_TYPE,
   KEY_DOMAIN_SUMMARY_DATA_BY_ORGANIZATION,
   KEY_DOMAIN_SUMMARY_DATA_BY_STATUS,
   KEY_DOMAIN_SUMMARY_DATA_BY_STATUS_TAG,
@@ -5245,6 +5466,48 @@ export const KEYS_REFERRER_STATS_BUCKET = [
   KEY_REFERRER_STATS_BUCKET_UNIQUE,
 ] as const satisfies (keyof ReferrerStatsBucket)[];
 
+export const KEY_REGISTRANT_CHANGE_DETAILS_CONFIRMATION_DEADLINE = 'confirmation_deadline' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_CONFIRMATION_METHOD = 'confirmation_method' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_DETAIL_TYPE = 'detail_type' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_NEW_REGISTRANT_ID = 'new_registrant_id' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_NOTIFICATION_TYPE = 'notification_type' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_PRIOR_REGISTRANT_ID = 'prior_registrant_id' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_REGISTRANT_CHANGE_ID = 'registrant_change_id' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_STATUS = 'status' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_TRANSFER_LOCK_OPT_OUT = 'transfer_lock_opt_out' satisfies keyof RegistrantChangeDetails;
+export const KEY_REGISTRANT_CHANGE_DETAILS_TRANSFER_LOCK_UNTIL = 'transfer_lock_until' satisfies keyof RegistrantChangeDetails;
+
+export const KEYS_REGISTRANT_CHANGE_DETAILS = [
+  KEY_REGISTRANT_CHANGE_DETAILS_CONFIRMATION_DEADLINE,
+  KEY_REGISTRANT_CHANGE_DETAILS_CONFIRMATION_METHOD,
+  KEY_REGISTRANT_CHANGE_DETAILS_DETAIL_TYPE,
+  KEY_REGISTRANT_CHANGE_DETAILS_NEW_REGISTRANT_ID,
+  KEY_REGISTRANT_CHANGE_DETAILS_NOTIFICATION_TYPE,
+  KEY_REGISTRANT_CHANGE_DETAILS_PRIOR_REGISTRANT_ID,
+  KEY_REGISTRANT_CHANGE_DETAILS_REGISTRANT_CHANGE_ID,
+  KEY_REGISTRANT_CHANGE_DETAILS_STATUS,
+  KEY_REGISTRANT_CHANGE_DETAILS_TRANSFER_LOCK_OPT_OUT,
+  KEY_REGISTRANT_CHANGE_DETAILS_TRANSFER_LOCK_UNTIL,
+] as const satisfies (keyof RegistrantChangeDetails)[];
+
+export const KEY_REGISTRANT_CHANGE_POLICY_BASE_CONFIRMATION = 'confirmation' satisfies keyof RegistrantChangePolicyBase;
+export const KEY_REGISTRANT_CHANGE_POLICY_BASE_CONFIRMATION_WINDOW = 'confirmation_window' satisfies keyof RegistrantChangePolicyBase;
+export const KEY_REGISTRANT_CHANGE_POLICY_BASE_DESIGNATED_AGENT_ALLOWED = 'designated_agent_allowed' satisfies keyof RegistrantChangePolicyBase;
+export const KEY_REGISTRANT_CHANGE_POLICY_BASE_FEE = 'fee' satisfies keyof RegistrantChangePolicyBase;
+export const KEY_REGISTRANT_CHANGE_POLICY_BASE_PRIOR_REGISTRANT_NOTICE = 'prior_registrant_notice' satisfies keyof RegistrantChangePolicyBase;
+export const KEY_REGISTRANT_CHANGE_POLICY_BASE_RENEWS_DOMAIN = 'renews_domain' satisfies keyof RegistrantChangePolicyBase;
+export const KEY_REGISTRANT_CHANGE_POLICY_BASE_TRANSFER_LOCK_AFTER_CHANGE = 'transfer_lock_after_change' satisfies keyof RegistrantChangePolicyBase;
+
+export const KEYS_REGISTRANT_CHANGE_POLICY_BASE = [
+  KEY_REGISTRANT_CHANGE_POLICY_BASE_CONFIRMATION,
+  KEY_REGISTRANT_CHANGE_POLICY_BASE_CONFIRMATION_WINDOW,
+  KEY_REGISTRANT_CHANGE_POLICY_BASE_DESIGNATED_AGENT_ALLOWED,
+  KEY_REGISTRANT_CHANGE_POLICY_BASE_FEE,
+  KEY_REGISTRANT_CHANGE_POLICY_BASE_PRIOR_REGISTRANT_NOTICE,
+  KEY_REGISTRANT_CHANGE_POLICY_BASE_RENEWS_DOMAIN,
+  KEY_REGISTRANT_CHANGE_POLICY_BASE_TRANSFER_LOCK_AFTER_CHANGE,
+] as const satisfies (keyof RegistrantChangePolicyBase)[];
+
 export const KEY_REGISTRAR_CONTACT_CITY = 'city' satisfies keyof RegistrarContact;
 export const KEY_REGISTRAR_CONTACT_COUNTRY = 'country' satisfies keyof RegistrarContact;
 export const KEY_REGISTRAR_CONTACT_EMAIL = 'email' satisfies keyof RegistrarContact;
@@ -5789,6 +6052,24 @@ export const KEYS_TRANSFER_POLICIES_BASE = [
   KEY_TRANSFER_POLICIES_BASE_TRANSFER_TIME,
 ] as const satisfies (keyof TransferPoliciesBase)[];
 
+export const KEY_UNKNOWN_CONTEXT_CONTEXT_ID = 'context_id' satisfies keyof UnknownContext;
+export const KEY_UNKNOWN_CONTEXT_CONVERSATION_ID = 'conversation_id' satisfies keyof UnknownContext;
+export const KEY_UNKNOWN_CONTEXT_CREATED_AT = 'created_at' satisfies keyof UnknownContext;
+export const KEY_UNKNOWN_CONTEXT_KIND = 'kind' satisfies keyof UnknownContext;
+export const KEY_UNKNOWN_CONTEXT_ORGANIZATION_ID = 'organization_id' satisfies keyof UnknownContext;
+export const KEY_UNKNOWN_CONTEXT_PAYLOAD = 'payload' satisfies keyof UnknownContext;
+export const KEY_UNKNOWN_CONTEXT_USER_ID = 'user_id' satisfies keyof UnknownContext;
+
+export const KEYS_UNKNOWN_CONTEXT = [
+  KEY_UNKNOWN_CONTEXT_CONTEXT_ID,
+  KEY_UNKNOWN_CONTEXT_CONVERSATION_ID,
+  KEY_UNKNOWN_CONTEXT_CREATED_AT,
+  KEY_UNKNOWN_CONTEXT_KIND,
+  KEY_UNKNOWN_CONTEXT_ORGANIZATION_ID,
+  KEY_UNKNOWN_CONTEXT_PAYLOAD,
+  KEY_UNKNOWN_CONTEXT_USER_ID,
+] as const satisfies (keyof UnknownContext)[];
+
 export const KEY_USER_CREATED_ON = 'created_on' satisfies keyof User;
 export const KEY_USER_EMAIL = 'email' satisfies keyof User;
 export const KEY_USER_FIRST_NAME = 'first_name' satisfies keyof User;
@@ -6182,6 +6463,48 @@ export const KEYS_VISITS_BY_KEY_BUCKET = [
   KEY_VISITS_BY_KEY_BUCKET_TOTAL,
   KEY_VISITS_BY_KEY_BUCKET_UNIQUE,
 ] as const satisfies (keyof VisitsByKeyBucket)[];
+
+export const KEY_WAITLIST_APPLY_REQUEST_NOTE = 'note' satisfies keyof WaitlistApplyRequest;
+
+export const KEYS_WAITLIST_APPLY_REQUEST = [
+  KEY_WAITLIST_APPLY_REQUEST_NOTE,
+] as const satisfies (keyof WaitlistApplyRequest)[];
+
+export const KEY_WAITLIST_ENTRY_APPLIED_ON = 'applied_on' satisfies keyof WaitlistEntry;
+export const KEY_WAITLIST_ENTRY_DECIDED_ON = 'decided_on' satisfies keyof WaitlistEntry;
+export const KEY_WAITLIST_ENTRY_PRODUCT = 'product' satisfies keyof WaitlistEntry;
+export const KEY_WAITLIST_ENTRY_STATUS = 'status' satisfies keyof WaitlistEntry;
+
+export const KEYS_WAITLIST_ENTRY = [
+  KEY_WAITLIST_ENTRY_APPLIED_ON,
+  KEY_WAITLIST_ENTRY_DECIDED_ON,
+  KEY_WAITLIST_ENTRY_PRODUCT,
+  KEY_WAITLIST_ENTRY_STATUS,
+] as const satisfies (keyof WaitlistEntry)[];
+
+export const KEY_WAITLIST_PRODUCT_LIST_PRODUCTS = 'products' satisfies keyof WaitlistProductList;
+
+export const KEYS_WAITLIST_PRODUCT_LIST = [
+  KEY_WAITLIST_PRODUCT_LIST_PRODUCTS,
+] as const satisfies (keyof WaitlistProductList)[];
+
+export const KEY_WAITLIST_PRODUCT_STATE_APPLIED_ON = 'applied_on' satisfies keyof WaitlistProductState;
+export const KEY_WAITLIST_PRODUCT_STATE_CAN_APPLY = 'can_apply' satisfies keyof WaitlistProductState;
+export const KEY_WAITLIST_PRODUCT_STATE_DECIDED_ON = 'decided_on' satisfies keyof WaitlistProductState;
+export const KEY_WAITLIST_PRODUCT_STATE_DESCRIPTION = 'description' satisfies keyof WaitlistProductState;
+export const KEY_WAITLIST_PRODUCT_STATE_DISPLAY_NAME = 'display_name' satisfies keyof WaitlistProductState;
+export const KEY_WAITLIST_PRODUCT_STATE_PRODUCT = 'product' satisfies keyof WaitlistProductState;
+export const KEY_WAITLIST_PRODUCT_STATE_STATUS = 'status' satisfies keyof WaitlistProductState;
+
+export const KEYS_WAITLIST_PRODUCT_STATE = [
+  KEY_WAITLIST_PRODUCT_STATE_APPLIED_ON,
+  KEY_WAITLIST_PRODUCT_STATE_CAN_APPLY,
+  KEY_WAITLIST_PRODUCT_STATE_DECIDED_ON,
+  KEY_WAITLIST_PRODUCT_STATE_DESCRIPTION,
+  KEY_WAITLIST_PRODUCT_STATE_DISPLAY_NAME,
+  KEY_WAITLIST_PRODUCT_STATE_PRODUCT,
+  KEY_WAITLIST_PRODUCT_STATE_STATUS,
+] as const satisfies (keyof WaitlistProductState)[];
 
 export const KEY_WHITELABEL_BASE_CREATE_LABEL = 'label' satisfies keyof WhitelabelBaseCreate;
 export const KEY_WHITELABEL_BASE_CREATE_PERIOD = 'period' satisfies keyof WhitelabelBaseCreate;

@@ -20,6 +20,7 @@ import type {
   DnsZoneSummary,
   DnsZoneVanitySetUpdateRes,
   Domain,
+  DomainAuthCode,
   DomainAvailabilityList,
   DomainCheck,
   DomainDnssecData,
@@ -36,6 +37,7 @@ import type {
   DomainForwardVisitsByKey,
   DomainForwardZone,
   DomainRenew,
+  DomainRenewTransferPending,
   DomainRestore,
   DomainSearch,
   DomainStatistics,
@@ -120,6 +122,8 @@ import type {
   UserPublicWithAttributes,
   VanityNameserverSetSummaryDTO,
   VanityNsCheckRes,
+  WaitlistEntry,
+  WaitlistProductList,
   WhitelabelBranding,
 } from './schemas';
 
@@ -344,11 +348,12 @@ export type GET_ArchiveRequestHistory_Response = GET_ArchiveRequestHistory_Respo
 export type GET_ArchiveRequestHistory_Response_200 = PageResponse_RequestHistory;
 export type GET_ArchiveRequestHistory_Response_422 = HTTPValidationError;
 
-export type GET_AuthClientCredentialsIntrospect_Response = GET_AuthClientCredentialsIntrospect_Response_200 | GET_AuthClientCredentialsIntrospect_Response_401 | GET_AuthClientCredentialsIntrospect_Response_422;
+export type GET_AuthClientCredentialsIntrospect_Response = GET_AuthClientCredentialsIntrospect_Response_200 | GET_AuthClientCredentialsIntrospect_Response_401 | GET_AuthClientCredentialsIntrospect_Response_422 | GET_AuthClientCredentialsIntrospect_Response_503;
 
 export type GET_AuthClientCredentialsIntrospect_Response_200 = OrganizationCredential;
 export type GET_AuthClientCredentialsIntrospect_Response_401 = Problem;
 export type GET_AuthClientCredentialsIntrospect_Response_422 = HTTPValidationError;
+export type GET_AuthClientCredentialsIntrospect_Response_503 = Problem;
 
 export type GET_Availability_Response = GET_Availability_Response_200 | GET_Availability_Response_401 | GET_Availability_Response_422;
 
@@ -636,11 +641,12 @@ export type GET_HostsByHostReference_Response_403 = Problem;
 export type GET_HostsByHostReference_Response_404 = Problem;
 export type GET_HostsByHostReference_Response_422 = HTTPValidationError;
 
-export type GET_JobByJobId_Response = GET_JobByJobId_Response_200 | GET_JobByJobId_Response_404 | GET_JobByJobId_Response_422;
+export type GET_JobByJobId_Response = GET_JobByJobId_Response_200 | GET_JobByJobId_Response_404 | GET_JobByJobId_Response_422 | GET_JobByJobId_Response_503;
 
 export type GET_JobByJobId_Response_200 = Job;
 export type GET_JobByJobId_Response_404 = Problem;
 export type GET_JobByJobId_Response_422 = HTTPValidationError;
+export type GET_JobByJobId_Response_503 = Problem;
 
 export type GET_Jobs_Response = GET_Jobs_Response_200 | GET_Jobs_Response_422;
 
@@ -747,6 +753,13 @@ export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 = IpRe
 export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_401 = Problem;
 export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_403 = Problem;
 export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTPValidationError;
+
+export type GET_OrganizationsProductWaitlist_Response = GET_OrganizationsProductWaitlist_Response_200 | GET_OrganizationsProductWaitlist_Response_401 | GET_OrganizationsProductWaitlist_Response_403 | GET_OrganizationsProductWaitlist_Response_422;
+
+export type GET_OrganizationsProductWaitlist_Response_200 = WaitlistProductList;
+export type GET_OrganizationsProductWaitlist_Response_401 = Problem;
+export type GET_OrganizationsProductWaitlist_Response_403 = Problem;
+export type GET_OrganizationsProductWaitlist_Response_422 = HTTPValidationError;
 
 export type GET_OrganizationsRolePermissions_Response = GET_OrganizationsRolePermissions_Response_200 | GET_OrganizationsRolePermissions_Response_401 | GET_OrganizationsRolePermissions_Response_403 | GET_OrganizationsRolePermissions_Response_422;
 
@@ -1179,6 +1192,14 @@ export type POST_Domains_Response_409 = Problem;
 export type POST_Domains_Response_422 = Problem;
 export type POST_Domains_Response_503 = Problem;
 
+export type POST_DomainsByDomainReferenceAuthCode_Response = POST_DomainsByDomainReferenceAuthCode_Response_200 | POST_DomainsByDomainReferenceAuthCode_Response_400 | POST_DomainsByDomainReferenceAuthCode_Response_404 | POST_DomainsByDomainReferenceAuthCode_Response_422 | POST_DomainsByDomainReferenceAuthCode_Response_502;
+
+export type POST_DomainsByDomainReferenceAuthCode_Response_200 = DomainAuthCode;
+export type POST_DomainsByDomainReferenceAuthCode_Response_400 = Problem;
+export type POST_DomainsByDomainReferenceAuthCode_Response_404 = Problem;
+export type POST_DomainsByDomainReferenceAuthCode_Response_422 = Problem;
+export type POST_DomainsByDomainReferenceAuthCode_Response_502 = Problem;
+
 export type POST_DomainsByDomainReferenceDnssecDisable_Response = POST_DomainsByDomainReferenceDnssecDisable_Response_404 | POST_DomainsByDomainReferenceDnssecDisable_Response_422;
 
 export type POST_DomainsByDomainReferenceDnssecDisable_Response_404 = Problem;
@@ -1192,10 +1213,13 @@ export type POST_DomainsByDomainReferenceDnssecEnable_Response_404 = Problem;
 export type POST_DomainsByDomainReferenceDnssecEnable_Response_409 = Problem;
 export type POST_DomainsByDomainReferenceDnssecEnable_Response_422 = Problem;
 
-export type POST_DomainsByDomainReferenceRenew_Response = POST_DomainsByDomainReferenceRenew_Response_200 | POST_DomainsByDomainReferenceRenew_Response_422;
+export type POST_DomainsByDomainReferenceRenew_Response = POST_DomainsByDomainReferenceRenew_Response_200 | POST_DomainsByDomainReferenceRenew_Response_202 | POST_DomainsByDomainReferenceRenew_Response_409 | POST_DomainsByDomainReferenceRenew_Response_422 | POST_DomainsByDomainReferenceRenew_Response_503;
 
 export type POST_DomainsByDomainReferenceRenew_Response_200 = DomainRenew;
-export type POST_DomainsByDomainReferenceRenew_Response_422 = HTTPValidationError;
+export type POST_DomainsByDomainReferenceRenew_Response_202 = DomainRenewTransferPending;
+export type POST_DomainsByDomainReferenceRenew_Response_409 = Problem;
+export type POST_DomainsByDomainReferenceRenew_Response_422 = Problem;
+export type POST_DomainsByDomainReferenceRenew_Response_503 = Problem;
 
 export type POST_DomainsByDomainReferenceRestore_Response = POST_DomainsByDomainReferenceRestore_Response_200 | POST_DomainsByDomainReferenceRestore_Response_422;
 
@@ -1397,6 +1421,15 @@ export type POST_OrganizationsIpRestrictions_Response_200 = IpRestriction;
 export type POST_OrganizationsIpRestrictions_Response_401 = Problem;
 export type POST_OrganizationsIpRestrictions_Response_403 = Problem;
 export type POST_OrganizationsIpRestrictions_Response_422 = HTTPValidationError;
+
+export type POST_OrganizationsProductWaitlistByProductApply_Response = POST_OrganizationsProductWaitlistByProductApply_Response_200 | POST_OrganizationsProductWaitlistByProductApply_Response_401 | POST_OrganizationsProductWaitlistByProductApply_Response_403 | POST_OrganizationsProductWaitlistByProductApply_Response_404 | POST_OrganizationsProductWaitlistByProductApply_Response_409 | POST_OrganizationsProductWaitlistByProductApply_Response_422;
+
+export type POST_OrganizationsProductWaitlistByProductApply_Response_200 = WaitlistEntry;
+export type POST_OrganizationsProductWaitlistByProductApply_Response_401 = Problem;
+export type POST_OrganizationsProductWaitlistByProductApply_Response_403 = Problem;
+export type POST_OrganizationsProductWaitlistByProductApply_Response_404 = Problem;
+export type POST_OrganizationsProductWaitlistByProductApply_Response_409 = Problem;
+export type POST_OrganizationsProductWaitlistByProductApply_Response_422 = HTTPValidationError;
 
 export type POST_OrganizationsRoles_Response = POST_OrganizationsRoles_Response_201 | POST_OrganizationsRoles_Response_401 | POST_OrganizationsRoles_Response_403 | POST_OrganizationsRoles_Response_409 | POST_OrganizationsRoles_Response_422;
 

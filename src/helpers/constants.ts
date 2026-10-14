@@ -1,8 +1,10 @@
 import type {
+  AccountTypeFilterMode,
   AgreementType,
   AllocationMethodType,
   AssignablePublicRole,
   AttributeType,
+  AuthCodeDelivery,
   BatchSortField,
   BatchStatus,
   BillingMode,
@@ -12,9 +14,11 @@ import type {
   BillingTransactionStatus,
   ComplianceStatus,
   ConditionOperator,
+  ConnectedAccountType,
   ContactAttributeSetSortField,
   ContactIncludeField,
   ContactSortField,
+  ContactStatusTagType,
   ContactType,
   ContactVerificationClaim,
   ContactVerificationMethod,
@@ -93,6 +97,10 @@ import type {
   PublicRole,
   PublicScope,
   RedirectCode,
+  RegistrantChangeConfirmationMethod,
+  RegistrantChangeConfirmationType,
+  RegistrantChangeFeeType,
+  RegistrantChangeStatus,
   RegistrantChangeType,
   Registrar,
   RegistryHandleAttributeType,
@@ -127,6 +135,8 @@ import type {
   VerificationDeadlineType,
   VerificationPolicyType,
   VerificationType,
+  WaitlistEntryStatus,
+  WaitlistProduct,
   WhitelabelBrandingTier,
   WhitelabelOnboardingFailureCode,
   WhitelabelOnboardingFailureType,
@@ -135,6 +145,16 @@ import type {
   ZoneIncludeField,
   ZoneSortField,
 } from './schemas';
+
+export const ACCOUNT_TYPE_FILTER_MODE = {
+  MATCH_ANY: "match_any",
+  MATCH_NONE: "match_none",
+} as const satisfies Record<string, AccountTypeFilterMode>;
+
+export const ACCOUNT_TYPE_FILTER_MODE_VALUES = [
+  'match_any',
+  'match_none',
+] as const satisfies ReadonlyArray<AccountTypeFilterMode>;
 
 export const AGREEMENT_TYPE = {
   TERMS_AND_CONDITIONS: "terms_and_conditions",
@@ -197,6 +217,16 @@ export const ATTRIBUTE_TYPE_VALUES = [
   'country_code',
   'uri_template',
 ] as const satisfies ReadonlyArray<AttributeType>;
+
+export const AUTH_CODE_DELIVERY = {
+  RESPONSE: "response",
+  REGISTRANT_EMAIL: "registrant_email",
+} as const satisfies Record<string, AuthCodeDelivery>;
+
+export const AUTH_CODE_DELIVERY_VALUES = [
+  'response',
+  'registrant_email',
+] as const satisfies ReadonlyArray<AuthCodeDelivery>;
 
 export const BATCH_SORT_FIELD = {
   CREATED_ON: "created_on",
@@ -267,6 +297,7 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE = {
   WHITELABEL_BRANDING_PLUS: "whitelabel_branding_plus",
   RAS_DOMAIN_LIFECYCLE: "ras_domain_lifecycle",
   AMS_DOMAIN_LIFECYCLE: "ams_domain_lifecycle",
+  AMS_MAINTENANCE_FEE: "ams_maintenance_fee",
 } as const satisfies Record<string, BillingTransactionProductType>;
 
 export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
@@ -280,6 +311,7 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
   'whitelabel_branding_plus',
   'ras_domain_lifecycle',
   'ams_domain_lifecycle',
+  'ams_maintenance_fee',
 ] as const satisfies ReadonlyArray<BillingTransactionProductType>;
 
 export const BILLING_TRANSACTION_SORT_FIELD = {
@@ -342,6 +374,18 @@ export const CONDITION_OPERATOR_VALUES = [
   'not_in',
 ] as const satisfies ReadonlyArray<ConditionOperator>;
 
+export const CONNECTED_ACCOUNT_TYPE = {
+  DEFAULT: "default",
+  AMS: "ams",
+  RAS: "ras",
+} as const satisfies Record<string, ConnectedAccountType>;
+
+export const CONNECTED_ACCOUNT_TYPE_VALUES = [
+  'default',
+  'ams',
+  'ras',
+] as const satisfies ReadonlyArray<ConnectedAccountType>;
+
 export const CONTACT_ATTRIBUTE_SET_SORT_FIELD = {
   LABEL: "label",
   TLD: "tld",
@@ -377,6 +421,14 @@ export const CONTACT_SORT_FIELD_VALUES = [
   'email',
   'created_on',
 ] as const satisfies ReadonlyArray<ContactSortField>;
+
+export const CONTACT_STATUS_TAG_TYPE = {
+  VERIFICATION_REQUIRED: "VERIFICATION_REQUIRED",
+} as const satisfies Record<string, ContactStatusTagType>;
+
+export const CONTACT_STATUS_TAG_TYPE_VALUES = [
+  'VERIFICATION_REQUIRED',
+] as const satisfies ReadonlyArray<ContactStatusTagType>;
 
 export const CONTACT_TYPE = {
   OWNER: "owner",
@@ -785,23 +837,25 @@ export const DOMAIN_FORWARD_ZONE_SORT_FIELD_VALUES = [
 export const DOMAIN_INCLUDE_FIELD = {
   TAGS: "tags",
   RENEWAL_PRICE: "renewal_price",
-  REGISTRAR_CREDENTIAL: "registrar_credential",
+  CONNECTED_ACCOUNT: "connected_account",
+  REGISTRANT_CHANGE: "registrant_change",
 } as const satisfies Record<string, DomainIncludeField>;
 
 export const DOMAIN_INCLUDE_FIELD_VALUES = [
   'tags',
   'renewal_price',
-  'registrar_credential',
+  'connected_account',
+  'registrant_change',
 ] as const satisfies ReadonlyArray<DomainIncludeField>;
 
 export const DOMAIN_LIST_INCLUDE_FIELD = {
   TAGS: "tags",
-  REGISTRAR_CREDENTIAL: "registrar_credential",
+  CONNECTED_ACCOUNT: "connected_account",
 } as const satisfies Record<string, DomainListIncludeField>;
 
 export const DOMAIN_LIST_INCLUDE_FIELD_VALUES = [
   'tags',
-  'registrar_credential',
+  'connected_account',
 ] as const satisfies ReadonlyArray<DomainListIncludeField>;
 
 export const DOMAIN_SORT_FIELD = {
@@ -1034,6 +1088,7 @@ export const EVENT_TYPE = {
   VANITY_NS_RESTORATION: "VANITY_NS_RESTORATION",
   VANITY_NS_TERMINATION: "VANITY_NS_TERMINATION",
   CLONE: "CLONE",
+  REGISTRANT_CHANGE: "REGISTRANT_CHANGE",
 } as const satisfies Record<string, EventType>;
 
 export const EVENT_TYPE_VALUES = [
@@ -1052,6 +1107,7 @@ export const EVENT_TYPE_VALUES = [
   'VANITY_NS_RESTORATION',
   'VANITY_NS_TERMINATION',
   'CLONE',
+  'REGISTRANT_CHANGE',
 ] as const satisfies ReadonlyArray<EventType>;
 
 export const EVENT_VERSION = {
@@ -1424,10 +1480,16 @@ export const OBJECT_EVENT_TYPE = {
   DELETED: "DELETED",
   IMPORTED: "IMPORTED",
   SYNCED_AFTER_IMPORT: "SYNCED_AFTER_IMPORT",
+  SYNCED: "SYNCED",
   TRANSFER_STARTED: "TRANSFER_STARTED",
   TRANSFER_COMPLETED: "TRANSFER_COMPLETED",
+  TRANSFER_CANCELLED: "TRANSFER_CANCELLED",
+  TRANSFER_FAILED: "TRANSFER_FAILED",
   TRANSFER_OUT_STARTED: "TRANSFER_OUT_STARTED",
   TRANSFER_OUT_COMPLETED: "TRANSFER_OUT_COMPLETED",
+  TRANSFER_OUT_CANCELLED: "TRANSFER_OUT_CANCELLED",
+  TRANSFER_OUT_FAILED: "TRANSFER_OUT_FAILED",
+  TRANSFER_OUT_REJECTED: "TRANSFER_OUT_REJECTED",
   RENEWED: "RENEWED",
   RESTORED: "RESTORED",
   BILLING_TRANSACTION_RESERVED: "BILLING_TRANSACTION_RESERVED",
@@ -1442,10 +1504,16 @@ export const OBJECT_EVENT_TYPE_VALUES = [
   'DELETED',
   'IMPORTED',
   'SYNCED_AFTER_IMPORT',
+  'SYNCED',
   'TRANSFER_STARTED',
   'TRANSFER_COMPLETED',
+  'TRANSFER_CANCELLED',
+  'TRANSFER_FAILED',
   'TRANSFER_OUT_STARTED',
   'TRANSFER_OUT_COMPLETED',
+  'TRANSFER_OUT_CANCELLED',
+  'TRANSFER_OUT_FAILED',
+  'TRANSFER_OUT_REJECTED',
   'RENEWED',
   'RESTORED',
   'BILLING_TRANSACTION_RESERVED',
@@ -1703,6 +1771,66 @@ export const REDIRECT_CODE = [
   308,
 ] as const satisfies ReadonlyArray<RedirectCode>;
 
+export const REGISTRANT_CHANGE_CONFIRMATION_METHOD = {
+  DESIGNATED_AGENT: "designated_agent",
+  EMAIL: "email",
+  API: "api",
+} as const satisfies Record<string, RegistrantChangeConfirmationMethod>;
+
+export const REGISTRANT_CHANGE_CONFIRMATION_METHOD_VALUES = [
+  'designated_agent',
+  'email',
+  'api',
+] as const satisfies ReadonlyArray<RegistrantChangeConfirmationMethod>;
+
+export const REGISTRANT_CHANGE_CONFIRMATION_TYPE = {
+  REGISTRAR: "registrar",
+  REGISTRY: "registry",
+  NONE: "none",
+} as const satisfies Record<string, RegistrantChangeConfirmationType>;
+
+export const REGISTRANT_CHANGE_CONFIRMATION_TYPE_VALUES = [
+  'registrar',
+  'registry',
+  'none',
+] as const satisfies ReadonlyArray<RegistrantChangeConfirmationType>;
+
+export const REGISTRANT_CHANGE_FEE_TYPE = {
+  NONE: "none",
+  TRADE: "trade",
+} as const satisfies Record<string, RegistrantChangeFeeType>;
+
+export const REGISTRANT_CHANGE_FEE_TYPE_VALUES = [
+  'none',
+  'trade',
+] as const satisfies ReadonlyArray<RegistrantChangeFeeType>;
+
+export const REGISTRANT_CHANGE_STATUS = {
+  PENDING_CONFIRMATION: "pending_confirmation",
+  CONFIRMED: "confirmed",
+  EXECUTING: "executing",
+  REGISTRY_PENDING: "registry_pending",
+  COMPLETED: "completed",
+  NOT_MATERIAL: "not_material",
+  EXPIRED: "expired",
+  CANCELED: "canceled",
+  REJECTED: "rejected",
+  FAILED: "failed",
+} as const satisfies Record<string, RegistrantChangeStatus>;
+
+export const REGISTRANT_CHANGE_STATUS_VALUES = [
+  'pending_confirmation',
+  'confirmed',
+  'executing',
+  'registry_pending',
+  'completed',
+  'not_material',
+  'expired',
+  'canceled',
+  'rejected',
+  'failed',
+] as const satisfies ReadonlyArray<RegistrantChangeStatus>;
+
 export const REGISTRANT_CHANGE_TYPE = {
   UPDATE: "update",
   TRADE: "trade",
@@ -1723,6 +1851,8 @@ export const REGISTRAR = {
   ENOM: "ENOM",
   OPENSRS: "OPENSRS",
   NIC_DIRECT: "NIC_DIRECT",
+  OPENPROVIDER: "OPENPROVIDER",
+  REALTIMEREGISTER: "REALTIMEREGISTER",
 } as const satisfies Record<string, Registrar>;
 
 export const REGISTRAR_VALUES = [
@@ -1735,6 +1865,8 @@ export const REGISTRAR_VALUES = [
   'ENOM',
   'OPENSRS',
   'NIC_DIRECT',
+  'OPENPROVIDER',
+  'REALTIMEREGISTER',
 ] as const satisfies ReadonlyArray<Registrar>;
 
 export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
@@ -2144,6 +2276,7 @@ export const STATUS_TAG_TYPE = {
   IMPORT_REQUESTED: "IMPORT_REQUESTED",
   IMPORT_PENDING: "IMPORT_PENDING",
   DNSSEC_PENDING: "DNSSEC_PENDING",
+  TRANSFER_ON_RENEW_PENDING: "TRANSFER_ON_RENEW_PENDING",
 } as const satisfies Record<string, StatusTagType>;
 
 export const STATUS_TAG_TYPE_VALUES = [
@@ -2155,6 +2288,7 @@ export const STATUS_TAG_TYPE_VALUES = [
   'IMPORT_REQUESTED',
   'IMPORT_PENDING',
   'DNSSEC_PENDING',
+  'TRANSFER_ON_RENEW_PENDING',
 ] as const satisfies ReadonlyArray<StatusTagType>;
 
 export const SYNC_OPERATION_TYPE = {
@@ -2424,6 +2558,26 @@ export const VERIFICATION_TYPE_VALUES = [
   'api',
   'email',
 ] as const satisfies ReadonlyArray<VerificationType>;
+
+export const WAITLIST_ENTRY_STATUS = {
+  PENDING: "pending",
+  GRANTED: "granted",
+  REJECTED: "rejected",
+} as const satisfies Record<string, WaitlistEntryStatus>;
+
+export const WAITLIST_ENTRY_STATUS_VALUES = [
+  'pending',
+  'granted',
+  'rejected',
+] as const satisfies ReadonlyArray<WaitlistEntryStatus>;
+
+export const WAITLIST_PRODUCT = {
+  AI_CONCIERGE: "ai_concierge",
+} as const satisfies Record<string, WaitlistProduct>;
+
+export const WAITLIST_PRODUCT_VALUES = [
+  'ai_concierge',
+] as const satisfies ReadonlyArray<WaitlistProduct>;
 
 export const WHITELABEL_BRANDING_TIER = {
   BASE: "base",

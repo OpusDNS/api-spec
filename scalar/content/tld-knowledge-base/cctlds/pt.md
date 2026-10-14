@@ -99,6 +99,10 @@
 | --- | --- |
 | Dispute Resolution Available | ❌ No |
 
+## Second-level extensions
+
+`.com.pt` is available alongside `.pt`. A `.com.pt` domain is registered with the same requests and follows the same rules described on this page: the same contact attributes, contact roles, contact verification, transfer, and deletion behavior.
+
 ## Contact Attributes
 
 `.pt` registrations carry registry-specific contact attributes beyond the standard EPP fields:

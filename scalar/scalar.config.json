@@ -149,26 +149,12 @@
                 "icon": "line/interface-login-key",
                 "filepath": "content/authentication.md",
                 "showInSidebar": true
-              }
-            }
-          },
-          "/upcoming-changes": {
-            "type": "group",
-            "title": "Upcoming Changes",
-            "mode": "flat",
-            "children": {
-              "/event-v1-payloads": {
-                "type": "page",
-                "title": "Upcoming changes",
-                "icon": "phosphor/regular/bell",
-                "filepath": "content/upcoming-changes/event-v1-payloads.md",
-                "showInSidebar": true
               },
-              "/rfc3339-datetimes": {
+              "/datetimes": {
                 "type": "page",
-                "title": "RFC 3339 datetimes",
+                "title": "Datetimes",
                 "icon": "phosphor/regular/clock",
-                "filepath": "content/upcoming-changes/rfc3339-datetimes.md",
+                "filepath": "content/datetimes.md",
                 "showInSidebar": true
               }
             }
@@ -1609,6 +1595,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/college.md",
                 "showInSidebar": true
               },
+              "/cologne": {
+                "type": "page",
+                "title": "🌐 .cologne",
+                "filepath": "content/tld-knowledge-base/gtlds/cologne.md",
+                "showInSidebar": true
+              },
               "/com": {
                 "type": "page",
                 "title": "🌐 .com",
@@ -2495,6 +2487,12 @@
                 "type": "page",
                 "title": "🌐 .kitchen",
                 "filepath": "content/tld-knowledge-base/gtlds/kitchen.md",
+                "showInSidebar": true
+              },
+              "/koeln": {
+                "type": "page",
+                "title": "🌐 .koeln",
+                "filepath": "content/tld-knowledge-base/gtlds/koeln.md",
                 "showInSidebar": true
               },
               "/kred": {
@@ -3463,6 +3461,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/tires.md",
                 "showInSidebar": true
               },
+              "/tirol": {
+                "type": "page",
+                "title": "🌐 .tirol",
+                "filepath": "content/tld-knowledge-base/gtlds/tirol.md",
+                "showInSidebar": true
+              },
               "/today": {
                 "type": "page",
                 "title": "🌐 .today",
@@ -3665,6 +3669,12 @@
                 "type": "page",
                 "title": "🌐 .wedding",
                 "filepath": "content/tld-knowledge-base/gtlds/wedding.md",
+                "showInSidebar": true
+              },
+              "/wien": {
+                "type": "page",
+                "title": "🌐 .wien",
+                "filepath": "content/tld-knowledge-base/gtlds/wien.md",
                 "showInSidebar": true
               },
               "/wiki": {

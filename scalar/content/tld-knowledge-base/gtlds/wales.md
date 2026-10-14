@@ -63,7 +63,7 @@
 | Privacy Proxy Allowed | ❌ No |
 | Contacts Transferable | ❌ No |
 | Allowed Postal Types | Local, International |
-| AuthInfo Required | ❌ No |
+| AuthInfo Required | ✅ Yes (1–32 characters) |
 
 ## Nameservers & DNS
 
