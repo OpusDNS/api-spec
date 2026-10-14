@@ -62,7 +62,7 @@ organization. They are immutable — you cannot change or delete them.
 | --- | --- |
 | `owner` | Full access. The organization's first user / super-admin. Report-only — see below. |
 | `admin` | Full access to every resource in the organization. |
-| `viewer` | Read-only access across domains, DNS, contacts, hosts, forwarding, parking, events, jobs, and users. |
+| `viewer` | Read-only access across domains, DNS, contacts, hosts, forwarding, parking, events, jobs, users, and audit logs. |
 | `domain_manager` | Full access (read/manage/delete) to domains, DNS, contacts, hosts, email & domain forwarding, parking, events, and jobs. |
 | `dns_manager` | Full access to DNS zones, email forwarding, and domain forwarding. |
 | `billing_manager` | Read and manage billing. |
