@@ -25072,7 +25072,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-13-190828
+  version: 2026-10-14-124056
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -26752,7 +26752,7 @@ paths:
       tags:
       - archive
       x-required-permissions:
-      - organization:read
+      - audit_logs:read
   /v1/archive/object-logs/{object_id}:
     get:
       description: Retrieve paginated audit logs for a specific object with optional
@@ -26907,7 +26907,7 @@ paths:
       tags:
       - archive
       x-required-permissions:
-      - organization:read
+      - audit_logs:read
   /v1/archive/request-history:
     get:
       description: Retrieves a paginated list of request history logs
@@ -27104,7 +27104,7 @@ paths:
       tags:
       - archive
       x-required-permissions:
-      - organization:read
+      - audit_logs:read
   /v1/auth/client_credentials/introspect:
     get:
       description: Returns the stored record for the API key (or organization token)
