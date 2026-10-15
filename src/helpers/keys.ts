@@ -3001,6 +3001,7 @@ export const KEYS_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA = [
 ] as const satisfies (keyof DomainSearchSuggestionPriceData)[];
 
 export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_AVAILABLE = 'available' satisfies keyof DomainSearchSuggestionWithPrice;
+export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_CONNECTED_ACCOUNT = 'connected_account' satisfies keyof DomainSearchSuggestionWithPrice;
 export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_DOMAIN = 'domain' satisfies keyof DomainSearchSuggestionWithPrice;
 export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PREMIUM = 'premium' satisfies keyof DomainSearchSuggestionWithPrice;
 export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PRICE = 'price' satisfies keyof DomainSearchSuggestionWithPrice;
@@ -3008,6 +3009,7 @@ export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_RENEWAL_PRICE = 'renewal_pr
 
 export const KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE = [
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_AVAILABLE,
+  KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_CONNECTED_ACCOUNT,
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_DOMAIN,
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PREMIUM,
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PRICE,

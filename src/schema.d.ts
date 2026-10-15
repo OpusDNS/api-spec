@@ -13108,6 +13108,8 @@ export interface components {
         DomainSearchSuggestionWithPrice: {
             /** Available */
             available: boolean;
+            /** @description Set when the organization registers this TLD on its own registry accreditation (`ams`). The registry bills the domain to that accreditation, so `price` and `renewal_price` are the OpusDNS service fee alone, premium or not. Null for TLDs registered on OpusDNS registry accounts. */
+            connected_account?: components["schemas"]["DomainAmsAccountResponse"] | null;
             /** Domain */
             domain: string;
             /** Premium */

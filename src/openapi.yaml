@@ -13835,6 +13835,14 @@ components:
         available:
           title: Available
           type: boolean
+        connected_account:
+          anyOf:
+          - $ref: '#/components/schemas/DomainAmsAccountResponse'
+          - type: 'null'
+          description: Set when the organization registers this TLD on its own registry
+            accreditation (`ams`). The registry bills the domain to that accreditation,
+            so `price` and `renewal_price` are the OpusDNS service fee alone, premium
+            or not. Null for TLDs registered on OpusDNS registry accounts.
         domain:
           title: Domain
           type: string
@@ -25135,7 +25143,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-15-162027
+  version: 2026-10-15-190237
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
