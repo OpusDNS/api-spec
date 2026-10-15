@@ -18380,6 +18380,19 @@ components:
         action:
           $ref: '#/components/schemas/ObjectEventType'
           description: Action performed
+        changes:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ObjectLogChange'
+            type: array
+          - type: 'null'
+          description: 'Fields that differ from the object''s previous log in the
+            same organization. Empty when nothing changed; `null` when there was no
+            previous log to compare with: the object''s first log in the organization,
+            or a log written before changes were recorded. `updated_on` is not compared,
+            arrays are compared regardless of order and reported whole, and sensitive
+            values such as `auth_code` read `***REDACTED***`.'
+          title: Changes
         created_on:
           description: Timestamp when the log was created
           format: date-time
@@ -18390,7 +18403,8 @@ components:
           - additionalProperties: true
             type: object
           - type: 'null'
-          description: Changes made to the object
+          description: Snapshot of the whole object after the action; its shape depends
+            on `object_type`
           title: Details
         object_id:
           description: ID of the object
@@ -18428,6 +18442,26 @@ components:
       - action
       - created_on
       title: ObjectLog
+      type: object
+    ObjectLogChange:
+      properties:
+        field:
+          description: Dot-separated path of the field in the object, for example
+            `renewal_mode` or `contacts.registrant`
+          title: Field
+          type: string
+        new_value:
+          description: Value of the field in this log; `null` when the field was absent
+          title: New Value
+        old_value:
+          description: Value of the field in the object's previous log; `null` when
+            the field was absent
+          title: Old Value
+      required:
+      - field
+      - old_value
+      - new_value
+      title: ObjectLogChange
       type: object
     ObjectLogSortField:
       enum:
@@ -25072,7 +25106,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-14-124056
+  version: 2026-10-15-094627
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

@@ -325,6 +325,7 @@ import type {
   NorIdDeclaration,
   NorIdResellerDeclarationRequest,
   ObjectLog,
+  ObjectLogChange,
   ObjectTagChanges,
   ObjectTagChanges2,
   Organization,
@@ -4533,6 +4534,7 @@ export const KEYS_NOR_ID_RESELLER_DECLARATION_REQUEST = [
 ] as const satisfies (keyof NorIdResellerDeclarationRequest)[];
 
 export const KEY_OBJECT_LOG_ACTION = 'action' satisfies keyof ObjectLog;
+export const KEY_OBJECT_LOG_CHANGES = 'changes' satisfies keyof ObjectLog;
 export const KEY_OBJECT_LOG_CREATED_ON = 'created_on' satisfies keyof ObjectLog;
 export const KEY_OBJECT_LOG_DETAILS = 'details' satisfies keyof ObjectLog;
 export const KEY_OBJECT_LOG_OBJECT_ID = 'object_id' satisfies keyof ObjectLog;
@@ -4544,6 +4546,7 @@ export const KEY_OBJECT_LOG_SERVER_REQUEST_ID = 'server_request_id' satisfies ke
 
 export const KEYS_OBJECT_LOG = [
   KEY_OBJECT_LOG_ACTION,
+  KEY_OBJECT_LOG_CHANGES,
   KEY_OBJECT_LOG_CREATED_ON,
   KEY_OBJECT_LOG_DETAILS,
   KEY_OBJECT_LOG_OBJECT_ID,
@@ -4553,6 +4556,16 @@ export const KEYS_OBJECT_LOG = [
   KEY_OBJECT_LOG_PERFORMED_BY_TYPE,
   KEY_OBJECT_LOG_SERVER_REQUEST_ID,
 ] as const satisfies (keyof ObjectLog)[];
+
+export const KEY_OBJECT_LOG_CHANGE_FIELD = 'field' satisfies keyof ObjectLogChange;
+export const KEY_OBJECT_LOG_CHANGE_NEW_VALUE = 'new_value' satisfies keyof ObjectLogChange;
+export const KEY_OBJECT_LOG_CHANGE_OLD_VALUE = 'old_value' satisfies keyof ObjectLogChange;
+
+export const KEYS_OBJECT_LOG_CHANGE = [
+  KEY_OBJECT_LOG_CHANGE_FIELD,
+  KEY_OBJECT_LOG_CHANGE_NEW_VALUE,
+  KEY_OBJECT_LOG_CHANGE_OLD_VALUE,
+] as const satisfies (keyof ObjectLogChange)[];
 
 export const KEY_OBJECT_TAG_CHANGES_ADD = 'add' satisfies keyof ObjectTagChanges;
 export const KEY_OBJECT_TAG_CHANGES_REMOVE = 'remove' satisfies keyof ObjectTagChanges;

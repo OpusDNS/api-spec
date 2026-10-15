@@ -414,6 +414,7 @@ export type NorIdDeclarationStatus = components['schemas']['NorIdDeclarationStat
 export type NorIdResellerDeclarationRequest = components['schemas']['NorIdResellerDeclarationRequest'];
 export type ObjectEventType = components['schemas']['ObjectEventType'];
 export type ObjectLog = components['schemas']['ObjectLog'];
+export type ObjectLogChange = components['schemas']['ObjectLogChange'];
 export type ObjectLogSortField = components['schemas']['ObjectLogSortField'];
 export type ObjectTagChanges = components['schemas']['ObjectTagChanges'];
 export type ObjectTagChanges2 = components['schemas']['ObjectTagChangesResponse'];

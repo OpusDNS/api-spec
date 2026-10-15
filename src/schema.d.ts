@@ -16305,6 +16305,11 @@ export interface components {
             /** @description Action performed */
             action: components["schemas"]["ObjectEventType"];
             /**
+             * Changes
+             * @description Fields that differ from the object's previous log in the same organization. Empty when nothing changed; `null` when there was no previous log to compare with: the object's first log in the organization, or a log written before changes were recorded. `updated_on` is not compared, arrays are compared regardless of order and reported whole, and sensitive values such as `auth_code` read `***REDACTED***`.
+             */
+            changes?: components["schemas"]["ObjectLogChange"][] | null;
+            /**
              * Created On
              * Format: date-time
              * @description Timestamp when the log was created
@@ -16312,7 +16317,7 @@ export interface components {
             created_on: Date;
             /**
              * Details
-             * @description Changes made to the object
+             * @description Snapshot of the whole object after the action; its shape depends on `object_type`
              */
             details?: {
                 [key: string]: unknown;
@@ -16344,6 +16349,24 @@ export interface components {
              * @description Server request ID
              */
             server_request_id?: string | null;
+        };
+        /** ObjectLogChange */
+        ObjectLogChange: {
+            /**
+             * Field
+             * @description Dot-separated path of the field in the object, for example `renewal_mode` or `contacts.registrant`
+             */
+            field: string;
+            /**
+             * New Value
+             * @description Value of the field in this log; `null` when the field was absent
+             */
+            new_value: unknown;
+            /**
+             * Old Value
+             * @description Value of the field in the object's previous log; `null` when the field was absent
+             */
+            old_value: unknown;
         };
         /**
          * ObjectLogSortField
