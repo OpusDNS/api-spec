@@ -131,6 +131,7 @@ import type {
   DnsZoneUpdatePayloadData,
   DnsZoneUpdateWorkerPayload,
   DnsZoneVanitySetUpdateRes,
+  DomainAmsAccount,
   DomainAuthCode,
   DomainAvailability,
   DomainAvailabilityError,
@@ -2108,6 +2109,16 @@ export const KEY_DNS_ZONE_VANITY_SET_UPDATE_RES_ZONE = 'zone' satisfies keyof Dn
 export const KEYS_DNS_ZONE_VANITY_SET_UPDATE_RES = [
   KEY_DNS_ZONE_VANITY_SET_UPDATE_RES_ZONE,
 ] as const satisfies (keyof DnsZoneVanitySetUpdateRes)[];
+
+export const KEY_DOMAIN_AMS_ACCOUNT_REGISTRY = 'registry' satisfies keyof DomainAmsAccount;
+export const KEY_DOMAIN_AMS_ACCOUNT_REGISTRY_ACCOUNT_ID = 'registry_account_id' satisfies keyof DomainAmsAccount;
+export const KEY_DOMAIN_AMS_ACCOUNT_TYPE = 'type' satisfies keyof DomainAmsAccount;
+
+export const KEYS_DOMAIN_AMS_ACCOUNT = [
+  KEY_DOMAIN_AMS_ACCOUNT_REGISTRY,
+  KEY_DOMAIN_AMS_ACCOUNT_REGISTRY_ACCOUNT_ID,
+  KEY_DOMAIN_AMS_ACCOUNT_TYPE,
+] as const satisfies (keyof DomainAmsAccount)[];
 
 export const KEY_DOMAIN_AUTH_CODE_AUTH_CODE = 'auth_code' satisfies keyof DomainAuthCode;
 export const KEY_DOMAIN_AUTH_CODE_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' satisfies keyof DomainAuthCode;

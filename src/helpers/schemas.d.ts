@@ -172,6 +172,7 @@ export type DnssecModeType = components['schemas']['DnssecModeType'];
 export type DnssecRecordType = components['schemas']['DnssecRecordType'];
 export type DnssecRegistryPublishOutcome = components['schemas']['DnssecRegistryPublishOutcome'];
 export type DnssecStatus = components['schemas']['DnssecStatus'];
+export type DomainAmsAccount = components['schemas']['DomainAmsAccountResponse'];
 export type DomainAttributeKey = components['schemas']['DomainAttributeKey'];
 export type DomainAuthCode = components['schemas']['DomainAuthCodeResponse'];
 export type DomainAvailability = components['schemas']['DomainAvailability'];

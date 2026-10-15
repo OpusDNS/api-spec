@@ -11473,6 +11473,23 @@ export interface components {
          * @enum {string}
          */
         DnssecStatus: "enabled" | "disabled";
+        /** DomainAmsAccountResponse */
+        DomainAmsAccountResponse: {
+            /** @description The registry the account is accredited at */
+            registry: components["schemas"]["RegistryServiceBackend"];
+            /**
+             * Registry Account Id
+             * Format: typeid
+             * @description The registry account the domain is held on
+             * @example registry_account_01h45ytscbebyvny4gc8cr8ma2
+             */
+            registry_account_id: TypeId<"registry_account">;
+            /**
+             * @description Kind of connected account. `ams`: the organization's own registry accreditation, on which OpusDNS manages the domain. (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            type: "ams";
+        };
         /**
          * DomainAttributeKey
          * @enum {string}
@@ -12885,9 +12902,9 @@ export interface components {
             canceled_on?: Date | null;
             /**
              * Connected Account
-             * @description The connected account this domain is synced from. Null unless `include=connected_account` is requested, and null even then for natively registered domains, for domains on operator-managed registry accounts, and when the connected account was deleted.
+             * @description The connected account this domain is synced from or managed on: a registrar credential (`ras`) or the organization's own registry accreditation (`ams`). Null unless `include=connected_account` is requested, and null even then for natively registered domains, for domains on operator-managed registry accounts, and when the connected account was deleted.
              */
-            connected_account?: components["schemas"]["DomainRegistrarCredentialResponse"] | null;
+            connected_account?: (components["schemas"]["DomainRegistrarCredentialResponse"] | components["schemas"]["DomainAmsAccountResponse"]) | null;
             /**
              * Contacts
              * @description The contacts of the domain
@@ -27014,7 +27031,7 @@ export interface operations {
                 account_type?: components["schemas"]["ConnectedAccountType"][] | null;
                 /** @description How to apply `account_type`: `match_any` keeps the domains on any of the listed types, `match_none` the domains on none of them (so `account_type=ras&account_type_mode=match_none` keeps every domain not on a RAS account, and naming every type keeps none). Has no effect without `account_type`. */
                 account_type_mode?: components["schemas"]["AccountTypeFilterMode"];
-                /** @description Extra data to include in each result. `tags` populates the `tags` (user tags) and `status_tags` fields, which are otherwise null; filtering by `tag_ids` or `status_tags` alone does not populate them. `connected_account` populates the `connected_account` field for domains held at an external registrar. */
+                /** @description Extra data to include in each result. `tags` populates the `tags` (user tags) and `status_tags` fields, which are otherwise null; filtering by `tag_ids` or `status_tags` alone does not populate them. `connected_account` populates the `connected_account` field for domains held at an external registrar or on the organization's own registry accreditation (AMS). */
                 include?: components["schemas"]["DomainListIncludeField"][] | null;
             };
             header?: {
@@ -28519,7 +28536,7 @@ export interface operations {
     get_domain_v1_domains__domain_reference__get: {
         parameters: {
             query?: {
-                /** @description Extra data to include in the response. `tags` populates the `tags` and `status_tags` fields, which are otherwise null. `renewal_price` resolves the domain's renewal price. `connected_account` populates the `connected_account` field for domains held at an external registrar. `registrant_change` populates the `registrant_change` field with the change of registrant in progress. */
+                /** @description Extra data to include in the response. `tags` populates the `tags` and `status_tags` fields, which are otherwise null. `renewal_price` resolves the domain's renewal price. `connected_account` populates the `connected_account` field for domains held at an external registrar or on the organization's own registry accreditation (AMS). `registrant_change` populates the `registrant_change` field with the change of registrant in progress. */
                 include?: components["schemas"]["DomainIncludeField"][] | null;
             };
             header?: {

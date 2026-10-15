@@ -11410,6 +11410,32 @@ components:
       - disabled
       title: DnssecStatus
       type: string
+    DomainAmsAccountResponse:
+      properties:
+        registry:
+          $ref: '#/components/schemas/RegistryServiceBackend'
+          description: The registry the account is accredited at
+        registry_account_id:
+          description: The registry account the domain is held on
+          examples:
+          - registry_account_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^registry_account_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Registry Account Id
+          type: string
+          x-typeid-prefix: registry_account
+        type:
+          const: ams
+          description: 'Kind of connected account. `ams`: the organization''s own
+            registry accreditation, on which OpusDNS manages the domain.'
+          title: Type
+          type: string
+      required:
+      - type
+      - registry_account_id
+      - registry
+      title: DomainAmsAccountResponse
+      type: object
     DomainAttributeKey:
       enum:
       - auto_renew_period
@@ -13502,15 +13528,18 @@ components:
           anyOf:
           - discriminator:
               mapping:
+                ams: '#/components/schemas/DomainAmsAccountResponse'
                 ras: '#/components/schemas/DomainRegistrarCredentialResponse'
               propertyName: type
             oneOf:
             - $ref: '#/components/schemas/DomainRegistrarCredentialResponse'
+            - $ref: '#/components/schemas/DomainAmsAccountResponse'
           - type: 'null'
-          description: The connected account this domain is synced from. Null unless
-            `include=connected_account` is requested, and null even then for natively
-            registered domains, for domains on operator-managed registry accounts,
-            and when the connected account was deleted.
+          description: 'The connected account this domain is synced from or managed
+            on: a registrar credential (`ras`) or the organization''s own registry
+            accreditation (`ams`). Null unless `include=connected_account` is requested,
+            and null even then for natively registered domains, for domains on operator-managed
+            registry accounts, and when the connected account was deleted.'
           title: Connected Account
         contacts:
           description: The contacts of the domain
@@ -25106,7 +25135,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-15-094627
+  version: 2026-10-15-162027
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -33800,7 +33829,7 @@ paths:
           (user tags) and `status_tags` fields, which are otherwise null; filtering
           by `tag_ids` or `status_tags` alone does not populate them. `connected_account`
           populates the `connected_account` field for domains held at an external
-          registrar.
+          registrar or on the organization's own registry accreditation (AMS).
         in: query
         name: include
         required: false
@@ -33814,7 +33843,8 @@ paths:
             `tags` (user tags) and `status_tags` fields, which are otherwise null;
             filtering by `tag_ids` or `status_tags` alone does not populate them.
             `connected_account` populates the `connected_account` field for domains
-            held at an external registrar.
+            held at an external registrar or on the organization's own registry accreditation
+            (AMS).
           title: Include
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
@@ -35575,8 +35605,9 @@ paths:
       - description: Extra data to include in the response. `tags` populates the `tags`
           and `status_tags` fields, which are otherwise null. `renewal_price` resolves
           the domain's renewal price. `connected_account` populates the `connected_account`
-          field for domains held at an external registrar. `registrant_change` populates
-          the `registrant_change` field with the change of registrant in progress.
+          field for domains held at an external registrar or on the organization's
+          own registry accreditation (AMS). `registrant_change` populates the `registrant_change`
+          field with the change of registrant in progress.
         in: query
         name: include
         required: false
@@ -35589,7 +35620,8 @@ paths:
           description: Extra data to include in the response. `tags` populates the
             `tags` and `status_tags` fields, which are otherwise null. `renewal_price`
             resolves the domain's renewal price. `connected_account` populates the
-            `connected_account` field for domains held at an external registrar. `registrant_change`
+            `connected_account` field for domains held at an external registrar or
+            on the organization's own registry accreditation (AMS). `registrant_change`
             populates the `registrant_change` field with the change of registrant
             in progress.
           title: Include
