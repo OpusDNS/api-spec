@@ -4,6 +4,31 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 15 October 2026
+
+- Added **`changes` to object logs** on
+  [`GET /v1/archive/object-logs`](/api-reference#tag/archive/GET/v1/archive/object-logs)
+  and
+  [`GET /v1/archive/object-logs/{object_id}`](/api-reference#tag/archive/GET/v1/archive/object-logs/{object_id}).
+  `details` holds the whole object after the action, so telling what an action
+  changed used to mean comparing two logs, and the previous one is often not
+  on the same page. Each log now lists the fields that differ from the
+  object's previous log in the same organization, as
+  `[{field, old_value, new_value}]`. `field` is a dot path such as
+  `contacts.registrant`. Arrays are compared regardless of order and reported
+  whole, `updated_on` is not compared, and sensitive values such as
+  `auth_code` read `***REDACTED***`. An empty list means nothing changed.
+  `null` means there was nothing to compare with: the object's first log in
+  the organization, or a log written before this release.
+
+- Added **contacts to the object logs**. Creating, updating and deleting a
+  contact now writes a log with `object_type` `ContactEventResponse`.
+
+- Fixed **`created_on` of object logs** to be the time of the action. It was
+  the time the log was stored, up to 30 seconds later and the same for logs
+  stored together, which could list two actions on one object in the wrong
+  order.
+
 ### 14 October 2026
 
 - Changed **the archive endpoints to require `audit_logs:read`** instead of
