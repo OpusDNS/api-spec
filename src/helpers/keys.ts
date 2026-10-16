@@ -2811,6 +2811,7 @@ export const KEY_DOMAIN_REGISTRANT_CHANGE_PREVIOUS_REGISTRANT = 'previous_regist
 export const KEY_DOMAIN_REGISTRANT_CHANGE_REGISTRANT_CHANGE_ID = 'registrant_change_id' satisfies keyof DomainRegistrantChange;
 export const KEY_DOMAIN_REGISTRANT_CHANGE_STATUS = 'status' satisfies keyof DomainRegistrantChange;
 export const KEY_DOMAIN_REGISTRANT_CHANGE_TRANSFER_LOCK_OPT_OUT = 'transfer_lock_opt_out' satisfies keyof DomainRegistrantChange;
+export const KEY_DOMAIN_REGISTRANT_CHANGE_TRANSFER_LOCK_UNTIL = 'transfer_lock_until' satisfies keyof DomainRegistrantChange;
 
 export const KEYS_DOMAIN_REGISTRANT_CHANGE = [
   KEY_DOMAIN_REGISTRANT_CHANGE_CONFIRMATION_DEADLINE,
@@ -2824,6 +2825,7 @@ export const KEYS_DOMAIN_REGISTRANT_CHANGE = [
   KEY_DOMAIN_REGISTRANT_CHANGE_REGISTRANT_CHANGE_ID,
   KEY_DOMAIN_REGISTRANT_CHANGE_STATUS,
   KEY_DOMAIN_REGISTRANT_CHANGE_TRANSFER_LOCK_OPT_OUT,
+  KEY_DOMAIN_REGISTRANT_CHANGE_TRANSFER_LOCK_UNTIL,
 ] as const satisfies (keyof DomainRegistrantChange)[];
 
 export const KEY_DOMAIN_REGISTRAR_CREDENTIAL_NAME = 'name' satisfies keyof DomainRegistrarCredential;

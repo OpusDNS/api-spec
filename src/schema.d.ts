@@ -12773,6 +12773,11 @@ export interface components {
              * @description Whether the transfer lock after the change was opted out of
              */
             transfer_lock_opt_out: boolean;
+            /**
+             * Transfer Lock Until
+             * @description Until when the domain cannot be transferred to another registrar because of the change, null when no transfer lock applies
+             */
+            transfer_lock_until?: Date | null;
         };
         /** DomainRegistrarCredentialResponse */
         DomainRegistrarCredentialResponse: {
@@ -12973,7 +12978,7 @@ export interface components {
              * @description When the domain was registered
              */
             registered_on?: Date | null;
-            /** @description The change of registrant in progress. Null unless `include=registrant_change` is requested, and null even then when no change of registrant is in progress. */
+            /** @description The change of registrant in progress, or else the completed one whose transfer lock is still active. Null unless `include=registrant_change` is requested, and null even then when there is neither. */
             registrant_change?: components["schemas"]["DomainRegistrantChangeResponse"] | null;
             /**
              * Registry Account Id
@@ -18489,7 +18494,7 @@ export interface components {
          * StatusTagType
          * @enum {string}
          */
-        StatusTagType: "VERIFICATION_REQUIRED" | "CREATE_REQUESTED" | "INBOUND_TRANSFER_PENDING" | "OUTBOUND_TRANSFER_PENDING" | "EXTERNAL" | "IMPORT_REQUESTED" | "IMPORT_PENDING" | "DNSSEC_PENDING" | "TRANSFER_ON_RENEW_PENDING";
+        StatusTagType: "VERIFICATION_REQUIRED" | "CREATE_REQUESTED" | "INBOUND_TRANSFER_PENDING" | "OUTBOUND_TRANSFER_PENDING" | "EXTERNAL" | "IMPORT_REQUESTED" | "IMPORT_PENDING" | "DNSSEC_PENDING" | "TRANSFER_ON_RENEW_PENDING" | "REGISTRANT_CHANGE_LOCKED";
         /** @example 12.50 */
         StrictMoneyDecimal: string;
         /** Support */
