@@ -4,6 +4,19 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 16 October 2026
+
+- Documented **the change of registrant on [`.eu`](/tld-knowledge-base/cctlds/eu)
+  and [`.lv`](/tld-knowledge-base/cctlds/lv) as a regular domain update**. Both
+  registries apply a new registrant sent with
+  [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference})
+  immediately, without a pending state, so `contacts.registrant_change` in
+  [`GET /v1/tlds/{tld}`](/api-reference#tag/tld/GET/v1/tlds/{tld}) now returns
+  `update` instead of `trade` for both TLDs. The
+  [`.lv` TLD Knowledge Base](/tld-knowledge-base/cctlds/lv) page stated that the
+  registrant could not be changed with a domain update; it now describes how to
+  change the holder.
+
 ### 15 October 2026
 
 - Added **`changes` to object logs** on
