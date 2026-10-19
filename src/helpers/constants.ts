@@ -2519,6 +2519,7 @@ export const VANITY_NS_CHECK_SUMMARY_STATE_VALUES = [
 
 export const VERIFICATION_CLAIM_TYPE = {
   NAME: "name",
+  LEGAL_ENTITY: "legal_entity",
   ADDRESS: "address",
   EMAIL: "email",
   PHONE: "phone",
@@ -2526,6 +2527,7 @@ export const VERIFICATION_CLAIM_TYPE = {
 
 export const VERIFICATION_CLAIM_TYPE_VALUES = [
   'name',
+  'legal_entity',
   'address',
   'email',
   'phone',

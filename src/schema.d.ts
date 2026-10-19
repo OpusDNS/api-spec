@@ -19901,7 +19901,7 @@ export interface components {
          * VerificationClaimType
          * @enum {string}
          */
-        VerificationClaimType: "name" | "address" | "email" | "phone";
+        VerificationClaimType: "name" | "legal_entity" | "address" | "email" | "phone";
         /** VerificationDeadline */
         VerificationDeadline: {
             /**
