@@ -31296,12 +31296,11 @@ export interface operations {
                 };
                 content: {
                     /** @example {
-                     *       "code": "ERROR_BATCH_JOB_CREATION_FAILED",
-                     *       "command": "Additional error context.",
-                     *       "detail": "Failed to create job for command 'Additional error context.'",
+                     *       "code": "ERROR_JOB_SERVICE_UNAVAILABLE",
+                     *       "detail": "Additional error context.",
                      *       "status": 503,
-                     *       "title": "Batch Operation Error",
-                     *       "type": "batch-job-creation"
+                     *       "title": "Job Service Unavailable",
+                     *       "type": "job-service-unavailable"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };

@@ -25154,7 +25154,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-19-120640
+  version: 2026-10-19-225540
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -38950,12 +38950,11 @@ paths:
           content:
             application/problem+json:
               example:
-                code: ERROR_BATCH_JOB_CREATION_FAILED
-                command: Additional error context.
-                detail: Failed to create job for command 'Additional error context.'
+                code: ERROR_JOB_SERVICE_UNAVAILABLE
+                detail: Additional error context.
                 status: 503
-                title: Batch Operation Error
-                type: batch-job-creation
+                title: Job Service Unavailable
+                type: job-service-unavailable
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Service Unavailable
