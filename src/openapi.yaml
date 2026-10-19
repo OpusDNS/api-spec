@@ -25154,7 +25154,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-19-225540
+  version: 2026-10-19-230558
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -30358,6 +30358,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Unprocessable Content
+        '429':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ZONE_WRITE_BUSY
+                detail: Other DNS zone changes are still being applied, please retry
+                  after the Retry-After delay
+                status: 429
+                title: DNS Zone Busy
+                type: dns-zone-write-busy
+                zone_name: example.com.
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Too Many Requests
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -30544,6 +30558,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Unprocessable Content
+        '429':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ZONE_WRITE_BUSY
+                detail: Other DNS zone changes are still being applied, please retry
+                  after the Retry-After delay
+                status: 429
+                title: DNS Zone Busy
+                type: dns-zone-write-busy
+                zone_name: example.com.
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Too Many Requests
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -30700,6 +30728,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Unprocessable Content
+        '429':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ZONE_WRITE_BUSY
+                detail: Other DNS zone changes are still being applied, please retry
+                  after the Retry-After delay
+                status: 429
+                title: DNS Zone Busy
+                type: dns-zone-write-busy
+                zone_name: example.com.
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Too Many Requests
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []

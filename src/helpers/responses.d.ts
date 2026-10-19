@@ -946,15 +946,17 @@ export type PATCH_ContactsByContactIdLinkByContactAttributeSetId_Response_404 = 
 export type PATCH_ContactsByContactIdLinkByContactAttributeSetId_Response_409 = Problem;
 export type PATCH_ContactsByContactIdLinkByContactAttributeSetId_Response_422 = HTTPValidationError;
 
-export type PATCH_DnsByZoneNameRecords_Response = PATCH_DnsByZoneNameRecords_Response_400 | PATCH_DnsByZoneNameRecords_Response_422;
+export type PATCH_DnsByZoneNameRecords_Response = PATCH_DnsByZoneNameRecords_Response_400 | PATCH_DnsByZoneNameRecords_Response_422 | PATCH_DnsByZoneNameRecords_Response_429;
 
 export type PATCH_DnsByZoneNameRecords_Response_400 = Problem;
 export type PATCH_DnsByZoneNameRecords_Response_422 = Problem;
+export type PATCH_DnsByZoneNameRecords_Response_429 = Problem;
 
-export type PATCH_DnsByZoneNameRrsets_Response = PATCH_DnsByZoneNameRrsets_Response_400 | PATCH_DnsByZoneNameRrsets_Response_422;
+export type PATCH_DnsByZoneNameRrsets_Response = PATCH_DnsByZoneNameRrsets_Response_400 | PATCH_DnsByZoneNameRrsets_Response_422 | PATCH_DnsByZoneNameRrsets_Response_429;
 
 export type PATCH_DnsByZoneNameRrsets_Response_400 = Problem;
 export type PATCH_DnsByZoneNameRrsets_Response_422 = Problem;
+export type PATCH_DnsByZoneNameRrsets_Response_429 = Problem;
 
 export type PATCH_DnsByZoneNameVanitySet_Response = PATCH_DnsByZoneNameVanitySet_Response_200 | PATCH_DnsByZoneNameVanitySet_Response_400 | PATCH_DnsByZoneNameVanitySet_Response_422;
 
@@ -1547,10 +1549,11 @@ export type PUT_ContactsVerification_Response_401 = Problem;
 export type PUT_ContactsVerification_Response_404 = Problem;
 export type PUT_ContactsVerification_Response_422 = HTTPValidationError;
 
-export type PUT_DnsByZoneNameRrsets_Response = PUT_DnsByZoneNameRrsets_Response_400 | PUT_DnsByZoneNameRrsets_Response_422;
+export type PUT_DnsByZoneNameRrsets_Response = PUT_DnsByZoneNameRrsets_Response_400 | PUT_DnsByZoneNameRrsets_Response_422 | PUT_DnsByZoneNameRrsets_Response_429;
 
 export type PUT_DnsByZoneNameRrsets_Response_400 = Problem;
 export type PUT_DnsByZoneNameRrsets_Response_422 = Problem;
+export type PUT_DnsByZoneNameRrsets_Response_429 = Problem;
 
 export type PUT_DomainForwardsByHostnameByProtocol_Response = PUT_DomainForwardsByHostnameByProtocol_Response_200 | PUT_DomainForwardsByHostnameByProtocol_Response_401 | PUT_DomainForwardsByHostnameByProtocol_Response_403 | PUT_DomainForwardsByHostnameByProtocol_Response_404 | PUT_DomainForwardsByHostnameByProtocol_Response_422;
 

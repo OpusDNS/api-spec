@@ -24756,6 +24756,23 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_WRITE_BUSY",
+                     *       "detail": "Other DNS zone changes are still being applied, please retry after the Retry-After delay",
+                     *       "status": 429,
+                     *       "title": "DNS Zone Busy",
+                     *       "type": "dns-zone-write-busy",
+                     *       "zone_name": "example.com."
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
         };
     };
     update_zone_rrsets_v1_dns__zone_name__rrsets_put: {
@@ -24837,6 +24854,23 @@ export interface operations {
                      *       "status": 422,
                      *       "title": "DNS Error",
                      *       "type": "dns-zone-validation",
+                     *       "zone_name": "example.com."
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_WRITE_BUSY",
+                     *       "detail": "Other DNS zone changes are still being applied, please retry after the Retry-After delay",
+                     *       "status": 429,
+                     *       "title": "DNS Zone Busy",
+                     *       "type": "dns-zone-write-busy",
                      *       "zone_name": "example.com."
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
@@ -24926,6 +24960,23 @@ export interface operations {
                      *       "status": 422,
                      *       "title": "DNS Error",
                      *       "type": "dns-zone-validation",
+                     *       "zone_name": "example.com."
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_WRITE_BUSY",
+                     *       "detail": "Other DNS zone changes are still being applied, please retry after the Retry-After delay",
+                     *       "status": 429,
+                     *       "title": "DNS Zone Busy",
+                     *       "type": "dns-zone-write-busy",
                      *       "zone_name": "example.com."
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
