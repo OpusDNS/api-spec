@@ -2843,6 +2843,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/nrw.md",
                 "showInSidebar": true
               },
+              "/one": {
+                "type": "page",
+                "title": "🌐 .one",
+                "filepath": "content/tld-knowledge-base/gtlds/one.md",
+                "showInSidebar": true
+              },
               "/ong": {
                 "type": "page",
                 "title": "🌐 .ong",
