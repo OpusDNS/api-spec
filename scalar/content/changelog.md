@@ -4,6 +4,12 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 19 October 2026
+
+- Onboarded **[`.one`](/tld-knowledge-base/gtlds/one)** (One.com A/S), served
+  over the GoDaddy registry backend. Published its TLD Knowledge Base page. It
+  locks a domain for 60 days after a registration or a transfer.
+
 ### 16 October 2026
 
 - Documented **the change of registrant on [`.eu`](/tld-knowledge-base/cctlds/eu)
