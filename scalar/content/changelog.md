@@ -4,6 +4,23 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 20 October 2026
+
+- Changed **a change of registrant through
+  [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference})
+  on [`.lu`](/tld-knowledge-base/cctlds/lu), [`.ro`](/tld-knowledge-base/cctlds/ro),
+  [`.be`](/tld-knowledge-base/cctlds/be), [`.lt`](/tld-knowledge-base/cctlds/lt),
+  [`.pt`](/tld-knowledge-base/cctlds/pt), `.ee` and
+  [`.no`](/tld-knowledge-base/cctlds/no) to be refused** with a `422` problem
+  whose `code` is `ERROR_DOMAIN_REGISTRANT_CHANGE_NOT_SUPPORTED`. These
+  registries change the registrant only through their own process, which the
+  API does not support yet. On `.lu` and `.ro`, such a request used to return
+  `200` while the registrant stayed the same. On `.be` and `.ee`, it was sent
+  to the registry as a regular domain update. On `.pt`, `.lt` and `.no`, it
+  was already refused, with the `code` `ERROR_REGISTRY_POLICY`. A request that
+  repeats the current registrant is not affected, so an update that sends the
+  current contacts together with other changes still succeeds.
+
 ### 19 October 2026
 
 - Onboarded **[`.one`](/tld-knowledge-base/gtlds/one)** (One.com A/S), served
