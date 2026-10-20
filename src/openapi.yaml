@@ -21128,6 +21128,7 @@ components:
       - api_keys
       - registrar_credentials
       - tags
+      - custom_fields
       - audit_logs
       - vanity_ns
       - whitelabel_branding
@@ -25315,7 +25316,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-20-134407
+  version: 2026-10-20-201909
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
