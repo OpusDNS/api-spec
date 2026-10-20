@@ -1723,6 +1723,27 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/domains/{domain_reference}/verifications": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List the verification cases of a domain
+         * @description Lists the verification cases of a domain, active and closed, newest first: what ICANN or the registry asks to
+         *     verify about the registrant, by when, and how the case ended.
+         */
+        get: operations["list_domain_verifications_v1_domains__domain_reference__verifications_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/email-forwards": {
         parameters: {
             query?: never;
@@ -7075,6 +7096,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "list_domain_forwards_v1_domain_forwards_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_DomainVerificationResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_domain_verifications_v1_domains__domain_reference__verifications_get";
             /** @constant */
             status: "ok";
             /**
@@ -13046,7 +13091,7 @@ export interface components {
              * @description The date/time the entry was last updated on
              */
             updated_on?: Date;
-            /** @description Verification data for this domain, including pending claims and deadlines. */
+            /** @description What the domain's active verification cases still wait for: who asks, the claims and the earliest deadline of each type. Null when no case is active. */
             verification_required?: components["schemas"]["VerificationResponse"] | null;
         };
         /** DomainRestoreRequest */
@@ -14147,6 +14192,11 @@ export interface components {
              */
             type: "domain_update" | "domain_update_bulk";
         };
+        /**
+         * DomainVerificationCloseReason
+         * @enum {string}
+         */
+        DomainVerificationCloseReason: "EVIDENCE_VERIFIED" | "REGISTRY_CLEARED" | "REGISTRY_REJECTED" | "SUPERSEDED" | "DOMAIN_DELETED" | "TRANSFERRED_OUT" | "TRANSFER_ABORTED";
         /** DomainVerificationDetails */
         DomainVerificationDetails: {
             /**
@@ -14163,6 +14213,67 @@ export interface components {
             /** Verification Deadlines */
             verification_deadlines?: components["schemas"]["VerificationDeadline"][];
         };
+        /**
+         * DomainVerificationKind
+         * @enum {string}
+         */
+        DomainVerificationKind: "ICANN" | "REGISTRY";
+        /** DomainVerificationResponse */
+        DomainVerificationResponse: {
+            /**
+             * Claims
+             * @description What has to be verified about the registrant
+             */
+            claims: components["schemas"]["VerificationClaimType"][];
+            /** @description Why the case was closed, null while it is active */
+            close_reason: components["schemas"]["DomainVerificationCloseReason"] | null;
+            /**
+             * Closed On
+             * @description When the case was closed, null while it is active
+             */
+            closed_on: Date | null;
+            /**
+             * Contact Id
+             * Format: typeid
+             * @description The registrant contact the case is about
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
+             */
+            contact_id: TypeId<"contact">;
+            /**
+             * Deadlines
+             * @description The deadlines of the case
+             */
+            deadlines: components["schemas"]["VerificationDeadline"][];
+            /**
+             * Opened On
+             * Format: date-time
+             * @description When the case was opened
+             */
+            opened_on: Date;
+            /** @description Who asks for the verification: ICANN or the registry */
+            source: components["schemas"]["DomainVerificationKind"];
+            /** @description The status of the case */
+            status: components["schemas"]["DomainVerificationStatus"];
+            /** @description What opened the case */
+            trigger: components["schemas"]["DomainVerificationTrigger"];
+            /**
+             * Verification Id
+             * Format: typeid
+             * @description The ID of the verification case
+             * @example domain_verification_01h45ytscbebyvny4gc8cr8ma2
+             */
+            verification_id: TypeId<"domain_verification">;
+        };
+        /**
+         * DomainVerificationStatus
+         * @enum {string}
+         */
+        DomainVerificationStatus: "OPEN" | "SUBMITTED" | "OVERDUE" | "SATISFIED" | "FAILED" | "CANCELED";
+        /**
+         * DomainVerificationTrigger
+         * @enum {string}
+         */
+        DomainVerificationTrigger: "CREATE" | "REGISTRANT_CHANGE" | "TRANSFER" | "REGISTRY_REQUEST" | "BACKFILL";
         /** DomainWithdrawRequest */
         DomainWithdrawRequest: {
             /**
@@ -17142,6 +17253,12 @@ export interface components {
             /** Results */
             results: components["schemas"]["DomainResponse"][];
         };
+        /** Pagination[DomainVerificationResponse] */
+        Pagination_DomainVerificationResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["DomainVerificationResponse"][];
+        };
         /** Pagination[EmailForwardResponse] */
         Pagination_EmailForwardResponse_: {
             pagination: components["schemas"]["PaginationMetadata"];
@@ -19915,7 +20032,7 @@ export interface components {
          * VerificationDeadlineType
          * @enum {string}
          */
-        VerificationDeadlineType: "dedelegation" | "deletion";
+        VerificationDeadlineType: "verification" | "dedelegation" | "deletion";
         VerificationPolicy: components["schemas"]["EmailVerificationPolicy"] | components["schemas"]["IdentityVerificationPolicy"];
         /**
          * VerificationPolicyType
@@ -19943,6 +20060,11 @@ export interface components {
              * @description Verification deadlines
              */
             deadlines?: components["schemas"]["VerificationDeadline"][];
+            /**
+             * Sources
+             * @description Who asks for the verification: ICANN, the registry or both
+             */
+            sources: components["schemas"]["DomainVerificationKind"][];
         };
         /**
          * VerificationType
@@ -29454,6 +29576,64 @@ export interface operations {
                      *       "type": "domain-registry-policy"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    list_domain_verifications_v1_domains__domain_reference__verifications_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                domain_reference: TypeId<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_DomainVerificationResponse_"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_NOT_FOUND",
+                     *       "detail": "Domain not found",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

@@ -46,6 +46,10 @@ import type {
   DomainSortField,
   DomainStatisticsBreakdown,
   DomainStatus,
+  DomainVerificationCloseReason,
+  DomainVerificationKind,
+  DomainVerificationStatus,
+  DomainVerificationTrigger,
   EmailForwardLogSortField,
   EmailForwardLogStatus,
   EmailForwardSortField,
@@ -951,6 +955,70 @@ export const DOMAIN_STATUS_VALUES = [
   'failed',
   'invalid',
 ] as const satisfies ReadonlyArray<DomainStatus>;
+
+export const DOMAIN_VERIFICATION_CLOSE_REASON = {
+  EVIDENCE_VERIFIED: "EVIDENCE_VERIFIED",
+  REGISTRY_CLEARED: "REGISTRY_CLEARED",
+  REGISTRY_REJECTED: "REGISTRY_REJECTED",
+  SUPERSEDED: "SUPERSEDED",
+  DOMAIN_DELETED: "DOMAIN_DELETED",
+  TRANSFERRED_OUT: "TRANSFERRED_OUT",
+  TRANSFER_ABORTED: "TRANSFER_ABORTED",
+} as const satisfies Record<string, DomainVerificationCloseReason>;
+
+export const DOMAIN_VERIFICATION_CLOSE_REASON_VALUES = [
+  'EVIDENCE_VERIFIED',
+  'REGISTRY_CLEARED',
+  'REGISTRY_REJECTED',
+  'SUPERSEDED',
+  'DOMAIN_DELETED',
+  'TRANSFERRED_OUT',
+  'TRANSFER_ABORTED',
+] as const satisfies ReadonlyArray<DomainVerificationCloseReason>;
+
+export const DOMAIN_VERIFICATION_KIND = {
+  ICANN: "ICANN",
+  REGISTRY: "REGISTRY",
+} as const satisfies Record<string, DomainVerificationKind>;
+
+export const DOMAIN_VERIFICATION_KIND_VALUES = [
+  'ICANN',
+  'REGISTRY',
+] as const satisfies ReadonlyArray<DomainVerificationKind>;
+
+export const DOMAIN_VERIFICATION_STATUS = {
+  OPEN: "OPEN",
+  SUBMITTED: "SUBMITTED",
+  OVERDUE: "OVERDUE",
+  SATISFIED: "SATISFIED",
+  FAILED: "FAILED",
+  CANCELED: "CANCELED",
+} as const satisfies Record<string, DomainVerificationStatus>;
+
+export const DOMAIN_VERIFICATION_STATUS_VALUES = [
+  'OPEN',
+  'SUBMITTED',
+  'OVERDUE',
+  'SATISFIED',
+  'FAILED',
+  'CANCELED',
+] as const satisfies ReadonlyArray<DomainVerificationStatus>;
+
+export const DOMAIN_VERIFICATION_TRIGGER = {
+  CREATE: "CREATE",
+  REGISTRANT_CHANGE: "REGISTRANT_CHANGE",
+  TRANSFER: "TRANSFER",
+  REGISTRY_REQUEST: "REGISTRY_REQUEST",
+  BACKFILL: "BACKFILL",
+} as const satisfies Record<string, DomainVerificationTrigger>;
+
+export const DOMAIN_VERIFICATION_TRIGGER_VALUES = [
+  'CREATE',
+  'REGISTRANT_CHANGE',
+  'TRANSFER',
+  'REGISTRY_REQUEST',
+  'BACKFILL',
+] as const satisfies ReadonlyArray<DomainVerificationTrigger>;
 
 export const EMAIL_FORWARD_LOG_SORT_FIELD = {
   LOG_ID: "log_id",
@@ -2534,11 +2602,13 @@ export const VERIFICATION_CLAIM_TYPE_VALUES = [
 ] as const satisfies ReadonlyArray<VerificationClaimType>;
 
 export const VERIFICATION_DEADLINE_TYPE = {
+  VERIFICATION: "verification",
   DEDELEGATION: "dedelegation",
   DELETION: "deletion",
 } as const satisfies Record<string, VerificationDeadlineType>;
 
 export const VERIFICATION_DEADLINE_TYPE_VALUES = [
+  'verification',
   'dedelegation',
   'deletion',
 ] as const satisfies ReadonlyArray<VerificationDeadlineType>;

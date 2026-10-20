@@ -576,6 +576,12 @@ export type POST_DomainsByDomainReferenceTransferOutbound_Request = {
 export type POST_DomainsByDomainReferenceTransferOutbound_Request_Path = POST_DomainsByDomainReferenceTransferOutbound_Request['parameters']['path'];
 export type POST_DomainsByDomainReferenceTransferOutbound_Request_Body = POST_DomainsByDomainReferenceTransferOutbound_Request['requestBody'];
 
+export type GET_DomainsByDomainReferenceVerifications_Request = {
+  parameters: operations['list_domain_verifications_v1_domains__domain_reference__verifications_get']['parameters'];
+};
+export type GET_DomainsByDomainReferenceVerifications_Request_Query = GET_DomainsByDomainReferenceVerifications_Request['parameters']['query'];
+export type GET_DomainsByDomainReferenceVerifications_Request_Path = GET_DomainsByDomainReferenceVerifications_Request['parameters']['path'];
+
 export type GET_DomainsCheck_Request = {
   parameters: operations['epp_check_domain_v1_domains_check_get']['parameters'];
 };

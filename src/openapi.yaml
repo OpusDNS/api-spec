@@ -5174,6 +5174,37 @@ components:
       - properties:
           data:
             anyOf:
+            - $ref: '#/components/schemas/Pagination_DomainVerificationResponse_'
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
+            const: list_domain_verifications_v1_domains__domain_reference__verifications_get
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: list_domain_verifications_v1_domains__domain_reference__verifications_get
+        type: object
+      - properties:
+          data:
+            anyOf:
             - $ref: '#/components/schemas/Pagination_EmailForwardZone_'
             - type: string
           headers:
@@ -13736,8 +13767,9 @@ components:
           anyOf:
           - $ref: '#/components/schemas/VerificationResponse'
           - type: 'null'
-          description: Verification data for this domain, including pending claims
-            and deadlines.
+          description: 'What the domain''s active verification cases still wait for:
+            who asks, the claims and the earliest deadline of each type. Null when
+            no case is active.'
       required:
       - name
       - sld
@@ -15224,6 +15256,17 @@ components:
       - domain
       title: DomainUpdateWorkerPayload
       type: object
+    DomainVerificationCloseReason:
+      enum:
+      - EVIDENCE_VERIFIED
+      - REGISTRY_CLEARED
+      - REGISTRY_REJECTED
+      - SUPERSEDED
+      - DOMAIN_DELETED
+      - TRANSFERRED_OUT
+      - TRANSFER_ABORTED
+      title: DomainVerificationCloseReason
+      type: string
     DomainVerificationDetails:
       properties:
         detail_type:
@@ -15253,6 +15296,102 @@ components:
       - domain_id
       title: DomainVerificationDetails
       type: object
+    DomainVerificationKind:
+      enum:
+      - ICANN
+      - REGISTRY
+      title: DomainVerificationKind
+      type: string
+    DomainVerificationResponse:
+      properties:
+        claims:
+          description: What has to be verified about the registrant
+          items:
+            $ref: '#/components/schemas/VerificationClaimType'
+          title: Claims
+          type: array
+        close_reason:
+          anyOf:
+          - $ref: '#/components/schemas/DomainVerificationCloseReason'
+          - type: 'null'
+          description: Why the case was closed, null while it is active
+        closed_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: When the case was closed, null while it is active
+          title: Closed On
+        contact_id:
+          description: The registrant contact the case is about
+          examples:
+          - contact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Id
+          type: string
+          x-typeid-prefix: contact
+        deadlines:
+          description: The deadlines of the case
+          items:
+            $ref: '#/components/schemas/VerificationDeadline'
+          title: Deadlines
+          type: array
+        opened_on:
+          description: When the case was opened
+          format: date-time
+          title: Opened On
+          type: string
+        source:
+          $ref: '#/components/schemas/DomainVerificationKind'
+          description: 'Who asks for the verification: ICANN or the registry'
+        status:
+          $ref: '#/components/schemas/DomainVerificationStatus'
+          description: The status of the case
+        trigger:
+          $ref: '#/components/schemas/DomainVerificationTrigger'
+          description: What opened the case
+        verification_id:
+          description: The ID of the verification case
+          examples:
+          - domain_verification_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^domain_verification_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Verification Id
+          type: string
+          x-typeid-prefix: domain_verification
+      required:
+      - verification_id
+      - source
+      - trigger
+      - status
+      - claims
+      - deadlines
+      - contact_id
+      - opened_on
+      - closed_on
+      - close_reason
+      title: DomainVerificationResponse
+      type: object
+    DomainVerificationStatus:
+      enum:
+      - OPEN
+      - SUBMITTED
+      - OVERDUE
+      - SATISFIED
+      - FAILED
+      - CANCELED
+      title: DomainVerificationStatus
+      type: string
+    DomainVerificationTrigger:
+      enum:
+      - CREATE
+      - REGISTRANT_CHANGE
+      - TRANSFER
+      - REGISTRY_REQUEST
+      - BACKFILL
+      title: DomainVerificationTrigger
+      type: string
     DomainWithdrawRequest:
       properties:
         zone_delete:
@@ -19676,6 +19815,20 @@ components:
       - pagination
       title: Pagination[DomainResponse]
       type: object
+    Pagination_DomainVerificationResponse_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/DomainVerificationResponse'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: Pagination[DomainVerificationResponse]
+      type: object
     Pagination_EmailForwardResponse_:
       properties:
         pagination:
@@ -23981,6 +24134,7 @@ components:
       type: object
     VerificationDeadlineType:
       enum:
+      - verification
       - dedelegation
       - deletion
       title: VerificationDeadlineType
@@ -24026,7 +24180,14 @@ components:
             $ref: '#/components/schemas/VerificationDeadline'
           title: Deadlines
           type: array
+        sources:
+          description: 'Who asks for the verification: ICANN, the registry or both'
+          items:
+            $ref: '#/components/schemas/DomainVerificationKind'
+          title: Sources
+          type: array
       required:
+      - sources
       - claims
       title: VerificationResponse
       type: object
@@ -25154,7 +25315,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-20-021257
+  version: 2026-10-20-134407
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -36547,6 +36708,79 @@ paths:
       - domain
       x-required-permissions:
       - domains:manage
+  /v1/domains/{domain_reference}/verifications:
+    get:
+      description: 'Lists the verification cases of a domain, active and closed, newest
+        first: what ICANN or the registry asks to
+
+        verify about the registrant, by when, and how the case ended.'
+      operationId: list_domain_verifications_v1_domains__domain_reference__verifications_get
+      parameters:
+      - in: path
+        name: domain_reference
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - domain_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: domain
+          - type: string
+          title: Domain Reference
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_DomainVerificationResponse_'
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_NOT_FOUND
+                detail: Domain not found
+                domain_name: Additional error context.
+                status: 404
+                title: Domain Management Error
+                type: domain-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List the verification cases of a domain
+      tags:
+      - domain
+      x-required-permissions:
+      - domains:read
   /v1/email-forwards:
     get:
       description: Retrieves a paginated list of all email forwards for the organization.

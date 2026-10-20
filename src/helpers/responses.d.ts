@@ -84,6 +84,7 @@ import type {
   Pagination_Domain,
   Pagination_DomainForward,
   Pagination_DomainForwardZone,
+  Pagination_DomainVerification,
   Pagination_EmailForward,
   Pagination_EmailForwardZone,
   Pagination_Event,
@@ -575,6 +576,12 @@ export type GET_DomainsByDomainReferenceDnssec_Response = GET_DomainsByDomainRef
 export type GET_DomainsByDomainReferenceDnssec_Response_200 = DomainDnssecData[];
 export type GET_DomainsByDomainReferenceDnssec_Response_404 = Problem;
 export type GET_DomainsByDomainReferenceDnssec_Response_422 = HTTPValidationError;
+
+export type GET_DomainsByDomainReferenceVerifications_Response = GET_DomainsByDomainReferenceVerifications_Response_200 | GET_DomainsByDomainReferenceVerifications_Response_404 | GET_DomainsByDomainReferenceVerifications_Response_422;
+
+export type GET_DomainsByDomainReferenceVerifications_Response_200 = Pagination_DomainVerification;
+export type GET_DomainsByDomainReferenceVerifications_Response_404 = Problem;
+export type GET_DomainsByDomainReferenceVerifications_Response_422 = HTTPValidationError;
 
 export type GET_DomainsCheck_Response = GET_DomainsCheck_Response_200 | GET_DomainsCheck_Response_422;
 

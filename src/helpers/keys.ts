@@ -235,6 +235,7 @@ import type {
   DomainUpdatePayloadData,
   DomainUpdateWorkerPayload,
   DomainVerificationDetails,
+  DomainVerification,
   DomainWithdrawRequest,
   DomainWithdraw,
   DomainsContext,
@@ -3416,6 +3417,30 @@ export const KEYS_DOMAIN_VERIFICATION_DETAILS = [
   KEY_DOMAIN_VERIFICATION_DETAILS_VERIFICATION_DEADLINES,
 ] as const satisfies (keyof DomainVerificationDetails)[];
 
+export const KEY_DOMAIN_VERIFICATION_CLAIMS = 'claims' satisfies keyof DomainVerification;
+export const KEY_DOMAIN_VERIFICATION_CLOSE_REASON = 'close_reason' satisfies keyof DomainVerification;
+export const KEY_DOMAIN_VERIFICATION_CLOSED_ON = 'closed_on' satisfies keyof DomainVerification;
+export const KEY_DOMAIN_VERIFICATION_CONTACT_ID = 'contact_id' satisfies keyof DomainVerification;
+export const KEY_DOMAIN_VERIFICATION_DEADLINES = 'deadlines' satisfies keyof DomainVerification;
+export const KEY_DOMAIN_VERIFICATION_OPENED_ON = 'opened_on' satisfies keyof DomainVerification;
+export const KEY_DOMAIN_VERIFICATION_SOURCE = 'source' satisfies keyof DomainVerification;
+export const KEY_DOMAIN_VERIFICATION_STATUS = 'status' satisfies keyof DomainVerification;
+export const KEY_DOMAIN_VERIFICATION_TRIGGER = 'trigger' satisfies keyof DomainVerification;
+export const KEY_DOMAIN_VERIFICATION_VERIFICATION_ID = 'verification_id' satisfies keyof DomainVerification;
+
+export const KEYS_DOMAIN_VERIFICATION = [
+  KEY_DOMAIN_VERIFICATION_CLAIMS,
+  KEY_DOMAIN_VERIFICATION_CLOSE_REASON,
+  KEY_DOMAIN_VERIFICATION_CLOSED_ON,
+  KEY_DOMAIN_VERIFICATION_CONTACT_ID,
+  KEY_DOMAIN_VERIFICATION_DEADLINES,
+  KEY_DOMAIN_VERIFICATION_OPENED_ON,
+  KEY_DOMAIN_VERIFICATION_SOURCE,
+  KEY_DOMAIN_VERIFICATION_STATUS,
+  KEY_DOMAIN_VERIFICATION_TRIGGER,
+  KEY_DOMAIN_VERIFICATION_VERIFICATION_ID,
+] as const satisfies (keyof DomainVerification)[];
+
 export const KEY_DOMAIN_WITHDRAW_REQUEST_ZONE_DELETE = 'zone_delete' satisfies keyof DomainWithdrawRequest;
 
 export const KEYS_DOMAIN_WITHDRAW_REQUEST = [
@@ -6476,10 +6501,12 @@ export const KEYS_VERIFICATION_REGISTRANT_DETAILS = [
 
 export const KEY_VERIFICATION_CLAIMS = 'claims' satisfies keyof Verification;
 export const KEY_VERIFICATION_DEADLINES = 'deadlines' satisfies keyof Verification;
+export const KEY_VERIFICATION_SOURCES = 'sources' satisfies keyof Verification;
 
 export const KEYS_VERIFICATION = [
   KEY_VERIFICATION_CLAIMS,
   KEY_VERIFICATION_DEADLINES,
+  KEY_VERIFICATION_SOURCES,
 ] as const satisfies (keyof Verification)[];
 
 export const KEY_VISITS_BY_KEY_BUCKET_KEY = 'key' satisfies keyof VisitsByKeyBucket;

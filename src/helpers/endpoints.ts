@@ -82,6 +82,7 @@ export const DOMAINS_BY_DOMAIN_REFERENCE_RENEW_ENDPOINT = '/v1/domains/{domain_r
 export const DOMAINS_BY_DOMAIN_REFERENCE_RESTORE_ENDPOINT = '/v1/domains/{domain_reference}/restore';
 export const DOMAINS_BY_DOMAIN_REFERENCE_TRANSFER_ENDPOINT = '/v1/domains/{domain_reference}/transfer';
 export const DOMAINS_BY_DOMAIN_REFERENCE_TRANSFER_OUTBOUND_ENDPOINT = '/v1/domains/{domain_reference}/transfer/outbound';
+export const DOMAINS_BY_DOMAIN_REFERENCE_VERIFICATIONS_ENDPOINT = '/v1/domains/{domain_reference}/verifications';
 export const EMAIL_FORWARDS_ENDPOINT = '/v1/email-forwards';
 export const EMAIL_FORWARDS_BY_EMAIL_FORWARD_ID_ENDPOINT = '/v1/email-forwards/{email_forward_id}';
 export const EMAIL_FORWARDS_BY_EMAIL_FORWARD_ID_ALIASES_ENDPOINT = '/v1/email-forwards/{email_forward_id}/aliases';
@@ -245,6 +246,7 @@ export type Endpoint =
   | typeof DOMAINS_BY_DOMAIN_REFERENCE_RESTORE_ENDPOINT
   | typeof DOMAINS_BY_DOMAIN_REFERENCE_TRANSFER_ENDPOINT
   | typeof DOMAINS_BY_DOMAIN_REFERENCE_TRANSFER_OUTBOUND_ENDPOINT
+  | typeof DOMAINS_BY_DOMAIN_REFERENCE_VERIFICATIONS_ENDPOINT
   | typeof EMAIL_FORWARDS_ENDPOINT
   | typeof EMAIL_FORWARDS_BY_EMAIL_FORWARD_ID_ENDPOINT
   | typeof EMAIL_FORWARDS_BY_EMAIL_FORWARD_ID_ALIASES_ENDPOINT
