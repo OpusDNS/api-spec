@@ -237,7 +237,7 @@ curl --get "$OPUSDNS_API_BASE/v1/events" \
   --data-urlencode "type=REGISTRATION"
 ```
 
-See the [Events overview](/products/events/overview) for details on event types and
+See the [Events overview](/automation/events/overview) for details on event types and
 acknowledgment.
 
 ## Common scenarios

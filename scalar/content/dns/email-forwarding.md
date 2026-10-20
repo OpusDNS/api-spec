@@ -141,7 +141,7 @@ forwarding logs.
 
 ## Related API Reference
 
-- [`POST /v1/email-forwards`](/api-reference#tag/email_forward/POST/v1/email-forwards)
-- [`GET /v1/email-forwards`](/api-reference#tag/email_forward/GET/v1/email-forwards)
-- [`GET /v1/email-forwards/{email_forward_id}`](/api-reference#tag/email_forward/GET/v1/email-forwards/{email_forward_id})
-- [`GET /v1/email-forwards/{email_forward_id}/metrics`](/api-reference#tag/email_forward/GET/v1/email-forwards/{email_forward_id}/metrics)
+- [`POST /v1/email-forwards`](/api-reference#tag/email-forward/POST/v1/email-forwards)
+- [`GET /v1/email-forwards`](/api-reference#tag/email-forward/GET/v1/email-forwards)
+- [`GET /v1/email-forwards/{email_forward_id}`](/api-reference#tag/email-forward/GET/v1/email-forwards/{email_forward_id})
+- [`GET /v1/email-forwards/{email_forward_id}/metrics`](/api-reference#tag/email-forward/GET/v1/email-forwards/{email_forward_id}/metrics)

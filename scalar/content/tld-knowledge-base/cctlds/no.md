@@ -151,7 +151,7 @@ Technical contacts may have foreign addresses.
 
 ## Applicant declaration
 
-- The declaration is signed on a hosted page linked from the registrant email - resellers can also submit an already-signed declaration through [`POST /v1/domains/tld-specific/no/{domain}/applicant-declaration`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/no/{domain_reference}/applicant-declaration).
+- The declaration is signed on a hosted page linked from the registrant email - resellers can also submit an already-signed declaration through [`POST /v1/domains/tld-specific/no/{domain}/applicant-declaration`](/api-reference#tag/domain-tld-specific/POST/v1/domains/tld-specific/no/{domain_reference}/applicant-declaration).
 - For **person** registrants the declaration must be signed by the registrant themselves: 
   - the signed name must match the registrant contact name;
   - it gets compared case-insensitively, accepting transliterated Norwegian letters; 

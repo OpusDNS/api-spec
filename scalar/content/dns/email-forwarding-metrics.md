@@ -152,6 +152,6 @@ This is useful when one alias has delivery issues while others work fine.
 
 ## Related API Reference
 
-- [`GET /v1/email-forwards/{email_forward_id}/metrics`](/api-reference#tag/email_forward/GET/v1/email-forwards/{email_forward_id}/metrics)
+- [`GET /v1/email-forwards/{email_forward_id}/metrics`](/api-reference#tag/email-forward/GET/v1/email-forwards/{email_forward_id}/metrics)
 - [`GET /v1/archive/email-forward-logs/{email_forward_id}`](/api-reference#tag/archive/GET/v1/archive/email-forward-logs/{email_forward_id})
 - [`GET /v1/archive/email-forward-logs/aliases/{email_forward_alias_id}`](/api-reference#tag/archive/GET/v1/archive/email-forward-logs/aliases/{email_forward_alias_id})

@@ -163,8 +163,8 @@ most traffic, or which specific redirect URLs are most popular.
 
 ## Related API Reference
 
-- [`GET /v1/domain-forwards/metrics`](/api-reference#tag/domain_forward/GET/v1/domain-forwards/metrics)
-- [`GET /v1/domain-forwards/metrics/time-series`](/api-reference#tag/domain_forward/GET/v1/domain-forwards/metrics/time-series)
-- [`GET /v1/domain-forwards/metrics/browser`](/api-reference#tag/domain_forward/GET/v1/domain-forwards/metrics/browser)
-- [`GET /v1/domain-forwards/metrics/geo`](/api-reference#tag/domain_forward/GET/v1/domain-forwards/metrics/geo)
-- [`GET /v1/domain-forwards/metrics/visits-by-key`](/api-reference#tag/domain_forward/GET/v1/domain-forwards/metrics/visits-by-key)
+- [`GET /v1/domain-forwards/metrics`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/metrics)
+- [`GET /v1/domain-forwards/metrics/time-series`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/metrics/time-series)
+- [`GET /v1/domain-forwards/metrics/browser`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/metrics/browser)
+- [`GET /v1/domain-forwards/metrics/geo`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/metrics/geo)
+- [`GET /v1/domain-forwards/metrics/visits-by-key`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/metrics/visits-by-key)

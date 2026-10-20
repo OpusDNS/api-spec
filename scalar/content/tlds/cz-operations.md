@@ -67,4 +67,4 @@ Two consequences worth planning around:
 
 ## Related API Reference
 
-- [`POST /v1/domains/tld-specific/cz/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/cz/{domain_reference}/auth_code/request)
+- [`POST /v1/domains/tld-specific/cz/{domain_reference}/auth_code/request`](/api-reference#tag/domain-tld-specific/POST/v1/domains/tld-specific/cz/{domain_reference}/auth_code/request)

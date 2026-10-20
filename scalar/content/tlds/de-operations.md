@@ -54,4 +54,4 @@ account as soon as the transfer request is processed.
 
 ## Related API Reference
 
-- [`POST /v1/domains/tld-specific/de/{domain_reference}/transit`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/de/{domain_reference}/transit)
+- [`POST /v1/domains/tld-specific/de/{domain_reference}/transit`](/api-reference#tag/domain-tld-specific/POST/v1/domains/tld-specific/de/{domain_reference}/transit)
