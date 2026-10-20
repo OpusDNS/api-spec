@@ -100,7 +100,7 @@
 | --- | --- |
 | Dispute Resolution Available | ✅ Yes |
 | Procedure | UDRP |
-| Reference | [nic.sc/en/forms/Uniform-Domain-Name-Dispute-Resolution-Policy.pdf](https://nic.sc/en/forms/Uniform-Domain-Name-Dispute-Resolution-Policy.pdf) |
+| Reference | [www.icann.org/resources/pages/help/dndr/udrp-en](https://www.icann.org/resources/pages/help/dndr/udrp-en) |
 | UDRP Support | ✅ Yes |
 | URS Support | ❌ No |
 

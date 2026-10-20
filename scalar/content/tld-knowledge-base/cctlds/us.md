@@ -100,7 +100,7 @@
 | --- | --- |
 | Dispute Resolution Available | ✅ Yes |
 | Procedure | usDRP |
-| Reference | [www.about.us/policies/ustld-dispute-resolution-policy](https://www.about.us/policies/ustld-dispute-resolution-policy/) |
+| Reference | [www.about.us/documents/policies/usTLD_Dispute_Resolution_Policy_(usDRP).pdf](https://www.about.us/documents/policies/usTLD_Dispute_Resolution_Policy_(usDRP).pdf) |
 | UDRP Support | ❌ No |
 | URS Support | ❌ No |
 

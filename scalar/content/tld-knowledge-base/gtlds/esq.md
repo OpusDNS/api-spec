@@ -94,7 +94,7 @@
 | Property | Value |
 | --- | --- |
 | WHOIS Server | `whois.registry.google` |
-| RDAP Server | [rdap.registry.google](https://rdap.registry.google/) |
+| RDAP Server | [pubapi.registry.google/rdap](https://pubapi.registry.google/rdap/) |
 
 ## Dispute Resolution
 

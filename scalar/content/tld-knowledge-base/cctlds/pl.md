@@ -100,7 +100,7 @@
 | --- | --- |
 | Dispute Resolution Available | ✅ Yes |
 | Procedure | .pl domain name dispute resolution (Polish arbitration courts) |
-| Reference | [www.dns.pl/en/regulations](https://www.dns.pl/en/regulations) |
+| Reference | [www.dns.pl/en/pl_domain_name_regulations](https://www.dns.pl/en/pl_domain_name_regulations) |
 | UDRP Support | ❌ No |
 | URS Support | ❌ No |
 

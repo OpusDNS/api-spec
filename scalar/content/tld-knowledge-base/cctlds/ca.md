@@ -92,7 +92,7 @@
 | Property | Value |
 | --- | --- |
 | WHOIS Server | `whois.cira.ca` |
-| RDAP Server | [rdap.ca.fury.ca](https://rdap.ca.fury.ca/) |
+| RDAP Server | [rdap.ca.fury.ca/rdap](https://rdap.ca.fury.ca/rdap/) |
 
 ## Dispute Resolution
 

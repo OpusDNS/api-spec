@@ -92,7 +92,6 @@
 | Property | Value |
 | --- | --- |
 | WHOIS Server | `whois.domreg.lt` |
-| RDAP Server | [rdap.domreg.lt](https://rdap.domreg.lt) |
 
 ## Dispute Resolution
 
