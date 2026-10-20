@@ -25316,7 +25316,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-20-201909
+  version: 2026-10-20-205230
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -35956,9 +35956,17 @@ paths:
         '422':
           content:
             application/problem+json:
+              example:
+                code: ERROR_DOMAIN_REGISTRANT_CHANGE_NOT_SUPPORTED
+                detail: Registrant change is not supported for .lu domains
+                domain_name: example.lu
+                status: 422
+                title: Domain Management Error
+                tld: lu
+                type: domain-registrant-change-not-supported
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
