@@ -4,6 +4,26 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 20 October 2026
+
+- Added **zone statistics**:
+  [`GET /v1/dns/{zone_name}/statistics`](/api-reference#tag/dns/GET/v1/dns/{zone_name}/statistics)
+  returns how many DNS queries the zone answered, and how many of them were
+  answered with NXDOMAIN, per day, week or month (`granularity`) between
+  `start_date` and `end_date` (inclusive, UTC). It takes the same parameters as
+  [`GET /v1/domains/statistics`](/api-reference#tag/domain/GET/v1/domains/statistics).
+  A window may span up to 366 days per day or week and up to 120 months per
+  month. You need permission to view the zone.
+
+  Every bucket the window touches is present, so the series can be charted as
+  is; a bucket marked `partial` covers only part of its span: it reaches
+  outside the window, part of it lies outside the collected data, or the zone
+  was created during it. Statistics are collected once a day, so the newest day
+  with data is usually yesterday. `data_available_from` and `data_available_to`
+  give the days the statistics cover for the zone; they never start before the
+  zone was created, so a zone that existed before under another owner does not
+  show that owner's queries.
+
 ### 19 October 2026
 
 - Onboarded **[`.one`](/tld-knowledge-base/gtlds/one)** (One.com A/S), served
