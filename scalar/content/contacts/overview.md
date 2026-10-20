@@ -145,7 +145,7 @@ organization's admin users.
 - [Initialize verification](/products/contacts/initialize-verification) —
   proactively register and verify contacts before a registry requires it
 - [Events](/automation/events/event-object) — monitor verification events
-- [Tags](/products/tags/overview) — filter domains and contacts by status tags
+- [Tags](/automation/tags/status-tags) — filter domains and contacts by status tags
 
 ## Related API reference
 

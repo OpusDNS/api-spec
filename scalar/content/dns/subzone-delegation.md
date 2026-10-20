@@ -80,8 +80,8 @@ record type.
 
 - **Records below a delegation point stop resolving publicly.** Once
   `internal.example.com` is delegated, any records the parent zone holds at or
-  below that name — including [domain forwards](/products/dns/domain-forwarding),
-  [email forwards](/products/dns/email-forwarding), and parking — are no longer
+  below that name — including [domain forwards](/products/domain-forwarding/overview),
+  [email forwards](/products/email-forwarding/overview), and parking — are no longer
   served; the delegated nameservers are authoritative for that subtree. The
   records remain stored in the zone and resolve again if the delegation is
   removed.

@@ -90,5 +90,5 @@ Base for the format and its validation rules.
 
 ## Related API Reference
 
-- [`POST /v1/domains/tld-specific/se/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/se/{domain_reference}/auth_code/request)
-- [`POST /v1/domains/tld-specific/nu/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/nu/{domain_reference}/auth_code/request)
+- [`POST /v1/domains/tld-specific/se/{domain_reference}/auth_code/request`](/api-reference#tag/domain-tld-specific/POST/v1/domains/tld-specific/se/{domain_reference}/auth_code/request)
+- [`POST /v1/domains/tld-specific/nu/{domain_reference}/auth_code/request`](/api-reference#tag/domain-tld-specific/POST/v1/domains/tld-specific/nu/{domain_reference}/auth_code/request)

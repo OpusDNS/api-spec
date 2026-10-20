@@ -42,4 +42,4 @@ action is taken, the transfer is auto-approved.
 
 ## Related API Reference
 
-- [`POST /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/eu/{domain_reference}/auth_code/request)
+- [`POST /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request`](/api-reference#tag/domain-tld-specific/POST/v1/domains/tld-specific/eu/{domain_reference}/auth_code/request)

@@ -222,7 +222,7 @@ on monitoring traffic by browser, platform, geography, referrer, and more.
 
 ## Related API Reference
 
-- [`POST /v1/domain-forwards`](/api-reference#tag/domain_forward/POST/v1/domain-forwards)
-- [`GET /v1/domain-forwards`](/api-reference#tag/domain_forward/GET/v1/domain-forwards)
-- [`PATCH /v1/domain-forwards`](/api-reference#tag/domain_forward/PATCH/v1/domain-forwards)
-- [`GET /v1/domain-forwards/metrics`](/api-reference#tag/domain_forward/GET/v1/domain-forwards/metrics)
+- [`POST /v1/domain-forwards`](/api-reference#tag/domain-forward/POST/v1/domain-forwards)
+- [`GET /v1/domain-forwards`](/api-reference#tag/domain-forward/GET/v1/domain-forwards)
+- [`PATCH /v1/domain-forwards`](/api-reference#tag/domain-forward/PATCH/v1/domain-forwards)
+- [`GET /v1/domain-forwards/metrics`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/metrics)

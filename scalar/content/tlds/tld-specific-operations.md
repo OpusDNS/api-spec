@@ -158,10 +158,10 @@ Transfer-out tag releases for <code>.uk</code> domains are not currently exposed
 
 ## Related API Reference
 
-- [`POST /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/eu/{domain_reference}/auth_code/request)
-- [`POST /v1/domains/tld-specific/be/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/be/{domain_reference}/auth_code/request)
-- [`POST /v1/domains/tld-specific/cz/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/cz/{domain_reference}/auth_code/request)
-- [`POST /v1/domains/tld-specific/lt/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/lt/{domain_reference}/auth_code/request)
-- [`POST /v1/domains/tld-specific/de/{domain_reference}/transit`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/de/{domain_reference}/transit)
-- [`POST /v1/domains/tld-specific/at/{domain_reference}/withdraw`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/at/{domain_reference}/withdraw)
+- [`POST /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request`](/api-reference#tag/domain-tld-specific/POST/v1/domains/tld-specific/eu/{domain_reference}/auth_code/request)
+- [`POST /v1/domains/tld-specific/be/{domain_reference}/auth_code/request`](/api-reference#tag/domain-tld-specific/POST/v1/domains/tld-specific/be/{domain_reference}/auth_code/request)
+- [`POST /v1/domains/tld-specific/cz/{domain_reference}/auth_code/request`](/api-reference#tag/domain-tld-specific/POST/v1/domains/tld-specific/cz/{domain_reference}/auth_code/request)
+- [`POST /v1/domains/tld-specific/lt/{domain_reference}/auth_code/request`](/api-reference#tag/domain-tld-specific/POST/v1/domains/tld-specific/lt/{domain_reference}/auth_code/request)
+- [`POST /v1/domains/tld-specific/de/{domain_reference}/transit`](/api-reference#tag/domain-tld-specific/POST/v1/domains/tld-specific/de/{domain_reference}/transit)
+- [`POST /v1/domains/tld-specific/at/{domain_reference}/withdraw`](/api-reference#tag/domain-tld-specific/POST/v1/domains/tld-specific/at/{domain_reference}/withdraw)
 - [`POST /v1/domains/transfer`](/api-reference#tag/domain/POST/v1/domains/transfer)

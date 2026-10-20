@@ -169,11 +169,11 @@ Track notable updates to the OpusDNS API and developer documentation here.
 - Added **the product waitlist**. Some products are not generally available yet,
   and reach their first customers through a waitlist rather than a switch you
   can flip yourself.
-  [`GET /v1/organizations/product-waitlist`](/api-reference#tag/product_waitlist/GET/v1/organizations/product-waitlist)
+  [`GET /v1/organizations/product-waitlist`](/api-reference#tag/product-waitlist/GET/v1/organizations/product-waitlist)
   lists the waitlisted products your organization can see and where you stand
   on each: `can_apply` when you may apply, then `pending` once you have,
   `granted` once OpusDNS has switched the product on for you, or `rejected`.
-  [`POST /v1/organizations/product-waitlist/{product}/apply`](/api-reference#tag/product_waitlist/POST/v1/organizations/product-waitlist/{product}/apply)
+  [`POST /v1/organizations/product-waitlist/{product}/apply`](/api-reference#tag/product-waitlist/POST/v1/organizations/product-waitlist/{product}/apply)
   applies, optionally with a `note` of up to 1000 characters saying what you
   would use the product for - the one thing that helps most when we work through
   the queue.
@@ -536,7 +536,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
   Internetstiftelsen (The Swedish Internet Foundation). Published their TLD
   Knowledge Base pages. For both TLDs the registry owns the auth code — request a
   fresh one with
-  [`POST /v1/domains/tld-specific/se/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/se/{domain_reference}/auth_code/request)
+  [`POST /v1/domains/tld-specific/se/{domain_reference}/auth_code/request`](/api-reference#tag/domain-tld-specific/POST/v1/domains/tld-specific/se/{domain_reference}/auth_code/request)
   (or the `.nu` equivalent), which invalidates the previous code — and transfers
   complete immediately, with no pending window.
 
@@ -558,7 +558,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
   all. It is accepted wherever `match_any` and `match_all` already were —
   `tag_mode` on `GET /v1/domains`, `GET /v1/contacts` and `GET /v1/dns`, and
   `status_tag_mode` on `GET /v1/domains` and `GET /v1/contacts`. See
-  [User tags](/automation/tags/user-tags#filter-mode) and
+  [User tags](/automation/tags/user-tags#filter-domains-by-user-tags) and
   [Status tags](/automation/tags/status-tags#filter-mode).
 
 - Added **status tag counts to the domain summary**: `GET /v1/domains/summary`

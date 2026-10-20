@@ -165,7 +165,7 @@ curl --get "$OPUSDNS_API_BASE/v1/events" \
 ```
 
 Events will notify you when the transfer succeeds or fails. See the
-[Events overview](/products/events/overview) for details.
+[Events overview](/automation/events/overview) for details.
 
 ## 5. Cancel if needed
 
@@ -256,7 +256,7 @@ Not all TLDs follow the standard auth-code-based transfer process:
 
 - [Manage a domain](/products/domains/manage) — update settings after transfer
 - [Managing DNSSEC](/products/domains/dnssec) — configure DNSSEC on your transferred domain
-- [Events overview](/products/events/overview) — track transfer events
+- [Events overview](/automation/events/overview) — track transfer events
 
 ## Related API Reference
 

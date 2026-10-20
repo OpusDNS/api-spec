@@ -26,7 +26,7 @@ curl "$OPUSDNS_API_BASE/v1/events?page=1&page_size=25" \
 | --- | --- |
 | `object_type` | Filter by resource type: `DOMAIN`, `CONTACT`, `HOST` |
 | `object_id` | Filter by specific resource ID |
-| `type` | Filter by event type (see [the event object](/products/events/event-object)) |
+| `type` | Filter by event type (see [the event object](/automation/events/event-object)) |
 | `subtype` | Filter by subtype: `NOTIFICATION`, `SUCCESS`, `FAILURE`, `CANCELED` |
 | `acknowledged` | Filter by acknowledgment status: `true` or `false` |
 | `sort_by` | Sort field |

@@ -41,4 +41,4 @@ curl "$OPUSDNS_API_BASE/v1/domains/tld-specific/at/example.at/withdraw" \
 
 ## Related API Reference
 
-- [`POST /v1/domains/tld-specific/at/{domain_reference}/withdraw`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/at/{domain_reference}/withdraw)
+- [`POST /v1/domains/tld-specific/at/{domain_reference}/withdraw`](/api-reference#tag/domain-tld-specific/POST/v1/domains/tld-specific/at/{domain_reference}/withdraw)

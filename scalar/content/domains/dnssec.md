@@ -120,7 +120,7 @@ completes, so there may be a short delay before the registry records reflect
 the final state. It is skipped for TLDs that do not support DNSSEC.
 
 If reconciliation fails, a domain event with type `MODIFICATION` and subtype
-`FAILURE` is created — see the [Events overview](/products/events/overview).
+`FAILURE` is created — see the [Events overview](/automation/events/overview).
 You can always inspect the current registry records with
 `GET /v1/domains/{domain_reference}/dnssec` and correct them manually.
 
