@@ -21612,7 +21612,7 @@ components:
       - nominet_dragon
       - red_es
       - internet_nz
-      - zacr
+      - zarc
       - traficom
       - ie_registry
       - nic_im
@@ -25154,7 +25154,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-19-230558
+  version: 2026-10-20-021257
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
