@@ -10,7 +10,7 @@ differs is the config file and the key it nests the server under.
 | Claude desktop and web | Yes | Yes | No | In the client (Path A) |
 | Cursor | Yes | Yes | No | Relayed by the agent (Path B) |
 | VS Code | Yes | Yes | No | Relayed by the agent (Path B) |
-| ChatGPT custom connectors | Yes | Yes | No | Relayed by the agent (Path B) |
+| ChatGPT custom MCP servers | Yes | Yes | No | Relayed by the agent (Path B) |
 | OpenAI Responses API `mcp` tool | Yes | **No** — needs a token you already hold | No | Relayed by the agent (Path B) |
 | stdio-only clients | No | Through a bridge | Yes | Relayed by the agent (Path B) |
 
@@ -20,9 +20,9 @@ if it negotiates protocol revision `2026-07-28` **and** declares elicitation;
 everything else falls back to Path B, which works everywhere. See
 [Approvals and confirmations](/mcp-server/approvals).
 
-ChatGPT adds a second gate the other clients do not have: signing in is one
-thing, *seeing* the tools is another, and the latter needs developer mode, which
-is not offered on the free plan. See [ChatGPT](#chatgpt).
+ChatGPT adds gates the other clients do not have: the plan decides whether the
+tools can write at all, and in a workspace only some roles may add the server.
+See [ChatGPT](#chatgpt).
 
 ## Cursor
 
@@ -72,34 +72,36 @@ without changing that key is the most common reason the server never appears.
 
 ## ChatGPT
 
-Create a connector, paste `https://api.opusdns.com/mcp`, and set authentication
-to OAuth. The only OpusDNS-specific values are that URL and choosing OAuth.
-
-Sign-in itself works on any plan: Dynamic Client Registration completes, the
-browser flow completes, and the server answers `tools/list` with its full tool
-list. Whether ChatGPT then *shows* those tools is a separate, plan-dependent
-question.
+In ChatGPT on the web, open **Plugins**, select **+**, then **Add custom MCP
+server**. Enter `https://api.opusdns.com/mcp` as the endpoint URL, choose OAuth
+for authentication, acknowledge the risk warning, and select **Create as a
+plugin**. The only OpusDNS-specific values are that URL and choosing OAuth.
+Developer mode is no longer needed, and ChatGPT no longer requires a server to
+expose tools named `search` and `fetch`.
 
 <scalar-callout type="warning">
-Outside developer mode, ChatGPT surfaces only tools named <code>search</code>
-and <code>fetch</code>. This server exposes neither, so on a plan without
-developer mode a connector that authenticated perfectly still reports no tools.
-Developer mode is
-<a href="https://developers.openai.com/api/docs/guides/developer-mode">available
-to Pro, Plus, Business, Enterprise, and Education accounts on the web</a> — it
-does not exist on the free plan. This is an OpenAI product limitation; nothing
-on the OpusDNS side can lift it.
+Full MCP support — every tool this server exposes, writes included — is
+<a href="https://help.openai.com/en/articles/12584461-connecting-custom-mcp-servers-in-chatgpt">available
+only to ChatGPT Business and Enterprise/Edu workspaces on the web</a>. Pro
+accounts can connect a custom MCP server with read/fetch permissions only, and
+the mobile apps cannot connect one at all. This is an OpenAI product limitation;
+nothing on the OpusDNS side can lift it.
 </scalar-callout>
 
-On a plan that offers it, the toggle is under **Settings → Security and login**.
-It has moved before — it lived under Connectors → Advanced until Connectors was
-renamed to Plugins — so treat OpenAI's documentation, not any particular path,
-as authoritative. With developer mode on, every tool this server exposes is
-available, writes included, subject to your confirmation settings.
+In a Business workspace only admins and owners can add the server and publish it
+for the workspace. In Enterprise/Edu, admins can also let selected members add
+it through role-based access control; publishing stays with admins and owners.
+Members see the server once it is published. OpenAI moves these menus often —
+the setup used to sit behind a developer mode toggle under Settings, and before
+that under Connectors → Advanced — so treat OpenAI's documentation, not any
+particular path, as authoritative.
 
-Two limits survive developer mode: agent mode does not use custom connectors at
-all, and deep research uses them for reads only, which puts `bulk_submit` out of
-reach there.
+Once a workspace has published the server, ChatGPT works from a snapshot of its
+tool list. If a server release changes a tool, calls to it can fail until an
+admin refreshes the tool list in the workspace's app settings.
+
+Deep research uses custom MCP servers for reads only, which puts `bulk_submit`
+out of reach there.
 
 ### OpenAI Responses API
 

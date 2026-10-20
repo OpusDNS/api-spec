@@ -13,8 +13,8 @@ API keys are for direct HTTP calls. See
 Anything that speaks remote Streamable HTTP: Claude Code, Claude desktop and
 web, Cursor, VS Code, ChatGPT, the OpenAI Responses API. Clients that only speak
 stdio need a bridge. ChatGPT is the one exception worth knowing before you
-start: it only shows the tools in developer mode, which OpenAI does not offer on
-the free plan. See
+start: full MCP support, writes included, is limited to ChatGPT Business and
+Enterprise/Edu workspaces on the web. See
 [Cursor, VS Code, and ChatGPT](/mcp-server/connect/editors).
 
 **Is there a sandbox?**

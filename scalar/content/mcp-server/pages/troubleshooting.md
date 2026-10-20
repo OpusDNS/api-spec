@@ -43,12 +43,13 @@ ChatGPT](/mcp-server/connect/editors).
 
 ### ChatGPT signed in but reports no tools
 
-Developer mode is off, or your plan does not offer it. Without it ChatGPT
-surfaces only tools named `search` and `fetch`, and this server exposes neither,
-so a connector whose OAuth flow succeeded still looks empty. Developer mode is a
-paid-plan feature on the web and does not exist on the free plan — an OpenAI
-limitation, not something the server can work around. See
-[ChatGPT](/mcp-server/connect/editors#chatgpt).
+Check the plan and the workspace. Full MCP support, writes included, is
+available only to ChatGPT Business and Enterprise/Edu workspaces on the web; Pro
+accounts connect custom MCP servers with read/fetch permissions only. In a
+workspace, members see the server only after an admin or owner has published it.
+ChatGPT no longer needs developer mode or tools named `search` and `fetch`, so
+neither is the cause. These are OpenAI limitations, not something the server can
+work around. See [ChatGPT](/mcp-server/connect/editors#chatgpt).
 
 ### `403` from a tool call
 
