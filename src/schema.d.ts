@@ -18058,7 +18058,7 @@ export interface components {
          * PublicResource
          * @enum {string}
          */
-        PublicResource: "organization" | "domains" | "domain_auth_codes" | "contacts" | "dns" | "hosts" | "email_forwards" | "domain_forwards" | "parking" | "events" | "jobs" | "billing" | "users" | "api_keys" | "registrar_credentials" | "tags" | "audit_logs" | "vanity_ns" | "whitelabel_branding" | "ai_concierge" | "ai_concierge_waitlist";
+        PublicResource: "organization" | "domains" | "domain_auth_codes" | "contacts" | "dns" | "hosts" | "email_forwards" | "domain_forwards" | "parking" | "events" | "jobs" | "billing" | "users" | "api_keys" | "registrar_credentials" | "tags" | "custom_fields" | "audit_logs" | "vanity_ns" | "whitelabel_branding" | "ai_concierge" | "ai_concierge_waitlist";
         /**
          * PublicRole
          * @enum {string}
@@ -28882,13 +28882,22 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_REGISTRANT_CHANGE_NOT_SUPPORTED",
+                     *       "detail": "Registrant change is not supported for .lu domains",
+                     *       "domain_name": "example.lu",
+                     *       "status": 422,
+                     *       "title": "Domain Management Error",
+                     *       "tld": "lu",
+                     *       "type": "domain-registrant-change-not-supported"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };

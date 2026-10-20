@@ -23,6 +23,21 @@ Track notable updates to the OpusDNS API and developer documentation here.
   give the days the statistics cover for the zone; they never start before the
   zone was created, so a zone that existed before under another owner does not
   show that owner's queries.
+- Changed **a change of registrant through
+  [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference})
+  on [`.lu`](/tld-knowledge-base/cctlds/lu), [`.ro`](/tld-knowledge-base/cctlds/ro),
+  [`.be`](/tld-knowledge-base/cctlds/be), [`.lt`](/tld-knowledge-base/cctlds/lt),
+  [`.pt`](/tld-knowledge-base/cctlds/pt), `.ee` and
+  [`.no`](/tld-knowledge-base/cctlds/no) to be refused** with a `422` problem
+  whose `code` is `ERROR_DOMAIN_REGISTRANT_CHANGE_NOT_SUPPORTED`. These
+  registries change the registrant only through their own process, which the
+  API does not support yet. On `.ro`, such a request used to return `200`
+  while the registrant stayed the same. On `.be` and `.ee`, it was sent to the
+  registry as a regular domain update. On `.lu`, `.pt`, `.lt` and `.no`, it
+  was already refused, with the `code` `ERROR_POLICY_VALIDATION` on `.lu` and
+  `ERROR_REGISTRY_POLICY` on the others. A request that repeats the current
+  registrant behaves as before. On `.lu`, a domain update cannot include the
+  registrant at all, so `contacts` must leave it out.
 
 ### 19 October 2026
 

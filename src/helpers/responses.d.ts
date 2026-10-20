@@ -994,7 +994,7 @@ export type PATCH_DomainsByDomainReference_Response = PATCH_DomainsByDomainRefer
 
 export type PATCH_DomainsByDomainReference_Response_200 = Domain;
 export type PATCH_DomainsByDomainReference_Response_404 = Problem;
-export type PATCH_DomainsByDomainReference_Response_422 = HTTPValidationError;
+export type PATCH_DomainsByDomainReference_Response_422 = Problem;
 
 export type PATCH_EmailForwardsByEmailForwardIdDisable_Response = PATCH_EmailForwardsByEmailForwardIdDisable_Response_401 | PATCH_EmailForwardsByEmailForwardIdDisable_Response_403 | PATCH_EmailForwardsByEmailForwardIdDisable_Response_404 | PATCH_EmailForwardsByEmailForwardIdDisable_Response_422;
 
