@@ -9,7 +9,7 @@
 | TLD Type | ccTLD |
 | Registry | FO Council |
 | Registry Country | Faroe Islands |
-| Registry Website | [www.nic.fo](https://www.nic.fo/) |
+| Registry Website | [www.xn--kisnavn-p1a.fo](https://www.xn--kisnavn-p1a.fo/) |
 | Provisioning Protocol | EPP |
 | Second-Level Registration | ✅ Yes |
 | Accreditation Required | ✅ Yes |

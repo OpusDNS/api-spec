@@ -100,7 +100,7 @@
 | --- | --- |
 | Dispute Resolution Available | ✅ Yes |
 | Procedure | UDRP |
-| Reference | [belizenic.bz/support/content.php?action=mypages&page=policy-udndrp.html](https://belizenic.bz/support/content.php?action=mypages&page=policy-udndrp.html) |
+| Reference | [www.icann.org/resources/pages/help/dndr/udrp-en](https://www.icann.org/resources/pages/help/dndr/udrp-en) |
 | UDRP Support | ✅ Yes |
 | URS Support | ❌ No |
 

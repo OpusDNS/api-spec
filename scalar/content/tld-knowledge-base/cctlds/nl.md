@@ -100,7 +100,7 @@
 | --- | --- |
 | Dispute Resolution Available | ✅ Yes |
 | Procedure | SIDN Dispute Resolution |
-| Reference | [www.sidn.nl/en/registrars/dispute-resolution-nl](https://www.sidn.nl/en/registrars/dispute-resolution-nl) |
+| Reference | [www.sidn.nl/en/nl-domain-name/dispute-resolution-regulations-for-nl-domain-names](https://www.sidn.nl/en/nl-domain-name/dispute-resolution-regulations-for-nl-domain-names) |
 | UDRP Support | ❌ No |
 | URS Support | ❌ No |
 
