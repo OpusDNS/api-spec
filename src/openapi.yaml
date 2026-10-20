@@ -4861,6 +4861,37 @@ components:
       - properties:
           data:
             anyOf:
+            - $ref: '#/components/schemas/ZoneStatisticsResponse'
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
+            const: get_zone_statistics_v1_dns__zone_name__statistics_get
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: get_zone_statistics_v1_dns__zone_name__statistics_get
+        type: object
+      - properties:
+          data:
+            anyOf:
             - $ref: '#/components/schemas/DnsZoneResponse'
             - type: string
           headers:
@@ -24836,6 +24867,108 @@ components:
       - dnssec_status
       title: ZoneSortField
       type: string
+    ZoneStatisticsBucketResponse:
+      properties:
+        nxdomain_count:
+          description: Of those, queries answered with NXDOMAIN
+          title: Nxdomain Count
+          type: integer
+        partial:
+          description: 'The bucket counts only part of its span: it reaches outside
+            the window (a week or month the window cuts), part of it lies before `data_available_from`
+            or after `data_available_to`, or the zone was created during it. A partial
+            bucket must not be read as a rise or fall against its neighbours.'
+          title: Partial
+          type: boolean
+        period_start:
+          description: First day of the bucket (UTC)
+          format: date
+          title: Period Start
+          type: string
+        query_count:
+          description: Queries answered for the zone in this bucket, within the window
+          title: Query Count
+          type: integer
+      required:
+      - period_start
+      - query_count
+      - nxdomain_count
+      - partial
+      title: ZoneStatisticsBucketResponse
+      type: object
+    ZoneStatisticsResponse:
+      properties:
+        buckets:
+          description: One entry per bucket the window touches, oldest first, including
+            buckets without queries
+          items:
+            $ref: '#/components/schemas/ZoneStatisticsBucketResponse'
+          title: Buckets
+          type: array
+        data_available_from:
+          anyOf:
+          - format: date
+            type: string
+          - type: 'null'
+          description: 'First day the statistics hold data for the zone: the day collection
+            started, or the day the zone was created if that is later. Buckets before
+            it count zero because nothing was recorded, not because the zone had no
+            queries. Null while no statistics have been collected since the zone was
+            created.'
+          title: Data Available From
+        data_available_to:
+          anyOf:
+          - format: date
+            type: string
+          - type: 'null'
+          description: Last day the statistics hold data for. Null while no statistics
+            have been collected since the zone was created.
+          title: Data Available To
+        end_date:
+          description: Last day of the window, inclusive
+          format: date
+          title: End Date
+          type: string
+        granularity:
+          $ref: '#/components/schemas/UsageGranularity'
+          description: Time-bucket size of the series
+        start_date:
+          description: First day of the window, inclusive
+          format: date
+          title: Start Date
+          type: string
+        totals:
+          $ref: '#/components/schemas/ZoneStatisticsTotalsResponse'
+        zone_name:
+          description: The zone the statistics are for, with a trailing dot
+          title: Zone Name
+          type: string
+      required:
+      - zone_name
+      - granularity
+      - start_date
+      - end_date
+      - totals
+      - buckets
+      - data_available_from
+      - data_available_to
+      title: ZoneStatisticsResponse
+      type: object
+    ZoneStatisticsTotalsResponse:
+      properties:
+        nxdomain_count:
+          description: Of those, queries answered with NXDOMAIN
+          title: Nxdomain Count
+          type: integer
+        query_count:
+          description: Queries answered for the zone in the window
+          title: Query Count
+          type: integer
+      required:
+      - query_count
+      - nxdomain_count
+      title: ZoneStatisticsTotalsResponse
+      type: object
     ZoneVanitySetUpdate:
       description: Public request body for assigning/clearing a zone's vanity NS branding.
       properties:
@@ -25316,7 +25449,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-20-205230
+  version: 2026-10-20-212846
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -30912,6 +31045,238 @@ paths:
       - dns
       x-required-permissions:
       - dns:manage
+  /v1/dns/{zone_name}/statistics:
+    get:
+      description: 'Counts the DNS queries answered for the zone, and how many of
+        them were NXDOMAIN, in a window of whole UTC days, bucketed by the requested
+        granularity. The window may span at most 366 days at `granularity=day` or
+        `week` and 120 calendar months at `granularity=month`.
+
+
+        Every bucket the window touches is present, oldest first, so the series can
+        be charted as is; a bucket without queries counts zero. Buckets count only
+        the days inside the window and the zone''s lifetime. A bucket marked `partial`
+        covers only part of its span: it reaches outside the window, part of it lies
+        outside the stored data, or the zone was created during it.
+
+
+        Statistics are collected once a day, so the newest day with data is usually
+        yesterday. `data_available_from` and `data_available_to` report the days the
+        statistics hold data for the zone, never earlier than the day it was created:
+        a window reaching further back is empty before it rather than genuinely zero.'
+      operationId: get_zone_statistics_v1_dns__zone_name__statistics_get
+      parameters:
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
+      - description: First day of the window, inclusive (YYYY-MM-DD, UTC)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          description: First day of the window, inclusive (YYYY-MM-DD, UTC)
+          format: date
+          title: Start Date
+          type: string
+      - description: 'Last day of the window, inclusive (YYYY-MM-DD, UTC). How far
+          it may reach depends on `granularity`: at most 366 days for `day` and `week`,
+          and 120 calendar months for `month`.'
+        in: query
+        name: end_date
+        required: true
+        schema:
+          description: 'Last day of the window, inclusive (YYYY-MM-DD, UTC). How far
+            it may reach depends on `granularity`: at most 366 days for `day` and
+            `week`, and 120 calendar months for `month`.'
+          format: date
+          title: End Date
+          type: string
+      - description: Time-bucket size. Weeks start on Monday and months on the 1st,
+          in UTC.
+        in: query
+        name: granularity
+        required: false
+        schema:
+          $ref: '#/components/schemas/UsageGranularity'
+          default: day
+          description: Time-bucket size. Weeks start on Monday and months on the 1st,
+            in UTC.
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                daily:
+                  description: Three days, one of them without a recorded query
+                  summary: Daily series
+                  value:
+                    buckets:
+                    - nxdomain_count: 40
+                      partial: false
+                      period_start: '2026-10-01'
+                      query_count: 1200
+                    - nxdomain_count: 0
+                      partial: false
+                      period_start: '2026-10-02'
+                      query_count: 0
+                    - nxdomain_count: 30
+                      partial: false
+                      period_start: '2026-10-03'
+                      query_count: 700
+                    data_available_from: '2026-06-01'
+                    data_available_to: '2026-10-03'
+                    end_date: '2026-10-03'
+                    granularity: day
+                    start_date: '2026-10-01'
+                    totals:
+                      nxdomain_count: 70
+                      query_count: 1900
+                    zone_name: example.com.
+                monthly:
+                  description: Calendar months; the last month is partial because
+                    the window ends before it does
+                  summary: Monthly series
+                  value:
+                    buckets:
+                    - nxdomain_count: 300
+                      partial: false
+                      period_start: '2026-08-01'
+                      query_count: 9000
+                    - nxdomain_count: 1100
+                      partial: false
+                      period_start: '2026-09-01'
+                      query_count: 30000
+                    - nxdomain_count: 500
+                      partial: true
+                      period_start: '2026-10-01'
+                      query_count: 13000
+                    data_available_from: '2026-06-01'
+                    data_available_to: '2026-10-19'
+                    end_date: '2026-10-14'
+                    granularity: month
+                    start_date: '2026-08-01'
+                    totals:
+                      nxdomain_count: 1900
+                      query_count: 52000
+                    zone_name: example.com.
+                weekly:
+                  description: Weeks start on Monday. The window runs from a Wednesday
+                    to a Tuesday, so the first and the last week count only the days
+                    inside it and are partial
+                  summary: Weekly series
+                  value:
+                    buckets:
+                    - nxdomain_count: 200
+                      partial: true
+                      period_start: '2026-09-28'
+                      query_count: 6000
+                    - nxdomain_count: 380
+                      partial: false
+                      period_start: '2026-10-05'
+                      query_count: 10500
+                    - nxdomain_count: 60
+                      partial: true
+                      period_start: '2026-10-12'
+                      query_count: 1500
+                    data_available_from: '2026-06-01'
+                    data_available_to: '2026-10-19'
+                    end_date: '2026-10-13'
+                    granularity: week
+                    start_date: '2026-09-30'
+                    totals:
+                      nxdomain_count: 640
+                      query_count: 18000
+                    zone_name: example.com.
+              schema:
+                $ref: '#/components/schemas/ZoneStatisticsResponse'
+          description: Zone statistics retrieved successfully
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ZONE_STATISTICS_QUERY
+                detail: invalid 'zone'
+                status: 400
+                title: Zone statistics query rejected.
+                type: zone-stats-query-rejected
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ZONE_STATISTICS_WINDOW
+                detail: '''start_date'' must be on or before ''end_date'''
+                status: 422
+                title: Invalid zone statistics window.
+                type: zone-stats-invalid-window
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
+        '501':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ZONE_STATISTICS_NOT_AVAILABLE
+                detail: Zone statistics are not available in this environment.
+                status: 501
+                title: Zone statistics not available.
+                type: zone-stats-not-available
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Implemented
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ZONE_STATISTICS_UNAVAILABLE
+                detail: Zone statistics are currently unavailable, please try again
+                  later.
+                status: 503
+                title: Zone statistics unavailable.
+                type: zone-stats-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get zone query statistics
+      tags:
+      - dns
+      x-required-permissions:
+      - dns:read
   /v1/dns/{zone_name}/vanity-set:
     patch:
       operationId: update_zone_vanity_set_v1_dns__zone_name__vanity_set_patch

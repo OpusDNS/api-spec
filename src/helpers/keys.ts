@@ -483,6 +483,9 @@ import type {
   WhitelabelSubscriptionInfo,
   WhitelabelUpgradeToPlus,
   WhoisBase,
+  ZoneStatisticsBucket,
+  ZoneStatistics,
+  ZoneStatisticsTotals,
   ZoneVanitySetUpdate,
   ZonesContext,
   ZonesContextCreate,
@@ -6682,6 +6685,46 @@ export const KEY_WHOIS_BASE_WHOIS_SERVER = 'whois_server' satisfies keyof WhoisB
 export const KEYS_WHOIS_BASE = [
   KEY_WHOIS_BASE_WHOIS_SERVER,
 ] as const satisfies (keyof WhoisBase)[];
+
+export const KEY_ZONE_STATISTICS_BUCKET_NXDOMAIN_COUNT = 'nxdomain_count' satisfies keyof ZoneStatisticsBucket;
+export const KEY_ZONE_STATISTICS_BUCKET_PARTIAL = 'partial' satisfies keyof ZoneStatisticsBucket;
+export const KEY_ZONE_STATISTICS_BUCKET_PERIOD_START = 'period_start' satisfies keyof ZoneStatisticsBucket;
+export const KEY_ZONE_STATISTICS_BUCKET_QUERY_COUNT = 'query_count' satisfies keyof ZoneStatisticsBucket;
+
+export const KEYS_ZONE_STATISTICS_BUCKET = [
+  KEY_ZONE_STATISTICS_BUCKET_NXDOMAIN_COUNT,
+  KEY_ZONE_STATISTICS_BUCKET_PARTIAL,
+  KEY_ZONE_STATISTICS_BUCKET_PERIOD_START,
+  KEY_ZONE_STATISTICS_BUCKET_QUERY_COUNT,
+] as const satisfies (keyof ZoneStatisticsBucket)[];
+
+export const KEY_ZONE_STATISTICS_BUCKETS = 'buckets' satisfies keyof ZoneStatistics;
+export const KEY_ZONE_STATISTICS_DATA_AVAILABLE_FROM = 'data_available_from' satisfies keyof ZoneStatistics;
+export const KEY_ZONE_STATISTICS_DATA_AVAILABLE_TO = 'data_available_to' satisfies keyof ZoneStatistics;
+export const KEY_ZONE_STATISTICS_END_DATE = 'end_date' satisfies keyof ZoneStatistics;
+export const KEY_ZONE_STATISTICS_GRANULARITY = 'granularity' satisfies keyof ZoneStatistics;
+export const KEY_ZONE_STATISTICS_START_DATE = 'start_date' satisfies keyof ZoneStatistics;
+export const KEY_ZONE_STATISTICS_TOTALS = 'totals' satisfies keyof ZoneStatistics;
+export const KEY_ZONE_STATISTICS_ZONE_NAME = 'zone_name' satisfies keyof ZoneStatistics;
+
+export const KEYS_ZONE_STATISTICS = [
+  KEY_ZONE_STATISTICS_BUCKETS,
+  KEY_ZONE_STATISTICS_DATA_AVAILABLE_FROM,
+  KEY_ZONE_STATISTICS_DATA_AVAILABLE_TO,
+  KEY_ZONE_STATISTICS_END_DATE,
+  KEY_ZONE_STATISTICS_GRANULARITY,
+  KEY_ZONE_STATISTICS_START_DATE,
+  KEY_ZONE_STATISTICS_TOTALS,
+  KEY_ZONE_STATISTICS_ZONE_NAME,
+] as const satisfies (keyof ZoneStatistics)[];
+
+export const KEY_ZONE_STATISTICS_TOTALS_NXDOMAIN_COUNT = 'nxdomain_count' satisfies keyof ZoneStatisticsTotals;
+export const KEY_ZONE_STATISTICS_TOTALS_QUERY_COUNT = 'query_count' satisfies keyof ZoneStatisticsTotals;
+
+export const KEYS_ZONE_STATISTICS_TOTALS = [
+  KEY_ZONE_STATISTICS_TOTALS_NXDOMAIN_COUNT,
+  KEY_ZONE_STATISTICS_TOTALS_QUERY_COUNT,
+] as const satisfies (keyof ZoneStatisticsTotals)[];
 
 export const KEY_ZONE_VANITY_SET_UPDATE_VANITY_NAMESERVER_SET_ID = 'vanity_nameserver_set_id' satisfies keyof ZoneVanitySetUpdate;
 

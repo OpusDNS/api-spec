@@ -750,6 +750,30 @@ export interface paths {
         patch: operations["patch_zone_rrsets_v1_dns__zone_name__rrsets_patch"];
         trace?: never;
     };
+    "/v1/dns/{zone_name}/statistics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get zone query statistics
+         * @description Counts the DNS queries answered for the zone, and how many of them were NXDOMAIN, in a window of whole UTC days, bucketed by the requested granularity. The window may span at most 366 days at `granularity=day` or `week` and 120 calendar months at `granularity=month`.
+         *
+         *     Every bucket the window touches is present, oldest first, so the series can be charted as is; a bucket without queries counts zero. Buckets count only the days inside the window and the zone's lifetime. A bucket marked `partial` covers only part of its span: it reaches outside the window, part of it lies outside the stored data, or the zone was created during it.
+         *
+         *     Statistics are collected once a day, so the newest day with data is usually yesterday. `data_available_from` and `data_available_to` report the days the statistics hold data for the zone, never earlier than the day it was created: a window reaching further back is empty before it rather than genuinely zero.
+         */
+        get: operations["get_zone_statistics_v1_dns__zone_name__statistics_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/dns/{zone_name}/vanity-set": {
         parameters: {
             query?: never;
@@ -6856,6 +6880,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "get_whitelabel_document_v1_whitelabel_branding_document_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ZoneStatisticsResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_zone_statistics_v1_dns__zone_name__statistics_get";
             /** @constant */
             status: "ok";
             /**
@@ -20480,6 +20528,81 @@ export interface components {
          * @enum {string}
          */
         ZoneSortField: "name" | "created_on" | "updated_on" | "dnssec_status";
+        /** ZoneStatisticsBucketResponse */
+        ZoneStatisticsBucketResponse: {
+            /**
+             * Nxdomain Count
+             * @description Of those, queries answered with NXDOMAIN
+             */
+            nxdomain_count: number;
+            /**
+             * Partial
+             * @description The bucket counts only part of its span: it reaches outside the window (a week or month the window cuts), part of it lies before `data_available_from` or after `data_available_to`, or the zone was created during it. A partial bucket must not be read as a rise or fall against its neighbours.
+             */
+            partial: boolean;
+            /**
+             * Period Start
+             * Format: date
+             * @description First day of the bucket (UTC)
+             */
+            period_start: string;
+            /**
+             * Query Count
+             * @description Queries answered for the zone in this bucket, within the window
+             */
+            query_count: number;
+        };
+        /** ZoneStatisticsResponse */
+        ZoneStatisticsResponse: {
+            /**
+             * Buckets
+             * @description One entry per bucket the window touches, oldest first, including buckets without queries
+             */
+            buckets: components["schemas"]["ZoneStatisticsBucketResponse"][];
+            /**
+             * Data Available From
+             * @description First day the statistics hold data for the zone: the day collection started, or the day the zone was created if that is later. Buckets before it count zero because nothing was recorded, not because the zone had no queries. Null while no statistics have been collected since the zone was created.
+             */
+            data_available_from: string | null;
+            /**
+             * Data Available To
+             * @description Last day the statistics hold data for. Null while no statistics have been collected since the zone was created.
+             */
+            data_available_to: string | null;
+            /**
+             * End Date
+             * Format: date
+             * @description Last day of the window, inclusive
+             */
+            end_date: string;
+            /** @description Time-bucket size of the series */
+            granularity: components["schemas"]["UsageGranularity"];
+            /**
+             * Start Date
+             * Format: date
+             * @description First day of the window, inclusive
+             */
+            start_date: string;
+            totals: components["schemas"]["ZoneStatisticsTotalsResponse"];
+            /**
+             * Zone Name
+             * @description The zone the statistics are for, with a trailing dot
+             */
+            zone_name: string;
+        };
+        /** ZoneStatisticsTotalsResponse */
+        ZoneStatisticsTotalsResponse: {
+            /**
+             * Nxdomain Count
+             * @description Of those, queries answered with NXDOMAIN
+             */
+            nxdomain_count: number;
+            /**
+             * Query Count
+             * @description Queries answered for the zone in the window
+             */
+            query_count: number;
+        };
         /**
          * ZoneVanitySetUpdate
          * @description Public request body for assigning/clearing a zone's vanity NS branding.
@@ -25100,6 +25223,139 @@ export interface operations {
                      *       "title": "DNS Zone Busy",
                      *       "type": "dns-zone-write-busy",
                      *       "zone_name": "example.com."
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    get_zone_statistics_v1_dns__zone_name__statistics_get: {
+        parameters: {
+            query: {
+                /** @description First day of the window, inclusive (YYYY-MM-DD, UTC) */
+                start_date: string;
+                /** @description Last day of the window, inclusive (YYYY-MM-DD, UTC). How far it may reach depends on `granularity`: at most 366 days for `day` and `week`, and 120 calendar months for `month`. */
+                end_date: string;
+                /** @description Time-bucket size. Weeks start on Monday and months on the 1st, in UTC. */
+                granularity?: components["schemas"]["UsageGranularity"];
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                /** @description DNS zone name (trailing dot optional) */
+                zone_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Zone statistics retrieved successfully */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ZoneStatisticsResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_QUERY",
+                     *       "detail": "invalid 'zone'",
+                     *       "status": 400,
+                     *       "title": "Zone statistics query rejected.",
+                     *       "type": "zone-stats-query-rejected"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_WINDOW",
+                     *       "detail": "'start_date' must be on or before 'end_date'",
+                     *       "status": 422,
+                     *       "title": "Invalid zone statistics window.",
+                     *       "type": "zone-stats-invalid-window"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Implemented */
+            501: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_NOT_AVAILABLE",
+                     *       "detail": "Zone statistics are not available in this environment.",
+                     *       "status": 501,
+                     *       "title": "Zone statistics not available.",
+                     *       "type": "zone-stats-not-available"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_UNAVAILABLE",
+                     *       "detail": "Zone statistics are currently unavailable, please try again later.",
+                     *       "status": 503,
+                     *       "title": "Zone statistics unavailable.",
+                     *       "type": "zone-stats-unavailable"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };

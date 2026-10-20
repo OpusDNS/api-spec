@@ -126,6 +126,7 @@ import type {
   WaitlistEntry,
   WaitlistProductList,
   WhitelabelBranding,
+  ZoneStatistics,
 } from './schemas';
 
 export type DELETE_AiConciergeConversationsByConversationId_Response = DELETE_AiConciergeConversationsByConversationId_Response_401 | DELETE_AiConciergeConversationsByConversationId_Response_404 | DELETE_AiConciergeConversationsByConversationId_Response_422 | DELETE_AiConciergeConversationsByConversationId_Response_502;
@@ -438,6 +439,16 @@ export type GET_DnsByZoneNameEmailForwards_Response_200 = EmailForwardZone;
 export type GET_DnsByZoneNameEmailForwards_Response_401 = Problem;
 export type GET_DnsByZoneNameEmailForwards_Response_403 = Problem;
 export type GET_DnsByZoneNameEmailForwards_Response_422 = HTTPValidationError;
+
+export type GET_DnsByZoneNameStatistics_Response = GET_DnsByZoneNameStatistics_Response_200 | GET_DnsByZoneNameStatistics_Response_400 | GET_DnsByZoneNameStatistics_Response_401 | GET_DnsByZoneNameStatistics_Response_403 | GET_DnsByZoneNameStatistics_Response_422 | GET_DnsByZoneNameStatistics_Response_501 | GET_DnsByZoneNameStatistics_Response_503;
+
+export type GET_DnsByZoneNameStatistics_Response_200 = ZoneStatistics;
+export type GET_DnsByZoneNameStatistics_Response_400 = Problem;
+export type GET_DnsByZoneNameStatistics_Response_401 = Problem;
+export type GET_DnsByZoneNameStatistics_Response_403 = Problem;
+export type GET_DnsByZoneNameStatistics_Response_422 = Problem;
+export type GET_DnsByZoneNameStatistics_Response_501 = Problem;
+export type GET_DnsByZoneNameStatistics_Response_503 = Problem;
 
 export type GET_DnsDomainForwards_Response = GET_DnsDomainForwards_Response_200 | GET_DnsDomainForwards_Response_401 | GET_DnsDomainForwards_Response_403 | GET_DnsDomainForwards_Response_422;
 

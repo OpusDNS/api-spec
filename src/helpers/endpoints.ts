@@ -37,6 +37,7 @@ export const DNS_BY_ZONE_NAME_DOMAIN_FORWARDS_ENDPOINT = '/v1/dns/{zone_name}/do
 export const DNS_BY_ZONE_NAME_EMAIL_FORWARDS_ENDPOINT = '/v1/dns/{zone_name}/email-forwards';
 export const DNS_BY_ZONE_NAME_RECORDS_ENDPOINT = '/v1/dns/{zone_name}/records';
 export const DNS_BY_ZONE_NAME_RRSETS_ENDPOINT = '/v1/dns/{zone_name}/rrsets';
+export const DNS_BY_ZONE_NAME_STATISTICS_ENDPOINT = '/v1/dns/{zone_name}/statistics';
 export const DNS_BY_ZONE_NAME_VANITY_SET_ENDPOINT = '/v1/dns/{zone_name}/vanity-set';
 export const DOMAIN_FORWARDS_ENDPOINT = '/v1/domain-forwards';
 export const DOMAIN_FORWARDS_METRICS_ENDPOINT = '/v1/domain-forwards/metrics';
@@ -201,6 +202,7 @@ export type Endpoint =
   | typeof DNS_BY_ZONE_NAME_EMAIL_FORWARDS_ENDPOINT
   | typeof DNS_BY_ZONE_NAME_RECORDS_ENDPOINT
   | typeof DNS_BY_ZONE_NAME_RRSETS_ENDPOINT
+  | typeof DNS_BY_ZONE_NAME_STATISTICS_ENDPOINT
   | typeof DNS_BY_ZONE_NAME_VANITY_SET_ENDPOINT
   | typeof DOMAIN_FORWARDS_ENDPOINT
   | typeof DOMAIN_FORWARDS_METRICS_ENDPOINT

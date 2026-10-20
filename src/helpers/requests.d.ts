@@ -366,6 +366,12 @@ export type PUT_DnsByZoneNameRrsets_Request = {
 export type PUT_DnsByZoneNameRrsets_Request_Path = PUT_DnsByZoneNameRrsets_Request['parameters']['path'];
 export type PUT_DnsByZoneNameRrsets_Request_Body = PUT_DnsByZoneNameRrsets_Request['requestBody'];
 
+export type GET_DnsByZoneNameStatistics_Request = {
+  parameters: operations['get_zone_statistics_v1_dns__zone_name__statistics_get']['parameters'];
+};
+export type GET_DnsByZoneNameStatistics_Request_Query = GET_DnsByZoneNameStatistics_Request['parameters']['query'];
+export type GET_DnsByZoneNameStatistics_Request_Path = GET_DnsByZoneNameStatistics_Request['parameters']['path'];
+
 export type PATCH_DnsByZoneNameVanitySet_Request = {
   parameters: operations['update_zone_vanity_set_v1_dns__zone_name__vanity_set_patch']['parameters'];
   requestBody: ZoneVanitySetUpdate;
