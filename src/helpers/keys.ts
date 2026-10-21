@@ -85,6 +85,7 @@ import type {
   DnsChange,
   DnsChanges,
   DnsConfigurationBase,
+  DnsInactiveZones,
   DnsRecordCreate,
   DnsRecordDTO,
   DnsRecordPatchOp,
@@ -95,6 +96,11 @@ import type {
   DnsRrsetPatchOp,
   DnsRrset,
   DnsRrsetWithOneRecordPatch,
+  DnsStatisticsBucket,
+  DnsStatistics,
+  DnsStatisticsTotals,
+  DnsTopZones,
+  DnsZoneActivity,
   DnsZoneCreate,
   DnsZoneCreateBulkCommand,
   DnsZoneCreateBulkInstance,
@@ -105,6 +111,8 @@ import type {
   DnsZoneCreateWorkerPayload,
   DnsZoneCreateWorkerResult,
   DnsZoneDTO,
+  DnsZoneMover,
+  DnsZoneMovers,
   DnsZonePatchRecordsBulkCommand,
   DnsZonePatchRecordsBulkInstance,
   DnsZonePatchRecordsBulkPayload,
@@ -1662,6 +1670,22 @@ export const KEYS_DNS_CONFIGURATION_BASE = [
   KEY_DNS_CONFIGURATION_BASE_REGISTRY_ROOT_NAMESERVER_UPDATE,
 ] as const satisfies (keyof DnsConfigurationBase)[];
 
+export const KEY_DNS_INACTIVE_ZONES_PAGINATION = 'pagination' satisfies keyof DnsInactiveZones;
+export const KEY_DNS_INACTIVE_ZONES_PERIOD = 'period' satisfies keyof DnsInactiveZones;
+export const KEY_DNS_INACTIVE_ZONES_PERIOD_END = 'period_end' satisfies keyof DnsInactiveZones;
+export const KEY_DNS_INACTIVE_ZONES_PERIOD_START = 'period_start' satisfies keyof DnsInactiveZones;
+export const KEY_DNS_INACTIVE_ZONES_RESULTS = 'results' satisfies keyof DnsInactiveZones;
+export const KEY_DNS_INACTIVE_ZONES_STATISTICS_UPDATED_AT = 'statistics_updated_at' satisfies keyof DnsInactiveZones;
+
+export const KEYS_DNS_INACTIVE_ZONES = [
+  KEY_DNS_INACTIVE_ZONES_PAGINATION,
+  KEY_DNS_INACTIVE_ZONES_PERIOD,
+  KEY_DNS_INACTIVE_ZONES_PERIOD_END,
+  KEY_DNS_INACTIVE_ZONES_PERIOD_START,
+  KEY_DNS_INACTIVE_ZONES_RESULTS,
+  KEY_DNS_INACTIVE_ZONES_STATISTICS_UPDATED_AT,
+] as const satisfies (keyof DnsInactiveZones)[];
+
 export const KEY_DNS_RECORD_CREATE_RDATA = 'rdata' satisfies keyof DnsRecordCreate;
 
 export const KEYS_DNS_RECORD_CREATE = [
@@ -1763,6 +1787,82 @@ export const KEYS_DNS_RRSET_WITH_ONE_RECORD_PATCH = [
   KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TTL,
   KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TYPE,
 ] as const satisfies (keyof DnsRrsetWithOneRecordPatch)[];
+
+export const KEY_DNS_STATISTICS_BUCKET_NXDOMAIN_COUNT = 'nxdomain_count' satisfies keyof DnsStatisticsBucket;
+export const KEY_DNS_STATISTICS_BUCKET_PARTIAL = 'partial' satisfies keyof DnsStatisticsBucket;
+export const KEY_DNS_STATISTICS_BUCKET_PERIOD_START = 'period_start' satisfies keyof DnsStatisticsBucket;
+export const KEY_DNS_STATISTICS_BUCKET_QUERY_COUNT = 'query_count' satisfies keyof DnsStatisticsBucket;
+export const KEY_DNS_STATISTICS_BUCKET_ZONE_COUNT = 'zone_count' satisfies keyof DnsStatisticsBucket;
+
+export const KEYS_DNS_STATISTICS_BUCKET = [
+  KEY_DNS_STATISTICS_BUCKET_NXDOMAIN_COUNT,
+  KEY_DNS_STATISTICS_BUCKET_PARTIAL,
+  KEY_DNS_STATISTICS_BUCKET_PERIOD_START,
+  KEY_DNS_STATISTICS_BUCKET_QUERY_COUNT,
+  KEY_DNS_STATISTICS_BUCKET_ZONE_COUNT,
+] as const satisfies (keyof DnsStatisticsBucket)[];
+
+export const KEY_DNS_STATISTICS_BUCKETS = 'buckets' satisfies keyof DnsStatistics;
+export const KEY_DNS_STATISTICS_DATA_AVAILABLE_FROM = 'data_available_from' satisfies keyof DnsStatistics;
+export const KEY_DNS_STATISTICS_DATA_AVAILABLE_TO = 'data_available_to' satisfies keyof DnsStatistics;
+export const KEY_DNS_STATISTICS_END_DATE = 'end_date' satisfies keyof DnsStatistics;
+export const KEY_DNS_STATISTICS_GRANULARITY = 'granularity' satisfies keyof DnsStatistics;
+export const KEY_DNS_STATISTICS_START_DATE = 'start_date' satisfies keyof DnsStatistics;
+export const KEY_DNS_STATISTICS_STATISTICS_UPDATED_AT = 'statistics_updated_at' satisfies keyof DnsStatistics;
+export const KEY_DNS_STATISTICS_TOTALS = 'totals' satisfies keyof DnsStatistics;
+
+export const KEYS_DNS_STATISTICS = [
+  KEY_DNS_STATISTICS_BUCKETS,
+  KEY_DNS_STATISTICS_DATA_AVAILABLE_FROM,
+  KEY_DNS_STATISTICS_DATA_AVAILABLE_TO,
+  KEY_DNS_STATISTICS_END_DATE,
+  KEY_DNS_STATISTICS_GRANULARITY,
+  KEY_DNS_STATISTICS_START_DATE,
+  KEY_DNS_STATISTICS_STATISTICS_UPDATED_AT,
+  KEY_DNS_STATISTICS_TOTALS,
+] as const satisfies (keyof DnsStatistics)[];
+
+export const KEY_DNS_STATISTICS_TOTALS_NXDOMAIN_COUNT = 'nxdomain_count' satisfies keyof DnsStatisticsTotals;
+export const KEY_DNS_STATISTICS_TOTALS_QUERY_COUNT = 'query_count' satisfies keyof DnsStatisticsTotals;
+
+export const KEYS_DNS_STATISTICS_TOTALS = [
+  KEY_DNS_STATISTICS_TOTALS_NXDOMAIN_COUNT,
+  KEY_DNS_STATISTICS_TOTALS_QUERY_COUNT,
+] as const satisfies (keyof DnsStatisticsTotals)[];
+
+export const KEY_DNS_TOP_ZONES_PERIOD = 'period' satisfies keyof DnsTopZones;
+export const KEY_DNS_TOP_ZONES_PERIOD_END = 'period_end' satisfies keyof DnsTopZones;
+export const KEY_DNS_TOP_ZONES_PERIOD_START = 'period_start' satisfies keyof DnsTopZones;
+export const KEY_DNS_TOP_ZONES_RANK_BY = 'rank_by' satisfies keyof DnsTopZones;
+export const KEY_DNS_TOP_ZONES_RESULTS = 'results' satisfies keyof DnsTopZones;
+export const KEY_DNS_TOP_ZONES_STATISTICS_UPDATED_AT = 'statistics_updated_at' satisfies keyof DnsTopZones;
+
+export const KEYS_DNS_TOP_ZONES = [
+  KEY_DNS_TOP_ZONES_PERIOD,
+  KEY_DNS_TOP_ZONES_PERIOD_END,
+  KEY_DNS_TOP_ZONES_PERIOD_START,
+  KEY_DNS_TOP_ZONES_RANK_BY,
+  KEY_DNS_TOP_ZONES_RESULTS,
+  KEY_DNS_TOP_ZONES_STATISTICS_UPDATED_AT,
+] as const satisfies (keyof DnsTopZones)[];
+
+export const KEY_DNS_ZONE_ACTIVITY_LAST_QUERY_DATE = 'last_query_date' satisfies keyof DnsZoneActivity;
+export const KEY_DNS_ZONE_ACTIVITY_NXDOMAIN_COUNT = 'nxdomain_count' satisfies keyof DnsZoneActivity;
+export const KEY_DNS_ZONE_ACTIVITY_NXDOMAIN_RATIO = 'nxdomain_ratio' satisfies keyof DnsZoneActivity;
+export const KEY_DNS_ZONE_ACTIVITY_ORGANIZATION_ID = 'organization_id' satisfies keyof DnsZoneActivity;
+export const KEY_DNS_ZONE_ACTIVITY_QUERY_COUNT = 'query_count' satisfies keyof DnsZoneActivity;
+export const KEY_DNS_ZONE_ACTIVITY_ZONE_CREATED_ON = 'zone_created_on' satisfies keyof DnsZoneActivity;
+export const KEY_DNS_ZONE_ACTIVITY_ZONE_NAME = 'zone_name' satisfies keyof DnsZoneActivity;
+
+export const KEYS_DNS_ZONE_ACTIVITY = [
+  KEY_DNS_ZONE_ACTIVITY_LAST_QUERY_DATE,
+  KEY_DNS_ZONE_ACTIVITY_NXDOMAIN_COUNT,
+  KEY_DNS_ZONE_ACTIVITY_NXDOMAIN_RATIO,
+  KEY_DNS_ZONE_ACTIVITY_ORGANIZATION_ID,
+  KEY_DNS_ZONE_ACTIVITY_QUERY_COUNT,
+  KEY_DNS_ZONE_ACTIVITY_ZONE_CREATED_ON,
+  KEY_DNS_ZONE_ACTIVITY_ZONE_NAME,
+] as const satisfies (keyof DnsZoneActivity)[];
 
 export const KEY_DNS_ZONE_CREATE_DNSSEC_STATUS = 'dnssec_status' satisfies keyof DnsZoneCreate;
 export const KEY_DNS_ZONE_CREATE_NAME = 'name' satisfies keyof DnsZoneCreate;
@@ -1871,6 +1971,44 @@ export const KEYS_DNS_ZONE_DTO = [
   KEY_DNS_ZONE_DTO_UPDATED_ON,
   KEY_DNS_ZONE_DTO_VANITY_NAMESERVER_SET_ID,
 ] as const satisfies (keyof DnsZoneDTO)[];
+
+export const KEY_DNS_ZONE_MOVER_CHANGE = 'change' satisfies keyof DnsZoneMover;
+export const KEY_DNS_ZONE_MOVER_CHANGE_RATIO = 'change_ratio' satisfies keyof DnsZoneMover;
+export const KEY_DNS_ZONE_MOVER_ORGANIZATION_ID = 'organization_id' satisfies keyof DnsZoneMover;
+export const KEY_DNS_ZONE_MOVER_PREVIOUS_QUERY_COUNT = 'previous_query_count' satisfies keyof DnsZoneMover;
+export const KEY_DNS_ZONE_MOVER_QUERY_COUNT = 'query_count' satisfies keyof DnsZoneMover;
+export const KEY_DNS_ZONE_MOVER_ZONE_CREATED_ON = 'zone_created_on' satisfies keyof DnsZoneMover;
+export const KEY_DNS_ZONE_MOVER_ZONE_NAME = 'zone_name' satisfies keyof DnsZoneMover;
+
+export const KEYS_DNS_ZONE_MOVER = [
+  KEY_DNS_ZONE_MOVER_CHANGE,
+  KEY_DNS_ZONE_MOVER_CHANGE_RATIO,
+  KEY_DNS_ZONE_MOVER_ORGANIZATION_ID,
+  KEY_DNS_ZONE_MOVER_PREVIOUS_QUERY_COUNT,
+  KEY_DNS_ZONE_MOVER_QUERY_COUNT,
+  KEY_DNS_ZONE_MOVER_ZONE_CREATED_ON,
+  KEY_DNS_ZONE_MOVER_ZONE_NAME,
+] as const satisfies (keyof DnsZoneMover)[];
+
+export const KEY_DNS_ZONE_MOVERS_DIRECTION = 'direction' satisfies keyof DnsZoneMovers;
+export const KEY_DNS_ZONE_MOVERS_PERIOD = 'period' satisfies keyof DnsZoneMovers;
+export const KEY_DNS_ZONE_MOVERS_PERIOD_END = 'period_end' satisfies keyof DnsZoneMovers;
+export const KEY_DNS_ZONE_MOVERS_PERIOD_START = 'period_start' satisfies keyof DnsZoneMovers;
+export const KEY_DNS_ZONE_MOVERS_PREVIOUS_PERIOD_END = 'previous_period_end' satisfies keyof DnsZoneMovers;
+export const KEY_DNS_ZONE_MOVERS_PREVIOUS_PERIOD_START = 'previous_period_start' satisfies keyof DnsZoneMovers;
+export const KEY_DNS_ZONE_MOVERS_RESULTS = 'results' satisfies keyof DnsZoneMovers;
+export const KEY_DNS_ZONE_MOVERS_STATISTICS_UPDATED_AT = 'statistics_updated_at' satisfies keyof DnsZoneMovers;
+
+export const KEYS_DNS_ZONE_MOVERS = [
+  KEY_DNS_ZONE_MOVERS_DIRECTION,
+  KEY_DNS_ZONE_MOVERS_PERIOD,
+  KEY_DNS_ZONE_MOVERS_PERIOD_END,
+  KEY_DNS_ZONE_MOVERS_PERIOD_START,
+  KEY_DNS_ZONE_MOVERS_PREVIOUS_PERIOD_END,
+  KEY_DNS_ZONE_MOVERS_PREVIOUS_PERIOD_START,
+  KEY_DNS_ZONE_MOVERS_RESULTS,
+  KEY_DNS_ZONE_MOVERS_STATISTICS_UPDATED_AT,
+] as const satisfies (keyof DnsZoneMovers)[];
 
 export const KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_COMMAND = 'command' satisfies keyof DnsZonePatchRecordsBulkCommand;
 export const KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_IDEMPOTENCY_KEY = 'idempotency_key' satisfies keyof DnsZonePatchRecordsBulkCommand;

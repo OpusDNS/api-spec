@@ -389,6 +389,26 @@ export type GET_DnsEmailForwards_Request = {
 };
 export type GET_DnsEmailForwards_Request_Query = GET_DnsEmailForwards_Request['parameters']['query'];
 
+export type GET_DnsStatistics_Request = {
+  parameters: operations['get_dns_statistics_v1_dns_statistics_get']['parameters'];
+};
+export type GET_DnsStatistics_Request_Query = GET_DnsStatistics_Request['parameters']['query'];
+
+export type GET_DnsStatisticsInactiveZones_Request = {
+  parameters: operations['list_dns_inactive_zones_v1_dns_statistics_inactive_zones_get']['parameters'];
+};
+export type GET_DnsStatisticsInactiveZones_Request_Query = GET_DnsStatisticsInactiveZones_Request['parameters']['query'];
+
+export type GET_DnsStatisticsMovers_Request = {
+  parameters: operations['list_dns_zone_movers_v1_dns_statistics_movers_get']['parameters'];
+};
+export type GET_DnsStatisticsMovers_Request_Query = GET_DnsStatisticsMovers_Request['parameters']['query'];
+
+export type GET_DnsStatisticsTopZones_Request = {
+  parameters: operations['list_dns_top_zones_v1_dns_statistics_top_zones_get']['parameters'];
+};
+export type GET_DnsStatisticsTopZones_Request_Query = GET_DnsStatisticsTopZones_Request['parameters']['query'];
+
 export type GET_DnsSummary_Request = {
 };
 

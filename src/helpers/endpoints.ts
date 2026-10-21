@@ -29,6 +29,10 @@ export const CONTACTS_BY_CONTACT_ID_VERIFICATIONS_ATTEST_ENDPOINT = '/v1/contact
 export const DNS_ENDPOINT = '/v1/dns';
 export const DNS_DOMAIN_FORWARDS_ENDPOINT = '/v1/dns/domain-forwards';
 export const DNS_EMAIL_FORWARDS_ENDPOINT = '/v1/dns/email-forwards';
+export const DNS_STATISTICS_ENDPOINT = '/v1/dns/statistics';
+export const DNS_STATISTICS_INACTIVE_ZONES_ENDPOINT = '/v1/dns/statistics/inactive-zones';
+export const DNS_STATISTICS_MOVERS_ENDPOINT = '/v1/dns/statistics/movers';
+export const DNS_STATISTICS_TOP_ZONES_ENDPOINT = '/v1/dns/statistics/top-zones';
 export const DNS_SUMMARY_ENDPOINT = '/v1/dns/summary';
 export const DNS_BY_ZONE_NAME_ENDPOINT = '/v1/dns/{zone_name}';
 export const DNS_BY_ZONE_NAME_DNSSEC_DISABLE_ENDPOINT = '/v1/dns/{zone_name}/dnssec/disable';
@@ -194,6 +198,10 @@ export type Endpoint =
   | typeof DNS_ENDPOINT
   | typeof DNS_DOMAIN_FORWARDS_ENDPOINT
   | typeof DNS_EMAIL_FORWARDS_ENDPOINT
+  | typeof DNS_STATISTICS_ENDPOINT
+  | typeof DNS_STATISTICS_INACTIVE_ZONES_ENDPOINT
+  | typeof DNS_STATISTICS_MOVERS_ENDPOINT
+  | typeof DNS_STATISTICS_TOP_ZONES_ENDPOINT
   | typeof DNS_SUMMARY_ENDPOINT
   | typeof DNS_BY_ZONE_NAME_ENDPOINT
   | typeof DNS_BY_ZONE_NAME_DNSSEC_DISABLE_ENDPOINT

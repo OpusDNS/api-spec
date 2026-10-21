@@ -606,6 +606,96 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/dns/statistics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get DNS query statistics of the organization
+         * @description Counts the DNS queries answered for all zones of your organization, how many of them were NXDOMAIN, and how many zones had queries, in a window of whole UTC days bucketed by the requested granularity. The window may span at most 366 days at `granularity=day` or `week` and 120 calendar months at `granularity=month`.
+         *
+         *     The numbers cover all DNS zones of your organization, and with `include_sub_organizations=true` those of its sub-organizations too. A zone counts for its current owner with its whole history: a zone moved to your organization brings its earlier queries along, and a deleted zone no longer counts. They are recomputed after each new day of data and after zones changed owner or were deleted; `statistics_updated_at` tells when.
+         *
+         *     Every bucket the window touches is present, oldest first, so the series can be charted as is; a bucket without queries counts zero. A bucket marked `partial` covers only part of its span. Statistics are collected once a day, so the newest day with data is usually yesterday.
+         */
+        get: operations["get_dns_statistics_v1_dns_statistics_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/dns/statistics/inactive-zones": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List the zones without DNS queries
+         * @description Lists the zones of your organization that answered no query in a fixed period (7, 30 or 90 days) ending on the newest day with data, by name. A zone without any query is most likely not delegated to the OpusDNS nameservers: check the nameservers of its domain. Zones created within the period are included; `zone_created_on` tells them apart.
+         *
+         *     The numbers cover all DNS zones of your organization, and with `include_sub_organizations=true` those of its sub-organizations too. A zone counts for its current owner with its whole history: a zone moved to your organization brings its earlier queries along, and a deleted zone no longer counts. They are recomputed after each new day of data and after zones changed owner or were deleted; `statistics_updated_at` tells when.
+         */
+        get: operations["list_dns_inactive_zones_v1_dns_statistics_inactive_zones_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/dns/statistics/movers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List the zones whose DNS queries changed most
+         * @description Lists the zones of your organization whose queries dropped (or rose) most in a fixed period (7 or 30 days) ending on the newest day with data, against the period of the same length before it. A sharp drop often means the domain no longer points at the OpusDNS nameservers; a sharp rise can be a campaign, a migration or an attack. Zones below `min_query_count` in both periods are left out, and so are zones created after the earlier period began, whose rise is only their creation.
+         *
+         *     The numbers cover all DNS zones of your organization, and with `include_sub_organizations=true` those of its sub-organizations too. A zone counts for its current owner with its whole history: a zone moved to your organization brings its earlier queries along, and a deleted zone no longer counts. They are recomputed after each new day of data and after zones changed owner or were deleted; `statistics_updated_at` tells when.
+         */
+        get: operations["list_dns_zone_movers_v1_dns_statistics_movers_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/dns/statistics/top-zones": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List the zones with the most DNS queries
+         * @description Ranks the zones of your organization by queries, NXDOMAIN answers or NXDOMAIN share over a fixed period (7, 30 or 90 days) ending on the newest day with data. Zones without queries in the period are left out. A high NXDOMAIN share often points at missing records or typos in links.
+         *
+         *     The numbers cover all DNS zones of your organization, and with `include_sub_organizations=true` those of its sub-organizations too. A zone counts for its current owner with its whole history: a zone moved to your organization brings its earlier queries along, and a deleted zone no longer counts. They are recomputed after each new day of data and after zones changed owner or were deleted; `statistics_updated_at` tells when.
+         */
+        get: operations["list_dns_top_zones_v1_dns_statistics_top_zones_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/dns/summary": {
         parameters: {
             query?: never;
@@ -5805,6 +5895,30 @@ export interface components {
              */
             truncated: boolean;
         } | {
+            data?: components["schemas"]["DnsStatisticsResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_dns_statistics_v1_dns_statistics_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
             data?: components["schemas"]["DomainDnssecDataResponse"][] | string;
             /**
              * Headers
@@ -7096,6 +7210,78 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "list_conversations_v1_ai_concierge_conversations_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DnsInactiveZonesResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_dns_inactive_zones_v1_dns_statistics_inactive_zones_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DnsTopZonesResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_dns_top_zones_v1_dns_statistics_top_zones_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DnsZoneMoversResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_dns_zone_movers_v1_dns_statistics_movers_get";
             /** @constant */
             status: "ok";
             /**
@@ -10913,6 +11099,45 @@ export interface components {
              */
             registry_root_nameserver_update: number;
         };
+        /** DnsInactiveZonesResponse */
+        DnsInactiveZonesResponse: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** @description The period without queries */
+            period: components["schemas"]["DnsStatisticsPeriod"];
+            /**
+             * Period End
+             * Format: date
+             * @description Last day of the period: the newest day with data
+             */
+            period_end: string;
+            /**
+             * Period Start
+             * Format: date
+             * @description First day of the period (UTC)
+             */
+            period_start: string;
+            /** Results */
+            results: components["schemas"]["DnsZoneActivityResponse"][];
+            /**
+             * Statistics Updated At
+             * Format: date-time
+             * @description When these numbers were computed. They are recomputed after each new day of data and after zones changed owner or were deleted, so a change can take a few hours to show
+             */
+            statistics_updated_at: Date;
+        };
+        /**
+         * DnsMoverDirection
+         * @description `drop`: the zones that lost the most queries against the previous period; `rise`: those that gained
+         *     the most.
+         * @enum {string}
+         */
+        DnsMoverDirection: "drop" | "rise";
+        /**
+         * DnsMoversPeriod
+         * @description The movers compare a period with the one of the same length before it.
+         * @enum {string}
+         */
+        DnsMoversPeriod: "7d" | "30d";
         /**
          * DnsProtectedReason
          * @enum {string}
@@ -11026,6 +11251,160 @@ export interface components {
             /** Ttl */
             ttl: number;
             type: components["schemas"]["DnsRrsetType"];
+        };
+        /** DnsStatisticsBucketResponse */
+        DnsStatisticsBucketResponse: {
+            /**
+             * Nxdomain Count
+             * @description Of those, queries answered with NXDOMAIN
+             */
+            nxdomain_count: number;
+            /**
+             * Partial
+             * @description The bucket counts only part of its span: it reaches outside the window, or part of it lies before `data_available_from` or after `data_available_to`. A partial bucket must not be read as a rise or fall against its neighbours.
+             */
+            partial: boolean;
+            /**
+             * Period Start
+             * Format: date
+             * @description First day of the bucket (UTC)
+             */
+            period_start: string;
+            /**
+             * Query Count
+             * @description Queries answered for the organization's zones in this bucket
+             */
+            query_count: number;
+            /**
+             * Zone Count
+             * @description Zones with at least one query in the bucket. Null for weeks, and for a month the window cuts: those are summed from days, and a zone active on several of them cannot be counted once
+             */
+            zone_count: number | null;
+        };
+        /**
+         * DnsStatisticsPeriod
+         * @description A fixed window of whole UTC days ending on the newest day with data (`period_end`).
+         * @enum {string}
+         */
+        DnsStatisticsPeriod: "7d" | "30d" | "90d";
+        /** DnsStatisticsResponse */
+        DnsStatisticsResponse: {
+            /**
+             * Buckets
+             * @description One entry per bucket the window touches, oldest first, including buckets without queries
+             */
+            buckets: components["schemas"]["DnsStatisticsBucketResponse"][];
+            /**
+             * Data Available From
+             * @description First day the statistics hold data for. Null while no statistics have been collected.
+             */
+            data_available_from: string | null;
+            /**
+             * Data Available To
+             * @description Last day the statistics hold data for. Null while no statistics have been collected.
+             */
+            data_available_to: string | null;
+            /**
+             * End Date
+             * Format: date
+             * @description Last day of the window, inclusive
+             */
+            end_date: string;
+            /** @description Time-bucket size of the series */
+            granularity: components["schemas"]["UsageGranularity"];
+            /**
+             * Start Date
+             * Format: date
+             * @description First day of the window, inclusive
+             */
+            start_date: string;
+            /**
+             * Statistics Updated At
+             * Format: date-time
+             * @description When these numbers were computed. They are recomputed after each new day of data and after zones changed owner or were deleted, so a change can take a few hours to show
+             */
+            statistics_updated_at: Date;
+            totals: components["schemas"]["DnsStatisticsTotalsResponse"];
+        };
+        /** DnsStatisticsTotalsResponse */
+        DnsStatisticsTotalsResponse: {
+            /**
+             * Nxdomain Count
+             * @description Of those, queries answered with NXDOMAIN
+             */
+            nxdomain_count: number;
+            /**
+             * Query Count
+             * @description Queries answered for the organization's zones in the window
+             */
+            query_count: number;
+        };
+        /** DnsTopZonesResponse */
+        DnsTopZonesResponse: {
+            /** @description The period the ranking covers */
+            period: components["schemas"]["DnsStatisticsPeriod"];
+            /**
+             * Period End
+             * Format: date
+             * @description Last day of the period: the newest day with data
+             */
+            period_end: string;
+            /**
+             * Period Start
+             * Format: date
+             * @description First day of the period (UTC)
+             */
+            period_start: string;
+            /** @description Order of the zones */
+            rank_by: components["schemas"]["DnsZoneRank"];
+            /** Results */
+            results: components["schemas"]["DnsZoneActivityResponse"][];
+            /**
+             * Statistics Updated At
+             * Format: date-time
+             * @description When these numbers were computed. They are recomputed after each new day of data and after zones changed owner or were deleted, so a change can take a few hours to show
+             */
+            statistics_updated_at: Date;
+        };
+        /** DnsZoneActivityResponse */
+        DnsZoneActivityResponse: {
+            /**
+             * Last Query Date
+             * @description Last day with queries within the last 90 days; null when there was none
+             */
+            last_query_date: string | null;
+            /**
+             * Nxdomain Count
+             * @description Of those, queries answered with NXDOMAIN
+             */
+            nxdomain_count: number;
+            /**
+             * Nxdomain Ratio
+             * @description `nxdomain_count` / `query_count`; 0 without queries
+             */
+            nxdomain_ratio: number;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description The organization the zone belongs to
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /**
+             * Query Count
+             * @description Queries answered for the zone in the period
+             */
+            query_count: number;
+            /**
+             * Zone Created On
+             * @description Day the zone was created (UTC); null when unknown
+             */
+            zone_created_on: string | null;
+            /**
+             * Zone Name
+             * @description The zone, with a trailing dot
+             */
+            zone_name: string;
         };
         /** DnsZoneCreate */
         DnsZoneCreate: {
@@ -11189,6 +11568,85 @@ export interface components {
              */
             vanity_nameserver_set_id?: TypeId<"vns"> | null;
         };
+        /** DnsZoneMoverResponse */
+        DnsZoneMoverResponse: {
+            /**
+             * Change
+             * @description `query_count` minus `previous_query_count`
+             */
+            change: number;
+            /**
+             * Change Ratio
+             * @description `change` relative to `previous_query_count`; null when the previous period had no queries
+             */
+            change_ratio: number | null;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description The organization the zone belongs to
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /**
+             * Previous Query Count
+             * @description Queries in the period of the same length before it
+             */
+            previous_query_count: number;
+            /**
+             * Query Count
+             * @description Queries in the period
+             */
+            query_count: number;
+            /**
+             * Zone Created On
+             * @description Day the zone was created (UTC); null when unknown
+             */
+            zone_created_on: string | null;
+            /**
+             * Zone Name
+             * @description The zone, with a trailing dot
+             */
+            zone_name: string;
+        };
+        /** DnsZoneMoversResponse */
+        DnsZoneMoversResponse: {
+            /** @description Whether the list shows drops or rises */
+            direction: components["schemas"]["DnsMoverDirection"];
+            /** @description The period compared with the one before it */
+            period: components["schemas"]["DnsMoversPeriod"];
+            /**
+             * Period End
+             * Format: date
+             * @description Last day of the period: the newest day with data
+             */
+            period_end: string;
+            /**
+             * Period Start
+             * Format: date
+             * @description First day of the period (UTC)
+             */
+            period_start: string;
+            /**
+             * Previous Period End
+             * Format: date
+             * @description Last day of the period compared with
+             */
+            previous_period_end: string;
+            /**
+             * Previous Period Start
+             * Format: date
+             * @description First day of the period compared with
+             */
+            previous_period_start: string;
+            /** Results */
+            results: components["schemas"]["DnsZoneMoverResponse"][];
+            /**
+             * Statistics Updated At
+             * Format: date-time
+             * @description When these numbers were computed. They are recomputed after each new day of data and after zones changed owner or were deleted, so a change can take a few hours to show
+             */
+            statistics_updated_at: Date;
+        };
         /** DnsZonePatchRecordsBulkCommand */
         DnsZonePatchRecordsBulkCommand: {
             /**
@@ -11283,6 +11741,13 @@ export interface components {
             type: "dns_zone_patch_rrsets_bulk";
             zone: components["schemas"]["DnsZonePatchRrsetsBulkInstance"];
         };
+        /**
+         * DnsZoneRank
+         * @description Order of the top zones: by queries, by queries answered with NXDOMAIN, or by the NXDOMAIN share of
+         *     a zone's queries.
+         * @enum {string}
+         */
+        DnsZoneRank: "queries" | "nxdomains" | "nxdomain_ratio";
         /** DnsZoneRecordsPatchOps */
         DnsZoneRecordsPatchOps: {
             /** Ops */
@@ -24524,6 +24989,517 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_dns_statistics_v1_dns_statistics_get: {
+        parameters: {
+            query: {
+                /** @description First day of the window, inclusive (YYYY-MM-DD, UTC) */
+                start_date: string;
+                /** @description Last day of the window, inclusive (YYYY-MM-DD, UTC). How far it may reach depends on `granularity`: at most 366 days for `day` and `week`, and 120 calendar months for `month`. */
+                end_date: string;
+                /** @description Time-bucket size. Weeks start on Monday and months on the 1st, in UTC. */
+                granularity?: components["schemas"]["UsageGranularity"];
+                /** @description Also count the zones of the organization's sub-organizations (up to three levels), like the domain statistics do */
+                include_sub_organizations?: boolean;
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Statistics retrieved successfully */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DnsStatisticsResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_QUERY",
+                     *       "detail": "The organization has 2400 organizations in its sub-tree, more than the 2000 these statistics can count over in one query",
+                     *       "status": 400,
+                     *       "title": "Zone statistics query rejected.",
+                     *       "type": "zone-stats-query-rejected"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_WINDOW",
+                     *       "detail": "'start_date' must be on or before 'end_date'",
+                     *       "status": 422,
+                     *       "title": "Invalid zone statistics window.",
+                     *       "type": "zone-stats-invalid-window"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Implemented */
+            501: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_NOT_AVAILABLE",
+                     *       "detail": "Zone statistics are not available in this environment.",
+                     *       "status": 501,
+                     *       "title": "Zone statistics not available.",
+                     *       "type": "zone-stats-not-available"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_UNAVAILABLE",
+                     *       "detail": "The statistics are not available yet, please try again later.",
+                     *       "status": 503,
+                     *       "title": "Zone statistics unavailable.",
+                     *       "type": "zone-stats-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    list_dns_inactive_zones_v1_dns_statistics_inactive_zones_get: {
+        parameters: {
+            query?: {
+                /** @description Window without queries */
+                period?: components["schemas"]["DnsStatisticsPeriod"];
+                /** @description Page number */
+                page?: number;
+                /** @description Zones per page */
+                page_size?: number;
+                /** @description Also count the zones of the organization's sub-organizations (up to three levels), like the domain statistics do */
+                include_sub_organizations?: boolean;
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Zones without queries */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DnsInactiveZonesResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_QUERY",
+                     *       "detail": "The organization has 2400 organizations in its sub-tree, more than the 2000 these statistics can count over in one query",
+                     *       "status": 400,
+                     *       "title": "Zone statistics query rejected.",
+                     *       "type": "zone-stats-query-rejected"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Not Implemented */
+            501: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_NOT_AVAILABLE",
+                     *       "detail": "Zone statistics are not available in this environment.",
+                     *       "status": 501,
+                     *       "title": "Zone statistics not available.",
+                     *       "type": "zone-stats-not-available"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_UNAVAILABLE",
+                     *       "detail": "The statistics are not available yet, please try again later.",
+                     *       "status": 503,
+                     *       "title": "Zone statistics unavailable.",
+                     *       "type": "zone-stats-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    list_dns_zone_movers_v1_dns_statistics_movers_get: {
+        parameters: {
+            query?: {
+                /** @description Window compared with the window of the same length before it */
+                period?: components["schemas"]["DnsMoversPeriod"];
+                /** @description `drop` lists the zones that lost the most queries, `rise` those that gained the most */
+                direction?: components["schemas"]["DnsMoverDirection"];
+                /** @description Number of zones to return */
+                limit?: number;
+                /** @description Leave out zones with fewer queries than this in both windows */
+                min_query_count?: number;
+                /** @description Also count the zones of the organization's sub-organizations (up to three levels), like the domain statistics do */
+                include_sub_organizations?: boolean;
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Zones whose queries changed most */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DnsZoneMoversResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_QUERY",
+                     *       "detail": "The organization has 2400 organizations in its sub-tree, more than the 2000 these statistics can count over in one query",
+                     *       "status": 400,
+                     *       "title": "Zone statistics query rejected.",
+                     *       "type": "zone-stats-query-rejected"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Not Implemented */
+            501: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_NOT_AVAILABLE",
+                     *       "detail": "Zone statistics are not available in this environment.",
+                     *       "status": 501,
+                     *       "title": "Zone statistics not available.",
+                     *       "type": "zone-stats-not-available"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_UNAVAILABLE",
+                     *       "detail": "The statistics are not available yet, please try again later.",
+                     *       "status": 503,
+                     *       "title": "Zone statistics unavailable.",
+                     *       "type": "zone-stats-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    list_dns_top_zones_v1_dns_statistics_top_zones_get: {
+        parameters: {
+            query?: {
+                /** @description Window of the ranking */
+                period?: components["schemas"]["DnsStatisticsPeriod"];
+                /** @description Order of the zones: by queries, by NXDOMAIN answers, or by the NXDOMAIN share of their queries (raise `min_query_count` to leave out zones with a handful of queries) */
+                rank_by?: components["schemas"]["DnsZoneRank"];
+                /** @description Number of zones to return */
+                limit?: number;
+                /** @description Leave out zones with fewer queries in the period */
+                min_query_count?: number;
+                /** @description Also count the zones of the organization's sub-organizations (up to three levels), like the domain statistics do */
+                include_sub_organizations?: boolean;
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Zones ranked */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DnsTopZonesResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_QUERY",
+                     *       "detail": "The organization has 2400 organizations in its sub-tree, more than the 2000 these statistics can count over in one query",
+                     *       "status": 400,
+                     *       "title": "Zone statistics query rejected.",
+                     *       "type": "zone-stats-query-rejected"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Not Implemented */
+            501: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_NOT_AVAILABLE",
+                     *       "detail": "Zone statistics are not available in this environment.",
+                     *       "status": 501,
+                     *       "title": "Zone statistics not available.",
+                     *       "type": "zone-stats-not-available"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_UNAVAILABLE",
+                     *       "detail": "The statistics are not available yet, please try again later.",
+                     *       "status": 503,
+                     *       "title": "Zone statistics unavailable.",
+                     *       "type": "zone-stats-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };

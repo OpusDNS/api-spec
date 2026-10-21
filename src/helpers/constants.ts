@@ -27,8 +27,12 @@ import type {
   Currency,
   DeletePolicyType,
   DnsChangeAction,
+  DnsMoverDirection,
+  DnsMoversPeriod,
   DnsProtectedReason,
   DnsRrsetType,
+  DnsStatisticsPeriod,
+  DnsZoneRank,
   DnssecAlgorithm,
   DnssecDigestType,
   DnssecModeType,
@@ -580,6 +584,26 @@ export const DNS_CHANGE_ACTION_VALUES = [
   'disable_dnssec',
 ] as const satisfies ReadonlyArray<DnsChangeAction>;
 
+export const DNS_MOVER_DIRECTION = {
+  DROP: "drop",
+  RISE: "rise",
+} as const satisfies Record<string, DnsMoverDirection>;
+
+export const DNS_MOVER_DIRECTION_VALUES = [
+  'drop',
+  'rise',
+] as const satisfies ReadonlyArray<DnsMoverDirection>;
+
+export const DNS_MOVERS_PERIOD = {
+  "7D": "7d",
+  "30D": "30d",
+} as const satisfies Record<string, DnsMoversPeriod>;
+
+export const DNS_MOVERS_PERIOD_VALUES = [
+  '7d',
+  '30d',
+] as const satisfies ReadonlyArray<DnsMoversPeriod>;
+
 export const DNS_PROTECTED_REASON = {
   SYSTEM_MANAGED_SOA: "SYSTEM_MANAGED_SOA",
   SYSTEM_MANAGED_NS: "SYSTEM_MANAGED_NS",
@@ -645,6 +669,30 @@ export const DNS_RRSET_TYPE_VALUES = [
   'SSHFP',
   'CERT',
 ] as const satisfies ReadonlyArray<DnsRrsetType>;
+
+export const DNS_STATISTICS_PERIOD = {
+  "7D": "7d",
+  "30D": "30d",
+  "90D": "90d",
+} as const satisfies Record<string, DnsStatisticsPeriod>;
+
+export const DNS_STATISTICS_PERIOD_VALUES = [
+  '7d',
+  '30d',
+  '90d',
+] as const satisfies ReadonlyArray<DnsStatisticsPeriod>;
+
+export const DNS_ZONE_RANK = {
+  QUERIES: "queries",
+  NXDOMAINS: "nxdomains",
+  NXDOMAIN_RATIO: "nxdomain_ratio",
+} as const satisfies Record<string, DnsZoneRank>;
+
+export const DNS_ZONE_RANK_VALUES = [
+  'queries',
+  'nxdomains',
+  'nxdomain_ratio',
+] as const satisfies ReadonlyArray<DnsZoneRank>;
 
 export const DNSSEC_ALGORITHM = [
   1,

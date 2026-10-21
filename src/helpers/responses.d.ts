@@ -16,7 +16,11 @@ import type {
   ConversationList,
   CreateJobBatch,
   DnsChanges,
+  DnsInactiveZones,
+  DnsStatistics,
+  DnsTopZones,
   DnsZone,
+  DnsZoneMovers,
   DnsZoneSummary,
   DnsZoneVanitySetUpdateRes,
   Domain,
@@ -463,6 +467,46 @@ export type GET_DnsEmailForwards_Response_200 = Pagination_EmailForwardZone;
 export type GET_DnsEmailForwards_Response_401 = Problem;
 export type GET_DnsEmailForwards_Response_403 = Problem;
 export type GET_DnsEmailForwards_Response_422 = HTTPValidationError;
+
+export type GET_DnsStatistics_Response = GET_DnsStatistics_Response_200 | GET_DnsStatistics_Response_400 | GET_DnsStatistics_Response_401 | GET_DnsStatistics_Response_403 | GET_DnsStatistics_Response_422 | GET_DnsStatistics_Response_501 | GET_DnsStatistics_Response_503;
+
+export type GET_DnsStatistics_Response_200 = DnsStatistics;
+export type GET_DnsStatistics_Response_400 = Problem;
+export type GET_DnsStatistics_Response_401 = Problem;
+export type GET_DnsStatistics_Response_403 = Problem;
+export type GET_DnsStatistics_Response_422 = Problem;
+export type GET_DnsStatistics_Response_501 = Problem;
+export type GET_DnsStatistics_Response_503 = Problem;
+
+export type GET_DnsStatisticsInactiveZones_Response = GET_DnsStatisticsInactiveZones_Response_200 | GET_DnsStatisticsInactiveZones_Response_400 | GET_DnsStatisticsInactiveZones_Response_401 | GET_DnsStatisticsInactiveZones_Response_403 | GET_DnsStatisticsInactiveZones_Response_422 | GET_DnsStatisticsInactiveZones_Response_501 | GET_DnsStatisticsInactiveZones_Response_503;
+
+export type GET_DnsStatisticsInactiveZones_Response_200 = DnsInactiveZones;
+export type GET_DnsStatisticsInactiveZones_Response_400 = Problem;
+export type GET_DnsStatisticsInactiveZones_Response_401 = Problem;
+export type GET_DnsStatisticsInactiveZones_Response_403 = Problem;
+export type GET_DnsStatisticsInactiveZones_Response_422 = HTTPValidationError;
+export type GET_DnsStatisticsInactiveZones_Response_501 = Problem;
+export type GET_DnsStatisticsInactiveZones_Response_503 = Problem;
+
+export type GET_DnsStatisticsMovers_Response = GET_DnsStatisticsMovers_Response_200 | GET_DnsStatisticsMovers_Response_400 | GET_DnsStatisticsMovers_Response_401 | GET_DnsStatisticsMovers_Response_403 | GET_DnsStatisticsMovers_Response_422 | GET_DnsStatisticsMovers_Response_501 | GET_DnsStatisticsMovers_Response_503;
+
+export type GET_DnsStatisticsMovers_Response_200 = DnsZoneMovers;
+export type GET_DnsStatisticsMovers_Response_400 = Problem;
+export type GET_DnsStatisticsMovers_Response_401 = Problem;
+export type GET_DnsStatisticsMovers_Response_403 = Problem;
+export type GET_DnsStatisticsMovers_Response_422 = HTTPValidationError;
+export type GET_DnsStatisticsMovers_Response_501 = Problem;
+export type GET_DnsStatisticsMovers_Response_503 = Problem;
+
+export type GET_DnsStatisticsTopZones_Response = GET_DnsStatisticsTopZones_Response_200 | GET_DnsStatisticsTopZones_Response_400 | GET_DnsStatisticsTopZones_Response_401 | GET_DnsStatisticsTopZones_Response_403 | GET_DnsStatisticsTopZones_Response_422 | GET_DnsStatisticsTopZones_Response_501 | GET_DnsStatisticsTopZones_Response_503;
+
+export type GET_DnsStatisticsTopZones_Response_200 = DnsTopZones;
+export type GET_DnsStatisticsTopZones_Response_400 = Problem;
+export type GET_DnsStatisticsTopZones_Response_401 = Problem;
+export type GET_DnsStatisticsTopZones_Response_403 = Problem;
+export type GET_DnsStatisticsTopZones_Response_422 = HTTPValidationError;
+export type GET_DnsStatisticsTopZones_Response_501 = Problem;
+export type GET_DnsStatisticsTopZones_Response_503 = Problem;
 
 export type GET_DnsSummary_Response = GET_DnsSummary_Response_200 | GET_DnsSummary_Response_422;
 
