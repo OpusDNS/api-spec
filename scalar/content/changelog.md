@@ -20,6 +20,14 @@ Track notable updates to the OpusDNS API and developer documentation here.
   used to fail with a registry error. A `non_profit` registrant carries its
   11-digit Partita IVA or numeric Codice Fiscale instead.
 
+- Corrected **the auth code length on [`.it`](/tld-knowledge-base/cctlds/it)**.
+  The registry accepts auth codes of 8 to 32 characters, so
+  [`POST /v1/domains`](/api-reference#tag/domain/POST/v1/domains) and
+  [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference})
+  now refuse a shorter `auth_code` with `422`. Until now it was sent to the
+  registry, which rejected it. The TLD Knowledge Base page listed 6 to 32
+  characters.
+
 - Added **DNS statistics for your whole organization**:
   [`GET /v1/dns/statistics`](/api-reference#tag/dns/GET/v1/dns/statistics)
   counts the DNS queries answered for all zones of your organization, how many
