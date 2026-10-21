@@ -133,7 +133,7 @@ The expected format depends on the entity type and nationality:
 | `natural_person` (non-Italian) | Home-country identifier (no format check) |
 | `company`, `public_org`, `other` | 11-digit Partita IVA |
 | `individual_firm` | Codice Fiscale or Partita IVA |
-| `non_profit` | Partita IVA, or the literal `N.A.` when none exists |
+| `non_profit` | 11-digit Partita IVA or numeric Codice Fiscale |
 | `foreign_legal_entity` | Home-country identifier (no format check) |
 
 ### Nationality, province, and organization
@@ -155,7 +155,6 @@ The registrant's standard fields are constrained by the entity type:
 
 - the **tech** contact is required, on both create and update
 - for a `natural_person` registrant, the **admin** contact must reference the same contact as the registrant
-- the registrant is immutable through a normal update: omit it and the existing registrant is kept; it cannot be replaced via `update`
 
 > ⚠️ **Reusing one contact for every role?** For a `natural_person` registrant the admin has to be that same contact, and any contacts update must still carry a tech. The two failures integrators hit most:
 >
@@ -192,6 +191,32 @@ The registrant's standard fields are constrained by the entity type:
 > ```
 
 The attribute constraints are machine-readable: each `possible_attributes` entry returned by [`GET /v1/tlds/it`](/api-reference#tag/tld/GET/v1/tlds/{tld}) carries its own `values`, `required`, and `contact_roles` fields.
+
+## Changing the holder
+
+The holder of a `.it` domain is changed with a regular domain update: send the new registrant in `contacts.registrant` of [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference}), with its `NIC_IT_ENTITY_TYPE` and `NIC_IT_REG_CODE`. Any entity type may change into any other, provided the new contact's own data is valid for its type.
+
+When the new registrant is a `natural_person`, send the same contact as `contacts.admin` in the same request, because the admin must be the same contact as a natural-person registrant. Otherwise the change is refused:
+
+```json
+{
+  "type": "policy-validation-error",
+  "title": "Policy Validation Error",
+  "status": 422,
+  "code": "ERROR_POLICY_VALIDATION",
+  "errors": [
+    {
+      "detail": "For 'natural_person' registrant, the admin contact must reference the same contact as the registrant",
+      "pointer": "contacts.admin[0].contact_id"
+    }
+  ],
+  "detail": "Policy validation failed"
+}
+```
+
+NIC.IT requires a new auth code on every holder change, so unless the request sets a new `auth_code`, a new one is generated and set in the same update. The change takes effect immediately, without a pending state, and NIC.IT notifies both the previous and the new holder by email.
+
+A holder change cannot be combined with a name server change in the same request. Send the name servers in a separate `PATCH`.
 
 ## Registrant Policy Acknowledgement
 

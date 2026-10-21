@@ -6,6 +6,20 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ### 21 October 2026
 
+- Documented **the change of registrant on [`.it`](/tld-knowledge-base/cctlds/it)
+  as a regular domain update**. The registry applies a new registrant sent with
+  [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference})
+  immediately, together with a new auth code. The
+  [`.it` TLD Knowledge Base](/tld-knowledge-base/cctlds/it) page stated that the
+  registrant could not be replaced with a domain update; it now describes how to
+  change the holder.
+
+- Changed **`N.A.` as the `NIC_IT_REG_CODE` of a `non_profit` registrant on
+  [`.it`](/tld-knowledge-base/cctlds/it) to be refused** with `422` and
+  `ERROR_POLICY_VALIDATION`, since NIC.IT no longer accepts it. Such a request
+  used to fail with a registry error. A `non_profit` registrant carries its
+  11-digit Partita IVA or numeric Codice Fiscale instead.
+
 - Corrected **the auth code length on [`.it`](/tld-knowledge-base/cctlds/it)**.
   The registry accepts auth codes of 8 to 32 characters, so
   [`POST /v1/domains`](/api-reference#tag/domain/POST/v1/domains) and
