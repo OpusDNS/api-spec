@@ -6,6 +6,14 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ### 21 October 2026
 
+- Documented **the change of registrant on [`.it`](/tld-knowledge-base/cctlds/it)
+  as a regular domain update**. The registry applies a new registrant sent with
+  [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference})
+  immediately, together with a new auth code. The
+  [`.it` TLD Knowledge Base](/tld-knowledge-base/cctlds/it) page stated that the
+  registrant could not be replaced with a domain update; it now describes how to
+  change the holder.
+
 - Added **DNS statistics for your whole organization**:
   [`GET /v1/dns/statistics`](/api-reference#tag/dns/GET/v1/dns/statistics)
   counts the DNS queries answered for all zones of your organization, how many
