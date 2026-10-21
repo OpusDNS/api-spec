@@ -15313,6 +15313,10 @@ components:
             $ref: '#/components/schemas/VerificationRegistrantDetails'
           title: Registrants
           type: array
+        source:
+          anyOf:
+          - $ref: '#/components/schemas/DomainVerificationKind'
+          - type: 'null'
         verification_claims:
           items:
             $ref: '#/components/schemas/VerificationClaimType'
@@ -15323,6 +15327,16 @@ components:
             $ref: '#/components/schemas/VerificationDeadline'
           title: Verification Deadlines
           type: array
+        verification_id:
+          anyOf:
+          - examples:
+            - domain_verification_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^domain_verification_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: domain_verification
+          - type: 'null'
+          title: Verification Id
       required:
       - domain_id
       title: DomainVerificationDetails
@@ -16607,6 +16621,7 @@ components:
       - SUCCESS
       - FAILURE
       - CANCELED
+      - OVERDUE
       title: EventSubtype
       type: string
     EventType:
@@ -25449,7 +25464,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-20-212846
+  version: 2026-10-21-075704
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

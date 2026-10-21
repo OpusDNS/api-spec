@@ -3409,15 +3409,19 @@ export const KEYS_DOMAIN_UPDATE_WORKER_PAYLOAD = [
 export const KEY_DOMAIN_VERIFICATION_DETAILS_DETAIL_TYPE = 'detail_type' satisfies keyof DomainVerificationDetails;
 export const KEY_DOMAIN_VERIFICATION_DETAILS_DOMAIN_ID = 'domain_id' satisfies keyof DomainVerificationDetails;
 export const KEY_DOMAIN_VERIFICATION_DETAILS_REGISTRANTS = 'registrants' satisfies keyof DomainVerificationDetails;
+export const KEY_DOMAIN_VERIFICATION_DETAILS_SOURCE = 'source' satisfies keyof DomainVerificationDetails;
 export const KEY_DOMAIN_VERIFICATION_DETAILS_VERIFICATION_CLAIMS = 'verification_claims' satisfies keyof DomainVerificationDetails;
 export const KEY_DOMAIN_VERIFICATION_DETAILS_VERIFICATION_DEADLINES = 'verification_deadlines' satisfies keyof DomainVerificationDetails;
+export const KEY_DOMAIN_VERIFICATION_DETAILS_VERIFICATION_ID = 'verification_id' satisfies keyof DomainVerificationDetails;
 
 export const KEYS_DOMAIN_VERIFICATION_DETAILS = [
   KEY_DOMAIN_VERIFICATION_DETAILS_DETAIL_TYPE,
   KEY_DOMAIN_VERIFICATION_DETAILS_DOMAIN_ID,
   KEY_DOMAIN_VERIFICATION_DETAILS_REGISTRANTS,
+  KEY_DOMAIN_VERIFICATION_DETAILS_SOURCE,
   KEY_DOMAIN_VERIFICATION_DETAILS_VERIFICATION_CLAIMS,
   KEY_DOMAIN_VERIFICATION_DETAILS_VERIFICATION_DEADLINES,
+  KEY_DOMAIN_VERIFICATION_DETAILS_VERIFICATION_ID,
 ] as const satisfies (keyof DomainVerificationDetails)[];
 
 export const KEY_DOMAIN_VERIFICATION_CLAIMS = 'claims' satisfies keyof DomainVerification;

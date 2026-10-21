@@ -1131,6 +1131,7 @@ export const EVENT_SUBTYPE = {
   SUCCESS: "SUCCESS",
   FAILURE: "FAILURE",
   CANCELED: "CANCELED",
+  OVERDUE: "OVERDUE",
 } as const satisfies Record<string, EventSubtype>;
 
 export const EVENT_SUBTYPE_VALUES = [
@@ -1138,6 +1139,7 @@ export const EVENT_SUBTYPE_VALUES = [
   'SUCCESS',
   'FAILURE',
   'CANCELED',
+  'OVERDUE',
 ] as const satisfies ReadonlyArray<EventSubtype>;
 
 export const EVENT_TYPE = {

@@ -14256,10 +14256,13 @@ export interface components {
             domain_id: string;
             /** Registrants */
             registrants?: components["schemas"]["VerificationRegistrantDetails"][];
+            source?: components["schemas"]["DomainVerificationKind"] | null;
             /** Verification Claims */
             verification_claims?: components["schemas"]["VerificationClaimType"][];
             /** Verification Deadlines */
             verification_deadlines?: components["schemas"]["VerificationDeadline"][];
+            /** Verification Id */
+            verification_id?: TypeId<"domain_verification"> | null;
         };
         /**
          * DomainVerificationKind
@@ -15161,7 +15164,7 @@ export interface components {
          * EventSubtype
          * @enum {string}
          */
-        EventSubtype: "NOTIFICATION" | "SUCCESS" | "FAILURE" | "CANCELED";
+        EventSubtype: "NOTIFICATION" | "SUCCESS" | "FAILURE" | "CANCELED" | "OVERDUE";
         /**
          * EventType
          * @enum {string}
