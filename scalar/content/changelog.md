@@ -14,6 +14,12 @@ Track notable updates to the OpusDNS API and developer documentation here.
   registrant could not be replaced with a domain update; it now describes how to
   change the holder.
 
+- Changed **`N.A.` as the `NIC_IT_REG_CODE` of a `non_profit` registrant on
+  [`.it`](/tld-knowledge-base/cctlds/it) to be refused** with `422` and
+  `ERROR_POLICY_VALIDATION`, since NIC.IT no longer accepts it. Such a request
+  used to fail with a registry error. A `non_profit` registrant carries its
+  11-digit Partita IVA or numeric Codice Fiscale instead.
+
 - Added **DNS statistics for your whole organization**:
   [`GET /v1/dns/statistics`](/api-reference#tag/dns/GET/v1/dns/statistics)
   counts the DNS queries answered for all zones of your organization, how many

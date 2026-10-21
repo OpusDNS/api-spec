@@ -31,7 +31,7 @@ The expected format depends on the entity type and nationality:
 | `natural_person` (non-Italian) | Home-country identifier (no format check) |
 | `company`, `public_org`, `other` | 11-digit Partita IVA |
 | `individual_firm` | Codice Fiscale or Partita IVA |
-| `non_profit` | Partita IVA, or the literal `N.A.` when none exists |
+| `non_profit` | 11-digit Partita IVA or numeric Codice Fiscale |
 | `foreign_legal_entity` | Home-country identifier (no format check) |
 
 ### Nationality, province, and organization
