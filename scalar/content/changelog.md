@@ -4,6 +4,32 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 21 October 2026
+
+- Added **DNS statistics for your whole organization**:
+  [`GET /v1/dns/statistics`](/api-reference#tag/dns/GET/v1/dns/statistics)
+  counts the DNS queries answered for all zones of your organization, how many
+  of them were answered with NXDOMAIN, and how many zones had queries, per day,
+  week or month. It takes the parameters of
+  [`GET /v1/dns/{zone_name}/statistics`](/api-reference#tag/dns/GET/v1/dns/{zone_name}/statistics),
+  and with `include_sub_organizations=true` it counts the zones of your
+  sub-organizations too. A zone counts for its current owner with its whole
+  history: a zone moved to your organization brings its earlier queries along,
+  and a deleted zone no longer counts. Three lists cover a fixed period of 7,
+  30 or 90 days that ends on the newest day with data:
+  - [`GET /v1/dns/statistics/top-zones`](/api-reference#tag/dns/GET/v1/dns/statistics/top-zones)
+    ranks your zones by queries, NXDOMAIN answers or NXDOMAIN share.
+  - [`GET /v1/dns/statistics/inactive-zones`](/api-reference#tag/dns/GET/v1/dns/statistics/inactive-zones)
+    lists the zones that answered no query. Such a zone is most likely not
+    delegated to the OpusDNS nameservers.
+  - [`GET /v1/dns/statistics/movers`](/api-reference#tag/dns/GET/v1/dns/statistics/movers)
+    lists the zones whose queries dropped or rose most against the 7 or 30 days
+    before.
+
+  The numbers are recomputed after each new day of data and after zones change
+  owner or are deleted; `statistics_updated_at` tells when. You need permission
+  to view your organization's DNS zones.
+
 ### 20 October 2026
 
 - Added **zone statistics**:
