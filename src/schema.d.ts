@@ -346,6 +346,8 @@ export interface paths {
         /**
          * Stream domain availability results
          * @description Stream domain availability results using Server-Sent Events (SSE) until the `done` event is received.
+         *
+         *     With `marketplaces` (e.g. `["fruits"]`, or `["all"]`), a taken domain that can be bought on one of them is reported as `market_available` with `marketplace: {"name": ...}` (best-effort); taken domains may then arrive slightly later.
          */
         post: operations["stream_availability_post_v1_availability_stream_post"];
         delete?: never;
@@ -1207,7 +1209,7 @@ export interface paths {
          *     Use a full domain name, or `GET /v1/availability`, whenever you need a definitive answer about a
          *     specific domain.
          *
-         *     With `marketplace=true`, domains for sale on the marketplace are added to `results` after the
+         *     With `marketplaces=fruits` (repeatable, or `marketplaces=all`), domains for sale on the marketplace are added to `results` after the
          *     suggestions, which are returned unchanged and in their order. These items have
          *     `marketplace: {"name": ...}` (the marketplace the domain is for sale on), `available: false` and no
          *     amount yet (`price.amount` is null, so `price.period` has no meaning). `marketplace` is omitted on
@@ -12095,6 +12097,8 @@ export interface components {
             domain: string;
             /** @description Error details when status is 'error', e.g. why a domain is invalid */
             error?: components["schemas"]["DomainAvailabilityError"] | null;
+            /** @description The marketplace a taken domain can be bought on; only on `market_available` results of `POST /v1/availability/stream` with `marketplaces`, omitted otherwise. */
+            marketplace?: components["schemas"]["Marketplace"];
             status: components["schemas"]["DomainAvailabilityStatus"];
         };
         /** DomainAvailabilityError */
@@ -12121,6 +12125,11 @@ export interface components {
         DomainAvailabilityRequest: {
             /** Domains */
             domains: string[];
+            /**
+             * Marketplaces
+             * @description Marketplaces to check, by name, or `all` for every marketplace. A taken domain that can be bought on one of them is reported as `market_available`. Best-effort: such a domain may still be reported as `unavailable`. Empty or omitted: no marketplace is checked.
+             */
+            marketplaces?: ("all" | components["schemas"]["MarketplaceName"])[];
         };
         /**
          * DomainAvailabilityStatus
@@ -28332,12 +28341,12 @@ export interface operations {
                 query: string;
                 /** @description Restricts results to these TLDs. This is a filter, not a guarantee: suggestions are ranked by relevance across the whole requested set, so a listed TLD may be absent from the results even when available names exist in it, and raising `limit` does not change that. To guarantee a TLD is represented, query it on its own. */
                 tlds?: string[] | null;
-                /** @description The maximum number of domain suggestions to return; with `marketplace=true`, also caps the marketplace domains added after them */
+                /** @description The maximum number of domain suggestions to return; with `marketplaces`, also caps the marketplace domains added after them */
                 limit?: number | null;
                 /** @description Whether to include premium domains in the suggestions */
                 premium?: boolean | null;
-                /** @description Whether to include domains for sale on the marketplace. Best-effort: marketplace domains may be missing. */
-                marketplace?: boolean | null;
+                /** @description Marketplaces to include domains for sale from, by name (repeatable), or `all` for every marketplace. Best-effort: marketplace domains may be missing. */
+                marketplaces?: ("all" | components["schemas"]["MarketplaceName"])[] | null;
             };
             header?: {
                 /**

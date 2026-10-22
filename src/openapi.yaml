@@ -12074,6 +12074,11 @@ components:
           - type: 'null'
           description: Error details when status is 'error', e.g. why a domain is
             invalid
+        marketplace:
+          $ref: '#/components/schemas/Marketplace'
+          description: The marketplace a taken domain can be bought on; only on `market_available`
+            results of `POST /v1/availability/stream` with `marketplaces`, omitted
+            otherwise.
         status:
           $ref: '#/components/schemas/DomainAvailabilityStatus'
       required:
@@ -12118,6 +12123,18 @@ components:
           maxItems: 1000
           minItems: 1
           title: Domains
+          type: array
+        marketplaces:
+          description: 'Marketplaces to check, by name, or `all` for every marketplace.
+            A taken domain that can be bought on one of them is reported as `market_available`.
+            Best-effort: such a domain may still be reported as `unavailable`. Empty
+            or omitted: no marketplace is checked.'
+          items:
+            anyOf:
+            - const: all
+              type: string
+            - $ref: '#/components/schemas/MarketplaceName'
+          title: Marketplaces
           type: array
       required:
       - domains
@@ -25989,7 +26006,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-22-110731
+  version: 2026-10-22-112734
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -28324,8 +28341,13 @@ paths:
       tags:
       - availability
     post:
-      description: Stream domain availability results using Server-Sent Events (SSE)
+      description: 'Stream domain availability results using Server-Sent Events (SSE)
         until the `done` event is received.
+
+
+        With `marketplaces` (e.g. `["fruits"]`, or `["all"]`), a taken domain that
+        can be bought on one of them is reported as `market_available` with `marketplace:
+        {"name": ...}` (best-effort); taken domains may then arrive slightly later.'
       operationId: stream_availability_post_v1_availability_stream_post
       parameters:
       - $ref: '#/components/parameters/DatetimeFormatHeader'
@@ -35089,18 +35111,19 @@ paths:
         \ `bluewidgets.de`) \u2014 the queried domain is always returned as the first\n\
         \  result, with availability checked directly against the registry.\n\nUse\
         \ a full domain name, or `GET /v1/availability`, whenever you need a definitive\
-        \ answer about a\nspecific domain.\n\nWith `marketplace=true`, domains for\
-        \ sale on the marketplace are added to `results` after the\nsuggestions, which\
-        \ are returned unchanged and in their order. These items have\n`marketplace:\
-        \ {\"name\": ...}` (the marketplace the domain is for sale on), `available:\
-        \ false` and no\namount yet (`price.amount` is null, so `price.period` has\
-        \ no meaning). `marketplace` is omitted on\nsuggestions. A domain can appear\
-        \ twice: as a suggestion with its\nregistry fields, and as a marketplace item.\
-        \ `limit` and `tlds` apply to the marketplace domains as\nwell, with `limit`\
-        \ capping them separately from the suggestions; the organization's TLD restriction\n\
-        and `premium` do not apply to them. `meta.total` counts all items in `results`,\
-        \ both entries of a\ndomain included. Marketplace domains are best-effort\
-        \ and left out when the marketplace does not\nanswer in time."
+        \ answer about a\nspecific domain.\n\nWith `marketplaces=fruits` (repeatable,\
+        \ or `marketplaces=all`), domains for sale on the marketplace are added to\
+        \ `results` after the\nsuggestions, which are returned unchanged and in their\
+        \ order. These items have\n`marketplace: {\"name\": ...}` (the marketplace\
+        \ the domain is for sale on), `available: false` and no\namount yet (`price.amount`\
+        \ is null, so `price.period` has no meaning). `marketplace` is omitted on\n\
+        suggestions. A domain can appear twice: as a suggestion with its\nregistry\
+        \ fields, and as a marketplace item. `limit` and `tlds` apply to the marketplace\
+        \ domains as\nwell, with `limit` capping them separately from the suggestions;\
+        \ the organization's TLD restriction\nand `premium` do not apply to them.\
+        \ `meta.total` counts all items in `results`, both entries of a\ndomain included.\
+        \ Marketplace domains are best-effort and left out when the marketplace does\
+        \ not\nanswer in time."
       operationId: suggest_v1_domain_search_suggest_get
       parameters:
       - description: The primary keyword or phrase for the domain search. A full domain
@@ -35141,7 +35164,7 @@ paths:
             exist in it, and raising `limit` does not change that. To guarantee a
             TLD is represented, query it on its own.'
           title: Tlds
-      - description: The maximum number of domain suggestions to return; with `marketplace=true`,
+      - description: The maximum number of domain suggestions to return; with `marketplaces`,
           also caps the marketplace domains added after them
         in: query
         name: limit
@@ -35152,7 +35175,7 @@ paths:
             minimum: 1
             type: integer
           - type: 'null'
-          description: The maximum number of domain suggestions to return; with `marketplace=true`,
+          description: The maximum number of domain suggestions to return; with `marketplaces`,
             also caps the marketplace domains added after them
           title: Limit
       - description: Whether to include premium domains in the suggestions
@@ -35165,18 +35188,25 @@ paths:
           - type: 'null'
           description: Whether to include premium domains in the suggestions
           title: Premium
-      - description: 'Whether to include domains for sale on the marketplace. Best-effort:
-          marketplace domains may be missing.'
+      - description: 'Marketplaces to include domains for sale from, by name (repeatable),
+          or `all` for every marketplace. Best-effort: marketplace domains may be
+          missing.'
         in: query
-        name: marketplace
+        name: marketplaces
         required: false
         schema:
           anyOf:
-          - type: boolean
+          - items:
+              anyOf:
+              - const: all
+                type: string
+              - $ref: '#/components/schemas/MarketplaceName'
+            type: array
           - type: 'null'
-          description: 'Whether to include domains for sale on the marketplace. Best-effort:
-            marketplace domains may be missing.'
-          title: Marketplace
+          description: 'Marketplaces to include domains for sale from, by name (repeatable),
+            or `all` for every marketplace. Best-effort: marketplace domains may be
+            missing.'
+          title: Marketplaces
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
