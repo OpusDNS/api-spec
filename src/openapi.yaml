@@ -19152,6 +19152,12 @@ components:
       - accept_name
       title: NorIdDeclarationConfirmRequest
       type: object
+    NorIdDeclarationPurpose:
+      enum:
+      - registration
+      - registrant_change
+      title: NorIdDeclarationPurpose
+      type: string
     NorIdDeclarationResponse:
       properties:
         declaration_contract_text:
@@ -19175,7 +19181,7 @@ components:
           title: Domain Name
           type: string
         expires_on:
-          description: When the unconfirmed create request expires
+          description: When the unsigned request expires
           format: date-time
           title: Expires On
           type: string
@@ -19200,6 +19206,11 @@ components:
           title: Organization Id
           type: string
           x-typeid-prefix: organization
+        purpose:
+          $ref: '#/components/schemas/NorIdDeclarationPurpose'
+          default: registration
+          description: 'What the signature completes: the registration of the domain
+            or a change of its registrant'
         status:
           $ref: '#/components/schemas/NorIdDeclarationStatus'
           description: The declaration status
@@ -26185,7 +26196,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-22-135924
+  version: 2026-10-22-212910
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

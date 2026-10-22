@@ -429,6 +429,7 @@ export type Nameserver = components['schemas']['Nameserver'];
 export type NizzaClaim = components['schemas']['NizzaClaim'];
 export type NizzaVerificationProof = components['schemas']['NizzaVerificationProof'];
 export type NorIdDeclarationConfirmRequest = components['schemas']['NorIdDeclarationConfirmRequest'];
+export type NorIdDeclarationPurpose = components['schemas']['NorIdDeclarationPurpose'];
 export type NorIdDeclaration = components['schemas']['NorIdDeclarationResponse'];
 export type NorIdDeclarationStatus = components['schemas']['NorIdDeclarationStatus'];
 export type NorIdResellerDeclarationRequest = components['schemas']['NorIdResellerDeclarationRequest'];

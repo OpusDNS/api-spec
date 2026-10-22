@@ -87,6 +87,7 @@ import type {
   MetricsGrouping,
   NizzaClaim,
   NizzaVerificationProof,
+  NorIdDeclarationPurpose,
   NorIdDeclarationStatus,
   ObjectEventType,
   ObjectLogSortField,
@@ -1584,6 +1585,16 @@ export const NIZZA_VERIFICATION_PROOF_VALUES = [
   'PHONE_VER_TRANSACTION_LOG',
   'ADDRESS_DATABASE',
 ] as const satisfies ReadonlyArray<NizzaVerificationProof>;
+
+export const NOR_ID_DECLARATION_PURPOSE = {
+  REGISTRATION: "registration",
+  REGISTRANT_CHANGE: "registrant_change",
+} as const satisfies Record<string, NorIdDeclarationPurpose>;
+
+export const NOR_ID_DECLARATION_PURPOSE_VALUES = [
+  'registration',
+  'registrant_change',
+] as const satisfies ReadonlyArray<NorIdDeclarationPurpose>;
 
 export const NOR_ID_DECLARATION_STATUS = {
   PENDING: "pending",

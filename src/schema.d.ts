@@ -16938,6 +16938,11 @@ export interface components {
              */
             accept_name: string;
         };
+        /**
+         * NorIdDeclarationPurpose
+         * @enum {string}
+         */
+        NorIdDeclarationPurpose: "registration" | "registrant_change";
         /** NorIdDeclarationResponse */
         NorIdDeclarationResponse: {
             /**
@@ -16968,7 +16973,7 @@ export interface components {
             /**
              * Expires On
              * Format: date-time
-             * @description When the unconfirmed create request expires
+             * @description When the unsigned request expires
              */
             expires_on: Date;
             /**
@@ -16988,6 +16993,11 @@ export interface components {
              * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id: TypeId<"organization">;
+            /**
+             * @description What the signature completes: the registration of the domain or a change of its registrant
+             * @default registration
+             */
+            purpose: components["schemas"]["NorIdDeclarationPurpose"];
             /** @description The declaration status */
             status: components["schemas"]["NorIdDeclarationStatus"];
             /**

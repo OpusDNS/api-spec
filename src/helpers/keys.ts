@@ -4718,6 +4718,7 @@ export const KEY_NOR_ID_DECLARATION_EXPIRES_ON = 'expires_on' satisfies keyof No
 export const KEY_NOR_ID_DECLARATION_IDENTITY_TYPE = 'identity_type' satisfies keyof NorIdDeclaration;
 export const KEY_NOR_ID_DECLARATION_IDENTITY_VALUE = 'identity_value' satisfies keyof NorIdDeclaration;
 export const KEY_NOR_ID_DECLARATION_ORGANIZATION_ID = 'organization_id' satisfies keyof NorIdDeclaration;
+export const KEY_NOR_ID_DECLARATION_PURPOSE = 'purpose' satisfies keyof NorIdDeclaration;
 export const KEY_NOR_ID_DECLARATION_STATUS = 'status' satisfies keyof NorIdDeclaration;
 export const KEY_NOR_ID_DECLARATION_SUBSCRIBER_NAME = 'subscriber_name' satisfies keyof NorIdDeclaration;
 
@@ -4731,6 +4732,7 @@ export const KEYS_NOR_ID_DECLARATION = [
   KEY_NOR_ID_DECLARATION_IDENTITY_TYPE,
   KEY_NOR_ID_DECLARATION_IDENTITY_VALUE,
   KEY_NOR_ID_DECLARATION_ORGANIZATION_ID,
+  KEY_NOR_ID_DECLARATION_PURPOSE,
   KEY_NOR_ID_DECLARATION_STATUS,
   KEY_NOR_ID_DECLARATION_SUBSCRIBER_NAME,
 ] as const satisfies (keyof NorIdDeclaration)[];
