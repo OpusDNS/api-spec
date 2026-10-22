@@ -3197,10 +3197,13 @@ export const KEYS_DOMAIN_STATISTICS_BREAKDOWN_ROW = [
   KEY_DOMAIN_STATISTICS_BREAKDOWN_ROW_TRANSFER_OUT,
 ] as const satisfies (keyof DomainStatisticsBreakdownRow)[];
 
+export const KEY_DOMAIN_STATISTICS_BUCKET_COVERED_FROM = 'covered_from' satisfies keyof DomainStatisticsBucket;
+export const KEY_DOMAIN_STATISTICS_BUCKET_COVERED_TO = 'covered_to' satisfies keyof DomainStatisticsBucket;
 export const KEY_DOMAIN_STATISTICS_BUCKET_CREATE = 'create' satisfies keyof DomainStatisticsBucket;
 export const KEY_DOMAIN_STATISTICS_BUCKET_DELETE = 'delete' satisfies keyof DomainStatisticsBucket;
 export const KEY_DOMAIN_STATISTICS_BUCKET_NET = 'net' satisfies keyof DomainStatisticsBucket;
 export const KEY_DOMAIN_STATISTICS_BUCKET_PARTIAL = 'partial' satisfies keyof DomainStatisticsBucket;
+export const KEY_DOMAIN_STATISTICS_BUCKET_PERIOD_END = 'period_end' satisfies keyof DomainStatisticsBucket;
 export const KEY_DOMAIN_STATISTICS_BUCKET_PERIOD_START = 'period_start' satisfies keyof DomainStatisticsBucket;
 export const KEY_DOMAIN_STATISTICS_BUCKET_RENEW = 'renew' satisfies keyof DomainStatisticsBucket;
 export const KEY_DOMAIN_STATISTICS_BUCKET_RESTORE = 'restore' satisfies keyof DomainStatisticsBucket;
@@ -3208,10 +3211,13 @@ export const KEY_DOMAIN_STATISTICS_BUCKET_TRANSFER = 'transfer' satisfies keyof 
 export const KEY_DOMAIN_STATISTICS_BUCKET_TRANSFER_OUT = 'transfer_out' satisfies keyof DomainStatisticsBucket;
 
 export const KEYS_DOMAIN_STATISTICS_BUCKET = [
+  KEY_DOMAIN_STATISTICS_BUCKET_COVERED_FROM,
+  KEY_DOMAIN_STATISTICS_BUCKET_COVERED_TO,
   KEY_DOMAIN_STATISTICS_BUCKET_CREATE,
   KEY_DOMAIN_STATISTICS_BUCKET_DELETE,
   KEY_DOMAIN_STATISTICS_BUCKET_NET,
   KEY_DOMAIN_STATISTICS_BUCKET_PARTIAL,
+  KEY_DOMAIN_STATISTICS_BUCKET_PERIOD_END,
   KEY_DOMAIN_STATISTICS_BUCKET_PERIOD_START,
   KEY_DOMAIN_STATISTICS_BUCKET_RENEW,
   KEY_DOMAIN_STATISTICS_BUCKET_RESTORE,

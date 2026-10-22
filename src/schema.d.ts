@@ -1316,9 +1316,9 @@ export interface paths {
          *
          *     Counts cover your organization's own domains, like the domain summary. With `include_sub_organizations=true` they cover its sub-organizations too, and `breakdown=organization` shows how they divide between them. A create is counted on the day OpusDNS took the order and a transfer on the day it completed, so domains that have since been deleted still appear in the window they were acquired in. Imported domains count as creates on the day they were imported. Renewals and restores are counted once per day a domain was renewed or restored, so a domain renewed in two different months counts in both. Domains held at a connected external registrar are not included.
          *
-         *     Every bucket the window touches is present, so the series can be charted as is. A bucket marked `partial` reaches outside the window and covers only part of its span.
+         *     Every bucket the window touches is present, oldest first, so the series can be charted as is. A bucket counts the days it shares with the window, from the day of `data_available_from` and up to today, from `covered_from` to `covered_to`; without a movement on them it counts zero. A bucket without such a day carries null counts: no data, rather than no movement. A bucket marked `partial` does not count its whole span: the window, the start of the event log or today cuts it, it includes the day the log begins on (unless at midnight), or it reaches today, which is still running. A bucket with null counts is partial too.
          *
-         *     These counts are read from the domain event log, which begins later than the domains themselves. `data_available_from` reports the oldest event it holds: a window reaching further back is empty before that instant rather than genuinely zero.
+         *     These counts are read from the domain event log, which begins later than the domains themselves; `data_available_from` reports the oldest event it holds.
          */
         get: operations["get_domain_statistics_v1_domains_statistics_get"];
         put?: never;
@@ -13766,25 +13766,41 @@ export interface components {
         /** DomainStatisticsBucketResponse */
         DomainStatisticsBucketResponse: {
             /**
-             * Create
-             * @description Domains created in this bucket
+             * Covered From
+             * @description First day the bucket's counts include: the latest of `period_start`, `start_date` and the day of `data_available_from`. Null when the bucket is not covered: none of its days lies within the window, on or after the day of `data_available_from` and on or before today (UTC)
              */
-            create: number;
+            covered_from: string | null;
+            /**
+             * Covered To
+             * @description Last day the bucket's counts include: the earliest of `period_end`, `end_date` and today (UTC). Null when the bucket is not covered
+             */
+            covered_to: string | null;
+            /**
+             * Create
+             * @description Domains created from `covered_from` to `covered_to`; 0 when none were. Null when the bucket is not covered: no data, rather than no movement
+             */
+            create: number | null;
             /**
              * Delete
-             * @description Domains deleted in this bucket
+             * @description Domains deleted. Null when the bucket is not covered: no data, rather than no movement
              */
-            delete: number;
+            delete: number | null;
             /**
              * Net
-             * @description Created plus transferred in, minus deleted and transferred out
+             * @description Created plus transferred in, minus deleted and transferred out. Null when the bucket is not covered: no data, rather than no movement
              */
-            net: number;
+            net: number | null;
             /**
              * Partial
-             * @description The bucket reaches outside the requested window, so its counts cover only part of its span and must not be read as a rise or fall against its neighbours
+             * @description True when the counts are not those of the whole bucket: `covered_from`..`covered_to` is shorter than `period_start`..`period_end` because the window, the start of the event log or today cuts it; it includes the day of `data_available_from`, which the log covers only from that instant unless it is midnight; or it reaches today, which is still running. Also true for a bucket that is not covered, which has no counts. A partial bucket must not be read as a rise or fall against its neighbours
              */
             partial: boolean;
+            /**
+             * Period End
+             * Format: date
+             * @description Last day of the bucket (UTC): the day itself, the Sunday of its week, or the last day of its month
+             */
+            period_end: string;
             /**
              * Period Start
              * Format: date
@@ -13793,24 +13809,24 @@ export interface components {
             period_start: string;
             /**
              * Renew
-             * @description Domain renewals in this bucket
+             * @description Domain renewals. Null when the bucket is not covered: no data, rather than no movement
              */
-            renew: number;
+            renew: number | null;
             /**
              * Restore
-             * @description Domains restored in this bucket
+             * @description Domains restored. Null when the bucket is not covered: no data, rather than no movement
              */
-            restore: number;
+            restore: number | null;
             /**
              * Transfer
-             * @description Domains transferred in during this bucket
+             * @description Domains transferred in. Null when the bucket is not covered: no data, rather than no movement
              */
-            transfer: number;
+            transfer: number | null;
             /**
              * Transfer Out
-             * @description Domains transferred away during this bucket
+             * @description Domains transferred away. Null when the bucket is not covered: no data, rather than no movement
              */
-            transfer_out: number;
+            transfer_out: number | null;
         };
         /** DomainStatisticsResponse */
         DomainStatisticsResponse: {
@@ -13821,12 +13837,12 @@ export interface components {
             breakdown: components["schemas"]["DomainStatisticsBreakdownRowResponse"][];
             /**
              * Buckets
-             * @description One entry per bucket the window touches, oldest first, including empty buckets
+             * @description One entry per bucket the window touches, oldest first, including buckets without movement (0) and buckets without data (null)
              */
             buckets: components["schemas"]["DomainStatisticsBucketResponse"][];
             /**
              * Data Available From
-             * @description Oldest day these statistics can report on. They are read from the domain event log, which starts later than the domains themselves, so a window reaching further back is empty before this instant rather than zero.
+             * @description Oldest event the domain event log holds, which starts later than the domains themselves. Buckets count no day before its day; one left without a day to count carries null counts. Null when the log holds no event or its start could not be read; buckets are then counted over the whole window.
              */
             data_available_from: Date | null;
             /**
@@ -13856,44 +13872,44 @@ export interface components {
         DomainStatisticsTotalsResponse: {
             /**
              * Create
-             * @description Domains created (newly registered) in the window
+             * @description Domains created (newly registered), summed over the covered buckets. Null when no bucket is covered
              */
-            create: number;
+            create: number | null;
             /**
              * Delete
-             * @description Domains deleted in the window
+             * @description Domains deleted, summed over the covered buckets. Null when no bucket is covered
              */
-            delete: number;
+            delete: number | null;
             /**
              * Net
-             * @description Created plus transferred in, minus deleted and transferred out
+             * @description Created plus transferred in, minus deleted and transferred out, summed over the covered buckets. Null when no bucket is covered
              */
-            net: number;
+            net: number | null;
             /**
              * Renew
-             * @description Domains renewed in the window, counted once per day a domain was renewed
+             * @description Domains renewed, counted once per day a domain was renewed, summed over the covered buckets. Null when no bucket is covered
              */
-            renew: number;
+            renew: number | null;
             /**
              * Restore
-             * @description Domains restored from redemption in the window
+             * @description Domains restored from redemption, summed over the covered buckets. Null when no bucket is covered
              */
-            restore: number;
+            restore: number | null;
             /**
              * Total
-             * @description Created plus transferred
+             * @description Created plus transferred, summed over the covered buckets. Null when no bucket is covered
              */
-            total: number;
+            total: number | null;
             /**
              * Transfer
-             * @description Domains transferred to OpusDNS in the window
+             * @description Domains transferred to OpusDNS, summed over the covered buckets. Null when no bucket is covered
              */
-            transfer: number;
+            transfer: number | null;
             /**
              * Transfer Out
-             * @description Domains transferred away from OpusDNS in the window
+             * @description Domains transferred away from OpusDNS, summed over the covered buckets. Null when no bucket is covered
              */
-            transfer_out: number;
+            transfer_out: number | null;
         };
         /**
          * DomainStatus

@@ -14584,48 +14584,100 @@ components:
       type: object
     DomainStatisticsBucketResponse:
       properties:
+        covered_from:
+          anyOf:
+          - format: date
+            type: string
+          - type: 'null'
+          description: 'First day the bucket''s counts include: the latest of `period_start`,
+            `start_date` and the day of `data_available_from`. Null when the bucket
+            is not covered: none of its days lies within the window, on or after the
+            day of `data_available_from` and on or before today (UTC)'
+          title: Covered From
+        covered_to:
+          anyOf:
+          - format: date
+            type: string
+          - type: 'null'
+          description: 'Last day the bucket''s counts include: the earliest of `period_end`,
+            `end_date` and today (UTC). Null when the bucket is not covered'
+          title: Covered To
         create:
-          description: Domains created in this bucket
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: 'Domains created from `covered_from` to `covered_to`; 0 when
+            none were. Null when the bucket is not covered: no data, rather than no
+            movement'
           title: Create
-          type: integer
         delete:
-          description: Domains deleted in this bucket
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: 'Domains deleted. Null when the bucket is not covered: no data,
+            rather than no movement'
           title: Delete
-          type: integer
         net:
-          description: Created plus transferred in, minus deleted and transferred
-            out
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: 'Created plus transferred in, minus deleted and transferred
+            out. Null when the bucket is not covered: no data, rather than no movement'
           title: Net
-          type: integer
         partial:
-          description: The bucket reaches outside the requested window, so its counts
-            cover only part of its span and must not be read as a rise or fall against
-            its neighbours
+          description: 'True when the counts are not those of the whole bucket: `covered_from`..`covered_to`
+            is shorter than `period_start`..`period_end` because the window, the start
+            of the event log or today cuts it; it includes the day of `data_available_from`,
+            which the log covers only from that instant unless it is midnight; or
+            it reaches today, which is still running. Also true for a bucket that
+            is not covered, which has no counts. A partial bucket must not be read
+            as a rise or fall against its neighbours'
           title: Partial
           type: boolean
+        period_end:
+          description: 'Last day of the bucket (UTC): the day itself, the Sunday of
+            its week, or the last day of its month'
+          format: date
+          title: Period End
+          type: string
         period_start:
           description: First day of the bucket (UTC)
           format: date
           title: Period Start
           type: string
         renew:
-          description: Domain renewals in this bucket
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: 'Domain renewals. Null when the bucket is not covered: no data,
+            rather than no movement'
           title: Renew
-          type: integer
         restore:
-          description: Domains restored in this bucket
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: 'Domains restored. Null when the bucket is not covered: no
+            data, rather than no movement'
           title: Restore
-          type: integer
         transfer:
-          description: Domains transferred in during this bucket
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: 'Domains transferred in. Null when the bucket is not covered:
+            no data, rather than no movement'
           title: Transfer
-          type: integer
         transfer_out:
-          description: Domains transferred away during this bucket
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: 'Domains transferred away. Null when the bucket is not covered:
+            no data, rather than no movement'
           title: Transfer Out
-          type: integer
       required:
       - period_start
+      - period_end
+      - covered_from
+      - covered_to
       - create
       - transfer
       - delete
@@ -14647,7 +14699,7 @@ components:
           type: array
         buckets:
           description: One entry per bucket the window touches, oldest first, including
-            empty buckets
+            buckets without movement (0) and buckets without data (null)
           items:
             $ref: '#/components/schemas/DomainStatisticsBucketResponse'
           title: Buckets
@@ -14657,10 +14709,11 @@ components:
           - format: date-time
             type: string
           - type: 'null'
-          description: Oldest day these statistics can report on. They are read from
-            the domain event log, which starts later than the domains themselves,
-            so a window reaching further back is empty before this instant rather
-            than zero.
+          description: Oldest event the domain event log holds, which starts later
+            than the domains themselves. Buckets count no day before its day; one
+            left without a day to count carries null counts. Null when the log holds
+            no event or its start could not be read; buckets are then counted over
+            the whole window.
           title: Data Available From
         end_date:
           description: Last day of the window, inclusive
@@ -14700,39 +14753,61 @@ components:
     DomainStatisticsTotalsResponse:
       properties:
         create:
-          description: Domains created (newly registered) in the window
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Domains created (newly registered), summed over the covered
+            buckets. Null when no bucket is covered
           title: Create
-          type: integer
         delete:
-          description: Domains deleted in the window
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Domains deleted, summed over the covered buckets. Null when
+            no bucket is covered
           title: Delete
-          type: integer
         net:
+          anyOf:
+          - type: integer
+          - type: 'null'
           description: Created plus transferred in, minus deleted and transferred
-            out
+            out, summed over the covered buckets. Null when no bucket is covered
           title: Net
-          type: integer
         renew:
-          description: Domains renewed in the window, counted once per day a domain
-            was renewed
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Domains renewed, counted once per day a domain was renewed,
+            summed over the covered buckets. Null when no bucket is covered
           title: Renew
-          type: integer
         restore:
-          description: Domains restored from redemption in the window
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Domains restored from redemption, summed over the covered buckets.
+            Null when no bucket is covered
           title: Restore
-          type: integer
         total:
-          description: Created plus transferred
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Created plus transferred, summed over the covered buckets.
+            Null when no bucket is covered
           title: Total
-          type: integer
         transfer:
-          description: Domains transferred to OpusDNS in the window
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Domains transferred to OpusDNS, summed over the covered buckets.
+            Null when no bucket is covered
           title: Transfer
-          type: integer
         transfer_out:
-          description: Domains transferred away from OpusDNS in the window
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Domains transferred away from OpusDNS, summed over the covered
+            buckets. Null when no bucket is covered
           title: Transfer Out
-          type: integer
       required:
       - create
       - transfer
@@ -26110,7 +26185,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-22-134555
+  version: 2026-10-22-135924
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -36213,15 +36288,19 @@ paths:
         a connected external registrar are not included.
 
 
-        Every bucket the window touches is present, so the series can be charted as
-        is. A bucket marked `partial` reaches outside the window and covers only part
-        of its span.
+        Every bucket the window touches is present, oldest first, so the series can
+        be charted as is. A bucket counts the days it shares with the window, from
+        the day of `data_available_from` and up to today, from `covered_from` to `covered_to`;
+        without a movement on them it counts zero. A bucket without such a day carries
+        null counts: no data, rather than no movement. A bucket marked `partial` does
+        not count its whole span: the window, the start of the event log or today
+        cuts it, it includes the day the log begins on (unless at midnight), or it
+        reaches today, which is still running. A bucket with null counts is partial
+        too.
 
 
         These counts are read from the domain event log, which begins later than the
-        domains themselves. `data_available_from` reports the oldest event it holds:
-        a window reaching further back is empty before that instant rather than genuinely
-        zero.'
+        domains themselves; `data_available_from` reports the oldest event it holds.'
       operationId: get_domain_statistics_v1_domains_statistics_get
       parameters:
       - description: First day of the window, inclusive (YYYY-MM-DD, UTC)
