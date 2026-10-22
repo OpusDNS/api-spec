@@ -24680,12 +24680,12 @@ export interface operations {
                 };
                 content: {
                     /** @example {
-                     *       "code": "ERROR_DOMAIN_VERIFICATION_INCONSISTENT_METHOD_PROOF",
-                     *       "detail": "All attestations in a single submission must share the same method and proof. Submit separate requests if you used different methods or proofs.",
-                     *       "domain_name": "Additional error context.",
+                     *       "code": "ERROR_DOMAIN_VERIFICATION_MISSING_REFERENCE",
+                     *       "contact_id": "Additional error context.",
+                     *       "detail": "DENIC verification is pending for this contact, so every attestation needs an attestation_reference.",
                      *       "status": 400,
-                     *       "title": "Domain Verification Inconsistent Method/Proof",
-                     *       "type": "domain-verification-inconsistent-method-proof"
+                     *       "title": "Domain Verification Missing Reference",
+                     *       "type": "domain-verification-missing-reference"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
