@@ -323,6 +323,7 @@ import type {
   MailTemplate,
   MailTemplateBlock,
   MailTemplateVariable,
+  Marketplace,
   MemoryFact,
   MemoryFactCreateRequest,
   MemoryFactList,
@@ -3147,6 +3148,7 @@ export const KEYS_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA = [
 export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_AVAILABLE = 'available' satisfies keyof DomainSearchSuggestionWithPrice;
 export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_CONNECTED_ACCOUNT = 'connected_account' satisfies keyof DomainSearchSuggestionWithPrice;
 export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_DOMAIN = 'domain' satisfies keyof DomainSearchSuggestionWithPrice;
+export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_MARKETPLACE = 'marketplace' satisfies keyof DomainSearchSuggestionWithPrice;
 export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PREMIUM = 'premium' satisfies keyof DomainSearchSuggestionWithPrice;
 export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PRICE = 'price' satisfies keyof DomainSearchSuggestionWithPrice;
 export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_RENEWAL_PRICE = 'renewal_price' satisfies keyof DomainSearchSuggestionWithPrice;
@@ -3155,6 +3157,7 @@ export const KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE = [
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_AVAILABLE,
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_CONNECTED_ACCOUNT,
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_DOMAIN,
+  KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_MARKETPLACE,
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PREMIUM,
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PRICE,
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_RENEWAL_PRICE,
@@ -4585,6 +4588,12 @@ export const KEYS_MAIL_TEMPLATE_VARIABLE = [
   KEY_MAIL_TEMPLATE_VARIABLE_SAMPLE,
   KEY_MAIL_TEMPLATE_VARIABLE_TYPE,
 ] as const satisfies (keyof MailTemplateVariable)[];
+
+export const KEY_MARKETPLACE_NAME = 'name' satisfies keyof Marketplace;
+
+export const KEYS_MARKETPLACE = [
+  KEY_MARKETPLACE_NAME,
+] as const satisfies (keyof Marketplace)[];
 
 export const KEY_MEMORY_FACT_CREATED_AT = 'created_at' satisfies keyof MemoryFact;
 export const KEY_MEMORY_FACT_EXPIRES_AT = 'expires_at' satisfies keyof MemoryFact;

@@ -1206,6 +1206,17 @@ export interface paths {
          *
          *     Use a full domain name, or `GET /v1/availability`, whenever you need a definitive answer about a
          *     specific domain.
+         *
+         *     With `marketplace=true`, domains for sale on the marketplace are added to `results` after the
+         *     suggestions, which are returned unchanged and in their order. These items have
+         *     `marketplace: {"name": ...}` (the marketplace the domain is for sale on), `available: false` and no
+         *     amount yet (`price.amount` is null, so `price.period` has no meaning). `marketplace` is omitted on
+         *     suggestions. A domain can appear twice: as a suggestion with its
+         *     registry fields, and as a marketplace item. `limit` and `tlds` apply to the marketplace domains as
+         *     well, with `limit` capping them separately from the suggestions; the organization's TLD restriction
+         *     and `premium` do not apply to them. `meta.total` counts all items in `results`, both entries of a
+         *     domain included. Marketplace domains are best-effort and left out when the marketplace does not
+         *     answer in time.
          */
         get: operations["suggest_v1_domain_search_suggest_get"];
         put?: never;
@@ -13675,6 +13686,8 @@ export interface components {
             connected_account?: components["schemas"]["DomainAmsAccountResponse"] | null;
             /** Domain */
             domain: string;
+            /** @description Present on a domain for sale on a marketplace, added after the suggestions with `available: false` and no amount yet; omitted on suggestions. A domain can appear twice: as a suggestion with its registry fields, and as a marketplace item. */
+            marketplace?: components["schemas"]["Marketplace"];
             /** Premium */
             premium: boolean;
             price: components["schemas"]["DomainSearchSuggestionPriceData"];
@@ -16701,6 +16714,20 @@ export interface components {
              */
             type: string;
         };
+        /**
+         * Marketplace
+         * @description The marketplace a domain is for sale on.
+         */
+        Marketplace: {
+            /** @description Name of the marketplace */
+            name: components["schemas"]["MarketplaceName"];
+        };
+        /**
+         * MarketplaceName
+         * @description Marketplaces OpusDNS lists domains from.
+         * @enum {string}
+         */
+        MarketplaceName: "fruits";
         /** MemoryFact */
         MemoryFact: {
             /**
@@ -28305,10 +28332,12 @@ export interface operations {
                 query: string;
                 /** @description Restricts results to these TLDs. This is a filter, not a guarantee: suggestions are ranked by relevance across the whole requested set, so a listed TLD may be absent from the results even when available names exist in it, and raising `limit` does not change that. To guarantee a TLD is represented, query it on its own. */
                 tlds?: string[] | null;
-                /** @description The maximum number of domain suggestions to return */
+                /** @description The maximum number of domain suggestions to return; with `marketplace=true`, also caps the marketplace domains added after them */
                 limit?: number | null;
                 /** @description Whether to include premium domains in the suggestions */
                 premium?: boolean | null;
+                /** @description Whether to include domains for sale on the marketplace. Best-effort: marketplace domains may be missing. */
+                marketplace?: boolean | null;
             };
             header?: {
                 /**

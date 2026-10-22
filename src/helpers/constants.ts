@@ -81,6 +81,7 @@ import type {
   LevelOfAssurance,
   LocalPresenceRequirementType,
   MailTemplateCategory,
+  MarketplaceName,
   MemoryFactKind,
   MessageRole,
   MetricsGrouping,
@@ -1473,6 +1474,14 @@ export const MAIL_TEMPLATE_CATEGORY_VALUES = [
   'tld_specific',
   'unknown',
 ] as const satisfies ReadonlyArray<MailTemplateCategory>;
+
+export const MARKETPLACE_NAME = {
+  FRUITS: "fruits",
+} as const satisfies Record<string, MarketplaceName>;
+
+export const MARKETPLACE_NAME_VALUES = [
+  'fruits',
+] as const satisfies ReadonlyArray<MarketplaceName>;
 
 export const MEMORY_FACT_KIND = {
   PREFERENCE: "preference",

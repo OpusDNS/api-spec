@@ -14421,6 +14421,12 @@ components:
         domain:
           title: Domain
           type: string
+        marketplace:
+          $ref: '#/components/schemas/Marketplace'
+          description: 'Present on a domain for sale on a marketplace, added after
+            the suggestions with `available: false` and no amount yet; omitted on
+            suggestions. A domain can appear twice: as a suggestion with its registry
+            fields, and as a marketplace item.'
         premium:
           title: Premium
           type: boolean
@@ -18706,6 +18712,22 @@ components:
           type: string
       title: MailTemplateVariable
       type: object
+    Marketplace:
+      description: The marketplace a domain is for sale on.
+      properties:
+        name:
+          $ref: '#/components/schemas/MarketplaceName'
+          description: Name of the marketplace
+      required:
+      - name
+      title: Marketplace
+      type: object
+    MarketplaceName:
+      description: Marketplaces OpusDNS lists domains from.
+      enum:
+      - fruits
+      title: MarketplaceName
+      type: string
     MemoryFact:
       properties:
         created_at:
@@ -25967,7 +25989,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-21-121958
+  version: 2026-10-22-110731
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -35067,7 +35089,18 @@ paths:
         \ `bluewidgets.de`) \u2014 the queried domain is always returned as the first\n\
         \  result, with availability checked directly against the registry.\n\nUse\
         \ a full domain name, or `GET /v1/availability`, whenever you need a definitive\
-        \ answer about a\nspecific domain."
+        \ answer about a\nspecific domain.\n\nWith `marketplace=true`, domains for\
+        \ sale on the marketplace are added to `results` after the\nsuggestions, which\
+        \ are returned unchanged and in their order. These items have\n`marketplace:\
+        \ {\"name\": ...}` (the marketplace the domain is for sale on), `available:\
+        \ false` and no\namount yet (`price.amount` is null, so `price.period` has\
+        \ no meaning). `marketplace` is omitted on\nsuggestions. A domain can appear\
+        \ twice: as a suggestion with its\nregistry fields, and as a marketplace item.\
+        \ `limit` and `tlds` apply to the marketplace domains as\nwell, with `limit`\
+        \ capping them separately from the suggestions; the organization's TLD restriction\n\
+        and `premium` do not apply to them. `meta.total` counts all items in `results`,\
+        \ both entries of a\ndomain included. Marketplace domains are best-effort\
+        \ and left out when the marketplace does not\nanswer in time."
       operationId: suggest_v1_domain_search_suggest_get
       parameters:
       - description: The primary keyword or phrase for the domain search. A full domain
@@ -35108,7 +35141,8 @@ paths:
             exist in it, and raising `limit` does not change that. To guarantee a
             TLD is represented, query it on its own.'
           title: Tlds
-      - description: The maximum number of domain suggestions to return
+      - description: The maximum number of domain suggestions to return; with `marketplace=true`,
+          also caps the marketplace domains added after them
         in: query
         name: limit
         required: false
@@ -35118,7 +35152,8 @@ paths:
             minimum: 1
             type: integer
           - type: 'null'
-          description: The maximum number of domain suggestions to return
+          description: The maximum number of domain suggestions to return; with `marketplace=true`,
+            also caps the marketplace domains added after them
           title: Limit
       - description: Whether to include premium domains in the suggestions
         in: query
@@ -35130,6 +35165,18 @@ paths:
           - type: 'null'
           description: Whether to include premium domains in the suggestions
           title: Premium
+      - description: 'Whether to include domains for sale on the marketplace. Best-effort:
+          marketplace domains may be missing.'
+        in: query
+        name: marketplace
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: 'Whether to include domains for sale on the marketplace. Best-effort:
+            marketplace domains may be missing.'
+          title: Marketplace
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
