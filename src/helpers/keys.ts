@@ -1789,15 +1789,21 @@ export const KEYS_DNS_RRSET_WITH_ONE_RECORD_PATCH = [
   KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TYPE,
 ] as const satisfies (keyof DnsRrsetWithOneRecordPatch)[];
 
+export const KEY_DNS_STATISTICS_BUCKET_COVERED_FROM = 'covered_from' satisfies keyof DnsStatisticsBucket;
+export const KEY_DNS_STATISTICS_BUCKET_COVERED_TO = 'covered_to' satisfies keyof DnsStatisticsBucket;
 export const KEY_DNS_STATISTICS_BUCKET_NXDOMAIN_COUNT = 'nxdomain_count' satisfies keyof DnsStatisticsBucket;
 export const KEY_DNS_STATISTICS_BUCKET_PARTIAL = 'partial' satisfies keyof DnsStatisticsBucket;
+export const KEY_DNS_STATISTICS_BUCKET_PERIOD_END = 'period_end' satisfies keyof DnsStatisticsBucket;
 export const KEY_DNS_STATISTICS_BUCKET_PERIOD_START = 'period_start' satisfies keyof DnsStatisticsBucket;
 export const KEY_DNS_STATISTICS_BUCKET_QUERY_COUNT = 'query_count' satisfies keyof DnsStatisticsBucket;
 export const KEY_DNS_STATISTICS_BUCKET_ZONE_COUNT = 'zone_count' satisfies keyof DnsStatisticsBucket;
 
 export const KEYS_DNS_STATISTICS_BUCKET = [
+  KEY_DNS_STATISTICS_BUCKET_COVERED_FROM,
+  KEY_DNS_STATISTICS_BUCKET_COVERED_TO,
   KEY_DNS_STATISTICS_BUCKET_NXDOMAIN_COUNT,
   KEY_DNS_STATISTICS_BUCKET_PARTIAL,
+  KEY_DNS_STATISTICS_BUCKET_PERIOD_END,
   KEY_DNS_STATISTICS_BUCKET_PERIOD_START,
   KEY_DNS_STATISTICS_BUCKET_QUERY_COUNT,
   KEY_DNS_STATISTICS_BUCKET_ZONE_COUNT,
@@ -6841,14 +6847,20 @@ export const KEYS_WHOIS_BASE = [
   KEY_WHOIS_BASE_WHOIS_SERVER,
 ] as const satisfies (keyof WhoisBase)[];
 
+export const KEY_ZONE_STATISTICS_BUCKET_COVERED_FROM = 'covered_from' satisfies keyof ZoneStatisticsBucket;
+export const KEY_ZONE_STATISTICS_BUCKET_COVERED_TO = 'covered_to' satisfies keyof ZoneStatisticsBucket;
 export const KEY_ZONE_STATISTICS_BUCKET_NXDOMAIN_COUNT = 'nxdomain_count' satisfies keyof ZoneStatisticsBucket;
 export const KEY_ZONE_STATISTICS_BUCKET_PARTIAL = 'partial' satisfies keyof ZoneStatisticsBucket;
+export const KEY_ZONE_STATISTICS_BUCKET_PERIOD_END = 'period_end' satisfies keyof ZoneStatisticsBucket;
 export const KEY_ZONE_STATISTICS_BUCKET_PERIOD_START = 'period_start' satisfies keyof ZoneStatisticsBucket;
 export const KEY_ZONE_STATISTICS_BUCKET_QUERY_COUNT = 'query_count' satisfies keyof ZoneStatisticsBucket;
 
 export const KEYS_ZONE_STATISTICS_BUCKET = [
+  KEY_ZONE_STATISTICS_BUCKET_COVERED_FROM,
+  KEY_ZONE_STATISTICS_BUCKET_COVERED_TO,
   KEY_ZONE_STATISTICS_BUCKET_NXDOMAIN_COUNT,
   KEY_ZONE_STATISTICS_BUCKET_PARTIAL,
+  KEY_ZONE_STATISTICS_BUCKET_PERIOD_END,
   KEY_ZONE_STATISTICS_BUCKET_PERIOD_START,
   KEY_ZONE_STATISTICS_BUCKET_QUERY_COUNT,
 ] as const satisfies (keyof ZoneStatisticsBucket)[];

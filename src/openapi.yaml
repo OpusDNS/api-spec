@@ -10792,35 +10792,76 @@ components:
       type: object
     DnsStatisticsBucketResponse:
       properties:
+        covered_from:
+          anyOf:
+          - format: date
+            type: string
+          - type: 'null'
+          description: 'First day the bucket''s counts include: the latest of `period_start`,
+            `start_date` and `data_available_from`. A month the window cuts is summed
+            from the daily statistics, which are kept for 25 months, so in a month
+            older than that it is also no earlier than the oldest day still kept.
+            Null when the bucket is not covered: none of its days lies within both
+            the window and the stored data'
+          title: Covered From
+        covered_to:
+          anyOf:
+          - format: date
+            type: string
+          - type: 'null'
+          description: 'Last day the bucket''s counts include: the earliest of `period_end`,
+            `end_date` and `data_available_to`. Null when the bucket is not covered'
+          title: Covered To
         nxdomain_count:
-          description: Of those, queries answered with NXDOMAIN
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Of those, queries answered with NXDOMAIN. Null when the bucket
+            is not covered
           title: Nxdomain Count
-          type: integer
         partial:
-          description: 'The bucket counts only part of its span: it reaches outside
-            the window, or part of it lies before `data_available_from` or after `data_available_to`.
-            A partial bucket must not be read as a rise or fall against its neighbours.'
+          description: 'True when the counts are not those of the whole bucket: `covered_from`..`covered_to`
+            is shorter than `period_start`..`period_end` because the window or the
+            stored data cuts it, or the bucket is the first month of monthly statistics
+            older than the daily ones (see `data_available_from`), whose first day
+            of data is not known. Also true for a bucket that is not covered, which
+            has no counts. A partial bucket must not be read as a rise or fall against
+            its neighbours'
           title: Partial
           type: boolean
+        period_end:
+          description: 'Last day of the bucket (UTC): the day itself, the Sunday of
+            its week, or the last day of its month'
+          format: date
+          title: Period End
+          type: string
         period_start:
           description: First day of the bucket (UTC)
           format: date
           title: Period Start
           type: string
         query_count:
-          description: Queries answered for the organization's zones in this bucket
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: 'Queries answered for the organization''s zones from `covered_from`
+            to `covered_to`; 0 when none were recorded. Null when the bucket is not
+            covered: no data, rather than no queries'
           title: Query Count
-          type: integer
         zone_count:
           anyOf:
           - type: integer
           - type: 'null'
-          description: 'Zones with at least one query in the bucket. Null for weeks,
-            and for a month the window cuts: those are summed from days, and a zone
-            active on several of them cannot be counted once'
+          description: 'Zones with at least one query in the bucket. Null when the
+            bucket is not covered, and for weeks and for a month the window cuts:
+            those are summed from days, and a zone active on several of them cannot
+            be counted once'
           title: Zone Count
       required:
       - period_start
+      - period_end
+      - covered_from
+      - covered_to
       - query_count
       - nxdomain_count
       - zone_count
@@ -10840,7 +10881,7 @@ components:
       properties:
         buckets:
           description: One entry per bucket the window touches, oldest first, including
-            buckets without queries
+            buckets without queries (0) and buckets without data (null)
           items:
             $ref: '#/components/schemas/DnsStatisticsBucketResponse'
           title: Buckets
@@ -10850,16 +10891,22 @@ components:
           - format: date
             type: string
           - type: 'null'
-          description: First day the statistics hold data for. Null while no statistics
-            have been collected.
+          description: First day the statistics hold data for. Buckets count no day
+            before it; one left without a day to count carries null counts. Null while
+            no statistics have been collected; then every bucket carries null counts.
+            At `granularity=month`, once the daily statistics older than 25 months
+            have been deleted, it is the first day of the oldest month the monthly
+            statistics hold; the day the data starts on within that month is no longer
+            known.
           title: Data Available From
         data_available_to:
           anyOf:
           - format: date
             type: string
           - type: 'null'
-          description: Last day the statistics hold data for. Null while no statistics
-            have been collected.
+          description: Last day the statistics hold data for. Buckets count no day
+            after it; one left without a day to count carries null counts. Null while
+            no statistics have been collected.
           title: Data Available To
         end_date:
           description: Last day of the window, inclusive
@@ -10897,13 +10944,19 @@ components:
     DnsStatisticsTotalsResponse:
       properties:
         nxdomain_count:
-          description: Of those, queries answered with NXDOMAIN
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Of those, queries answered with NXDOMAIN. Null when no bucket
+            is covered
           title: Nxdomain Count
-          type: integer
         query_count:
-          description: Queries answered for the organization's zones in the window
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Queries answered for the organization's zones, summed over
+            the covered buckets. Null when no bucket is covered
           title: Query Count
-          type: integer
       required:
       - query_count
       - nxdomain_count
@@ -25426,28 +25479,69 @@ components:
       type: string
     ZoneStatisticsBucketResponse:
       properties:
+        covered_from:
+          anyOf:
+          - format: date
+            type: string
+          - type: 'null'
+          description: 'First day the bucket''s counts include: the latest of `period_start`,
+            `start_date` and `data_available_from`. A month the window cuts is summed
+            from the daily statistics, which are kept for 25 months, so in a month
+            older than that it is also no earlier than the oldest day still kept.
+            Null when the bucket is not covered: none of its days lies within both
+            the window and the stored data'
+          title: Covered From
+        covered_to:
+          anyOf:
+          - format: date
+            type: string
+          - type: 'null'
+          description: 'Last day the bucket''s counts include: the earliest of `period_end`,
+            `end_date` and `data_available_to`. Null when the bucket is not covered'
+          title: Covered To
         nxdomain_count:
-          description: Of those, queries answered with NXDOMAIN
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Of those, queries answered with NXDOMAIN. Null when the bucket
+            is not covered
           title: Nxdomain Count
-          type: integer
         partial:
-          description: 'The bucket counts only part of its span: it reaches outside
-            the window (a week or month the window cuts), part of it lies before `data_available_from`
-            or after `data_available_to`, or the zone was created during it. A partial
-            bucket must not be read as a rise or fall against its neighbours.'
+          description: 'True when the counts are not those of the whole bucket: `covered_from`..`covered_to`
+            is shorter than `period_start`..`period_end` because the window or the
+            stored data cuts it, or the bucket is the first month of monthly statistics
+            older than the daily ones (see `data_available_from`), whose first day
+            of data is not known. Also true for a bucket that is not covered, which
+            has no counts. A partial bucket must not be read as a rise or fall against
+            its neighbours. Also true when `covered_from` is the day the zone was
+            created: that day is counted whole, with the queries from before the zone
+            existed'
           title: Partial
           type: boolean
+        period_end:
+          description: 'Last day of the bucket (UTC): the day itself, the Sunday of
+            its week, or the last day of its month'
+          format: date
+          title: Period End
+          type: string
         period_start:
           description: First day of the bucket (UTC)
           format: date
           title: Period Start
           type: string
         query_count:
-          description: Queries answered for the zone in this bucket, within the window
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: 'Queries answered for the zone from `covered_from` to `covered_to`;
+            0 when none were recorded. Null when the bucket is not covered: no data,
+            rather than no queries'
           title: Query Count
-          type: integer
       required:
       - period_start
+      - period_end
+      - covered_from
+      - covered_to
       - query_count
       - nxdomain_count
       - partial
@@ -25457,7 +25551,7 @@ components:
       properties:
         buckets:
           description: One entry per bucket the window touches, oldest first, including
-            buckets without queries
+            buckets without queries (0) and buckets without data (null)
           items:
             $ref: '#/components/schemas/ZoneStatisticsBucketResponse'
           title: Buckets
@@ -25468,18 +25562,22 @@ components:
             type: string
           - type: 'null'
           description: 'First day the statistics hold data for the zone: the day collection
-            started, or the day the zone was created if that is later. Buckets before
-            it count zero because nothing was recorded, not because the zone had no
-            queries. Null while no statistics have been collected since the zone was
-            created.'
+            started, or the day the zone was created if that is later. Buckets count
+            no day before it; one left without a day to count carries null counts.
+            Null while no statistics have been collected since the zone was created;
+            then every bucket carries null counts. At `granularity=month`, once the
+            daily statistics older than 25 months have been deleted, it is the first
+            day of the oldest month the monthly statistics hold; the day the data
+            starts on within that month is no longer known.'
           title: Data Available From
         data_available_to:
           anyOf:
           - format: date
             type: string
           - type: 'null'
-          description: Last day the statistics hold data for. Null while no statistics
-            have been collected since the zone was created.
+          description: Last day the statistics hold data for. Buckets count no day
+            after it; one left without a day to count carries null counts. Null while
+            no statistics have been collected since the zone was created.
           title: Data Available To
         end_date:
           description: Last day of the window, inclusive
@@ -25514,13 +25612,19 @@ components:
     ZoneStatisticsTotalsResponse:
       properties:
         nxdomain_count:
-          description: Of those, queries answered with NXDOMAIN
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Of those, queries answered with NXDOMAIN. Null when no bucket
+            is covered
           title: Nxdomain Count
-          type: integer
         query_count:
-          description: Queries answered for the zone in the window
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Queries answered for the zone, summed over the covered buckets.
+            Null when no bucket is covered
           title: Query Count
-          type: integer
       required:
       - query_count
       - nxdomain_count
@@ -26006,7 +26110,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-22-115450
+  version: 2026-10-22-134555
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -30598,9 +30702,12 @@ paths:
 
 
         Every bucket the window touches is present, oldest first, so the series can
-        be charted as is; a bucket without queries counts zero. A bucket marked `partial`
-        covers only part of its span. Statistics are collected once a day, so the
-        newest day with data is usually yesterday.'
+        be charted as is. A bucket counts the days it shares with the window and with
+        `data_available_from`..`data_available_to`, from `covered_from` to `covered_to`;
+        without a recorded query on them it counts zero. A bucket without such a day
+        carries null counts: no data, rather than no queries. A bucket marked `partial`
+        counts only part of its span; one with null counts is partial too. Statistics
+        are collected once a day, so the newest day with data is usually yesterday.'
       operationId: get_dns_statistics_v1_dns_statistics_get
       parameters:
       - description: First day of the window, inclusive (YYYY-MM-DD, UTC)
@@ -30657,18 +30764,27 @@ paths:
                   summary: Daily series
                   value:
                     buckets:
-                    - nxdomain_count: 17000
+                    - covered_from: '2026-10-18'
+                      covered_to: '2026-10-18'
+                      nxdomain_count: 17000
                       partial: false
+                      period_end: '2026-10-18'
                       period_start: '2026-10-18'
                       query_count: 640000
                       zone_count: 412
-                    - nxdomain_count: 23000
+                    - covered_from: '2026-10-19'
+                      covered_to: '2026-10-19'
+                      nxdomain_count: 23000
                       partial: false
+                      period_end: '2026-10-19'
                       period_start: '2026-10-19'
                       query_count: 910000
                       zone_count: 418
-                    - nxdomain_count: 21000
+                    - covered_from: '2026-10-20'
+                      covered_to: '2026-10-20'
+                      nxdomain_count: 21000
                       partial: false
+                      period_end: '2026-10-20'
                       period_start: '2026-10-20'
                       query_count: 830000
                       zone_count: 415
@@ -30681,6 +30797,41 @@ paths:
                     totals:
                       nxdomain_count: 61000
                       query_count: 2380000
+                monthly:
+                  description: 'Calendar months; collection started on 24 April: March
+                    holds no data and carries null counts, April counts from the 24th
+                    and is partial, May is counted whole'
+                  summary: Monthly series
+                  value:
+                    buckets:
+                    - partial: true
+                      period_end: '2026-03-31'
+                      period_start: '2026-03-01'
+                    - covered_from: '2026-04-24'
+                      covered_to: '2026-04-30'
+                      nxdomain_count: 150000
+                      partial: true
+                      period_end: '2026-04-30'
+                      period_start: '2026-04-01'
+                      query_count: 5600000
+                      zone_count: 395
+                    - covered_from: '2026-05-01'
+                      covered_to: '2026-05-31'
+                      nxdomain_count: 660000
+                      partial: false
+                      period_end: '2026-05-31'
+                      period_start: '2026-05-01'
+                      query_count: 25400000
+                      zone_count: 431
+                    data_available_from: '2026-04-24'
+                    data_available_to: '2026-10-20'
+                    end_date: '2026-05-31'
+                    granularity: month
+                    start_date: '2026-03-01'
+                    statistics_updated_at: '2026-10-21T07:12:03Z'
+                    totals:
+                      nxdomain_count: 810000
+                      query_count: 31000000
               schema:
                 $ref: '#/components/schemas/DnsStatisticsResponse'
           description: Statistics retrieved successfully
@@ -32305,16 +32456,18 @@ paths:
 
 
         Every bucket the window touches is present, oldest first, so the series can
-        be charted as is; a bucket without queries counts zero. Buckets count only
-        the days inside the window and the zone''s lifetime. A bucket marked `partial`
-        covers only part of its span: it reaches outside the window, part of it lies
-        outside the stored data, or the zone was created during it.
+        be charted as is. A bucket counts the days it shares with the window and with
+        `data_available_from`..`data_available_to`, from `covered_from` to `covered_to`;
+        without a recorded query on them it counts zero. A bucket without such a day
+        carries null counts: no data, rather than no queries. A bucket marked `partial`
+        counts only part of its span, because the window or the stored data cuts it,
+        or starts on the day the zone was created, which is counted whole. A bucket
+        with null counts is partial too.
 
 
         Statistics are collected once a day, so the newest day with data is usually
         yesterday. `data_available_from` and `data_available_to` report the days the
-        statistics hold data for the zone, never earlier than the day it was created:
-        a window reaching further back is empty before it rather than genuinely zero.'
+        statistics hold data for the zone, never earlier than the day it was created.'
       operationId: get_zone_statistics_v1_dns__zone_name__statistics_get
       parameters:
       - description: DNS zone name (trailing dot optional)
@@ -32368,16 +32521,25 @@ paths:
                   summary: Daily series
                   value:
                     buckets:
-                    - nxdomain_count: 40
+                    - covered_from: '2026-10-01'
+                      covered_to: '2026-10-01'
+                      nxdomain_count: 40
                       partial: false
+                      period_end: '2026-10-01'
                       period_start: '2026-10-01'
                       query_count: 1200
-                    - nxdomain_count: 0
+                    - covered_from: '2026-10-02'
+                      covered_to: '2026-10-02'
+                      nxdomain_count: 0
                       partial: false
+                      period_end: '2026-10-02'
                       period_start: '2026-10-02'
                       query_count: 0
-                    - nxdomain_count: 30
+                    - covered_from: '2026-10-03'
+                      covered_to: '2026-10-03'
+                      nxdomain_count: 30
                       partial: false
+                      period_end: '2026-10-03'
                       period_start: '2026-10-03'
                       query_count: 700
                     data_available_from: '2026-06-01'
@@ -32390,31 +32552,37 @@ paths:
                       query_count: 1900
                     zone_name: example.com.
                 monthly:
-                  description: Calendar months; the last month is partial because
-                    the window ends before it does
+                  description: 'Calendar months of a zone created on 12 August: July
+                    holds no data and carries null counts, August counts from the
+                    12th and is partial, September is counted whole'
                   summary: Monthly series
                   value:
                     buckets:
-                    - nxdomain_count: 300
-                      partial: false
+                    - partial: true
+                      period_end: '2026-07-31'
+                      period_start: '2026-07-01'
+                    - covered_from: '2026-08-12'
+                      covered_to: '2026-08-31'
+                      nxdomain_count: 300
+                      partial: true
+                      period_end: '2026-08-31'
                       period_start: '2026-08-01'
                       query_count: 9000
-                    - nxdomain_count: 1100
+                    - covered_from: '2026-09-01'
+                      covered_to: '2026-09-30'
+                      nxdomain_count: 1100
                       partial: false
+                      period_end: '2026-09-30'
                       period_start: '2026-09-01'
                       query_count: 30000
-                    - nxdomain_count: 500
-                      partial: true
-                      period_start: '2026-10-01'
-                      query_count: 13000
-                    data_available_from: '2026-06-01'
+                    data_available_from: '2026-08-12'
                     data_available_to: '2026-10-19'
-                    end_date: '2026-10-14'
+                    end_date: '2026-09-30'
                     granularity: month
-                    start_date: '2026-08-01'
+                    start_date: '2026-07-01'
                     totals:
-                      nxdomain_count: 1900
-                      query_count: 52000
+                      nxdomain_count: 1400
+                      query_count: 39000
                     zone_name: example.com.
                 weekly:
                   description: Weeks start on Monday. The window runs from a Wednesday
@@ -32423,16 +32591,25 @@ paths:
                   summary: Weekly series
                   value:
                     buckets:
-                    - nxdomain_count: 200
+                    - covered_from: '2026-09-30'
+                      covered_to: '2026-10-04'
+                      nxdomain_count: 200
                       partial: true
+                      period_end: '2026-10-04'
                       period_start: '2026-09-28'
                       query_count: 6000
-                    - nxdomain_count: 380
+                    - covered_from: '2026-10-05'
+                      covered_to: '2026-10-11'
+                      nxdomain_count: 380
                       partial: false
+                      period_end: '2026-10-11'
                       period_start: '2026-10-05'
                       query_count: 10500
-                    - nxdomain_count: 60
+                    - covered_from: '2026-10-12'
+                      covered_to: '2026-10-13'
+                      nxdomain_count: 60
                       partial: true
+                      period_end: '2026-10-18'
                       period_start: '2026-10-12'
                       query_count: 1500
                     data_available_from: '2026-06-01'
