@@ -37,7 +37,9 @@ returned by all domain endpoints — registration, transfer, update, and retriev
   "hosts": [],
   "registry_statuses": ["ok"],
   "tags": [],
-  "status_tags": []
+  "status_tags": [],
+  "active_verifications": [],
+  "verification_required": null
 }
 ```
 
@@ -198,9 +200,21 @@ See [User tags](/automation/tags/user-tags) and
 | `status_tags[].description` | `string` | Optional description of the status condition. |
 | `status_tags[].color` | `string` | Display color for UI rendering. Colors are intentionally generic (e.g. `color-1`) so that API consumers can map them to values that fit their own branding. |
 
+### Verification
+
+When a registry or ICANN asks to verify the domain's registrant, the domain has an active verification case.
+Both fields are always included.
+See [Verification cases](/products/contacts/verification-cases) for the case fields and how each registry handles them.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `active_verifications` | `object[]` | The domain's active verification cases, at most one per source, oldest first by `opened_on`. Empty when no case is active. |
+| `verification_required` | `object \| null` | **Deprecated.** All active cases merged into one `claims` list and the earliest date per deadline type in `deadlines`. `null` when no case is active. Read `active_verifications` instead. |
+
 ## Related API Reference
 
 - [`GET /v1/domains/{domain_reference}`](/api-reference#tag/domain/GET/v1/domains/{domain_reference})
 - [`GET /v1/domains`](/api-reference#tag/domain/GET/v1/domains)
+- [`GET /v1/domains/{domain_reference}/verifications`](/api-reference#tag/domain/GET/v1/domains/{domain_reference}/verifications)
 - [`POST /v1/domains`](/api-reference#tag/domain/POST/v1/domains)
 - [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference})

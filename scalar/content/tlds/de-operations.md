@@ -52,6 +52,16 @@ OpusDNS using `POST /v1/domains/transfer`, the transfer completes right away —
 there is no pending period or approval wait time. The domain moves to your
 account as soon as the transfer request is processed.
 
+## Domain holder verification
+
+DENIC can ask to verify a domain holder, with a dedelegation date and a deletion date.
+The request is about the holder's contact, so it covers every `.de` domain of that contact.
+
+1. OpusDNS opens a [verification case](/products/contacts/verification-cases) on each of these domains, with the claims DENIC asks for. The `verification` deadline is the earliest of DENIC's dates, usually the dedelegation date. The domains and the contact get the `VERIFICATION_REQUIRED` status tag, a `VERIFICATION` event is logged for each domain, and your organization receives an email notification.
+2. You [attest](/products/contacts/attestation-workflow) the claims for the contact. Every attestation DENIC can record needs an `attestation_reference`.
+3. Once the attested claims cover every claim DENIC asks for, OpusDNS sends them to each DENIC handle of the contact and syncs the contact's domains.
+4. The cases close when DENIC reports the holder verified.
+
 ## Related API Reference
 
 - [`POST /v1/domains/tld-specific/de/{domain_reference}/transit`](/api-reference#tag/domain-tld-specific/POST/v1/domains/tld-specific/de/{domain_reference}/transit)

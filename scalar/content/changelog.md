@@ -22,6 +22,41 @@ Track notable updates to the OpusDNS API and developer documentation here.
   and are updated hourly; `data_complete_to` is the newest day whose list is
   final, usually yesterday. They are collected from 23 October 2026 on.
 
+- Added **verification cases on domains**.
+  When a registry asks to verify a registrant, OpusDNS opens a verification case on each affected domain and tracks it until the registry reports the verification as done.
+  Domain reads from [`GET /v1/domains`](/api-reference#tag/domain/GET/v1/domains) and [`GET /v1/domains/{domain_reference}`](/api-reference#tag/domain/GET/v1/domains/{domain_reference}) carry the active cases in `active_verifications`, oldest first, and an empty list when none is active.
+  [`GET /v1/domains/{domain_reference}/verifications`](/api-reference#tag/domain/GET/v1/domains/{domain_reference}/verifications) lists a domain's cases, active and closed, with how each one ended.
+  The status tag `VERIFICATION_REQUIRED` is now set exactly while a domain has an active case.
+  See [Verification cases](/products/contacts/verification-cases).
+
+- Deprecated **`verification_required` on domain reads**.
+  It merges all active cases into one list of claims and the earliest date per deadline type; read `active_verifications` instead.
+  Its `sources` field is removed: each case in `active_verifications` carries its own `source`.
+
+- Added **the `verification` deadline type**.
+  It is the date to complete a verification by: present whenever a case has any date, and the earliest of them.
+  DENIC cases now list it next to `dedelegation` and `deletion`, usually with the `dedelegation` date.
+  It appears in `active_verifications`, the case history and verification events.
+
+- Extended **verification events**.
+  `event_data.details` carries the case's `verification_id` and `source`, the subtype `OVERDUE` marks a passed verification deadline, and claims can include `legal_entity`.
+  Accept event types, subtypes and detail values your integration does not know yet, rather than generating closed enums from the API spec.
+  See [Verification details](/automation/events/event-object#verification-details).
+
+- Changed **DENIC attestations**.
+  Attestations with different methods, proofs or references in one request are no longer rejected with `ERROR_DOMAIN_VERIFICATION_INCONSISTENT_METHOD_PROOF`; they are sent to DENIC as separate entries.
+  Every attestation DENIC can record needs an `attestation_reference`, otherwise the request is rejected with `400` and `ERROR_DOMAIN_VERIFICATION_MISSING_REFERENCE`.
+  OpusDNS sends the attestations once they cover every claim DENIC asks for, then syncs the contact's domains.
+  See [Registry-specific constraints](/products/contacts/attestation-workflow#registry-specific-constraints).
+
+- Added **nic.at domain holder verification**.
+  A nic.at verification request opens a case that asks for name, address and email, with nic.at's date as its `verification` deadline.
+  Once the registrant's name (or legal entity), address and email are attested, OpusDNS sends nic.at a verification report for each nic.at handle of the contact.
+  See [`.at` operations](/products/tld-operations/at#domain-holder-verification).
+
+- Changed **registrant changes during a verification**.
+  A registrant change moves the domain's active registry case to the new registrant, with the same claims and deadlines.
+
 ### 21 October 2026
 
 - Documented **the change of registrant on [`.it`](/tld-knowledge-base/cctlds/it)

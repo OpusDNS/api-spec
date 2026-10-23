@@ -6,6 +6,7 @@ submit attestations through the API.
 
 For background on verification concepts (claims, methods, proofs, deadlines),
 see the [Contact verification overview](/products/contacts/verification).
+For how a request is tracked on each domain, and how each registry handles it, see [Verification cases](/products/contacts/verification-cases).
 
 ## Flow overview
 
@@ -17,9 +18,8 @@ see the [Contact verification overview](/products/contacts/verification).
 ## 1. Identify affected domains and contacts
 
 When verification is required, both the affected **domains** and **contacts**
-are tagged with `VERIFICATION_REQUIRED`. Domains also include a
-`verification_required` field in their response containing the specific claims
-and deadlines.
+are tagged with `VERIFICATION_REQUIRED`.
+Domains also list their active [verification cases](/products/contacts/verification-cases) in `active_verifications`, with the claims and deadlines of each case.
 
 ### Filter domains by status tag
 
@@ -63,11 +63,10 @@ is specified:
 You can combine <code>status_tags</code> with <code>status_tag_mode</code> (<code>match_any</code>, <code>match_all</code>, or <code>match_none</code>) to control how multiple status tag filters are combined.
 </scalar-callout>
 
-### Check the verification_required field on domains
+### Check the active_verifications field on domains
 
-Every domain response includes a `verification_required` field. When
-verification is needed, it contains the pending claims and deadlines. When no
-verification is required, it is `null`.
+Every domain response includes `active_verifications`: the domain's active verification cases, oldest first.
+The list is empty when no verification is pending.
 
 ```bash
 curl "$OPUSDNS_API_BASE/v1/domains/example.de" \
@@ -78,29 +77,22 @@ curl "$OPUSDNS_API_BASE/v1/domains/example.de" \
 {
   "domain_id": "domain_01jxe1nzrmf78scaqbkjx0va0f",
   "name": "example.de",
-  "verification_required": {
-    "claims": ["email", "name", "address"],
-    "deadlines": [
-      {
-        "type": "dedelegation",
-        "date": "2026-07-15T00:00:00Z"
-      },
-      {
-        "type": "deletion",
-        "date": "2026-08-15T00:00:00Z"
-      }
-    ]
-  }
-}
-```
-
-When no verification is pending, the field is `null`:
-
-```json
-{
-  "domain_id": "domain_01jxe1nzrmf78scaqbkjx0va0f",
-  "name": "example.de",
-  "verification_required": null
+  "active_verifications": [
+    {
+      "verification_id": "domain_verification_01jxe1p4a2f7r8s9t0v1w2x3y4",
+      "source": "REGISTRY",
+      "trigger": "REGISTRY_REQUEST",
+      "status": "OPEN",
+      "claims": ["email", "name", "address"],
+      "deadlines": [
+        { "type": "verification", "date": "2026-07-15T00:00:00Z" },
+        { "type": "dedelegation", "date": "2026-07-15T00:00:00Z" },
+        { "type": "deletion", "date": "2026-08-15T00:00:00Z" }
+      ],
+      "contact_id": "contact_01jxe1nzrmf78scaqbkjx0va0f",
+      "opened_on": "2026-06-15T00:00:00Z"
+    }
+  ]
 }
 ```
 
@@ -108,11 +100,19 @@ When no verification is pending, the field is `null`:
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `verification_required` | `object \| null` | Present when verification is required, `null` otherwise. |
-| `verification_required.claims` | `string[]` | Identity claims that require verification. Values: `name`, `address`, `email`, `phone`. |
-| `verification_required.deadlines` | `object[]` | Registry-imposed deadlines with consequences if verification is not completed. |
-| `verification_required.deadlines[].type` | `string` | `dedelegation` — DNS stops resolving. `deletion` — domain is permanently removed. |
-| `verification_required.deadlines[].date` | `string` | ISO 8601 UTC timestamp of the deadline. |
+| `active_verifications` | `object[]` | The domain's active verification cases, at most one per source, oldest first. Empty when no verification is pending. |
+| `active_verifications[].source` | `string` | `REGISTRY` or `ICANN`. |
+| `active_verifications[].claims` | `string[]` | Identity claims that require verification: `name`, `legal_entity`, `address`, `email`, `phone`. Empty when the registry does not name them. |
+| `active_verifications[].deadlines` | `object[]` | Deadlines with consequences if verification is not completed. |
+| `active_verifications[].deadlines[].type` | `string` | `verification`: the date to act by, the earliest of the case's dates. `dedelegation`: DNS stops resolving. `deletion`: the domain is permanently removed. |
+| `active_verifications[].deadlines[].date` | `string` | ISO 8601 UTC timestamp of the deadline. |
+| `active_verifications[].contact_id` | `string` | The registrant contact to attest. |
+
+All fields of a case are described in [Verification cases](/products/contacts/verification-cases#the-case).
+
+<scalar-callout type="warning">
+The field <code>verification_required</code> is deprecated. It merges all active cases into one <code>claims</code> list and the earliest date per deadline type, and it is <code>null</code> when nothing is pending. Read <code>active_verifications</code> instead.
+</scalar-callout>
 
 ## 2. Check verification status
 
@@ -286,17 +286,17 @@ in the eID User Community.
 
 ### Registry-specific constraints
 
-Some registries impose extra rules on top of the request format above. These
-constraints apply only when the contact is a registrant on domains of that TLD
-that currently require verification — for every other TLD, the standard request
-format applies.
+Every attestation is stored with the contact.
+DENIC and nic.at also receive it from OpusDNS, and add rules on top of the request format above.
+These rules apply only while a case of that registry waits on the contact.
 
-| TLD | Registry | Constraint |
-| --- | --- | --- |
-| `.de` | DENIC | All attestations in a single request must share the same `method`, `proof`, and `attestation_reference`. Submit one request per method/proof combination if the claims need different ones. |
+| TLD | Registry | What OpusDNS sends | Rules |
+| --- | --- | --- | --- |
+| `.de` | DENIC | Once the attested claims cover every claim DENIC's cases ask for, OpusDNS sends them to each DENIC handle of the contact and then syncs the contact's domains. | Every attestation DENIC can record needs an `attestation_reference`, which DENIC stores with the verification. Attestations with different methods, proofs or references are sent as separate entries. DENIC cannot record the proof `PHONE_VER_TRANSACTION_LOG`; such an attestation is stored but not sent. |
+| `.at` | nic.at | Once name (or legal entity), address and email are verified, OpusDNS sends a verification report to each nic.at handle of the contact. When the contact is created at nic.at later, for another `.at` registration, the report goes along. | The evidence counts for three years. |
 
 <scalar-callout type="warning">
-Violating a registry-specific constraint rejects the <strong>entire</strong> request — no attestation in it is submitted. Check the table above before batching attestations for a contact.
+A request that breaks a registry rule is rejected as a whole: no attestation in it is stored or sent.
 </scalar-callout>
 
 ### Response
@@ -308,7 +308,7 @@ format as the GET endpoint.
 
 | Status | Code | Meaning |
 | --- | --- | --- |
-| `400` | `ERROR_DOMAIN_VERIFICATION_INCONSISTENT_METHOD_PROOF` | Multiple attestations in one request use different methods or proofs, which the registry does not allow. See [Registry-specific constraints](#registry-specific-constraints). |
+| `400` | `ERROR_DOMAIN_VERIFICATION_MISSING_REFERENCE` | A DENIC case waits on the contact and an attestation DENIC can record has no `attestation_reference`. See [Registry-specific constraints](#registry-specific-constraints). |
 | `404` | `ERROR_CONTACT_VERIFICATION_UPSTREAM_NOT_FOUND` | Contact has not been registered for verification. |
 | `502` | `ERROR_CONTACT_VERIFICATION_UPSTREAM_ERROR` | Verification service temporarily unavailable. |
 
@@ -318,13 +318,14 @@ The attest endpoint returns the updated verification state for all claims
 directly in the response. You can immediately see whether each claim moved to
 `VERIFIED` or `IN_PROGRESS`.
 
-Once all claims reach the `VERIFIED` state, the registry clears the deadlines.
-OpusDNS automatically:
+An attestation does not change the verification case itself.
+The case stays active until the registry reports the verification as done.
+For DENIC, OpusDNS syncs the contact's domains right after sending the attestation, which picks up DENIC's answer.
+Then OpusDNS automatically:
 
-- Removes the `VERIFICATION_REQUIRED` status tag from: 
-    - the **contact**: immediately after successful attestation
-    - affected **domains**: on the next domain sync.
-- Sets `verification_required` to `null` on affected domain responses.
+- closes the case as `SATISFIED`, so it leaves `active_verifications` on the domain;
+- removes the `VERIFICATION_REQUIRED` status tag from the domain, and from the contact once none of its cases is active;
+- logs a `DOMAIN` event of type `VERIFICATION` and subtype `SUCCESS`.
 
 If any claims are still `IN_PROGRESS` after attestation (awaiting registry
 confirmation), you can check back later using the GET endpoint:
@@ -334,13 +335,20 @@ curl "$OPUSDNS_API_BASE/v1/contacts/$CONTACT_ID/verifications" \
   --header "X-Api-Key: $OPUSDNS_API_KEY"
 ```
 
-You can also monitor verification-related events through the events API:
+You can also follow the verification cases through the events API:
 
 ```bash
 curl --get "$OPUSDNS_API_BASE/v1/events" \
   --header "X-Api-Key: $OPUSDNS_API_KEY" \
-  --data-urlencode "object_type=CONTACT" \
+  --data-urlencode "object_type=DOMAIN" \
   --data-urlencode "type=VERIFICATION"
+```
+
+Or read a domain's cases, active and closed:
+
+```bash
+curl "$OPUSDNS_API_BASE/v1/domains/example.de/verifications" \
+  --header "X-Api-Key: $OPUSDNS_API_KEY"
 ```
 
 <scalar-callout type="info">
@@ -352,14 +360,15 @@ By default, the events API returns only pending (unacknowledged) events. Pass <c
 | Issue | Cause | Resolution |
 | --- | --- | --- |
 | `404` on GET verification status | Contact hasn't been flagged for verification yet. | Wait for the verification process to initialize, or check that you're using the correct contact ID. |
-| `400` inconsistent method/proof | Multiple attestations use different methods or proofs in one request (`.de` restriction). | Submit separate requests — one per method/proof combination. See [Registry-specific constraints](#registry-specific-constraints). |
+| `400` missing reference | A DENIC case waits on the contact and an attestation has no `attestation_reference`. | Send the request again with an `attestation_reference` on every attestation. See [Registry-specific constraints](#registry-specific-constraints). |
 | Claims stuck in `IN_PROGRESS` | Registry hasn't confirmed the attestation yet. | Wait and poll again. Registry confirmation can take time. |
-| Contact tag removed but domain tag remains | Contact tag is removed immediately after attestation; domain tags are cleared on the next sync cycle. | Wait a few minutes for the domain sync to run. |
-| `verification_required` still present after `VERIFIED` | Domain hasn't synced yet. | The field is cleared on the next domain sync cycle. This typically happens within minutes. |
+| Case still active after all claims are `VERIFIED` | The registry has not reported the verification as done yet, or it does not take attestations from OpusDNS. | For `.de` and `.at`, wait for the registry. For other registries, the holder completes the registry's own check; see [Registries](/products/contacts/verification-cases#registries). |
+| Domain tag removed but contact tag remains | Another domain of the contact still has an active case. | Check the contact's other domains with `status_tags=VERIFICATION_REQUIRED`. |
 
 ## Next steps
 
 - [Contact verification overview](/products/contacts/verification) — claims,
   methods, proofs, and deadline reference
+- [Verification cases](/products/contacts/verification-cases): the case on each domain, its history, and how each registry opens and closes it
 - [Initialize verification](/products/contacts/initialize-verification) —
   proactively register contacts for verification
