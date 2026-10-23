@@ -130,6 +130,7 @@ import type {
   WaitlistEntry,
   WaitlistProductList,
   WhitelabelBranding,
+  ZoneNxdomainStatistics,
   ZoneStatistics,
 } from './schemas';
 
@@ -453,6 +454,16 @@ export type GET_DnsByZoneNameStatistics_Response_403 = Problem;
 export type GET_DnsByZoneNameStatistics_Response_422 = Problem;
 export type GET_DnsByZoneNameStatistics_Response_501 = Problem;
 export type GET_DnsByZoneNameStatistics_Response_503 = Problem;
+
+export type GET_DnsByZoneNameStatisticsNxdomains_Response = GET_DnsByZoneNameStatisticsNxdomains_Response_200 | GET_DnsByZoneNameStatisticsNxdomains_Response_400 | GET_DnsByZoneNameStatisticsNxdomains_Response_401 | GET_DnsByZoneNameStatisticsNxdomains_Response_403 | GET_DnsByZoneNameStatisticsNxdomains_Response_422 | GET_DnsByZoneNameStatisticsNxdomains_Response_501 | GET_DnsByZoneNameStatisticsNxdomains_Response_503;
+
+export type GET_DnsByZoneNameStatisticsNxdomains_Response_200 = ZoneNxdomainStatistics;
+export type GET_DnsByZoneNameStatisticsNxdomains_Response_400 = Problem;
+export type GET_DnsByZoneNameStatisticsNxdomains_Response_401 = Problem;
+export type GET_DnsByZoneNameStatisticsNxdomains_Response_403 = Problem;
+export type GET_DnsByZoneNameStatisticsNxdomains_Response_422 = Problem;
+export type GET_DnsByZoneNameStatisticsNxdomains_Response_501 = Problem;
+export type GET_DnsByZoneNameStatisticsNxdomains_Response_503 = Problem;
 
 export type GET_DnsDomainForwards_Response = GET_DnsDomainForwards_Response_200 | GET_DnsDomainForwards_Response_401 | GET_DnsDomainForwards_Response_403 | GET_DnsDomainForwards_Response_422;
 

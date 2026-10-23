@@ -372,6 +372,12 @@ export type GET_DnsByZoneNameStatistics_Request = {
 export type GET_DnsByZoneNameStatistics_Request_Query = GET_DnsByZoneNameStatistics_Request['parameters']['query'];
 export type GET_DnsByZoneNameStatistics_Request_Path = GET_DnsByZoneNameStatistics_Request['parameters']['path'];
 
+export type GET_DnsByZoneNameStatisticsNxdomains_Request = {
+  parameters: operations['list_zone_nxdomains_v1_dns__zone_name__statistics_nxdomains_get']['parameters'];
+};
+export type GET_DnsByZoneNameStatisticsNxdomains_Request_Query = GET_DnsByZoneNameStatisticsNxdomains_Request['parameters']['query'];
+export type GET_DnsByZoneNameStatisticsNxdomains_Request_Path = GET_DnsByZoneNameStatisticsNxdomains_Request['parameters']['path'];
+
 export type PATCH_DnsByZoneNameVanitySet_Request = {
   parameters: operations['update_zone_vanity_set_v1_dns__zone_name__vanity_set_patch']['parameters'];
   requestBody: ZoneVanitySetUpdate;

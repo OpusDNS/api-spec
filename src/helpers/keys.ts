@@ -493,6 +493,9 @@ import type {
   WhitelabelSubscriptionInfo,
   WhitelabelUpgradeToPlus,
   WhoisBase,
+  ZoneNxdomainName,
+  ZoneNxdomainStatistics,
+  ZoneNxdomainTotals,
   ZoneStatisticsBucket,
   ZoneStatistics,
   ZoneStatisticsTotals,
@@ -6875,6 +6878,54 @@ export const KEY_WHOIS_BASE_WHOIS_SERVER = 'whois_server' satisfies keyof WhoisB
 export const KEYS_WHOIS_BASE = [
   KEY_WHOIS_BASE_WHOIS_SERVER,
 ] as const satisfies (keyof WhoisBase)[];
+
+export const KEY_ZONE_NXDOMAIN_NAME_FIRST_LISTED_DATE = 'first_listed_date' satisfies keyof ZoneNxdomainName;
+export const KEY_ZONE_NXDOMAIN_NAME_LAST_LISTED_DATE = 'last_listed_date' satisfies keyof ZoneNxdomainName;
+export const KEY_ZONE_NXDOMAIN_NAME_LISTED_DAYS = 'listed_days' satisfies keyof ZoneNxdomainName;
+export const KEY_ZONE_NXDOMAIN_NAME_NXDOMAIN_COUNT = 'nxdomain_count' satisfies keyof ZoneNxdomainName;
+export const KEY_ZONE_NXDOMAIN_NAME_QNAME = 'qname' satisfies keyof ZoneNxdomainName;
+export const KEY_ZONE_NXDOMAIN_NAME_QTYPE = 'qtype' satisfies keyof ZoneNxdomainName;
+
+export const KEYS_ZONE_NXDOMAIN_NAME = [
+  KEY_ZONE_NXDOMAIN_NAME_FIRST_LISTED_DATE,
+  KEY_ZONE_NXDOMAIN_NAME_LAST_LISTED_DATE,
+  KEY_ZONE_NXDOMAIN_NAME_LISTED_DAYS,
+  KEY_ZONE_NXDOMAIN_NAME_NXDOMAIN_COUNT,
+  KEY_ZONE_NXDOMAIN_NAME_QNAME,
+  KEY_ZONE_NXDOMAIN_NAME_QTYPE,
+] as const satisfies (keyof ZoneNxdomainName)[];
+
+export const KEY_ZONE_NXDOMAIN_STATISTICS_DATA_AVAILABLE_FROM = 'data_available_from' satisfies keyof ZoneNxdomainStatistics;
+export const KEY_ZONE_NXDOMAIN_STATISTICS_DATA_AVAILABLE_TO = 'data_available_to' satisfies keyof ZoneNxdomainStatistics;
+export const KEY_ZONE_NXDOMAIN_STATISTICS_DATA_COMPLETE_TO = 'data_complete_to' satisfies keyof ZoneNxdomainStatistics;
+export const KEY_ZONE_NXDOMAIN_STATISTICS_END_DATE = 'end_date' satisfies keyof ZoneNxdomainStatistics;
+export const KEY_ZONE_NXDOMAIN_STATISTICS_PAGINATION = 'pagination' satisfies keyof ZoneNxdomainStatistics;
+export const KEY_ZONE_NXDOMAIN_STATISTICS_QTYPE = 'qtype' satisfies keyof ZoneNxdomainStatistics;
+export const KEY_ZONE_NXDOMAIN_STATISTICS_RESULTS = 'results' satisfies keyof ZoneNxdomainStatistics;
+export const KEY_ZONE_NXDOMAIN_STATISTICS_START_DATE = 'start_date' satisfies keyof ZoneNxdomainStatistics;
+export const KEY_ZONE_NXDOMAIN_STATISTICS_TOTALS = 'totals' satisfies keyof ZoneNxdomainStatistics;
+export const KEY_ZONE_NXDOMAIN_STATISTICS_ZONE_NAME = 'zone_name' satisfies keyof ZoneNxdomainStatistics;
+
+export const KEYS_ZONE_NXDOMAIN_STATISTICS = [
+  KEY_ZONE_NXDOMAIN_STATISTICS_DATA_AVAILABLE_FROM,
+  KEY_ZONE_NXDOMAIN_STATISTICS_DATA_AVAILABLE_TO,
+  KEY_ZONE_NXDOMAIN_STATISTICS_DATA_COMPLETE_TO,
+  KEY_ZONE_NXDOMAIN_STATISTICS_END_DATE,
+  KEY_ZONE_NXDOMAIN_STATISTICS_PAGINATION,
+  KEY_ZONE_NXDOMAIN_STATISTICS_QTYPE,
+  KEY_ZONE_NXDOMAIN_STATISTICS_RESULTS,
+  KEY_ZONE_NXDOMAIN_STATISTICS_START_DATE,
+  KEY_ZONE_NXDOMAIN_STATISTICS_TOTALS,
+  KEY_ZONE_NXDOMAIN_STATISTICS_ZONE_NAME,
+] as const satisfies (keyof ZoneNxdomainStatistics)[];
+
+export const KEY_ZONE_NXDOMAIN_TOTALS_LISTED_NXDOMAIN_COUNT = 'listed_nxdomain_count' satisfies keyof ZoneNxdomainTotals;
+export const KEY_ZONE_NXDOMAIN_TOTALS_NXDOMAIN_COUNT = 'nxdomain_count' satisfies keyof ZoneNxdomainTotals;
+
+export const KEYS_ZONE_NXDOMAIN_TOTALS = [
+  KEY_ZONE_NXDOMAIN_TOTALS_LISTED_NXDOMAIN_COUNT,
+  KEY_ZONE_NXDOMAIN_TOTALS_NXDOMAIN_COUNT,
+] as const satisfies (keyof ZoneNxdomainTotals)[];
 
 export const KEY_ZONE_STATISTICS_BUCKET_COVERED_FROM = 'covered_from' satisfies keyof ZoneStatisticsBucket;
 export const KEY_ZONE_STATISTICS_BUCKET_COVERED_TO = 'covered_to' satisfies keyof ZoneStatisticsBucket;

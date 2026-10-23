@@ -6044,6 +6044,37 @@ components:
       - properties:
           data:
             anyOf:
+            - $ref: '#/components/schemas/ZoneNxdomainStatisticsResponse'
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
+            const: list_zone_nxdomains_v1_dns__zone_name__statistics_nxdomains_get
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: list_zone_nxdomains_v1_dns__zone_name__statistics_nxdomains_get
+        type: object
+      - properties:
+          data:
+            anyOf:
             - $ref: '#/components/schemas/ListZonesReferencingSetRes'
             - type: string
           headers:
@@ -25615,6 +25646,139 @@ components:
       - tags
       title: ZoneIncludeField
       type: string
+    ZoneNxdomainNameResponse:
+      properties:
+        first_listed_date:
+          description: First day in the window the name was listed on (UTC)
+          format: date
+          title: First Listed Date
+          type: string
+        last_listed_date:
+          description: Last day in the window the name was listed on (UTC)
+          format: date
+          title: Last Listed Date
+          type: string
+        listed_days:
+          description: 'Days in the window the name was listed on: days with more
+            than 30 NXDOMAIN answers to it'
+          title: Listed Days
+          type: integer
+        nxdomain_count:
+          description: NXDOMAIN answers to this name and type in the window, summed
+            over the days it was listed on
+          title: Nxdomain Count
+          type: integer
+        qname:
+          description: The name queried, with a trailing dot
+          title: Qname
+          type: string
+        qtype:
+          description: The type it was queried with, such as A, AAAA or TXT
+          title: Qtype
+          type: string
+      required:
+      - qname
+      - qtype
+      - nxdomain_count
+      - listed_days
+      - first_listed_date
+      - last_listed_date
+      title: ZoneNxdomainNameResponse
+      type: object
+    ZoneNxdomainStatisticsResponse:
+      properties:
+        data_available_from:
+          anyOf:
+          - format: date
+            type: string
+          - type: 'null'
+          description: 'First day names are kept for: 30 days before today, or the
+            day the zone was created if that is later. Null while none are kept'
+          title: Data Available From
+        data_available_to:
+          anyOf:
+          - format: date
+            type: string
+          - type: 'null'
+          description: Last day names are kept for, usually today. Null while none
+            are
+          title: Data Available To
+        data_complete_to:
+          anyOf:
+          - format: date
+            type: string
+          - type: 'null'
+          description: Newest day whose list is final, usually yesterday from 02:00
+            UTC on. The days after it are still counting. Null while there is none.
+            A day collection missed is not listed, and cannot be later
+          title: Data Complete To
+        end_date:
+          description: Last day of the window, inclusive
+          format: date
+          title: End Date
+          type: string
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        qtype:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The query type the names are filtered by; null for all types
+          title: Qtype
+        results:
+          items:
+            $ref: '#/components/schemas/ZoneNxdomainNameResponse'
+          title: Results
+          type: array
+        start_date:
+          description: First day of the window, inclusive. Counts start no earlier
+            than the day the zone was created, which is counted whole, with answers
+            from before the zone existed
+          format: date
+          title: Start Date
+          type: string
+        totals:
+          $ref: '#/components/schemas/ZoneNxdomainTotalsResponse'
+        zone_name:
+          description: The zone the names belong to, with a trailing dot
+          title: Zone Name
+          type: string
+      required:
+      - results
+      - pagination
+      - zone_name
+      - start_date
+      - end_date
+      - qtype
+      - totals
+      - data_available_from
+      - data_available_to
+      - data_complete_to
+      title: ZoneNxdomainStatisticsResponse
+      type: object
+    ZoneNxdomainTotalsResponse:
+      properties:
+        listed_nxdomain_count:
+          description: NXDOMAIN answers to all listed names in the window of `qtype`,
+            not only those on this page
+          title: Listed Nxdomain Count
+          type: integer
+        nxdomain_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: All NXDOMAIN answers of the zone in the window, of all query
+            types, from the daily zone statistics. These end yesterday at the latest,
+            while the list includes today so far. Without `qtype` and with a window
+            that ends yesterday at the latest, the difference to `listed_nxdomain_count`
+            are names with at most 30 NXDOMAIN answers a day, which are not listed.
+            Null when the daily statistics hold no day of the window
+          title: Nxdomain Count
+      required:
+      - nxdomain_count
+      - listed_nxdomain_count
+      title: ZoneNxdomainTotalsResponse
+      type: object
     ZoneSortField:
       enum:
       - name
@@ -26256,7 +26420,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-23-090901
+  version: 2026-10-23-134155
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -32847,6 +33011,218 @@ paths:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
       summary: Get zone query statistics
+      tags:
+      - dns
+      x-required-permissions:
+      - dns:read
+  /v1/dns/{zone_name}/statistics/nxdomains:
+    get:
+      description: 'Lists the names queried in the zone that do not exist in it, answered
+        with NXDOMAIN, with the type they were queried with, summed over a window
+        of at most 31 whole UTC days and ordered by count, largest first. Use it to
+        find what causes the NXDOMAIN answers of `GET /v1/dns/{zone_name}/statistics`:
+        typos, removed records, or clients probing for names such as `autodiscover`.
+
+
+        A name is listed only on days with more than 30 NXDOMAIN answers to it; `totals.listed_nxdomain_count`
+        sums the listed names, `totals.nxdomain_count` all NXDOMAIN answers of the
+        zone from the daily statistics, which end yesterday. The names are kept for
+        30 days plus today and are updated hourly; `data_complete_to` is the newest
+        day whose list is final, usually yesterday. Days before the zone was created
+        are not counted.'
+      operationId: list_zone_nxdomains_v1_dns__zone_name__statistics_nxdomains_get
+      parameters:
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
+      - description: First day of the window, inclusive (YYYY-MM-DD, UTC)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          description: First day of the window, inclusive (YYYY-MM-DD, UTC)
+          format: date
+          title: Start Date
+          type: string
+      - description: 'Last day of the window, inclusive (YYYY-MM-DD, UTC). The window
+          spans at most 31 days, both ends included: the names are kept for 30 days
+          plus today'
+        in: query
+        name: end_date
+        required: true
+        schema:
+          description: 'Last day of the window, inclusive (YYYY-MM-DD, UTC). The window
+            spans at most 31 days, both ends included: the names are kept for 30 days
+            plus today'
+          format: date
+          title: End Date
+          type: string
+      - description: Only names queried with this type, such as A, AAAA or TXT
+        in: query
+        name: qtype
+        required: false
+        schema:
+          anyOf:
+          - pattern: ^[A-Za-z0-9]{1,16}$
+            type: string
+          - type: 'null'
+          description: Only names queried with this type, such as A, AAAA or TXT
+          title: Qtype
+      - description: Page number
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          description: Page number
+          maximum: 1000
+          minimum: 1
+          title: Page
+          type: integer
+      - description: Names per page
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 100
+          description: Names per page
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                seven_days:
+                  description: Three names, two of them queried for addresses on every
+                    day. Today, the 23rd, is still counting (`data_complete_to` is
+                    the 22nd), and `totals.nxdomain_count` ends yesterday
+                  summary: Seven days up to today
+                  value:
+                    data_available_from: '2026-09-23'
+                    data_available_to: '2026-10-23'
+                    data_complete_to: '2026-10-22'
+                    end_date: '2026-10-23'
+                    pagination:
+                      current_page: 1
+                      has_next_page: false
+                      has_previous_page: false
+                      page_size: 100
+                      total_items: 3
+                      total_pages: 1
+                    results:
+                    - first_listed_date: '2026-10-17'
+                      last_listed_date: '2026-10-23'
+                      listed_days: 7
+                      nxdomain_count: 9120
+                      qname: autodiscover.example.com.
+                      qtype: A
+                    - first_listed_date: '2026-10-17'
+                      last_listed_date: '2026-10-23'
+                      listed_days: 7
+                      nxdomain_count: 6870
+                      qname: autodiscover.example.com.
+                      qtype: AAAA
+                    - first_listed_date: '2026-10-18'
+                      last_listed_date: '2026-10-22'
+                      listed_days: 5
+                      nxdomain_count: 2250
+                      qname: _dmarc.example.com.
+                      qtype: TXT
+                    start_date: '2026-10-17'
+                    totals:
+                      listed_nxdomain_count: 18240
+                      nxdomain_count: 19105
+                    zone_name: example.com.
+              schema:
+                $ref: '#/components/schemas/ZoneNxdomainStatisticsResponse'
+          description: NXDOMAIN names retrieved successfully
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ZONE_STATISTICS_QUERY
+                detail: invalid 'qtype' (expected a record type such as A, AAAA or
+                  TXT)
+                status: 400
+                title: Zone statistics query rejected.
+                type: zone-stats-query-rejected
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ZONE_STATISTICS_WINDOW
+                detail: The window must not exceed 31 days
+                status: 422
+                title: Invalid zone statistics window.
+                type: zone-stats-invalid-window
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
+        '501':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ZONE_STATISTICS_NOT_AVAILABLE
+                detail: Zone statistics are not available in this environment.
+                status: 501
+                title: Zone statistics not available.
+                type: zone-stats-not-available
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Implemented
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ZONE_STATISTICS_UNAVAILABLE
+                detail: Zone statistics are currently unavailable, please try again
+                  later.
+                status: 503
+                title: Zone statistics unavailable.
+                type: zone-stats-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List the names of a zone answered with NXDOMAIN
       tags:
       - dns
       x-required-permissions:

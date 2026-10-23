@@ -866,6 +866,28 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/dns/{zone_name}/statistics/nxdomains": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List the names of a zone answered with NXDOMAIN
+         * @description Lists the names queried in the zone that do not exist in it, answered with NXDOMAIN, with the type they were queried with, summed over a window of at most 31 whole UTC days and ordered by count, largest first. Use it to find what causes the NXDOMAIN answers of `GET /v1/dns/{zone_name}/statistics`: typos, removed records, or clients probing for names such as `autodiscover`.
+         *
+         *     A name is listed only on days with more than 30 NXDOMAIN answers to it; `totals.listed_nxdomain_count` sums the listed names, `totals.nxdomain_count` all NXDOMAIN answers of the zone from the daily statistics, which end yesterday. The names are kept for 30 days plus today and are updated hourly; `data_complete_to` is the newest day whose list is final, usually yesterday. Days before the zone was created are not counted.
+         */
+        get: operations["list_zone_nxdomains_v1_dns__zone_name__statistics_nxdomains_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/dns/{zone_name}/vanity-set": {
         parameters: {
             query?: never;
@@ -7886,6 +7908,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "list_zone_email_forwards_v1_dns__zone_name__email_forwards_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["ZoneNxdomainStatisticsResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_zone_nxdomains_v1_dns__zone_name__statistics_nxdomains_get";
             /** @constant */
             status: "ok";
             /**
@@ -21111,6 +21157,98 @@ export interface components {
          * @enum {string}
          */
         ZoneIncludeField: "tags";
+        /** ZoneNxdomainNameResponse */
+        ZoneNxdomainNameResponse: {
+            /**
+             * First Listed Date
+             * Format: date
+             * @description First day in the window the name was listed on (UTC)
+             */
+            first_listed_date: string;
+            /**
+             * Last Listed Date
+             * Format: date
+             * @description Last day in the window the name was listed on (UTC)
+             */
+            last_listed_date: string;
+            /**
+             * Listed Days
+             * @description Days in the window the name was listed on: days with more than 30 NXDOMAIN answers to it
+             */
+            listed_days: number;
+            /**
+             * Nxdomain Count
+             * @description NXDOMAIN answers to this name and type in the window, summed over the days it was listed on
+             */
+            nxdomain_count: number;
+            /**
+             * Qname
+             * @description The name queried, with a trailing dot
+             */
+            qname: string;
+            /**
+             * Qtype
+             * @description The type it was queried with, such as A, AAAA or TXT
+             */
+            qtype: string;
+        };
+        /** ZoneNxdomainStatisticsResponse */
+        ZoneNxdomainStatisticsResponse: {
+            /**
+             * Data Available From
+             * @description First day names are kept for: 30 days before today, or the day the zone was created if that is later. Null while none are kept
+             */
+            data_available_from: string | null;
+            /**
+             * Data Available To
+             * @description Last day names are kept for, usually today. Null while none are
+             */
+            data_available_to: string | null;
+            /**
+             * Data Complete To
+             * @description Newest day whose list is final, usually yesterday from 02:00 UTC on. The days after it are still counting. Null while there is none. A day collection missed is not listed, and cannot be later
+             */
+            data_complete_to: string | null;
+            /**
+             * End Date
+             * Format: date
+             * @description Last day of the window, inclusive
+             */
+            end_date: string;
+            pagination: components["schemas"]["PaginationMetadata"];
+            /**
+             * Qtype
+             * @description The query type the names are filtered by; null for all types
+             */
+            qtype: string | null;
+            /** Results */
+            results: components["schemas"]["ZoneNxdomainNameResponse"][];
+            /**
+             * Start Date
+             * Format: date
+             * @description First day of the window, inclusive. Counts start no earlier than the day the zone was created, which is counted whole, with answers from before the zone existed
+             */
+            start_date: string;
+            totals: components["schemas"]["ZoneNxdomainTotalsResponse"];
+            /**
+             * Zone Name
+             * @description The zone the names belong to, with a trailing dot
+             */
+            zone_name: string;
+        };
+        /** ZoneNxdomainTotalsResponse */
+        ZoneNxdomainTotalsResponse: {
+            /**
+             * Listed Nxdomain Count
+             * @description NXDOMAIN answers to all listed names in the window of `qtype`, not only those on this page
+             */
+            listed_nxdomain_count: number;
+            /**
+             * Nxdomain Count
+             * @description All NXDOMAIN answers of the zone in the window, of all query types, from the daily zone statistics. These end yesterday at the latest, while the list includes today so far. Without `qtype` and with a window that ends yesterday at the latest, the difference to `listed_nxdomain_count` are names with at most 30 NXDOMAIN answers a day, which are not listed. Null when the daily statistics hold no day of the window
+             */
+            nxdomain_count: number | null;
+        };
         /**
          * ZoneSortField
          * @enum {string}
@@ -26436,6 +26574,143 @@ export interface operations {
                     /** @example {
                      *       "code": "ERROR_ZONE_STATISTICS_WINDOW",
                      *       "detail": "'start_date' must be on or before 'end_date'",
+                     *       "status": 422,
+                     *       "title": "Invalid zone statistics window.",
+                     *       "type": "zone-stats-invalid-window"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Implemented */
+            501: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_NOT_AVAILABLE",
+                     *       "detail": "Zone statistics are not available in this environment.",
+                     *       "status": 501,
+                     *       "title": "Zone statistics not available.",
+                     *       "type": "zone-stats-not-available"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_UNAVAILABLE",
+                     *       "detail": "Zone statistics are currently unavailable, please try again later.",
+                     *       "status": 503,
+                     *       "title": "Zone statistics unavailable.",
+                     *       "type": "zone-stats-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    list_zone_nxdomains_v1_dns__zone_name__statistics_nxdomains_get: {
+        parameters: {
+            query: {
+                /** @description First day of the window, inclusive (YYYY-MM-DD, UTC) */
+                start_date: string;
+                /** @description Last day of the window, inclusive (YYYY-MM-DD, UTC). The window spans at most 31 days, both ends included: the names are kept for 30 days plus today */
+                end_date: string;
+                /** @description Only names queried with this type, such as A, AAAA or TXT */
+                qtype?: string | null;
+                /** @description Page number */
+                page?: number;
+                /** @description Names per page */
+                page_size?: number;
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                /** @description DNS zone name (trailing dot optional) */
+                zone_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description NXDOMAIN names retrieved successfully */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ZoneNxdomainStatisticsResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_QUERY",
+                     *       "detail": "invalid 'qtype' (expected a record type such as A, AAAA or TXT)",
+                     *       "status": 400,
+                     *       "title": "Zone statistics query rejected.",
+                     *       "type": "zone-stats-query-rejected"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_STATISTICS_WINDOW",
+                     *       "detail": "The window must not exceed 31 days",
                      *       "status": 422,
                      *       "title": "Invalid zone statistics window.",
                      *       "type": "zone-stats-invalid-window"
