@@ -6,6 +6,22 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ### 23 October 2026
 
+- Added **the names of a zone answered with NXDOMAIN**:
+  [`GET /v1/dns/{zone_name}/statistics/nxdomains`](/api-reference#tag/dns/GET/v1/dns/{zone_name}/statistics/nxdomains)
+  lists the names queried in your zone that do not exist in it, with the type
+  they were queried with, summed over a window of up to 31 days and ordered by
+  count. Use it to find what causes the NXDOMAIN answers of
+  [`GET /v1/dns/{zone_name}/statistics`](/api-reference#tag/dns/GET/v1/dns/{zone_name}/statistics):
+  typos, removed records, or clients probing for names such as `autodiscover`.
+  It takes `start_date` and `end_date` like the zone statistics, an optional
+  `qtype`, and `page` and `page_size` like
+  [`GET /v1/dns/statistics/inactive-zones`](/api-reference#tag/dns/GET/v1/dns/statistics/inactive-zones).
+  A name is listed only on days with more than 30 NXDOMAIN answers to it, so
+  `totals.listed_nxdomain_count` can be lower than `totals.nxdomain_count`,
+  all NXDOMAIN answers of the zone. The names are kept for 30 days plus today
+  and are updated hourly; `data_complete_to` is the newest day whose list is
+  final, usually yesterday. They are collected from 23 October 2026 on.
+
 - Added **verification cases on domains**.
   When a registry asks to verify a registrant, OpusDNS opens a verification case on each affected domain and tracks it until the registry reports the verification as done.
   Domain reads from [`GET /v1/domains`](/api-reference#tag/domain/GET/v1/domains) and [`GET /v1/domains/{domain_reference}`](/api-reference#tag/domain/GET/v1/domains/{domain_reference}) carry the active cases in `active_verifications`, oldest first, and an empty list when none is active.
