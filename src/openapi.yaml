@@ -22,6 +22,63 @@ components:
       - match_none
       title: AccountTypeFilterMode
       type: string
+    ActiveDomainVerificationResponse:
+      properties:
+        claims:
+          description: What has to be verified about the registrant
+          items:
+            $ref: '#/components/schemas/VerificationClaimType'
+          title: Claims
+          type: array
+        contact_id:
+          description: The registrant contact the case is about
+          examples:
+          - contact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Id
+          type: string
+          x-typeid-prefix: contact
+        deadlines:
+          description: The deadlines of the case
+          items:
+            $ref: '#/components/schemas/VerificationDeadline'
+          title: Deadlines
+          type: array
+        opened_on:
+          description: When the case was opened
+          format: date-time
+          title: Opened On
+          type: string
+        source:
+          $ref: '#/components/schemas/DomainVerificationKind'
+          description: 'Who asks for the verification: ICANN or the registry'
+        status:
+          $ref: '#/components/schemas/DomainVerificationStatus'
+          description: The status of the case
+        trigger:
+          $ref: '#/components/schemas/DomainVerificationTrigger'
+          description: What opened the case
+        verification_id:
+          description: The ID of the verification case
+          examples:
+          - domain_verification_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^domain_verification_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Verification Id
+          type: string
+          x-typeid-prefix: domain_verification
+      required:
+      - verification_id
+      - source
+      - trigger
+      - status
+      - claims
+      - deadlines
+      - contact_id
+      - opened_on
+      title: ActiveDomainVerificationResponse
+      type: object
     AggregationResult:
       properties:
         field:
@@ -14145,6 +14202,14 @@ components:
       type: object
     DomainResponse:
       properties:
+        active_verifications:
+          description: 'The domain''s active verification cases, at most one per source
+            (ICANN and the registry): what each still waits for and by when. Oldest
+            first, by `opened_on`. Empty when no case is active.'
+          items:
+            $ref: '#/components/schemas/ActiveDomainVerificationResponse'
+          title: Active Verifications
+          type: array
         auth_code:
           anyOf:
           - maxLength: 255
@@ -14371,8 +14436,10 @@ components:
           anyOf:
           - $ref: '#/components/schemas/VerificationResponse'
           - type: 'null'
-          description: 'What the domain''s active verification cases still wait for:
-            who asks, the claims and the earliest deadline of each type. Null when
+          deprecated: true
+          description: 'Deprecated, read `active_verifications` instead. What the
+            domain''s active verification cases still wait for: who asks, the claims
+            and the earliest deadline of each type, merged over all cases. Null when
             no case is active.'
       required:
       - name
@@ -24908,14 +24975,7 @@ components:
             $ref: '#/components/schemas/VerificationDeadline'
           title: Deadlines
           type: array
-        sources:
-          description: 'Who asks for the verification: ICANN, the registry or both'
-          items:
-            $ref: '#/components/schemas/DomainVerificationKind'
-          title: Sources
-          type: array
       required:
-      - sources
       - claims
       title: VerificationResponse
       type: object
@@ -26196,7 +26256,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-23-075952
+  version: 2026-10-23-090901
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

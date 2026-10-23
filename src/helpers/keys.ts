@@ -1,4 +1,5 @@
 import type {
+  ActiveDomainVerification,
   AggregationResult,
   AggregationRow,
   AggregationsContext,
@@ -510,6 +511,26 @@ import type {
   DomainAvailabilityList,
   DomainAvailabilityCheck,
 } from './schemas';
+
+export const KEY_ACTIVE_DOMAIN_VERIFICATION_CLAIMS = 'claims' satisfies keyof ActiveDomainVerification;
+export const KEY_ACTIVE_DOMAIN_VERIFICATION_CONTACT_ID = 'contact_id' satisfies keyof ActiveDomainVerification;
+export const KEY_ACTIVE_DOMAIN_VERIFICATION_DEADLINES = 'deadlines' satisfies keyof ActiveDomainVerification;
+export const KEY_ACTIVE_DOMAIN_VERIFICATION_OPENED_ON = 'opened_on' satisfies keyof ActiveDomainVerification;
+export const KEY_ACTIVE_DOMAIN_VERIFICATION_SOURCE = 'source' satisfies keyof ActiveDomainVerification;
+export const KEY_ACTIVE_DOMAIN_VERIFICATION_STATUS = 'status' satisfies keyof ActiveDomainVerification;
+export const KEY_ACTIVE_DOMAIN_VERIFICATION_TRIGGER = 'trigger' satisfies keyof ActiveDomainVerification;
+export const KEY_ACTIVE_DOMAIN_VERIFICATION_VERIFICATION_ID = 'verification_id' satisfies keyof ActiveDomainVerification;
+
+export const KEYS_ACTIVE_DOMAIN_VERIFICATION = [
+  KEY_ACTIVE_DOMAIN_VERIFICATION_CLAIMS,
+  KEY_ACTIVE_DOMAIN_VERIFICATION_CONTACT_ID,
+  KEY_ACTIVE_DOMAIN_VERIFICATION_DEADLINES,
+  KEY_ACTIVE_DOMAIN_VERIFICATION_OPENED_ON,
+  KEY_ACTIVE_DOMAIN_VERIFICATION_SOURCE,
+  KEY_ACTIVE_DOMAIN_VERIFICATION_STATUS,
+  KEY_ACTIVE_DOMAIN_VERIFICATION_TRIGGER,
+  KEY_ACTIVE_DOMAIN_VERIFICATION_VERIFICATION_ID,
+] as const satisfies (keyof ActiveDomainVerification)[];
 
 export const KEY_AGGREGATION_RESULT_FIELD = 'field' satisfies keyof AggregationResult;
 export const KEY_AGGREGATION_RESULT_NAME = 'name' satisfies keyof AggregationResult;
@@ -3043,6 +3064,7 @@ export const KEYS_DOMAIN_RENEWAL_PRICE = [
   KEY_DOMAIN_RENEWAL_PRICE_PRICE,
 ] as const satisfies (keyof DomainRenewalPrice)[];
 
+export const KEY_DOMAIN_ACTIVE_VERIFICATIONS = 'active_verifications' satisfies keyof Domain;
 export const KEY_DOMAIN_AUTH_CODE = 'auth_code' satisfies keyof Domain;
 export const KEY_DOMAIN_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' satisfies keyof Domain;
 export const KEY_DOMAIN_CANCELED_ON = 'canceled_on' satisfies keyof Domain;
@@ -3076,6 +3098,7 @@ export const KEY_DOMAIN_UPDATED_ON = 'updated_on' satisfies keyof Domain;
 export const KEY_DOMAIN_VERIFICATION_REQUIRED = 'verification_required' satisfies keyof Domain;
 
 export const KEYS_DOMAIN = [
+  KEY_DOMAIN_ACTIVE_VERIFICATIONS,
   KEY_DOMAIN_AUTH_CODE,
   KEY_DOMAIN_AUTH_CODE_EXPIRES_ON,
   KEY_DOMAIN_CANCELED_ON,
@@ -6673,12 +6696,10 @@ export const KEYS_VERIFICATION_REGISTRANT_DETAILS = [
 
 export const KEY_VERIFICATION_CLAIMS = 'claims' satisfies keyof Verification;
 export const KEY_VERIFICATION_DEADLINES = 'deadlines' satisfies keyof Verification;
-export const KEY_VERIFICATION_SOURCES = 'sources' satisfies keyof Verification;
 
 export const KEYS_VERIFICATION = [
   KEY_VERIFICATION_CLAIMS,
   KEY_VERIFICATION_DEADLINES,
-  KEY_VERIFICATION_SOURCES,
 ] as const satisfies (keyof Verification)[];
 
 export const KEY_VISITS_BY_KEY_BUCKET_KEY = 'key' satisfies keyof VisitsByKeyBucket;

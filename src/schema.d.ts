@@ -3449,6 +3449,45 @@ export interface components {
          * @enum {string}
          */
         AccountTypeFilterMode: "match_any" | "match_none";
+        /** ActiveDomainVerificationResponse */
+        ActiveDomainVerificationResponse: {
+            /**
+             * Claims
+             * @description What has to be verified about the registrant
+             */
+            claims: components["schemas"]["VerificationClaimType"][];
+            /**
+             * Contact Id
+             * Format: typeid
+             * @description The registrant contact the case is about
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
+             */
+            contact_id: TypeId<"contact">;
+            /**
+             * Deadlines
+             * @description The deadlines of the case
+             */
+            deadlines: components["schemas"]["VerificationDeadline"][];
+            /**
+             * Opened On
+             * Format: date-time
+             * @description When the case was opened
+             */
+            opened_on: Date;
+            /** @description Who asks for the verification: ICANN or the registry */
+            source: components["schemas"]["DomainVerificationKind"];
+            /** @description The status of the case */
+            status: components["schemas"]["DomainVerificationStatus"];
+            /** @description What opened the case */
+            trigger: components["schemas"]["DomainVerificationTrigger"];
+            /**
+             * Verification Id
+             * Format: typeid
+             * @description The ID of the verification case
+             * @example domain_verification_01h45ytscbebyvny4gc8cr8ma2
+             */
+            verification_id: TypeId<"domain_verification">;
+        };
         /** AggregationResult */
         AggregationResult: {
             /** Field */
@@ -13485,6 +13524,11 @@ export interface components {
         /** DomainResponse */
         DomainResponse: {
             /**
+             * Active Verifications
+             * @description The domain's active verification cases, at most one per source (ICANN and the registry): what each still waits for and by when. Oldest first, by `opened_on`. Empty when no case is active.
+             */
+            active_verifications?: components["schemas"]["ActiveDomainVerificationResponse"][];
+            /**
              * Auth Code
              * @description The auth code for the domain
              */
@@ -13640,7 +13684,10 @@ export interface components {
              * @description The date/time the entry was last updated on
              */
             updated_on?: Date;
-            /** @description What the domain's active verification cases still wait for: who asks, the claims and the earliest deadline of each type. Null when no case is active. */
+            /**
+             * @deprecated
+             * @description Deprecated, read `active_verifications` instead. What the domain's active verification cases still wait for: who asks, the claims and the earliest deadline of each type, merged over all cases. Null when no case is active.
+             */
             verification_required?: components["schemas"]["VerificationResponse"] | null;
         };
         /** DomainRestoreRequest */
@@ -20654,11 +20701,6 @@ export interface components {
              * @description Verification deadlines
              */
             deadlines?: components["schemas"]["VerificationDeadline"][];
-            /**
-             * Sources
-             * @description Who asks for the verification: ICANN, the registry or both
-             */
-            sources: components["schemas"]["DomainVerificationKind"][];
         };
         /**
          * VerificationType
