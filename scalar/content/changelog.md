@@ -57,6 +57,20 @@ Track notable updates to the OpusDNS API and developer documentation here.
 - Changed **registrant changes during a verification**.
   A registrant change moves the domain's active registry case to the new registrant, with the same claims and deadlines.
 
+- Changed **domain names to match in either IDN spelling**. A domain name with
+  non-ASCII characters can be written in Unicode (`bücher.de`) or in its
+  punycode form (`xn--bcher-kva.de`), and some domains are stored in one form,
+  some in the other. Until now a domain was found only by the form it was
+  stored in.
+  [`GET /v1/domains/{domain_reference}`](/api-reference#tag/domain/GET/v1/domains/{domain_reference})
+  and the other domain endpoints that take a domain name in the path now find
+  it by either form, and the `name` and `search` filters of
+  [`GET /v1/domains`](/api-reference#tag/domain/GET/v1/domains) match both. A
+  `search` term matches across forms only as whole labels: `bücher` finds
+  `xn--bcher-kva.de`, `büch` does not. A domain stored in the form you asked
+  for is still found first. The response carries the name as stored, which may
+  be the other form than the one you asked for.
+
 ### 21 October 2026
 
 - Documented **the change of registrant on [`.it`](/tld-knowledge-base/cctlds/it)
