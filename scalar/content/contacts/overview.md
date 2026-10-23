@@ -8,19 +8,16 @@ attestations before the registry-imposed deadlines.
 This guide explains what contact verification is, when it applies, and what
 the key concepts are. For step-by-step instructions, see the
 [Attestation workflow](/products/contacts/attestation-workflow).
+How a request is tracked on each domain is described in
+[Verification cases](/products/contacts/verification-cases).
 
 ## How verification works
 
-1. A registry (e.g., DENIC for `.de` domains) determines that a contact's
-   identity needs to be verified.
-2. OpusDNS receives the verification requirement and flags all affected domains
-   and contacts.
-3. You receive an email notification and a
-   [`VERIFICATION`](/automation/events/event-object) event with details about the
-   affected contacts and domains.
-4. You submit attestations via the API to prove the contact's identity claims.
-5. Once all claims are verified, the registry clears the deadlines and OpusDNS
-   removes the verification flags automatically.
+1. A registry (for example DENIC for `.de` or nic.at for `.at`) asks to verify the holder of one or more domains.
+2. OpusDNS opens a [verification case](/products/contacts/verification-cases) on each affected domain, tags the domain and its registrant contact with `VERIFICATION_REQUIRED`, and logs a [`VERIFICATION`](/automation/events/event-object) event. When the registry asks about a contact, OpusDNS also sends an [email notification](#notifications).
+3. You submit attestations via the API to prove the contact's identity claims.
+4. OpusDNS passes the attestations on to the registries that accept them from the registrar (DENIC and nic.at).
+5. When the registry reports the verification as done, OpusDNS closes the case and removes the tags.
 
 <scalar-callout type="warning">
 Verification deadlines are enforced by the registry. If you do not complete verification in time, your domain may be de-delegated (DNS stops resolving) or ultimately deleted. Always act promptly when you receive a verification notification.
@@ -108,15 +105,18 @@ consequences for your domains:
 
 | Deadline type | What happens |
 | --- | --- |
-| `dedelegation` | The domain's DNS delegation is removed — it stops resolving. This is reversible once verification is completed. |
+| `verification` | The date to complete the verification by. It is present whenever a case has any date, and it is the earliest of them. |
+| `dedelegation` | The domain's DNS delegation is removed, so it stops resolving. This is reversible once verification is completed. |
 | `deletion` | The domain is permanently deleted from the registry. This cannot be undone. |
 
 Deadlines follow a predictable sequence:
 
-1. **Notification** — you are informed that verification is required.
-2. **De-delegation** — if not resolved, DNS is removed and the domain goes
-   offline.
-3. **Deletion** — the domain is permanently removed from the registry.
+1. **Notification**: you are informed that verification is required, with the `verification` deadline.
+2. **De-delegation**: if not resolved, DNS is removed and the domain goes offline.
+3. **Deletion**: the domain is permanently removed from the registry.
+
+Not every registry names all three dates.
+See [Deadlines](/products/contacts/verification-cases#deadlines) for how they appear on a case.
 
 <scalar-callout type="warning">
 Always complete verification well before the de-delegation deadline to avoid any service interruption. Once a domain is deleted by the registry, it cannot be recovered through OpusDNS.
@@ -124,8 +124,8 @@ Always complete verification well before the de-delegation deadline to avoid any
 
 ## Notifications
 
-When verification is required, OpusDNS sends an email notification to your
-organization with details about the affected contacts and domains.
+When a registry asks to verify a contact (DENIC, DNS Belgium and Punktum dk do), OpusDNS sends an email notification to your organization with details about the affected contacts and domains.
+A request about a single domain (nic.at and Internetstiftelsen, for example) is reported through the `VERIFICATION` event and the `VERIFICATION_REQUIRED` status tag only.
 
 You can configure where these notifications are sent in your organization
 settings:
@@ -140,6 +140,7 @@ organization's admin users.
 
 ## Next steps
 
+- [Verification cases](/products/contacts/verification-cases): how a request is tracked on each domain, by registry
 - [Attestation workflow](/products/contacts/attestation-workflow) — respond to
   registry-initiated verification requests step by step
 - [Initialize verification](/products/contacts/initialize-verification) —
@@ -153,5 +154,6 @@ organization's admin users.
 - [`POST /v1/contacts/{contact_id}/verifications/attest`](/api-reference#tag/contact/POST/v1/contacts/{contact_id}/verifications/attest)
 - [`GET /v1/contacts`](/api-reference#tag/contact/GET/v1/contacts)
 - [`GET /v1/domains/{domain_reference}`](/api-reference#tag/domain/GET/v1/domains/{domain_reference})
+- [`GET /v1/domains/{domain_reference}/verifications`](/api-reference#tag/domain/GET/v1/domains/{domain_reference}/verifications)
 - [`GET /v1/domains`](/api-reference#tag/domain/GET/v1/domains)
 - [`GET /v1/events`](/api-reference#tag/event/GET/v1/events)

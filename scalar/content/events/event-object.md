@@ -61,7 +61,7 @@ The `type` field indicates which operation triggered the event.
 | `OUTBOUND_TRANSFER` | A domain was transferred away from OpusDNS. |
 | `TRANSIT` | A domain entered transit state (TLD-specific, e.g., `.de`). |
 | `WITHDRAW` | A domain was withdrawn from the registry (TLD-specific, e.g., `.at`). |
-| `VERIFICATION` | A contact or domain verification event. |
+| `VERIFICATION` | A contact or domain verification event. Domain verification events follow a [verification case](/products/contacts/verification-cases). |
 
 ## Subtypes
 
@@ -73,6 +73,11 @@ The `subtype` field indicates the outcome or stage of the operation.
 | `SUCCESS` | The operation completed successfully. |
 | `FAILURE` | The operation failed. |
 | `CANCELED` | The operation was canceled. |
+| `OVERDUE` | A deadline passed before the operation completed. Used by domain verification events. |
+
+<scalar-callout type="info">
+New types, subtypes and detail values are added over time. Accept values your integration does not know yet instead of rejecting the event, for example by not generating closed enums from the API spec.
+</scalar-callout>
 
 ## Event data
 
@@ -160,26 +165,28 @@ expiration date under `event_data.details`.
 
 ### Verification details
 
-When a domain needs verification, the event may include deadlines, required
-verification claims, and registrant contact information.
+Domain verification events (`object_type` `DOMAIN`, `type` `VERIFICATION`) follow a [verification case](/products/contacts/verification-cases): one event when the case opens or changes (`NOTIFICATION`), and one when it ends (`SUCCESS`, `FAILURE`, `CANCELED`) or its deadline passes (`OVERDUE`).
+The `object_id` is the domain name, and `details` describe the case.
 
 ```json
 {
+  "event_id": "event_01h45ytscbebyvny4gc8cr8ma2",
+  "object_id": "example.de",
+  "object_type": "DOMAIN",
+  "type": "VERIFICATION",
+  "subtype": "NOTIFICATION",
   "event_data": {
     "version": "1.0",
     "message": "Domain verification notification received",
     "details": {
       "detail_type": "domain_verification",
       "domain_id": "domain_01h455e1yewzjmrqt7xk5g8w4d",
+      "verification_id": "domain_verification_01h455e1yewzjmrqt7xk5g8w7g",
+      "source": "REGISTRY",
       "verification_deadlines": [
-        {
-          "type": "dedelegation",
-          "date": "2026-05-20T13:01:05+02:00"
-        },
-        {
-          "type": "deletion",
-          "date": "2026-08-18T13:01:05+02:00"
-        }
+        { "type": "verification", "date": "2026-05-20T11:01:05Z" },
+        { "type": "dedelegation", "date": "2026-05-20T11:01:05Z" },
+        { "type": "deletion", "date": "2026-08-18T11:01:05Z" }
       ],
       "verification_claims": [
         "address",
@@ -193,17 +200,24 @@ verification claims, and registrant contact information.
         }
       ]
     }
-  }
+  },
+  "created_on": "2026-04-20T11:01:07Z",
+  "acknowledged_on": null
 }
 ```
 
-| Details field            | Type     | Description                                                                                |
-|--------------------------|----------|--------------------------------------------------------------------------------------------|
-| `detail_type`            | `string` | Always `domain_verification` for verification details.                                     |
-| `domain_id`              | `string` | TypeID of the domain that requires verification.                                           |
-| `verification_deadlines` | `array`  | Deadlines that apply to the verification process.                                          |
-| `verification_claims`    | `array`  | Claims that need verification. Values can include `name`, `address`, `email`, and `phone`. |
-| `registrants`            | `array`  | Registrant contacts associated with the domain.                                            |
+| Details field            | Type     | Description |
+|--------------------------|----------|-------------|
+| `detail_type`            | `string` | Always `domain_verification` for verification details. |
+| `domain_id`              | `string` | TypeID of the domain the case is about. |
+| `verification_id`        | `string` | TypeID of the verification case. Matches `verification_id` in the domain's `active_verifications` and case history. |
+| `source`                 | `string` | Who asks for the verification: `REGISTRY` or `ICANN`. |
+| `verification_deadlines` | `array`  | The case's deadlines. `verification` is the date to act by, the earliest of them; `dedelegation` and `deletion` are the registry's consequences. See [Deadlines](/products/contacts/verification-cases#deadlines). |
+| `verification_claims`    | `array`  | Claims that need verification: `name`, `legal_entity`, `address`, `email` or `phone`. Empty when the registry does not name them. |
+| `registrants`            | `array`  | Registrant contacts associated with the domain. |
+
+A `FAILURE` event also carries `event_data.error` with the code `ERROR_DOMAIN_VERIFICATION_REGISTRY_REJECTED`.
+Older verification events, stored before verification cases existed, have no `verification_id` or `source`.
 
 ### Integration notes
 
@@ -214,7 +228,7 @@ Integrations that read `event_data` should:
 3. For failures, use `event_data.error.code` and `event_data.error.detail`.
 4. For renewal events, read `event_data.details.expires_on` when
    `event_data.details.detail_type` is `domain_renewal`.
-5. For verification events, read `verification_deadlines`,
+5. For verification events, read `verification_id`, `source`, `verification_deadlines`,
    `verification_claims`, and `registrants` when
    `event_data.details.detail_type` is `domain_verification`.
 

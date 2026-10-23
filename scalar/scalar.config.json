@@ -351,6 +351,13 @@
                     "filepath": "content/contacts/overview.md",
                     "showInSidebar": true
                   },
+                  "/verification-cases": {
+                    "type": "page",
+                    "title": "Verification cases",
+                    "icon": "line/interface-content-book-page",
+                    "filepath": "content/contacts/verification-cases.md",
+                    "showInSidebar": true
+                  },
                   "/attestation-workflow": {
                     "type": "page",
                     "title": "Attestation workflow",
@@ -645,6 +652,20 @@
                 "icon": "line/interface-users-multiple",
                 "url": "https://app.opusdns.com/signup",
                 "newTab": true
+              }
+            }
+          },
+          "/news": {
+            "type": "group",
+            "title": "News",
+            "mode": "flat",
+            "children": {
+              "/nic-at-nis2": {
+                "type": "page",
+                "title": ".at: NIS2 holder verification",
+                "icon": "phosphor/regular/shield-check",
+                "filepath": "content/news/nic-at-nis2.md",
+                "showInSidebar": true
               }
             }
           },

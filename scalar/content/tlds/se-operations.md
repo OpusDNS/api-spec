@@ -80,6 +80,11 @@ The check clears when the registry accepts the registrant data, or when the
 registrant is replaced with one that passes. In either case the registry reports
 the outcome and the statuses are reconciled onto the domain automatically.
 
+When Internetstiftelsen reports that a domain's registrant data needs verification before a date, OpusDNS opens a [verification case](/products/contacts/verification-cases) on the domain with that date as its `verification` deadline.
+The domain and its registrant contact get the `VERIFICATION_REQUIRED` status tag, and a `VERIFICATION` event is logged.
+Internetstiftelsen checks the data itself, so attestations are not sent to it.
+The case closes when the registry reports the registrant verified or removes its data control flag.
+
 ## Contact attributes
 
 Every registrant needs `REGISTRY_SE_ORG_NO`, a personal or organization number
