@@ -30150,15 +30150,6 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_DELETE_PROHIBITED",
-                     *       "detail": "Domain deletion is prohibited due to current status: ",
-                     *       "domain_name": "Additional error context.",
-                     *       "prohibiting_statuses": [],
-                     *       "status": 409,
-                     *       "title": "Domain Management Error",
-                     *       "type": "domain-delete-prohibited"
-                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -30672,14 +30663,6 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_TRANSFER_ON_RENEW_PENDING",
-                     *       "detail": "A renewal already started the transfer of this domain into OpusDNS",
-                     *       "domain_name": "example.com",
-                     *       "status": 409,
-                     *       "title": "Domain Management Error",
-                     *       "type": "domain-transfer-on-renew-pending"
-                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };

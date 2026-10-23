@@ -26196,7 +26196,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-22-212910
+  version: 2026-10-23-075952
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -37699,14 +37699,25 @@ paths:
         '409':
           content:
             application/problem+json:
-              example:
-                code: ERROR_DOMAIN_DELETE_PROHIBITED
-                detail: 'Domain deletion is prohibited due to current status: '
-                domain_name: Additional error context.
-                prohibiting_statuses: []
-                status: 409
-                title: Domain Management Error
-                type: domain-delete-prohibited
+              examples:
+                Domain Management Error:
+                  value:
+                    code: ERROR_DOMAIN_DELETE_PROHIBITED
+                    detail: 'Domain deletion is prohibited due to current status: '
+                    domain_name: Additional error context.
+                    prohibiting_statuses: []
+                    status: 409
+                    title: Domain Management Error
+                    type: domain-delete-prohibited
+                Domain Subscription Pending:
+                  value:
+                    code: ERROR_DOMAIN_SUBSCRIPTION_PENDING
+                    detail: The domain's subscription is not available yet; retry
+                      shortly
+                    domain_name: example.com
+                    status: 409
+                    title: Domain Subscription Pending
+                    type: domain-subscription-pending
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Conflict
@@ -38391,14 +38402,25 @@ paths:
         '409':
           content:
             application/problem+json:
-              example:
-                code: ERROR_DOMAIN_TRANSFER_ON_RENEW_PENDING
-                detail: A renewal already started the transfer of this domain into
-                  OpusDNS
-                domain_name: example.com
-                status: 409
-                title: Domain Management Error
-                type: domain-transfer-on-renew-pending
+              examples:
+                Domain Management Error:
+                  value:
+                    code: ERROR_DOMAIN_TRANSFER_ON_RENEW_PENDING
+                    detail: A renewal already started the transfer of this domain
+                      into OpusDNS
+                    domain_name: example.com
+                    status: 409
+                    title: Domain Management Error
+                    type: domain-transfer-on-renew-pending
+                Domain Subscription Pending:
+                  value:
+                    code: ERROR_DOMAIN_SUBSCRIPTION_PENDING
+                    detail: The domain's subscription is not available yet; retry
+                      shortly
+                    domain_name: example.com
+                    status: 409
+                    title: Domain Subscription Pending
+                    type: domain-subscription-pending
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Conflict
