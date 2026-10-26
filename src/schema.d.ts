@@ -19085,10 +19085,38 @@ export interface components {
          * @enum {string}
          */
         RegistrantChangeFeeType: "none" | "trade";
+        /** RegistrantChangeField */
+        RegistrantChangeField: {
+            /** @description The key the field is sent under in `fields` */
+            key: components["schemas"]["RegistrantChangeFieldKey"];
+            /**
+             * Required
+             * @description Whether the field must be sent
+             * @default false
+             */
+            required: boolean;
+            /** @description Type of the field (e.g., 'enum', 'string', 'boolean') */
+            type: components["schemas"]["AttributeType"];
+            /**
+             * Values
+             * @description Allowed values for enum types
+             */
+            values?: string[] | null;
+        };
+        /**
+         * RegistrantChangeFieldKey
+         * @enum {string}
+         */
+        RegistrantChangeFieldKey: "auth_code";
         /** RegistrantChangePolicyBase */
         RegistrantChangePolicyBase: {
             /** @description Who confirms a change of registrant before it is executed */
             confirmation: components["schemas"]["RegistrantChangeConfirmationType"];
+            /**
+             * Confirmation Fields
+             * @description TLD-specific fields sent in `fields` to confirm the registrant change
+             */
+            confirmation_fields?: components["schemas"]["RegistrantChangeField"][];
             /**
              * Confirmation Window
              * @description How long the parties have to confirm the change (e.g., '14D'), at most 60 days
@@ -19111,6 +19139,11 @@ export interface components {
              * @description Whether the change renews the domain
              */
             renews_domain: boolean;
+            /**
+             * Request Fields
+             * @description TLD-specific fields sent in `fields` with the registrant change request
+             */
+            request_fields?: components["schemas"]["RegistrantChangeField"][];
             /**
              * Transfer Lock After Change
              * @description Inter-registrar transfer lock applied after the change (e.g., '60D'), '0D' disables it

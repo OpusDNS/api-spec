@@ -412,6 +412,7 @@ import type {
   RdapBase,
   ReferrerStatsBucket,
   RegistrantChangeDetails,
+  RegistrantChangeField,
   RegistrantChangePolicyBase,
   RegistrarContact,
   RegistrarDomain,
@@ -5778,21 +5779,37 @@ export const KEYS_REGISTRANT_CHANGE_DETAILS = [
   KEY_REGISTRANT_CHANGE_DETAILS_TRANSFER_LOCK_UNTIL,
 ] as const satisfies (keyof RegistrantChangeDetails)[];
 
+export const KEY_REGISTRANT_CHANGE_FIELD_KEY = 'key' satisfies keyof RegistrantChangeField;
+export const KEY_REGISTRANT_CHANGE_FIELD_REQUIRED = 'required' satisfies keyof RegistrantChangeField;
+export const KEY_REGISTRANT_CHANGE_FIELD_TYPE = 'type' satisfies keyof RegistrantChangeField;
+export const KEY_REGISTRANT_CHANGE_FIELD_VALUES = 'values' satisfies keyof RegistrantChangeField;
+
+export const KEYS_REGISTRANT_CHANGE_FIELD = [
+  KEY_REGISTRANT_CHANGE_FIELD_KEY,
+  KEY_REGISTRANT_CHANGE_FIELD_REQUIRED,
+  KEY_REGISTRANT_CHANGE_FIELD_TYPE,
+  KEY_REGISTRANT_CHANGE_FIELD_VALUES,
+] as const satisfies (keyof RegistrantChangeField)[];
+
 export const KEY_REGISTRANT_CHANGE_POLICY_BASE_CONFIRMATION = 'confirmation' satisfies keyof RegistrantChangePolicyBase;
+export const KEY_REGISTRANT_CHANGE_POLICY_BASE_CONFIRMATION_FIELDS = 'confirmation_fields' satisfies keyof RegistrantChangePolicyBase;
 export const KEY_REGISTRANT_CHANGE_POLICY_BASE_CONFIRMATION_WINDOW = 'confirmation_window' satisfies keyof RegistrantChangePolicyBase;
 export const KEY_REGISTRANT_CHANGE_POLICY_BASE_DESIGNATED_AGENT_ALLOWED = 'designated_agent_allowed' satisfies keyof RegistrantChangePolicyBase;
 export const KEY_REGISTRANT_CHANGE_POLICY_BASE_FEE = 'fee' satisfies keyof RegistrantChangePolicyBase;
 export const KEY_REGISTRANT_CHANGE_POLICY_BASE_PRIOR_REGISTRANT_NOTICE = 'prior_registrant_notice' satisfies keyof RegistrantChangePolicyBase;
 export const KEY_REGISTRANT_CHANGE_POLICY_BASE_RENEWS_DOMAIN = 'renews_domain' satisfies keyof RegistrantChangePolicyBase;
+export const KEY_REGISTRANT_CHANGE_POLICY_BASE_REQUEST_FIELDS = 'request_fields' satisfies keyof RegistrantChangePolicyBase;
 export const KEY_REGISTRANT_CHANGE_POLICY_BASE_TRANSFER_LOCK_AFTER_CHANGE = 'transfer_lock_after_change' satisfies keyof RegistrantChangePolicyBase;
 
 export const KEYS_REGISTRANT_CHANGE_POLICY_BASE = [
   KEY_REGISTRANT_CHANGE_POLICY_BASE_CONFIRMATION,
+  KEY_REGISTRANT_CHANGE_POLICY_BASE_CONFIRMATION_FIELDS,
   KEY_REGISTRANT_CHANGE_POLICY_BASE_CONFIRMATION_WINDOW,
   KEY_REGISTRANT_CHANGE_POLICY_BASE_DESIGNATED_AGENT_ALLOWED,
   KEY_REGISTRANT_CHANGE_POLICY_BASE_FEE,
   KEY_REGISTRANT_CHANGE_POLICY_BASE_PRIOR_REGISTRANT_NOTICE,
   KEY_REGISTRANT_CHANGE_POLICY_BASE_RENEWS_DOMAIN,
+  KEY_REGISTRANT_CHANGE_POLICY_BASE_REQUEST_FIELDS,
   KEY_REGISTRANT_CHANGE_POLICY_BASE_TRANSFER_LOCK_AFTER_CHANGE,
 ] as const satisfies (keyof RegistrantChangePolicyBase)[];
 

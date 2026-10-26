@@ -110,6 +110,7 @@ import type {
   RegistrantChangeConfirmationMethod,
   RegistrantChangeConfirmationType,
   RegistrantChangeFeeType,
+  RegistrantChangeFieldKey,
   RegistrantChangeStatus,
   RegistrantChangeType,
   Registrar,
@@ -1946,6 +1947,14 @@ export const REGISTRANT_CHANGE_FEE_TYPE_VALUES = [
   'none',
   'trade',
 ] as const satisfies ReadonlyArray<RegistrantChangeFeeType>;
+
+export const REGISTRANT_CHANGE_FIELD_KEY = {
+  AUTH_CODE: "auth_code",
+} as const satisfies Record<string, RegistrantChangeFieldKey>;
+
+export const REGISTRANT_CHANGE_FIELD_KEY_VALUES = [
+  'auth_code',
+] as const satisfies ReadonlyArray<RegistrantChangeFieldKey>;
 
 export const REGISTRANT_CHANGE_STATUS = {
   PENDING_CONFIRMATION: "pending_confirmation",

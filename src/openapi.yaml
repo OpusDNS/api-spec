@@ -22361,11 +22361,49 @@ components:
       - trade
       title: RegistrantChangeFeeType
       type: string
+    RegistrantChangeField:
+      properties:
+        key:
+          $ref: '#/components/schemas/RegistrantChangeFieldKey'
+          description: The key the field is sent under in `fields`
+        required:
+          default: false
+          description: Whether the field must be sent
+          title: Required
+          type: boolean
+        type:
+          $ref: '#/components/schemas/AttributeType'
+          description: Type of the field (e.g., 'enum', 'string', 'boolean')
+        values:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Allowed values for enum types
+          title: Values
+      required:
+      - key
+      - type
+      title: RegistrantChangeField
+      type: object
+    RegistrantChangeFieldKey:
+      enum:
+      - auth_code
+      title: RegistrantChangeFieldKey
+      type: string
     RegistrantChangePolicyBase:
       properties:
         confirmation:
           $ref: '#/components/schemas/RegistrantChangeConfirmationType'
           description: Who confirms a change of registrant before it is executed
+        confirmation_fields:
+          description: TLD-specific fields sent in `fields` to confirm the registrant
+            change
+          items:
+            $ref: '#/components/schemas/RegistrantChangeField'
+          title: Confirmation Fields
+          type: array
         confirmation_window:
           anyOf:
           - examples:
@@ -22393,6 +22431,13 @@ components:
           description: Whether the change renews the domain
           title: Renews Domain
           type: boolean
+        request_fields:
+          description: TLD-specific fields sent in `fields` with the registrant change
+            request
+          items:
+            $ref: '#/components/schemas/RegistrantChangeField'
+          title: Request Fields
+          type: array
         transfer_lock_after_change:
           description: Inter-registrar transfer lock applied after the change (e.g.,
             '60D'), '0D' disables it
@@ -26612,7 +26657,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-26-192811
+  version: 2026-10-26-222203
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
