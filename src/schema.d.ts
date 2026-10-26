@@ -424,9 +424,17 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Retrieve contact verification by token */
+        /**
+         * Retrieve contact verification by token
+         * @deprecated
+         * @description Serves the link in the verification mail; not meant for integrations.
+         */
         get: operations["get_verification_by_token_v1_contacts_verification_get"];
-        /** Complete contact verification with token */
+        /**
+         * Complete contact verification with token
+         * @deprecated
+         * @description Serves the link in the verification mail; not meant for integrations.
+         */
         put: operations["update_verification_by_token_v1_contacts_verification_put"];
         post?: never;
         delete?: never;
@@ -442,7 +450,11 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Email Verify Contact */
+        /**
+         * Email Verify Contact
+         * @deprecated
+         * @description Serves the link in the verification mail; not meant for integrations.
+         */
         get: operations["email_verify_contact_v1_contacts_verify_get"];
         put?: never;
         post?: never;
@@ -497,13 +509,29 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Retrieve contact verification by contact ID */
+        /**
+         * Retrieve contact verification by contact ID
+         * @deprecated
+         * @description Deprecated: follow the verification through the domain's cases (GET /v1/domains/{domain_reference}/verifications).
+         */
         get: operations["get_verification_status_v1_contacts__contact_id__verification_get"];
-        /** Complete contact verification by contact ID */
+        /**
+         * Complete contact verification by contact ID
+         * @deprecated
+         * @description Deprecated: an organization with delegated contact verification confirms the registrant's email by attesting its EMAIL reachability (POST /v1/contacts/{contact_id}/verifications/attest).
+         */
         put: operations["update_verification_v1_contacts__contact_id__verification_put"];
-        /** Start contact verification */
+        /**
+         * Start contact verification
+         * @deprecated
+         * @description Deprecated: an ICANN verification case asks the registrant when it opens; follow it with GET /v1/domains/{domain_reference}/verifications.
+         */
         post: operations["start_contact_verification_v1_contacts__contact_id__verification_post"];
-        /** Delete contact verification */
+        /**
+         * Delete contact verification
+         * @deprecated
+         * @description Deprecated: an ICANN verification case closes with its domain; there is nothing to cancel.
+         */
         delete: operations["cancel_verification_v1_contacts__contact_id__verification_delete"];
         options?: never;
         head?: never;

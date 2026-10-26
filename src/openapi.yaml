@@ -26422,7 +26422,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-26-085552
+  version: 2026-10-26-091948
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -29398,6 +29398,8 @@ paths:
       - contacts:manage
   /v1/contacts/verification:
     get:
+      deprecated: true
+      description: Serves the link in the verification mail; not meant for integrations.
       operationId: get_verification_by_token_v1_contacts_verification_get
       parameters:
       - in: query
@@ -29449,6 +29451,8 @@ paths:
       tags:
       - contact
     put:
+      deprecated: true
+      description: Serves the link in the verification mail; not meant for integrations.
       operationId: update_verification_by_token_v1_contacts_verification_put
       parameters:
       - in: query
@@ -29512,6 +29516,8 @@ paths:
       - contact
   /v1/contacts/verify:
     get:
+      deprecated: true
+      description: Serves the link in the verification mail; not meant for integrations.
       operationId: email_verify_contact_v1_contacts_verify_get
       parameters:
       - in: query
@@ -29743,6 +29749,9 @@ paths:
       - contacts:manage
   /v1/contacts/{contact_id}/verification:
     delete:
+      deprecated: true
+      description: 'Deprecated: an ICANN verification case closes with its domain;
+        there is nothing to cancel.'
       operationId: cancel_verification_v1_contacts__contact_id__verification_delete
       parameters:
       - in: path
@@ -29800,6 +29809,9 @@ paths:
       x-required-permissions:
       - contacts:manage
     get:
+      deprecated: true
+      description: 'Deprecated: follow the verification through the domain''s cases
+        (GET /v1/domains/{domain_reference}/verifications).'
       operationId: get_verification_status_v1_contacts__contact_id__verification_get
       parameters:
       - in: path
@@ -29861,6 +29873,9 @@ paths:
       x-required-permissions:
       - contacts:manage
     post:
+      deprecated: true
+      description: 'Deprecated: an ICANN verification case asks the registrant when
+        it opens; follow it with GET /v1/domains/{domain_reference}/verifications.'
       operationId: start_contact_verification_v1_contacts__contact_id__verification_post
       parameters:
       - in: path
@@ -29943,6 +29958,10 @@ paths:
       x-required-permissions:
       - contacts:manage
     put:
+      deprecated: true
+      description: 'Deprecated: an organization with delegated contact verification
+        confirms the registrant''s email by attesting its EMAIL reachability (POST
+        /v1/contacts/{contact_id}/verifications/attest).'
       operationId: update_verification_v1_contacts__contact_id__verification_put
       parameters:
       - in: path
@@ -47213,39 +47232,54 @@ tags:
     \n            }\n          }\n        ]\n      }\n    ]\n  }\n}\n```\n"
   name: jobs
   x-displayName: Jobs
-- description: "Endpoints for creating and managing contacts.\n\n### Contact Verification\
-    \ Attestation\n\n`POST /v1/contacts/{contact_id}/verifications/attest` submits\
-    \ attestations for a contact. The request is forwarded synchronously to the contact-verification\
-    \ service, which is the source of truth for the response. When DENIC is among\
-    \ the registries that flagged the contact for verification, OpusDNS additionally\
-    \ queues a registry-side attest job behind the scenes.\n\n#### Workflow\n\nWhen\
-    \ a registry signals that a contact requires verification (e.g. DENIC's `contactVerificationRequired`\
-    \ notification), OpusDNS marks each affected domain with the `VERIFICATION_REQUIRED`\
-    \ status tag. Submit attestations via this endpoint and the response reports the\
-    \ resulting per-claim verification state.\n\n#### Request format\n\nThe request\
-    \ body wraps the attestations under `attestations`. Fields are snake_case and\
-    \ enum values are UPPERCASE.\n\n```json\n{\n  \"attestations\": [\n    {\n   \
-    \   \"claim\": \"NAME\",\n      \"method\": \"AUTH\",\n      \"proof\": \"IDCARD\"\
-    ,\n      \"attestation_reference\": \"ticket-12345\"\n    }\n  ]\n}\n```\n\n|\
-    \ Field | Type | Notes |\n|-------|------|-------|\n| `claim` | enum | `NAME`,\
-    \ `ADDRESS`, `EMAIL`, `PHONE`, `LEGAL_ENTITY` |\n| `method` | enum | `AUTH`, `VDIG`,\
-    \ `ELECTRONIC_DOCUMENT`, `PHYSICAL_DOCUMENT`, `BVR`, `PVR`, `DATA`, `REACHABILITY`\
-    \ |\n| `proof` | enum | `IDCARD`, `PASSPORT`, `POPULATION_REGISTER`, `RESIDENCE_PERMIT`,\
-    \ `PROOF_OF_ARRIVAL`, `DRIVERS_LICENCE`, `COMPANY_REGISTER`, `COMPANY_STATEMENT`,\
-    \ `BANK_ACCOUNT`, `ONLINE_PAYMENT_ACCOUNT`, `UTILITY_ACCOUNT`, `BANK_STATEMENT`,\
-    \ `TAX_STATEMENT`, `WRITTEN_ATTESTATION`, `DIGITAL_ATTESTATION`, `POSTAL_VER_TRANSACTION_LOG`,\
-    \ `EMAIL_VER_TRANSACTION_LOG`, `PHONE_VER_TRANSACTION_LOG`, `ADDRESS_DATABASE`\
-    \ |\n| `attestation_reference` | string | Caller-supplied reference (e.g. internal\
-    \ ticket ID, document hash). Up to 255 chars. |\n\n**DENIC-only constraint:**\
-    \ when the contact has DENIC verification pending, every item DENIC can record\
-    \ must carry an `attestation_reference`, since DENIC stores one with each verification\
-    \ block; the API checks this before anything is stored, so callers see a synchronous\
-    \ 400. Items with different `method`, `proof` or `attestation_reference` are fine:\
-    \ they reach DENIC as separate verification blocks.\n\n#### Response\n\nThe endpoint\
-    \ returns **HTTP 200 OK** with an object containing the per-claim verification\
-    \ state from the contact-verification service:\n\n```json\n{\n  \"verifications\"\
-    : [\n    {\n      \"claim\": \"NAME\",\n      \"state\": \"VERIFIED\",\n     \
-    \ \"method\": \"AUTH\",\n      \"proof\": \"IDCARD\",\n      \"attestation_reference\"\
+- description: "Endpoints for creating and managing contacts.\n\n### ICANN Registrant\
+    \ Email Verification\n\nA domain on a TLD that requires ICANN registrant verification\
+    \ gets an ICANN verification case about its registrant's email.\nConfirming the\
+    \ email once satisfies every open ICANN case of that email in the organization.\n\
+    The registrant confirms through the link in the verification mail OpusDNS sends\
+    \ when the case opens.\nOrganizations with delegated contact verification get\
+    \ no mail; they confirm a registrant's email by attesting its `EMAIL` claim with\
+    \ the `REACHABILITY` method through `POST /v1/contacts/{contact_id}/verifications/attest`.\n\
+    The setting of the contact's organization counts, the same one that decides whether\
+    \ its registrants are mailed.\nFor other organizations, and with other methods,\
+    \ an `EMAIL` attestation is evidence for the registries only.\nFollow a domain's\
+    \ cases with `GET /v1/domains/{domain_reference}/verifications`.\n\nThe per-contact\
+    \ routes under `/v1/contacts/{contact_id}/verification` are deprecated: a case\
+    \ asks the registrant on its own, and the domain's cases report the outcome.\n\
+    The token routes `/v1/contacts/verification` and `/v1/contacts/verify` serve the\
+    \ link in the verification mail and are not meant for integrations.\n\n### Contact\
+    \ Verification Attestation\n\n`POST /v1/contacts/{contact_id}/verifications/attest`\
+    \ submits attestations for a contact. The request is forwarded synchronously to\
+    \ the contact-verification service, which is the source of truth for the response.\
+    \ When DENIC is among the registries that flagged the contact for verification,\
+    \ OpusDNS additionally queues a registry-side attest job behind the scenes.\n\n\
+    #### Workflow\n\nWhen a registry signals that a contact requires verification\
+    \ (e.g. DENIC's `contactVerificationRequired` notification), OpusDNS marks each\
+    \ affected domain with the `VERIFICATION_REQUIRED` status tag. Submit attestations\
+    \ via this endpoint and the response reports the resulting per-claim verification\
+    \ state.\n\n#### Request format\n\nThe request body wraps the attestations under\
+    \ `attestations`. Fields are snake_case and enum values are UPPERCASE.\n\n```json\n\
+    {\n  \"attestations\": [\n    {\n      \"claim\": \"NAME\",\n      \"method\"\
+    : \"AUTH\",\n      \"proof\": \"IDCARD\",\n      \"attestation_reference\": \"\
+    ticket-12345\"\n    }\n  ]\n}\n```\n\n| Field | Type | Notes |\n|-------|------|-------|\n\
+    | `claim` | enum | `NAME`, `ADDRESS`, `EMAIL`, `PHONE`, `LEGAL_ENTITY` |\n| `method`\
+    \ | enum | `AUTH`, `VDIG`, `ELECTRONIC_DOCUMENT`, `PHYSICAL_DOCUMENT`, `BVR`,\
+    \ `PVR`, `DATA`, `REACHABILITY` |\n| `proof` | enum | `IDCARD`, `PASSPORT`, `POPULATION_REGISTER`,\
+    \ `RESIDENCE_PERMIT`, `PROOF_OF_ARRIVAL`, `DRIVERS_LICENCE`, `COMPANY_REGISTER`,\
+    \ `COMPANY_STATEMENT`, `BANK_ACCOUNT`, `ONLINE_PAYMENT_ACCOUNT`, `UTILITY_ACCOUNT`,\
+    \ `BANK_STATEMENT`, `TAX_STATEMENT`, `WRITTEN_ATTESTATION`, `DIGITAL_ATTESTATION`,\
+    \ `POSTAL_VER_TRANSACTION_LOG`, `EMAIL_VER_TRANSACTION_LOG`, `PHONE_VER_TRANSACTION_LOG`,\
+    \ `ADDRESS_DATABASE` |\n| `attestation_reference` | string | Caller-supplied reference\
+    \ (e.g. internal ticket ID, document hash). Up to 255 chars. |\n\n**DENIC-only\
+    \ constraint:** when the contact has DENIC verification pending, every item DENIC\
+    \ can record must carry an `attestation_reference`, since DENIC stores one with\
+    \ each verification block; the API checks this before anything is stored, so callers\
+    \ see a synchronous 400. Items with different `method`, `proof` or `attestation_reference`\
+    \ are fine: they reach DENIC as separate verification blocks.\n\n#### Response\n\
+    \nThe endpoint returns **HTTP 200 OK** with an object containing the per-claim\
+    \ verification state from the contact-verification service:\n\n```json\n{\n  \"\
+    verifications\": [\n    {\n      \"claim\": \"NAME\",\n      \"state\": \"VERIFIED\"\
+    ,\n      \"method\": \"AUTH\",\n      \"proof\": \"IDCARD\",\n      \"attestation_reference\"\
     : \"ticket-12345\",\n      \"verified_on\": \"2026-05-15T12:00:00Z\",\n      \"\
     expires_on\": null\n    }\n  ]\n}\n```\n\n| Field | Type | Notes |\n|-------|------|-------|\n\
     | `claim` | enum | The claim this entry describes. |\n| `state` | enum | `UNVERIFIED`,\
