@@ -24,6 +24,7 @@ export const CONTACTS_VERIFY_ENDPOINT = '/v1/contacts/verify';
 export const CONTACTS_BY_CONTACT_ID_ENDPOINT = '/v1/contacts/{contact_id}';
 export const CONTACTS_BY_CONTACT_ID_LINK_BY_CONTACT_ATTRIBUTE_SET_ID_ENDPOINT = '/v1/contacts/{contact_id}/link/{contact_attribute_set_id}';
 export const CONTACTS_BY_CONTACT_ID_VERIFICATION_ENDPOINT = '/v1/contacts/{contact_id}/verification';
+export const CONTACTS_BY_CONTACT_ID_VERIFICATION_CASES_ENDPOINT = '/v1/contacts/{contact_id}/verification-cases';
 export const CONTACTS_BY_CONTACT_ID_VERIFICATIONS_ENDPOINT = '/v1/contacts/{contact_id}/verifications';
 export const CONTACTS_BY_CONTACT_ID_VERIFICATIONS_ATTEST_ENDPOINT = '/v1/contacts/{contact_id}/verifications/attest';
 export const DNS_ENDPOINT = '/v1/dns';
@@ -194,6 +195,7 @@ export type Endpoint =
   | typeof CONTACTS_BY_CONTACT_ID_ENDPOINT
   | typeof CONTACTS_BY_CONTACT_ID_LINK_BY_CONTACT_ATTRIBUTE_SET_ID_ENDPOINT
   | typeof CONTACTS_BY_CONTACT_ID_VERIFICATION_ENDPOINT
+  | typeof CONTACTS_BY_CONTACT_ID_VERIFICATION_CASES_ENDPOINT
   | typeof CONTACTS_BY_CONTACT_ID_VERIFICATIONS_ENDPOINT
   | typeof CONTACTS_BY_CONTACT_ID_VERIFICATIONS_ATTEST_ENDPOINT
   | typeof DNS_ENDPOINT

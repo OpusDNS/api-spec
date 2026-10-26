@@ -59,6 +59,7 @@ import type {
   Contact,
   ContactStatusTag,
   ContactVerificationApi,
+  ContactVerificationCase,
   ContactVerificationEidInformation,
   ContactVerificationEmail,
   ContactVerification,
@@ -1330,6 +1331,34 @@ export const KEYS_CONTACT_VERIFICATION_API = [
   KEY_CONTACT_VERIFICATION_API_UPDATED_ON,
   KEY_CONTACT_VERIFICATION_API_VERIFIED_ON,
 ] as const satisfies (keyof ContactVerificationApi)[];
+
+export const KEY_CONTACT_VERIFICATION_CASE_CLAIMS = 'claims' satisfies keyof ContactVerificationCase;
+export const KEY_CONTACT_VERIFICATION_CASE_CLOSE_REASON = 'close_reason' satisfies keyof ContactVerificationCase;
+export const KEY_CONTACT_VERIFICATION_CASE_CLOSED_ON = 'closed_on' satisfies keyof ContactVerificationCase;
+export const KEY_CONTACT_VERIFICATION_CASE_CONTACT_ID = 'contact_id' satisfies keyof ContactVerificationCase;
+export const KEY_CONTACT_VERIFICATION_CASE_DEADLINES = 'deadlines' satisfies keyof ContactVerificationCase;
+export const KEY_CONTACT_VERIFICATION_CASE_DOMAIN_ID = 'domain_id' satisfies keyof ContactVerificationCase;
+export const KEY_CONTACT_VERIFICATION_CASE_DOMAIN_NAME = 'domain_name' satisfies keyof ContactVerificationCase;
+export const KEY_CONTACT_VERIFICATION_CASE_OPENED_ON = 'opened_on' satisfies keyof ContactVerificationCase;
+export const KEY_CONTACT_VERIFICATION_CASE_SOURCE = 'source' satisfies keyof ContactVerificationCase;
+export const KEY_CONTACT_VERIFICATION_CASE_STATUS = 'status' satisfies keyof ContactVerificationCase;
+export const KEY_CONTACT_VERIFICATION_CASE_TRIGGER = 'trigger' satisfies keyof ContactVerificationCase;
+export const KEY_CONTACT_VERIFICATION_CASE_VERIFICATION_ID = 'verification_id' satisfies keyof ContactVerificationCase;
+
+export const KEYS_CONTACT_VERIFICATION_CASE = [
+  KEY_CONTACT_VERIFICATION_CASE_CLAIMS,
+  KEY_CONTACT_VERIFICATION_CASE_CLOSE_REASON,
+  KEY_CONTACT_VERIFICATION_CASE_CLOSED_ON,
+  KEY_CONTACT_VERIFICATION_CASE_CONTACT_ID,
+  KEY_CONTACT_VERIFICATION_CASE_DEADLINES,
+  KEY_CONTACT_VERIFICATION_CASE_DOMAIN_ID,
+  KEY_CONTACT_VERIFICATION_CASE_DOMAIN_NAME,
+  KEY_CONTACT_VERIFICATION_CASE_OPENED_ON,
+  KEY_CONTACT_VERIFICATION_CASE_SOURCE,
+  KEY_CONTACT_VERIFICATION_CASE_STATUS,
+  KEY_CONTACT_VERIFICATION_CASE_TRIGGER,
+  KEY_CONTACT_VERIFICATION_CASE_VERIFICATION_ID,
+] as const satisfies (keyof ContactVerificationCase)[];
 
 export const KEY_CONTACT_VERIFICATION_EID_INFORMATION_EID_SCHEME = 'eid_scheme' satisfies keyof ContactVerificationEidInformation;
 export const KEY_CONTACT_VERIFICATION_EID_INFORMATION_LEVEL_OF_ASSURANCE = 'level_of_assurance' satisfies keyof ContactVerificationEidInformation;

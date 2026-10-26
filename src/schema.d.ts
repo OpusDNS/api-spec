@@ -538,6 +538,27 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/contacts/{contact_id}/verification-cases": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List the verification cases of a contact
+         * @description Lists the verification cases about a contact on its organization's domains, active and closed, newest first:
+         *     which domains ask to verify the contact, what, by when, and how each case ended.
+         */
+        get: operations["list_contact_verification_cases_v1_contacts__contact_id__verification_cases_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/contacts/{contact_id}/verifications": {
         parameters: {
             query?: never;
@@ -7273,6 +7294,30 @@ export interface components {
              */
             truncated: boolean;
         } | {
+            data?: components["schemas"]["Pagination_ContactVerificationCaseResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_contact_verification_cases_v1_contacts__contact_id__verification_cases_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
             data?: components["schemas"]["ContextListResponse"] | string;
             /**
              * Headers
@@ -10663,6 +10708,64 @@ export interface components {
              * @description The date the verification was verified
              */
             verified_on?: Date | null;
+        };
+        /** ContactVerificationCaseResponse */
+        ContactVerificationCaseResponse: {
+            /**
+             * Claims
+             * @description What has to be verified about the registrant
+             */
+            claims: components["schemas"]["VerificationClaimType"][];
+            /** @description Why the case was closed, null while it is active */
+            close_reason: components["schemas"]["DomainVerificationCloseReason"] | null;
+            /**
+             * Closed On
+             * @description When the case was closed, null while it is active
+             */
+            closed_on: Date | null;
+            /**
+             * Contact Id
+             * Format: typeid
+             * @description The registrant contact the case is about
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
+             */
+            contact_id: TypeId<"contact">;
+            /**
+             * Deadlines
+             * @description The deadlines of the case
+             */
+            deadlines: components["schemas"]["VerificationDeadline"][];
+            /**
+             * Domain Id
+             * Format: typeid
+             * @description The domain the case is about
+             * @example domain_01h45ytscbebyvny4gc8cr8ma2
+             */
+            domain_id: TypeId<"domain">;
+            /**
+             * Domain Name
+             * @description The name of the domain the case is about
+             */
+            domain_name: string;
+            /**
+             * Opened On
+             * Format: date-time
+             * @description When the case was opened
+             */
+            opened_on: Date;
+            /** @description Who asks for the verification: ICANN or the registry */
+            source: components["schemas"]["DomainVerificationKind"];
+            /** @description The status of the case */
+            status: components["schemas"]["DomainVerificationStatus"];
+            /** @description What opened the case */
+            trigger: components["schemas"]["DomainVerificationTrigger"];
+            /**
+             * Verification Id
+             * Format: typeid
+             * @description The ID of the verification case
+             * @example domain_verification_01h45ytscbebyvny4gc8cr8ma2
+             */
+            verification_id: TypeId<"domain_verification">;
         };
         /**
          * ContactVerificationClaim
@@ -17944,6 +18047,12 @@ export interface components {
             /** Results */
             results: components["schemas"]["ContactResponse"][];
         };
+        /** Pagination[ContactVerificationCaseResponse] */
+        Pagination_ContactVerificationCaseResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["ContactVerificationCaseResponse"][];
+        };
         /** Pagination[DnsZoneResponse] */
         Pagination_DnsZoneResponse_: {
             pagination: components["schemas"]["PaginationMetadata"];
@@ -24799,6 +24908,80 @@ export interface operations {
                      *       "title": "Contact Management Error",
                      *       "token": "Additional error context.",
                      *       "type": "contact-verification-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_contact_verification_cases_v1_contacts__contact_id__verification_cases_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                contact_id: TypeId<"contact">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_ContactVerificationCaseResponse_"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_NOT_FOUND",
+                     *       "contact_id": "Additional error context.",
+                     *       "detail": "Contact not found",
+                     *       "status": 404,
+                     *       "title": "Contact Management Error",
+                     *       "type": "contact-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };

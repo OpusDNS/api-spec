@@ -277,6 +277,12 @@ export type PUT_ContactsByContactIdVerification_Request = {
 export type PUT_ContactsByContactIdVerification_Request_Query = PUT_ContactsByContactIdVerification_Request['parameters']['query'];
 export type PUT_ContactsByContactIdVerification_Request_Path = PUT_ContactsByContactIdVerification_Request['parameters']['path'];
 
+export type GET_ContactsByContactIdVerificationCases_Request = {
+  parameters: operations['list_contact_verification_cases_v1_contacts__contact_id__verification_cases_get']['parameters'];
+};
+export type GET_ContactsByContactIdVerificationCases_Request_Query = GET_ContactsByContactIdVerificationCases_Request['parameters']['query'];
+export type GET_ContactsByContactIdVerificationCases_Request_Path = GET_ContactsByContactIdVerificationCases_Request['parameters']['path'];
+
 export type GET_ContactsByContactIdVerifications_Request = {
   parameters: operations['get_contact_verification_status_v1_contacts__contact_id__verifications_get']['parameters'];
 };

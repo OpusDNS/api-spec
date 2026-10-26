@@ -84,6 +84,7 @@ import type {
   Pagination_BillingTransaction,
   Pagination_Contact,
   Pagination_ContactAttributeSet,
+  Pagination_ContactVerificationCase,
   Pagination_DnsZone,
   Pagination_Domain,
   Pagination_DomainForward,
@@ -401,6 +402,13 @@ export type GET_ContactsByContactIdVerification_Response_200 = ContactVerificati
 export type GET_ContactsByContactIdVerification_Response_401 = Problem;
 export type GET_ContactsByContactIdVerification_Response_404 = Problem;
 export type GET_ContactsByContactIdVerification_Response_422 = HTTPValidationError;
+
+export type GET_ContactsByContactIdVerificationCases_Response = GET_ContactsByContactIdVerificationCases_Response_200 | GET_ContactsByContactIdVerificationCases_Response_401 | GET_ContactsByContactIdVerificationCases_Response_404 | GET_ContactsByContactIdVerificationCases_Response_422;
+
+export type GET_ContactsByContactIdVerificationCases_Response_200 = Pagination_ContactVerificationCase;
+export type GET_ContactsByContactIdVerificationCases_Response_401 = Problem;
+export type GET_ContactsByContactIdVerificationCases_Response_404 = Problem;
+export type GET_ContactsByContactIdVerificationCases_Response_422 = HTTPValidationError;
 
 export type GET_ContactsByContactIdVerifications_Response = GET_ContactsByContactIdVerifications_Response_200 | GET_ContactsByContactIdVerifications_Response_401 | GET_ContactsByContactIdVerifications_Response_404 | GET_ContactsByContactIdVerifications_Response_422 | GET_ContactsByContactIdVerifications_Response_502;
 
