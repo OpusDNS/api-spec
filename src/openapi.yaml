@@ -17217,6 +17217,7 @@ components:
           type: boolean
         suspension_delay:
           description: After how many Days should the domain be suspended
+          pattern: ^\d+D$
           title: Suspension Delay
           type: string
         suspension_on_failure:
@@ -17868,6 +17869,7 @@ components:
           type: array
         suspension_delay:
           description: After how many Days should the domain be suspended
+          pattern: ^\d+D$
           title: Suspension Delay
           type: string
         suspension_on_failure:
@@ -26420,7 +26422,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-23-134155
+  version: 2026-10-26-085552
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
