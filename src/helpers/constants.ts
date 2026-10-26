@@ -2221,6 +2221,7 @@ export const REGISTRY_SERVICE_BACKEND = {
   COCCA: "cocca",
   AMAZON: "amazon",
   TANGO: "tango",
+  NIC_CL: "nic_cl",
 } as const satisfies Record<string, RegistryServiceBackend>;
 
 export const REGISTRY_SERVICE_BACKEND_VALUES = [
@@ -2285,6 +2286,7 @@ export const REGISTRY_SERVICE_BACKEND_VALUES = [
   'cocca',
   'amazon',
   'tango',
+  'nic_cl',
 ] as const satisfies ReadonlyArray<RegistryServiceBackend>;
 
 export const RENEWAL_MODE = {
