@@ -47,6 +47,7 @@ import type {
   DomainStatistics,
   DomainSummary,
   DomainTransit,
+  DomainVerification,
   DomainWithdraw,
   EmailForward,
   EmailForwardAlias,
@@ -1315,6 +1316,14 @@ export type POST_DomainsByDomainReferenceTransferOutbound_Response_200 = Outboun
 export type POST_DomainsByDomainReferenceTransferOutbound_Response_400 = Problem;
 export type POST_DomainsByDomainReferenceTransferOutbound_Response_404 = Problem;
 export type POST_DomainsByDomainReferenceTransferOutbound_Response_422 = Problem;
+
+export type POST_DomainsByDomainReferenceVerificationsByVerificationIdResend_Response = POST_DomainsByDomainReferenceVerificationsByVerificationIdResend_Response_202 | POST_DomainsByDomainReferenceVerificationsByVerificationIdResend_Response_404 | POST_DomainsByDomainReferenceVerificationsByVerificationIdResend_Response_409 | POST_DomainsByDomainReferenceVerificationsByVerificationIdResend_Response_422 | POST_DomainsByDomainReferenceVerificationsByVerificationIdResend_Response_429;
+
+export type POST_DomainsByDomainReferenceVerificationsByVerificationIdResend_Response_202 = DomainVerification;
+export type POST_DomainsByDomainReferenceVerificationsByVerificationIdResend_Response_404 = Problem;
+export type POST_DomainsByDomainReferenceVerificationsByVerificationIdResend_Response_409 = Problem;
+export type POST_DomainsByDomainReferenceVerificationsByVerificationIdResend_Response_422 = HTTPValidationError;
+export type POST_DomainsByDomainReferenceVerificationsByVerificationIdResend_Response_429 = Problem;
 
 export type POST_DomainsClaimsNotices_Response = POST_DomainsClaimsNotices_Response_200 | POST_DomainsClaimsNotices_Response_404 | POST_DomainsClaimsNotices_Response_422 | POST_DomainsClaimsNotices_Response_503;
 

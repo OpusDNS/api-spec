@@ -6970,6 +6970,37 @@ components:
       - properties:
           data:
             anyOf:
+            - $ref: '#/components/schemas/DomainVerificationResponse'
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
+            const: resend_domain_verification_v1_domains__domain_reference__verifications__verification_id__resend_post
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: resend_domain_verification_v1_domains__domain_reference__verifications__verification_id__resend_post
+        type: object
+      - properties:
+          data:
+            anyOf:
             - type: string
           headers:
             additionalProperties:
@@ -9723,11 +9754,22 @@ components:
           description: The name of the domain the case is about
           title: Domain Name
           type: string
+        last_reminder_sent_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: When the registrant's email was last reminded, null if never
+          title: Last Reminder Sent On
         opened_on:
           description: When the case was opened
           format: date-time
           title: Opened On
           type: string
+        reminders_sent:
+          description: How many reminders the registrant got about this case
+          title: Reminders Sent
+          type: integer
         source:
           $ref: '#/components/schemas/DomainVerificationKind'
           description: 'Who asks for the verification: ICANN or the registry'
@@ -9757,6 +9799,8 @@ components:
       - opened_on
       - closed_on
       - close_reason
+      - reminders_sent
+      - last_reminder_sent_on
       - domain_id
       - domain_name
       title: ContactVerificationCaseResponse
@@ -16251,11 +16295,22 @@ components:
             $ref: '#/components/schemas/VerificationDeadline'
           title: Deadlines
           type: array
+        last_reminder_sent_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: When the registrant's email was last reminded, null if never
+          title: Last Reminder Sent On
         opened_on:
           description: When the case was opened
           format: date-time
           title: Opened On
           type: string
+        reminders_sent:
+          description: How many reminders the registrant got about this case
+          title: Reminders Sent
+          type: integer
         source:
           $ref: '#/components/schemas/DomainVerificationKind'
           description: 'Who asks for the verification: ICANN or the registry'
@@ -16285,6 +16340,8 @@ components:
       - opened_on
       - closed_on
       - close_reason
+      - reminders_sent
+      - last_reminder_sent_on
       title: DomainVerificationResponse
       type: object
     DomainVerificationStatus:
@@ -17492,6 +17549,7 @@ components:
       - FAILURE
       - CANCELED
       - OVERDUE
+      - REMINDER
       title: EventSubtype
       type: string
     EventType:
@@ -26553,7 +26611,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-26-121025
+  version: 2026-10-26-164538
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -39400,6 +39458,120 @@ paths:
       - domain
       x-required-permissions:
       - domains:read
+  /v1/domains/{domain_reference}/verifications/{verification_id}/resend:
+    post:
+      description: 'Mails the registrant a link to confirm the email an open ICANN
+        case waits on. The mail covers every open ICANN
+
+        case of that email in the organization and counts as a reminder: the scheduled
+        reminders resume at the first one
+
+        due more than 24 hours later. At most one mail goes to an email in 15 minutes;
+        an earlier request is answered 429
+
+        with `Retry-After`. Registry cases, closed cases, emails already confirmed
+        and organizations that confirm their
+
+        registrants'' emails themselves are answered 409 with the reason.'
+      operationId: resend_domain_verification_v1_domains__domain_reference__verifications__verification_id__resend_post
+      parameters:
+      - in: path
+        name: domain_reference
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - domain_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: domain
+          - type: string
+          title: Domain Reference
+      - in: path
+        name: verification_id
+        required: true
+        schema:
+          examples:
+          - domain_verification_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^domain_verification_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Verification Id
+          type: string
+          x-typeid-prefix: domain_verification
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainVerificationResponse'
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_VERIFICATION_NOT_FOUND
+                detail: The domain has no such verification case
+                domain_verification_id: domain_verification_01m5w99e88f858v5jt43w8v62x
+                status: 404
+                title: Domain Verification Not Found
+                type: domain-verification-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              examples:
+                Domain Verification Busy:
+                  value:
+                    code: ERROR_DOMAIN_VERIFICATION_BUSY
+                    detail: The registrant's verification cases are being updated;
+                      retry shortly
+                    status: 409
+                    title: Domain Verification Busy
+                    type: domain-verification-busy
+                Domain Verification Not Resendable:
+                  value:
+                    code: ERROR_DOMAIN_VERIFICATION_NOT_RESENDABLE
+                    detail: The registrant has confirmed the email already
+                    domain_verification_id: domain_verification_01m5w99e88f858v5jt43w8v62x
+                    reason: CONFIRMED
+                    status: 409
+                    title: Domain Verification Not Resendable
+                    type: domain-verification-not-resendable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '429':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_VERIFICATION_RESEND_TOO_SOON
+                detail: The registrant's email was mailed moments ago; retry in 540
+                  seconds
+                domain_verification_id: domain_verification_01m5w99e88f858v5jt43w8v62x
+                status: 429
+                title: Domain Verification Resend Too Soon
+                type: domain-verification-resend-too-soon
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Too Many Requests
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Resend the verification email of an ICANN case
+      tags:
+      - domain
+      x-required-permissions:
+      - domains:manage
   /v1/email-forwards:
     get:
       description: Retrieves a paginated list of all email forwards for the organization.

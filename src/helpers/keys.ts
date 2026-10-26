@@ -1339,7 +1339,9 @@ export const KEY_CONTACT_VERIFICATION_CASE_CONTACT_ID = 'contact_id' satisfies k
 export const KEY_CONTACT_VERIFICATION_CASE_DEADLINES = 'deadlines' satisfies keyof ContactVerificationCase;
 export const KEY_CONTACT_VERIFICATION_CASE_DOMAIN_ID = 'domain_id' satisfies keyof ContactVerificationCase;
 export const KEY_CONTACT_VERIFICATION_CASE_DOMAIN_NAME = 'domain_name' satisfies keyof ContactVerificationCase;
+export const KEY_CONTACT_VERIFICATION_CASE_LAST_REMINDER_SENT_ON = 'last_reminder_sent_on' satisfies keyof ContactVerificationCase;
 export const KEY_CONTACT_VERIFICATION_CASE_OPENED_ON = 'opened_on' satisfies keyof ContactVerificationCase;
+export const KEY_CONTACT_VERIFICATION_CASE_REMINDERS_SENT = 'reminders_sent' satisfies keyof ContactVerificationCase;
 export const KEY_CONTACT_VERIFICATION_CASE_SOURCE = 'source' satisfies keyof ContactVerificationCase;
 export const KEY_CONTACT_VERIFICATION_CASE_STATUS = 'status' satisfies keyof ContactVerificationCase;
 export const KEY_CONTACT_VERIFICATION_CASE_TRIGGER = 'trigger' satisfies keyof ContactVerificationCase;
@@ -1353,7 +1355,9 @@ export const KEYS_CONTACT_VERIFICATION_CASE = [
   KEY_CONTACT_VERIFICATION_CASE_DEADLINES,
   KEY_CONTACT_VERIFICATION_CASE_DOMAIN_ID,
   KEY_CONTACT_VERIFICATION_CASE_DOMAIN_NAME,
+  KEY_CONTACT_VERIFICATION_CASE_LAST_REMINDER_SENT_ON,
   KEY_CONTACT_VERIFICATION_CASE_OPENED_ON,
+  KEY_CONTACT_VERIFICATION_CASE_REMINDERS_SENT,
   KEY_CONTACT_VERIFICATION_CASE_SOURCE,
   KEY_CONTACT_VERIFICATION_CASE_STATUS,
   KEY_CONTACT_VERIFICATION_CASE_TRIGGER,
@@ -3641,7 +3645,9 @@ export const KEY_DOMAIN_VERIFICATION_CLOSE_REASON = 'close_reason' satisfies key
 export const KEY_DOMAIN_VERIFICATION_CLOSED_ON = 'closed_on' satisfies keyof DomainVerification;
 export const KEY_DOMAIN_VERIFICATION_CONTACT_ID = 'contact_id' satisfies keyof DomainVerification;
 export const KEY_DOMAIN_VERIFICATION_DEADLINES = 'deadlines' satisfies keyof DomainVerification;
+export const KEY_DOMAIN_VERIFICATION_LAST_REMINDER_SENT_ON = 'last_reminder_sent_on' satisfies keyof DomainVerification;
 export const KEY_DOMAIN_VERIFICATION_OPENED_ON = 'opened_on' satisfies keyof DomainVerification;
+export const KEY_DOMAIN_VERIFICATION_REMINDERS_SENT = 'reminders_sent' satisfies keyof DomainVerification;
 export const KEY_DOMAIN_VERIFICATION_SOURCE = 'source' satisfies keyof DomainVerification;
 export const KEY_DOMAIN_VERIFICATION_STATUS = 'status' satisfies keyof DomainVerification;
 export const KEY_DOMAIN_VERIFICATION_TRIGGER = 'trigger' satisfies keyof DomainVerification;
@@ -3653,7 +3659,9 @@ export const KEYS_DOMAIN_VERIFICATION = [
   KEY_DOMAIN_VERIFICATION_CLOSED_ON,
   KEY_DOMAIN_VERIFICATION_CONTACT_ID,
   KEY_DOMAIN_VERIFICATION_DEADLINES,
+  KEY_DOMAIN_VERIFICATION_LAST_REMINDER_SENT_ON,
   KEY_DOMAIN_VERIFICATION_OPENED_ON,
+  KEY_DOMAIN_VERIFICATION_REMINDERS_SENT,
   KEY_DOMAIN_VERIFICATION_SOURCE,
   KEY_DOMAIN_VERIFICATION_STATUS,
   KEY_DOMAIN_VERIFICATION_TRIGGER,

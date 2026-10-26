@@ -620,6 +620,11 @@ export type GET_DomainsByDomainReferenceVerifications_Request = {
 export type GET_DomainsByDomainReferenceVerifications_Request_Query = GET_DomainsByDomainReferenceVerifications_Request['parameters']['query'];
 export type GET_DomainsByDomainReferenceVerifications_Request_Path = GET_DomainsByDomainReferenceVerifications_Request['parameters']['path'];
 
+export type POST_DomainsByDomainReferenceVerificationsByVerificationIdResend_Request = {
+  parameters: operations['resend_domain_verification_v1_domains__domain_reference__verifications__verification_id__resend_post']['parameters'];
+};
+export type POST_DomainsByDomainReferenceVerificationsByVerificationIdResend_Request_Path = POST_DomainsByDomainReferenceVerificationsByVerificationIdResend_Request['parameters']['path'];
+
 export type GET_DomainsCheck_Request = {
   parameters: operations['epp_check_domain_v1_domains_check_get']['parameters'];
 };

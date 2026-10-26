@@ -1942,6 +1942,30 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/domains/{domain_reference}/verifications/{verification_id}/resend": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Resend the verification email of an ICANN case
+         * @description Mails the registrant a link to confirm the email an open ICANN case waits on. The mail covers every open ICANN
+         *     case of that email in the organization and counts as a reminder: the scheduled reminders resume at the first one
+         *     due more than 24 hours later. At most one mail goes to an email in 15 minutes; an earlier request is answered 429
+         *     with `Retry-After`. Registry cases, closed cases, emails already confirmed and organizations that confirm their
+         *     registrants' emails themselves are answered 409 with the reason.
+         */
+        post: operations["resend_domain_verification_v1_domains__domain_reference__verifications__verification_id__resend_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/email-forwards": {
         parameters: {
             query?: never;
@@ -8686,6 +8710,30 @@ export interface components {
              */
             truncated: boolean;
         } | {
+            data?: components["schemas"]["DomainVerificationResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "resend_domain_verification_v1_domains__domain_reference__verifications__verification_id__resend_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
             data?: string;
             /**
              * Headers
@@ -10748,11 +10796,21 @@ export interface components {
              */
             domain_name: string;
             /**
+             * Last Reminder Sent On
+             * @description When the registrant's email was last reminded, null if never
+             */
+            last_reminder_sent_on: Date | null;
+            /**
              * Opened On
              * Format: date-time
              * @description When the case was opened
              */
             opened_on: Date;
+            /**
+             * Reminders Sent
+             * @description How many reminders the registrant got about this case
+             */
+            reminders_sent: number;
             /** @description Who asks for the verification: ICANN or the registry */
             source: components["schemas"]["DomainVerificationKind"];
             /** @description The status of the case */
@@ -15039,11 +15097,21 @@ export interface components {
              */
             deadlines: components["schemas"]["VerificationDeadline"][];
             /**
+             * Last Reminder Sent On
+             * @description When the registrant's email was last reminded, null if never
+             */
+            last_reminder_sent_on: Date | null;
+            /**
              * Opened On
              * Format: date-time
              * @description When the case was opened
              */
             opened_on: Date;
+            /**
+             * Reminders Sent
+             * @description How many reminders the registrant got about this case
+             */
+            reminders_sent: number;
             /** @description Who asks for the verification: ICANN or the registry */
             source: components["schemas"]["DomainVerificationKind"];
             /** @description The status of the case */
@@ -15907,7 +15975,7 @@ export interface components {
          * EventSubtype
          * @enum {string}
          */
-        EventSubtype: "NOTIFICATION" | "SUCCESS" | "FAILURE" | "CANCELED" | "OVERDUE";
+        EventSubtype: "NOTIFICATION" | "SUCCESS" | "FAILURE" | "CANCELED" | "OVERDUE" | "REMINDER";
         /**
          * EventType
          * @enum {string}
@@ -31485,6 +31553,88 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    resend_domain_verification_v1_domains__domain_reference__verifications__verification_id__resend_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                domain_reference: TypeId<"domain"> | string;
+                verification_id: TypeId<"domain_verification">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainVerificationResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_VERIFICATION_NOT_FOUND",
+                     *       "detail": "The domain has no such verification case",
+                     *       "domain_verification_id": "domain_verification_01m5w99e88f858v5jt43w8v62x",
+                     *       "status": 404,
+                     *       "title": "Domain Verification Not Found",
+                     *       "type": "domain-verification-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_VERIFICATION_RESEND_TOO_SOON",
+                     *       "detail": "The registrant's email was mailed moments ago; retry in 540 seconds",
+                     *       "domain_verification_id": "domain_verification_01m5w99e88f858v5jt43w8v62x",
+                     *       "status": 429,
+                     *       "title": "Domain Verification Resend Too Soon",
+                     *       "type": "domain-verification-resend-too-soon"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
