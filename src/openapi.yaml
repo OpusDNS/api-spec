@@ -12377,10 +12377,12 @@ components:
           description: Error details when status is 'error', e.g. why a domain is
             invalid
         marketplace:
-          $ref: '#/components/schemas/Marketplace'
-          description: The marketplace a taken domain can be bought on; only on `market_available`
-            results of `POST /v1/availability/stream` with `marketplaces`, omitted
-            otherwise.
+          anyOf:
+          - $ref: '#/components/schemas/Marketplace'
+          - type: 'null'
+          description: The marketplace a taken domain can be bought on; set on `market_available`
+            results of `POST /v1/availability/stream` with `marketplaces`; null otherwise,
+            or when the marketplace is not known yet.
         status:
           $ref: '#/components/schemas/DomainAvailabilityStatus'
       required:
@@ -14751,11 +14753,13 @@ components:
           title: Domain
           type: string
         marketplace:
-          $ref: '#/components/schemas/Marketplace'
-          description: 'Present on a domain for sale on a marketplace, added after
-            the suggestions with `available: false` and no amount yet; omitted on
-            suggestions. A domain can appear twice: as a suggestion with its registry
-            fields, and as a marketplace item.'
+          anyOf:
+          - $ref: '#/components/schemas/Marketplace'
+          - type: 'null'
+          description: 'Set on a domain for sale on a marketplace, added after the
+            suggestions with `available: false` and no amount yet; null on suggestions.
+            A domain can appear twice: as a suggestion with its registry fields, and
+            as a marketplace item.'
         premium:
           title: Premium
           type: boolean
@@ -26657,7 +26661,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-26-222203
+  version: 2026-10-27-121024
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -28959,7 +28963,7 @@ paths:
                 Data:
                   description: Returns individual domains' availability
                   summary: Availability data
-                  value: 'data: {"domain":"example.com","status":"unavailable"}'
+                  value: 'data: {"domain":"example.com","status":"unavailable","marketplace":null}'
                 Event:
                   description: Returned when an event occurs
                   summary: Event
@@ -29016,7 +29020,7 @@ paths:
                 Data:
                   description: Returns individual domains' availability
                   summary: Availability data
-                  value: 'data: {"domain":"example.com","status":"unavailable"}'
+                  value: 'data: {"domain":"example.com","status":"unavailable","marketplace":null}'
                 Event:
                   description: Returned when an event occurs
                   summary: Event

@@ -12387,8 +12387,8 @@ export interface components {
             domain: string;
             /** @description Error details when status is 'error', e.g. why a domain is invalid */
             error?: components["schemas"]["DomainAvailabilityError"] | null;
-            /** @description The marketplace a taken domain can be bought on; only on `market_available` results of `POST /v1/availability/stream` with `marketplaces`, omitted otherwise. */
-            marketplace?: components["schemas"]["Marketplace"];
+            /** @description The marketplace a taken domain can be bought on; set on `market_available` results of `POST /v1/availability/stream` with `marketplaces`; null otherwise, or when the marketplace is not known yet. */
+            marketplace?: components["schemas"]["Marketplace"] | null;
             status: components["schemas"]["DomainAvailabilityStatus"];
         };
         /** DomainAvailabilityError */
@@ -13993,8 +13993,8 @@ export interface components {
             connected_account?: components["schemas"]["DomainAmsAccountResponse"] | null;
             /** Domain */
             domain: string;
-            /** @description Present on a domain for sale on a marketplace, added after the suggestions with `available: false` and no amount yet; omitted on suggestions. A domain can appear twice: as a suggestion with its registry fields, and as a marketplace item. */
-            marketplace?: components["schemas"]["Marketplace"];
+            /** @description Set on a domain for sale on a marketplace, added after the suggestions with `available: false` and no amount yet; null on suggestions. A domain can appear twice: as a suggestion with its registry fields, and as a marketplace item. */
+            marketplace?: components["schemas"]["Marketplace"] | null;
             /** Premium */
             premium: boolean;
             price: components["schemas"]["DomainSearchSuggestionPriceData"];
