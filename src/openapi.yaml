@@ -8951,6 +8951,13 @@ components:
           title: Label
       title: ContactAttributeSetUpdate
       type: object
+    ContactCompleteness:
+      description: Whether a stored contact passes the contact create validation (`classify`).
+      enum:
+      - complete
+      - incomplete
+      title: ContactCompleteness
+      type: string
     ContactConfigBase:
       properties:
         max:
@@ -9461,11 +9468,16 @@ components:
           title: Attribute Sets
           type: array
         city:
+          anyOf:
+          - type: string
+          - type: 'null'
           description: The city of the contact
-          maxLength: 255
-          minLength: 1
           title: City
-          type: string
+        completeness:
+          $ref: '#/components/schemas/ContactCompleteness'
+          description: Whether the contact passed the contact create validation when
+            it was stored. Can disagree with `incomplete_fields` if the rules changed
+            since; the `completeness` list filter uses this.
         contact_id:
           examples:
           - contact_01h45ytscbebyvny4gc8cr8ma2
@@ -9475,11 +9487,12 @@ components:
           type: string
           x-typeid-prefix: contact
         country:
+          anyOf:
+          - type: string
+          - type: 'null'
           description: The country of the contact (ISO 3166-1 alpha-2, plus XK for
             Kosovo)
-          pattern: ^\w{2}$
           title: Country
-          type: string
         created_on:
           description: The date/time the entry was created on
           format: date-time
@@ -9492,34 +9505,40 @@ components:
           title: Disclose
           type: boolean
         email:
+          anyOf:
+          - type: string
+          - type: 'null'
           description: Contact email address (as submitted)
-          format: email
           title: Email
-          type: string
         fax:
           anyOf:
-          - format: phone
-            type: string
+          - type: string
           - type: 'null'
           description: The contacts's fax number
           title: Fax
         first_name:
+          anyOf:
+          - type: string
+          - type: 'null'
           description: The first name of the contact
-          maxLength: 255
-          minLength: 1
           title: First Name
-          type: string
+        incomplete_fields:
+          description: The fields that fail the contact create validation today; empty
+            when none do. `contact` stands for a failure that names no single field.
+          items:
+            type: string
+          readOnly: true
+          title: Incomplete Fields
+          type: array
         last_name:
+          anyOf:
+          - type: string
+          - type: 'null'
           description: The last name of the contact
-          maxLength: 255
-          minLength: 1
           title: Last Name
-          type: string
         org:
           anyOf:
-          - maxLength: 255
-            minLength: 1
-            type: string
+          - type: string
           - type: 'null'
           description: The organization of the contact
           title: Org
@@ -9534,23 +9553,22 @@ components:
           type: string
           x-typeid-prefix: organization
         phone:
+          anyOf:
+          - type: string
+          - type: 'null'
           description: The contact's phone number
           examples:
           - '+1.2125552368'
-          format: phone
           title: Phone
-          type: string
         postal_code:
+          anyOf:
+          - type: string
+          - type: 'null'
           description: The postal code of the contact
-          maxLength: 255
-          minLength: 1
           title: Postal Code
-          type: string
         state:
           anyOf:
-          - maxLength: 255
-            minLength: 1
-            type: string
+          - type: string
           - type: 'null'
           description: The state of the contact
           title: State
@@ -9564,11 +9582,11 @@ components:
             is specified.
           title: Status Tags
         street:
+          anyOf:
+          - type: string
+          - type: 'null'
           description: The address of the contact
-          maxLength: 255
-          minLength: 1
           title: Street
-          type: string
         tags:
           anyOf:
           - items:
@@ -9579,9 +9597,7 @@ components:
           title: Tags
         title:
           anyOf:
-          - maxLength: 255
-            minLength: 1
-            type: string
+          - type: string
           - type: 'null'
           description: The title of the contact
           title: Title
@@ -9595,6 +9611,8 @@ components:
       - postal_code
       - country
       - disclose
+      - completeness
+      - incomplete_fields
       title: ContactResponse
       type: object
     ContactSortField:
@@ -26661,7 +26679,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-27-141238
+  version: 2026-10-27-200302
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -29223,6 +29241,16 @@ paths:
           - type: 'null'
           description: Filter by country
           title: Country
+      - description: Filter by the completeness recorded when the contact was stored
+        in: query
+        name: completeness
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/ContactCompleteness'
+          - type: 'null'
+          description: Filter by the completeness recorded when the contact was stored
+          title: Completeness
       - description: Filter by whether the contact is in use by any domain (true =
           has domains, false = none)
         in: query

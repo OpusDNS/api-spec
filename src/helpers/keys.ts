@@ -1259,6 +1259,7 @@ export const KEYS_CONTACT_HANDLE = [
 
 export const KEY_CONTACT_ATTRIBUTE_SETS = 'attribute_sets' satisfies keyof Contact;
 export const KEY_CONTACT_CITY = 'city' satisfies keyof Contact;
+export const KEY_CONTACT_COMPLETENESS = 'completeness' satisfies keyof Contact;
 export const KEY_CONTACT_CONTACT_ID = 'contact_id' satisfies keyof Contact;
 export const KEY_CONTACT_COUNTRY = 'country' satisfies keyof Contact;
 export const KEY_CONTACT_CREATED_ON = 'created_on' satisfies keyof Contact;
@@ -1266,6 +1267,7 @@ export const KEY_CONTACT_DISCLOSE = 'disclose' satisfies keyof Contact;
 export const KEY_CONTACT_EMAIL = 'email' satisfies keyof Contact;
 export const KEY_CONTACT_FAX = 'fax' satisfies keyof Contact;
 export const KEY_CONTACT_FIRST_NAME = 'first_name' satisfies keyof Contact;
+export const KEY_CONTACT_INCOMPLETE_FIELDS = 'incomplete_fields' satisfies keyof Contact;
 export const KEY_CONTACT_LAST_NAME = 'last_name' satisfies keyof Contact;
 export const KEY_CONTACT_ORG = 'org' satisfies keyof Contact;
 export const KEY_CONTACT_ORGANIZATION_ID = 'organization_id' satisfies keyof Contact;
@@ -1280,6 +1282,7 @@ export const KEY_CONTACT_TITLE = 'title' satisfies keyof Contact;
 export const KEYS_CONTACT = [
   KEY_CONTACT_ATTRIBUTE_SETS,
   KEY_CONTACT_CITY,
+  KEY_CONTACT_COMPLETENESS,
   KEY_CONTACT_CONTACT_ID,
   KEY_CONTACT_COUNTRY,
   KEY_CONTACT_CREATED_ON,
@@ -1287,6 +1290,7 @@ export const KEYS_CONTACT = [
   KEY_CONTACT_EMAIL,
   KEY_CONTACT_FAX,
   KEY_CONTACT_FIRST_NAME,
+  KEY_CONTACT_INCOMPLETE_FIELDS,
   KEY_CONTACT_LAST_NAME,
   KEY_CONTACT_ORG,
   KEY_CONTACT_ORGANIZATION_ID,

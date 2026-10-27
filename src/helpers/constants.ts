@@ -16,6 +16,7 @@ import type {
   ConditionOperator,
   ConnectedAccountType,
   ContactAttributeSetSortField,
+  ContactCompleteness,
   ContactIncludeField,
   ContactSortField,
   ContactStatusTagType,
@@ -410,6 +411,16 @@ export const CONTACT_ATTRIBUTE_SET_SORT_FIELD_VALUES = [
   'created_on',
   'updated_on',
 ] as const satisfies ReadonlyArray<ContactAttributeSetSortField>;
+
+export const CONTACT_COMPLETENESS = {
+  COMPLETE: "complete",
+  INCOMPLETE: "incomplete",
+} as const satisfies Record<string, ContactCompleteness>;
+
+export const CONTACT_COMPLETENESS_VALUES = [
+  'complete',
+  'incomplete',
+] as const satisfies ReadonlyArray<ContactCompleteness>;
 
 export const CONTACT_INCLUDE_FIELD = {
   TAGS: "tags",

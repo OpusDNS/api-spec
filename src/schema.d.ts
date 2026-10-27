@@ -10214,6 +10214,12 @@ export interface components {
              */
             label?: string | null;
         };
+        /**
+         * ContactCompleteness
+         * @description Whether a stored contact passes the contact create validation (`classify`).
+         * @enum {string}
+         */
+        ContactCompleteness: "complete" | "incomplete";
         /** ContactConfigBase */
         ContactConfigBase: {
             /**
@@ -10579,7 +10585,9 @@ export interface components {
              * City
              * @description The city of the contact
              */
-            city: string;
+            city: string | null;
+            /** @description Whether the contact passed the contact create validation when it was stored. Can disagree with `incomplete_fields` if the rules changed since; the `completeness` list filter uses this. */
+            completeness: components["schemas"]["ContactCompleteness"];
             /**
              * Contact Id
              * Format: typeid
@@ -10590,7 +10598,7 @@ export interface components {
              * Country
              * @description The country of the contact (ISO 3166-1 alpha-2, plus XK for Kosovo)
              */
-            country: string;
+            country: string | null;
             /**
              * Created On
              * Format: date-time
@@ -10604,10 +10612,9 @@ export interface components {
             disclose: boolean;
             /**
              * Email
-             * Format: email
              * @description Contact email address (as submitted)
              */
-            email: string;
+            email: string | null;
             /**
              * Fax
              * @description The contacts's fax number
@@ -10617,12 +10624,17 @@ export interface components {
              * First Name
              * @description The first name of the contact
              */
-            first_name: string;
+            first_name: string | null;
+            /**
+             * Incomplete Fields
+             * @description The fields that fail the contact create validation today; empty when none do. `contact` stands for a failure that names no single field.
+             */
+            readonly incomplete_fields: string[];
             /**
              * Last Name
              * @description The last name of the contact
              */
-            last_name: string;
+            last_name: string | null;
             /**
              * Org
              * @description The organization of the contact
@@ -10638,16 +10650,15 @@ export interface components {
             organization_id: TypeId<"organization">;
             /**
              * Phone
-             * Format: phone
              * @description The contact's phone number
              * @example +1.2125552368
              */
-            phone: string;
+            phone: string | null;
             /**
              * Postal Code
              * @description The postal code of the contact
              */
-            postal_code: string;
+            postal_code: string | null;
             /**
              * State
              * @description The state of the contact
@@ -10662,7 +10673,7 @@ export interface components {
              * Street
              * @description The address of the contact
              */
-            street: string;
+            street: string | null;
             /**
              * Tags
              * @description Tags assigned to this contact
@@ -23950,6 +23961,8 @@ export interface operations {
                 search?: string | null;
                 /** @description Filter by country */
                 country?: string | null;
+                /** @description Filter by the completeness recorded when the contact was stored */
+                completeness?: components["schemas"]["ContactCompleteness"] | null;
                 /** @description Filter by whether the contact is in use by any domain (true = has domains, false = none) */
                 in_use?: boolean | null;
                 /** @description Filter contacts created after this date */

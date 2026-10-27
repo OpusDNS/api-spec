@@ -65,6 +65,7 @@ export type ContactAttributeSetCreate = components['schemas']['ContactAttributeS
 export type ContactAttributeSet = components['schemas']['ContactAttributeSetResponse'];
 export type ContactAttributeSetSortField = components['schemas']['ContactAttributeSetSortField'];
 export type ContactAttributeSetUpdate = components['schemas']['ContactAttributeSetUpdate'];
+export type ContactCompleteness = components['schemas']['ContactCompleteness'];
 export type ContactConfigBase = components['schemas']['ContactConfigBase'];
 export type ContactCreate = components['schemas']['ContactCreate'];
 export type ContactCreateBulkCommand = components['schemas']['ContactCreateBulkCommand'];
