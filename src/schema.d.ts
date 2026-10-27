@@ -19156,7 +19156,7 @@ export interface components {
          * RegistrantChangeStatus
          * @enum {string}
          */
-        RegistrantChangeStatus: "pending_confirmation" | "confirmed" | "executing" | "registry_pending" | "completed" | "not_material" | "expired" | "canceled" | "rejected" | "failed";
+        RegistrantChangeStatus: "pending_confirmation" | "confirmed" | "executing" | "pending_registry" | "completed" | "not_material" | "expired" | "canceled" | "rejected" | "failed";
         /**
          * RegistrantChangeType
          * @enum {string}
