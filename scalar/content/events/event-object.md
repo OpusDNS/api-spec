@@ -74,6 +74,7 @@ The `subtype` field indicates the outcome or stage of the operation.
 | `FAILURE` | The operation failed. |
 | `CANCELED` | The operation was canceled. |
 | `OVERDUE` | A deadline passed before the operation completed. Used by domain verification events. |
+| `REMINDER` | A reminder fell due. Used by domain verification events of organizations that confirm their registrants' emails themselves. |
 
 <scalar-callout type="info">
 New types, subtypes and detail values are added over time. Accept values your integration does not know yet instead of rejecting the event, for example by not generating closed enums from the API spec.
@@ -166,6 +167,7 @@ expiration date under `event_data.details`.
 ### Verification details
 
 Domain verification events (`object_type` `DOMAIN`, `type` `VERIFICATION`) follow a [verification case](/products/contacts/verification-cases): one event when the case opens or changes (`NOTIFICATION`), and one when it ends (`SUCCESS`, `FAILURE`, `CANCELED`) or its deadline passes (`OVERDUE`).
+ICANN cases of organizations that confirm their registrants' emails themselves also log a `REMINDER` event for each reminder after the first mail, see [ICANN cases](/products/contacts/verification-cases#organizations-that-confirm-emails-themselves).
 The `object_id` is the domain name, and `details` describe the case.
 
 ```json

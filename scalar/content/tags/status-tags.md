@@ -17,7 +17,7 @@ your part to manage these tags.
 
 | Tag type | Label | Description |
 | --- | --- | --- |
-| `VERIFICATION_REQUIRED` | VERIFICATION REQUIRED | The domain requires identity verification from the registrant. Set exactly while the domain has an active [verification case](/products/contacts/verification-cases), and removed when the last one closes. The registrant contact carries the same tag while one of its cases is active. |
+| `VERIFICATION_REQUIRED` | VERIFICATION REQUIRED | The registry or ICANN asks to verify the domain's registrant. Set exactly while the domain has an active [verification case](/products/contacts/verification-cases), and removed when the last one closes. The registrant contact carries the same tag while one of its cases is active. |
 | `CREATE_REQUESTED` | CREATE REQUESTED | The registration was accepted but the domain does not exist at the registry yet, because it is waiting on an out-of-band step — the signed applicant declaration for a `.no` registration, for example. The domain cannot be updated while this tag is set. Removed once the registry create succeeds. |
 | `INBOUND_TRANSFER_PENDING` | INBOUND TRANSFER PENDING | A transfer of the domain into your account is in progress at the registry. |
 | `OUTBOUND_TRANSFER_PENDING` | OUTBOUND TRANSFER PENDING | A transfer of the domain away from your account is pending. Removed when the transfer completes or is rejected. |

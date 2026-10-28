@@ -23,6 +23,16 @@ How a request is tracked on each domain is described in
 Verification deadlines are enforced by the registry. If you do not complete verification in time, your domain may be de-delegated (DNS stops resolving) or ultimately deleted. Always act promptly when you receive a verification notification.
 </scalar-callout>
 
+### ICANN email verification
+
+ICANN also requires the registrant's email address to be verified, on the TLDs whose policy asks for it:
+
+1. A registration, a completed inbound transfer, or a registrant change to a new email address opens an `ICANN` [verification case](/products/contacts/verification-cases#icann-cases) on the domain.
+2. OpusDNS emails the registrant a confirmation link, and reminds the registrant until the address is confirmed.
+3. The registrant's confirmation satisfies every active ICANN case of that email address in your organization.
+
+An organization with delegated contact verification sends no mails through OpusDNS and confirms the address by [attesting](/products/contacts/verification-cases#organizations-that-confirm-emails-themselves) the `EMAIL` claim instead.
+
 ## Claims
 
 Claims represent what the registry needs verified about a contact:
@@ -155,5 +165,7 @@ organization's admin users.
 - [`GET /v1/contacts`](/api-reference#tag/contact/GET/v1/contacts)
 - [`GET /v1/domains/{domain_reference}`](/api-reference#tag/domain/GET/v1/domains/{domain_reference})
 - [`GET /v1/domains/{domain_reference}/verifications`](/api-reference#tag/domain/GET/v1/domains/{domain_reference}/verifications)
+- [`POST /v1/domains/{domain_reference}/verifications/{verification_id}/resend`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/verifications/{verification_id}/resend)
+- [`GET /v1/contacts/{contact_id}/verification-cases`](/api-reference#tag/contact/GET/v1/contacts/{contact_id}/verification-cases)
 - [`GET /v1/domains`](/api-reference#tag/domain/GET/v1/domains)
 - [`GET /v1/events`](/api-reference#tag/event/GET/v1/events)

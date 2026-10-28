@@ -299,6 +299,13 @@ These rules apply only while a case of that registry waits on the contact.
 A request that breaks a registry rule is rejected as a whole: no attestation in it is stored or sent.
 </scalar-callout>
 
+### ICANN email confirmation
+
+An organization with delegated contact verification confirms its registrants' email addresses for ICANN by attesting the `EMAIL` claim with the method `REACHABILITY` and the proof `EMAIL_VER_TRANSACTION_LOG`.
+It satisfies every active ICANN case of that email address in the organization.
+For other organizations, the registrant confirms through the link in OpusDNS's mail, and an attested `EMAIL` claim counts for the registries only.
+See [ICANN cases](/products/contacts/verification-cases#icann-cases).
+
 ### Response
 
 The response returns the updated verification state for all claims — same
@@ -320,6 +327,7 @@ directly in the response. You can immediately see whether each claim moved to
 
 An attestation does not change the verification case itself.
 The case stays active until the registry reports the verification as done.
+The exception is the [ICANN email confirmation](#icann-email-confirmation), which satisfies the ICANN cases shortly after the attestation.
 For DENIC, OpusDNS syncs the contact's domains right after sending the attestation, which picks up DENIC's answer.
 Then OpusDNS automatically:
 
