@@ -4,6 +4,53 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 28 October 2026
+
+- Deprecated **the per-contact verification routes**, to be removed from sandbox on 5 January 2027 and from production on 12 January 2027:
+  [`GET`](/api-reference#tag/contact/GET/v1/contacts/{contact_id}/verification), [`POST`](/api-reference#tag/contact/POST/v1/contacts/{contact_id}/verification), [`PUT`](/api-reference#tag/contact/PUT/v1/contacts/{contact_id}/verification) and [`DELETE /v1/contacts/{contact_id}/verification`](/api-reference#tag/contact/DELETE/v1/contacts/{contact_id}/verification), and `GET` and `PUT /v1/contacts/verification`.
+  Their replacements:
+  - To see what a contact is asked to verify, read [`GET /v1/contacts/{contact_id}/verification-cases`](/api-reference#tag/contact/GET/v1/contacts/{contact_id}/verification-cases); for what is verified, [`GET /v1/contacts/{contact_id}/verifications`](/api-reference#tag/contact/GET/v1/contacts/{contact_id}/verifications).
+  - Starting a verification yourself has no replacement: an ICANN case mails the registrant when it opens. To mail again, use [`POST /v1/domains/{domain_reference}/verifications/{verification_id}/resend`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/verifications/{verification_id}/resend).
+  - An organization with delegated contact verification confirms an email address by attesting the `EMAIL` claim with `REACHABILITY` and `EMAIL_VER_TRANSACTION_LOG`, instead of `type=api` and the `PUT` with its token.
+  - There is nothing to cancel: an ICANN case ends with its domain.
+  `GET /v1/contacts/verify` stays: it is the link in the confirmation mail. It is marked deprecated in the API reference only to keep integrations off it.
+
+- Changed **the link in the confirmation mail**.
+  Each mail now carries its own link, valid for 15 days, and a new mail no longer ends the links of earlier ones.
+  Links from mails sent before 28 October work as before, until they expire or a new mail replaces them.
+
+### 27 October 2026
+
+- Added **reminders for ICANN cases**.
+  While an ICANN case is `OPEN` or `OVERDUE`, OpusDNS reminds the registrant at the offsets of the TLD's `verification_policies.email_verification.communication.timedelta`, with at most one scheduled reminder per email address in 24 hours.
+  The case history counts them, without the first mail, in `reminders_sent` and dates the last one in `last_reminder_sent_on`.
+  Organizations that confirm their registrants' emails themselves get a `REMINDER` event instead of each reminder mail; accept the new subtype.
+  See [Reminders](/products/contacts/verification-cases#reminders).
+
+- Added **resending the confirmation mail**:
+  [`POST /v1/domains/{domain_reference}/verifications/{verification_id}/resend`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/verifications/{verification_id}/resend) mails the registrant of an open ICANN case a new link now.
+  It answers `409` with a `reason` when there is nothing to resend, and `429` with `Retry-After` within 15 minutes of the last mail.
+  See [Resending the mail](/products/contacts/verification-cases#resending-the-mail).
+
+- Changed **`OVERDUE` on verification cases**.
+  An `OPEN` case, of any source, now becomes `OVERDUE` within 15 minutes after its `verification` deadline passes, and logs an `OVERDUE` event.
+
+- Added **the verification cases of a contact**:
+  [`GET /v1/contacts/{contact_id}/verification-cases`](/api-reference#tag/contact/GET/v1/contacts/{contact_id}/verification-cases) lists the cases about a contact on your organization's domains, active and closed, with the domain each one is on.
+  See [Cases of a contact](/products/contacts/verification-cases#cases-of-a-contact).
+
+### 26 October 2026
+
+- Added **ICANN verification cases**.
+  Where a TLD's `verification_policies.email_verification` asks for it, a registration, a completed inbound transfer, or a registrant change to a new email address opens an `ICANN` case on the domain, with the claim `email` and a `verification` deadline from the policy's `suspension_delay`.
+  OpusDNS emails the registrant a confirmation link, and the confirmation satisfies every active ICANN case of that email address in your organization.
+  A case whose registrant email is already confirmed in your organization opens as `SATISFIED`.
+  See [ICANN cases](/products/contacts/verification-cases#icann-cases).
+
+- Changed **attestations of organizations with delegated contact verification**.
+  An attested `EMAIL` claim with the method `REACHABILITY` and the proof `EMAIL_VER_TRANSACTION_LOG` satisfies the open ICANN cases of that email address in the organization.
+  See [ICANN email confirmation](/products/contacts/attestation-workflow#icann-email-confirmation).
+
 ### 23 October 2026
 
 - Added **the names of a zone answered with NXDOMAIN**:
