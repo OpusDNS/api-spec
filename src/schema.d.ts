@@ -29365,14 +29365,6 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    /** @example {
-                     *       "code": "ERROR_CLAIMS_NOTICE_HASH_MISMATCH",
-                     *       "detail": "The provided claims notice acceptance hash does not match",
-                     *       "domain_name": "Additional error context.",
-                     *       "status": 422,
-                     *       "title": "Domain Management Error",
-                     *       "type": "claims-notice-hash-mismatch"
-                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -30757,13 +30749,6 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    /** @example {
-                     *       "code": "ERROR_POLICY_VALIDATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 422,
-                     *       "title": "Policy Validation Error",
-                     *       "type": "policy-validation-error"
-                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -30935,15 +30920,6 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_REGISTRANT_CHANGE_NOT_SUPPORTED",
-                     *       "detail": "Registrant change is not supported for .lu domains",
-                     *       "domain_name": "example.lu",
-                     *       "status": 422,
-                     *       "title": "Domain Management Error",
-                     *       "tld": "lu",
-                     *       "type": "domain-registrant-change-not-supported"
-                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };

@@ -26682,7 +26682,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-28-150852
+  version: 2026-10-28-192836
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -36977,13 +36977,28 @@ paths:
         '422':
           content:
             application/problem+json:
-              example:
-                code: ERROR_CLAIMS_NOTICE_HASH_MISMATCH
-                detail: The provided claims notice acceptance hash does not match
-                domain_name: Additional error context.
-                status: 422
-                title: Domain Management Error
-                type: claims-notice-hash-mismatch
+              examples:
+                Contact Incomplete:
+                  value:
+                    code: ERROR_CONTACT_INCOMPLETE
+                    contact_id: contact_01h45ytscbebyvny4gc8cr8ma2
+                    detail: Contact contact_01h45ytscbebyvny4gc8cr8ma2 is incomplete
+                      (phone, postal_code) and can only stay in a domain role it already
+                      holds; complete it in a new contact and use that one
+                    incomplete_fields:
+                    - phone
+                    - postal_code
+                    status: 422
+                    title: Contact Incomplete
+                    type: contact-incomplete
+                Domain Management Error:
+                  value:
+                    code: ERROR_CLAIMS_NOTICE_HASH_MISMATCH
+                    detail: The provided claims notice acceptance hash does not match
+                    domain_name: Additional error context.
+                    status: 422
+                    title: Domain Management Error
+                    type: claims-notice-hash-mismatch
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Unprocessable Content
@@ -38524,12 +38539,27 @@ paths:
         '422':
           content:
             application/problem+json:
-              example:
-                code: ERROR_POLICY_VALIDATION
-                detail: Additional error context.
-                status: 422
-                title: Policy Validation Error
-                type: policy-validation-error
+              examples:
+                Contact Incomplete:
+                  value:
+                    code: ERROR_CONTACT_INCOMPLETE
+                    contact_id: contact_01h45ytscbebyvny4gc8cr8ma2
+                    detail: Contact contact_01h45ytscbebyvny4gc8cr8ma2 is incomplete
+                      (phone, postal_code) and can only stay in a domain role it already
+                      holds; complete it in a new contact and use that one
+                    incomplete_fields:
+                    - phone
+                    - postal_code
+                    status: 422
+                    title: Contact Incomplete
+                    type: contact-incomplete
+                Policy Validation Error:
+                  value:
+                    code: ERROR_POLICY_VALIDATION
+                    detail: Additional error context.
+                    status: 422
+                    title: Policy Validation Error
+                    type: policy-validation-error
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Unprocessable Content
@@ -38766,14 +38796,29 @@ paths:
         '422':
           content:
             application/problem+json:
-              example:
-                code: ERROR_DOMAIN_REGISTRANT_CHANGE_NOT_SUPPORTED
-                detail: Registrant change is not supported for .lu domains
-                domain_name: example.lu
-                status: 422
-                title: Domain Management Error
-                tld: lu
-                type: domain-registrant-change-not-supported
+              examples:
+                Contact Incomplete:
+                  value:
+                    code: ERROR_CONTACT_INCOMPLETE
+                    contact_id: contact_01h45ytscbebyvny4gc8cr8ma2
+                    detail: Contact contact_01h45ytscbebyvny4gc8cr8ma2 is incomplete
+                      (phone, postal_code) and can only stay in a domain role it already
+                      holds; complete it in a new contact and use that one
+                    incomplete_fields:
+                    - phone
+                    - postal_code
+                    status: 422
+                    title: Contact Incomplete
+                    type: contact-incomplete
+                Domain Management Error:
+                  value:
+                    code: ERROR_DOMAIN_REGISTRANT_CHANGE_NOT_SUPPORTED
+                    detail: Registrant change is not supported for .lu domains
+                    domain_name: example.lu
+                    status: 422
+                    title: Domain Management Error
+                    tld: lu
+                    type: domain-registrant-change-not-supported
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Unprocessable Content
