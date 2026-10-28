@@ -10074,7 +10074,8 @@ components:
           anyOf:
           - $ref: '#/components/schemas/RegistrantChangeType'
           - type: 'null'
-          description: Whether the registrant can change through update or trade
+          description: Whether the registrant changes through an update, a trade,
+            or manually through our support team
         registrant_change_policy:
           anyOf:
           - $ref: '#/components/schemas/RegistrantChangePolicyBase'
@@ -22485,6 +22486,7 @@ components:
       - confirmed
       - executing
       - pending_registry
+      - pending_manual
       - completed
       - not_material
       - expired
@@ -22497,6 +22499,7 @@ components:
       enum:
       - update
       - trade
+      - manual
       title: RegistrantChangeType
       type: string
     Registrar:
@@ -26682,7 +26685,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-28-192836
+  version: 2026-10-28-202519
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

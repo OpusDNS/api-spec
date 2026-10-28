@@ -10996,7 +10996,7 @@ export interface components {
              * @description Whether a privacy service is allowed
              */
             privacy_proxy?: boolean | null;
-            /** @description Whether the registrant can change through update or trade */
+            /** @description Whether the registrant changes through an update, a trade, or manually through our support team */
             registrant_change?: components["schemas"]["RegistrantChangeType"] | null;
             /** @description Change of registrant policy. When absent, the defaults of the TLD type apply. */
             registrant_change_policy?: components["schemas"]["RegistrantChangePolicyBase"] | null;
@@ -19167,12 +19167,12 @@ export interface components {
          * RegistrantChangeStatus
          * @enum {string}
          */
-        RegistrantChangeStatus: "pending_confirmation" | "confirmed" | "executing" | "pending_registry" | "completed" | "not_material" | "expired" | "canceled" | "rejected" | "failed";
+        RegistrantChangeStatus: "pending_confirmation" | "confirmed" | "executing" | "pending_registry" | "pending_manual" | "completed" | "not_material" | "expired" | "canceled" | "rejected" | "failed";
         /**
          * RegistrantChangeType
          * @enum {string}
          */
-        RegistrantChangeType: "update" | "trade";
+        RegistrantChangeType: "update" | "trade" | "manual";
         /**
          * Registrar
          * @enum {string}

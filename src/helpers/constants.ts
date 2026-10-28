@@ -1974,6 +1974,7 @@ export const REGISTRANT_CHANGE_STATUS = {
   CONFIRMED: "confirmed",
   EXECUTING: "executing",
   PENDING_REGISTRY: "pending_registry",
+  PENDING_MANUAL: "pending_manual",
   COMPLETED: "completed",
   NOT_MATERIAL: "not_material",
   EXPIRED: "expired",
@@ -1987,6 +1988,7 @@ export const REGISTRANT_CHANGE_STATUS_VALUES = [
   'confirmed',
   'executing',
   'pending_registry',
+  'pending_manual',
   'completed',
   'not_material',
   'expired',
@@ -1998,11 +2000,13 @@ export const REGISTRANT_CHANGE_STATUS_VALUES = [
 export const REGISTRANT_CHANGE_TYPE = {
   UPDATE: "update",
   TRADE: "trade",
+  MANUAL: "manual",
 } as const satisfies Record<string, RegistrantChangeType>;
 
 export const REGISTRANT_CHANGE_TYPE_VALUES = [
   'update',
   'trade',
+  'manual',
 ] as const satisfies ReadonlyArray<RegistrantChangeType>;
 
 export const REGISTRAR = {
