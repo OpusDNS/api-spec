@@ -427,13 +427,13 @@ export interface paths {
         /**
          * Retrieve contact verification by token
          * @deprecated
-         * @description Serves the link in the verification mail; not meant for integrations.
+         * @description Serves the link in the verification mail; not meant for integrations. Replaced by GET /v1/contacts/verification-challenges/{token}.
          */
         get: operations["get_verification_by_token_v1_contacts_verification_get"];
         /**
          * Complete contact verification with token
          * @deprecated
-         * @description Serves the link in the verification mail; not meant for integrations.
+         * @description Serves the link in the verification mail; not meant for integrations. Replaced by POST /v1/contacts/verification-challenges/{token}/confirm.
          */
         put: operations["update_verification_by_token_v1_contacts_verification_put"];
         post?: never;
@@ -17227,7 +17227,7 @@ export interface components {
          * NizzaClaim
          * @enum {string}
          */
-        NizzaClaim: "EMAIL" | "PHONE" | "ADDRESS" | "NAME" | "LEGAL_ENTITY";
+        NizzaClaim: "EMAIL" | "PHONE" | "ADDRESS" | "NAME" | "LEGAL_ENTITY" | "ICANN_RAA";
         /**
          * NizzaVerificationProof
          * @enum {string}
@@ -24383,12 +24383,29 @@ export interface operations {
                 };
                 content: {
                     /** @example {
-                     *       "code": "ERROR_CONTACT_VERIFICATION_NOT_FOUND",
-                     *       "detail": "No contact verification found",
+                     *       "code": "ERROR_VERIFICATION_CHALLENGE_NOT_FOUND",
+                     *       "detail": "The verification link is unknown or incomplete",
                      *       "status": 404,
-                     *       "title": "Contact Management Error",
-                     *       "token": "Additional error context.",
-                     *       "type": "contact-verification-not-found"
+                     *       "title": "Verification Challenge Not Found",
+                     *       "type": "verification-challenge-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Gone */
+            410: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_VERIFICATION_CHALLENGE_EXPIRED",
+                     *       "detail": "The verification link expired on 2026-01-15",
+                     *       "expired_on": "2026-01-15T00:00:00+00:00",
+                     *       "organization_id": "organization_01h45ytscbebyvny4gc8cr8ma2",
+                     *       "status": 410,
+                     *       "title": "Verification Challenge Expired",
+                     *       "type": "verification-challenge-expired"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
@@ -24400,6 +24417,22 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_VERIFICATION_UPSTREAM_ERROR",
+                     *       "detail": "Additional error context.",
+                     *       "status": 502,
+                     *       "title": "Contact Verification Service Error",
+                     *       "type": "contact-verification-upstream"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
@@ -24429,15 +24462,6 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
             /** @description Unauthorized */
             401: {
                 headers: {
@@ -24461,12 +24485,29 @@ export interface operations {
                 };
                 content: {
                     /** @example {
-                     *       "code": "ERROR_CONTACT_VERIFICATION_NOT_FOUND",
-                     *       "detail": "No contact verification found",
+                     *       "code": "ERROR_VERIFICATION_CHALLENGE_NOT_FOUND",
+                     *       "detail": "The verification link is unknown or incomplete",
                      *       "status": 404,
-                     *       "title": "Contact Management Error",
-                     *       "token": "Additional error context.",
-                     *       "type": "contact-verification-not-found"
+                     *       "title": "Verification Challenge Not Found",
+                     *       "type": "verification-challenge-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Gone */
+            410: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_VERIFICATION_CHALLENGE_EXPIRED",
+                     *       "detail": "The verification link expired on 2026-01-15",
+                     *       "expired_on": "2026-01-15T00:00:00+00:00",
+                     *       "organization_id": "organization_01h45ytscbebyvny4gc8cr8ma2",
+                     *       "status": 410,
+                     *       "title": "Verification Challenge Expired",
+                     *       "type": "verification-challenge-expired"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
@@ -24478,6 +24519,22 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_VERIFICATION_UPSTREAM_ERROR",
+                     *       "detail": "Additional error context.",
+                     *       "status": 502,
+                     *       "title": "Contact Verification Service Error",
+                     *       "type": "contact-verification-upstream"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
@@ -24857,13 +24914,23 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Gone */
+            410: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
                     /** @example {
-                     *       "code": "ERROR_CONTACT_VERIFICATION_NOT_FOUND",
-                     *       "detail": "No contact verification found",
-                     *       "status": 404,
-                     *       "title": "Contact Management Error",
-                     *       "token": "Additional error context.",
-                     *       "type": "contact-verification-not-found"
+                     *       "code": "ERROR_VERIFICATION_CHALLENGE_EXPIRED",
+                     *       "detail": "The verification link expired on 2026-01-15",
+                     *       "expired_on": "2026-01-15T00:00:00+00:00",
+                     *       "organization_id": "organization_01h45ytscbebyvny4gc8cr8ma2",
+                     *       "status": 410,
+                     *       "title": "Verification Challenge Expired",
+                     *       "type": "verification-challenge-expired"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
@@ -24875,6 +24942,22 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_VERIFICATION_UPSTREAM_ERROR",
+                     *       "detail": "Additional error context.",
+                     *       "status": 502,
+                     *       "title": "Contact Verification Service Error",
+                     *       "type": "contact-verification-upstream"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };

@@ -19410,6 +19410,7 @@ components:
       - ADDRESS
       - NAME
       - LEGAL_ENTITY
+      - ICANN_RAA
       title: NizzaClaim
       type: string
     NizzaVerificationProof:
@@ -26680,7 +26681,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-28-100842
+  version: 2026-10-28-130528
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -29668,6 +29669,7 @@ paths:
     get:
       deprecated: true
       description: Serves the link in the verification mail; not meant for integrations.
+        Replaced by GET /v1/contacts/verification-challenges/{token}.
       operationId: get_verification_by_token_v1_contacts_verification_get
       parameters:
       - in: query
@@ -29700,27 +29702,53 @@ paths:
           content:
             application/problem+json:
               example:
-                code: ERROR_CONTACT_VERIFICATION_NOT_FOUND
-                detail: No contact verification found
+                code: ERROR_VERIFICATION_CHALLENGE_NOT_FOUND
+                detail: The verification link is unknown or incomplete
                 status: 404
-                title: Contact Management Error
-                token: Additional error context.
-                type: contact-verification-not-found
+                title: Verification Challenge Not Found
+                type: verification-challenge-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Not Found
+        '410':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_VERIFICATION_CHALLENGE_EXPIRED
+                detail: The verification link expired on 2026-01-15
+                expired_on: '2026-01-15T00:00:00+00:00'
+                organization_id: organization_01h45ytscbebyvny4gc8cr8ma2
+                status: 410
+                title: Verification Challenge Expired
+                type: verification-challenge-expired
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Gone
         '422':
           content:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CONTACT_VERIFICATION_UPSTREAM_ERROR
+                detail: Additional error context.
+                status: 502
+                title: Contact Verification Service Error
+                type: contact-verification-upstream
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
       summary: Retrieve contact verification by token
       tags:
       - contact
     put:
       deprecated: true
       description: Serves the link in the verification mail; not meant for integrations.
+        Replaced by POST /v1/contacts/verification-challenges/{token}/confirm.
       operationId: update_verification_by_token_v1_contacts_verification_put
       parameters:
       - in: query
@@ -29733,21 +29761,6 @@ paths:
       responses:
         '204':
           description: Successful Response
-        '400':
-          content:
-            application/problem+json:
-              examples:
-                Contact Management Error:
-                  value:
-                    code: ERROR_INVALID_VERIFICATION_TOKEN
-                    contact_id: Additional error context.
-                    detail: Invalid verification token
-                    status: 400
-                    title: Contact Management Error
-                    type: contact-verification-token-invalid
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Bad Request
         '401':
           content:
             application/problem+json:
@@ -29764,21 +29777,46 @@ paths:
           content:
             application/problem+json:
               example:
-                code: ERROR_CONTACT_VERIFICATION_NOT_FOUND
-                detail: No contact verification found
+                code: ERROR_VERIFICATION_CHALLENGE_NOT_FOUND
+                detail: The verification link is unknown or incomplete
                 status: 404
-                title: Contact Management Error
-                token: Additional error context.
-                type: contact-verification-not-found
+                title: Verification Challenge Not Found
+                type: verification-challenge-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Not Found
+        '410':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_VERIFICATION_CHALLENGE_EXPIRED
+                detail: The verification link expired on 2026-01-15
+                expired_on: '2026-01-15T00:00:00+00:00'
+                organization_id: organization_01h45ytscbebyvny4gc8cr8ma2
+                status: 410
+                title: Verification Challenge Expired
+                type: verification-challenge-expired
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Gone
         '422':
           content:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CONTACT_VERIFICATION_UPSTREAM_ERROR
+                detail: Additional error context.
+                status: 502
+                title: Contact Verification Service Error
+                type: contact-verification-upstream
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
       summary: Complete contact verification with token
       tags:
       - contact
@@ -30296,22 +30334,57 @@ paths:
         '404':
           content:
             application/problem+json:
-              example:
-                code: ERROR_CONTACT_VERIFICATION_NOT_FOUND
-                detail: No contact verification found
-                status: 404
-                title: Contact Management Error
-                token: Additional error context.
-                type: contact-verification-not-found
+              examples:
+                Contact Management Error:
+                  value:
+                    code: ERROR_CONTACT_VERIFICATION_NOT_FOUND
+                    detail: No contact verification found
+                    status: 404
+                    title: Contact Management Error
+                    token: Additional error context.
+                    type: contact-verification-not-found
+                Verification Challenge Not Found:
+                  value:
+                    code: ERROR_VERIFICATION_CHALLENGE_NOT_FOUND
+                    detail: The verification link is unknown or incomplete
+                    status: 404
+                    title: Verification Challenge Not Found
+                    type: verification-challenge-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Not Found
+        '410':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_VERIFICATION_CHALLENGE_EXPIRED
+                detail: The verification link expired on 2026-01-15
+                expired_on: '2026-01-15T00:00:00+00:00'
+                organization_id: organization_01h45ytscbebyvny4gc8cr8ma2
+                status: 410
+                title: Verification Challenge Expired
+                type: verification-challenge-expired
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Gone
         '422':
           content:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CONTACT_VERIFICATION_UPSTREAM_ERROR
+                detail: Additional error context.
+                status: 502
+                title: Contact Verification Service Error
+                type: contact-verification-upstream
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []

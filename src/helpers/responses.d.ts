@@ -419,12 +419,14 @@ export type GET_ContactsByContactIdVerifications_Response_404 = Problem;
 export type GET_ContactsByContactIdVerifications_Response_422 = Problem;
 export type GET_ContactsByContactIdVerifications_Response_502 = Problem;
 
-export type GET_ContactsVerification_Response = GET_ContactsVerification_Response_200 | GET_ContactsVerification_Response_401 | GET_ContactsVerification_Response_404 | GET_ContactsVerification_Response_422;
+export type GET_ContactsVerification_Response = GET_ContactsVerification_Response_200 | GET_ContactsVerification_Response_401 | GET_ContactsVerification_Response_404 | GET_ContactsVerification_Response_410 | GET_ContactsVerification_Response_422 | GET_ContactsVerification_Response_502;
 
 export type GET_ContactsVerification_Response_200 = Contact;
 export type GET_ContactsVerification_Response_401 = Problem;
 export type GET_ContactsVerification_Response_404 = Problem;
+export type GET_ContactsVerification_Response_410 = Problem;
 export type GET_ContactsVerification_Response_422 = HTTPValidationError;
+export type GET_ContactsVerification_Response_502 = Problem;
 
 export type GET_ContactsVerify_Response = GET_ContactsVerify_Response_422;
 
@@ -1624,20 +1626,23 @@ export type POST_WhitelabelBrandingTier_Response = POST_WhitelabelBrandingTier_R
 export type POST_WhitelabelBrandingTier_Response_202 = ProductCreateRes;
 export type POST_WhitelabelBrandingTier_Response_422 = HTTPValidationError;
 
-export type PUT_ContactsByContactIdVerification_Response = PUT_ContactsByContactIdVerification_Response_400 | PUT_ContactsByContactIdVerification_Response_401 | PUT_ContactsByContactIdVerification_Response_403 | PUT_ContactsByContactIdVerification_Response_404 | PUT_ContactsByContactIdVerification_Response_422;
+export type PUT_ContactsByContactIdVerification_Response = PUT_ContactsByContactIdVerification_Response_400 | PUT_ContactsByContactIdVerification_Response_401 | PUT_ContactsByContactIdVerification_Response_403 | PUT_ContactsByContactIdVerification_Response_404 | PUT_ContactsByContactIdVerification_Response_410 | PUT_ContactsByContactIdVerification_Response_422 | PUT_ContactsByContactIdVerification_Response_502;
 
 export type PUT_ContactsByContactIdVerification_Response_400 = Problem;
 export type PUT_ContactsByContactIdVerification_Response_401 = Problem;
 export type PUT_ContactsByContactIdVerification_Response_403 = Problem;
 export type PUT_ContactsByContactIdVerification_Response_404 = Problem;
+export type PUT_ContactsByContactIdVerification_Response_410 = Problem;
 export type PUT_ContactsByContactIdVerification_Response_422 = HTTPValidationError;
+export type PUT_ContactsByContactIdVerification_Response_502 = Problem;
 
-export type PUT_ContactsVerification_Response = PUT_ContactsVerification_Response_400 | PUT_ContactsVerification_Response_401 | PUT_ContactsVerification_Response_404 | PUT_ContactsVerification_Response_422;
+export type PUT_ContactsVerification_Response = PUT_ContactsVerification_Response_401 | PUT_ContactsVerification_Response_404 | PUT_ContactsVerification_Response_410 | PUT_ContactsVerification_Response_422 | PUT_ContactsVerification_Response_502;
 
-export type PUT_ContactsVerification_Response_400 = Problem;
 export type PUT_ContactsVerification_Response_401 = Problem;
 export type PUT_ContactsVerification_Response_404 = Problem;
+export type PUT_ContactsVerification_Response_410 = Problem;
 export type PUT_ContactsVerification_Response_422 = HTTPValidationError;
+export type PUT_ContactsVerification_Response_502 = Problem;
 
 export type PUT_DnsByZoneNameRrsets_Response = PUT_DnsByZoneNameRrsets_Response_400 | PUT_DnsByZoneNameRrsets_Response_422 | PUT_DnsByZoneNameRrsets_Response_429;
 

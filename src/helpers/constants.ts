@@ -1546,6 +1546,7 @@ export const NIZZA_CLAIM = {
   ADDRESS: "ADDRESS",
   NAME: "NAME",
   LEGAL_ENTITY: "LEGAL_ENTITY",
+  ICANN_RAA: "ICANN_RAA",
 } as const satisfies Record<string, NizzaClaim>;
 
 export const NIZZA_CLAIM_VALUES = [
@@ -1554,6 +1555,7 @@ export const NIZZA_CLAIM_VALUES = [
   'ADDRESS',
   'NAME',
   'LEGAL_ENTITY',
+  'ICANN_RAA',
 ] as const satisfies ReadonlyArray<NizzaClaim>;
 
 export const NIZZA_VERIFICATION_PROOF = {
