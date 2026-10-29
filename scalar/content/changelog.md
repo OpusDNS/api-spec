@@ -14,6 +14,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
   - An organization with delegated contact verification confirms an email address by attesting the `EMAIL` claim with `REACHABILITY` and `EMAIL_VER_TRANSACTION_LOG`, instead of `type=api` and the `PUT` with its token.
   - There is nothing to cancel: an ICANN case ends with its domain.
   `GET /v1/contacts/verify` stays: it is the link in the confirmation mail. It is marked deprecated in the API reference only to keep integrations off it.
+  See [Contact verification routes going away](/news/contact-verification-routes).
 
 - Changed **the link in the confirmation mail**.
   Each mail now carries its own link, valid for 15 days, and a new mail no longer ends the links of earlier ones.
