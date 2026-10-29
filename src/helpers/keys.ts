@@ -6491,6 +6491,7 @@ export const KEY_TRANSFER_POLICIES_BASE_CONTACTS_IN_TRANSFER_COMMAND = 'contacts
 export const KEY_TRANSFER_POLICIES_BASE_INFO_CONTACT_AUTHINFO = 'info_contact_authinfo' satisfies keyof TransferPoliciesBase;
 export const KEY_TRANSFER_POLICIES_BASE_INFO_DOMAIN_AUTHINFO = 'info_domain_authinfo' satisfies keyof TransferPoliciesBase;
 export const KEY_TRANSFER_POLICIES_BASE_POST_TRANSFER_REQUIREMENTS = 'post_transfer_requirements' satisfies keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_SUPPORTED = 'supported' satisfies keyof TransferPoliciesBase;
 export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_ACK = 'transfer_ack' satisfies keyof TransferPoliciesBase;
 export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_EMAIL_REQUIRED = 'transfer_email_required' satisfies keyof TransferPoliciesBase;
 export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_LOCK_POLICY = 'transfer_lock_policy' satisfies keyof TransferPoliciesBase;
@@ -6511,6 +6512,7 @@ export const KEYS_TRANSFER_POLICIES_BASE = [
   KEY_TRANSFER_POLICIES_BASE_INFO_CONTACT_AUTHINFO,
   KEY_TRANSFER_POLICIES_BASE_INFO_DOMAIN_AUTHINFO,
   KEY_TRANSFER_POLICIES_BASE_POST_TRANSFER_REQUIREMENTS,
+  KEY_TRANSFER_POLICIES_BASE_SUPPORTED,
   KEY_TRANSFER_POLICIES_BASE_TRANSFER_ACK,
   KEY_TRANSFER_POLICIES_BASE_TRANSFER_EMAIL_REQUIRED,
   KEY_TRANSFER_POLICIES_BASE_TRANSFER_LOCK_POLICY,

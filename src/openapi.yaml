@@ -24436,6 +24436,11 @@ components:
           description: 'Post-transfer requirements: lists the behaviors, as in [''update_contacts'',
             ''set_transfer_lock''] or [ ''tld_specific'' ] for specific behavior'
           title: Post Transfer Requirements
+        supported:
+          default: true
+          description: Whether the registry supports domain transfers
+          title: Supported
+          type: boolean
         transfer_ack:
           anyOf:
           - $ref: '#/components/schemas/TransferAckType'
@@ -27107,7 +27112,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-29-143520
+  version: 2026-10-29-211128
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -38982,6 +38987,15 @@ paths:
                     status: 422
                     title: Contact Incomplete
                     type: contact-incomplete
+                Domain Transfer Not Supported:
+                  value:
+                    code: ERROR_DOMAIN_TRANSFER_NOT_SUPPORTED
+                    detail: Domain transfers are not supported for .is domains
+                    domain_name: example.is
+                    status: 422
+                    title: Domain Transfer Not Supported
+                    tld: is
+                    type: domain-transfer-not-supported
                 Policy Validation Error:
                   value:
                     code: ERROR_POLICY_VALIDATION

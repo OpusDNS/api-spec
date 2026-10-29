@@ -20359,6 +20359,12 @@ export interface components {
              * @description Post-transfer requirements: lists the behaviors, as in ['update_contacts', 'set_transfer_lock'] or [ 'tld_specific' ] for specific behavior
              */
             post_transfer_requirements?: components["schemas"]["PostTransferRequirements"][] | null;
+            /**
+             * Supported
+             * @description Whether the registry supports domain transfers
+             * @default true
+             */
+            supported: boolean;
             /** @description Whether a transfer can be approved */
             transfer_ack?: components["schemas"]["TransferAckType"] | null;
             /**
