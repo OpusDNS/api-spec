@@ -24,6 +24,7 @@ export type AuditFindingsContext = components['schemas']['AuditFindingsContext']
 export type AuditFindingsContextPayload = components['schemas']['AuditFindingsContextPayload'];
 export type AuditFix = components['schemas']['AuditFix'];
 export type AuditRule = components['schemas']['AuditRule'];
+export type AuditRuleId = components['schemas']['AuditRuleId'];
 export type AuditSourceStatus = components['schemas']['AuditSourceStatus'];
 export type AuditTotals = components['schemas']['AuditTotals'];
 export type Auth = components['schemas']['Auth'];

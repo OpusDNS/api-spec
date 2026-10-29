@@ -3845,12 +3845,8 @@ export interface components {
             name: string;
             /** Registrar */
             registrar?: string | null;
-            /**
-             * Rule
-             * @description `AuditRule.id` of the rule that found it.
-             * @default
-             */
-            rule: string;
+            /** @description `AuditRule.id` of the rule that found it. */
+            rule: components["schemas"]["AuditRuleId"];
             /**
              * Severity
              * @description critical | warning | info
@@ -3911,7 +3907,7 @@ export interface components {
             generated_at?: Date | null;
             /**
              * Rules
-             * @description One entry per rule that found something.
+             * @description One entry per rule that found something. A rule newer than this API is left out with its findings; `totals` still counts them.
              */
             rules: components["schemas"]["AuditRule"][];
             /**
@@ -3929,7 +3925,7 @@ export interface components {
             totals: components["schemas"]["AuditTotals"];
             /**
              * Truncated
-             * @description True when `findings` was cut to fit the store; `totals` and `rules` stay exact.
+             * @description True when `findings` was cut to fit the store; that cut leaves `totals` and `rules` whole.
              * @default false
              */
             truncated: boolean;
@@ -3982,12 +3978,8 @@ export interface components {
              */
             explanation: string;
             fix: components["schemas"]["AuditFix"];
-            /**
-             * Id
-             * @description Stable rule id, e.g. mail.spf_multiple; never renamed.
-             * @default
-             */
-            id: string;
+            /** @description Stable rule id; never renamed. `title` and `explanation` are its English text. */
+            id: components["schemas"]["AuditRuleId"];
             /**
              * Sample
              * @description Up to five affected names, most severe first.
@@ -4005,6 +3997,12 @@ export interface components {
              */
             title: string;
         };
+        /**
+         * AuditRuleId
+         * @description A portfolio audit rule. New rules add values; for a value a client does not know, show the rule's `title`.
+         * @enum {string}
+         */
+        AuditRuleId: "dns.cname_at_apex" | "dns.cname_conflict" | "dns.delegated_without_zone" | "mail.spf_multiple" | "mail.spf_pass_all" | "mail.mx_target_ip" | "domain.expired" | "domain.hold" | "domain.pending_delete" | "mail.spf_missing" | "mail.spf_neutral_all" | "mail.spf_no_all" | "mail.dmarc_missing" | "mail.dmarc_multiple" | "mail.dmarc_invalid" | "mail.mx_target_cname" | "mail.null_mx_mixed" | "domain.expiring_soon" | "domain.renewal_off_expiring" | "domain.transfer_unlocked" | "dns.single_nameserver" | "dns.ns_delegation_mismatch" | "dns.zone_empty" | "dns.ttl_low" | "dns.spf_rr_type" | "dns.caa_missing" | "mail.spf_softfail" | "mail.dmarc_policy_none" | "mail.no_mail_policy" | "dns.dnssec_disabled" | "scan.tls_certificate_invalid" | "scan.tls_certificate_expiring" | "scan.tls_protocol_weak" | "scan.tls_chain_incomplete" | "scan.spf_lookup_limit" | "scan.dnssec_weak" | "scan.hsts_missing" | "scan.dnssec_unsigned";
         /** AuditSourceStatus */
         AuditSourceStatus: {
             /** Detail */

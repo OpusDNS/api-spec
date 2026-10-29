@@ -497,10 +497,8 @@ components:
           - type: 'null'
           title: Registrar
         rule:
-          default: ''
+          $ref: '#/components/schemas/AuditRuleId'
           description: '`AuditRule.id` of the rule that found it.'
-          title: Rule
-          type: string
         severity:
           default: ''
           description: critical | warning | info
@@ -588,7 +586,8 @@ components:
           - type: 'null'
           title: Generated At
         rules:
-          description: One entry per rule that found something.
+          description: One entry per rule that found something. A rule newer than
+            this API is left out with its findings; `totals` still counts them.
           items:
             $ref: '#/components/schemas/AuditRule'
           title: Rules
@@ -608,8 +607,8 @@ components:
           $ref: '#/components/schemas/AuditTotals'
         truncated:
           default: false
-          description: True when `findings` was cut to fit the store; `totals` and
-            `rules` stay exact.
+          description: True when `findings` was cut to fit the store; that cut leaves
+            `totals` and `rules` whole.
           title: Truncated
           type: boolean
       required:
@@ -680,10 +679,9 @@ components:
         fix:
           $ref: '#/components/schemas/AuditFix'
         id:
-          default: ''
-          description: Stable rule id, e.g. mail.spf_multiple; never renamed.
-          title: Id
-          type: string
+          $ref: '#/components/schemas/AuditRuleId'
+          description: Stable rule id; never renamed. `title` and `explanation` are
+            its English text.
         sample:
           description: Up to five affected names, most severe first.
           items:
@@ -709,6 +707,50 @@ components:
       - sample
       title: AuditRule
       type: object
+    AuditRuleId:
+      description: A portfolio audit rule. New rules add values; for a value a client
+        does not know, show the rule's `title`.
+      enum:
+      - dns.cname_at_apex
+      - dns.cname_conflict
+      - dns.delegated_without_zone
+      - mail.spf_multiple
+      - mail.spf_pass_all
+      - mail.mx_target_ip
+      - domain.expired
+      - domain.hold
+      - domain.pending_delete
+      - mail.spf_missing
+      - mail.spf_neutral_all
+      - mail.spf_no_all
+      - mail.dmarc_missing
+      - mail.dmarc_multiple
+      - mail.dmarc_invalid
+      - mail.mx_target_cname
+      - mail.null_mx_mixed
+      - domain.expiring_soon
+      - domain.renewal_off_expiring
+      - domain.transfer_unlocked
+      - dns.single_nameserver
+      - dns.ns_delegation_mismatch
+      - dns.zone_empty
+      - dns.ttl_low
+      - dns.spf_rr_type
+      - dns.caa_missing
+      - mail.spf_softfail
+      - mail.dmarc_policy_none
+      - mail.no_mail_policy
+      - dns.dnssec_disabled
+      - scan.tls_certificate_invalid
+      - scan.tls_certificate_expiring
+      - scan.tls_protocol_weak
+      - scan.tls_chain_incomplete
+      - scan.spf_lookup_limit
+      - scan.dnssec_weak
+      - scan.hsts_missing
+      - scan.dnssec_unsigned
+      title: AuditRuleId
+      type: string
     AuditSourceStatus:
       properties:
         detail:
@@ -27065,7 +27107,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-29-135849
+  version: 2026-10-29-143520
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
