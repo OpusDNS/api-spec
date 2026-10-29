@@ -159,6 +159,27 @@
               }
             }
           },
+          "/news": {
+            "type": "group",
+            "title": "News",
+            "mode": "flat",
+            "children": {
+              "/contact-verification-routes": {
+                "type": "page",
+                "title": "Contact verification routes going away",
+                "icon": "phosphor/regular/calendar-x",
+                "filepath": "content/news/contact-verification-routes.md",
+                "showInSidebar": true
+              },
+              "/nic-at-nis2": {
+                "type": "page",
+                "title": ".at: NIS2 holder verification",
+                "icon": "phosphor/regular/shield-check",
+                "filepath": "content/news/nic-at-nis2.md",
+                "showInSidebar": true
+              }
+            }
+          },
           "/account": {
             "type": "group",
             "title": "Account Management",
@@ -652,20 +673,6 @@
                 "icon": "line/interface-users-multiple",
                 "url": "https://app.opusdns.com/signup",
                 "newTab": true
-              }
-            }
-          },
-          "/news": {
-            "type": "group",
-            "title": "News",
-            "mode": "flat",
-            "children": {
-              "/nic-at-nis2": {
-                "type": "page",
-                "title": ".at: NIS2 holder verification",
-                "icon": "phosphor/regular/shield-check",
-                "filepath": "content/news/nic-at-nis2.md",
-                "showInSidebar": true
               }
             }
           },
