@@ -3778,6 +3778,283 @@ export interface components {
          * @enum {string}
          */
         AttributeType: "enum" | "string" | "boolean" | "datetime" | "integer" | "country_code" | "uri_template";
+        /** AuditCoverage */
+        AuditCoverage: {
+            /** @description The security scans. */
+            domain_checker?: components["schemas"]["AuditSourceStatus"] | null;
+            /** @description The portfolio index, a synced copy. */
+            index?: components["schemas"]["AuditSourceStatus"] | null;
+            /** Newest Sync */
+            newest_sync?: Date | null;
+            /**
+             * Not Checked
+             * @description What the audit could not cover, in English.
+             */
+            not_checked: string[];
+            /**
+             * Oldest Sync
+             * @description Oldest sync of the indexed records read.
+             */
+            oldest_sync?: Date | null;
+            /** @description The live OpusDNS API. */
+            opusdns_api?: components["schemas"]["AuditSourceStatus"] | null;
+        };
+        /** AuditFilters */
+        AuditFilters: {
+            /**
+             * Name List
+             * @description The names themselves, only when 20 or fewer.
+             */
+            name_list: string[];
+            /**
+             * Names
+             * @description How many zone or domain names the audit was narrowed to; 0 = none.
+             * @default 0
+             */
+            names: number;
+            /** Registrar */
+            registrar: string[];
+            /** Tld */
+            tld: string[];
+        };
+        /** AuditFinding */
+        AuditFinding: {
+            /**
+             * Downgraded From
+             * @description The rule's own severity, when lowered to info because the zone does not serve it.
+             */
+            downgraded_from?: string | null;
+            /**
+             * Entity
+             * @description zone | domain
+             * @default
+             */
+            entity: string;
+            /** Evidence */
+            evidence?: string | null;
+            /**
+             * Managed
+             * @description OpusDNS-managed, so the concierge can change it.
+             * @default false
+             */
+            managed: boolean;
+            /**
+             * Name
+             * @default
+             */
+            name: string;
+            /** Registrar */
+            registrar?: string | null;
+            /**
+             * Rule
+             * @description `AuditRule.id` of the rule that found it.
+             * @default
+             */
+            rule: string;
+            /**
+             * Severity
+             * @description critical | warning | info
+             * @default
+             */
+            severity: string;
+        };
+        /** AuditFindingsContext */
+        AuditFindingsContext: {
+            /**
+             * Context Id
+             * Format: typeid
+             * @example ctx_01h45ytscbebyvny4gc8cr8ma2
+             */
+            context_id: TypeId<"ctx">;
+            /**
+             * Conversation Id
+             * Format: typeid
+             * @example conv_01h45ytscbebyvny4gc8cr8ma2
+             */
+            conversation_id: TypeId<"conv">;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: Date;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "audit_findings";
+            /**
+             * Organization Id
+             * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            payload: components["schemas"]["AuditFindingsContextPayload"];
+            /** User Id */
+            user_id: string;
+        };
+        /** AuditFindingsContextPayload */
+        AuditFindingsContextPayload: {
+            /**
+             * Complete
+             * @description False when a source stopped early or failed, or RAS did not say: the findings are a lower bound.
+             * @default false
+             */
+            complete: boolean;
+            coverage: components["schemas"]["AuditCoverage"];
+            filters: components["schemas"]["AuditFilters"];
+            /**
+             * Findings
+             * @description Most severe first.
+             */
+            findings: components["schemas"]["AuditFinding"][];
+            /** Generated At */
+            generated_at?: Date | null;
+            /**
+             * Rules
+             * @description One entry per rule that found something.
+             */
+            rules: components["schemas"]["AuditRule"][];
+            /**
+             * Schema
+             * @description portfolio_audit/v1. Any other version arrives with only this field set.
+             * @default
+             */
+            schema: string;
+            /**
+             * Scope
+             * @description zones | domains | security | all
+             * @default
+             */
+            scope: string;
+            totals: components["schemas"]["AuditTotals"];
+            /**
+             * Truncated
+             * @description True when `findings` was cut to fit the store; `totals` and `rules` stay exact.
+             * @default false
+             */
+            truncated: boolean;
+        };
+        /** AuditFix */
+        AuditFix: {
+            /**
+             * Fix Context Id
+             * @description A `domains` context of the OpusDNS-managed domains the rule found: the targets of `template`.
+             */
+            fix_context_id?: string | null;
+            /**
+             * Fixable Count
+             * @description How many domains `fix_context_id` holds.
+             */
+            fixable_count?: number | null;
+            /**
+             * Hint
+             * @default
+             */
+            hint: string;
+            /**
+             * Reason
+             * @description Why a rule with a `template` has no `fix_context_id`, in English.
+             */
+            reason?: string | null;
+            /**
+             * Template
+             * @description The shared change of a bulk domain update, for the bulk-fixable rules.
+             */
+            template?: {
+                [key: string]: unknown;
+            } | null;
+            /**
+             * Tool
+             * @description The concierge tool that can apply the fix.
+             */
+            tool?: string | null;
+        };
+        /** AuditRule */
+        AuditRule: {
+            /**
+             * Count
+             * @default 0
+             */
+            count: number;
+            /**
+             * Explanation
+             * @default
+             */
+            explanation: string;
+            fix: components["schemas"]["AuditFix"];
+            /**
+             * Id
+             * @description Stable rule id, e.g. mail.spf_multiple; never renamed.
+             * @default
+             */
+            id: string;
+            /**
+             * Sample
+             * @description Up to five affected names, most severe first.
+             */
+            sample: string[];
+            /**
+             * Severity
+             * @description critical | warning | info
+             * @default
+             */
+            severity: string;
+            /**
+             * Title
+             * @default
+             */
+            title: string;
+        };
+        /** AuditSourceStatus */
+        AuditSourceStatus: {
+            /** Detail */
+            detail?: string | null;
+            /**
+             * Status
+             * @description ok | partial | timeout | error | disabled
+             * @default
+             */
+            status: string;
+        };
+        /** AuditTotals */
+        AuditTotals: {
+            /**
+             * Critical
+             * @default 0
+             */
+            critical: number;
+            /**
+             * Domains Checked
+             * @default 0
+             */
+            domains_checked: number;
+            /**
+             * Findings
+             * @default 0
+             */
+            findings: number;
+            /**
+             * Info
+             * @default 0
+             */
+            info: number;
+            /**
+             * Scans Checked
+             * @description Domains with a security scan (TLS, HSTS, DNSSEC).
+             * @default 0
+             */
+            scans_checked: number;
+            /**
+             * Warning
+             * @default 0
+             */
+            warning: number;
+            /**
+             * Zones Checked
+             * @default 0
+             */
+            zones_checked: number;
+        };
         /**
          * Auth
          * @description Pre-login OAuth bootstrap. The SPA resolves this document by hostname before login and uses
@@ -4506,7 +4783,7 @@ export interface components {
              */
             truncated: boolean;
         } | {
-            data?: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"]) | string;
+            data?: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"] | components["schemas"]["AuditFindingsContext"]) | string;
             /**
              * Headers
              * @description Selected response headers
@@ -5946,7 +6223,7 @@ export interface components {
              */
             truncated: boolean;
         } | {
-            data?: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"]) | string;
+            data?: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"] | components["schemas"]["AuditFindingsContext"]) | string;
             /**
              * Headers
              * @description Selected response headers
@@ -11093,7 +11370,7 @@ export interface components {
         ContextListResponse: {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
-            results: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"])[];
+            results: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"] | components["schemas"]["AuditFindingsContext"])[];
         };
         /** ContextMeta */
         ContextMeta: {
@@ -21947,7 +22224,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"];
+                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"] | components["schemas"]["AuditFindingsContext"];
                 };
             };
             /** @description Unauthorized */
@@ -22566,7 +22843,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"];
+                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"] | components["schemas"]["AuditFindingsContext"];
                 };
             };
             /** @description Unauthorized */

@@ -392,6 +392,380 @@ components:
       - uri_template
       title: AttributeType
       type: string
+    AuditCoverage:
+      properties:
+        domain_checker:
+          anyOf:
+          - $ref: '#/components/schemas/AuditSourceStatus'
+          - type: 'null'
+          description: The security scans.
+        index:
+          anyOf:
+          - $ref: '#/components/schemas/AuditSourceStatus'
+          - type: 'null'
+          description: The portfolio index, a synced copy.
+        newest_sync:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Newest Sync
+        not_checked:
+          description: What the audit could not cover, in English.
+          items:
+            type: string
+          title: Not Checked
+          type: array
+        oldest_sync:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Oldest sync of the indexed records read.
+          title: Oldest Sync
+        opusdns_api:
+          anyOf:
+          - $ref: '#/components/schemas/AuditSourceStatus'
+          - type: 'null'
+          description: The live OpusDNS API.
+      required:
+      - not_checked
+      title: AuditCoverage
+      type: object
+    AuditFilters:
+      properties:
+        name_list:
+          description: The names themselves, only when 20 or fewer.
+          items:
+            type: string
+          title: Name List
+          type: array
+        names:
+          default: 0
+          description: How many zone or domain names the audit was narrowed to; 0
+            = none.
+          title: Names
+          type: integer
+        registrar:
+          items:
+            type: string
+          title: Registrar
+          type: array
+        tld:
+          items:
+            type: string
+          title: Tld
+          type: array
+      required:
+      - names
+      - name_list
+      - tld
+      - registrar
+      title: AuditFilters
+      type: object
+    AuditFinding:
+      properties:
+        downgraded_from:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The rule's own severity, when lowered to info because the zone
+            does not serve it.
+          title: Downgraded From
+        entity:
+          default: ''
+          description: zone | domain
+          title: Entity
+          type: string
+        evidence:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Evidence
+        managed:
+          default: false
+          description: OpusDNS-managed, so the concierge can change it.
+          title: Managed
+          type: boolean
+        name:
+          default: ''
+          title: Name
+          type: string
+        registrar:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Registrar
+        rule:
+          default: ''
+          description: '`AuditRule.id` of the rule that found it.'
+          title: Rule
+          type: string
+        severity:
+          default: ''
+          description: critical | warning | info
+          title: Severity
+          type: string
+      required:
+      - rule
+      - severity
+      - entity
+      - name
+      - managed
+      title: AuditFinding
+      type: object
+    AuditFindingsContext:
+      properties:
+        context_id:
+          examples:
+          - ctx_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^ctx_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Context Id
+          type: string
+          x-typeid-prefix: ctx
+        conversation_id:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        kind:
+          const: audit_findings
+          default: audit_findings
+          title: Kind
+          type: string
+        organization_id:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        payload:
+          $ref: '#/components/schemas/AuditFindingsContextPayload'
+        user_id:
+          title: User Id
+          type: string
+      required:
+      - context_id
+      - conversation_id
+      - organization_id
+      - user_id
+      - created_at
+      - payload
+      title: AuditFindingsContext
+      type: object
+    AuditFindingsContextPayload:
+      properties:
+        complete:
+          default: false
+          description: 'False when a source stopped early or failed, or RAS did not
+            say: the findings are a lower bound.'
+          title: Complete
+          type: boolean
+        coverage:
+          $ref: '#/components/schemas/AuditCoverage'
+        filters:
+          $ref: '#/components/schemas/AuditFilters'
+        findings:
+          description: Most severe first.
+          items:
+            $ref: '#/components/schemas/AuditFinding'
+          title: Findings
+          type: array
+        generated_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Generated At
+        rules:
+          description: One entry per rule that found something.
+          items:
+            $ref: '#/components/schemas/AuditRule'
+          title: Rules
+          type: array
+        schema:
+          default: ''
+          description: portfolio_audit/v1. Any other version arrives with only this
+            field set.
+          title: Schema
+          type: string
+        scope:
+          default: ''
+          description: zones | domains | security | all
+          title: Scope
+          type: string
+        totals:
+          $ref: '#/components/schemas/AuditTotals'
+        truncated:
+          default: false
+          description: True when `findings` was cut to fit the store; `totals` and
+            `rules` stay exact.
+          title: Truncated
+          type: boolean
+      required:
+      - schema
+      - scope
+      - filters
+      - complete
+      - totals
+      - coverage
+      - rules
+      - findings
+      - truncated
+      title: AuditFindingsContextPayload
+      type: object
+    AuditFix:
+      properties:
+        fix_context_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: 'A `domains` context of the OpusDNS-managed domains the rule
+            found: the targets of `template`.'
+          title: Fix Context Id
+        fixable_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: How many domains `fix_context_id` holds.
+          title: Fixable Count
+        hint:
+          default: ''
+          title: Hint
+          type: string
+        reason:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Why a rule with a `template` has no `fix_context_id`, in English.
+          title: Reason
+        template:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          description: The shared change of a bulk domain update, for the bulk-fixable
+            rules.
+          title: Template
+        tool:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The concierge tool that can apply the fix.
+          title: Tool
+      required:
+      - hint
+      title: AuditFix
+      type: object
+    AuditRule:
+      properties:
+        count:
+          default: 0
+          title: Count
+          type: integer
+        explanation:
+          default: ''
+          title: Explanation
+          type: string
+        fix:
+          $ref: '#/components/schemas/AuditFix'
+        id:
+          default: ''
+          description: Stable rule id, e.g. mail.spf_multiple; never renamed.
+          title: Id
+          type: string
+        sample:
+          description: Up to five affected names, most severe first.
+          items:
+            type: string
+          title: Sample
+          type: array
+        severity:
+          default: ''
+          description: critical | warning | info
+          title: Severity
+          type: string
+        title:
+          default: ''
+          title: Title
+          type: string
+      required:
+      - id
+      - title
+      - severity
+      - count
+      - explanation
+      - fix
+      - sample
+      title: AuditRule
+      type: object
+    AuditSourceStatus:
+      properties:
+        detail:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Detail
+        status:
+          default: ''
+          description: ok | partial | timeout | error | disabled
+          title: Status
+          type: string
+      required:
+      - status
+      title: AuditSourceStatus
+      type: object
+    AuditTotals:
+      properties:
+        critical:
+          default: 0
+          title: Critical
+          type: integer
+        domains_checked:
+          default: 0
+          title: Domains Checked
+          type: integer
+        findings:
+          default: 0
+          title: Findings
+          type: integer
+        info:
+          default: 0
+          title: Info
+          type: integer
+        scans_checked:
+          default: 0
+          description: Domains with a security scan (TLS, HSTS, DNSSEC).
+          title: Scans Checked
+          type: integer
+        warning:
+          default: 0
+          title: Warning
+          type: integer
+        zones_checked:
+          default: 0
+          title: Zones Checked
+          type: integer
+      required:
+      - zones_checked
+      - domains_checked
+      - scans_checked
+      - findings
+      - critical
+      - warning
+      - info
+      title: AuditTotals
+      type: object
     Auth:
       description: 'Pre-login OAuth bootstrap. The SPA resolves this document by hostname
         before login and uses
@@ -1486,6 +1860,7 @@ components:
             - discriminator:
                 mapping:
                   aggregations: '#/components/schemas/AggregationsContext'
+                  audit_findings: '#/components/schemas/AuditFindingsContext'
                   branding_design: '#/components/schemas/BrandingDesignContext'
                   call_operation_result: '#/components/schemas/CallOperationResultContext'
                   contacts: '#/components/schemas/ContactsContext'
@@ -1505,6 +1880,7 @@ components:
               - $ref: '#/components/schemas/AggregationsContext'
               - $ref: '#/components/schemas/BrandingDesignContext'
               - $ref: '#/components/schemas/CallOperationResultContext'
+              - $ref: '#/components/schemas/AuditFindingsContext'
               title: Response Create Context V1 Ai Concierge Conversations  Conversation
                 Id  Contexts Post
             - type: string
@@ -3360,6 +3736,7 @@ components:
             - discriminator:
                 mapping:
                   aggregations: '#/components/schemas/AggregationsContext'
+                  audit_findings: '#/components/schemas/AuditFindingsContext'
                   branding_design: '#/components/schemas/BrandingDesignContext'
                   call_operation_result: '#/components/schemas/CallOperationResultContext'
                   contacts: '#/components/schemas/ContactsContext'
@@ -3379,6 +3756,7 @@ components:
               - $ref: '#/components/schemas/AggregationsContext'
               - $ref: '#/components/schemas/BrandingDesignContext'
               - $ref: '#/components/schemas/CallOperationResultContext'
+              - $ref: '#/components/schemas/AuditFindingsContext'
               title: Response Get Context V1 Ai Concierge Contexts  Context Id  Get
             - type: string
           headers:
@@ -10243,6 +10621,7 @@ components:
             discriminator:
               mapping:
                 aggregations: '#/components/schemas/AggregationsContext'
+                audit_findings: '#/components/schemas/AuditFindingsContext'
                 branding_design: '#/components/schemas/BrandingDesignContext'
                 call_operation_result: '#/components/schemas/CallOperationResultContext'
                 contacts: '#/components/schemas/ContactsContext'
@@ -10262,6 +10641,7 @@ components:
             - $ref: '#/components/schemas/AggregationsContext'
             - $ref: '#/components/schemas/BrandingDesignContext'
             - $ref: '#/components/schemas/CallOperationResultContext'
+            - $ref: '#/components/schemas/AuditFindingsContext'
           title: Results
           type: array
       required:
@@ -26685,7 +27065,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-28-202519
+  version: 2026-10-29-131049
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -26715,6 +27095,7 @@ paths:
                 discriminator:
                   mapping:
                     aggregations: '#/components/schemas/AggregationsContext'
+                    audit_findings: '#/components/schemas/AuditFindingsContext'
                     branding_design: '#/components/schemas/BrandingDesignContext'
                     call_operation_result: '#/components/schemas/CallOperationResultContext'
                     contacts: '#/components/schemas/ContactsContext'
@@ -26734,6 +27115,7 @@ paths:
                 - $ref: '#/components/schemas/AggregationsContext'
                 - $ref: '#/components/schemas/BrandingDesignContext'
                 - $ref: '#/components/schemas/CallOperationResultContext'
+                - $ref: '#/components/schemas/AuditFindingsContext'
                 title: Response Get Context V1 Ai Concierge Contexts  Context Id  Get
           description: Successful Response
         '401':
@@ -27321,6 +27703,7 @@ paths:
                 discriminator:
                   mapping:
                     aggregations: '#/components/schemas/AggregationsContext'
+                    audit_findings: '#/components/schemas/AuditFindingsContext'
                     branding_design: '#/components/schemas/BrandingDesignContext'
                     call_operation_result: '#/components/schemas/CallOperationResultContext'
                     contacts: '#/components/schemas/ContactsContext'
@@ -27340,6 +27723,7 @@ paths:
                 - $ref: '#/components/schemas/AggregationsContext'
                 - $ref: '#/components/schemas/BrandingDesignContext'
                 - $ref: '#/components/schemas/CallOperationResultContext'
+                - $ref: '#/components/schemas/AuditFindingsContext'
                 title: Response Create Context V1 Ai Concierge Conversations  Conversation
                   Id  Contexts Post
           description: Successful Response

@@ -11,6 +11,15 @@ import type {
   AiInferenceUsageSummary,
   AllowedNumberOfNameserverBase,
   AttributeCondition,
+  AuditCoverage,
+  AuditFilters,
+  AuditFinding,
+  AuditFindingsContext,
+  AuditFindingsContextPayload,
+  AuditFix,
+  AuditRule,
+  AuditSourceStatus,
+  AuditTotals,
   Auth,
   BillingMetadata,
   BillingTransaction,
@@ -666,6 +675,156 @@ export const KEYS_ATTRIBUTE_CONDITION = [
   KEY_ATTRIBUTE_CONDITION_OPERATOR,
   KEY_ATTRIBUTE_CONDITION_VALUE,
 ] as const satisfies (keyof AttributeCondition)[];
+
+export const KEY_AUDIT_COVERAGE_DOMAIN_CHECKER = 'domain_checker' satisfies keyof AuditCoverage;
+export const KEY_AUDIT_COVERAGE_INDEX = 'index' satisfies keyof AuditCoverage;
+export const KEY_AUDIT_COVERAGE_NEWEST_SYNC = 'newest_sync' satisfies keyof AuditCoverage;
+export const KEY_AUDIT_COVERAGE_NOT_CHECKED = 'not_checked' satisfies keyof AuditCoverage;
+export const KEY_AUDIT_COVERAGE_OLDEST_SYNC = 'oldest_sync' satisfies keyof AuditCoverage;
+export const KEY_AUDIT_COVERAGE_OPUSDNS_API = 'opusdns_api' satisfies keyof AuditCoverage;
+
+export const KEYS_AUDIT_COVERAGE = [
+  KEY_AUDIT_COVERAGE_DOMAIN_CHECKER,
+  KEY_AUDIT_COVERAGE_INDEX,
+  KEY_AUDIT_COVERAGE_NEWEST_SYNC,
+  KEY_AUDIT_COVERAGE_NOT_CHECKED,
+  KEY_AUDIT_COVERAGE_OLDEST_SYNC,
+  KEY_AUDIT_COVERAGE_OPUSDNS_API,
+] as const satisfies (keyof AuditCoverage)[];
+
+export const KEY_AUDIT_FILTERS_NAME_LIST = 'name_list' satisfies keyof AuditFilters;
+export const KEY_AUDIT_FILTERS_NAMES = 'names' satisfies keyof AuditFilters;
+export const KEY_AUDIT_FILTERS_REGISTRAR = 'registrar' satisfies keyof AuditFilters;
+export const KEY_AUDIT_FILTERS_TLD = 'tld' satisfies keyof AuditFilters;
+
+export const KEYS_AUDIT_FILTERS = [
+  KEY_AUDIT_FILTERS_NAME_LIST,
+  KEY_AUDIT_FILTERS_NAMES,
+  KEY_AUDIT_FILTERS_REGISTRAR,
+  KEY_AUDIT_FILTERS_TLD,
+] as const satisfies (keyof AuditFilters)[];
+
+export const KEY_AUDIT_FINDING_DOWNGRADED_FROM = 'downgraded_from' satisfies keyof AuditFinding;
+export const KEY_AUDIT_FINDING_ENTITY = 'entity' satisfies keyof AuditFinding;
+export const KEY_AUDIT_FINDING_EVIDENCE = 'evidence' satisfies keyof AuditFinding;
+export const KEY_AUDIT_FINDING_MANAGED = 'managed' satisfies keyof AuditFinding;
+export const KEY_AUDIT_FINDING_NAME = 'name' satisfies keyof AuditFinding;
+export const KEY_AUDIT_FINDING_REGISTRAR = 'registrar' satisfies keyof AuditFinding;
+export const KEY_AUDIT_FINDING_RULE = 'rule' satisfies keyof AuditFinding;
+export const KEY_AUDIT_FINDING_SEVERITY = 'severity' satisfies keyof AuditFinding;
+
+export const KEYS_AUDIT_FINDING = [
+  KEY_AUDIT_FINDING_DOWNGRADED_FROM,
+  KEY_AUDIT_FINDING_ENTITY,
+  KEY_AUDIT_FINDING_EVIDENCE,
+  KEY_AUDIT_FINDING_MANAGED,
+  KEY_AUDIT_FINDING_NAME,
+  KEY_AUDIT_FINDING_REGISTRAR,
+  KEY_AUDIT_FINDING_RULE,
+  KEY_AUDIT_FINDING_SEVERITY,
+] as const satisfies (keyof AuditFinding)[];
+
+export const KEY_AUDIT_FINDINGS_CONTEXT_CONTEXT_ID = 'context_id' satisfies keyof AuditFindingsContext;
+export const KEY_AUDIT_FINDINGS_CONTEXT_CONVERSATION_ID = 'conversation_id' satisfies keyof AuditFindingsContext;
+export const KEY_AUDIT_FINDINGS_CONTEXT_CREATED_AT = 'created_at' satisfies keyof AuditFindingsContext;
+export const KEY_AUDIT_FINDINGS_CONTEXT_KIND = 'kind' satisfies keyof AuditFindingsContext;
+export const KEY_AUDIT_FINDINGS_CONTEXT_ORGANIZATION_ID = 'organization_id' satisfies keyof AuditFindingsContext;
+export const KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD = 'payload' satisfies keyof AuditFindingsContext;
+export const KEY_AUDIT_FINDINGS_CONTEXT_USER_ID = 'user_id' satisfies keyof AuditFindingsContext;
+
+export const KEYS_AUDIT_FINDINGS_CONTEXT = [
+  KEY_AUDIT_FINDINGS_CONTEXT_CONTEXT_ID,
+  KEY_AUDIT_FINDINGS_CONTEXT_CONVERSATION_ID,
+  KEY_AUDIT_FINDINGS_CONTEXT_CREATED_AT,
+  KEY_AUDIT_FINDINGS_CONTEXT_KIND,
+  KEY_AUDIT_FINDINGS_CONTEXT_ORGANIZATION_ID,
+  KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD,
+  KEY_AUDIT_FINDINGS_CONTEXT_USER_ID,
+] as const satisfies (keyof AuditFindingsContext)[];
+
+export const KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_COMPLETE = 'complete' satisfies keyof AuditFindingsContextPayload;
+export const KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_COVERAGE = 'coverage' satisfies keyof AuditFindingsContextPayload;
+export const KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_FILTERS = 'filters' satisfies keyof AuditFindingsContextPayload;
+export const KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_FINDINGS = 'findings' satisfies keyof AuditFindingsContextPayload;
+export const KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_GENERATED_AT = 'generated_at' satisfies keyof AuditFindingsContextPayload;
+export const KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_RULES = 'rules' satisfies keyof AuditFindingsContextPayload;
+export const KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_SCHEMA = 'schema' satisfies keyof AuditFindingsContextPayload;
+export const KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_SCOPE = 'scope' satisfies keyof AuditFindingsContextPayload;
+export const KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_TOTALS = 'totals' satisfies keyof AuditFindingsContextPayload;
+export const KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_TRUNCATED = 'truncated' satisfies keyof AuditFindingsContextPayload;
+
+export const KEYS_AUDIT_FINDINGS_CONTEXT_PAYLOAD = [
+  KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_COMPLETE,
+  KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_COVERAGE,
+  KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_FILTERS,
+  KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_FINDINGS,
+  KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_GENERATED_AT,
+  KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_RULES,
+  KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_SCHEMA,
+  KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_SCOPE,
+  KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_TOTALS,
+  KEY_AUDIT_FINDINGS_CONTEXT_PAYLOAD_TRUNCATED,
+] as const satisfies (keyof AuditFindingsContextPayload)[];
+
+export const KEY_AUDIT_FIX_FIX_CONTEXT_ID = 'fix_context_id' satisfies keyof AuditFix;
+export const KEY_AUDIT_FIX_FIXABLE_COUNT = 'fixable_count' satisfies keyof AuditFix;
+export const KEY_AUDIT_FIX_HINT = 'hint' satisfies keyof AuditFix;
+export const KEY_AUDIT_FIX_REASON = 'reason' satisfies keyof AuditFix;
+export const KEY_AUDIT_FIX_TEMPLATE = 'template' satisfies keyof AuditFix;
+export const KEY_AUDIT_FIX_TOOL = 'tool' satisfies keyof AuditFix;
+
+export const KEYS_AUDIT_FIX = [
+  KEY_AUDIT_FIX_FIX_CONTEXT_ID,
+  KEY_AUDIT_FIX_FIXABLE_COUNT,
+  KEY_AUDIT_FIX_HINT,
+  KEY_AUDIT_FIX_REASON,
+  KEY_AUDIT_FIX_TEMPLATE,
+  KEY_AUDIT_FIX_TOOL,
+] as const satisfies (keyof AuditFix)[];
+
+export const KEY_AUDIT_RULE_COUNT = 'count' satisfies keyof AuditRule;
+export const KEY_AUDIT_RULE_EXPLANATION = 'explanation' satisfies keyof AuditRule;
+export const KEY_AUDIT_RULE_FIX = 'fix' satisfies keyof AuditRule;
+export const KEY_AUDIT_RULE_ID = 'id' satisfies keyof AuditRule;
+export const KEY_AUDIT_RULE_SAMPLE = 'sample' satisfies keyof AuditRule;
+export const KEY_AUDIT_RULE_SEVERITY = 'severity' satisfies keyof AuditRule;
+export const KEY_AUDIT_RULE_TITLE = 'title' satisfies keyof AuditRule;
+
+export const KEYS_AUDIT_RULE = [
+  KEY_AUDIT_RULE_COUNT,
+  KEY_AUDIT_RULE_EXPLANATION,
+  KEY_AUDIT_RULE_FIX,
+  KEY_AUDIT_RULE_ID,
+  KEY_AUDIT_RULE_SAMPLE,
+  KEY_AUDIT_RULE_SEVERITY,
+  KEY_AUDIT_RULE_TITLE,
+] as const satisfies (keyof AuditRule)[];
+
+export const KEY_AUDIT_SOURCE_STATUS_DETAIL = 'detail' satisfies keyof AuditSourceStatus;
+export const KEY_AUDIT_SOURCE_STATUS_STATUS = 'status' satisfies keyof AuditSourceStatus;
+
+export const KEYS_AUDIT_SOURCE_STATUS = [
+  KEY_AUDIT_SOURCE_STATUS_DETAIL,
+  KEY_AUDIT_SOURCE_STATUS_STATUS,
+] as const satisfies (keyof AuditSourceStatus)[];
+
+export const KEY_AUDIT_TOTALS_CRITICAL = 'critical' satisfies keyof AuditTotals;
+export const KEY_AUDIT_TOTALS_DOMAINS_CHECKED = 'domains_checked' satisfies keyof AuditTotals;
+export const KEY_AUDIT_TOTALS_FINDINGS = 'findings' satisfies keyof AuditTotals;
+export const KEY_AUDIT_TOTALS_INFO = 'info' satisfies keyof AuditTotals;
+export const KEY_AUDIT_TOTALS_SCANS_CHECKED = 'scans_checked' satisfies keyof AuditTotals;
+export const KEY_AUDIT_TOTALS_WARNING = 'warning' satisfies keyof AuditTotals;
+export const KEY_AUDIT_TOTALS_ZONES_CHECKED = 'zones_checked' satisfies keyof AuditTotals;
+
+export const KEYS_AUDIT_TOTALS = [
+  KEY_AUDIT_TOTALS_CRITICAL,
+  KEY_AUDIT_TOTALS_DOMAINS_CHECKED,
+  KEY_AUDIT_TOTALS_FINDINGS,
+  KEY_AUDIT_TOTALS_INFO,
+  KEY_AUDIT_TOTALS_SCANS_CHECKED,
+  KEY_AUDIT_TOTALS_WARNING,
+  KEY_AUDIT_TOTALS_ZONES_CHECKED,
+] as const satisfies (keyof AuditTotals)[];
 
 export const KEY_AUTH_AUTHORITY = 'authority' satisfies keyof Auth;
 export const KEY_AUTH_CLIENT_ID = 'client_id' satisfies keyof Auth;
