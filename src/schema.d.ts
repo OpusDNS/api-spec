@@ -1280,12 +1280,15 @@ export interface paths {
          *     Use a full domain name, or `GET /v1/availability`, whenever you need a definitive answer about a
          *     specific domain.
          *
-         *     With `marketplaces=fruits` (repeatable, or `marketplaces=all`), domains for sale on the marketplace are added to `results` after the
-         *     suggestions, which are returned unchanged and in their order. These items have
-         *     `marketplace: {"name": ...}` (the marketplace the domain is for sale on), `available: false` and no
-         *     amount yet (`price.amount` is null, so `price.period` has no meaning). `marketplace` is omitted on
-         *     suggestions. A domain can appear twice: as a suggestion with its
-         *     registry fields, and as a marketplace item. `limit` and `tlds` apply to the marketplace domains as
+         *     With `marketplaces=fruits` (repeatable, or `marketplaces=all`), domains for sale on the marketplace are added to
+         *     `results` after the suggestions, which are returned unchanged and in their order. These items have
+         *     `available: false` and `marketplace` set (`name`, the marketplace the domain is for sale on). `price.amount` is
+         *     the price to acquire the domain from the marketplace, in the listing's currency, for a period of 1 year. It does
+         *     not include a transfer: the customer transfers the domain with the auth code, and that transfer is charged
+         *     separately. When the domain cannot be priced, `price.amount` is null. `renewal_price` is the TLD's standard
+         *     renewal price, and may be set on an unpriced item. `marketplace` is null on
+         *     suggestions. A domain can appear twice: as a suggestion with its registry fields, and as a
+         *     marketplace item. `limit` and `tlds` apply to the marketplace domains as
          *     well, with `limit` capping them separately from the suggestions; the organization's TLD restriction
          *     and `premium` do not apply to them. `meta.total` counts all items in `results`, both entries of a
          *     domain included. Marketplace domains are best-effort and left out when the marketplace does not
@@ -14279,7 +14282,7 @@ export interface components {
             connected_account?: components["schemas"]["DomainAmsAccountResponse"] | null;
             /** Domain */
             domain: string;
-            /** @description Set on a domain for sale on a marketplace, added after the suggestions with `available: false` and no amount yet; null on suggestions. A domain can appear twice: as a suggestion with its registry fields, and as a marketplace item. */
+            /** @description Set on a domain for sale on a marketplace, added after the suggestions with `available: false`; null on suggestions. On such an item `price.amount` is the price to acquire the domain from the marketplace (for 1 year, in the listing's currency; it does not include a transfer, which the customer does with the auth code and is charged separately; null when the domain could not be priced), and `renewal_price` is the TLD's standard renewal price. A domain can appear twice: as a suggestion with its registry fields, and as a marketplace item. */
             marketplace?: components["schemas"]["Marketplace"] | null;
             /** Premium */
             premium: boolean;
