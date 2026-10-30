@@ -14642,7 +14642,7 @@ export interface components {
             } | null;
             /**
              * Auth Code
-             * @description The auth code for this domain (required by some TLDs)
+             * @description The auth code for this domain (required by some TLDs). Omit it for a domain the organization holds through a connected registrar account: when the transfer runs, OpusDNS removes the domain's transfer lock there and fetches the code.
              */
             auth_code?: string | null;
             /** @description Override contacts for this domain */
@@ -14813,7 +14813,7 @@ export interface components {
             } | null;
             /**
              * Auth Code
-             * @description The auth code for the domain
+             * @description The auth code for the domain. Omit it for a domain the organization holds through a connected registrar account: when the transfer runs, OpusDNS removes the domain's transfer lock there and fetches the code.
              */
             auth_code?: string | null;
             /**
@@ -14897,7 +14897,7 @@ export interface components {
             } | null;
             /**
              * Auth Code
-             * @description The auth code for the domain
+             * @description The auth code for the domain. Omit it for a domain the organization holds through a connected registrar account: when the transfer runs, OpusDNS removes the domain's transfer lock there and fetches the code.
              */
             auth_code?: string | null;
             /**

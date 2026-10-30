@@ -15756,7 +15756,10 @@ components:
             minLength: 6
             type: string
           - type: 'null'
-          description: The auth code for this domain (required by some TLDs)
+          description: 'The auth code for this domain (required by some TLDs). Omit
+            it for a domain the organization holds through a connected registrar account:
+            when the transfer runs, OpusDNS removes the domain''s transfer lock there
+            and fetches the code.'
           title: Auth Code
         contacts:
           anyOf:
@@ -15980,7 +15983,9 @@ components:
             minLength: 6
             type: string
           - type: 'null'
-          description: The auth code for the domain
+          description: 'The auth code for the domain. Omit it for a domain the organization
+            holds through a connected registrar account: when the transfer runs, OpusDNS
+            removes the domain''s transfer lock there and fetches the code.'
           title: Auth Code
         contacts:
           anyOf:
@@ -16083,7 +16088,9 @@ components:
             minLength: 6
             type: string
           - type: 'null'
-          description: The auth code for the domain
+          description: 'The auth code for the domain. Omit it for a domain the organization
+            holds through a connected registrar account: when the transfer runs, OpusDNS
+            removes the domain''s transfer lock there and fetches the code.'
           title: Auth Code
         contacts:
           anyOf:
@@ -27250,7 +27257,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-30-103719
+  version: 2026-10-30-130121
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
