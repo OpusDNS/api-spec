@@ -437,6 +437,7 @@ import type {
   SetRenewalModeReq,
   SetVanityNameserverSetDefaultRes,
   SignupCreate,
+  SignupOrganizationCreate,
   Signup,
   SldLength,
   StatusChanges,
@@ -6151,6 +6152,44 @@ export const KEYS_SIGNUP_CREATE = [
   KEY_SIGNUP_CREATE_TERMS_OF_SERVICE,
   KEY_SIGNUP_CREATE_USER,
 ] as const satisfies (keyof SignupCreate)[];
+
+export const KEY_SIGNUP_ORGANIZATION_CREATE_ADDRESS_1 = 'address_1' satisfies keyof SignupOrganizationCreate;
+export const KEY_SIGNUP_ORGANIZATION_CREATE_ADDRESS_2 = 'address_2' satisfies keyof SignupOrganizationCreate;
+export const KEY_SIGNUP_ORGANIZATION_CREATE_ATTRIBUTES = 'attributes' satisfies keyof SignupOrganizationCreate;
+export const KEY_SIGNUP_ORGANIZATION_CREATE_BILLING_MODE = 'billing_mode' satisfies keyof SignupOrganizationCreate;
+export const KEY_SIGNUP_ORGANIZATION_CREATE_BUSINESS_NUMBER = 'business_number' satisfies keyof SignupOrganizationCreate;
+export const KEY_SIGNUP_ORGANIZATION_CREATE_CITY = 'city' satisfies keyof SignupOrganizationCreate;
+export const KEY_SIGNUP_ORGANIZATION_CREATE_COUNTRY_CODE = 'country_code' satisfies keyof SignupOrganizationCreate;
+export const KEY_SIGNUP_ORGANIZATION_CREATE_CURRENCY = 'currency' satisfies keyof SignupOrganizationCreate;
+export const KEY_SIGNUP_ORGANIZATION_CREATE_DEFAULT_LOCALE = 'default_locale' satisfies keyof SignupOrganizationCreate;
+export const KEY_SIGNUP_ORGANIZATION_CREATE_NAME = 'name' satisfies keyof SignupOrganizationCreate;
+export const KEY_SIGNUP_ORGANIZATION_CREATE_PARENT_ORGANIZATION_ID = 'parent_organization_id' satisfies keyof SignupOrganizationCreate;
+export const KEY_SIGNUP_ORGANIZATION_CREATE_POSTAL_CODE = 'postal_code' satisfies keyof SignupOrganizationCreate;
+export const KEY_SIGNUP_ORGANIZATION_CREATE_STATE = 'state' satisfies keyof SignupOrganizationCreate;
+export const KEY_SIGNUP_ORGANIZATION_CREATE_TAX_ID = 'tax_id' satisfies keyof SignupOrganizationCreate;
+export const KEY_SIGNUP_ORGANIZATION_CREATE_TAX_ID_TYPE = 'tax_id_type' satisfies keyof SignupOrganizationCreate;
+export const KEY_SIGNUP_ORGANIZATION_CREATE_TAX_RATE = 'tax_rate' satisfies keyof SignupOrganizationCreate;
+export const KEY_SIGNUP_ORGANIZATION_CREATE_USERS = 'users' satisfies keyof SignupOrganizationCreate;
+
+export const KEYS_SIGNUP_ORGANIZATION_CREATE = [
+  KEY_SIGNUP_ORGANIZATION_CREATE_ADDRESS_1,
+  KEY_SIGNUP_ORGANIZATION_CREATE_ADDRESS_2,
+  KEY_SIGNUP_ORGANIZATION_CREATE_ATTRIBUTES,
+  KEY_SIGNUP_ORGANIZATION_CREATE_BILLING_MODE,
+  KEY_SIGNUP_ORGANIZATION_CREATE_BUSINESS_NUMBER,
+  KEY_SIGNUP_ORGANIZATION_CREATE_CITY,
+  KEY_SIGNUP_ORGANIZATION_CREATE_COUNTRY_CODE,
+  KEY_SIGNUP_ORGANIZATION_CREATE_CURRENCY,
+  KEY_SIGNUP_ORGANIZATION_CREATE_DEFAULT_LOCALE,
+  KEY_SIGNUP_ORGANIZATION_CREATE_NAME,
+  KEY_SIGNUP_ORGANIZATION_CREATE_PARENT_ORGANIZATION_ID,
+  KEY_SIGNUP_ORGANIZATION_CREATE_POSTAL_CODE,
+  KEY_SIGNUP_ORGANIZATION_CREATE_STATE,
+  KEY_SIGNUP_ORGANIZATION_CREATE_TAX_ID,
+  KEY_SIGNUP_ORGANIZATION_CREATE_TAX_ID_TYPE,
+  KEY_SIGNUP_ORGANIZATION_CREATE_TAX_RATE,
+  KEY_SIGNUP_ORGANIZATION_CREATE_USERS,
+] as const satisfies (keyof SignupOrganizationCreate)[];
 
 export const KEY_SIGNUP_ORGANIZATION = 'organization' satisfies keyof Signup;
 export const KEY_SIGNUP_USER = 'user' satisfies keyof Signup;

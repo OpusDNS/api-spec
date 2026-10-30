@@ -590,6 +590,7 @@ export type RgpOperations = components['schemas']['RgpOperations'];
 export type SetRenewalModeReq = components['schemas']['SetRenewalModeReq'];
 export type SetVanityNameserverSetDefaultRes = components['schemas']['SetVanityNameserverSetDefaultRes'];
 export type SignupCreate = components['schemas']['SignupCreate'];
+export type SignupOrganizationCreate = components['schemas']['SignupOrganizationCreate'];
 export type Signup = components['schemas']['SignupResponse'];
 export type SldLength = components['schemas']['SldLength'];
 export type SortOrder = components['schemas']['SortOrder'];

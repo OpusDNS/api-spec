@@ -2652,7 +2652,7 @@ export interface paths {
         head?: never;
         /**
          * Update an organization
-         * @description Updates details for a specific organization
+         * @description Updates details for a specific organization. The name, address and tax ID of an organization billed on its own account are changed by support only; changing them returns 403.
          */
         patch: operations["update_organization_v1_organizations__organization_id__patch"];
         trace?: never;
@@ -19752,11 +19752,96 @@ export interface components {
              */
             agreements?: components["schemas"]["UserAgreementAcceptance"][] | null;
             /** @description Organization signup. */
-            organization: components["schemas"]["OrganizationCreate"];
+            organization: components["schemas"]["SignupOrganizationCreate"];
             /** @description Terms of service acceptance (legacy). */
             terms_of_service?: components["schemas"]["TermsOfServiceAccept"] | null;
             /** @description User signup to platform. */
             user: components["schemas"]["UserCreate"];
+        };
+        /** SignupOrganizationCreate */
+        SignupOrganizationCreate: {
+            /**
+             * Address 1
+             * @description First line of the organization's address.
+             */
+            address_1?: string | null;
+            /**
+             * Address 2
+             * @description Second line of the organization's address.
+             */
+            address_2?: string | null;
+            /**
+             * Attributes
+             * @description List of attributes for the organization.
+             */
+            attributes?: components["schemas"]["OrganizationAttributeCreate"][];
+            /**
+             * @description Whether the organization is billed on its own account (INDEPENDENT) or rolled up to its parent (CONSOLIDATED). INDEPENDENT is only permitted for eligible sub-organizations. Cannot be changed after creation.
+             * @default consolidated
+             */
+            billing_mode: components["schemas"]["BillingMode"];
+            /**
+             * Business Number
+             * @description Government issued business identifier for the organization issued.
+             */
+            business_number?: string | null;
+            /**
+             * City
+             * @description City of the organization's address.
+             */
+            city?: string | null;
+            /**
+             * Country Code
+             * @description ISO 3166-1 alpha-2 country code, plus XK (Kosovo).
+             */
+            country_code: string;
+            /** @description The currency used by the organization. */
+            currency?: components["schemas"]["Currency"] | null;
+            /**
+             * Default Locale
+             * @description Default locale for the organization.
+             */
+            default_locale?: string | null;
+            /**
+             * Name
+             * @description Name of the organization.
+             */
+            name: string;
+            /**
+             * Parent Organization Id
+             * @description ID of the parent organization.
+             */
+            parent_organization_id?: TypeId<"organization"> | null;
+            /**
+             * Postal Code
+             * @description Postal code of the organization's address.
+             */
+            postal_code?: string | null;
+            /**
+             * State
+             * @description State or province of the organization's address.
+             */
+            state?: string | null;
+            /**
+             * Tax Id
+             * @description Tax ID of the organization.
+             */
+            tax_id?: string | null;
+            /**
+             * Tax Id Type
+             * @description Type of tax ID for the organization.
+             */
+            tax_id_type?: string | null;
+            /**
+             * Tax Rate
+             * @description Tax rate for the organization.
+             */
+            tax_rate?: number | string | null;
+            /**
+             * Users
+             * @description List of users that needs to be created with the organization.
+             */
+            users?: components["schemas"]["UserCreate"][];
         };
         /** SignupResponse */
         SignupResponse: {
@@ -35915,13 +36000,6 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    /** @example {
-                     *       "code": "ERROR_PERMISSION_DENIED",
-                     *       "detail": "Insufficient permissions to perform this action",
-                     *       "status": 403,
-                     *       "title": "Permission Denied",
-                     *       "type": "permission-denied"
-                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
