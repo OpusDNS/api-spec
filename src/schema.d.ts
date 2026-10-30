@@ -21349,7 +21349,7 @@ export interface components {
             /** Contact Id */
             contact_id: string;
             /** Email */
-            email: string;
+            email?: string | null;
             /** Name */
             name: string;
         };

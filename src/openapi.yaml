@@ -25817,15 +25817,16 @@ components:
           title: Contact Id
           type: string
         email:
+          anyOf:
+          - type: string
+          - type: 'null'
           title: Email
-          type: string
         name:
           title: Name
           type: string
       required:
       - contact_id
       - name
-      - email
       title: VerificationRegistrantDetails
       type: object
     VerificationResponse:
@@ -27256,7 +27257,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-30-154836
+  version: 2026-10-30-184658
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
