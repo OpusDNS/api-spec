@@ -92,6 +92,7 @@
 | Property | Value |
 | --- | --- |
 | WHOIS Server | `whois.dns.lu` |
+| RDAP Server | [dns.lu/rdap](https://dns.lu/rdap/) |
 
 ## Dispute Resolution
 

@@ -884,6 +884,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/io.md",
                 "showInSidebar": true
               },
+              "/is": {
+                "type": "page",
+                "title": "🇮🇸 .is",
+                "filepath": "content/tld-knowledge-base/cctlds/is.md",
+                "showInSidebar": true
+              },
               "/it": {
                 "type": "page",
                 "title": "🇮🇹 .it",
