@@ -4,6 +4,14 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 30 October 2026
+
+- Changed **contacts imported from a registry**.
+  When a transfer-in, a domain import or the initial sync of a domain imports its contacts, OpusDNS now stores what the registry returned instead of replacing missing or invalid values with OpusDNS placeholder data.
+  A value that fails the [`POST /v1/contacts`](/api-reference#tag/contact/POST/v1/contacts) validation is returned as the registry sent it, a value the registry left out is `null`, and the contact has `completeness` `incomplete` with the failing fields in `incomplete_fields`.
+  When the registry refuses to show a contact, a contact with every data field `null` takes its role on a transfer-in or domain import, unless you supplied a contact for that role and the registry lets you replace it; the initial sync of a domain on your own accreditation fails instead.
+  An incomplete contact stays on its domain and role; replace it with a complete contact through a domain update before using it anywhere else.
+
 ### 28 October 2026
 
 - Deprecated **the per-contact verification routes**, to be removed from sandbox on 5 January 2027 and from production on 12 January 2027:
