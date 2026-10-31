@@ -4,7 +4,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
-### 30 October 2026
+### 31 October 2026
 
 - Changed **contacts imported from a registry**.
   When a transfer-in, a domain import or the initial sync of a domain imports its contacts, OpusDNS now stores what the registry returned instead of replacing missing or invalid values with OpusDNS placeholder data.
