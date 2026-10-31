@@ -27257,7 +27257,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-30-184658
+  version: 2026-10-31-220256
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -48422,17 +48422,36 @@ tags:
     \n            }\n          }\n        ]\n      }\n    ]\n  }\n}\n```\n"
   name: jobs
   x-displayName: Jobs
-- description: "Endpoints for creating and managing contacts.\n\n### ICANN Registrant\
-    \ Email Verification\n\nA domain on a TLD that requires ICANN registrant verification\
-    \ gets an ICANN verification case about its registrant's email.\nConfirming the\
-    \ email once satisfies every open ICANN case of that email in the organization.\n\
-    The registrant confirms through the link in the verification mail OpusDNS sends\
-    \ when the case opens.\nOrganizations with delegated contact verification get\
-    \ no mail; they confirm a registrant's email by attesting its `EMAIL` claim with\
-    \ the `REACHABILITY` method through `POST /v1/contacts/{contact_id}/verifications/attest`.\n\
-    The setting of the contact's organization counts, the same one that decides whether\
-    \ its registrants are mailed.\nFor other organizations, and with other methods,\
-    \ an `EMAIL` attestation is evidence for the registries only.\nFollow a domain's\
+- description: "Endpoints for creating and managing contacts.\n\n### Contacts Imported\
+    \ from a Registry\n\nA contact OpusDNS copies from a registry, when a domain is\
+    \ transferred in or imported, is stored without the validation of `POST /v1/contacts`.\n\
+    Values that pass it are returned in the same form as on any other contact, so\
+    \ a valid phone number is returned in international format.\nA value that does\
+    \ not pass it (for example a phone number such as `+31.600000000`) is returned\
+    \ as the registry sent it, and a value the registry left out is `null`.\nThe registry's\
+    \ name is split into `first_name` and `last_name`, its street lines are joined\
+    \ into `street`, and a value longer than 255 characters is cut to 255.\nWhen the\
+    \ registry refuses to show a contact, a contact with every data field `null` is\
+    \ created for it and takes its role on the domain, unless you supplied a contact\
+    \ for that role on a transfer-in (a registry that keeps the registrant through\
+    \ a transfer, such as AFNIC or RoTLD, keeps it for the registrant role); the initial\
+    \ sync of a domain on your own accreditation fails instead.\n\nEvery contact carries\
+    \ `completeness`: `complete` when it passed the create validation when it was\
+    \ stored, `incomplete` when it did not, with the fields that fail today listed\
+    \ in `incomplete_fields`.\nAn incomplete contact stays on the domain and role\
+    \ it was imported for, but you cannot give it another domain or role; replace\
+    \ it with a complete contact through a domain update.\nFilter the contact list\
+    \ by `completeness` to find them.\n\n### ICANN Registrant Email Verification\n\
+    \nA domain on a TLD that requires ICANN registrant verification gets an ICANN\
+    \ verification case about its registrant's email.\nConfirming the email once satisfies\
+    \ every open ICANN case of that email in the organization.\nThe registrant confirms\
+    \ through the link in the verification mail OpusDNS sends when the case opens.\n\
+    Organizations with delegated contact verification get no mail; they confirm a\
+    \ registrant's email by attesting its `EMAIL` claim with the `REACHABILITY` method\
+    \ through `POST /v1/contacts/{contact_id}/verifications/attest`.\nThe setting\
+    \ of the contact's organization counts, the same one that decides whether its\
+    \ registrants are mailed.\nFor other organizations, and with other methods, an\
+    \ `EMAIL` attestation is evidence for the registries only.\nFollow a domain's\
     \ cases with `GET /v1/domains/{domain_reference}/verifications`.\n\nThe per-contact\
     \ routes under `/v1/contacts/{contact_id}/verification` are deprecated: a case\
     \ asks the registrant on its own, and the domain's cases report the outcome.\n\
