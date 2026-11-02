@@ -5873,9 +5873,11 @@ export const KEYS_PUBLIC_REPORT_RES = [
   KEY_PUBLIC_REPORT_RES_UPDATED_ON,
 ] as const satisfies (keyof PublicReportRes)[];
 
+export const KEY_PUBLIC_ROLE_ASSIGNMENT_MANAGED_BY_SSO = 'managed_by_sso' satisfies keyof PublicRoleAssignment;
 export const KEY_PUBLIC_ROLE_ASSIGNMENT_ROLE = 'role' satisfies keyof PublicRoleAssignment;
 
 export const KEYS_PUBLIC_ROLE_ASSIGNMENT = [
+  KEY_PUBLIC_ROLE_ASSIGNMENT_MANAGED_BY_SSO,
   KEY_PUBLIC_ROLE_ASSIGNMENT_ROLE,
 ] as const satisfies (keyof PublicRoleAssignment)[];
 
@@ -6580,6 +6582,7 @@ export const KEYS_UNKNOWN_CONTEXT = [
 ] as const satisfies (keyof UnknownContext)[];
 
 export const KEY_USER_CREATED_ON = 'created_on' satisfies keyof User;
+export const KEY_USER_DEACTIVATED_ON = 'deactivated_on' satisfies keyof User;
 export const KEY_USER_EMAIL = 'email' satisfies keyof User;
 export const KEY_USER_FIRST_NAME = 'first_name' satisfies keyof User;
 export const KEY_USER_KEYCLOAK_USER_ID = 'keycloak_user_id' satisfies keyof User;
@@ -6587,12 +6590,14 @@ export const KEY_USER_LAST_NAME = 'last_name' satisfies keyof User;
 export const KEY_USER_LOCALE = 'locale' satisfies keyof User;
 export const KEY_USER_ORGANIZATION_ID = 'organization_id' satisfies keyof User;
 export const KEY_USER_PHONE = 'phone' satisfies keyof User;
+export const KEY_USER_PROVISIONED_BY = 'provisioned_by' satisfies keyof User;
 export const KEY_USER_UPDATED_ON = 'updated_on' satisfies keyof User;
 export const KEY_USER_USER_ID = 'user_id' satisfies keyof User;
 export const KEY_USER_USERNAME = 'username' satisfies keyof User;
 
 export const KEYS_USER = [
   KEY_USER_CREATED_ON,
+  KEY_USER_DEACTIVATED_ON,
   KEY_USER_EMAIL,
   KEY_USER_FIRST_NAME,
   KEY_USER_KEYCLOAK_USER_ID,
@@ -6600,6 +6605,7 @@ export const KEYS_USER = [
   KEY_USER_LOCALE,
   KEY_USER_ORGANIZATION_ID,
   KEY_USER_PHONE,
+  KEY_USER_PROVISIONED_BY,
   KEY_USER_UPDATED_ON,
   KEY_USER_USER_ID,
   KEY_USER_USERNAME,

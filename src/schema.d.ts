@@ -17609,7 +17609,7 @@ export interface components {
          * ObjectEventType
          * @enum {string}
          */
-        ObjectEventType: "CREATED" | "UPDATED" | "DELETED" | "IMPORTED" | "SYNCED_AFTER_IMPORT" | "SYNCED" | "TRANSFER_STARTED" | "TRANSFER_COMPLETED" | "TRANSFER_CANCELLED" | "TRANSFER_FAILED" | "TRANSFER_OUT_STARTED" | "TRANSFER_OUT_COMPLETED" | "TRANSFER_OUT_CANCELLED" | "TRANSFER_OUT_FAILED" | "TRANSFER_OUT_REJECTED" | "RENEWED" | "RESTORED" | "BILLING_TRANSACTION_RESERVED" | "BILLING_TRANSACTION_SUCCEEDED" | "BILLING_TRANSACTION_FAILED" | "BILLING_TRANSACTION_CANCELLED";
+        ObjectEventType: "CREATED" | "UPDATED" | "DELETED" | "IMPORTED" | "SYNCED_AFTER_IMPORT" | "SYNCED" | "TRANSFER_STARTED" | "TRANSFER_COMPLETED" | "TRANSFER_CANCELLED" | "TRANSFER_FAILED" | "TRANSFER_OUT_STARTED" | "TRANSFER_OUT_COMPLETED" | "TRANSFER_OUT_CANCELLED" | "TRANSFER_OUT_FAILED" | "TRANSFER_OUT_REJECTED" | "RENEWED" | "RESTORED" | "DEACTIVATED" | "REACTIVATED" | "BILLING_TRANSACTION_RESERVED" | "BILLING_TRANSACTION_SUCCEEDED" | "BILLING_TRANSACTION_FAILED" | "BILLING_TRANSACTION_CANCELLED";
         /** ObjectLog */
         ObjectLog: {
             /** @description Action performed */
@@ -19247,6 +19247,12 @@ export interface components {
         PublicRole: "owner" | "admin" | "viewer" | "domain_manager" | "dns_manager" | "billing_manager";
         /** PublicRoleAssignment */
         PublicRoleAssignment: {
+            /**
+             * Managed By Sso
+             * @description The role comes from the organization's identity provider and cannot be changed here
+             * @default false
+             */
+            managed_by_sso: boolean;
             /** Role */
             role?: components["schemas"]["PublicRole"] | components["schemas"]["CustomRoleLabel"] | null;
         };
@@ -20533,6 +20539,11 @@ export interface components {
              */
             created_on?: Date;
             /**
+             * Deactivated On
+             * @description When the user was deactivated
+             */
+            deactivated_on?: Date | null;
+            /**
              * Email
              * Format: email
              * @description The user's email address
@@ -20572,6 +20583,11 @@ export interface components {
              * @example +1.2125552368
              */
             phone?: string | null;
+            /**
+             * @description How the user was created
+             * @default local
+             */
+            provisioned_by: components["schemas"]["UserProvisionedBy"];
             /**
              * Updated On
              * Format: date-time
@@ -20777,6 +20793,11 @@ export interface components {
              */
             username: string;
         };
+        /**
+         * UserProvisionedBy
+         * @enum {string}
+         */
+        UserProvisionedBy: "local" | "jit" | "scim";
         /** UserPublic */
         UserPublic: {
             /**

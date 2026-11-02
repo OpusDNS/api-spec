@@ -137,6 +137,7 @@ import type {
   TransferAckType,
   UsageGranularity,
   UsageProduct,
+  UserProvisionedBy,
   UserSortField,
   VanityNameserverSetStatusDTO,
   VanityNsCheckConfidence,
@@ -1729,6 +1730,8 @@ export const OBJECT_EVENT_TYPE = {
   TRANSFER_OUT_REJECTED: "TRANSFER_OUT_REJECTED",
   RENEWED: "RENEWED",
   RESTORED: "RESTORED",
+  DEACTIVATED: "DEACTIVATED",
+  REACTIVATED: "REACTIVATED",
   BILLING_TRANSACTION_RESERVED: "BILLING_TRANSACTION_RESERVED",
   BILLING_TRANSACTION_SUCCEEDED: "BILLING_TRANSACTION_SUCCEEDED",
   BILLING_TRANSACTION_FAILED: "BILLING_TRANSACTION_FAILED",
@@ -1753,6 +1756,8 @@ export const OBJECT_EVENT_TYPE_VALUES = [
   'TRANSFER_OUT_REJECTED',
   'RENEWED',
   'RESTORED',
+  'DEACTIVATED',
+  'REACTIVATED',
   'BILLING_TRANSACTION_RESERVED',
   'BILLING_TRANSACTION_SUCCEEDED',
   'BILLING_TRANSACTION_FAILED',
@@ -2681,6 +2686,18 @@ export const USAGE_PRODUCT = {
 export const USAGE_PRODUCT_VALUES = [
   'ai_inference',
 ] as const satisfies ReadonlyArray<UsageProduct>;
+
+export const USER_PROVISIONED_BY = {
+  LOCAL: "local",
+  JIT: "jit",
+  SCIM: "scim",
+} as const satisfies Record<string, UserProvisionedBy>;
+
+export const USER_PROVISIONED_BY_VALUES = [
+  'local',
+  'jit',
+  'scim',
+] as const satisfies ReadonlyArray<UserProvisionedBy>;
 
 export const USER_SORT_FIELD = {
   CREATED_ON: "created_on",

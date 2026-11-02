@@ -641,6 +641,7 @@ export type UserAttribute = components['schemas']['UserAttributeResponse'];
 export type UserCreate = components['schemas']['UserCreate'];
 export type UserOrganizationMeta = components['schemas']['UserOrganizationMeta'];
 export type UserProfile = components['schemas']['UserProfile'];
+export type UserProvisionedBy = components['schemas']['UserProvisionedBy'];
 export type UserPublic = components['schemas']['UserPublic'];
 export type UserPublicWithAttributes = components['schemas']['UserPublicWithAttributes'];
 export type UserPublicWithRole = components['schemas']['UserPublicWithRole'];

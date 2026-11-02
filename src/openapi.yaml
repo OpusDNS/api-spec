@@ -20013,6 +20013,8 @@ components:
       - TRANSFER_OUT_REJECTED
       - RENEWED
       - RESTORED
+      - DEACTIVATED
+      - REACTIVATED
       - BILLING_TRANSACTION_RESERVED
       - BILLING_TRANSACTION_SUCCEEDED
       - BILLING_TRANSACTION_FAILED
@@ -22621,6 +22623,12 @@ components:
       type: string
     PublicRoleAssignment:
       properties:
+        managed_by_sso:
+          default: false
+          description: The role comes from the organization's identity provider and
+            cannot be changed here
+          title: Managed By Sso
+          type: boolean
         role:
           anyOf:
           - $ref: '#/components/schemas/PublicRole'
@@ -24706,6 +24714,13 @@ components:
           format: date-time
           title: Created On
           type: string
+        deactivated_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: When the user was deactivated
+          title: Deactivated On
         email:
           description: The user's email address
           format: email
@@ -24753,6 +24768,10 @@ components:
           examples:
           - '+1.2125552368'
           title: Phone
+        provisioned_by:
+          $ref: '#/components/schemas/UserProvisionedBy'
+          default: local
+          description: How the user was created
         updated_on:
           description: The date/time the entry was last updated on
           format: date-time
@@ -25050,6 +25069,13 @@ components:
       - locale
       title: UserProfile
       type: object
+    UserProvisionedBy:
+      enum:
+      - local
+      - jit
+      - scim
+      title: UserProvisionedBy
+      type: string
     UserPublic:
       properties:
         created_on:
@@ -27257,7 +27283,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-10-31-220256
+  version: 2026-11-02-155840
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
