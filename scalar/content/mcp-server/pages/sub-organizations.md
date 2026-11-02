@@ -55,7 +55,7 @@ both calls.
 An approval prompt for a scoped action says which organization it is for:
 
 ```
-Approve: domain_update_bulk on 412 domain(s) matching tld=["com"] (POST /v1/jobs)? Risk: writes data. Acting on sub-organization organization_01h45ytscbebyvny4gc8cr8ma2.
+Approve: domain_update_bulk on 412 domain(s) matching tld=["com"] (POST /v1/jobs)? Risk: writes data. Acting on organization organization_01h45ytscbebyvny4gc8cr8ma2.
 ```
 
 The approval is bound to it, exactly as it is bound to the path, the query and

@@ -15,7 +15,7 @@ more than one match, call `describe_operation` on the id you picked.
 
 **Search OpusDNS API operations** — approval required: **no**
 
-Search the OpusDNS API catalog. Returns compact entries (operationId, method, path, summary, safety), plus `total` (matches at the top relevance tier: total>count means results were capped, so refine the query). Read-only, no side effects. When exactly one operation matches, the response also carries `detail` with full call details, so you can call_operation directly without describe_operation; otherwise describe_operation the id you pick.
+Search the OpusDNS API catalog. Returns compact entries (operationId, method, path, summary, safety), plus `total` (matches at the top relevance tier: total>count means results were capped, so refine the query). Read-only, no side effects. When exactly one operation matches, the response also carries `detail` with full call details, so you can call_operation directly without describe_operation; otherwise describe_operation the id you pick. Entries marked `deprecated: true` are being removed from the API and rank last: prefer a current operation, whose replacement the deprecated one's description names.
 
 **When to use it.** Start here whenever you know what you want to do but not which endpoint does it.
 Search by intent ("renew a domain", "add a DNS record"), not by path.
