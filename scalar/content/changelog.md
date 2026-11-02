@@ -4,6 +4,13 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 2 November 2026
+
+- Changed **[`.it`](/tld-knowledge-base/cctlds/it) contacts** to follow the NIC.it Technical Guidelines 4.0.
+  `.it` domains now have a registrant only: `admin`, `tech` and `billing` contacts sent on a create, an update or an inbound transfer are ignored rather than refused, and [`GET /v1/tlds/it`](/api-reference#tag/tld/GET/v1/tlds/{tld}) lists the registrant as the only supported role.
+  Domains registered before keep the admin and tech contacts they already have at NIC.it.
+  The registrant is sent to NIC.it with its name and organization equal, the organization for a legal entity and the full name for a natural person, and without a fax number.
+
 ### 31 October 2026
 
 - Changed **contacts imported from a registry**.

@@ -57,8 +57,8 @@
 
 | Property | Value |
 | --- | --- |
-| Required Contacts | Domain Owner, Administrator, Technical Contact |
-| Supported Roles | Domain Owner, Administrator, Technical Contact |
+| Required Contacts | Domain Owner |
+| Supported Roles | Domain Owner |
 | Thick WHOIS | ✅ Yes |
 | Privacy Proxy Allowed | ❌ No |
 | Contacts Transferable | ❌ No |
@@ -149,70 +149,19 @@ The registrant's standard fields are constrained by the entity type:
    - required for every legal-entity type
    - for `natural_person` it must be omitted or equal the contact's full name
 
-### Per-role rules
+NIC.it holds a single holder name per registrant, so its name and organization are always sent equal: a legal entity is sent under `contact.org`, and a natural person under the contact's full name. For a legal entity, the contact's first and last name are not sent to NIC.it. A `fax` number is never sent, because NIC.it does not accept one.
 
-`.it` is a thick registry with a registrant, admin, and tech contact. A few cross-role rules are enforced before the request reaches the registry:
+### Contact roles
 
-- the **tech** contact is required, on both create and update
-- for a `natural_person` registrant, the **admin** contact must reference the same contact as the registrant
+`.it` domains have a registrant only. Following the NIC.it Technical Guidelines 4.0, which remove the admin and tech contacts, `admin`, `tech` and `billing` contacts sent on a create, an update or an inbound transfer are ignored rather than refused.
 
-> ⚠️ **Reusing one contact for every role?** For a `natural_person` registrant the admin has to be that same contact, and any contacts update must still carry a tech. The two failures integrators hit most:
->
-> ```json
-> {
->   "type": "policy-validation-error",
->   "title": "Policy Validation Error",
->   "status": 422,
->   "code": "ERROR_POLICY_VALIDATION",
->   "errors": [
->     {
->       "detail": "For 'natural_person' registrant, the admin contact must reference the same contact as the registrant",
->       "pointer": "contacts.admin[0].contact_id"
->     }
->   ],
->   "detail": "Policy validation failed"
-> }
-> ```
->
-> ```json
-> {
->   "type": "policy-validation-error",
->   "title": "Policy Validation Error",
->   "status": 422,
->   "code": "ERROR_POLICY_VALIDATION",
->   "errors": [
->     {
->       "detail": "Tech contact is required",
->       "pointer": "contacts.tech"
->     }
->   ],
->   "detail": "Policy validation failed"
-> }
-> ```
+Domains registered before this change keep the admin and tech contacts they already have at NIC.it, and an update never adds or removes them. After an inbound transfer, NIC.it copies the registrant under a new `DUP` identifier, and the domain keeps that copy until you replace the registrant.
 
 The attribute constraints are machine-readable: each `possible_attributes` entry returned by [`GET /v1/tlds/it`](/api-reference#tag/tld/GET/v1/tlds/{tld}) carries its own `values`, `required`, and `contact_roles` fields.
 
 ## Changing the holder
 
 The holder of a `.it` domain is changed with a regular domain update: send the new registrant in `contacts.registrant` of [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference}), with its `NIC_IT_ENTITY_TYPE` and `NIC_IT_REG_CODE`. Any entity type may change into any other, provided the new contact's own data is valid for its type.
-
-When the new registrant is a `natural_person`, send the same contact as `contacts.admin` in the same request, because the admin must be the same contact as a natural-person registrant. Otherwise the change is refused:
-
-```json
-{
-  "type": "policy-validation-error",
-  "title": "Policy Validation Error",
-  "status": 422,
-  "code": "ERROR_POLICY_VALIDATION",
-  "errors": [
-    {
-      "detail": "For 'natural_person' registrant, the admin contact must reference the same contact as the registrant",
-      "pointer": "contacts.admin[0].contact_id"
-    }
-  ],
-  "detail": "Policy validation failed"
-}
-```
 
 NIC.IT requires a new auth code on every holder change, so unless the request sets a new `auth_code`, a new one is generated and set in the same update. The change takes effect immediately, without a pending state, and NIC.IT notifies both the previous and the new holder by email.
 
