@@ -47,13 +47,13 @@ The registrant's standard fields are constrained by the entity type:
    - required for every legal-entity type
    - for `natural_person` it must be omitted or equal the contact's full name
 
-NIC.it holds a single holder name per registrant, so its name and organization are always sent equal: a legal entity is sent under `contact.org`, and a natural person under the contact's full name. For a legal entity, the contact's first and last name are not sent to NIC.it. A `fax` number is never sent, because NIC.it does not accept one.
+The registrant is registered under a single name: `contact.org` for a legal entity, the contact's full name for a natural person. A legal entity's first and last name and the contact's `fax` number are not registered.
 
 ### Contact roles
 
-`.it` domains have a registrant only. Following the NIC.it Technical Guidelines 4.0, which remove the admin and tech contacts, `admin`, `tech` and `billing` contacts sent on a create, an update or an inbound transfer are ignored rather than refused.
+`.it` domains have a registrant only. `admin`, `tech` and `billing` contacts sent on a create, an update or an inbound transfer are ignored rather than refused.
 
-Domains registered before this change keep the admin and tech contacts they already have at NIC.it, and an update never adds or removes them. After an inbound transfer, NIC.it copies the registrant under a new `DUP` identifier, and the domain keeps that copy until you replace the registrant.
+Domains registered before this change keep their admin and tech contacts, and an update never adds or removes them.
 
 The attribute constraints are machine-readable: each `possible_attributes` entry returned by [`GET /v1/tlds/it`](/api-reference#tag/tld/GET/v1/tlds/{tld}) carries its own `values`, `required`, and `contact_roles` fields.
 
