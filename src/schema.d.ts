@@ -14106,7 +14106,7 @@ export interface components {
             hosts?: components["schemas"]["DomainHostResponse"][];
             /**
              * Is Premium
-             * @description Whether the registry prices this domain at a premium class for the action it was bought under. Not purchase provenance: a renewal-time check that affirmatively quotes renew as standard corrects the flag, so it tracks the registry's current classification. Registries classify each action separately, so a domain premium only to restore is not premium here.
+             * @description Whether the registry labelled this domain premium when we registered or transferred it in. Set then and not changed afterwards; a premium domain renews at the price the registry quotes at renewal time.
              * @default false
              */
             is_premium: boolean;
