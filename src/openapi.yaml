@@ -12833,10 +12833,47 @@ components:
       type: object
     DomainAvailabilityError:
       properties:
+        code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Machine-readable validation error code, e.g. ERROR_DOMAIN_NAME_INVALID;
+            absent for check_error
+          title: Code
+        detail:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Human-readable explanation of the code
+          title: Detail
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/DomainValidationIssue'
+            type: array
+          - type: 'null'
+          description: Every fixable problem with the name; only present with ERROR_DOMAIN_NAME_INVALID
+          title: Errors
         message:
-          description: Human-readable error message
+          description: Human-readable error message; the same sentence as detail when
+            detail is set
           title: Message
           type: string
+        status:
+          description: HTTP status code this error would have as a request of its
+            own
+          title: Status
+          type: integer
+        title:
+          description: Short summary of the error type (RFC 9457)
+          title: Title
+          type: string
+        tld:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The TLD the name was validated against
+          title: Tld
         type:
           description: Error type identifier, e.g. validation_error or check_error
           title: Type
@@ -12844,6 +12881,8 @@ components:
       required:
       - type
       - message
+      - title
+      - status
       title: DomainAvailabilityError
       type: object
     DomainAvailabilityMeta:
@@ -16652,6 +16691,52 @@ components:
       - operation
       - domain
       title: DomainUpdateWorkerPayload
+      type: object
+    DomainValidationIssue:
+      description: One fixable problem with a domain name, as reported by tld-spec-service.
+      properties:
+        character:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The offending character
+          title: Character
+        code:
+          description: Machine-readable problem code, e.g. ERROR_DOMAIN_CHARACTER_NOT_ALLOWED
+          title: Code
+          type: string
+        codepoint:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Unicode codepoint of the character, e.g. U+0062
+          title: Codepoint
+        detail:
+          description: Human-readable explanation of this problem
+          title: Detail
+          type: string
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The label the problem is in
+          title: Label
+        limit:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: The length limit that was exceeded
+          title: Limit
+        position:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: 0-based codepoint index of the problem within the label
+          title: Position
+      required:
+      - code
+      - detail
+      title: DomainValidationIssue
       type: object
     DomainVerificationCloseReason:
       enum:
@@ -27280,7 +27365,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-02-200205
+  version: 2026-11-03-102637
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -29482,8 +29567,8 @@ paths:
   /v1/availability:
     get:
       description: Check the availability of one or more domains. Invalid domains
-        are reported per domain (status 'error' with error details) instead of failing
-        the whole request.
+        are reported per domain (status 'unavailable' with error details) instead
+        of failing the whole request.
       operationId: bulk_availability_v1_availability_get
       parameters:
       - description: '

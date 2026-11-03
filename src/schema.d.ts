@@ -318,7 +318,7 @@ export interface paths {
         };
         /**
          * Check domain availability
-         * @description Check the availability of one or more domains. Invalid domains are reported per domain (status 'error' with error details) instead of failing the whole request.
+         * @description Check the availability of one or more domains. Invalid domains are reported per domain (status 'unavailable' with error details) instead of failing the whole request.
          */
         get: operations["bulk_availability_v1_availability_get"];
         put?: never;
@@ -12683,10 +12683,40 @@ export interface components {
         /** DomainAvailabilityError */
         DomainAvailabilityError: {
             /**
+             * Code
+             * @description Machine-readable validation error code, e.g. ERROR_DOMAIN_NAME_INVALID; absent for check_error
+             */
+            code?: string | null;
+            /**
+             * Detail
+             * @description Human-readable explanation of the code
+             */
+            detail?: string | null;
+            /**
+             * Errors
+             * @description Every fixable problem with the name; only present with ERROR_DOMAIN_NAME_INVALID
+             */
+            errors?: components["schemas"]["DomainValidationIssue"][] | null;
+            /**
              * Message
-             * @description Human-readable error message
+             * @description Human-readable error message; the same sentence as detail when detail is set
              */
             message: string;
+            /**
+             * Status
+             * @description HTTP status code this error would have as a request of its own
+             */
+            status: number;
+            /**
+             * Title
+             * @description Short summary of the error type (RFC 9457)
+             */
+            title: string;
+            /**
+             * Tld
+             * @description The TLD the name was validated against
+             */
+            tld?: string | null;
             /**
              * Type
              * @description Error type identifier, e.g. validation_error or check_error
@@ -15329,6 +15359,47 @@ export interface components {
              * @enum {string}
              */
             type: "domain_update" | "domain_update_bulk";
+        };
+        /**
+         * DomainValidationIssue
+         * @description One fixable problem with a domain name, as reported by tld-spec-service.
+         */
+        DomainValidationIssue: {
+            /**
+             * Character
+             * @description The offending character
+             */
+            character?: string | null;
+            /**
+             * Code
+             * @description Machine-readable problem code, e.g. ERROR_DOMAIN_CHARACTER_NOT_ALLOWED
+             */
+            code: string;
+            /**
+             * Codepoint
+             * @description Unicode codepoint of the character, e.g. U+0062
+             */
+            codepoint?: string | null;
+            /**
+             * Detail
+             * @description Human-readable explanation of this problem
+             */
+            detail: string;
+            /**
+             * Label
+             * @description The label the problem is in
+             */
+            label?: string | null;
+            /**
+             * Limit
+             * @description The length limit that was exceeded
+             */
+            limit?: number | null;
+            /**
+             * Position
+             * @description 0-based codepoint index of the problem within the label
+             */
+            position?: number | null;
         };
         /**
          * DomainVerificationCloseReason

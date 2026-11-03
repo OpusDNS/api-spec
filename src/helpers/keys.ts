@@ -253,6 +253,7 @@ import type {
   DomainUpdateCommand,
   DomainUpdatePayloadData,
   DomainUpdateWorkerPayload,
+  DomainValidationIssue,
   DomainVerificationDetails,
   DomainVerification,
   DomainWithdrawRequest,
@@ -2517,11 +2518,23 @@ export const KEYS_DOMAIN_AVAILABILITY = [
   KEY_DOMAIN_AVAILABILITY_STATUS,
 ] as const satisfies (keyof DomainAvailability)[];
 
+export const KEY_DOMAIN_AVAILABILITY_ERROR_CODE = 'code' satisfies keyof DomainAvailabilityError;
+export const KEY_DOMAIN_AVAILABILITY_ERROR_DETAIL = 'detail' satisfies keyof DomainAvailabilityError;
+export const KEY_DOMAIN_AVAILABILITY_ERROR_ERRORS = 'errors' satisfies keyof DomainAvailabilityError;
 export const KEY_DOMAIN_AVAILABILITY_ERROR_MESSAGE = 'message' satisfies keyof DomainAvailabilityError;
+export const KEY_DOMAIN_AVAILABILITY_ERROR_STATUS = 'status' satisfies keyof DomainAvailabilityError;
+export const KEY_DOMAIN_AVAILABILITY_ERROR_TITLE = 'title' satisfies keyof DomainAvailabilityError;
+export const KEY_DOMAIN_AVAILABILITY_ERROR_TLD = 'tld' satisfies keyof DomainAvailabilityError;
 export const KEY_DOMAIN_AVAILABILITY_ERROR_TYPE = 'type' satisfies keyof DomainAvailabilityError;
 
 export const KEYS_DOMAIN_AVAILABILITY_ERROR = [
+  KEY_DOMAIN_AVAILABILITY_ERROR_CODE,
+  KEY_DOMAIN_AVAILABILITY_ERROR_DETAIL,
+  KEY_DOMAIN_AVAILABILITY_ERROR_ERRORS,
   KEY_DOMAIN_AVAILABILITY_ERROR_MESSAGE,
+  KEY_DOMAIN_AVAILABILITY_ERROR_STATUS,
+  KEY_DOMAIN_AVAILABILITY_ERROR_TITLE,
+  KEY_DOMAIN_AVAILABILITY_ERROR_TLD,
   KEY_DOMAIN_AVAILABILITY_ERROR_TYPE,
 ] as const satisfies (keyof DomainAvailabilityError)[];
 
@@ -3786,6 +3799,24 @@ export const KEYS_DOMAIN_UPDATE_WORKER_PAYLOAD = [
   KEY_DOMAIN_UPDATE_WORKER_PAYLOAD_OPERATION,
   KEY_DOMAIN_UPDATE_WORKER_PAYLOAD_TYPE,
 ] as const satisfies (keyof DomainUpdateWorkerPayload)[];
+
+export const KEY_DOMAIN_VALIDATION_ISSUE_CHARACTER = 'character' satisfies keyof DomainValidationIssue;
+export const KEY_DOMAIN_VALIDATION_ISSUE_CODE = 'code' satisfies keyof DomainValidationIssue;
+export const KEY_DOMAIN_VALIDATION_ISSUE_CODEPOINT = 'codepoint' satisfies keyof DomainValidationIssue;
+export const KEY_DOMAIN_VALIDATION_ISSUE_DETAIL = 'detail' satisfies keyof DomainValidationIssue;
+export const KEY_DOMAIN_VALIDATION_ISSUE_LABEL = 'label' satisfies keyof DomainValidationIssue;
+export const KEY_DOMAIN_VALIDATION_ISSUE_LIMIT = 'limit' satisfies keyof DomainValidationIssue;
+export const KEY_DOMAIN_VALIDATION_ISSUE_POSITION = 'position' satisfies keyof DomainValidationIssue;
+
+export const KEYS_DOMAIN_VALIDATION_ISSUE = [
+  KEY_DOMAIN_VALIDATION_ISSUE_CHARACTER,
+  KEY_DOMAIN_VALIDATION_ISSUE_CODE,
+  KEY_DOMAIN_VALIDATION_ISSUE_CODEPOINT,
+  KEY_DOMAIN_VALIDATION_ISSUE_DETAIL,
+  KEY_DOMAIN_VALIDATION_ISSUE_LABEL,
+  KEY_DOMAIN_VALIDATION_ISSUE_LIMIT,
+  KEY_DOMAIN_VALIDATION_ISSUE_POSITION,
+] as const satisfies (keyof DomainValidationIssue)[];
 
 export const KEY_DOMAIN_VERIFICATION_DETAILS_DETAIL_TYPE = 'detail_type' satisfies keyof DomainVerificationDetails;
 export const KEY_DOMAIN_VERIFICATION_DETAILS_DOMAIN_ID = 'domain_id' satisfies keyof DomainVerificationDetails;

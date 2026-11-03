@@ -312,6 +312,7 @@ export type DomainUpdateBulkTemplate = components['schemas']['DomainUpdateBulkTe
 export type DomainUpdateCommand = components['schemas']['DomainUpdateCommand'];
 export type DomainUpdatePayloadData = components['schemas']['DomainUpdatePayloadData'];
 export type DomainUpdateWorkerPayload = components['schemas']['DomainUpdateWorkerPayload'];
+export type DomainValidationIssue = components['schemas']['DomainValidationIssue'];
 export type DomainVerificationCloseReason = components['schemas']['DomainVerificationCloseReason'];
 export type DomainVerificationDetails = components['schemas']['DomainVerificationDetails'];
 export type DomainVerificationKind = components['schemas']['DomainVerificationKind'];
