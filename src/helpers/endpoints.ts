@@ -16,6 +16,9 @@ export const AUTH_SIGNUP_ENDPOINT = '/v1/auth/signup';
 export const AUTH_TOKEN_ENDPOINT = '/v1/auth/token';
 export const AVAILABILITY_ENDPOINT = '/v1/availability';
 export const AVAILABILITY_STREAM_ENDPOINT = '/v1/availability/stream';
+export const CONNECT_REGISTRARS_ENDPOINT = '/v1/connect/registrars';
+export const CONNECT_REGISTRARS_BY_REGISTRAR_CREDENTIAL_ID_ENDPOINT = '/v1/connect/registrars/{registrar_credential_id}';
+export const CONNECT_REGISTRARS_BY_REGISTRAR_CREDENTIAL_ID_SYNC_ENDPOINT = '/v1/connect/registrars/{registrar_credential_id}/sync';
 export const CONTACTS_ENDPOINT = '/v1/contacts';
 export const CONTACTS_ATTRIBUTE_SETS_ENDPOINT = '/v1/contacts/attribute-sets';
 export const CONTACTS_ATTRIBUTE_SETS_BY_CONTACT_ATTRIBUTE_SET_ID_ENDPOINT = '/v1/contacts/attribute-sets/{contact_attribute_set_id}';
@@ -188,6 +191,9 @@ export type Endpoint =
   | typeof AUTH_TOKEN_ENDPOINT
   | typeof AVAILABILITY_ENDPOINT
   | typeof AVAILABILITY_STREAM_ENDPOINT
+  | typeof CONNECT_REGISTRARS_ENDPOINT
+  | typeof CONNECT_REGISTRARS_BY_REGISTRAR_CREDENTIAL_ID_ENDPOINT
+  | typeof CONNECT_REGISTRARS_BY_REGISTRAR_CREDENTIAL_ID_SYNC_ENDPOINT
   | typeof CONTACTS_ENDPOINT
   | typeof CONTACTS_ATTRIBUTE_SETS_ENDPOINT
   | typeof CONTACTS_ATTRIBUTE_SETS_BY_CONTACT_ATTRIBUTE_SET_ID_ENDPOINT

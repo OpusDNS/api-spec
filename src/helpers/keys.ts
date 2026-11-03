@@ -39,6 +39,9 @@ import type {
   BrowserStatsBucket,
   BulkObjectTagChanges,
   CallOperationResultContext,
+  CentralNicCredentialCreate,
+  CentralNicCredentialUpdate,
+  CentralNicCredentials,
   ClaimsNotice,
   ClaimsNoticesRequest,
   ClaimsNotices,
@@ -156,6 +159,9 @@ import type {
   DomainAvailabilityError,
   DomainAvailabilityMeta,
   DomainAvailabilityRequest,
+  DomainBestellsystemCredentialCreate,
+  DomainBestellsystemCredentialUpdate,
+  DomainBestellsystemCredentials,
   DomainCheck,
   DomainContact,
   DomainCreate,
@@ -294,6 +300,9 @@ import type {
   EmailForwardsContext,
   EmailForwardsContextCreate,
   EmailVerificationPolicy,
+  EnomCredentialCreate,
+  EnomCredentialUpdate,
+  EnomCredentials,
   EventData,
   EventError,
   EventResponse,
@@ -313,6 +322,9 @@ import type {
   HttpRedirectUpsert,
   IdentityVerificationPolicy,
   IdnBase,
+  InternetXCredentialCreate,
+  InternetXCredentialUpdate,
+  InternetXCredentials,
   Invoice,
   IpRestrictionCreate,
   IpRestriction,
@@ -343,7 +355,16 @@ import type {
   Message,
   MessageCreateRequest,
   MessageList,
+  MonikerCredentialCreate,
+  MonikerCredentialUpdate,
+  MonikerCredentials,
   Nameserver,
+  NicDirectCredentialCreate,
+  NicDirectCredentialUpdate,
+  NicDirectCredentials,
+  NicManagerCredentialCreate,
+  NicManagerCredentialUpdate,
+  NicManagerCredentials,
   NorIdDeclarationConfirmRequest,
   NorIdDeclaration,
   NorIdResellerDeclarationRequest,
@@ -351,6 +372,15 @@ import type {
   ObjectLogChange,
   ObjectTagChanges,
   ObjectTagChanges2,
+  OpenSrsCredentialCreate,
+  OpenSrsCredentialUpdate,
+  OpenSrsCredentials,
+  OpenproviderCredentialCreate,
+  OpenproviderCredentialUpdate,
+  OpenproviderCredentials,
+  OpusDnsCredentialCreate,
+  OpusDnsCredentialUpdate,
+  OpusDnsCredentials,
   Organization,
   OrganizationAttribute,
   OrganizationAttributeCreate,
@@ -420,11 +450,15 @@ import type {
   PublicRoleAssignmentRequest,
   PublicRoleDefinition,
   RdapBase,
+  RealtimeRegisterCredentialCreate,
+  RealtimeRegisterCredentialUpdate,
+  RealtimeRegisterCredentials,
   ReferrerStatsBucket,
   RegistrantChangeDetails,
   RegistrantChangeField,
   RegistrantChangePolicyBase,
   RegistrarContact,
+  RegistrarCredential,
   RegistrarDomain,
   RegistrarNameserver,
   RegistrarRRSet,
@@ -445,6 +479,7 @@ import type {
   StatusCodeStatsBucket,
   StatusTag,
   Support,
+  SyncStatus,
   TagCreate,
   TagEnriched,
   Tag,
@@ -1075,6 +1110,32 @@ export const KEYS_CALL_OPERATION_RESULT_CONTEXT = [
   KEY_CALL_OPERATION_RESULT_CONTEXT_PAYLOAD,
   KEY_CALL_OPERATION_RESULT_CONTEXT_USER_ID,
 ] as const satisfies (keyof CallOperationResultContext)[];
+
+export const KEY_CENTRAL_NIC_CREDENTIAL_CREATE_CREDENTIALS = 'credentials' satisfies keyof CentralNicCredentialCreate;
+export const KEY_CENTRAL_NIC_CREDENTIAL_CREATE_NAME = 'name' satisfies keyof CentralNicCredentialCreate;
+export const KEY_CENTRAL_NIC_CREDENTIAL_CREATE_REGISTRAR = 'registrar' satisfies keyof CentralNicCredentialCreate;
+
+export const KEYS_CENTRAL_NIC_CREDENTIAL_CREATE = [
+  KEY_CENTRAL_NIC_CREDENTIAL_CREATE_CREDENTIALS,
+  KEY_CENTRAL_NIC_CREDENTIAL_CREATE_NAME,
+  KEY_CENTRAL_NIC_CREDENTIAL_CREATE_REGISTRAR,
+] as const satisfies (keyof CentralNicCredentialCreate)[];
+
+export const KEY_CENTRAL_NIC_CREDENTIAL_UPDATE_CREDENTIALS = 'credentials' satisfies keyof CentralNicCredentialUpdate;
+export const KEY_CENTRAL_NIC_CREDENTIAL_UPDATE_REGISTRAR = 'registrar' satisfies keyof CentralNicCredentialUpdate;
+
+export const KEYS_CENTRAL_NIC_CREDENTIAL_UPDATE = [
+  KEY_CENTRAL_NIC_CREDENTIAL_UPDATE_CREDENTIALS,
+  KEY_CENTRAL_NIC_CREDENTIAL_UPDATE_REGISTRAR,
+] as const satisfies (keyof CentralNicCredentialUpdate)[];
+
+export const KEY_CENTRAL_NIC_CREDENTIALS_PASSWORD = 'password' satisfies keyof CentralNicCredentials;
+export const KEY_CENTRAL_NIC_CREDENTIALS_USERNAME = 'username' satisfies keyof CentralNicCredentials;
+
+export const KEYS_CENTRAL_NIC_CREDENTIALS = [
+  KEY_CENTRAL_NIC_CREDENTIALS_PASSWORD,
+  KEY_CENTRAL_NIC_CREDENTIALS_USERNAME,
+] as const satisfies (keyof CentralNicCredentials)[];
 
 export const KEY_CLAIMS_NOTICE_CLAIMS = 'claims' satisfies keyof ClaimsNotice;
 export const KEY_CLAIMS_NOTICE_CLAIMS_KEY = 'claims_key' satisfies keyof ClaimsNotice;
@@ -2553,6 +2614,32 @@ export const KEYS_DOMAIN_AVAILABILITY_REQUEST = [
   KEY_DOMAIN_AVAILABILITY_REQUEST_DOMAINS,
   KEY_DOMAIN_AVAILABILITY_REQUEST_MARKETPLACES,
 ] as const satisfies (keyof DomainAvailabilityRequest)[];
+
+export const KEY_DOMAIN_BESTELLSYSTEM_CREDENTIAL_CREATE_CREDENTIALS = 'credentials' satisfies keyof DomainBestellsystemCredentialCreate;
+export const KEY_DOMAIN_BESTELLSYSTEM_CREDENTIAL_CREATE_NAME = 'name' satisfies keyof DomainBestellsystemCredentialCreate;
+export const KEY_DOMAIN_BESTELLSYSTEM_CREDENTIAL_CREATE_REGISTRAR = 'registrar' satisfies keyof DomainBestellsystemCredentialCreate;
+
+export const KEYS_DOMAIN_BESTELLSYSTEM_CREDENTIAL_CREATE = [
+  KEY_DOMAIN_BESTELLSYSTEM_CREDENTIAL_CREATE_CREDENTIALS,
+  KEY_DOMAIN_BESTELLSYSTEM_CREDENTIAL_CREATE_NAME,
+  KEY_DOMAIN_BESTELLSYSTEM_CREDENTIAL_CREATE_REGISTRAR,
+] as const satisfies (keyof DomainBestellsystemCredentialCreate)[];
+
+export const KEY_DOMAIN_BESTELLSYSTEM_CREDENTIAL_UPDATE_CREDENTIALS = 'credentials' satisfies keyof DomainBestellsystemCredentialUpdate;
+export const KEY_DOMAIN_BESTELLSYSTEM_CREDENTIAL_UPDATE_REGISTRAR = 'registrar' satisfies keyof DomainBestellsystemCredentialUpdate;
+
+export const KEYS_DOMAIN_BESTELLSYSTEM_CREDENTIAL_UPDATE = [
+  KEY_DOMAIN_BESTELLSYSTEM_CREDENTIAL_UPDATE_CREDENTIALS,
+  KEY_DOMAIN_BESTELLSYSTEM_CREDENTIAL_UPDATE_REGISTRAR,
+] as const satisfies (keyof DomainBestellsystemCredentialUpdate)[];
+
+export const KEY_DOMAIN_BESTELLSYSTEM_CREDENTIALS_PASSWORD = 'password' satisfies keyof DomainBestellsystemCredentials;
+export const KEY_DOMAIN_BESTELLSYSTEM_CREDENTIALS_USERNAME = 'username' satisfies keyof DomainBestellsystemCredentials;
+
+export const KEYS_DOMAIN_BESTELLSYSTEM_CREDENTIALS = [
+  KEY_DOMAIN_BESTELLSYSTEM_CREDENTIALS_PASSWORD,
+  KEY_DOMAIN_BESTELLSYSTEM_CREDENTIALS_USERNAME,
+] as const satisfies (keyof DomainBestellsystemCredentials)[];
 
 export const KEY_DOMAIN_CHECK_RESULTS = 'results' satisfies keyof DomainCheck;
 
@@ -4298,6 +4385,32 @@ export const KEYS_EMAIL_VERIFICATION_POLICY = [
   KEY_EMAIL_VERIFICATION_POLICY_VERIFICATION_METHOD,
 ] as const satisfies (keyof EmailVerificationPolicy)[];
 
+export const KEY_ENOM_CREDENTIAL_CREATE_CREDENTIALS = 'credentials' satisfies keyof EnomCredentialCreate;
+export const KEY_ENOM_CREDENTIAL_CREATE_NAME = 'name' satisfies keyof EnomCredentialCreate;
+export const KEY_ENOM_CREDENTIAL_CREATE_REGISTRAR = 'registrar' satisfies keyof EnomCredentialCreate;
+
+export const KEYS_ENOM_CREDENTIAL_CREATE = [
+  KEY_ENOM_CREDENTIAL_CREATE_CREDENTIALS,
+  KEY_ENOM_CREDENTIAL_CREATE_NAME,
+  KEY_ENOM_CREDENTIAL_CREATE_REGISTRAR,
+] as const satisfies (keyof EnomCredentialCreate)[];
+
+export const KEY_ENOM_CREDENTIAL_UPDATE_CREDENTIALS = 'credentials' satisfies keyof EnomCredentialUpdate;
+export const KEY_ENOM_CREDENTIAL_UPDATE_REGISTRAR = 'registrar' satisfies keyof EnomCredentialUpdate;
+
+export const KEYS_ENOM_CREDENTIAL_UPDATE = [
+  KEY_ENOM_CREDENTIAL_UPDATE_CREDENTIALS,
+  KEY_ENOM_CREDENTIAL_UPDATE_REGISTRAR,
+] as const satisfies (keyof EnomCredentialUpdate)[];
+
+export const KEY_ENOM_CREDENTIALS_PASSWORD = 'password' satisfies keyof EnomCredentials;
+export const KEY_ENOM_CREDENTIALS_USERNAME = 'username' satisfies keyof EnomCredentials;
+
+export const KEYS_ENOM_CREDENTIALS = [
+  KEY_ENOM_CREDENTIALS_PASSWORD,
+  KEY_ENOM_CREDENTIALS_USERNAME,
+] as const satisfies (keyof EnomCredentials)[];
+
 export const KEY_EVENT_DATA_DETAILS = 'details' satisfies keyof EventData;
 export const KEY_EVENT_DATA_ERROR = 'error' satisfies keyof EventData;
 export const KEY_EVENT_DATA_MESSAGE = 'message' satisfies keyof EventData;
@@ -4535,6 +4648,36 @@ export const KEYS_IDN_BASE = [
   KEY_IDN_BASE_IDN_CAPABLE,
   KEY_IDN_BASE_IDN_TABLES,
 ] as const satisfies (keyof IdnBase)[];
+
+export const KEY_INTERNET_X_CREDENTIAL_CREATE_CREDENTIALS = 'credentials' satisfies keyof InternetXCredentialCreate;
+export const KEY_INTERNET_X_CREDENTIAL_CREATE_NAME = 'name' satisfies keyof InternetXCredentialCreate;
+export const KEY_INTERNET_X_CREDENTIAL_CREATE_REGISTRAR = 'registrar' satisfies keyof InternetXCredentialCreate;
+
+export const KEYS_INTERNET_X_CREDENTIAL_CREATE = [
+  KEY_INTERNET_X_CREDENTIAL_CREATE_CREDENTIALS,
+  KEY_INTERNET_X_CREDENTIAL_CREATE_NAME,
+  KEY_INTERNET_X_CREDENTIAL_CREATE_REGISTRAR,
+] as const satisfies (keyof InternetXCredentialCreate)[];
+
+export const KEY_INTERNET_X_CREDENTIAL_UPDATE_CREDENTIALS = 'credentials' satisfies keyof InternetXCredentialUpdate;
+export const KEY_INTERNET_X_CREDENTIAL_UPDATE_REGISTRAR = 'registrar' satisfies keyof InternetXCredentialUpdate;
+
+export const KEYS_INTERNET_X_CREDENTIAL_UPDATE = [
+  KEY_INTERNET_X_CREDENTIAL_UPDATE_CREDENTIALS,
+  KEY_INTERNET_X_CREDENTIAL_UPDATE_REGISTRAR,
+] as const satisfies (keyof InternetXCredentialUpdate)[];
+
+export const KEY_INTERNET_X_CREDENTIALS_CONTEXT = 'context' satisfies keyof InternetXCredentials;
+export const KEY_INTERNET_X_CREDENTIALS_INCLUDE_SUB_ACCOUNTS = 'include_sub_accounts' satisfies keyof InternetXCredentials;
+export const KEY_INTERNET_X_CREDENTIALS_PASSWORD = 'password' satisfies keyof InternetXCredentials;
+export const KEY_INTERNET_X_CREDENTIALS_USERNAME = 'username' satisfies keyof InternetXCredentials;
+
+export const KEYS_INTERNET_X_CREDENTIALS = [
+  KEY_INTERNET_X_CREDENTIALS_CONTEXT,
+  KEY_INTERNET_X_CREDENTIALS_INCLUDE_SUB_ACCOUNTS,
+  KEY_INTERNET_X_CREDENTIALS_PASSWORD,
+  KEY_INTERNET_X_CREDENTIALS_USERNAME,
+] as const satisfies (keyof InternetXCredentials)[];
 
 export const KEY_INVOICE_AMOUNT = 'amount' satisfies keyof Invoice;
 export const KEY_INVOICE_CURRENCY = 'currency' satisfies keyof Invoice;
@@ -4954,6 +5097,32 @@ export const KEYS_MESSAGE_LIST = [
   KEY_MESSAGE_LIST_RESULTS,
 ] as const satisfies (keyof MessageList)[];
 
+export const KEY_MONIKER_CREDENTIAL_CREATE_CREDENTIALS = 'credentials' satisfies keyof MonikerCredentialCreate;
+export const KEY_MONIKER_CREDENTIAL_CREATE_NAME = 'name' satisfies keyof MonikerCredentialCreate;
+export const KEY_MONIKER_CREDENTIAL_CREATE_REGISTRAR = 'registrar' satisfies keyof MonikerCredentialCreate;
+
+export const KEYS_MONIKER_CREDENTIAL_CREATE = [
+  KEY_MONIKER_CREDENTIAL_CREATE_CREDENTIALS,
+  KEY_MONIKER_CREDENTIAL_CREATE_NAME,
+  KEY_MONIKER_CREDENTIAL_CREATE_REGISTRAR,
+] as const satisfies (keyof MonikerCredentialCreate)[];
+
+export const KEY_MONIKER_CREDENTIAL_UPDATE_CREDENTIALS = 'credentials' satisfies keyof MonikerCredentialUpdate;
+export const KEY_MONIKER_CREDENTIAL_UPDATE_REGISTRAR = 'registrar' satisfies keyof MonikerCredentialUpdate;
+
+export const KEYS_MONIKER_CREDENTIAL_UPDATE = [
+  KEY_MONIKER_CREDENTIAL_UPDATE_CREDENTIALS,
+  KEY_MONIKER_CREDENTIAL_UPDATE_REGISTRAR,
+] as const satisfies (keyof MonikerCredentialUpdate)[];
+
+export const KEY_MONIKER_CREDENTIALS_API_KEY = 'api_key' satisfies keyof MonikerCredentials;
+export const KEY_MONIKER_CREDENTIALS_PASSWORD = 'password' satisfies keyof MonikerCredentials;
+
+export const KEYS_MONIKER_CREDENTIALS = [
+  KEY_MONIKER_CREDENTIALS_API_KEY,
+  KEY_MONIKER_CREDENTIALS_PASSWORD,
+] as const satisfies (keyof MonikerCredentials)[];
+
 export const KEY_NAMESERVER_HOSTNAME = 'hostname' satisfies keyof Nameserver;
 export const KEY_NAMESERVER_IP_ADDRESSES = 'ip_addresses' satisfies keyof Nameserver;
 
@@ -4961,6 +5130,58 @@ export const KEYS_NAMESERVER = [
   KEY_NAMESERVER_HOSTNAME,
   KEY_NAMESERVER_IP_ADDRESSES,
 ] as const satisfies (keyof Nameserver)[];
+
+export const KEY_NIC_DIRECT_CREDENTIAL_CREATE_CREDENTIALS = 'credentials' satisfies keyof NicDirectCredentialCreate;
+export const KEY_NIC_DIRECT_CREDENTIAL_CREATE_NAME = 'name' satisfies keyof NicDirectCredentialCreate;
+export const KEY_NIC_DIRECT_CREDENTIAL_CREATE_REGISTRAR = 'registrar' satisfies keyof NicDirectCredentialCreate;
+
+export const KEYS_NIC_DIRECT_CREDENTIAL_CREATE = [
+  KEY_NIC_DIRECT_CREDENTIAL_CREATE_CREDENTIALS,
+  KEY_NIC_DIRECT_CREDENTIAL_CREATE_NAME,
+  KEY_NIC_DIRECT_CREDENTIAL_CREATE_REGISTRAR,
+] as const satisfies (keyof NicDirectCredentialCreate)[];
+
+export const KEY_NIC_DIRECT_CREDENTIAL_UPDATE_CREDENTIALS = 'credentials' satisfies keyof NicDirectCredentialUpdate;
+export const KEY_NIC_DIRECT_CREDENTIAL_UPDATE_REGISTRAR = 'registrar' satisfies keyof NicDirectCredentialUpdate;
+
+export const KEYS_NIC_DIRECT_CREDENTIAL_UPDATE = [
+  KEY_NIC_DIRECT_CREDENTIAL_UPDATE_CREDENTIALS,
+  KEY_NIC_DIRECT_CREDENTIAL_UPDATE_REGISTRAR,
+] as const satisfies (keyof NicDirectCredentialUpdate)[];
+
+export const KEY_NIC_DIRECT_CREDENTIALS_USER_ID = 'user_id' satisfies keyof NicDirectCredentials;
+
+export const KEYS_NIC_DIRECT_CREDENTIALS = [
+  KEY_NIC_DIRECT_CREDENTIALS_USER_ID,
+] as const satisfies (keyof NicDirectCredentials)[];
+
+export const KEY_NIC_MANAGER_CREDENTIAL_CREATE_CREDENTIALS = 'credentials' satisfies keyof NicManagerCredentialCreate;
+export const KEY_NIC_MANAGER_CREDENTIAL_CREATE_NAME = 'name' satisfies keyof NicManagerCredentialCreate;
+export const KEY_NIC_MANAGER_CREDENTIAL_CREATE_REGISTRAR = 'registrar' satisfies keyof NicManagerCredentialCreate;
+
+export const KEYS_NIC_MANAGER_CREDENTIAL_CREATE = [
+  KEY_NIC_MANAGER_CREDENTIAL_CREATE_CREDENTIALS,
+  KEY_NIC_MANAGER_CREDENTIAL_CREATE_NAME,
+  KEY_NIC_MANAGER_CREDENTIAL_CREATE_REGISTRAR,
+] as const satisfies (keyof NicManagerCredentialCreate)[];
+
+export const KEY_NIC_MANAGER_CREDENTIAL_UPDATE_CREDENTIALS = 'credentials' satisfies keyof NicManagerCredentialUpdate;
+export const KEY_NIC_MANAGER_CREDENTIAL_UPDATE_REGISTRAR = 'registrar' satisfies keyof NicManagerCredentialUpdate;
+
+export const KEYS_NIC_MANAGER_CREDENTIAL_UPDATE = [
+  KEY_NIC_MANAGER_CREDENTIAL_UPDATE_CREDENTIALS,
+  KEY_NIC_MANAGER_CREDENTIAL_UPDATE_REGISTRAR,
+] as const satisfies (keyof NicManagerCredentialUpdate)[];
+
+export const KEY_NIC_MANAGER_CREDENTIALS_OTP = 'otp' satisfies keyof NicManagerCredentials;
+export const KEY_NIC_MANAGER_CREDENTIALS_PASSWORD = 'password' satisfies keyof NicManagerCredentials;
+export const KEY_NIC_MANAGER_CREDENTIALS_USERNAME = 'username' satisfies keyof NicManagerCredentials;
+
+export const KEYS_NIC_MANAGER_CREDENTIALS = [
+  KEY_NIC_MANAGER_CREDENTIALS_OTP,
+  KEY_NIC_MANAGER_CREDENTIALS_PASSWORD,
+  KEY_NIC_MANAGER_CREDENTIALS_USERNAME,
+] as const satisfies (keyof NicManagerCredentials)[];
 
 export const KEY_NOR_ID_DECLARATION_CONFIRM_REQUEST_ACCEPT_NAME = 'accept_name' satisfies keyof NorIdDeclarationConfirmRequest;
 
@@ -5055,6 +5276,82 @@ export const KEYS_OBJECT_TAG_CHANGES2 = [
   KEY_OBJECT_TAG_CHANGES2_REMOVED,
   KEY_OBJECT_TAG_CHANGES2_UNRESOLVED,
 ] as const satisfies (keyof ObjectTagChanges2)[];
+
+export const KEY_OPEN_SRS_CREDENTIAL_CREATE_CREDENTIALS = 'credentials' satisfies keyof OpenSrsCredentialCreate;
+export const KEY_OPEN_SRS_CREDENTIAL_CREATE_NAME = 'name' satisfies keyof OpenSrsCredentialCreate;
+export const KEY_OPEN_SRS_CREDENTIAL_CREATE_REGISTRAR = 'registrar' satisfies keyof OpenSrsCredentialCreate;
+
+export const KEYS_OPEN_SRS_CREDENTIAL_CREATE = [
+  KEY_OPEN_SRS_CREDENTIAL_CREATE_CREDENTIALS,
+  KEY_OPEN_SRS_CREDENTIAL_CREATE_NAME,
+  KEY_OPEN_SRS_CREDENTIAL_CREATE_REGISTRAR,
+] as const satisfies (keyof OpenSrsCredentialCreate)[];
+
+export const KEY_OPEN_SRS_CREDENTIAL_UPDATE_CREDENTIALS = 'credentials' satisfies keyof OpenSrsCredentialUpdate;
+export const KEY_OPEN_SRS_CREDENTIAL_UPDATE_REGISTRAR = 'registrar' satisfies keyof OpenSrsCredentialUpdate;
+
+export const KEYS_OPEN_SRS_CREDENTIAL_UPDATE = [
+  KEY_OPEN_SRS_CREDENTIAL_UPDATE_CREDENTIALS,
+  KEY_OPEN_SRS_CREDENTIAL_UPDATE_REGISTRAR,
+] as const satisfies (keyof OpenSrsCredentialUpdate)[];
+
+export const KEY_OPEN_SRS_CREDENTIALS_API_KEY = 'api_key' satisfies keyof OpenSrsCredentials;
+export const KEY_OPEN_SRS_CREDENTIALS_USERNAME = 'username' satisfies keyof OpenSrsCredentials;
+
+export const KEYS_OPEN_SRS_CREDENTIALS = [
+  KEY_OPEN_SRS_CREDENTIALS_API_KEY,
+  KEY_OPEN_SRS_CREDENTIALS_USERNAME,
+] as const satisfies (keyof OpenSrsCredentials)[];
+
+export const KEY_OPENPROVIDER_CREDENTIAL_CREATE_CREDENTIALS = 'credentials' satisfies keyof OpenproviderCredentialCreate;
+export const KEY_OPENPROVIDER_CREDENTIAL_CREATE_NAME = 'name' satisfies keyof OpenproviderCredentialCreate;
+export const KEY_OPENPROVIDER_CREDENTIAL_CREATE_REGISTRAR = 'registrar' satisfies keyof OpenproviderCredentialCreate;
+
+export const KEYS_OPENPROVIDER_CREDENTIAL_CREATE = [
+  KEY_OPENPROVIDER_CREDENTIAL_CREATE_CREDENTIALS,
+  KEY_OPENPROVIDER_CREDENTIAL_CREATE_NAME,
+  KEY_OPENPROVIDER_CREDENTIAL_CREATE_REGISTRAR,
+] as const satisfies (keyof OpenproviderCredentialCreate)[];
+
+export const KEY_OPENPROVIDER_CREDENTIAL_UPDATE_CREDENTIALS = 'credentials' satisfies keyof OpenproviderCredentialUpdate;
+export const KEY_OPENPROVIDER_CREDENTIAL_UPDATE_REGISTRAR = 'registrar' satisfies keyof OpenproviderCredentialUpdate;
+
+export const KEYS_OPENPROVIDER_CREDENTIAL_UPDATE = [
+  KEY_OPENPROVIDER_CREDENTIAL_UPDATE_CREDENTIALS,
+  KEY_OPENPROVIDER_CREDENTIAL_UPDATE_REGISTRAR,
+] as const satisfies (keyof OpenproviderCredentialUpdate)[];
+
+export const KEY_OPENPROVIDER_CREDENTIALS_PASSWORD = 'password' satisfies keyof OpenproviderCredentials;
+export const KEY_OPENPROVIDER_CREDENTIALS_USERNAME = 'username' satisfies keyof OpenproviderCredentials;
+
+export const KEYS_OPENPROVIDER_CREDENTIALS = [
+  KEY_OPENPROVIDER_CREDENTIALS_PASSWORD,
+  KEY_OPENPROVIDER_CREDENTIALS_USERNAME,
+] as const satisfies (keyof OpenproviderCredentials)[];
+
+export const KEY_OPUS_DNS_CREDENTIAL_CREATE_CREDENTIALS = 'credentials' satisfies keyof OpusDnsCredentialCreate;
+export const KEY_OPUS_DNS_CREDENTIAL_CREATE_NAME = 'name' satisfies keyof OpusDnsCredentialCreate;
+export const KEY_OPUS_DNS_CREDENTIAL_CREATE_REGISTRAR = 'registrar' satisfies keyof OpusDnsCredentialCreate;
+
+export const KEYS_OPUS_DNS_CREDENTIAL_CREATE = [
+  KEY_OPUS_DNS_CREDENTIAL_CREATE_CREDENTIALS,
+  KEY_OPUS_DNS_CREDENTIAL_CREATE_NAME,
+  KEY_OPUS_DNS_CREDENTIAL_CREATE_REGISTRAR,
+] as const satisfies (keyof OpusDnsCredentialCreate)[];
+
+export const KEY_OPUS_DNS_CREDENTIAL_UPDATE_CREDENTIALS = 'credentials' satisfies keyof OpusDnsCredentialUpdate;
+export const KEY_OPUS_DNS_CREDENTIAL_UPDATE_REGISTRAR = 'registrar' satisfies keyof OpusDnsCredentialUpdate;
+
+export const KEYS_OPUS_DNS_CREDENTIAL_UPDATE = [
+  KEY_OPUS_DNS_CREDENTIAL_UPDATE_CREDENTIALS,
+  KEY_OPUS_DNS_CREDENTIAL_UPDATE_REGISTRAR,
+] as const satisfies (keyof OpusDnsCredentialUpdate)[];
+
+export const KEY_OPUS_DNS_CREDENTIALS_API_KEY = 'api_key' satisfies keyof OpusDnsCredentials;
+
+export const KEYS_OPUS_DNS_CREDENTIALS = [
+  KEY_OPUS_DNS_CREDENTIALS_API_KEY,
+] as const satisfies (keyof OpusDnsCredentials)[];
 
 export const KEY_ORGANIZATION_ADDRESS_1 = 'address_1' satisfies keyof Organization;
 export const KEY_ORGANIZATION_ADDRESS_2 = 'address_2' satisfies keyof Organization;
@@ -5942,6 +6239,30 @@ export const KEYS_RDAP_BASE = [
   KEY_RDAP_BASE_RDAP_SERVER,
 ] as const satisfies (keyof RdapBase)[];
 
+export const KEY_REALTIME_REGISTER_CREDENTIAL_CREATE_CREDENTIALS = 'credentials' satisfies keyof RealtimeRegisterCredentialCreate;
+export const KEY_REALTIME_REGISTER_CREDENTIAL_CREATE_NAME = 'name' satisfies keyof RealtimeRegisterCredentialCreate;
+export const KEY_REALTIME_REGISTER_CREDENTIAL_CREATE_REGISTRAR = 'registrar' satisfies keyof RealtimeRegisterCredentialCreate;
+
+export const KEYS_REALTIME_REGISTER_CREDENTIAL_CREATE = [
+  KEY_REALTIME_REGISTER_CREDENTIAL_CREATE_CREDENTIALS,
+  KEY_REALTIME_REGISTER_CREDENTIAL_CREATE_NAME,
+  KEY_REALTIME_REGISTER_CREDENTIAL_CREATE_REGISTRAR,
+] as const satisfies (keyof RealtimeRegisterCredentialCreate)[];
+
+export const KEY_REALTIME_REGISTER_CREDENTIAL_UPDATE_CREDENTIALS = 'credentials' satisfies keyof RealtimeRegisterCredentialUpdate;
+export const KEY_REALTIME_REGISTER_CREDENTIAL_UPDATE_REGISTRAR = 'registrar' satisfies keyof RealtimeRegisterCredentialUpdate;
+
+export const KEYS_REALTIME_REGISTER_CREDENTIAL_UPDATE = [
+  KEY_REALTIME_REGISTER_CREDENTIAL_UPDATE_CREDENTIALS,
+  KEY_REALTIME_REGISTER_CREDENTIAL_UPDATE_REGISTRAR,
+] as const satisfies (keyof RealtimeRegisterCredentialUpdate)[];
+
+export const KEY_REALTIME_REGISTER_CREDENTIALS_API_KEY = 'api_key' satisfies keyof RealtimeRegisterCredentials;
+
+export const KEYS_REALTIME_REGISTER_CREDENTIALS = [
+  KEY_REALTIME_REGISTER_CREDENTIALS_API_KEY,
+] as const satisfies (keyof RealtimeRegisterCredentials)[];
+
 export const KEY_REFERRER_STATS_BUCKET_KEY = 'key' satisfies keyof ReferrerStatsBucket;
 export const KEY_REFERRER_STATS_BUCKET_TOTAL = 'total' satisfies keyof ReferrerStatsBucket;
 export const KEY_REFERRER_STATS_BUCKET_UNIQUE = 'unique' satisfies keyof ReferrerStatsBucket;
@@ -6039,6 +6360,22 @@ export const KEYS_REGISTRAR_CONTACT = [
   KEY_REGISTRAR_CONTACT_STREET,
   KEY_REGISTRAR_CONTACT_TITLE,
 ] as const satisfies (keyof RegistrarContact)[];
+
+export const KEY_REGISTRAR_CREDENTIAL_CREATED_ON = 'created_on' satisfies keyof RegistrarCredential;
+export const KEY_REGISTRAR_CREDENTIAL_NAME = 'name' satisfies keyof RegistrarCredential;
+export const KEY_REGISTRAR_CREDENTIAL_ORGANIZATION_ID = 'organization_id' satisfies keyof RegistrarCredential;
+export const KEY_REGISTRAR_CREDENTIAL_REGISTRAR = 'registrar' satisfies keyof RegistrarCredential;
+export const KEY_REGISTRAR_CREDENTIAL_REGISTRAR_CREDENTIAL_ID = 'registrar_credential_id' satisfies keyof RegistrarCredential;
+export const KEY_REGISTRAR_CREDENTIAL_UPDATED_ON = 'updated_on' satisfies keyof RegistrarCredential;
+
+export const KEYS_REGISTRAR_CREDENTIAL = [
+  KEY_REGISTRAR_CREDENTIAL_CREATED_ON,
+  KEY_REGISTRAR_CREDENTIAL_NAME,
+  KEY_REGISTRAR_CREDENTIAL_ORGANIZATION_ID,
+  KEY_REGISTRAR_CREDENTIAL_REGISTRAR,
+  KEY_REGISTRAR_CREDENTIAL_REGISTRAR_CREDENTIAL_ID,
+  KEY_REGISTRAR_CREDENTIAL_UPDATED_ON,
+] as const satisfies (keyof RegistrarCredential)[];
 
 export const KEY_REGISTRAR_DOMAIN_CONTACTS = 'contacts' satisfies keyof RegistrarDomain;
 export const KEY_REGISTRAR_DOMAIN_CONTACTS_DEDUP = 'contacts_dedup' satisfies keyof RegistrarDomain;
@@ -6279,6 +6616,38 @@ export const KEYS_SUPPORT = [
   KEY_SUPPORT_STATUS_URL,
   KEY_SUPPORT_URL,
 ] as const satisfies (keyof Support)[];
+
+export const KEY_SYNC_STATUS_BATCH_ID = 'batch_id' satisfies keyof SyncStatus;
+export const KEY_SYNC_STATUS_COMPLETED_ON = 'completed_on' satisfies keyof SyncStatus;
+export const KEY_SYNC_STATUS_CREATED_ON = 'created_on' satisfies keyof SyncStatus;
+export const KEY_SYNC_STATUS_ERROR_CODE = 'error_code' satisfies keyof SyncStatus;
+export const KEY_SYNC_STATUS_ERROR_DETAIL = 'error_detail' satisfies keyof SyncStatus;
+export const KEY_SYNC_STATUS_ERROR_MESSAGE = 'error_message' satisfies keyof SyncStatus;
+export const KEY_SYNC_STATUS_FAILED = 'failed' satisfies keyof SyncStatus;
+export const KEY_SYNC_STATUS_PROGRESS_PERCENTAGE = 'progress_percentage' satisfies keyof SyncStatus;
+export const KEY_SYNC_STATUS_QUEUED = 'queued' satisfies keyof SyncStatus;
+export const KEY_SYNC_STATUS_RUNNING = 'running' satisfies keyof SyncStatus;
+export const KEY_SYNC_STATUS_STATUS = 'status' satisfies keyof SyncStatus;
+export const KEY_SYNC_STATUS_SUCCEEDED = 'succeeded' satisfies keyof SyncStatus;
+export const KEY_SYNC_STATUS_TOTAL = 'total' satisfies keyof SyncStatus;
+export const KEY_SYNC_STATUS_UPDATED_ON = 'updated_on' satisfies keyof SyncStatus;
+
+export const KEYS_SYNC_STATUS = [
+  KEY_SYNC_STATUS_BATCH_ID,
+  KEY_SYNC_STATUS_COMPLETED_ON,
+  KEY_SYNC_STATUS_CREATED_ON,
+  KEY_SYNC_STATUS_ERROR_CODE,
+  KEY_SYNC_STATUS_ERROR_DETAIL,
+  KEY_SYNC_STATUS_ERROR_MESSAGE,
+  KEY_SYNC_STATUS_FAILED,
+  KEY_SYNC_STATUS_PROGRESS_PERCENTAGE,
+  KEY_SYNC_STATUS_QUEUED,
+  KEY_SYNC_STATUS_RUNNING,
+  KEY_SYNC_STATUS_STATUS,
+  KEY_SYNC_STATUS_SUCCEEDED,
+  KEY_SYNC_STATUS_TOTAL,
+  KEY_SYNC_STATUS_UPDATED_ON,
+] as const satisfies (keyof SyncStatus)[];
 
 export const KEY_TAG_CREATE_COLOR = 'color' satisfies keyof TagCreate;
 export const KEY_TAG_CREATE_DESCRIPTION = 'description' satisfies keyof TagCreate;

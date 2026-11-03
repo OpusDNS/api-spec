@@ -202,6 +202,44 @@ export type POST_AvailabilityStream_Request = {
 };
 export type POST_AvailabilityStream_Request_Body = POST_AvailabilityStream_Request['requestBody'];
 
+export type GET_ConnectRegistrars_Request = {
+  parameters: operations['list_credentials_v1_connect_registrars_get']['parameters'];
+};
+export type GET_ConnectRegistrars_Request_Query = GET_ConnectRegistrars_Request['parameters']['query'];
+
+export type POST_ConnectRegistrars_Request = {
+};
+
+export type DELETE_ConnectRegistrarsByRegistrarCredentialId_Request = {
+  parameters: operations['delete_credential_v1_connect_registrars__registrar_credential_id__delete']['parameters'];
+};
+export type DELETE_ConnectRegistrarsByRegistrarCredentialId_Request_Path = DELETE_ConnectRegistrarsByRegistrarCredentialId_Request['parameters']['path'];
+
+export type GET_ConnectRegistrarsByRegistrarCredentialId_Request = {
+  parameters: operations['get_credential_v1_connect_registrars__registrar_credential_id__get']['parameters'];
+};
+export type GET_ConnectRegistrarsByRegistrarCredentialId_Request_Path = GET_ConnectRegistrarsByRegistrarCredentialId_Request['parameters']['path'];
+
+export type PUT_ConnectRegistrarsByRegistrarCredentialId_Request = {
+  parameters: operations['update_credential_v1_connect_registrars__registrar_credential_id__put']['parameters'];
+};
+export type PUT_ConnectRegistrarsByRegistrarCredentialId_Request_Path = PUT_ConnectRegistrarsByRegistrarCredentialId_Request['parameters']['path'];
+
+export type DELETE_ConnectRegistrarsByRegistrarCredentialIdSync_Request = {
+  parameters: operations['cancel_sync_v1_connect_registrars__registrar_credential_id__sync_delete']['parameters'];
+};
+export type DELETE_ConnectRegistrarsByRegistrarCredentialIdSync_Request_Path = DELETE_ConnectRegistrarsByRegistrarCredentialIdSync_Request['parameters']['path'];
+
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSync_Request = {
+  parameters: operations['get_sync_status_v1_connect_registrars__registrar_credential_id__sync_get']['parameters'];
+};
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSync_Request_Path = GET_ConnectRegistrarsByRegistrarCredentialIdSync_Request['parameters']['path'];
+
+export type POST_ConnectRegistrarsByRegistrarCredentialIdSync_Request = {
+  parameters: operations['sync_credential_v1_connect_registrars__registrar_credential_id__sync_post']['parameters'];
+};
+export type POST_ConnectRegistrarsByRegistrarCredentialIdSync_Request_Path = POST_ConnectRegistrarsByRegistrarCredentialIdSync_Request['parameters']['path'];
+
 export type GET_Contacts_Request = {
   parameters: operations['get_contacts_v1_contacts_get']['parameters'];
 };

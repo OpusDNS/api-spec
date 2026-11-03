@@ -356,6 +356,80 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/connect/registrars": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List registrar accounts */
+        get: operations["list_credentials_v1_connect_registrars_get"];
+        put?: never;
+        /**
+         * Connect a registrar account
+         * @description Stores the account's login details and starts its first sync. Follow the sync with **Get sync status**.
+         */
+        post: operations["create_credential_v1_connect_registrars_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/connect/registrars/{registrar_credential_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a registrar account */
+        get: operations["get_credential_v1_connect_registrars__registrar_credential_id__get"];
+        /**
+         * Update login details
+         * @description Replaces all login details and starts a sync. Send every field again. The name and the registrar can't change; a different `registrar` is rejected with `422 ERROR_CREDENTIAL_REGISTRAR_MISMATCH`.
+         */
+        put: operations["update_credential_v1_connect_registrars__registrar_credential_id__put"];
+        post?: never;
+        /**
+         * Disconnect a registrar account
+         * @description Cancels a running sync and removes the account. Everything its syncs brought into OpusDNS is removed in the background. Nothing changes at the registrar.
+         */
+        delete: operations["delete_credential_v1_connect_registrars__registrar_credential_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/connect/registrars/{registrar_credential_id}/sync": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get sync status
+         * @description Shows the account's latest sync. Poll it until `status` is `completed`, `failed` or `cancelled`.
+         */
+        get: operations["get_sync_status_v1_connect_registrars__registrar_credential_id__sync_get"];
+        put?: never;
+        /**
+         * Start a sync
+         * @description Reads the account's domains from the registrar into your portfolio. If a sync is already running or just finishing, it is returned with `200` instead of starting another.
+         */
+        post: operations["sync_credential_v1_connect_registrars__registrar_credential_id__sync_post"];
+        /**
+         * Cancel a sync
+         * @description Stops the sync in progress. Succeeds even when none is running.
+         */
+        delete: operations["cancel_sync_v1_connect_registrars__registrar_credential_id__sync_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/contacts": {
         parameters: {
             query?: never;
@@ -4606,6 +4680,30 @@ export interface components {
              */
             httpStatus?: number | null;
             /** @constant */
+            operationId: "cancel_sync_v1_connect_registrars__registrar_credential_id__sync_delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
             operationId: "cancel_verification_v1_contacts__contact_id__verification_delete";
             /** @constant */
             status: "ok";
@@ -4823,6 +4921,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "create_conversation_v1_ai_concierge_conversations_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["RegistrarCredential"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_credential_v1_connect_registrars_post";
             /** @constant */
             status: "ok";
             /**
@@ -5351,6 +5473,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "delete_conversation_v1_ai_concierge_conversations__conversation_id__delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "delete_credential_v1_connect_registrars__registrar_credential_id__delete";
             /** @constant */
             status: "ok";
             /**
@@ -6272,6 +6418,30 @@ export interface components {
              */
             truncated: boolean;
         } | {
+            data?: components["schemas"]["RegistrarCredential"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_credential_v1_connect_registrars__registrar_credential_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
             data?: components["schemas"]["OrganizationAttributeResponse"][] | string;
             /**
              * Headers
@@ -7040,6 +7210,30 @@ export interface components {
              */
             truncated: boolean;
         } | {
+            data?: components["schemas"]["SyncStatus"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_sync_status_v1_connect_registrars__registrar_credential_id__sync_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
             data?: components["schemas"]["TagResponse"] | string;
             /**
              * Headers
@@ -7659,6 +7853,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "list_conversations_v1_ai_concierge_conversations_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_RegistrarCredential_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_credentials_v1_connect_registrars_get";
             /** @constant */
             status: "ok";
             /**
@@ -9516,6 +9734,30 @@ export interface components {
              */
             truncated: boolean;
         } | {
+            data?: components["schemas"]["SyncStatus"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "sync_credential_v1_connect_registrars__registrar_credential_id__sync_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
             data?: components["schemas"]["DomainForwardMetricsTimeSeriesResponse"] | string;
             /**
              * Headers
@@ -9603,6 +9845,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "update_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["RegistrarCredential"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_credential_v1_connect_registrars__registrar_credential_id__put";
             /** @constant */
             status: "ok";
             /**
@@ -10149,6 +10415,45 @@ export interface components {
             payload: components["schemas"]["CallOperationResult"];
             /** User Id */
             user_id: string;
+        };
+        /** CentralNicCredentialCreate */
+        CentralNicCredentialCreate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["CentralNicCredentials"];
+            /**
+             * Name
+             * @description Your name for this connection, unique per registrar
+             */
+            name: string;
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "CENTRALNIC";
+        };
+        /** CentralNicCredentialUpdate */
+        CentralNicCredentialUpdate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["CentralNicCredentials"];
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "CENTRALNIC";
+        };
+        /** CentralNicCredentials */
+        CentralNicCredentials: {
+            /**
+             * Password
+             * Format: password
+             * @description Password at the registrar
+             */
+            password: string;
+            /**
+             * Username
+             * @description User name at the registrar
+             */
+            username: string;
         };
         /** ClaimsNotice */
         ClaimsNotice: {
@@ -12775,6 +13080,45 @@ export interface components {
          * @enum {string}
          */
         DomainAvailabilityStatus: "available" | "unavailable" | "market_available" | "tmch_claim" | "error" | "unknown";
+        /** DomainBestellsystemCredentialCreate */
+        DomainBestellsystemCredentialCreate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["DomainBestellsystemCredentials"];
+            /**
+             * Name
+             * @description Your name for this connection, unique per registrar
+             */
+            name: string;
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "DOMAIN_BESTELLSYSTEM";
+        };
+        /** DomainBestellsystemCredentialUpdate */
+        DomainBestellsystemCredentialUpdate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["DomainBestellsystemCredentials"];
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "DOMAIN_BESTELLSYSTEM";
+        };
+        /** DomainBestellsystemCredentials */
+        DomainBestellsystemCredentials: {
+            /**
+             * Password
+             * Format: password
+             * @description Password at the registrar
+             */
+            password: string;
+            /**
+             * Username
+             * @description User name at the registrar
+             */
+            username: string;
+        };
         /** DomainCheckResponse */
         DomainCheckResponse: {
             /** Results */
@@ -16299,6 +16643,45 @@ export interface components {
          * @enum {string}
          */
         EmailVerificationStatus: "verified" | "pending" | "canceled";
+        /** EnomCredentialCreate */
+        EnomCredentialCreate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["EnomCredentials"];
+            /**
+             * Name
+             * @description Your name for this connection, unique per registrar
+             */
+            name: string;
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "ENOM";
+        };
+        /** EnomCredentialUpdate */
+        EnomCredentialUpdate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["EnomCredentials"];
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "ENOM";
+        };
+        /** EnomCredentials */
+        EnomCredentials: {
+            /**
+             * Password
+             * Format: password
+             * @description Password at the registrar
+             */
+            password: string;
+            /**
+             * Username
+             * @description User name at the registrar
+             */
+            username: string;
+        };
         /** EventData */
         EventData: {
             /** Details */
@@ -16710,6 +17093,57 @@ export interface components {
              * @description Allowed IDN characters, file with the IDN codes
              */
             idn_tables?: string[] | null;
+        };
+        /** InternetXCredentialCreate */
+        InternetXCredentialCreate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["InternetXCredentials"];
+            /**
+             * Name
+             * @description Your name for this connection, unique per registrar
+             */
+            name: string;
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "INTERNETX";
+        };
+        /** InternetXCredentialUpdate */
+        InternetXCredentialUpdate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["InternetXCredentials"];
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "INTERNETX";
+        };
+        /** InternetXCredentials */
+        InternetXCredentials: {
+            /**
+             * Context
+             * @description Your AutoDNS context; keep 4 unless your account uses another
+             * @default 4
+             */
+            context: number;
+            /**
+             * Include Sub Accounts
+             * @description Also sync the domains, zones and contacts of the account's sub-accounts
+             * @default false
+             */
+            include_sub_accounts: boolean;
+            /**
+             * Password
+             * Format: password
+             * @description Password at the registrar
+             */
+            password: string;
+            /**
+             * Username
+             * @description User name at the registrar
+             */
+            username: string;
         };
         /**
          * InvoiceDocumentType
@@ -17580,6 +18014,46 @@ export interface components {
          * @enum {string}
          */
         MetricsGrouping: "url" | "fqdn" | "domain" | "forward" | "rule";
+        /** MonikerCredentialCreate */
+        MonikerCredentialCreate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["MonikerCredentials"];
+            /**
+             * Name
+             * @description Your name for this connection, unique per registrar
+             */
+            name: string;
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "MONIKER";
+        };
+        /** MonikerCredentialUpdate */
+        MonikerCredentialUpdate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["MonikerCredentials"];
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "MONIKER";
+        };
+        /** MonikerCredentials */
+        MonikerCredentials: {
+            /**
+             * Api Key
+             * Format: password
+             * @description API key at Moniker
+             */
+            api_key: string;
+            /**
+             * Password
+             * Format: password
+             * @description Password at Moniker
+             */
+            password: string;
+        };
         /** Nameserver */
         Nameserver: {
             /**
@@ -17601,6 +18075,84 @@ export interface components {
              *     ]
              */
             ip_addresses?: string[];
+        };
+        /** NicDirectCredentialCreate */
+        NicDirectCredentialCreate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["NicDirectCredentials"];
+            /**
+             * Name
+             * @description Your name for this connection, unique per registrar
+             */
+            name: string;
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "NIC_DIRECT";
+        };
+        /** NicDirectCredentialUpdate */
+        NicDirectCredentialUpdate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["NicDirectCredentials"];
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "NIC_DIRECT";
+        };
+        /** NicDirectCredentials */
+        NicDirectCredentials: {
+            /**
+             * User Id
+             * @description Your numeric NIC account ID. No password needed: NIC checks the calling IP
+             */
+            user_id: string;
+        };
+        /** NicManagerCredentialCreate */
+        NicManagerCredentialCreate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["NicManagerCredentials"];
+            /**
+             * Name
+             * @description Your name for this connection, unique per registrar
+             */
+            name: string;
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "NICMANAGER";
+        };
+        /** NicManagerCredentialUpdate */
+        NicManagerCredentialUpdate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["NicManagerCredentials"];
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "NICMANAGER";
+        };
+        /** NicManagerCredentials */
+        NicManagerCredentials: {
+            /**
+             * Otp
+             * Format: password
+             * @description Auth token, if your NicManager account requires one
+             */
+            otp?: string | null;
+            /**
+             * Password
+             * Format: password
+             * @description Password at the registrar
+             */
+            password: string;
+            /**
+             * Username
+             * @description User name at the registrar
+             */
+            username: string;
         };
         /**
          * NizzaClaim
@@ -17814,6 +18366,118 @@ export interface components {
              * @description References that could not be resolved
              */
             unresolved?: string[];
+        };
+        /** OpenSrsCredentialCreate */
+        OpenSrsCredentialCreate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["OpenSrsCredentials"];
+            /**
+             * Name
+             * @description Your name for this connection, unique per registrar
+             */
+            name: string;
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "OPENSRS";
+        };
+        /** OpenSrsCredentialUpdate */
+        OpenSrsCredentialUpdate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["OpenSrsCredentials"];
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "OPENSRS";
+        };
+        /** OpenSrsCredentials */
+        OpenSrsCredentials: {
+            /**
+             * Api Key
+             * Format: password
+             * @description Reseller API key at OpenSRS
+             */
+            api_key: string;
+            /**
+             * Username
+             * @description Reseller user name at OpenSRS
+             */
+            username: string;
+        };
+        /** OpenproviderCredentialCreate */
+        OpenproviderCredentialCreate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["OpenproviderCredentials"];
+            /**
+             * Name
+             * @description Your name for this connection, unique per registrar
+             */
+            name: string;
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "OPENPROVIDER";
+        };
+        /** OpenproviderCredentialUpdate */
+        OpenproviderCredentialUpdate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["OpenproviderCredentials"];
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "OPENPROVIDER";
+        };
+        /** OpenproviderCredentials */
+        OpenproviderCredentials: {
+            /**
+             * Password
+             * Format: password
+             * @description Password at the registrar
+             */
+            password: string;
+            /**
+             * Username
+             * @description User name at the registrar
+             */
+            username: string;
+        };
+        /** OpusDnsCredentialCreate */
+        OpusDnsCredentialCreate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["OpusDnsCredentials"];
+            /**
+             * Name
+             * @description Your name for this connection, unique per registrar
+             */
+            name: string;
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "OPUSDNS";
+        };
+        /** OpusDnsCredentialUpdate */
+        OpusDnsCredentialUpdate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["OpusDnsCredentials"];
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "OPUSDNS";
+        };
+        /** OpusDnsCredentials */
+        OpusDnsCredentials: {
+            /**
+             * Api Key
+             * Format: password
+             * @description API key at the registrar
+             */
+            api_key: string;
         };
         /** Organization */
         Organization: {
@@ -18570,6 +19234,12 @@ export interface components {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
             results: components["schemas"]["Organization"][];
+        };
+        /** Pagination[RegistrarCredential] */
+        Pagination_RegistrarCredential_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["RegistrarCredential"][];
         };
         /** Pagination[TagResponse] */
         Pagination_TagResponse_: {
@@ -19413,6 +20083,40 @@ export interface components {
              */
             rdap_server?: string | null;
         };
+        /** RealtimeRegisterCredentialCreate */
+        RealtimeRegisterCredentialCreate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["RealtimeRegisterCredentials"];
+            /**
+             * Name
+             * @description Your name for this connection, unique per registrar
+             */
+            name: string;
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "REALTIMEREGISTER";
+        };
+        /** RealtimeRegisterCredentialUpdate */
+        RealtimeRegisterCredentialUpdate: {
+            /** @description Login details for the account; the fields depend on `registrar` */
+            credentials: components["schemas"]["RealtimeRegisterCredentials"];
+            /**
+             * @description The registrar the account is at (enum property replaced by openapi-typescript)
+             * @enum {string}
+             */
+            registrar: "REALTIMEREGISTER";
+        };
+        /** RealtimeRegisterCredentials */
+        RealtimeRegisterCredentials: {
+            /**
+             * Api Key
+             * Format: password
+             * @description API key at the registrar
+             */
+            api_key: string;
+        };
         /**
          * RedirectCode
          * @enum {integer}
@@ -19594,6 +20298,42 @@ export interface components {
             street?: string | null;
             /** Title */
             title?: string | null;
+        };
+        /** RegistrarCredential */
+        RegistrarCredential: {
+            /**
+             * Created On
+             * Format: date-time
+             * @description When the account was connected
+             */
+            created_on: Date;
+            /**
+             * Name
+             * @description Your name for this connection
+             */
+            name: string;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description Organization the account is connected to
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /** @description The registrar the account is at */
+            registrar: components["schemas"]["Registrar"];
+            /**
+             * Registrar Credential Id
+             * Format: typeid
+             * @description ID of the connected account
+             * @example registrar_credential_01h45ytscbebyvny4gc8cr8ma2
+             */
+            registrar_credential_id: TypeId<"registrar_credential">;
+            /**
+             * Updated On
+             * Format: date-time
+             * @description When the account last changed
+             */
+            updated_on: Date;
         };
         /** RegistrarDomain */
         RegistrarDomain: {
@@ -20036,6 +20776,83 @@ export interface components {
          * @enum {string}
          */
         SyncOperationType: "registration" | "renewal" | "transfer";
+        /** SyncStatus */
+        SyncStatus: {
+            /**
+             * Batch Id
+             * @description ID of this sync. Empty if the credential was never synced
+             */
+            batch_id: string;
+            /**
+             * Completed On
+             * @description When the sync ended
+             */
+            completed_on?: Date | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description When the sync started
+             */
+            created_on: Date;
+            /**
+             * Error Code
+             * @description Machine-readable reason, such as `ERROR_CREDENTIAL_AUTH`. Null if the sync didn't fail or has no specific reason
+             */
+            error_code?: string | null;
+            /**
+             * Error Detail
+             * @description The registrar's own error message, if it sent one
+             */
+            error_detail?: string | null;
+            /**
+             * Error Message
+             * @description What went wrong, in words
+             */
+            error_message?: string | null;
+            /**
+             * Failed
+             * @description Domains that could not be synced
+             */
+            failed: number;
+            /**
+             * Progress Percentage
+             * @description How far the sync has got, 0-100
+             */
+            progress_percentage: number;
+            /**
+             * Queued
+             * @description Domains still waiting to be synced
+             */
+            queued: number;
+            /**
+             * Running
+             * @description Domains being synced right now
+             */
+            running: number;
+            /** @description `pending` (waiting, or never synced), `running`, `completed` (domains that failed are counted in `failed`), `failed` (the sync itself failed) or `cancelled` */
+            status: components["schemas"]["SyncStatusEnum"];
+            /**
+             * Succeeded
+             * @description Domains synced
+             */
+            succeeded: number;
+            /**
+             * Total
+             * @description Domains in the account. While the sync is still reading the account, this is the registrar's count
+             */
+            total: number;
+            /**
+             * Updated On
+             * Format: date-time
+             * @description When the sync last changed
+             */
+            updated_on: Date;
+        };
+        /**
+         * SyncStatusEnum
+         * @enum {string}
+         */
+        SyncStatusEnum: "pending" | "running" | "completed" | "failed" | "cancelled";
         /**
          * TLDType
          * @enum {string}
@@ -24408,6 +25225,581 @@ export interface operations {
                      *       "status": 401,
                      *       "title": "Authentication Error",
                      *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_credentials_v1_connect_registrars_get: {
+        parameters: {
+            query?: {
+                /** @description Filter by registrar */
+                registrar?: components["schemas"]["Registrar"] | null;
+                page?: number;
+                page_size?: number;
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The connected registrar accounts */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_RegistrarCredential_"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_credential_v1_connect_registrars_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["InternetXCredentialCreate"] | components["schemas"]["DomainBestellsystemCredentialCreate"] | components["schemas"]["MonikerCredentialCreate"] | components["schemas"]["CentralNicCredentialCreate"] | components["schemas"]["NicManagerCredentialCreate"] | components["schemas"]["OpusDnsCredentialCreate"] | components["schemas"]["EnomCredentialCreate"] | components["schemas"]["OpenSrsCredentialCreate"] | components["schemas"]["NicDirectCredentialCreate"] | components["schemas"]["OpenproviderCredentialCreate"] | components["schemas"]["RealtimeRegisterCredentialCreate"];
+            };
+        };
+        responses: {
+            /** @description The connected account */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RegistrarCredential"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_credential_v1_connect_registrars__registrar_credential_id__get: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                /** @description ID of the connected registrar account */
+                registrar_credential_id: TypeId<"registrar_credential">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The connected account */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RegistrarCredential"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CREDENTIAL_NOT_FOUND",
+                     *       "detail": "Credential not found",
+                     *       "registrar_credential_id": "registrar_credential_01h45ytscbebyvny4gc8cr8ma2",
+                     *       "status": 404,
+                     *       "title": "Registrar Credential Error",
+                     *       "type": "registrar-credential-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_credential_v1_connect_registrars__registrar_credential_id__put: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                /** @description ID of the connected registrar account */
+                registrar_credential_id: TypeId<"registrar_credential">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["InternetXCredentialUpdate"] | components["schemas"]["DomainBestellsystemCredentialUpdate"] | components["schemas"]["MonikerCredentialUpdate"] | components["schemas"]["CentralNicCredentialUpdate"] | components["schemas"]["NicManagerCredentialUpdate"] | components["schemas"]["OpusDnsCredentialUpdate"] | components["schemas"]["EnomCredentialUpdate"] | components["schemas"]["OpenSrsCredentialUpdate"] | components["schemas"]["NicDirectCredentialUpdate"] | components["schemas"]["OpenproviderCredentialUpdate"] | components["schemas"]["RealtimeRegisterCredentialUpdate"];
+            };
+        };
+        responses: {
+            /** @description The updated account */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RegistrarCredential"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CREDENTIAL_NOT_FOUND",
+                     *       "detail": "Credential not found",
+                     *       "registrar_credential_id": "registrar_credential_01h45ytscbebyvny4gc8cr8ma2",
+                     *       "status": 404,
+                     *       "title": "Registrar Credential Error",
+                     *       "type": "registrar-credential-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CREDENTIAL_ACCOUNT_ALREADY_CONNECTED",
+                     *       "detail": "This NIC_DIRECT account is already connected.",
+                     *       "registrar": "NIC_DIRECT",
+                     *       "status": 409,
+                     *       "title": "Account Already Connected",
+                     *       "type": "registrar-credential-identifier-already-exists"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_credential_v1_connect_registrars__registrar_credential_id__delete: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                /** @description ID of the connected registrar account */
+                registrar_credential_id: TypeId<"registrar_credential">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Account disconnected */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CREDENTIAL_NOT_FOUND",
+                     *       "detail": "Credential not found",
+                     *       "registrar_credential_id": "registrar_credential_01h45ytscbebyvny4gc8cr8ma2",
+                     *       "status": 404,
+                     *       "title": "Registrar Credential Error",
+                     *       "type": "registrar-credential-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_sync_status_v1_connect_registrars__registrar_credential_id__sync_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                /** @description ID of the connected registrar account */
+                registrar_credential_id: TypeId<"registrar_credential">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The latest sync */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SyncStatus"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CREDENTIAL_NOT_FOUND",
+                     *       "detail": "Credential not found",
+                     *       "registrar_credential_id": "registrar_credential_01h45ytscbebyvny4gc8cr8ma2",
+                     *       "status": 404,
+                     *       "title": "Registrar Credential Error",
+                     *       "type": "registrar-credential-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    sync_credential_v1_connect_registrars__registrar_credential_id__sync_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                /** @description ID of the connected registrar account */
+                registrar_credential_id: TypeId<"registrar_credential">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description A sync was already running or just finishing and is returned instead */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SyncStatus"];
+                };
+            };
+            /** @description The sync that was started */
+            202: {
+                headers: {
+                    /** @description Where to follow the sync's status */
+                    Location?: string;
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SyncStatus"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CREDENTIAL_NOT_FOUND",
+                     *       "detail": "Credential not found",
+                     *       "registrar_credential_id": "registrar_credential_01h45ytscbebyvny4gc8cr8ma2",
+                     *       "status": 404,
+                     *       "title": "Registrar Credential Error",
+                     *       "type": "registrar-credential-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    cancel_sync_v1_connect_registrars__registrar_credential_id__sync_delete: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                /** @description ID of the connected registrar account */
+                registrar_credential_id: TypeId<"registrar_credential">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Sync cancelled */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CREDENTIAL_NOT_FOUND",
+                     *       "detail": "Credential not found",
+                     *       "registrar_credential_id": "registrar_credential_01h45ytscbebyvny4gc8cr8ma2",
+                     *       "status": 404,
+                     *       "title": "Registrar Credential Error",
+                     *       "type": "registrar-credential-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };

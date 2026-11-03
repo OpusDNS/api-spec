@@ -96,6 +96,7 @@ import type {
   Pagination_Event,
   Pagination_Invoice,
   Pagination_Organization,
+  Pagination_RegistrarCredential,
   Pagination_Tag,
   Pagination_UserPublicWithRole,
   ParkingMetrics,
@@ -110,6 +111,7 @@ import type {
   PublicReportRes,
   PublicRoleAssignment,
   PublicRoleDefinition,
+  RegistrarCredential,
   RequestAuthcode,
   RequestAuthcode2,
   RequestAuthcode3,
@@ -121,6 +123,7 @@ import type {
   RequestAuthcode9,
   SetVanityNameserverSetDefaultRes,
   Signup,
+  SyncStatus,
   Tag,
   TldResponseShort,
   TldSpecification,
@@ -149,6 +152,18 @@ export type DELETE_AiConciergeMemoryFactsByFactId_Response_401 = Problem;
 export type DELETE_AiConciergeMemoryFactsByFactId_Response_404 = Problem;
 export type DELETE_AiConciergeMemoryFactsByFactId_Response_422 = HTTPValidationError;
 export type DELETE_AiConciergeMemoryFactsByFactId_Response_502 = Problem;
+
+export type DELETE_ConnectRegistrarsByRegistrarCredentialId_Response = DELETE_ConnectRegistrarsByRegistrarCredentialId_Response_403 | DELETE_ConnectRegistrarsByRegistrarCredentialId_Response_404 | DELETE_ConnectRegistrarsByRegistrarCredentialId_Response_422;
+
+export type DELETE_ConnectRegistrarsByRegistrarCredentialId_Response_403 = Problem;
+export type DELETE_ConnectRegistrarsByRegistrarCredentialId_Response_404 = Problem;
+export type DELETE_ConnectRegistrarsByRegistrarCredentialId_Response_422 = HTTPValidationError;
+
+export type DELETE_ConnectRegistrarsByRegistrarCredentialIdSync_Response = DELETE_ConnectRegistrarsByRegistrarCredentialIdSync_Response_403 | DELETE_ConnectRegistrarsByRegistrarCredentialIdSync_Response_404 | DELETE_ConnectRegistrarsByRegistrarCredentialIdSync_Response_422;
+
+export type DELETE_ConnectRegistrarsByRegistrarCredentialIdSync_Response_403 = Problem;
+export type DELETE_ConnectRegistrarsByRegistrarCredentialIdSync_Response_404 = Problem;
+export type DELETE_ConnectRegistrarsByRegistrarCredentialIdSync_Response_422 = HTTPValidationError;
 
 export type DELETE_ContactsAttributeSetsByContactAttributeSetId_Response = DELETE_ContactsAttributeSetsByContactAttributeSetId_Response_404 | DELETE_ContactsAttributeSetsByContactAttributeSetId_Response_422;
 
@@ -374,6 +389,26 @@ export type GET_AvailabilityStream_Response = GET_AvailabilityStream_Response_40
 
 export type GET_AvailabilityStream_Response_401 = Problem;
 export type GET_AvailabilityStream_Response_422 = HTTPValidationError;
+
+export type GET_ConnectRegistrars_Response = GET_ConnectRegistrars_Response_200 | GET_ConnectRegistrars_Response_403 | GET_ConnectRegistrars_Response_422;
+
+export type GET_ConnectRegistrars_Response_200 = Pagination_RegistrarCredential;
+export type GET_ConnectRegistrars_Response_403 = Problem;
+export type GET_ConnectRegistrars_Response_422 = HTTPValidationError;
+
+export type GET_ConnectRegistrarsByRegistrarCredentialId_Response = GET_ConnectRegistrarsByRegistrarCredentialId_Response_200 | GET_ConnectRegistrarsByRegistrarCredentialId_Response_403 | GET_ConnectRegistrarsByRegistrarCredentialId_Response_404 | GET_ConnectRegistrarsByRegistrarCredentialId_Response_422;
+
+export type GET_ConnectRegistrarsByRegistrarCredentialId_Response_200 = RegistrarCredential;
+export type GET_ConnectRegistrarsByRegistrarCredentialId_Response_403 = Problem;
+export type GET_ConnectRegistrarsByRegistrarCredentialId_Response_404 = Problem;
+export type GET_ConnectRegistrarsByRegistrarCredentialId_Response_422 = HTTPValidationError;
+
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSync_Response = GET_ConnectRegistrarsByRegistrarCredentialIdSync_Response_200 | GET_ConnectRegistrarsByRegistrarCredentialIdSync_Response_403 | GET_ConnectRegistrarsByRegistrarCredentialIdSync_Response_404 | GET_ConnectRegistrarsByRegistrarCredentialIdSync_Response_422;
+
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSync_Response_200 = SyncStatus;
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSync_Response_403 = Problem;
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSync_Response_404 = Problem;
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSync_Response_422 = HTTPValidationError;
 
 export type GET_Contacts_Response = GET_Contacts_Response_200 | GET_Contacts_Response_422;
 
@@ -1207,6 +1242,21 @@ export type POST_AvailabilityStream_Response = POST_AvailabilityStream_Response_
 export type POST_AvailabilityStream_Response_401 = Problem;
 export type POST_AvailabilityStream_Response_422 = HTTPValidationError;
 
+export type POST_ConnectRegistrars_Response = POST_ConnectRegistrars_Response_201 | POST_ConnectRegistrars_Response_403 | POST_ConnectRegistrars_Response_409 | POST_ConnectRegistrars_Response_422;
+
+export type POST_ConnectRegistrars_Response_201 = RegistrarCredential;
+export type POST_ConnectRegistrars_Response_403 = Problem;
+export type POST_ConnectRegistrars_Response_409 = Problem;
+export type POST_ConnectRegistrars_Response_422 = HTTPValidationError;
+
+export type POST_ConnectRegistrarsByRegistrarCredentialIdSync_Response = POST_ConnectRegistrarsByRegistrarCredentialIdSync_Response_200 | POST_ConnectRegistrarsByRegistrarCredentialIdSync_Response_202 | POST_ConnectRegistrarsByRegistrarCredentialIdSync_Response_403 | POST_ConnectRegistrarsByRegistrarCredentialIdSync_Response_404 | POST_ConnectRegistrarsByRegistrarCredentialIdSync_Response_422;
+
+export type POST_ConnectRegistrarsByRegistrarCredentialIdSync_Response_200 = SyncStatus;
+export type POST_ConnectRegistrarsByRegistrarCredentialIdSync_Response_202 = SyncStatus;
+export type POST_ConnectRegistrarsByRegistrarCredentialIdSync_Response_403 = Problem;
+export type POST_ConnectRegistrarsByRegistrarCredentialIdSync_Response_404 = Problem;
+export type POST_ConnectRegistrarsByRegistrarCredentialIdSync_Response_422 = HTTPValidationError;
+
 export type POST_Contacts_Response = POST_Contacts_Response_201 | POST_Contacts_Response_422;
 
 export type POST_Contacts_Response_201 = Contact;
@@ -1626,6 +1676,14 @@ export type POST_WhitelabelBrandingTier_Response = POST_WhitelabelBrandingTier_R
 
 export type POST_WhitelabelBrandingTier_Response_202 = ProductCreateRes;
 export type POST_WhitelabelBrandingTier_Response_422 = HTTPValidationError;
+
+export type PUT_ConnectRegistrarsByRegistrarCredentialId_Response = PUT_ConnectRegistrarsByRegistrarCredentialId_Response_200 | PUT_ConnectRegistrarsByRegistrarCredentialId_Response_403 | PUT_ConnectRegistrarsByRegistrarCredentialId_Response_404 | PUT_ConnectRegistrarsByRegistrarCredentialId_Response_409 | PUT_ConnectRegistrarsByRegistrarCredentialId_Response_422;
+
+export type PUT_ConnectRegistrarsByRegistrarCredentialId_Response_200 = RegistrarCredential;
+export type PUT_ConnectRegistrarsByRegistrarCredentialId_Response_403 = Problem;
+export type PUT_ConnectRegistrarsByRegistrarCredentialId_Response_404 = Problem;
+export type PUT_ConnectRegistrarsByRegistrarCredentialId_Response_409 = Problem;
+export type PUT_ConnectRegistrarsByRegistrarCredentialId_Response_422 = HTTPValidationError;
 
 export type PUT_ContactsByContactIdVerification_Response = PUT_ContactsByContactIdVerification_Response_400 | PUT_ContactsByContactIdVerification_Response_401 | PUT_ContactsByContactIdVerification_Response_403 | PUT_ContactsByContactIdVerification_Response_404 | PUT_ContactsByContactIdVerification_Response_410 | PUT_ContactsByContactIdVerification_Response_422 | PUT_ContactsByContactIdVerification_Response_502;
 

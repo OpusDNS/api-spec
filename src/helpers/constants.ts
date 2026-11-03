@@ -128,6 +128,7 @@ import type {
   SortOrder,
   StatusTagType,
   SyncOperationType,
+  SyncStatusEnum,
   TLDType,
   TagColor,
   TagFilterMode,
@@ -2564,6 +2565,22 @@ export const SYNC_OPERATION_TYPE_VALUES = [
   'renewal',
   'transfer',
 ] as const satisfies ReadonlyArray<SyncOperationType>;
+
+export const SYNC_STATUS_ENUM = {
+  PENDING: "pending",
+  RUNNING: "running",
+  COMPLETED: "completed",
+  FAILED: "failed",
+  CANCELLED: "cancelled",
+} as const satisfies Record<string, SyncStatusEnum>;
+
+export const SYNC_STATUS_ENUM_VALUES = [
+  'pending',
+  'running',
+  'completed',
+  'failed',
+  'cancelled',
+] as const satisfies ReadonlyArray<SyncStatusEnum>;
 
 export const TLD_TYPE = {
   G_TLD: "gTLD",
