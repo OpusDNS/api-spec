@@ -21473,6 +21473,11 @@ export interface components {
              */
             first_name: string;
             /**
+             * Identity Provider Id
+             * @description The identity provider the user last signed in through, null if none
+             */
+            identity_provider_id?: TypeId<"idp"> | null;
+            /**
              * Keycloak User Id
              * @description Keycloak user id
              */
@@ -21618,6 +21623,21 @@ export interface components {
              */
             username: string;
         };
+        /** UserIdentityProvider */
+        UserIdentityProvider: {
+            /**
+             * Display Name
+             * @description The identity provider's display name
+             */
+            display_name: string;
+            /**
+             * Identity Provider Id
+             * Format: typeid
+             * @description The identity provider's id
+             * @example idp_01h45ytscbebyvny4gc8cr8ma2
+             */
+            identity_provider_id: TypeId<"idp">;
+        };
         /** UserOrganizationMeta */
         UserOrganizationMeta: {
             /** @description Currency used by the user's organization. */
@@ -21647,6 +21667,8 @@ export interface components {
              * @description The user's first name
              */
             first_name: string;
+            /** @description The identity provider that manages the user or that the user signs in through */
+            identity_provider: components["schemas"]["UserIdentityProvider"] | null;
             /**
              * Last Name
              * @description The user's last name
@@ -21674,8 +21696,15 @@ export interface components {
              * @example +1.2125552368
              */
             phone?: string | null;
+            /** @description How the user was created: `local` by sign-up or an admin, `jit` at their first sign-in through the organization's identity provider, `scim` by the identity provider's SCIM client */
+            provisioned_by: components["schemas"]["UserProvisionedBy"];
             /** Role */
             role?: components["schemas"]["PublicRole"] | components["schemas"]["CustomRoleLabel"] | null;
+            /**
+             * Sso Managed Fields
+             * @description The fields that come from the user's identity provider and cannot be changed here: username, email, first_name, last_name. Clients must treat unknown names as read-only too
+             */
+            sso_managed_fields: string[];
             /**
              * Updated On
              * Format: date-time
@@ -21735,6 +21764,8 @@ export interface components {
              * @description The user's first name
              */
             first_name: string;
+            /** @description The identity provider that manages the user or that the user signs in through */
+            identity_provider: components["schemas"]["UserIdentityProvider"] | null;
             /**
              * Last Name
              * @description The user's last name
@@ -21759,6 +21790,13 @@ export interface components {
              * @example +1.2125552368
              */
             phone?: string | null;
+            /** @description How the user was created: `local` by sign-up or an admin, `jit` at their first sign-in through the organization's identity provider, `scim` by the identity provider's SCIM client */
+            provisioned_by: components["schemas"]["UserProvisionedBy"];
+            /**
+             * Sso Managed Fields
+             * @description The fields that come from the user's identity provider and cannot be changed here: username, email, first_name, last_name. Clients must treat unknown names as read-only too
+             */
+            sso_managed_fields: string[];
             /**
              * Updated On
              * Format: date-time
@@ -21796,6 +21834,8 @@ export interface components {
              * @description The user's first name
              */
             first_name: string;
+            /** @description The identity provider that manages the user or that the user signs in through */
+            identity_provider: components["schemas"]["UserIdentityProvider"] | null;
             /**
              * Last Name
              * @description The user's last name
@@ -21820,6 +21860,13 @@ export interface components {
              * @example +1.2125552368
              */
             phone?: string | null;
+            /** @description How the user was created: `local` by sign-up or an admin, `jit` at their first sign-in through the organization's identity provider, `scim` by the identity provider's SCIM client */
+            provisioned_by: components["schemas"]["UserProvisionedBy"];
+            /**
+             * Sso Managed Fields
+             * @description The fields that come from the user's identity provider and cannot be changed here: username, email, first_name, last_name. Clients must treat unknown names as read-only too
+             */
+            sso_managed_fields: string[];
             /**
              * Updated On
              * Format: date-time
@@ -21874,6 +21921,8 @@ export interface components {
              * @description The user's first name
              */
             first_name: string;
+            /** @description The identity provider that manages the user or that the user signs in through */
+            identity_provider: components["schemas"]["UserIdentityProvider"] | null;
             /**
              * Last Name
              * @description The user's last name
@@ -21898,8 +21947,20 @@ export interface components {
              * @example +1.2125552368
              */
             phone?: string | null;
+            /** @description How the user was created: `local` by sign-up or an admin, `jit` at their first sign-in through the organization's identity provider, `scim` by the identity provider's SCIM client */
+            provisioned_by: components["schemas"]["UserProvisionedBy"];
             /** Role */
             role?: components["schemas"]["PublicRole"] | components["schemas"]["CustomRoleLabel"] | null;
+            /**
+             * Role Managed By Sso
+             * @description The role comes from the organization's identity provider and cannot be changed here; the same as `managed_by_sso` of GET and PUT /v1/users/{user_id}/role
+             */
+            role_managed_by_sso: boolean;
+            /**
+             * Sso Managed Fields
+             * @description The fields that come from the user's identity provider and cannot be changed here: username, email, first_name, last_name. Clients must treat unknown names as read-only too
+             */
+            sso_managed_fields: string[];
             /**
              * Updated On
              * Format: date-time

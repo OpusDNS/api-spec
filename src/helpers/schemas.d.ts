@@ -677,6 +677,7 @@ export type UserAgreementAcceptance = components['schemas']['UserAgreementAccept
 export type UserAttributeBase = components['schemas']['UserAttributeBase'];
 export type UserAttribute = components['schemas']['UserAttributeResponse'];
 export type UserCreate = components['schemas']['UserCreate'];
+export type UserIdentityProvider = components['schemas']['UserIdentityProvider'];
 export type UserOrganizationMeta = components['schemas']['UserOrganizationMeta'];
 export type UserProfile = components['schemas']['UserProfile'];
 export type UserProvisionedBy = components['schemas']['UserProvisionedBy'];

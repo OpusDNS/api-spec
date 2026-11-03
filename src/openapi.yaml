@@ -25854,6 +25854,18 @@ components:
           minLength: 1
           title: First Name
           type: string
+        identity_provider_id:
+          anyOf:
+          - examples:
+            - idp_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^idp_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: idp
+          - type: 'null'
+          description: The identity provider the user last signed in through, null
+            if none
+          title: Identity Provider Id
         keycloak_user_id:
           anyOf:
           - type: string
@@ -26064,6 +26076,26 @@ components:
       - locale
       title: UserCreate
       type: object
+    UserIdentityProvider:
+      properties:
+        display_name:
+          description: The identity provider's display name
+          title: Display Name
+          type: string
+        identity_provider_id:
+          description: The identity provider's id
+          examples:
+          - idp_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^idp_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Identity Provider Id
+          type: string
+          x-typeid-prefix: idp
+      required:
+      - identity_provider_id
+      - display_name
+      title: UserIdentityProvider
+      type: object
     UserOrganizationMeta:
       properties:
         currency:
@@ -26102,6 +26134,12 @@ components:
           minLength: 1
           title: First Name
           type: string
+        identity_provider:
+          anyOf:
+          - $ref: '#/components/schemas/UserIdentityProvider'
+          - type: 'null'
+          description: The identity provider that manages the user or that the user
+            signs in through
         last_name:
           description: The user's last name
           maxLength: 255
@@ -26143,12 +26181,25 @@ components:
           examples:
           - '+1.2125552368'
           title: Phone
+        provisioned_by:
+          $ref: '#/components/schemas/UserProvisionedBy'
+          description: 'How the user was created: `local` by sign-up or an admin,
+            `jit` at their first sign-in through the organization''s identity provider,
+            `scim` by the identity provider''s SCIM client'
         role:
           anyOf:
           - $ref: '#/components/schemas/PublicRole'
           - $ref: '#/components/schemas/CustomRoleLabel'
           - type: 'null'
           title: Role
+        sso_managed_fields:
+          description: 'The fields that come from the user''s identity provider and
+            cannot be changed here: username, email, first_name, last_name. Clients
+            must treat unknown names as read-only too'
+          items:
+            type: string
+          title: Sso Managed Fields
+          type: array
         updated_on:
           description: The date/time the entry was last updated on
           format: date-time
@@ -26189,6 +26240,9 @@ components:
       - last_name
       - email
       - locale
+      - provisioned_by
+      - identity_provider
+      - sso_managed_fields
       title: UserProfile
       type: object
     UserProvisionedBy:
@@ -26216,6 +26270,12 @@ components:
           minLength: 1
           title: First Name
           type: string
+        identity_provider:
+          anyOf:
+          - $ref: '#/components/schemas/UserIdentityProvider'
+          - type: 'null'
+          description: The identity provider that manages the user or that the user
+            signs in through
         last_name:
           description: The user's last name
           maxLength: 255
@@ -26246,6 +26306,19 @@ components:
           examples:
           - '+1.2125552368'
           title: Phone
+        provisioned_by:
+          $ref: '#/components/schemas/UserProvisionedBy'
+          description: 'How the user was created: `local` by sign-up or an admin,
+            `jit` at their first sign-in through the organization''s identity provider,
+            `scim` by the identity provider''s SCIM client'
+        sso_managed_fields:
+          description: 'The fields that come from the user''s identity provider and
+            cannot be changed here: username, email, first_name, last_name. Clients
+            must treat unknown names as read-only too'
+          items:
+            type: string
+          title: Sso Managed Fields
+          type: array
         updated_on:
           description: The date/time the entry was last updated on
           format: date-time
@@ -26272,6 +26345,9 @@ components:
       - last_name
       - email
       - locale
+      - provisioned_by
+      - identity_provider
+      - sso_managed_fields
       title: UserPublic
       type: object
     UserPublicWithAttributes:
@@ -26292,6 +26368,12 @@ components:
           minLength: 1
           title: First Name
           type: string
+        identity_provider:
+          anyOf:
+          - $ref: '#/components/schemas/UserIdentityProvider'
+          - type: 'null'
+          description: The identity provider that manages the user or that the user
+            signs in through
         last_name:
           description: The user's last name
           maxLength: 255
@@ -26322,6 +26404,19 @@ components:
           examples:
           - '+1.2125552368'
           title: Phone
+        provisioned_by:
+          $ref: '#/components/schemas/UserProvisionedBy'
+          description: 'How the user was created: `local` by sign-up or an admin,
+            `jit` at their first sign-in through the organization''s identity provider,
+            `scim` by the identity provider''s SCIM client'
+        sso_managed_fields:
+          description: 'The fields that come from the user''s identity provider and
+            cannot be changed here: username, email, first_name, last_name. Clients
+            must treat unknown names as read-only too'
+          items:
+            type: string
+          title: Sso Managed Fields
+          type: array
         updated_on:
           description: The date/time the entry was last updated on
           format: date-time
@@ -26362,6 +26457,9 @@ components:
       - last_name
       - email
       - locale
+      - provisioned_by
+      - identity_provider
+      - sso_managed_fields
       title: UserPublicWithAttributes
       type: object
     UserPublicWithRole:
@@ -26382,6 +26480,12 @@ components:
           minLength: 1
           title: First Name
           type: string
+        identity_provider:
+          anyOf:
+          - $ref: '#/components/schemas/UserIdentityProvider'
+          - type: 'null'
+          description: The identity provider that manages the user or that the user
+            signs in through
         last_name:
           description: The user's last name
           maxLength: 255
@@ -26412,12 +26516,30 @@ components:
           examples:
           - '+1.2125552368'
           title: Phone
+        provisioned_by:
+          $ref: '#/components/schemas/UserProvisionedBy'
+          description: 'How the user was created: `local` by sign-up or an admin,
+            `jit` at their first sign-in through the organization''s identity provider,
+            `scim` by the identity provider''s SCIM client'
         role:
           anyOf:
           - $ref: '#/components/schemas/PublicRole'
           - $ref: '#/components/schemas/CustomRoleLabel'
           - type: 'null'
           title: Role
+        role_managed_by_sso:
+          description: The role comes from the organization's identity provider and
+            cannot be changed here; the same as `managed_by_sso` of GET and PUT /v1/users/{user_id}/role
+          title: Role Managed By Sso
+          type: boolean
+        sso_managed_fields:
+          description: 'The fields that come from the user''s identity provider and
+            cannot be changed here: username, email, first_name, last_name. Clients
+            must treat unknown names as read-only too'
+          items:
+            type: string
+          title: Sso Managed Fields
+          type: array
         updated_on:
           description: The date/time the entry was last updated on
           format: date-time
@@ -26444,6 +26566,10 @@ components:
       - last_name
       - email
       - locale
+      - provisioned_by
+      - identity_provider
+      - sso_managed_fields
+      - role_managed_by_sso
       title: UserPublicWithRole
       type: object
     UserSortField:
@@ -28405,7 +28531,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-03-172304
+  version: 2026-11-03-174215
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

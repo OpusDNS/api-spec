@@ -509,6 +509,7 @@ import type {
   UserAttributeBase,
   UserAttribute,
   UserCreate,
+  UserIdentityProvider,
   UserOrganizationMeta,
   UserProfile,
   UserPublic,
@@ -6985,6 +6986,7 @@ export const KEY_USER_CREATED_ON = 'created_on' satisfies keyof User;
 export const KEY_USER_DEACTIVATED_ON = 'deactivated_on' satisfies keyof User;
 export const KEY_USER_EMAIL = 'email' satisfies keyof User;
 export const KEY_USER_FIRST_NAME = 'first_name' satisfies keyof User;
+export const KEY_USER_IDENTITY_PROVIDER_ID = 'identity_provider_id' satisfies keyof User;
 export const KEY_USER_KEYCLOAK_USER_ID = 'keycloak_user_id' satisfies keyof User;
 export const KEY_USER_LAST_NAME = 'last_name' satisfies keyof User;
 export const KEY_USER_LOCALE = 'locale' satisfies keyof User;
@@ -7000,6 +7002,7 @@ export const KEYS_USER = [
   KEY_USER_DEACTIVATED_ON,
   KEY_USER_EMAIL,
   KEY_USER_FIRST_NAME,
+  KEY_USER_IDENTITY_PROVIDER_ID,
   KEY_USER_KEYCLOAK_USER_ID,
   KEY_USER_LAST_NAME,
   KEY_USER_LOCALE,
@@ -7069,6 +7072,14 @@ export const KEYS_USER_CREATE = [
   KEY_USER_CREATE_USERNAME,
 ] as const satisfies (keyof UserCreate)[];
 
+export const KEY_USER_IDENTITY_PROVIDER_DISPLAY_NAME = 'display_name' satisfies keyof UserIdentityProvider;
+export const KEY_USER_IDENTITY_PROVIDER_IDENTITY_PROVIDER_ID = 'identity_provider_id' satisfies keyof UserIdentityProvider;
+
+export const KEYS_USER_IDENTITY_PROVIDER = [
+  KEY_USER_IDENTITY_PROVIDER_DISPLAY_NAME,
+  KEY_USER_IDENTITY_PROVIDER_IDENTITY_PROVIDER_ID,
+] as const satisfies (keyof UserIdentityProvider)[];
+
 export const KEY_USER_ORGANIZATION_META_CURRENCY = 'currency' satisfies keyof UserOrganizationMeta;
 export const KEY_USER_ORGANIZATION_META_PARENT_ORGANIZATION_ID = 'parent_organization_id' satisfies keyof UserOrganizationMeta;
 
@@ -7080,13 +7091,16 @@ export const KEYS_USER_ORGANIZATION_META = [
 export const KEY_USER_PROFILE_CREATED_ON = 'created_on' satisfies keyof UserProfile;
 export const KEY_USER_PROFILE_EMAIL = 'email' satisfies keyof UserProfile;
 export const KEY_USER_PROFILE_FIRST_NAME = 'first_name' satisfies keyof UserProfile;
+export const KEY_USER_PROFILE_IDENTITY_PROVIDER = 'identity_provider' satisfies keyof UserProfile;
 export const KEY_USER_PROFILE_LAST_NAME = 'last_name' satisfies keyof UserProfile;
 export const KEY_USER_PROFILE_LOCALE = 'locale' satisfies keyof UserProfile;
 export const KEY_USER_PROFILE_ORGANIZATION = 'organization' satisfies keyof UserProfile;
 export const KEY_USER_PROFILE_ORGANIZATION_ID = 'organization_id' satisfies keyof UserProfile;
 export const KEY_USER_PROFILE_PERMISSIONS = 'permissions' satisfies keyof UserProfile;
 export const KEY_USER_PROFILE_PHONE = 'phone' satisfies keyof UserProfile;
+export const KEY_USER_PROFILE_PROVISIONED_BY = 'provisioned_by' satisfies keyof UserProfile;
 export const KEY_USER_PROFILE_ROLE = 'role' satisfies keyof UserProfile;
+export const KEY_USER_PROFILE_SSO_MANAGED_FIELDS = 'sso_managed_fields' satisfies keyof UserProfile;
 export const KEY_USER_PROFILE_UPDATED_ON = 'updated_on' satisfies keyof UserProfile;
 export const KEY_USER_PROFILE_USER_ATTRIBUTES = 'user_attributes' satisfies keyof UserProfile;
 export const KEY_USER_PROFILE_USER_ID = 'user_id' satisfies keyof UserProfile;
@@ -7096,13 +7110,16 @@ export const KEYS_USER_PROFILE = [
   KEY_USER_PROFILE_CREATED_ON,
   KEY_USER_PROFILE_EMAIL,
   KEY_USER_PROFILE_FIRST_NAME,
+  KEY_USER_PROFILE_IDENTITY_PROVIDER,
   KEY_USER_PROFILE_LAST_NAME,
   KEY_USER_PROFILE_LOCALE,
   KEY_USER_PROFILE_ORGANIZATION,
   KEY_USER_PROFILE_ORGANIZATION_ID,
   KEY_USER_PROFILE_PERMISSIONS,
   KEY_USER_PROFILE_PHONE,
+  KEY_USER_PROFILE_PROVISIONED_BY,
   KEY_USER_PROFILE_ROLE,
+  KEY_USER_PROFILE_SSO_MANAGED_FIELDS,
   KEY_USER_PROFILE_UPDATED_ON,
   KEY_USER_PROFILE_USER_ATTRIBUTES,
   KEY_USER_PROFILE_USER_ID,
@@ -7112,10 +7129,13 @@ export const KEYS_USER_PROFILE = [
 export const KEY_USER_PUBLIC_CREATED_ON = 'created_on' satisfies keyof UserPublic;
 export const KEY_USER_PUBLIC_EMAIL = 'email' satisfies keyof UserPublic;
 export const KEY_USER_PUBLIC_FIRST_NAME = 'first_name' satisfies keyof UserPublic;
+export const KEY_USER_PUBLIC_IDENTITY_PROVIDER = 'identity_provider' satisfies keyof UserPublic;
 export const KEY_USER_PUBLIC_LAST_NAME = 'last_name' satisfies keyof UserPublic;
 export const KEY_USER_PUBLIC_LOCALE = 'locale' satisfies keyof UserPublic;
 export const KEY_USER_PUBLIC_ORGANIZATION_ID = 'organization_id' satisfies keyof UserPublic;
 export const KEY_USER_PUBLIC_PHONE = 'phone' satisfies keyof UserPublic;
+export const KEY_USER_PUBLIC_PROVISIONED_BY = 'provisioned_by' satisfies keyof UserPublic;
+export const KEY_USER_PUBLIC_SSO_MANAGED_FIELDS = 'sso_managed_fields' satisfies keyof UserPublic;
 export const KEY_USER_PUBLIC_UPDATED_ON = 'updated_on' satisfies keyof UserPublic;
 export const KEY_USER_PUBLIC_USER_ID = 'user_id' satisfies keyof UserPublic;
 export const KEY_USER_PUBLIC_USERNAME = 'username' satisfies keyof UserPublic;
@@ -7124,10 +7144,13 @@ export const KEYS_USER_PUBLIC = [
   KEY_USER_PUBLIC_CREATED_ON,
   KEY_USER_PUBLIC_EMAIL,
   KEY_USER_PUBLIC_FIRST_NAME,
+  KEY_USER_PUBLIC_IDENTITY_PROVIDER,
   KEY_USER_PUBLIC_LAST_NAME,
   KEY_USER_PUBLIC_LOCALE,
   KEY_USER_PUBLIC_ORGANIZATION_ID,
   KEY_USER_PUBLIC_PHONE,
+  KEY_USER_PUBLIC_PROVISIONED_BY,
+  KEY_USER_PUBLIC_SSO_MANAGED_FIELDS,
   KEY_USER_PUBLIC_UPDATED_ON,
   KEY_USER_PUBLIC_USER_ID,
   KEY_USER_PUBLIC_USERNAME,
@@ -7136,10 +7159,13 @@ export const KEYS_USER_PUBLIC = [
 export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_CREATED_ON = 'created_on' satisfies keyof UserPublicWithAttributes;
 export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_EMAIL = 'email' satisfies keyof UserPublicWithAttributes;
 export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_FIRST_NAME = 'first_name' satisfies keyof UserPublicWithAttributes;
+export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_IDENTITY_PROVIDER = 'identity_provider' satisfies keyof UserPublicWithAttributes;
 export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_LAST_NAME = 'last_name' satisfies keyof UserPublicWithAttributes;
 export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_LOCALE = 'locale' satisfies keyof UserPublicWithAttributes;
 export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_ORGANIZATION_ID = 'organization_id' satisfies keyof UserPublicWithAttributes;
 export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_PHONE = 'phone' satisfies keyof UserPublicWithAttributes;
+export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_PROVISIONED_BY = 'provisioned_by' satisfies keyof UserPublicWithAttributes;
+export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_SSO_MANAGED_FIELDS = 'sso_managed_fields' satisfies keyof UserPublicWithAttributes;
 export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_UPDATED_ON = 'updated_on' satisfies keyof UserPublicWithAttributes;
 export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_USER_ATTRIBUTES = 'user_attributes' satisfies keyof UserPublicWithAttributes;
 export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_USER_ID = 'user_id' satisfies keyof UserPublicWithAttributes;
@@ -7149,10 +7175,13 @@ export const KEYS_USER_PUBLIC_WITH_ATTRIBUTES = [
   KEY_USER_PUBLIC_WITH_ATTRIBUTES_CREATED_ON,
   KEY_USER_PUBLIC_WITH_ATTRIBUTES_EMAIL,
   KEY_USER_PUBLIC_WITH_ATTRIBUTES_FIRST_NAME,
+  KEY_USER_PUBLIC_WITH_ATTRIBUTES_IDENTITY_PROVIDER,
   KEY_USER_PUBLIC_WITH_ATTRIBUTES_LAST_NAME,
   KEY_USER_PUBLIC_WITH_ATTRIBUTES_LOCALE,
   KEY_USER_PUBLIC_WITH_ATTRIBUTES_ORGANIZATION_ID,
   KEY_USER_PUBLIC_WITH_ATTRIBUTES_PHONE,
+  KEY_USER_PUBLIC_WITH_ATTRIBUTES_PROVISIONED_BY,
+  KEY_USER_PUBLIC_WITH_ATTRIBUTES_SSO_MANAGED_FIELDS,
   KEY_USER_PUBLIC_WITH_ATTRIBUTES_UPDATED_ON,
   KEY_USER_PUBLIC_WITH_ATTRIBUTES_USER_ATTRIBUTES,
   KEY_USER_PUBLIC_WITH_ATTRIBUTES_USER_ID,
@@ -7162,11 +7191,15 @@ export const KEYS_USER_PUBLIC_WITH_ATTRIBUTES = [
 export const KEY_USER_PUBLIC_WITH_ROLE_CREATED_ON = 'created_on' satisfies keyof UserPublicWithRole;
 export const KEY_USER_PUBLIC_WITH_ROLE_EMAIL = 'email' satisfies keyof UserPublicWithRole;
 export const KEY_USER_PUBLIC_WITH_ROLE_FIRST_NAME = 'first_name' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_IDENTITY_PROVIDER = 'identity_provider' satisfies keyof UserPublicWithRole;
 export const KEY_USER_PUBLIC_WITH_ROLE_LAST_NAME = 'last_name' satisfies keyof UserPublicWithRole;
 export const KEY_USER_PUBLIC_WITH_ROLE_LOCALE = 'locale' satisfies keyof UserPublicWithRole;
 export const KEY_USER_PUBLIC_WITH_ROLE_ORGANIZATION_ID = 'organization_id' satisfies keyof UserPublicWithRole;
 export const KEY_USER_PUBLIC_WITH_ROLE_PHONE = 'phone' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_PROVISIONED_BY = 'provisioned_by' satisfies keyof UserPublicWithRole;
 export const KEY_USER_PUBLIC_WITH_ROLE_ROLE = 'role' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_ROLE_MANAGED_BY_SSO = 'role_managed_by_sso' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_SSO_MANAGED_FIELDS = 'sso_managed_fields' satisfies keyof UserPublicWithRole;
 export const KEY_USER_PUBLIC_WITH_ROLE_UPDATED_ON = 'updated_on' satisfies keyof UserPublicWithRole;
 export const KEY_USER_PUBLIC_WITH_ROLE_USER_ID = 'user_id' satisfies keyof UserPublicWithRole;
 export const KEY_USER_PUBLIC_WITH_ROLE_USERNAME = 'username' satisfies keyof UserPublicWithRole;
@@ -7175,11 +7208,15 @@ export const KEYS_USER_PUBLIC_WITH_ROLE = [
   KEY_USER_PUBLIC_WITH_ROLE_CREATED_ON,
   KEY_USER_PUBLIC_WITH_ROLE_EMAIL,
   KEY_USER_PUBLIC_WITH_ROLE_FIRST_NAME,
+  KEY_USER_PUBLIC_WITH_ROLE_IDENTITY_PROVIDER,
   KEY_USER_PUBLIC_WITH_ROLE_LAST_NAME,
   KEY_USER_PUBLIC_WITH_ROLE_LOCALE,
   KEY_USER_PUBLIC_WITH_ROLE_ORGANIZATION_ID,
   KEY_USER_PUBLIC_WITH_ROLE_PHONE,
+  KEY_USER_PUBLIC_WITH_ROLE_PROVISIONED_BY,
   KEY_USER_PUBLIC_WITH_ROLE_ROLE,
+  KEY_USER_PUBLIC_WITH_ROLE_ROLE_MANAGED_BY_SSO,
+  KEY_USER_PUBLIC_WITH_ROLE_SSO_MANAGED_FIELDS,
   KEY_USER_PUBLIC_WITH_ROLE_UPDATED_ON,
   KEY_USER_PUBLIC_WITH_ROLE_USER_ID,
   KEY_USER_PUBLIC_WITH_ROLE_USERNAME,
