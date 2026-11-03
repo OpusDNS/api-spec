@@ -14000,15 +14000,15 @@ export interface components {
         DomainRegistrarCredentialResponse: {
             /**
              * Name
-             * @description Human-readable name for this credential
+             * @description Your name for this connection
              */
             name: string;
-            /** @description The registrar this credential is for */
+            /** @description The registrar the account is at */
             registrar: components["schemas"]["Registrar"];
             /**
              * Registrar Credential Id
              * Format: typeid
-             * @description Unique identifier for this credential
+             * @description ID of the connected account
              * @example registrar_credential_01h45ytscbebyvny4gc8cr8ma2
              */
             registrar_credential_id: TypeId<"registrar_credential">;

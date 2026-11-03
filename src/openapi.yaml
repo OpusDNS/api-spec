@@ -14770,14 +14770,14 @@ components:
     DomainRegistrarCredentialResponse:
       properties:
         name:
-          description: Human-readable name for this credential
+          description: Your name for this connection
           title: Name
           type: string
         registrar:
           $ref: '#/components/schemas/Registrar'
-          description: The registrar this credential is for
+          description: The registrar the account is at
         registrar_credential_id:
-          description: Unique identifier for this credential
+          description: ID of the connected account
           examples:
           - registrar_credential_01h45ytscbebyvny4gc8cr8ma2
           format: typeid
@@ -27399,7 +27399,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-03-154554
+  version: 2026-11-03-162545
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
