@@ -19,6 +19,7 @@ To submit evidence, see the [Attestation workflow](/products/contacts/attestatio
 | `deadlines` | The case's deadlines. See [Deadlines](#deadlines). |
 | `contact_id` | The registrant contact the case is about. |
 | `opened_on` | When the case was opened. |
+| `verification_url` | The registry's page where the registrant verifies, to show to the registrant. `null` when the registry has no such page, or has not given it to OpusDNS yet. See [Registries](#registries). |
 | `closed_on` | When the case was closed, `null` while it is active. Only in the [case history](#case-history). |
 | `close_reason` | Why the case was closed, `null` while it is active. Only in the [case history](#case-history). |
 | `reminders_sent` | How many reminders the registrant got about the case, not counting the first mail. Only in the [case history](#case-history). |
@@ -115,7 +116,8 @@ Every domain read, [`GET /v1/domains`](/api-reference#tag/domain/GET/v1/domains)
         { "type": "verification", "date": "2026-11-05T08:00:00Z" }
       ],
       "contact_id": "contact_01jxe1nzrmf78scaqbkjx0va0f",
-      "opened_on": "2026-10-22T09:14:03Z"
+      "opened_on": "2026-10-22T09:14:03Z",
+      "verification_url": null
     }
   ]
 }
@@ -165,6 +167,7 @@ curl "$OPUSDNS_API_BASE/v1/domains/example.de/verifications" \
       ],
       "contact_id": "contact_01jxe1nzrmf78scaqbkjx0va0f",
       "opened_on": "2026-10-21T13:01:05Z",
+      "verification_url": null,
       "closed_on": "2026-10-24T08:42:17Z",
       "close_reason": "REGISTRY_CLEARED"
     }
@@ -209,6 +212,7 @@ curl "$OPUSDNS_API_BASE/v1/contacts/$CONTACT_ID/verification-cases" \
       ],
       "contact_id": "contact_01jxe1nzrmf78scaqbkjx0va0f",
       "opened_on": "2026-10-28T09:30:00Z",
+      "verification_url": null,
       "closed_on": null,
       "close_reason": null,
       "reminders_sent": 1,
@@ -351,7 +355,7 @@ Delegated contact verification is set up with OpusDNS support.
 | DENIC (`.de`) | A request about a contact, for every domain of that contact; the domain's registry data | DENIC reports the contact verified, or its data no longer shows a deadline | From DENIC's request | `verification`, `dedelegation`, `deletion` | You [attest](/products/contacts/attestation-workflow) the claims; OpusDNS sends the attestation to DENIC. |
 | nic.at (`.at`) | "Domain holder verification required", and nic.at's reminder | "Domain holder verification successful" | `name`, `address`, `email` | `verification` | You attest name (or legal entity), address and email; OpusDNS sends the verification report to nic.at. |
 | Internetstiftelsen (`.se`) | "Registrant data needs verification before" a date | "Registrant verified" or "Data control flag removed" | none | `verification` | The registry checks the holder's data. If it fails the check, correct it with a registrant change. |
-| DNS Belgium (`.be`) | "Verification required" for a domain or a contact | "Verification approved" | none | none | The holder verifies with DNS Belgium, which contacts the holder directly. |
+| DNS Belgium (`.be`) | "Verification required" for a domain or a contact; the domain's registry data | "Verification approved", or the domain's registry data no longer shows the verification pending | none | none | The holder verifies on DNS Belgium's page, which the case carries in `verification_url`. DNS Belgium also contacts the holder directly. |
 | Punktum dk (`.dk`) | A contact's ID, data or email check | The check is completed | none | none | The holder completes Punktum dk's check. |
 | DNS.pt (`.pt`) | A proof request | No clearing message is processed | none | none | The holder answers DNS.pt's proof request. |
 | EURid (`.eu`) | A registrant validation scheduled for suspension | The scheduled suspension is cleared | none | none | The holder verifies at [my.eurid.eu](https://my.eurid.eu). |
