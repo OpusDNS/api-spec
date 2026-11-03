@@ -12674,17 +12674,47 @@ export interface components {
         DomainAvailability: {
             /** Domain */
             domain: string;
-            /** @description Error details when status is 'error', e.g. why a domain is invalid */
+            /** @description Why the domain could not be checked: a `validation_error` (the name is invalid; status `unavailable`) or a `check_error` (status `error`). Null otherwise; a status `error` may also come without one. */
             error?: components["schemas"]["DomainAvailabilityError"] | null;
             /** @description The marketplace a taken domain can be bought on; set on `market_available` results of `POST /v1/availability/stream` with `marketplaces`; null otherwise, or when the marketplace is not known yet. */
             marketplace?: components["schemas"]["Marketplace"] | null;
+            /** @description `unavailable` also covers reserved and invalid names (see `error`). Retry `error` and `unknown` later. `tmch_claim` is not returned at present. */
             status: components["schemas"]["DomainAvailabilityStatus"];
         };
-        /** DomainAvailabilityError */
+        /**
+         * DomainAvailabilityError
+         * @example {
+         *       "code": "ERROR_DOMAIN_NAME_INVALID",
+         *       "detail": "The domain name mωnchenж.com is not valid.",
+         *       "errors": [
+         *         {
+         *           "character": "ω",
+         *           "code": "ERROR_DOMAIN_CHARACTER_NOT_ALLOWED",
+         *           "codepoint": "U+03C9",
+         *           "detail": "\"ω\" (U+03C9) is not allowed in \"mωnchenж\" by the .com registry.",
+         *           "label": "mωnchenж",
+         *           "position": 1
+         *         },
+         *         {
+         *           "character": "ж",
+         *           "code": "ERROR_DOMAIN_CHARACTER_NOT_ALLOWED",
+         *           "codepoint": "U+0436",
+         *           "detail": "\"ж\" (U+0436) is not allowed in \"mωnchenж\" by the .com registry.",
+         *           "label": "mωnchenж",
+         *           "position": 7
+         *         }
+         *       ],
+         *       "message": "The domain name mωnchenж.com is not valid.",
+         *       "status": 400,
+         *       "title": "Domain Management Error",
+         *       "tld": "com",
+         *       "type": "validation_error"
+         *     }
+         */
         DomainAvailabilityError: {
             /**
              * Code
-             * @description Machine-readable validation error code, e.g. ERROR_DOMAIN_NAME_INVALID; absent for check_error
+             * @description Machine-readable validation error code: one of `ERROR_DOMAIN_NAME_INVALID`, `ERROR_TLD_IDN_NOT_SUPPORTED`, `ERROR_TLD_NOT_AVAILABLE`, `ERROR_DOMAIN_NOT_REGISTRABLE`, `ERROR_DOMAIN_EMPTY`, `ERROR_DOMAIN_INPUT_TOO_LONG`; more may be added. Absent for check_error.
              */
             code?: string | null;
             /**
@@ -12706,20 +12736,20 @@ export interface components {
              * Status
              * @description HTTP status code this error would have as a request of its own
              */
-            status: number;
+            readonly status: number;
             /**
              * Title
              * @description Short summary of the error type (RFC 9457)
              */
-            title: string;
+            readonly title: string;
             /**
              * Tld
-             * @description The TLD the name was validated against
+             * @description The TLD the name was validated against, in ASCII (ACE) form, e.g. `xn--p1ai` for `рф`
              */
             tld?: string | null;
             /**
              * Type
-             * @description Error type identifier, e.g. validation_error or check_error
+             * @description Error type: one of `validation_error`, `check_error`. Clients should treat an unknown type as check_error.
              */
             type: string;
         };
@@ -15397,7 +15427,7 @@ export interface components {
             limit?: number | null;
             /**
              * Position
-             * @description 0-based codepoint index of the problem within the label
+             * @description 0-based codepoint index of the problem within the label, after UTS 46 mapping (e.g. full-width letters folded to ASCII)
              */
             position?: number | null;
         };
