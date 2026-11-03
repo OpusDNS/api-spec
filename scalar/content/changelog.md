@@ -4,6 +4,14 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 3 November 2026
+
+- Added **the registry's verification page to verification cases**.
+  Each case now carries `verification_url`, the page where the registrant verifies with the registry: in `active_verifications` on domain reads, in [`GET /v1/domains/{domain_reference}/verifications`](/api-reference#tag/domain/GET/v1/domains/{domain_reference}/verifications) and in [`GET /v1/contacts/{contact_id}/verification-cases`](/api-reference#tag/contact/GET/v1/contacts/{contact_id}/verification-cases).
+  It is set on [`.be`](/tld-knowledge-base/cctlds/be) cases and is `null` on the others.
+  A `.be` case has no claims to attest: it closes once the holder verifies on that page, so show the link to the holder.
+  See [Registries](/products/contacts/verification-cases#registries).
+
 ### 31 October 2026
 
 - Changed **contacts imported from a registry**.
