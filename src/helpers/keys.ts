@@ -572,6 +572,7 @@ export const KEY_ACTIVE_DOMAIN_VERIFICATION_SOURCE = 'source' satisfies keyof Ac
 export const KEY_ACTIVE_DOMAIN_VERIFICATION_STATUS = 'status' satisfies keyof ActiveDomainVerification;
 export const KEY_ACTIVE_DOMAIN_VERIFICATION_TRIGGER = 'trigger' satisfies keyof ActiveDomainVerification;
 export const KEY_ACTIVE_DOMAIN_VERIFICATION_VERIFICATION_ID = 'verification_id' satisfies keyof ActiveDomainVerification;
+export const KEY_ACTIVE_DOMAIN_VERIFICATION_VERIFICATION_URL = 'verification_url' satisfies keyof ActiveDomainVerification;
 
 export const KEYS_ACTIVE_DOMAIN_VERIFICATION = [
   KEY_ACTIVE_DOMAIN_VERIFICATION_CLAIMS,
@@ -582,6 +583,7 @@ export const KEYS_ACTIVE_DOMAIN_VERIFICATION = [
   KEY_ACTIVE_DOMAIN_VERIFICATION_STATUS,
   KEY_ACTIVE_DOMAIN_VERIFICATION_TRIGGER,
   KEY_ACTIVE_DOMAIN_VERIFICATION_VERIFICATION_ID,
+  KEY_ACTIVE_DOMAIN_VERIFICATION_VERIFICATION_URL,
 ] as const satisfies (keyof ActiveDomainVerification)[];
 
 export const KEY_AGGREGATION_RESULT_FIELD = 'field' satisfies keyof AggregationResult;
@@ -1574,6 +1576,7 @@ export const KEY_CONTACT_VERIFICATION_CASE_SOURCE = 'source' satisfies keyof Con
 export const KEY_CONTACT_VERIFICATION_CASE_STATUS = 'status' satisfies keyof ContactVerificationCase;
 export const KEY_CONTACT_VERIFICATION_CASE_TRIGGER = 'trigger' satisfies keyof ContactVerificationCase;
 export const KEY_CONTACT_VERIFICATION_CASE_VERIFICATION_ID = 'verification_id' satisfies keyof ContactVerificationCase;
+export const KEY_CONTACT_VERIFICATION_CASE_VERIFICATION_URL = 'verification_url' satisfies keyof ContactVerificationCase;
 
 export const KEYS_CONTACT_VERIFICATION_CASE = [
   KEY_CONTACT_VERIFICATION_CASE_CLAIMS,
@@ -1590,6 +1593,7 @@ export const KEYS_CONTACT_VERIFICATION_CASE = [
   KEY_CONTACT_VERIFICATION_CASE_STATUS,
   KEY_CONTACT_VERIFICATION_CASE_TRIGGER,
   KEY_CONTACT_VERIFICATION_CASE_VERIFICATION_ID,
+  KEY_CONTACT_VERIFICATION_CASE_VERIFICATION_URL,
 ] as const satisfies (keyof ContactVerificationCase)[];
 
 export const KEY_CONTACT_VERIFICATION_EID_INFORMATION_EID_SCHEME = 'eid_scheme' satisfies keyof ContactVerificationEidInformation;
@@ -3936,6 +3940,7 @@ export const KEY_DOMAIN_VERIFICATION_SOURCE = 'source' satisfies keyof DomainVer
 export const KEY_DOMAIN_VERIFICATION_STATUS = 'status' satisfies keyof DomainVerification;
 export const KEY_DOMAIN_VERIFICATION_TRIGGER = 'trigger' satisfies keyof DomainVerification;
 export const KEY_DOMAIN_VERIFICATION_VERIFICATION_ID = 'verification_id' satisfies keyof DomainVerification;
+export const KEY_DOMAIN_VERIFICATION_VERIFICATION_URL = 'verification_url' satisfies keyof DomainVerification;
 
 export const KEYS_DOMAIN_VERIFICATION = [
   KEY_DOMAIN_VERIFICATION_CLAIMS,
@@ -3950,6 +3955,7 @@ export const KEYS_DOMAIN_VERIFICATION = [
   KEY_DOMAIN_VERIFICATION_STATUS,
   KEY_DOMAIN_VERIFICATION_TRIGGER,
   KEY_DOMAIN_VERIFICATION_VERIFICATION_ID,
+  KEY_DOMAIN_VERIFICATION_VERIFICATION_URL,
 ] as const satisfies (keyof DomainVerification)[];
 
 export const KEY_DOMAIN_WITHDRAW_REQUEST_ZONE_DELETE = 'zone_delete' satisfies keyof DomainWithdrawRequest;

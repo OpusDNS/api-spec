@@ -3659,6 +3659,11 @@ export interface components {
              * @example domain_verification_01h45ytscbebyvny4gc8cr8ma2
              */
             verification_id: TypeId<"domain_verification">;
+            /**
+             * Verification Url
+             * @description Where the registrant verifies with the registry, null when the registry handles it otherwise
+             */
+            verification_url: string | null;
         };
         /** AggregationResult */
         AggregationResult: {
@@ -11418,6 +11423,11 @@ export interface components {
              * @example domain_verification_01h45ytscbebyvny4gc8cr8ma2
              */
             verification_id: TypeId<"domain_verification">;
+            /**
+             * Verification Url
+             * @description Where the registrant verifies with the registry, null when the registry handles it otherwise
+             */
+            verification_url: string | null;
         };
         /**
          * ContactVerificationClaim
@@ -15859,6 +15869,11 @@ export interface components {
              * @example domain_verification_01h45ytscbebyvny4gc8cr8ma2
              */
             verification_id: TypeId<"domain_verification">;
+            /**
+             * Verification Url
+             * @description Where the registrant verifies with the registry, null when the registry handles it otherwise
+             */
+            verification_url: string | null;
         };
         /**
          * DomainVerificationStatus

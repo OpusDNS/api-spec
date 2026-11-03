@@ -68,6 +68,13 @@ components:
           title: Verification Id
           type: string
           x-typeid-prefix: domain_verification
+        verification_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Where the registrant verifies with the registry, null when
+            the registry handles it otherwise
+          title: Verification Url
       required:
       - verification_id
       - source
@@ -77,6 +84,7 @@ components:
       - deadlines
       - contact_id
       - opened_on
+      - verification_url
       title: ActiveDomainVerificationResponse
       type: object
     AggregationResult:
@@ -10526,6 +10534,13 @@ components:
           title: Verification Id
           type: string
           x-typeid-prefix: domain_verification
+        verification_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Where the registrant verifies with the registry, null when
+            the registry handles it otherwise
+          title: Verification Url
       required:
       - verification_id
       - source
@@ -10535,6 +10550,7 @@ components:
       - deadlines
       - contact_id
       - opened_on
+      - verification_url
       - closed_on
       - close_reason
       - reminders_sent
@@ -17255,6 +17271,13 @@ components:
           title: Verification Id
           type: string
           x-typeid-prefix: domain_verification
+        verification_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Where the registrant verifies with the registry, null when
+            the registry handles it otherwise
+          title: Verification Url
       required:
       - verification_id
       - source
@@ -17264,6 +17287,7 @@ components:
       - deadlines
       - contact_id
       - opened_on
+      - verification_url
       - closed_on
       - close_reason
       - reminders_sent
@@ -28531,7 +28555,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-03-174215
+  version: 2026-11-03-203835
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
