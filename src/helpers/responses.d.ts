@@ -1138,9 +1138,10 @@ export type PATCH_TagsByTagId_Response_404 = Problem;
 export type PATCH_TagsByTagId_Response_409 = Problem;
 export type PATCH_TagsByTagId_Response_422 = HTTPValidationError;
 
-export type PATCH_UsersByUserId_Response = PATCH_UsersByUserId_Response_200 | PATCH_UsersByUserId_Response_422;
+export type PATCH_UsersByUserId_Response = PATCH_UsersByUserId_Response_200 | PATCH_UsersByUserId_Response_409 | PATCH_UsersByUserId_Response_422;
 
 export type PATCH_UsersByUserId_Response_200 = UserPublicWithAttributes;
+export type PATCH_UsersByUserId_Response_409 = Problem;
 export type PATCH_UsersByUserId_Response_422 = HTTPValidationError;
 
 export type PATCH_VanityNameserverSetsBySetId_Response = PATCH_VanityNameserverSetsBySetId_Response_200 | PATCH_VanityNameserverSetsBySetId_Response_422;

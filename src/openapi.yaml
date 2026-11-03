@@ -27399,7 +27399,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-03-130102
+  version: 2026-11-03-154554
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -47297,6 +47297,23 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserPublicWithAttributes'
           description: Successful Response
+        '409':
+          content:
+            application/problem+json:
+              examples:
+                User Management Error:
+                  value:
+                    code: ERROR_USER_IDENTITY_MANAGED_BY_SSO
+                    detail: These fields come from the user's organization's identity
+                      provider and cannot be changed here
+                    fields:
+                    - email
+                    status: 409
+                    title: User Management Error
+                    type: user-identity-managed-by-sso
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
         '422':
           content:
             application/problem+json:

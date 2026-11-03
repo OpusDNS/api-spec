@@ -38182,6 +38182,15 @@ export interface operations {
                     "application/json": components["schemas"]["UserPublicWithAttributes"];
                 };
             };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
