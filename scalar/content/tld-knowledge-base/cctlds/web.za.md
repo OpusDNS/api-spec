@@ -109,15 +109,15 @@ The registry checks that every name server answers authoritatively for the domai
 
 While the check fails at registration, the domain is registered but carries the `serverHold` status and is not published in the DNS. The registry repeats the check for **7 days** and removes the status once the name servers answer. After 7 days it stops checking, and the domain remains suspended until a domain update supplies name servers that answer. To use OpusDNS name servers, create the zone along with the domain so that they can answer for it.
 
-A name server change that fails the check is refused as a whole. The name servers and statuses of the domain return to their previous values, and anything else sent in the same request is not applied either.
+A name server change that fails the check is refused as a whole. Everything sent in the same request returns to its previous value, and a domain modification failure event reports the refusal.
 
 ## Pending updates
 
-Every change to a `.za` domain is processed asynchronously. The request is accepted and the domain carries the `pendingUpdate` status until the registry reports the outcome, which usually takes less than a minute. A change of registrant takes **5 days**.
+Every change to a `.za` domain is processed asynchronously. The request is accepted, the domain shows the requested values, and it carries the `pendingUpdate` status until the registry reports the outcome, which usually takes less than a minute. A change of registrant takes **5 days**.
 
-While the status is present, another change to the name servers, contacts, statuses or renewal mode answers `409` with the code `ERROR_DOMAIN_UPDATE_PENDING`. Retry once the status has cleared.
+Until the outcome is reported, another change to the name servers, contacts, statuses or renewal mode answers `409` with the code `ERROR_DOMAIN_UPDATE_PENDING`. Retry once it has been reported.
 
-> ⚠️ Combining a change of registrant with other changes makes all of them wait for 5 days, and a refused name server change also discards the change of registrant. Send them separately.
+> ⚠️ Combining a change of registrant with other changes makes all of them wait for 5 days. Send them separately.
 
 ## Changing the registrant
 
