@@ -19,6 +19,13 @@ Track notable updates to the OpusDNS API and developer documentation here.
   [`GET /v1/domain-forwards/statistics/movers`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics/movers) lists the domains whose redirects dropped or rose most in the last 7 or 30 days that are over, against the same number of days before them.
   See [Movers](/products/dns/domain-forwarding/metrics#movers).
 
+- Onboarded **[`.co.za`](/tld-knowledge-base/cctlds/co.za)**,
+  **[`.net.za`](/tld-knowledge-base/cctlds/net.za)**,
+  **[`.org.za`](/tld-knowledge-base/cctlds/org.za)** and
+  **[`.web.za`](/tld-knowledge-base/cctlds/web.za)**. Published their TLD
+  Knowledge Base pages. Every change to these domains is processed
+  asynchronously, and a change of registrant takes 5 days.
+
 ### 6 November 2026
 
 - Onboarded **[`.gr`](/tld-knowledge-base/cctlds/gr)** (Greece), with `.com.gr`, `.edu.gr`,
