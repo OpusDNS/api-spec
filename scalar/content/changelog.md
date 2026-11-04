@@ -4,6 +4,15 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 3 November 2026
+
+- Onboarded **[`.co.za`](/tld-knowledge-base/cctlds/co.za)**,
+  **[`.net.za`](/tld-knowledge-base/cctlds/net.za)**,
+  **[`.org.za`](/tld-knowledge-base/cctlds/org.za)** and
+  **[`.web.za`](/tld-knowledge-base/cctlds/web.za)**. Published their TLD
+  Knowledge Base pages. Every change to these domains is processed
+  asynchronously, and a change of registrant takes 5 days.
+
 ### 31 October 2026
 
 - Changed **contacts imported from a registry**.
