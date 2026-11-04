@@ -24954,6 +24954,7 @@ components:
       - DNSSEC_PENDING
       - TRANSFER_ON_RENEW_PENDING
       - REGISTRANT_CHANGE_LOCKED
+      - UPDATE_PENDING
       title: StatusTagType
       type: string
     StrictMoneyDecimal:
@@ -28748,7 +28749,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-04-151705
+  version: 2026-11-04-193658
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
