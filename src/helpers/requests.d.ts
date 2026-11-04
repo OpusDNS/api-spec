@@ -46,6 +46,7 @@ import type {
   OrganizationCreate,
   OrganizationUpdate,
   OutboundTransferRequest,
+  OwnershipTransferRequest,
   ParkingSignupRequest,
   PreviewMailReq,
   PublicAuthRequestForm,
@@ -1002,6 +1003,13 @@ export type GET_OrganizationsByOrganizationIdBillingReceipts_Request = {
 };
 export type GET_OrganizationsByOrganizationIdBillingReceipts_Request_Query = GET_OrganizationsByOrganizationIdBillingReceipts_Request['parameters']['query'];
 export type GET_OrganizationsByOrganizationIdBillingReceipts_Request_Path = GET_OrganizationsByOrganizationIdBillingReceipts_Request['parameters']['path'];
+
+export type POST_OrganizationsByOrganizationIdOwnershipTransfer_Request = {
+  parameters: operations['transfer_ownership_v1_organizations__organization_id__ownership_transfer_post']['parameters'];
+  requestBody: OwnershipTransferRequest;
+};
+export type POST_OrganizationsByOrganizationIdOwnershipTransfer_Request_Path = POST_OrganizationsByOrganizationIdOwnershipTransfer_Request['parameters']['path'];
+export type POST_OrganizationsByOrganizationIdOwnershipTransfer_Request_Body = POST_OrganizationsByOrganizationIdOwnershipTransfer_Request['requestBody'];
 
 export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Request = {
   parameters: operations['get_pricing_plans_v1_organizations__organization_id__pricing_product_type__product_type__get']['parameters'];

@@ -2818,6 +2818,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/organizations/{organization_id}/ownership-transfer": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Transfer ownership of the organization
+         * @description Makes another active user of the organization its owner, at once. You become an admin, or get your identity provider's default role when it decides your role. Only the owner, on a top-level organization.
+         */
+        post: operations["transfer_ownership_v1_organizations__organization_id__ownership_transfer_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/organizations/{organization_id}/pricing/product-type/{product_type}": {
         parameters: {
             query?: never;
@@ -9846,6 +9866,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "transfer_domain_v1_domains_transfer_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "transfer_ownership_v1_organizations__organization_id__ownership_transfer_post";
             /** @constant */
             status: "ok";
             /**
@@ -19125,6 +19169,16 @@ export interface components {
              * @description The name of the domain whose outbound transfer was resolved
              */
             domain_name: string;
+        };
+        /** OwnershipTransferRequest */
+        OwnershipTransferRequest: {
+            /**
+             * To User Id
+             * Format: typeid
+             * @description The new owner: an active user of the organization
+             * @example user_01h45ytscbebyvny4gc8cr8ma2
+             */
+            to_user_id: TypeId<"user">;
         };
         /** PageResponse[EmailForwardLog] */
         PageResponse_EmailForwardLog_: {
@@ -38042,6 +38096,80 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Pagination_InvoiceResponse_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    transfer_ownership_v1_organizations__organization_id__ownership_transfer_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                organization_id: TypeId<"organization">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OwnershipTransferRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */

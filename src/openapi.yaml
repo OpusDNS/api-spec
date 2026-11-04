@@ -8388,6 +8388,36 @@ components:
       - properties:
           data:
             anyOf:
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
+            const: transfer_ownership_v1_organizations__organization_id__ownership_transfer_post
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: transfer_ownership_v1_organizations__organization_id__ownership_transfer_post
+        type: object
+      - properties:
+          data:
+            anyOf:
             - $ref: '#/components/schemas/DomainTransitResponse'
             - type: string
           headers:
@@ -21997,6 +22027,21 @@ components:
       - action
       title: OutboundTransferResponse
       type: object
+    OwnershipTransferRequest:
+      properties:
+        to_user_id:
+          description: 'The new owner: an active user of the organization'
+          examples:
+          - user_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^user_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: To User Id
+          type: string
+          x-typeid-prefix: user
+      required:
+      - to_user_id
+      title: OwnershipTransferRequest
+      type: object
     PageResponse_EmailForwardLog_:
       properties:
         pagination:
@@ -28703,7 +28748,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-04-141406
+  version: 2026-11-04-151705
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -47410,6 +47455,94 @@ paths:
       - organization
       x-required-permissions:
       - billing:manage
+  /v1/organizations/{organization_id}/ownership-transfer:
+    post:
+      description: Makes another active user of the organization its owner, at once.
+        You become an admin, or get your identity provider's default role when it
+        decides your role. Only the owner, on a top-level organization.
+      operationId: transfer_ownership_v1_organizations__organization_id__ownership_transfer_post
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OwnershipTransferRequest'
+        required: true
+      responses:
+        '204':
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              examples:
+                Organization Management Error:
+                  value:
+                    code: ERROR_ROOT_ORGANIZATION_REQUIRED
+                    detail: This endpoint is only available to root organizations.
+                    status: 403
+                    title: Organization Management Error
+                    type: root-organization-required
+                Permission Denied:
+                  value:
+                    code: ERROR_PERMISSION_DENIED
+                    detail: Insufficient permissions to perform this action
+                    status: 403
+                    title: Permission Denied
+                    type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '409':
+          content:
+            application/problem+json:
+              examples:
+                Ownership Transfer Error:
+                  value:
+                    code: ERROR_OWNERSHIP_TRANSFER_CONFLICT
+                    detail: The organization's owner or the new owner's role changed
+                      meanwhile; try again
+                    status: 409
+                    title: Ownership Transfer Error
+                    type: ownership-transfer-conflict
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Transfer ownership of the organization
+      tags:
+      - organization
+      - organization
   /v1/organizations/{organization_id}/pricing/product-type/{product_type}:
     get:
       description: Retrieves pricing data for a specific product type. If a product

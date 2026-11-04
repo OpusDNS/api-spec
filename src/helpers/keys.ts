@@ -393,6 +393,7 @@ import type {
   OrganizationWithBillingData,
   OutboundTransferRequest,
   OutboundTransfer,
+  OwnershipTransferRequest,
   PageResponse_EmailForwardLog,
   PageResponse_JobBatchMetadata,
   PageResponse_Job,
@@ -5636,6 +5637,12 @@ export const KEYS_OUTBOUND_TRANSFER = [
   KEY_OUTBOUND_TRANSFER_DOMAIN_ID,
   KEY_OUTBOUND_TRANSFER_DOMAIN_NAME,
 ] as const satisfies (keyof OutboundTransfer)[];
+
+export const KEY_OWNERSHIP_TRANSFER_REQUEST_TO_USER_ID = 'to_user_id' satisfies keyof OwnershipTransferRequest;
+
+export const KEYS_OWNERSHIP_TRANSFER_REQUEST = [
+  KEY_OWNERSHIP_TRANSFER_REQUEST_TO_USER_ID,
+] as const satisfies (keyof OwnershipTransferRequest)[];
 
 export const KEY_PAGE_RESPONSE_EMAIL_FORWARD_LOG_PAGINATION = 'pagination' satisfies keyof PageResponse_EmailForwardLog;
 export const KEY_PAGE_RESPONSE_EMAIL_FORWARD_LOG_RESULTS = 'results' satisfies keyof PageResponse_EmailForwardLog;

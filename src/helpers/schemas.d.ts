@@ -499,6 +499,7 @@ export type OrganizationWithBillingData = components['schemas']['OrganizationWit
 export type OutboundTransferAction = components['schemas']['OutboundTransferAction'];
 export type OutboundTransferRequest = components['schemas']['OutboundTransferRequest'];
 export type OutboundTransfer = components['schemas']['OutboundTransferResponse'];
+export type OwnershipTransferRequest = components['schemas']['OwnershipTransferRequest'];
 export type PageResponse_EmailForwardLog = components['schemas']['PageResponse_EmailForwardLog_'];
 export type PageResponse_JobBatchMetadata = components['schemas']['PageResponse_JobBatchMetadataResponse_'];
 export type PageResponse_Job = components['schemas']['PageResponse_JobResponse_'];
