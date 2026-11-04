@@ -97,6 +97,7 @@ import type {
   Pagination_Invoice,
   Pagination_Organization,
   Pagination_RegistrarCredential,
+  Pagination_SyncFailure,
   Pagination_Tag,
   Pagination_UserPublicWithRole,
   ParkingMetrics,
@@ -409,6 +410,13 @@ export type GET_ConnectRegistrarsByRegistrarCredentialIdSync_Response_200 = Sync
 export type GET_ConnectRegistrarsByRegistrarCredentialIdSync_Response_403 = Problem;
 export type GET_ConnectRegistrarsByRegistrarCredentialIdSync_Response_404 = Problem;
 export type GET_ConnectRegistrarsByRegistrarCredentialIdSync_Response_422 = HTTPValidationError;
+
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response = GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response_200 | GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response_403 | GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response_404 | GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response_422;
+
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response_200 = Pagination_SyncFailure;
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response_403 = Problem;
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response_404 = Problem;
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response_422 = HTTPValidationError;
 
 export type GET_Contacts_Response = GET_Contacts_Response_200 | GET_Contacts_Response_422;
 

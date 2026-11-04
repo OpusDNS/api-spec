@@ -460,6 +460,7 @@ import type {
   RegistrarContact,
   RegistrarCredential,
   RegistrarDomain,
+  RegistrarError,
   RegistrarNameserver,
   RegistrarRRSet,
   RegistrarRecord,
@@ -479,6 +480,8 @@ import type {
   StatusCodeStatsBucket,
   StatusTag,
   Support,
+  SyncFailure,
+  SyncFailureError,
   SyncStatus,
   TagCreate,
   TagEnriched,
@@ -6404,6 +6407,16 @@ export const KEYS_REGISTRAR_DOMAIN = [
   KEY_REGISTRAR_DOMAIN_ZONE,
 ] as const satisfies (keyof RegistrarDomain)[];
 
+export const KEY_REGISTRAR_ERROR_CODE = 'code' satisfies keyof RegistrarError;
+export const KEY_REGISTRAR_ERROR_MESSAGE = 'message' satisfies keyof RegistrarError;
+export const KEY_REGISTRAR_ERROR_REFERENCE = 'reference' satisfies keyof RegistrarError;
+
+export const KEYS_REGISTRAR_ERROR = [
+  KEY_REGISTRAR_ERROR_CODE,
+  KEY_REGISTRAR_ERROR_MESSAGE,
+  KEY_REGISTRAR_ERROR_REFERENCE,
+] as const satisfies (keyof RegistrarError)[];
+
 export const KEY_REGISTRAR_NAMESERVER_HOSTNAME = 'hostname' satisfies keyof RegistrarNameserver;
 export const KEY_REGISTRAR_NAMESERVER_IP_ADDRESSES = 'ip_addresses' satisfies keyof RegistrarNameserver;
 
@@ -6623,6 +6636,36 @@ export const KEYS_SUPPORT = [
   KEY_SUPPORT_STATUS_URL,
   KEY_SUPPORT_URL,
 ] as const satisfies (keyof Support)[];
+
+export const KEY_SYNC_FAILURE_BATCH_ID = 'batch_id' satisfies keyof SyncFailure;
+export const KEY_SYNC_FAILURE_CREATED_ON = 'created_on' satisfies keyof SyncFailure;
+export const KEY_SYNC_FAILURE_DOMAIN_NAME = 'domain_name' satisfies keyof SyncFailure;
+export const KEY_SYNC_FAILURE_ERROR = 'error' satisfies keyof SyncFailure;
+
+export const KEYS_SYNC_FAILURE = [
+  KEY_SYNC_FAILURE_BATCH_ID,
+  KEY_SYNC_FAILURE_CREATED_ON,
+  KEY_SYNC_FAILURE_DOMAIN_NAME,
+  KEY_SYNC_FAILURE_ERROR,
+] as const satisfies (keyof SyncFailure)[];
+
+export const KEY_SYNC_FAILURE_ERROR_CODE = 'code' satisfies keyof SyncFailureError;
+export const KEY_SYNC_FAILURE_ERROR_DETAIL = 'detail' satisfies keyof SyncFailureError;
+export const KEY_SYNC_FAILURE_ERROR_REGISTRAR_ERROR = 'registrar_error' satisfies keyof SyncFailureError;
+export const KEY_SYNC_FAILURE_ERROR_RETRYABLE = 'retryable' satisfies keyof SyncFailureError;
+export const KEY_SYNC_FAILURE_ERROR_STATUS = 'status' satisfies keyof SyncFailureError;
+export const KEY_SYNC_FAILURE_ERROR_TITLE = 'title' satisfies keyof SyncFailureError;
+export const KEY_SYNC_FAILURE_ERROR_TYPE = 'type' satisfies keyof SyncFailureError;
+
+export const KEYS_SYNC_FAILURE_ERROR = [
+  KEY_SYNC_FAILURE_ERROR_CODE,
+  KEY_SYNC_FAILURE_ERROR_DETAIL,
+  KEY_SYNC_FAILURE_ERROR_REGISTRAR_ERROR,
+  KEY_SYNC_FAILURE_ERROR_RETRYABLE,
+  KEY_SYNC_FAILURE_ERROR_STATUS,
+  KEY_SYNC_FAILURE_ERROR_TITLE,
+  KEY_SYNC_FAILURE_ERROR_TYPE,
+] as const satisfies (keyof SyncFailureError)[];
 
 export const KEY_SYNC_STATUS_BATCH_ID = 'batch_id' satisfies keyof SyncStatus;
 export const KEY_SYNC_STATUS_COMPLETED_ON = 'completed_on' satisfies keyof SyncStatus;

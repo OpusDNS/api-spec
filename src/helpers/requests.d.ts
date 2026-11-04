@@ -240,6 +240,12 @@ export type POST_ConnectRegistrarsByRegistrarCredentialIdSync_Request = {
 };
 export type POST_ConnectRegistrarsByRegistrarCredentialIdSync_Request_Path = POST_ConnectRegistrarsByRegistrarCredentialIdSync_Request['parameters']['path'];
 
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Request = {
+  parameters: operations['list_sync_failures_v1_connect_registrars__registrar_credential_id__sync_failures_get']['parameters'];
+};
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Request_Query = GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Request['parameters']['query'];
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Request_Path = GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Request['parameters']['path'];
+
 export type GET_Contacts_Request = {
   parameters: operations['get_contacts_v1_contacts_get']['parameters'];
 };

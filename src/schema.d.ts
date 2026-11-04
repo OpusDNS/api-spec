@@ -430,6 +430,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/connect/registrars/{registrar_credential_id}/sync/failures": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List sync failures
+         * @description Lists the domains the latest sync could not sync, sorted by domain name. Each one has an `error` with a `code`, a `detail` sentence and, when the registrar answered, its own response. Right after a new sync starts, the list can still belong to the previous one: compare `batch_id` with **Get sync status**.
+         */
+        get: operations["list_sync_failures_v1_connect_registrars__registrar_credential_id__sync_failures_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/contacts": {
         parameters: {
             query?: never;
@@ -8338,6 +8358,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "list_roles_v1_organizations_roles_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_SyncFailure_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_sync_failures_v1_connect_registrars__registrar_credential_id__sync_failures_get";
             /** @constant */
             status: "ok";
             /**
@@ -19256,6 +19300,12 @@ export interface components {
             /** Results */
             results: components["schemas"]["RegistrarCredential"][];
         };
+        /** Pagination[SyncFailure] */
+        Pagination_SyncFailure_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["SyncFailure"][];
+        };
         /** Pagination[TagResponse] */
         Pagination_TagResponse_: {
             pagination: components["schemas"]["PaginationMetadata"];
@@ -20379,6 +20429,27 @@ export interface components {
             statuses?: string[];
             zone?: components["schemas"]["RegistrarZone"] | null;
         };
+        /**
+         * RegistrarError
+         * @description The error as the registrar itself reported it. A member the registrar didn't send is null.
+         */
+        RegistrarError: {
+            /**
+             * Code
+             * @description The registrar's own result code, in its format
+             */
+            code?: string | null;
+            /**
+             * Message
+             * @description The registrar's own message
+             */
+            message?: string | null;
+            /**
+             * Reference
+             * @description The registrar's transaction or request ID, for its support. Not every registrar sends one
+             */
+            reference?: string | null;
+        };
         /** RegistrarNameserver */
         RegistrarNameserver: {
             /**
@@ -20787,6 +20858,70 @@ export interface components {
             url?: string | null;
         };
         /**
+         * SyncFailure
+         * @description A domain the sync could not sync. The list can be shorter than the status's `failed` count.
+         */
+        SyncFailure: {
+            /**
+             * Batch Id
+             * @description ID of the sync it belongs to, as in Get sync status
+             * @example job_01h45ytscbebyvny4gc8cr8ma2
+             */
+            batch_id: string;
+            /**
+             * Created On
+             * Format: date-time
+             * @description When the failure happened
+             */
+            created_on: Date;
+            /**
+             * Domain Name
+             * @description The domain name, spelled as in the domains API
+             * @example example.com
+             */
+            domain_name: string;
+            /** @description Why the domain could not be synced */
+            error: components["schemas"]["SyncFailureError"];
+        };
+        /**
+         * SyncFailureError
+         * @description Why the domain could not be synced, as an RFC 9457 problem with OpusDNS's code.
+         */
+        SyncFailureError: {
+            /**
+             * Code
+             * @description Machine-readable reason, such as `ERROR_REGISTRAR_DOMAIN_NOT_FOUND`
+             */
+            code: string;
+            /**
+             * Detail
+             * @description What went wrong, as a sentence
+             */
+            detail: string;
+            /** @description The error in the registrar's own terms, for people and the registrar's support; null if it sent none. Its format differs per registrar: branch on `code`, not on this */
+            registrar_error?: components["schemas"]["RegistrarError"] | null;
+            /**
+             * Retryable
+             * @description True if a later sync may succeed on its own; false if the cause has to be fixed first
+             */
+            retryable: boolean;
+            /**
+             * Status
+             * @description HTTP status this failure would have as a request of its own
+             */
+            status: number;
+            /**
+             * Title
+             * @description Short summary of the problem type
+             */
+            title: string;
+            /**
+             * Type
+             * @description Problem type, derived from code
+             */
+            type: string;
+        };
+        /**
          * SyncOperationType
          * @enum {string}
          */
@@ -20795,7 +20930,8 @@ export interface components {
         SyncStatus: {
             /**
              * Batch Id
-             * @description ID of this sync. Empty if the credential was never synced
+             * @description ID of this sync. Empty if the account was never synced
+             * @example job_01h45ytscbebyvny4gc8cr8ma2
              */
             batch_id: string;
             /**
@@ -25846,6 +25982,81 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CREDENTIAL_NOT_FOUND",
+                     *       "detail": "Credential not found",
+                     *       "registrar_credential_id": "registrar_credential_01h45ytscbebyvny4gc8cr8ma2",
+                     *       "status": 404,
+                     *       "title": "Registrar Credential Error",
+                     *       "type": "registrar-credential-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_sync_failures_v1_connect_registrars__registrar_credential_id__sync_failures_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                /** @description ID of the connected registrar account */
+                registrar_credential_id: TypeId<"registrar_credential">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Domains that could not be synced */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_SyncFailure_"];
+                };
             };
             /** @description Forbidden */
             403: {

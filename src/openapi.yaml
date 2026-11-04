@@ -6470,6 +6470,37 @@ components:
       - properties:
           data:
             anyOf:
+            - $ref: '#/components/schemas/Pagination_SyncFailure_'
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
+            const: list_sync_failures_v1_connect_registrars__registrar_credential_id__sync_failures_get
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: list_sync_failures_v1_connect_registrars__registrar_credential_id__sync_failures_get
+        type: object
+      - properties:
+          data:
+            anyOf:
             - $ref: '#/components/schemas/Pagination_TagResponse_'
             - type: string
           headers:
@@ -22324,6 +22355,20 @@ components:
       - pagination
       title: Pagination[RegistrarCredential]
       type: object
+    Pagination_SyncFailure_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/SyncFailure'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: Pagination[SyncFailure]
+      type: object
     Pagination_TagResponse_:
       properties:
         pagination:
@@ -24120,6 +24165,31 @@ components:
       - name
       title: RegistrarDomain
       type: object
+    RegistrarError:
+      description: The error as the registrar itself reported it. A member the registrar
+        didn't send is null.
+      properties:
+        code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The registrar's own result code, in its format
+          title: Code
+        message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The registrar's own message
+          title: Message
+        reference:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The registrar's transaction or request ID, for its support.
+            Not every registrar sends one
+          title: Reference
+      title: RegistrarError
+      type: object
     RegistrarNameserver:
       properties:
         hostname:
@@ -24871,6 +24941,82 @@ components:
           title: Url
       title: Support
       type: object
+    SyncFailure:
+      description: A domain the sync could not sync. The list can be shorter than
+        the status's `failed` count.
+      properties:
+        batch_id:
+          description: ID of the sync it belongs to, as in Get sync status
+          examples:
+          - job_01h45ytscbebyvny4gc8cr8ma2
+          title: Batch Id
+          type: string
+        created_on:
+          description: When the failure happened
+          format: date-time
+          title: Created On
+          type: string
+        domain_name:
+          description: The domain name, spelled as in the domains API
+          examples:
+          - example.com
+          title: Domain Name
+          type: string
+        error:
+          $ref: '#/components/schemas/SyncFailureError'
+          description: Why the domain could not be synced
+      required:
+      - domain_name
+      - error
+      - batch_id
+      - created_on
+      title: SyncFailure
+      type: object
+    SyncFailureError:
+      description: Why the domain could not be synced, as an RFC 9457 problem with
+        OpusDNS's code.
+      properties:
+        code:
+          description: Machine-readable reason, such as `ERROR_REGISTRAR_DOMAIN_NOT_FOUND`
+          title: Code
+          type: string
+        detail:
+          description: What went wrong, as a sentence
+          title: Detail
+          type: string
+        registrar_error:
+          anyOf:
+          - $ref: '#/components/schemas/RegistrarError'
+          - type: 'null'
+          description: 'The error in the registrar''s own terms, for people and the
+            registrar''s support; null if it sent none. Its format differs per registrar:
+            branch on `code`, not on this'
+        retryable:
+          description: True if a later sync may succeed on its own; false if the cause
+            has to be fixed first
+          title: Retryable
+          type: boolean
+        status:
+          description: HTTP status this failure would have as a request of its own
+          title: Status
+          type: integer
+        title:
+          description: Short summary of the problem type
+          title: Title
+          type: string
+        type:
+          description: Problem type, derived from code
+          title: Type
+          type: string
+      required:
+      - type
+      - title
+      - status
+      - code
+      - detail
+      - retryable
+      title: SyncFailureError
+      type: object
     SyncOperationType:
       enum:
       - registration
@@ -24881,7 +25027,9 @@ components:
     SyncStatus:
       properties:
         batch_id:
-          description: ID of this sync. Empty if the credential was never synced
+          description: ID of this sync. Empty if the account was never synced
+          examples:
+          - job_01h45ytscbebyvny4gc8cr8ma2
           title: Batch Id
           type: string
         completed_on:
@@ -28555,7 +28703,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-04-094449
+  version: 2026-11-04-141406
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -31604,6 +31752,138 @@ paths:
       - connect
       x-required-permissions:
       - registrar_credentials:manage
+  /v1/connect/registrars/{registrar_credential_id}/sync/failures:
+    get:
+      description: 'Lists the domains the latest sync could not sync, sorted by domain
+        name. Each one has an `error` with a `code`, a `detail` sentence and, when
+        the registrar answered, its own response. Right after a new sync starts, the
+        list can still belong to the previous one: compare `batch_id` with **Get sync
+        status**.'
+      operationId: list_sync_failures_v1_connect_registrars__registrar_credential_id__sync_failures_get
+      parameters:
+      - description: ID of the connected registrar account
+        in: path
+        name: registrar_credential_id
+        required: true
+        schema:
+          examples:
+          - registrar_credential_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^registrar_credential_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Registrar Credential Id
+          type: string
+          x-typeid-prefix: registrar_credential
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                opusdns_refusal:
+                  summary: OpusDNS couldn't add the domain
+                  value:
+                    pagination:
+                      current_page: 1
+                      has_next_page: false
+                      has_previous_page: false
+                      page_size: 10
+                      total_items: 1
+                      total_pages: 1
+                    results:
+                    - batch_id: job_01h45ytscbebyvny4gc8cr8ma2
+                      created_on: '2026-11-03T16:04:42Z'
+                      domain_name: example.co.uk
+                      error:
+                        code: ERROR_TLD_NOT_SUPPORTED
+                        detail: OpusDNS can't manage domains under this TLD yet, so
+                          example.co.uk wasn't added.
+                        retryable: false
+                        status: 422
+                        title: TLD Not Supported
+                        type: tld-not-supported
+                registrar_error:
+                  summary: The registrar reported the error
+                  value:
+                    pagination:
+                      current_page: 1
+                      has_next_page: false
+                      has_previous_page: false
+                      page_size: 10
+                      total_items: 1
+                      total_pages: 1
+                    results:
+                    - batch_id: job_01h45ytscbebyvny4gc8cr8ma2
+                      created_on: '2026-11-03T16:04:42Z'
+                      domain_name: example.se
+                      error:
+                        code: ERROR_REGISTRAR_DOMAIN_NOT_FOUND
+                        detail: The registrar has no domain example.se in this account.
+                        registrar_error:
+                          code: '415'
+                          message: Authentication Error.
+                        retryable: false
+                        status: 404
+                        title: Domain Not Found at Registrar
+                        type: registrar-domain-not-found
+              schema:
+                $ref: '#/components/schemas/Pagination_SyncFailure_'
+          description: Domains that could not be synced
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CREDENTIAL_NOT_FOUND
+                detail: Credential not found
+                registrar_credential_id: registrar_credential_01h45ytscbebyvny4gc8cr8ma2
+                status: 404
+                title: Registrar Credential Error
+                type: registrar-credential-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List sync failures
+      tags:
+      - connect
+      x-required-permissions:
+      - registrar_credentials:read
   /v1/contacts:
     get:
       description: Retrieves a paginated list of all contacts
@@ -51000,6 +51280,8 @@ tags:
     2. **Follow the first sync.** It starts automatically. Poll **Get sync status**
     until `status` is `completed`, `failed` or `cancelled`.
 
+    3. **Check what didn''t sync** with **List sync failures**.
+
 
     OpusDNS syncs most connected accounts once a day. To refresh sooner, start a sync
     yourself. It answers `202` with the new sync and its status URL in `Location`,
@@ -51046,6 +51328,54 @@ tags:
 
     Not every failure has an `error_code`. `error_message` always describes what went
     wrong, and `error_detail` contains the registrar''s own message when it sent one.
+
+
+    ### Domains that didn''t sync
+
+
+    **List sync failures** shows each domain the latest sync couldn''t sync, sorted
+    by domain name. Its `error` follows RFC 9457: `code` says why, `detail` says it
+    in a sentence, and `retryable` tells whether a later sync may succeed. When the
+    registrar reported the error itself, `registrar_error` holds its own `code`, `message`
+    and `reference`, which you can quote to the registrar''s support; otherwise it''s
+    `null`. Its content depends on the registrar; programs should branch on `code`.
+    The list can be shorter than the status''s `failed` count. Right after a new sync
+    starts, it can still belong to the previous one: compare its `batch_id` with **Get
+    sync status**.
+
+
+    | code | Meaning |
+
+    |------|---------|
+
+    | `ERROR_REGISTRAR_DOMAIN_NOT_FOUND` | The registrar has no such domain in this
+    account |
+
+    | `ERROR_CREDENTIAL_AUTH` | The registrar rejected the login details. Update them
+    |
+
+    | `ERROR_CREDENTIAL_ACCESS` | The registrar refused access, for example because
+    OpusDNS''s IP address isn''t allowed |
+
+    | `ERROR_REGISTRAR_REJECTED` | The registrar refused to return the domain |
+
+    | `ERROR_REGISTRAR_CONFLICT` | The domain''s current state at the registrar prevents
+    syncing it |
+
+    | `ERROR_REGISTRAR_NOT_SUPPORTED` | The registrar''s API can''t return the domain
+    |
+
+    | `ERROR_REGISTRAR_UNAVAILABLE` | The registrar couldn''t be reached or didn''t
+    answer in time |
+
+    | `ERROR_REGISTRAR_NO_DATA` | The registrar returned no data for the domain |
+
+    | `ERROR_TLD_NOT_SUPPORTED` | OpusDNS can''t manage domains under this TLD yet
+    |
+
+    | `ERROR_INTERNAL` | An error at OpusDNS. Contact support if it persists |
+
+    | `ERROR_DOMAIN_SYNC_FAILED` | Any other reason |
 
 
     ### Good to know
