@@ -74,9 +74,11 @@ A transfer to another registrar is equally immediate. Once the new registrar has
 
 ## Changing the registrant
 
-The registrant of a `.gr` domain is changed with a regular domain update: send the new registrant in `contacts.registrant` of [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference}). The change takes effect immediately.
+The registrant of a `.gr` domain is changed with [`POST /v1/domains/{domain_reference}/registrant-change`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/registrant-change), or with a domain update that changes nothing else: send the new registrant in `contacts.registrant` of [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference}). The change takes effect immediately.
 
-When the request carries other changes as well, the registrant is applied last. If it is then refused, the response is `422`, the other changes remain applied, and the domain is refreshed from the registry. Send the change of registrant again on its own.
+The registrant cannot be changed together with anything else in one update. A request that changes the registrant and also another contact role, the name servers or the renewal mode is refused with `422`, and nothing is changed. Send the other changes in a separate update.
+
+A domain update removes every contact role that `contacts` leaves out, so a role left out counts as another change. Include the contacts the domain keeps, or use the registrant change endpoint, which keeps them.
 
 A change of registrant of a geographic name does not take effect immediately, because it requires an approval outside OpusDNS. The domain shows the new registrant and carries the `pendingUpdate` status until the decision. If the change is rejected, the previous registrant remains the holder, while the domain continues to show the new one.
 
