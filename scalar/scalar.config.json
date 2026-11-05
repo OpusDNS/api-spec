@@ -788,6 +788,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/co.no.md",
                 "showInSidebar": true
               },
+              "/co.za": {
+                "type": "page",
+                "title": "🇿🇦 .co.za",
+                "filepath": "content/tld-knowledge-base/cctlds/co.za.md",
+                "showInSidebar": true
+              },
               "/com.bh": {
                 "type": "page",
                 "title": "🇧🇭 .com.bh",
@@ -962,6 +968,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/net.bh.md",
                 "showInSidebar": true
               },
+              "/net.za": {
+                "type": "page",
+                "title": "🇿🇦 .net.za",
+                "filepath": "content/tld-knowledge-base/cctlds/net.za.md",
+                "showInSidebar": true
+              },
               "/nl": {
                 "type": "page",
                 "title": "🇳🇱 .nl",
@@ -984,6 +996,12 @@
                 "type": "page",
                 "title": "🇧🇭 .org.bh",
                 "filepath": "content/tld-knowledge-base/cctlds/org.bh.md",
+                "showInSidebar": true
+              },
+              "/org.za": {
+                "type": "page",
+                "title": "🇿🇦 .org.za",
+                "filepath": "content/tld-knowledge-base/cctlds/org.za.md",
                 "showInSidebar": true
               },
               "/pl": {
@@ -1104,6 +1122,12 @@
                 "type": "page",
                 "title": "🇻🇺 .vu",
                 "filepath": "content/tld-knowledge-base/cctlds/vu.md",
+                "showInSidebar": true
+              },
+              "/web.za": {
+                "type": "page",
+                "title": "🇿🇦 .web.za",
+                "filepath": "content/tld-knowledge-base/cctlds/web.za.md",
                 "showInSidebar": true
               },
               "/wf": {
