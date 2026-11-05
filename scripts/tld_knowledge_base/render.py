@@ -230,9 +230,6 @@ def _domain_characteristics(config: dict[str, Any]) -> list[str]:
     registry_lock = (config.get("registry_lock") or {}).get("supported")
 
     idn_value = f.yes_no(idn.get("idn_capable"))
-    idn_tables = idn.get("idn_tables") or []
-    if idn.get("idn_capable") and idn_tables:
-        idn_value = f"{f.YES} ({len(idn_tables)} tables)"
 
     # characters.min/max cover ASCII labels only; labels with non-ASCII code
     # points follow characters.idn when the registry declares a separate limit.
