@@ -4,6 +4,15 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 3 November 2026
+
+- Added **domain forward statistics**:
+  [`GET /v1/domain-forwards/statistics`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics) returns the redirects your domain forwards served in a window, as totals, a series of time buckets and an optional top list.
+  Choose a bucket width from `minute` to `month` with `granularity`, filter by `hostname`, `domain`, `protocol` and `exclude_bots`, and group the redirects with `breakdown` by browser, platform, country, status code, user agent, referrer, URL, FQDN, domain, forward or rule.
+  Unique visits and `invoked_forwards` are estimates; `invoked_forwards` counts distinct forwards, not the domain and path pairs the metrics route counted.
+  The `/v1/domain-forwards/metrics` routes stay available and will be deprecated later.
+  See [Statistics](/products/dns/domain-forwarding/metrics#statistics).
+
 ### 31 October 2026
 
 - Changed **contacts imported from a registry**.
