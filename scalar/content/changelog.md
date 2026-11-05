@@ -4,6 +4,13 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 5 November 2026
+
+- Onboarded **[`.gr`](/tld-knowledge-base/cctlds/gr)** (Greece). Published its TLD
+  Knowledge Base page. Registrations and renewals run in steps of 2 years, auth
+  codes are sent to the registrant by email, and a deleted domain is removed 15
+  days after its expiry date.
+
 ### 31 October 2026
 
 - Changed **contacts imported from a registry**.
