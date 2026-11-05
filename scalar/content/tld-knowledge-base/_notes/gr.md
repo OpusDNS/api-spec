@@ -4,7 +4,7 @@ Registration is available directly under `.gr`. `.ελ`, `.gov.gr` and the other
 
 ## Registration
 
-- Registrations run for **2, 4, 6, 8 or 10 years**. Any other `period` on [`POST /v1/domains`](/api-reference#tag/domain/POST/v1/domains) is refused with `422`.
+- Registrations run for **2 years**. Any other `period` on [`POST /v1/domains`](/api-reference#tag/domain/POST/v1/domains) is refused with `422`.
 - A registrant is required. An administrative, a technical and a billing contact are optional, with at most one of each.
 - Name servers are optional. A domain without name servers carries the `inactive` status.
 - Name servers under the domain being registered, such as `ns1.example.gr` for `example.gr`, cannot be supplied at registration. Add them through a domain update once the registration is confirmed.

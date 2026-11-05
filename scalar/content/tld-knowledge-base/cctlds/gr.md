@@ -18,7 +18,7 @@
 
 | Property | Value |
 | --- | --- |
-| Registration Period | 2–10 years |
+| Registration Period | 2 years |
 | Renewal Period | 2–10 years |
 | Transfer Renewal Period | 1 year |
 | Deletion Policy | At expiration |
@@ -99,7 +99,7 @@ Registration is available directly under `.gr`. `.ελ`, `.gov.gr` and the other
 
 ## Registration
 
-- Registrations run for **2, 4, 6, 8 or 10 years**. Any other `period` on [`POST /v1/domains`](/api-reference#tag/domain/POST/v1/domains) is refused with `422`.
+- Registrations run for **2 years**. Any other `period` on [`POST /v1/domains`](/api-reference#tag/domain/POST/v1/domains) is refused with `422`.
 - A registrant is required. An administrative, a technical and a billing contact are optional, with at most one of each.
 - Name servers are optional. A domain without name servers carries the `inactive` status.
 - Name servers under the domain being registered, such as `ns1.example.gr` for `example.gr`, cannot be supplied at registration. Add them through a domain update once the registration is confirmed.
@@ -169,9 +169,11 @@ A transfer to another registrar is equally immediate. Once the new registrar has
 
 ## Changing the registrant
 
-The registrant of a `.gr` domain is changed with a regular domain update: send the new registrant in `contacts.registrant` of [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference}). The change takes effect immediately.
+The registrant of a `.gr` domain is changed with a domain update: send the new registrant in `contacts.registrant` of [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference}). The change takes effect immediately.
 
-When the request carries other changes as well, the registrant is applied last. If it is then refused, the response is `422`, the other changes remain applied, and the domain is refreshed from the registry. Send the change of registrant again on its own.
+The registrant cannot be changed together with anything else in one update. A request that changes the registrant and also another contact role, the name servers or the renewal mode is refused with `422`, and nothing is changed. Send the other changes in a separate update.
+
+A domain update removes every contact role that `contacts` leaves out, so a role left out counts as another change. Include the contacts the domain keeps alongside the new registrant.
 
 A change of registrant of a geographic name does not take effect immediately, because it requires an approval outside OpusDNS. The domain shows the new registrant and carries the `pendingUpdate` status until the decision. If the change is rejected, the previous registrant remains the holder, while the domain continues to show the new one.
 
