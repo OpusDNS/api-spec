@@ -196,7 +196,8 @@ The response also carries `start`, `end`, `granularity`, `totals` and `buckets`,
 | `rule` | A redirect rule. |
 
 Country data is derived from IP addresses.
-[IP Geolocation by DB-IP](https://db-ip.com), licensed under CC BY 4.0.
+This product includes GeoLite2 data created by MaxMind, available from
+[https://www.maxmind.com](https://www.maxmind.com).
 
 For `user_agent`, `referrer`, `fqdn`, `domain`, `forward` and `rule`, a
 window of more than one day is answered from per-day top lists.
