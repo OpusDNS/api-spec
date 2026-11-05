@@ -84,12 +84,13 @@ curl --get "$OPUSDNS_API_BASE/v1/domain-forwards/statistics" \
 | `protocol` | Count only redirects requested over `http` or `https`. |
 | `exclude_bots` | Set to `true` to leave out redirects whose platform is `Bot` or `Unknown`. |
 | `include_sub_organizations` | Set to `true` to count the forwards of your sub-organizations too. By default only your own organization is counted. |
-| `breakdown` | Adds a top list grouped by `browser`, `platform`, `country`, `status_code`, `user_agent`, `referrer`, `url`, `fqdn`, `domain`, `forward` or `rule`. |
+| `breakdown` | Adds a top list grouped by `browser`, `platform`, `country`, `status_code`, `user_agent`, `referrer`, `url`, `fqdn`, `domain`, `forward` or `rule`. `url` needs a `domain` filter and cannot be combined with `hostname` or `protocol` (see [URL breakdown](#url-breakdown)). |
 | `breakdown_limit` | How many items the top list holds, from 1 to 100. Default `10`. |
 
 Without a filter, the counts cover all forwards of your organization.
 `hostname` and `domain` need view access to the zone.
 `breakdown=domain` cannot be combined with the `domain` filter.
+`breakdown=url` needs the `domain` filter and cannot be combined with `hostname` or `protocol`.
 
 ### Choosing a granularity
 
@@ -188,7 +189,7 @@ The response also carries `start`, `end`, `granularity`, `totals` and `buckets`,
 | `status_code` | The redirect code configured on the rule, as a string, e.g. `301`. |
 | `user_agent` | The raw user agent string. |
 | `referrer` | The referring site. `direct` when the request had no referrer. |
-| `url` | One redirect URL. |
+| `url` | Host and path of the redirected request, without query string, e.g. `www.example.com/shop`. Needs a `domain` filter. |
 | `fqdn` | A fully-qualified domain name. |
 | `domain` | A root domain. |
 | `forward` | A forward configuration. |
@@ -197,13 +198,38 @@ The response also carries `start`, `end`, `granularity`, `totals` and `buckets`,
 Country data is derived from IP addresses.
 [IP Geolocation by DB-IP](https://db-ip.com), licensed under CC BY 4.0.
 
-For `user_agent`, `referrer`, `url`, `fqdn`, `domain`, `forward` and `rule`, a
+For `user_agent`, `referrer`, `fqdn`, `domain`, `forward` and `rule`, a
 window of more than one day is answered from per-day top lists.
 The counts are sums of those lists, and a value that never made a day's top
 list is missing or undercounted.
 `approximate` is `true` in that case.
 It is always `false` for `browser`, `platform`, `country` and `status_code`,
 and for any query filtered by `hostname` or `protocol`.
+`url` is always built from daily top lists (see below), so it is approximate as soon as those lists are read.
+
+### URL breakdown
+
+OpusDNS does not keep full request paths.
+For each domain and day it keeps only the top 5 values of host and path, and only values with at least 3 hits that day.
+These lists are kept for 13 months.
+
+`breakdown=url` reads them, which has these consequences:
+
+- It needs a `domain` filter. Without one the request is rejected with `422`.
+  There is no list of URLs across all domains of an organization.
+- It cannot be combined with `hostname` or `protocol` (`422`), because paths are not stored per request.
+- Over more than one day the list is an approximation: the sum of the daily top 5 lists.
+  A path that never made a day's list is missing, and the counts of the others can be too low.
+  Rare paths (fewer than 3 hits a day) never appear.
+- The value is host and path only (`www.example.com/shop`). The query string is not kept.
+
+### Deleted and transferred forwards
+
+Every redirect counts for the organization that owned the forward when the redirect happened.
+If a forward or domain is deleted, or moved to another organization, its past traffic stays in the totals, time series and organization-wide breakdowns (`domain`, `fqdn`, `forward`, `rule`) of the former owner until retention ends.
+The new owner sees only the traffic from the time it owns the forward.
+The `domain` and `hostname` filters work only for zones you currently have.
+`invoked_forwards` counts forwards with traffic in the window, including deleted ones, so it can exceed `configured_forwards`.
 
 ### Estimates
 
@@ -228,7 +254,7 @@ The two numbers are not comparable.
 
 `configured_forwards` is the number of redirect rules configured now.
 It does not depend on `start` and `end`.
-It counts rules, not forwards, so it is no upper bound for `invoked_forwards`.
+It counts rules, not forwards, and leaves out deleted forwards, so it is no upper bound for `invoked_forwards`.
 
 ### Limits and retention
 
@@ -239,7 +265,8 @@ It counts rules, not forwards, so it is no upper bound for `invoked_forwards`.
 | `hour` granularity | The window must start within the last 92 days. An earlier start is rejected with `400`. |
 | Totals and time series | 25 months. An earlier start is rejected with `400`. |
 | Breakdowns by `browser`, `platform`, `country` and `status_code` | 13 months. |
-| Breakdowns by `user_agent`, `referrer`, `url`, `fqdn`, `domain`, `forward` and `rule` | 13 months. Approximate over more than one day. With a `domain` filter, the window must start within the last 35 days (`400` otherwise). |
+| Breakdowns by `user_agent`, `referrer`, `fqdn`, `domain`, `forward` and `rule` | 13 months. Approximate over more than one day. With a `domain` filter, the window must start within the last 35 days (`400` otherwise). |
+| Breakdown by `url` | 13 months. Needs a `domain` filter. Top 5 per domain and day, at least 3 hits that day. Approximate. |
 
 A breakdown over a window that reaches back further than its retention counts what is kept.
 `data_available_from` says where the data begins.
@@ -250,7 +277,7 @@ Other errors:
 | --- | --- |
 | `400` | The window starts further back than the data is kept (see the limits above), or your organization has more than 1000 organizations in its sub-tree and `include_sub_organizations` is `true`. |
 | `403` | You lack view access to the zone of `hostname` or `domain`. |
-| `422` | The query is invalid: `end` is not after `start`, the window is longer than the granularity allows, or `hostname` and `domain` are both set. |
+| `422` | The query is invalid: `end` is not after `start`, the window is longer than the granularity allows, `hostname` and `domain` are both set, or `breakdown=url` is used without `domain` or together with `hostname` or `protocol`. |
 | `501` | Statistics are not available in this environment. |
 | `503` | Statistics are temporarily unavailable. Try again later. |
 
@@ -270,7 +297,8 @@ Statistics takes an absolute window: set `end` to now and `start` to now minus t
 | `/metrics/referrer` | `breakdown=referrer` | `breakdown.items` |
 | `/metrics/geo` | `breakdown=country` | `breakdown.items` |
 | `/metrics/status-code` | `breakdown=status_code` | `breakdown.items` |
-| `/metrics/visits-by-key?grouping=…` | `breakdown=url`, `fqdn`, `domain`, `forward` or `rule` | `breakdown.items` |
+| `/metrics/visits-by-key?grouping=…` | `breakdown=fqdn`, `domain`, `forward` or `rule` | `breakdown.items` |
+| `/metrics/visits-by-key?grouping=url` | `breakdown=url&domain=...`, with the [top 5 limitation](#url-breakdown) | `breakdown.items` |
 
 The filters carry over under the same names: `hostname`, `domain`, `protocol` and `exclude_bots`.
 `time_range` becomes `start` and `end`:
@@ -282,6 +310,10 @@ The filters carry over under the same names: `hostname`, `domain`, `protocol` an
 | `7d` | `day` |
 | `30d` | `day` |
 | `1y` | `month` |
+
+`url` has no full replacement.
+Per domain, `breakdown=url&domain=example.com` returns the top 5 paths per day with at least 3 hits.
+Without a domain there is no replacement for the organization-wide URL list of `visits-by-key`: statistics does not offer one.
 
 Two things differ:
 

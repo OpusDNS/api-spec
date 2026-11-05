@@ -4,6 +4,14 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 5 November 2026
+
+- Changed **domain forward statistics, `url` breakdown**.
+  `breakdown=url` now lists the top 5 values of host and path per domain and day, each with at least 3 hits that day, kept for 13 months, and is approximate over more than one day.
+  It needs a `domain` filter and cannot be combined with `hostname` or `protocol` (`422`).
+  There is no organization-wide list of URLs.
+  See [URL breakdown](/products/dns/domain-forwarding/metrics#url-breakdown).
+
 ### 3 November 2026
 
 - Added **domain forward statistics**:
