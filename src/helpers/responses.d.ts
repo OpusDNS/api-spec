@@ -36,6 +36,7 @@ import type {
   DomainForwardPlatformStats,
   DomainForwardReferrerStats,
   DomainForwardSet,
+  DomainForwardStatistics,
   DomainForwardStatusCodeStats,
   DomainForwardUserAgentStats,
   DomainForwardVisitsByKey,
@@ -672,6 +673,16 @@ export type GET_DomainForwardsMetricsVisitsByKey_Response_401 = Problem;
 export type GET_DomainForwardsMetricsVisitsByKey_Response_403 = Problem;
 export type GET_DomainForwardsMetricsVisitsByKey_Response_422 = HTTPValidationError;
 export type GET_DomainForwardsMetricsVisitsByKey_Response_503 = Problem;
+
+export type GET_DomainForwardsStatistics_Response = GET_DomainForwardsStatistics_Response_200 | GET_DomainForwardsStatistics_Response_400 | GET_DomainForwardsStatistics_Response_401 | GET_DomainForwardsStatistics_Response_403 | GET_DomainForwardsStatistics_Response_422 | GET_DomainForwardsStatistics_Response_501 | GET_DomainForwardsStatistics_Response_503;
+
+export type GET_DomainForwardsStatistics_Response_200 = DomainForwardStatistics;
+export type GET_DomainForwardsStatistics_Response_400 = Problem;
+export type GET_DomainForwardsStatistics_Response_401 = Problem;
+export type GET_DomainForwardsStatistics_Response_403 = Problem;
+export type GET_DomainForwardsStatistics_Response_422 = Problem;
+export type GET_DomainForwardsStatistics_Response_501 = Problem;
+export type GET_DomainForwardsStatistics_Response_503 = Problem;
 
 export type GET_DomainSearchSuggest_Response = GET_DomainSearchSuggest_Response_200 | GET_DomainSearchSuggest_Response_401 | GET_DomainSearchSuggest_Response_422 | GET_DomainSearchSuggest_Response_502;
 

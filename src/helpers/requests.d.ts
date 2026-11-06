@@ -573,6 +573,11 @@ export type GET_DomainForwardsMetricsVisitsByKey_Request = {
 };
 export type GET_DomainForwardsMetricsVisitsByKey_Request_Query = GET_DomainForwardsMetricsVisitsByKey_Request['parameters']['query'];
 
+export type GET_DomainForwardsStatistics_Request = {
+  parameters: operations['get_domain_forward_statistics_v1_domain_forwards_statistics_get']['parameters'];
+};
+export type GET_DomainForwardsStatistics_Request_Query = GET_DomainForwardsStatistics_Request['parameters']['query'];
+
 export type GET_Domains_Request = {
   parameters: operations['get_domains_v1_domains_get']['parameters'];
 };

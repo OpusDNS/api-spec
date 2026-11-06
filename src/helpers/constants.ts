@@ -46,6 +46,8 @@ import type {
   DomainClientStatus,
   DomainContactType,
   DomainForwardSortField,
+  DomainForwardStatisticsDimension,
+  DomainForwardStatisticsGranularity,
   DomainForwardZoneSortField,
   DomainIncludeField,
   DomainListIncludeField,
@@ -972,6 +974,50 @@ export const DOMAIN_FORWARD_SORT_FIELD_VALUES = [
   'created_on',
   'updated_on',
 ] as const satisfies ReadonlyArray<DomainForwardSortField>;
+
+export const DOMAIN_FORWARD_STATISTICS_DIMENSION = {
+  BROWSER: "browser",
+  PLATFORM: "platform",
+  USER_AGENT: "user_agent",
+  REFERRER: "referrer",
+  COUNTRY: "country",
+  STATUS_CODE: "status_code",
+  URL: "url",
+  FQDN: "fqdn",
+  DOMAIN: "domain",
+  FORWARD: "forward",
+  RULE: "rule",
+} as const satisfies Record<string, DomainForwardStatisticsDimension>;
+
+export const DOMAIN_FORWARD_STATISTICS_DIMENSION_VALUES = [
+  'browser',
+  'platform',
+  'user_agent',
+  'referrer',
+  'country',
+  'status_code',
+  'url',
+  'fqdn',
+  'domain',
+  'forward',
+  'rule',
+] as const satisfies ReadonlyArray<DomainForwardStatisticsDimension>;
+
+export const DOMAIN_FORWARD_STATISTICS_GRANULARITY = {
+  MINUTE: "minute",
+  HOUR: "hour",
+  DAY: "day",
+  WEEK: "week",
+  MONTH: "month",
+} as const satisfies Record<string, DomainForwardStatisticsGranularity>;
+
+export const DOMAIN_FORWARD_STATISTICS_GRANULARITY_VALUES = [
+  'minute',
+  'hour',
+  'day',
+  'week',
+  'month',
+] as const satisfies ReadonlyArray<DomainForwardStatisticsGranularity>;
 
 export const DOMAIN_FORWARD_ZONE_SORT_FIELD = {
   NAME: "name",

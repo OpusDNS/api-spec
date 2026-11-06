@@ -1256,6 +1256,42 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/domain-forwards/statistics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get domain forward statistics
+         * @description Counts the redirects your organization's domain forwards served in a window, as a series of buckets and as totals, optionally with a top list (`breakdown`). It replaces the `/metrics` routes, which will be deprecated.
+         *
+         *     The window runs from `start` (inclusive) to `end` (exclusive), both UTC, and `granularity` sets the bucket width. The window may be at most 6 hours for `minute`, 31 days for `hour`, 366 days for `day` and 762 days (25 months) for `week` and `month` long. Weeks start on Monday and months on the 1st. From `hour` up, the counts are read whole hours (`hour`) or days at a time, so a time of day on `start` or `end` does not cut the hour or day it falls in, unless `hostname` or `protocol` is set: those read the raw log, which honours the exact window. Every bucket the window touches is present, oldest first, and holds 0 where nothing was served. A bucket marked `partial` does not count its whole span: the window or the start of the data cuts it, or it reaches `data_available_to`, which is still running.
+         *
+         *     Without a filter the counts cover all forwards of your organization, and with `include_sub_organizations` its sub-organizations' too. `hostname` (one forward, exact) and `domain` (a domain and all its subdomains) exclude each other and need view access to the zone. `hostname` and `protocol` filters are served from the raw log, which keeps 35 days: a window starting earlier with either of them is rejected.
+         *
+         *     The window may start at most 35 days back at `minute`, 92 days at `hour` and 25 months at `day`, `week` and `month`; a window starting earlier is rejected with 400. A breakdown keeps 13 months, so over an older window it counts what is kept (`data_available_from` says where the data begins), and a breakdown by `user_agent`, `referrer`, `fqdn`, `domain`, `forward` or `rule` with a `domain` filter reaches back 35 days only, like `hostname` and `protocol`.
+         *
+         *     `url` lists host and path of the redirected requests (`www.example.com/shop`, no query string). Full request paths are not kept: per domain and day only the top 5 values with at least 3 hits that day are, for 13 months. It therefore needs a `domain` filter, cannot be combined with `hostname` or `protocol`, and over more than one day is an approximation (the sum of the daily top 5 lists, so a path that never made a day's list is missing). There is no list of URLs across all domains of an organization. Asking for it without `domain`, or with `hostname` or `protocol`, is rejected with 422.
+         *
+         *     `unique_visits` and `invoked_forwards` are estimates (HyperLogLog), merged over the window instead of summed over buckets, so the unique visits of buckets do not add up to the total. `invoked_forwards` counts distinct forwards that served a redirect; the `/metrics` route counts distinct domain and path pairs, so the two are not comparable. `configured_forwards` is the number of redirect rules configured now, whatever the window, so `invoked_forwards` can exceed it.
+         *
+         *     Statistics stay with the organization that owned the forward at the time of the redirect: traffic of a deleted forward or domain, or of one moved to another organization, remains in the former owner's totals, series and organization-wide breakdowns until retention ends, and the new owner sees only the traffic since it owns the forward. `domain` and `hostname` filters work only for zones you currently have.
+         *
+         *     A breakdown by `user_agent`, `referrer`, `fqdn`, `domain`, `forward` or `rule` over more than one day, and any breakdown by `url`, is an approximate top list: `approximate` says so. Country data is derived from IP addresses with GeoLite2 data created by MaxMind (https://www.maxmind.com). Redirects without a referrer are grouped as `direct`.
+         *
+         *     The route answers 501 where no statistics backend is configured. It does not depend on the metrics index of the `/metrics` routes.
+         */
+        get: operations["get_domain_forward_statistics_v1_domain_forwards_statistics_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/domain-forwards/{hostname}": {
         parameters: {
             query?: never;
@@ -6598,6 +6634,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "get_domain_forward_set_v1_domain_forwards__hostname___protocol__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainForwardStatisticsResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_domain_forward_statistics_v1_domain_forwards_statistics_get";
             /** @constant */
             status: "ok";
             /**
@@ -14061,6 +14121,139 @@ export interface components {
          * @enum {string}
          */
         DomainForwardSortField: "hostname" | "enabled" | "created_on" | "updated_on";
+        /** DomainForwardStatisticsBreakdownItem */
+        DomainForwardStatisticsBreakdownItem: {
+            /**
+             * Total Visits
+             * @description Number of redirects of this group
+             */
+            total_visits: number;
+            /**
+             * Unique Visits
+             * @description Estimated number of distinct visitors (distinct client IP addresses, stored only as a keyed hash), counted with a HyperLogLog sketch and merged over the whole window rather than summed over buckets, so the figures of buckets do not add up to the total
+             */
+            unique_visits: number;
+            /**
+             * Value
+             * @description The group: for `country` an ISO 3166-1 alpha-2 code, with an empty string for unknown; for `status_code` the configured redirect code as a string, e.g. `301`; for `referrer`, `direct` where the request had no referrer; for `url` host and path without query string, e.g. `www.example.com/shop`
+             */
+            value: string;
+        };
+        /** DomainForwardStatisticsBreakdownResponse */
+        DomainForwardStatisticsBreakdownResponse: {
+            /**
+             * Approximate
+             * @description True when the list is an approximation: for `user_agent`, `referrer`, `fqdn`, `domain`, `forward` and `rule`, a window of more than one day is answered from per-day top lists, so the counts are sums of those lists and a value that never made a day's top list is missing or undercounted. `url` is built from the daily top 5 lists of the domain, so it is an approximation as soon as those lists are read. Always false for `browser`, `platform`, `country` and `status_code`, and for any query filtered by `hostname` or `protocol` (except `url`, which cannot be)
+             */
+            approximate: boolean;
+            /** @description What the redirects are grouped by. Country data is derived from IP addresses with GeoLite2 data created by MaxMind (https://www.maxmind.com) */
+            dimension: components["schemas"]["DomainForwardStatisticsDimension"];
+            /**
+             * Items
+             * @description The groups with the most redirects, most first, at most `breakdown_limit`. For `url` at most 5 values per day went into the list, each with at least 3 hits that day
+             */
+            items: components["schemas"]["DomainForwardStatisticsBreakdownItem"][];
+        };
+        /** DomainForwardStatisticsBucket */
+        DomainForwardStatisticsBucket: {
+            /**
+             * Partial
+             * @description True when the counts are not those of the whole bucket: the window cuts the bucket, it begins before `data_available_from`, or it reaches `data_available_to`, which is still running. A bucket without any data is partial too. A partial bucket must not be read as a rise or fall against its neighbours
+             */
+            partial: boolean;
+            /**
+             * Period End
+             * Format: date-time
+             * @description First instant after the bucket (UTC), exclusive: the start of the next bucket
+             */
+            period_end: Date;
+            /**
+             * Period Start
+             * Format: date-time
+             * @description First instant of the bucket (UTC), inclusive
+             */
+            period_start: Date;
+            /**
+             * Total Visits
+             * @description Number of redirects served in the bucket; 0 when none were
+             */
+            total_visits: number;
+            /**
+             * Unique Visits
+             * @description Estimated number of distinct visitors (distinct client IP addresses, stored only as a keyed hash), counted with a HyperLogLog sketch and merged over the whole window rather than summed over buckets, so the figures of buckets do not add up to the total. Counted per bucket; 0 when none were
+             */
+            unique_visits: number;
+        };
+        /**
+         * DomainForwardStatisticsDimension
+         * @description What a breakdown groups the redirects by.
+         * @enum {string}
+         */
+        DomainForwardStatisticsDimension: "browser" | "platform" | "user_agent" | "referrer" | "country" | "status_code" | "url" | "fqdn" | "domain" | "forward" | "rule";
+        /**
+         * DomainForwardStatisticsGranularity
+         * @description Time-bucket size of the series.
+         * @enum {string}
+         */
+        DomainForwardStatisticsGranularity: "minute" | "hour" | "day" | "week" | "month";
+        /** DomainForwardStatisticsResponse */
+        DomainForwardStatisticsResponse: {
+            /** @description The top list requested with `breakdown`; null otherwise */
+            breakdown: components["schemas"]["DomainForwardStatisticsBreakdownResponse"] | null;
+            /**
+             * Buckets
+             * @description One entry per bucket the window touches, oldest first, including buckets without redirects (0)
+             */
+            buckets: components["schemas"]["DomainForwardStatisticsBucket"][];
+            /**
+             * Data Available From
+             * @description Earliest instant the data behind the answer holds: the later of the retention limit and the first ingested redirect. A window reaching further back is empty before it, which is not the same as zero redirects. Null when there is no data
+             */
+            data_available_from: Date | null;
+            /**
+             * Data Available To
+             * @description Time of the latest ingested redirect; a bucket reaching it is partial. Null when there is no data
+             */
+            data_available_to: Date | null;
+            /**
+             * End
+             * Format: date-time
+             * @description End of the window, exclusive, as requested
+             */
+            end: Date;
+            /** @description Time-bucket size of the series */
+            granularity: components["schemas"]["DomainForwardStatisticsGranularity"];
+            /**
+             * Start
+             * Format: date-time
+             * @description Start of the window, inclusive, as requested
+             */
+            start: Date;
+            totals: components["schemas"]["DomainForwardStatisticsTotals"];
+        };
+        /** DomainForwardStatisticsTotals */
+        DomainForwardStatisticsTotals: {
+            /**
+             * Configured Forwards
+             * @description Number of redirect rules currently configured for the filtered scope (your organization, and its sub-organizations with `include_sub_organizations`). The current state, not the state during the window: it does not depend on `start` and `end`, and it leaves out forwards deleted since, whose traffic still counts in the totals
+             */
+            configured_forwards: number;
+            /**
+             * Invoked Forwards
+             * @description Estimated number of distinct forwards (`rule_source_forward`: the forward's hostname, `*.example.com` for a wildcard) that served at least one redirect, counted with a HyperLogLog sketch. The `/metrics` route counts distinct domain and path pairs instead, so the two figures are not comparable, and `configured_forwards` counts redirect rules, so it is no ceiling for this figure: forwards that were deleted or moved to another organization during the window count here too
+             */
+            invoked_forwards: number;
+            /**
+             * Total Visits
+             * @description Number of redirects served in the window
+             */
+            total_visits: number;
+            /**
+             * Unique Visits
+             * @description Estimated number of distinct visitors (distinct client IP addresses, stored only as a keyed hash), counted with a HyperLogLog sketch and merged over the whole window rather than summed over buckets, so the figures of buckets do not add up to the total
+             */
+            unique_visits: number;
+        };
         /** DomainForwardStatusCodeStatsResponse */
         DomainForwardStatusCodeStatsResponse: {
             /** Results */
@@ -30652,6 +30845,150 @@ export interface operations {
                      *       "status": 503,
                      *       "title": "Domain Forward Metrics Temporarily Unavailable",
                      *       "type": "domain-forward-metrics-temporarily-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    get_domain_forward_statistics_v1_domain_forwards_statistics_get: {
+        parameters: {
+            query: {
+                /** @description Only count redirects of this exact forward hostname. Excludes `domain`. Reaches back 35 days only, like `protocol`: a window starting earlier is rejected. */
+                hostname?: string | null;
+                /** @description Only count redirects of this domain and all its subdomains. Excludes `hostname`. */
+                domain?: string | null;
+                /** @description Start of the window, inclusive (RFC 3339; a value without an offset is read as UTC). */
+                start: Date;
+                /** @description End of the window, exclusive (RFC 3339; a value without an offset is read as UTC). How far it may reach after `start` depends on `granularity`: at most 6 hours for `minute`, 31 days for `hour`, 366 days for `day` and 762 days (25 months) for `week` and `month`. */
+                end: Date;
+                /** @description Time-bucket size. Buckets start on the minute, the hour or the day (UTC); weeks start on Monday and months on the 1st. */
+                granularity?: components["schemas"]["DomainForwardStatisticsGranularity"];
+                /** @description Only count redirects requested over this protocol. Reaches back 35 days only, like `hostname`: a window starting earlier is rejected. */
+                protocol?: components["schemas"]["HttpProtocol"] | null;
+                /** @description Leave out the redirects whose platform is `Bot` or `Unknown`, as the `/metrics` routes do. */
+                exclude_bots?: boolean;
+                /** @description Count the forwards of your sub-organizations too. By default only your own organization's are counted. */
+                include_sub_organizations?: boolean;
+                /** @description Adds a top list of the redirects grouped by this dimension. `country` is derived from the visitor's IP address with GeoLite2 data created by MaxMind (https://www.maxmind.com); an empty value means unknown. `status_code` is the redirect code configured on the rule. `domain` cannot be combined with the `domain` filter. `url` lists host and path of the redirected requests (`www.example.com/shop`, no query string). Full request paths are not kept: per domain and day only the top 5 values with at least 3 hits that day are, for 13 months. It therefore needs a `domain` filter, cannot be combined with `hostname` or `protocol`, and over more than one day is an approximation (the sum of the daily top 5 lists, so a path that never made a day's list is missing). There is no list of URLs across all domains of an organization. */
+                breakdown?: components["schemas"]["DomainForwardStatisticsDimension"] | null;
+                /** @description How many items the breakdown lists. */
+                breakdown_limit?: number;
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Statistics retrieved successfully */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainForwardStatisticsResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_STATISTICS_QUERY",
+                     *       "detail": "'start' must be at most 35 days ago when 'hostname' or 'protocol' is set",
+                     *       "status": 400,
+                     *       "title": "Domain forward statistics query rejected.",
+                     *       "type": "domain-forward-statistics-query-rejected"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_STATISTICS_INVALID_QUERY",
+                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for an exact match or 'domain' to filter by domain including all subdomains.",
+                     *       "status": 422,
+                     *       "title": "Invalid domain forward statistics query.",
+                     *       "type": "domain-forward-statistics-invalid-query"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Implemented */
+            501: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_STATISTICS_NOT_AVAILABLE",
+                     *       "detail": "Domain forward statistics are not available in this environment.",
+                     *       "status": 501,
+                     *       "title": "Domain forward statistics not available.",
+                     *       "type": "domain-forward-statistics-not-available"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_STATISTICS_UNAVAILABLE",
+                     *       "detail": "Domain forward statistics are currently unavailable, please try again later.",
+                     *       "status": 503,
+                     *       "title": "Domain forward statistics unavailable.",
+                     *       "type": "domain-forward-statistics-unavailable"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };

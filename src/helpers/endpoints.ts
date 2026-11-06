@@ -59,6 +59,7 @@ export const DOMAIN_FORWARDS_METRICS_STATUS_CODE_ENDPOINT = '/v1/domain-forwards
 export const DOMAIN_FORWARDS_METRICS_TIME_SERIES_ENDPOINT = '/v1/domain-forwards/metrics/time-series';
 export const DOMAIN_FORWARDS_METRICS_USER_AGENT_ENDPOINT = '/v1/domain-forwards/metrics/user-agent';
 export const DOMAIN_FORWARDS_METRICS_VISITS_BY_KEY_ENDPOINT = '/v1/domain-forwards/metrics/visits-by-key';
+export const DOMAIN_FORWARDS_STATISTICS_ENDPOINT = '/v1/domain-forwards/statistics';
 export const DOMAIN_FORWARDS_BY_HOSTNAME_ENDPOINT = '/v1/domain-forwards/{hostname}';
 export const DOMAIN_FORWARDS_BY_HOSTNAME_DISABLE_ENDPOINT = '/v1/domain-forwards/{hostname}/disable';
 export const DOMAIN_FORWARDS_BY_HOSTNAME_ENABLE_ENDPOINT = '/v1/domain-forwards/{hostname}/enable';
@@ -236,6 +237,7 @@ export type Endpoint =
   | typeof DOMAIN_FORWARDS_METRICS_TIME_SERIES_ENDPOINT
   | typeof DOMAIN_FORWARDS_METRICS_USER_AGENT_ENDPOINT
   | typeof DOMAIN_FORWARDS_METRICS_VISITS_BY_KEY_ENDPOINT
+  | typeof DOMAIN_FORWARDS_STATISTICS_ENDPOINT
   | typeof DOMAIN_FORWARDS_BY_HOSTNAME_ENDPOINT
   | typeof DOMAIN_FORWARDS_BY_HOSTNAME_DISABLE_ENDPOINT
   | typeof DOMAIN_FORWARDS_BY_HOSTNAME_ENABLE_ENDPOINT
