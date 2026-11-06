@@ -37049,7 +37049,7 @@ export interface operations {
                     /** @example {
                      *       "code": "ERROR_ORDER_NOT_FOUND",
                      *       "detail": "Order not found",
-                     *       "order_id": "order_01m6rqs20dfa782w2pym85p86z",
+                     *       "order_id": "order_01m6rrrkfrfbrsjzvdyrkayfa9",
                      *       "status": 404,
                      *       "title": "Order Not Found",
                      *       "type": "order-not-found"
