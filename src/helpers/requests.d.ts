@@ -42,6 +42,7 @@ import type {
   NorIdDeclarationConfirmRequest,
   NorIdResellerDeclarationRequest,
   ObjectTagChanges,
+  OrderCreate,
   OrganizationAttributeUpdate,
   OrganizationCreate,
   OrganizationUpdate,
@@ -951,6 +952,11 @@ export type GET_Orders_Request = {
   parameters: operations['list_orders_v1_orders_get']['parameters'];
 };
 export type GET_Orders_Request_Query = GET_Orders_Request['parameters']['query'];
+
+export type POST_Orders_Request = {
+  requestBody: OrderCreate;
+};
+export type POST_Orders_Request_Body = POST_Orders_Request['requestBody'];
 
 export type GET_OrdersByOrderId_Request = {
   parameters: operations['get_order_v1_orders__order_id__get']['parameters'];

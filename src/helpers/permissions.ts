@@ -1096,7 +1096,7 @@ export const REQUIRED_PERMISSIONS = {
   },
   [ORDERS_ENDPOINT]: {
     get: [PUBLIC_PERMISSION.DOMAINS_READ],
-    post: [],
+    post: [PUBLIC_PERMISSION.DOMAINS_MANAGE],
     put: [],
     patch: [],
     delete: [],

@@ -1588,6 +1588,16 @@ export type POST_JobsByBatchIdRetry_Response_200 = JobBatchRetry;
 export type POST_JobsByBatchIdRetry_Response_404 = Problem;
 export type POST_JobsByBatchIdRetry_Response_422 = HTTPValidationError;
 
+export type POST_Orders_Response = POST_Orders_Response_200 | POST_Orders_Response_202 | POST_Orders_Response_403 | POST_Orders_Response_409 | POST_Orders_Response_422 | POST_Orders_Response_500 | POST_Orders_Response_503;
+
+export type POST_Orders_Response_200 = Order;
+export type POST_Orders_Response_202 = Order;
+export type POST_Orders_Response_403 = Problem;
+export type POST_Orders_Response_409 = Problem;
+export type POST_Orders_Response_422 = HTTPValidationError;
+export type POST_Orders_Response_500 = Problem;
+export type POST_Orders_Response_503 = Problem;
+
 export type POST_Organizations_Response = POST_Organizations_Response_200 | POST_Organizations_Response_401 | POST_Organizations_Response_403 | POST_Organizations_Response_422;
 
 export type POST_Organizations_Response_200 = Organization;

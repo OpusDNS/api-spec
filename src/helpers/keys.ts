@@ -354,6 +354,7 @@ import type {
   MailTemplateVariable,
   Marketplace,
   MarketplaceDomainPurchaseDetail,
+  MarketplaceDomainPurchaseItemCreate,
   MemoryFact,
   MemoryFactCreateRequest,
   MemoryFactList,
@@ -387,6 +388,7 @@ import type {
   OpusDnsCredentialCreate,
   OpusDnsCredentialUpdate,
   OpusDnsCredentials,
+  OrderCreate,
   OrderItem,
   Order,
   Organization,
@@ -5108,6 +5110,20 @@ export const KEYS_MARKETPLACE_DOMAIN_PURCHASE_DETAIL = [
   KEY_MARKETPLACE_DOMAIN_PURCHASE_DETAIL_STAGE,
 ] as const satisfies (keyof MarketplaceDomainPurchaseDetail)[];
 
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_CURRENCY = 'currency' satisfies keyof MarketplaceDomainPurchaseItemCreate;
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_DOMAIN = 'domain' satisfies keyof MarketplaceDomainPurchaseItemCreate;
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_EXPECTED_PRICE = 'expected_price' satisfies keyof MarketplaceDomainPurchaseItemCreate;
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_MARKETPLACE = 'marketplace' satisfies keyof MarketplaceDomainPurchaseItemCreate;
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_TYPE = 'type' satisfies keyof MarketplaceDomainPurchaseItemCreate;
+
+export const KEYS_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE = [
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_CURRENCY,
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_DOMAIN,
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_EXPECTED_PRICE,
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_MARKETPLACE,
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_TYPE,
+] as const satisfies (keyof MarketplaceDomainPurchaseItemCreate)[];
+
 export const KEY_MEMORY_FACT_CREATED_AT = 'created_at' satisfies keyof MemoryFact;
 export const KEY_MEMORY_FACT_EXPIRES_AT = 'expires_at' satisfies keyof MemoryFact;
 export const KEY_MEMORY_FACT_FACT_ID = 'fact_id' satisfies keyof MemoryFact;
@@ -5447,6 +5463,14 @@ export const KEY_OPUS_DNS_CREDENTIALS_API_KEY = 'api_key' satisfies keyof OpusDn
 export const KEYS_OPUS_DNS_CREDENTIALS = [
   KEY_OPUS_DNS_CREDENTIALS_API_KEY,
 ] as const satisfies (keyof OpusDnsCredentials)[];
+
+export const KEY_ORDER_CREATE_IDEMPOTENCY_KEY = 'idempotency_key' satisfies keyof OrderCreate;
+export const KEY_ORDER_CREATE_ITEMS = 'items' satisfies keyof OrderCreate;
+
+export const KEYS_ORDER_CREATE = [
+  KEY_ORDER_CREATE_IDEMPOTENCY_KEY,
+  KEY_ORDER_CREATE_ITEMS,
+] as const satisfies (keyof OrderCreate)[];
 
 export const KEY_ORDER_ITEM_CURRENCY = 'currency' satisfies keyof OrderItem;
 export const KEY_ORDER_ITEM_ITEM_ID = 'item_id' satisfies keyof OrderItem;

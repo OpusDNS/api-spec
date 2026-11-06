@@ -2529,7 +2529,13 @@ export interface paths {
          */
         get: operations["list_orders_v1_orders_get"];
         put?: never;
-        post?: never;
+        /**
+         * Create an order
+         * @description Orders a domain listed on a marketplace. The order is accepted (202) once the price and availability are confirmed; it then progresses on its own, follow it with `GET /v1/orders/{order_id}`.
+         *
+         *     Repeating a request with the same `idempotency_key` and body returns the original order with 200. The same key with a different body is refused with 409.
+         */
+        post: operations["create_order_v1_orders_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -5303,6 +5309,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "create_or_update_dnssec_v1_domains__domain_reference__dnssec_put";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["OrderResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_order_v1_orders_post";
             /** @constant */
             status: "ok";
             /**
@@ -18284,6 +18314,31 @@ export interface components {
             stage: string;
         };
         /**
+         * MarketplaceDomainPurchaseItemCreate
+         * @description Buy a domain listed on a marketplace.
+         */
+        MarketplaceDomainPurchaseItemCreate: {
+            /** @description Currency of `expected_price` */
+            currency: components["schemas"]["Currency"];
+            /**
+             * Domain
+             * @description Domain name to buy (Unicode or ASCII form)
+             * @example example.com
+             */
+            domain: string;
+            /** @description The price the customer expects to pay, as returned by the marketplace search, as a decimal string with two decimals. The order is refused with a price-changed error when the current price differs. */
+            expected_price: components["schemas"]["StrictMoneyDecimal"];
+            /** @description Marketplace the domain is bought on */
+            marketplace: components["schemas"]["MarketplaceName"];
+            /**
+             * Type
+             * @description Item type
+             * @default marketplace_domain_purchase
+             * @constant
+             */
+            type: "marketplace_domain_purchase";
+        };
+        /**
          * MarketplaceName
          * @description Marketplaces OpusDNS lists domains from.
          * @enum {string}
@@ -18882,6 +18937,19 @@ export interface components {
              * @description API key at the registrar
              */
             api_key: string;
+        };
+        /** OrderCreate */
+        OrderCreate: {
+            /**
+             * Idempotency Key
+             * @description Caller-chosen key, unique per organization. Repeating a request with the same key and body returns the original order.
+             */
+            idempotency_key: string;
+            /**
+             * Items
+             * @description Items to order (one for now)
+             */
+            items: components["schemas"]["MarketplaceDomainPurchaseItemCreate"][];
         };
         /**
          * OrderItemResponse
@@ -36835,6 +36903,107 @@ export interface operations {
             };
         };
     };
+    create_order_v1_orders_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OrderCreate"];
+            };
+        };
+        responses: {
+            /** @description An earlier identical request created this order. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrderResponse"];
+                };
+            };
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrderResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_UNREADABLE",
+                     *       "detail": "The order could not be read",
+                     *       "status": 500,
+                     *       "title": "Order Unreadable",
+                     *       "type": "order-unreadable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    /** @description Seconds to wait before retrying */
+                    "Retry-After"?: number;
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_SERVICE_UNAVAILABLE",
+                     *       "detail": "Orders are temporarily unavailable, please retry shortly",
+                     *       "status": 503,
+                     *       "title": "Order Service Unavailable",
+                     *       "type": "order-service-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
     get_order_v1_orders__order_id__get: {
         parameters: {
             query?: never;
@@ -36880,7 +37049,7 @@ export interface operations {
                     /** @example {
                      *       "code": "ERROR_ORDER_NOT_FOUND",
                      *       "detail": "Order not found",
-                     *       "order_id": "order_01m6rpvvtgfqjvw7k5hzc6ggrm",
+                     *       "order_id": "order_01m6rqs20dfa782w2pym85p86z",
                      *       "status": 404,
                      *       "title": "Order Not Found",
                      *       "type": "order-not-found"
