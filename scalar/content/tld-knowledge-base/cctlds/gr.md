@@ -48,7 +48,7 @@
 | Property | Value |
 | --- | --- |
 | Domain Length | 1–63 characters |
-| IDN Support | ✅ Yes |
+| IDN Support | ❌ No |
 | Premium Domains | ❌ No |
 | Reserved Domains | ❌ No |
 | Registry Lock | ❌ No |
@@ -95,7 +95,9 @@
 
 ## Zones
 
-Registration is available directly under `.gr`. `.ελ`, `.gov.gr` and the other second-level zones are not offered.
+Registration is available under `.gr`, `.com.gr`, `.edu.gr`, `.net.gr` and `.org.gr`, with the same requests and the same rules described on this page. `.ελ` and `.gov.gr` are not offered.
+
+Internationalized domain names are not offered.
 
 ## Registration
 
@@ -106,6 +108,10 @@ Registration is available directly under `.gr`. `.ελ`, `.gov.gr` and the other
 - An `auth_code` supplied at registration is ignored.
 
 A new registration is returned with the `pendingCreate` status, and the registry usually confirms it within minutes. The price is reserved when the request is accepted and is charged once the registration is confirmed. Until then, a domain update, a renewal and a deletion are refused. Read the domain with [`GET /v1/domains/{domain_reference}`](/api-reference#tag/domain/GET/v1/domains/{domain_reference}) to see when `pendingCreate` has been removed.
+
+## Availability
+
+[`GET /v1/availability`](/api-reference#tag/availability/GET/v1/availability) can answer `unknown` for a name that is free. Use [`GET /v1/domains/check`](/api-reference#tag/domain/GET/v1/domains/check) for a definite answer.
 
 ## Geographic names
 
@@ -179,7 +185,7 @@ A change of registrant of a geographic name does not take effect immediately, be
 
 ## Renewal
 
-- Renewals run for **2, 4, 6, 8 or 10 years**. Any other `period` on [`POST /v1/domains/{domain_reference}/renew`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/renew) is refused with `422`.
+- Renewals run for **2, 4, 6, 8 or 10 years**. Any other `period` on [`POST /v1/domains/{domain_reference}/renew`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/renew) is refused.
 - Renew up to a new expiry date **at most 10 years away**. A longer period is refused.
 - An automatic renewal runs for **2 years**.
 - A renewal is refused while the domain carries `pendingDelete`, so renew before the expiry date.
@@ -192,6 +198,10 @@ A `.gr` domain cannot be deleted immediately. [`DELETE /v1/domains/{domain_refer
 - The `pendingDelete` status can be removed again before the expiry date, when the domain is refreshed from the registry. The deletion still stands, as `canceled_on` shows.
 
 A domain that reaches its expiry date without a renewal carries `pendingDelete`, `serverHold` and `serverUpdateProhibited`, is no longer published in the DNS, and is removed 15 days later.
+
+## DNSSEC
+
+After DS records are added, the domain cannot be updated until the records have been validated. A domain update sent during that time is refused.
 
 ## Domain statuses
 

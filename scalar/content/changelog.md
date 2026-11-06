@@ -6,8 +6,8 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ### 5 November 2026
 
-- Onboarded **[`.gr`](/tld-knowledge-base/cctlds/gr)** (Greece). Published its TLD
-  Knowledge Base page. Registrations run for 2 years and renewals in steps of 2 years, auth
+- Onboarded **[`.gr`](/tld-knowledge-base/cctlds/gr)** (Greece), with `.com.gr`, `.edu.gr`,
+  `.net.gr` and `.org.gr`. Published its TLD Knowledge Base page. Registrations run for 2 years and renewals in steps of 2 years, auth
   codes are sent to the registrant by email, and a deleted domain is removed 15
   days after its expiry date.
 
