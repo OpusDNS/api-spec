@@ -353,6 +353,7 @@ import type {
   MailTemplateBlock,
   MailTemplateVariable,
   Marketplace,
+  MarketplaceDomainPurchaseDetail,
   MemoryFact,
   MemoryFactCreateRequest,
   MemoryFactList,
@@ -386,6 +387,8 @@ import type {
   OpusDnsCredentialCreate,
   OpusDnsCredentialUpdate,
   OpusDnsCredentials,
+  OrderItem,
+  Order,
   Organization,
   OrganizationAttribute,
   OrganizationAttributeCreate,
@@ -5095,6 +5098,16 @@ export const KEYS_MARKETPLACE = [
   KEY_MARKETPLACE_NAME,
 ] as const satisfies (keyof Marketplace)[];
 
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_DETAIL_DOMAIN = 'domain' satisfies keyof MarketplaceDomainPurchaseDetail;
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_DETAIL_MARKETPLACE = 'marketplace' satisfies keyof MarketplaceDomainPurchaseDetail;
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_DETAIL_STAGE = 'stage' satisfies keyof MarketplaceDomainPurchaseDetail;
+
+export const KEYS_MARKETPLACE_DOMAIN_PURCHASE_DETAIL = [
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_DETAIL_DOMAIN,
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_DETAIL_MARKETPLACE,
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_DETAIL_STAGE,
+] as const satisfies (keyof MarketplaceDomainPurchaseDetail)[];
+
 export const KEY_MEMORY_FACT_CREATED_AT = 'created_at' satisfies keyof MemoryFact;
 export const KEY_MEMORY_FACT_EXPIRES_AT = 'expires_at' satisfies keyof MemoryFact;
 export const KEY_MEMORY_FACT_FACT_ID = 'fact_id' satisfies keyof MemoryFact;
@@ -5434,6 +5447,40 @@ export const KEY_OPUS_DNS_CREDENTIALS_API_KEY = 'api_key' satisfies keyof OpusDn
 export const KEYS_OPUS_DNS_CREDENTIALS = [
   KEY_OPUS_DNS_CREDENTIALS_API_KEY,
 ] as const satisfies (keyof OpusDnsCredentials)[];
+
+export const KEY_ORDER_ITEM_CURRENCY = 'currency' satisfies keyof OrderItem;
+export const KEY_ORDER_ITEM_ITEM_ID = 'item_id' satisfies keyof OrderItem;
+export const KEY_ORDER_ITEM_MARKETPLACE_DOMAIN_PURCHASE = 'marketplace_domain_purchase' satisfies keyof OrderItem;
+export const KEY_ORDER_ITEM_PRICE = 'price' satisfies keyof OrderItem;
+export const KEY_ORDER_ITEM_STATUS = 'status' satisfies keyof OrderItem;
+export const KEY_ORDER_ITEM_TYPE = 'type' satisfies keyof OrderItem;
+
+export const KEYS_ORDER_ITEM = [
+  KEY_ORDER_ITEM_CURRENCY,
+  KEY_ORDER_ITEM_ITEM_ID,
+  KEY_ORDER_ITEM_MARKETPLACE_DOMAIN_PURCHASE,
+  KEY_ORDER_ITEM_PRICE,
+  KEY_ORDER_ITEM_STATUS,
+  KEY_ORDER_ITEM_TYPE,
+] as const satisfies (keyof OrderItem)[];
+
+export const KEY_ORDER_CREATED_ON = 'created_on' satisfies keyof Order;
+export const KEY_ORDER_CURRENCY = 'currency' satisfies keyof Order;
+export const KEY_ORDER_ITEMS = 'items' satisfies keyof Order;
+export const KEY_ORDER_ORDER_ID = 'order_id' satisfies keyof Order;
+export const KEY_ORDER_STATUS = 'status' satisfies keyof Order;
+export const KEY_ORDER_TOTAL_PRICE = 'total_price' satisfies keyof Order;
+export const KEY_ORDER_UPDATED_ON = 'updated_on' satisfies keyof Order;
+
+export const KEYS_ORDER = [
+  KEY_ORDER_CREATED_ON,
+  KEY_ORDER_CURRENCY,
+  KEY_ORDER_ITEMS,
+  KEY_ORDER_ORDER_ID,
+  KEY_ORDER_STATUS,
+  KEY_ORDER_TOTAL_PRICE,
+  KEY_ORDER_UPDATED_ON,
+] as const satisfies (keyof Order)[];
 
 export const KEY_ORGANIZATION_ADDRESS_1 = 'address_1' satisfies keyof Organization;
 export const KEY_ORGANIZATION_ADDRESS_2 = 'address_2' satisfies keyof Organization;

@@ -95,6 +95,9 @@ import type {
   NorIdDeclarationStatus,
   ObjectEventType,
   ObjectLogSortField,
+  OrderItemType,
+  OrderSortField,
+  OrderStatus,
   OrganizationCredentialStatus,
   OrganizationSortField,
   OrganizationStatus,
@@ -1832,6 +1835,40 @@ export const OBJECT_LOG_SORT_FIELD_VALUES = [
   'performed_by_type',
   'performed_by_id',
 ] as const satisfies ReadonlyArray<ObjectLogSortField>;
+
+export const ORDER_ITEM_TYPE = {
+  MARKETPLACE_DOMAIN_PURCHASE: "marketplace_domain_purchase",
+} as const satisfies Record<string, OrderItemType>;
+
+export const ORDER_ITEM_TYPE_VALUES = [
+  'marketplace_domain_purchase',
+] as const satisfies ReadonlyArray<OrderItemType>;
+
+export const ORDER_SORT_FIELD = {
+  CREATED_ON: "created_on",
+  UPDATED_ON: "updated_on",
+} as const satisfies Record<string, OrderSortField>;
+
+export const ORDER_SORT_FIELD_VALUES = [
+  'created_on',
+  'updated_on',
+] as const satisfies ReadonlyArray<OrderSortField>;
+
+export const ORDER_STATUS = {
+  PENDING: "pending",
+  IN_PROGRESS: "in_progress",
+  COMPLETED: "completed",
+  CANCELED: "canceled",
+  FAILED: "failed",
+} as const satisfies Record<string, OrderStatus>;
+
+export const ORDER_STATUS_VALUES = [
+  'pending',
+  'in_progress',
+  'completed',
+  'canceled',
+  'failed',
+] as const satisfies ReadonlyArray<OrderStatus>;
 
 export const ORGANIZATION_CREDENTIAL_STATUS = {
   ACTIVE: "active",

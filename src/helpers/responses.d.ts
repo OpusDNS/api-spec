@@ -72,6 +72,7 @@ import type {
   MessageList,
   NorIdDeclaration,
   ObjectTagChanges2,
+  Order,
   Organization,
   OrganizationAttribute2,
   OrganizationCredential,
@@ -96,6 +97,7 @@ import type {
   Pagination_EmailForwardZone,
   Pagination_Event,
   Pagination_Invoice,
+  Pagination_Order,
   Pagination_Organization,
   Pagination_RegistrarCredential,
   Pagination_SyncFailure,
@@ -804,6 +806,20 @@ export type GET_JobsByBatchIdJobs_Response_200 = PageResponse_Job;
 export type GET_JobsByBatchIdJobs_Response_404 = Problem;
 export type GET_JobsByBatchIdJobs_Response_422 = HTTPValidationError;
 export type GET_JobsByBatchIdJobs_Response_503 = Problem;
+
+export type GET_Orders_Response = GET_Orders_Response_200 | GET_Orders_Response_403 | GET_Orders_Response_422;
+
+export type GET_Orders_Response_200 = Pagination_Order;
+export type GET_Orders_Response_403 = Problem;
+export type GET_Orders_Response_422 = HTTPValidationError;
+
+export type GET_OrdersByOrderId_Response = GET_OrdersByOrderId_Response_200 | GET_OrdersByOrderId_Response_403 | GET_OrdersByOrderId_Response_404 | GET_OrdersByOrderId_Response_422 | GET_OrdersByOrderId_Response_500;
+
+export type GET_OrdersByOrderId_Response_200 = Order;
+export type GET_OrdersByOrderId_Response_403 = Problem;
+export type GET_OrdersByOrderId_Response_404 = Problem;
+export type GET_OrdersByOrderId_Response_422 = HTTPValidationError;
+export type GET_OrdersByOrderId_Response_500 = Problem;
 
 export type GET_Organizations_Response = GET_Organizations_Response_200 | GET_Organizations_Response_401 | GET_Organizations_Response_403 | GET_Organizations_Response_422;
 

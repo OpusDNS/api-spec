@@ -2516,6 +2516,43 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/orders": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List orders
+         * @description Your organization's orders, newest first by default (see `sort_by` and `sort_order`).
+         */
+        get: operations["list_orders_v1_orders_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/orders/{order_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get an order */
+        get: operations["get_order_v1_orders__order_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/organizations": {
         parameters: {
             query?: never;
@@ -7099,6 +7136,30 @@ export interface components {
              */
             truncated: boolean;
         } | {
+            data?: components["schemas"]["OrderResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_order_v1_orders__order_id__get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
             data?: components["schemas"]["OrganizationAttributeResponse"][] | string;
             /**
              * Headers
@@ -8270,6 +8331,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "list_messages_v1_ai_concierge_conversations__conversation_id__messages_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_OrderResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_orders_v1_orders_get";
             /** @constant */
             status: "ok";
             /**
@@ -18176,6 +18261,29 @@ export interface components {
             name: components["schemas"]["MarketplaceName"];
         };
         /**
+         * MarketplaceDomainPurchaseDetail
+         * @description The `marketplace_domain_purchase` part of an item.
+         */
+        MarketplaceDomainPurchaseDetail: {
+            /**
+             * Domain
+             * @description Domain name (ASCII form)
+             */
+            domain: string;
+            /**
+             * Marketplace
+             * @description Marketplace the domain is bought on: `fruits`. More can be added.
+             * @example fruits
+             */
+            marketplace: string;
+            /**
+             * Stage
+             * @description Where the purchase stands: `processing`, `purchasing`, `awaiting_code`, `code_ready`, `completed`, `failed`, `canceled`. Treat a value you do not know as `processing`: stages can be added.
+             * @example processing
+             */
+            stage: string;
+        };
+        /**
          * MarketplaceName
          * @description Marketplaces OpusDNS lists domains from.
          * @enum {string}
@@ -18775,6 +18883,82 @@ export interface components {
              */
             api_key: string;
         };
+        /**
+         * OrderItemResponse
+         * @description The fields every item type has, plus one optional object named after `type`. A new type adds one field.
+         */
+        OrderItemResponse: {
+            /** @description Currency of `price` */
+            currency: components["schemas"]["Currency"];
+            /**
+             * Item Id
+             * Format: typeid
+             * @example order_item_01h45ytscbebyvny4gc8cr8ma2
+             */
+            item_id: TypeId<"order_item">;
+            /** @description Set when `type` is `marketplace_domain_purchase` */
+            marketplace_domain_purchase?: components["schemas"]["MarketplaceDomainPurchaseDetail"] | null;
+            /** @description Price of the item, a decimal string with two decimals */
+            price: components["schemas"]["StrictMoneyDecimal"];
+            /**
+             * Status
+             * @description `pending`, `in_progress`, `completed`, `canceled`, `failed`. `pending` and `in_progress` are open, the others are final. Treat a value you do not know as open: statuses can be added.
+             * @example in_progress
+             */
+            status: string;
+            /**
+             * Type
+             * @description Item type: `marketplace_domain_purchase`
+             * @example marketplace_domain_purchase
+             */
+            type: string;
+        };
+        /**
+         * OrderItemType
+         * @enum {string}
+         */
+        OrderItemType: "marketplace_domain_purchase";
+        /** OrderResponse */
+        OrderResponse: {
+            /**
+             * Created On
+             * Format: date-time
+             */
+            created_on: Date;
+            /** @description Currency of `total_price` and of every item price */
+            currency: components["schemas"]["Currency"];
+            /** Items */
+            items: components["schemas"]["OrderItemResponse"][];
+            /**
+             * Order Id
+             * Format: typeid
+             * @example order_01h45ytscbebyvny4gc8cr8ma2
+             */
+            order_id: TypeId<"order">;
+            /**
+             * Status
+             * @description `pending`, `in_progress`, `completed`, `canceled`, `failed`. `pending` and `in_progress` are open, the others are final. Treat a value you do not know as open: statuses can be added.
+             * @example in_progress
+             */
+            status: string;
+            /** @description Sum of the item prices, a decimal string with two decimals */
+            total_price: components["schemas"]["StrictMoneyDecimal"];
+            /**
+             * Updated On
+             * Format: date-time
+             */
+            updated_on: Date;
+        };
+        /**
+         * OrderSortField
+         * @enum {string}
+         */
+        OrderSortField: "created_on" | "updated_on";
+        /**
+         * OrderStatus
+         * @enum {string}
+         */
+        OrderStatus: "pending" | "in_progress" | "completed" | "canceled" | "failed";
         /** Organization */
         Organization: {
             /**
@@ -19534,6 +19718,12 @@ export interface components {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
             results: components["schemas"]["InvoiceResponse"][];
+        };
+        /** Pagination[OrderResponse] */
+        Pagination_OrderResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["OrderResponse"][];
         };
         /** Pagination[Organization] */
         Pagination_Organization_: {
@@ -36579,6 +36769,148 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_orders_v1_orders_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+                /** @description Only orders with this status */
+                status?: components["schemas"]["OrderStatus"] | null;
+                /** @description Only orders with an item of this type */
+                type?: components["schemas"]["OrderItemType"] | null;
+                /** @description Only orders for this domain name (Unicode or ASCII form) */
+                domain?: string | null;
+                /** @description Only orders created at or after this time */
+                created_after?: Date | null;
+                /** @description Only orders created at or before this time */
+                created_before?: Date | null;
+                /** @description Field to sort by */
+                sort_by?: components["schemas"]["OrderSortField"];
+                /** @description Sort order direction */
+                sort_order?: components["schemas"]["SortOrder"];
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_OrderResponse_"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_order_v1_orders__order_id__get: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                order_id: TypeId<"order">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrderResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_NOT_FOUND",
+                     *       "detail": "Order not found",
+                     *       "order_id": "order_01m6rpvvtgfqjvw7k5hzc6ggrm",
+                     *       "status": 404,
+                     *       "title": "Order Not Found",
+                     *       "type": "order-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_UNREADABLE",
+                     *       "detail": "The order could not be read",
+                     *       "status": 500,
+                     *       "title": "Order Unreadable",
+                     *       "type": "order-unreadable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };

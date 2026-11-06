@@ -947,6 +947,16 @@ export type POST_JobsByBatchIdRetry_Request = {
 export type POST_JobsByBatchIdRetry_Request_Query = POST_JobsByBatchIdRetry_Request['parameters']['query'];
 export type POST_JobsByBatchIdRetry_Request_Path = POST_JobsByBatchIdRetry_Request['parameters']['path'];
 
+export type GET_Orders_Request = {
+  parameters: operations['list_orders_v1_orders_get']['parameters'];
+};
+export type GET_Orders_Request_Query = GET_Orders_Request['parameters']['query'];
+
+export type GET_OrdersByOrderId_Request = {
+  parameters: operations['get_order_v1_orders__order_id__get']['parameters'];
+};
+export type GET_OrdersByOrderId_Request_Path = GET_OrdersByOrderId_Request['parameters']['path'];
+
 export type GET_Organizations_Request = {
   parameters: operations['list_organizations_v1_organizations_get']['parameters'];
 };
