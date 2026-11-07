@@ -1267,11 +1267,11 @@ export interface paths {
          * Get domain forward statistics
          * @description Counts the redirects your organization's domain forwards served in a window, as a series of buckets and as totals, optionally with a top list (`breakdown`). It replaces the `/metrics` routes, which will be deprecated.
          *
-         *     The window runs from `start` (inclusive) to `end` (exclusive), both UTC, and `granularity` sets the bucket width. The window may be at most 6 hours for `minute`, 31 days for `hour`, 366 days for `day` and 762 days (25 months) for `week` and `month` long. Weeks start on Monday and months on the 1st. From `hour` up, the counts are read whole hours (`hour`) or days at a time, so a time of day on `start` or `end` does not cut the hour or day it falls in, unless `hostname` or `protocol` is set: those read the raw log, which honours the exact window. Every bucket the window touches is present, oldest first, and holds 0 where nothing was served. A bucket marked `partial` does not count its whole span: the window or the start of the data cuts it, or it reaches `data_available_to`, which is still running.
+         *     The window is `start_date` to `end_date`, both days inclusive (YYYY-MM-DD, UTC), like the other statistics routes, and `granularity` sets the bucket width: `hour`, `day`, `week` or `month`. The window may be at most 31 days for `hour`, 366 days for `day` and `week`, and 25 calendar months for `month` long. Weeks start on Monday and months on the 1st. With `granularity=hour` only, `start` and `end` (UTC instants, `end` exclusive) may replace the two dates, for a rolling window such as the last 24 hours; give exactly one of the two pairs. The response echoes the window as days (`start_date`, `end_date`) and as instants (`start`, `end`, `end` exclusive). Hourly counts are read in whole hours, so a time of day inside an hour on `start` or `end` does not cut that hour, unless `hostname` or `protocol` is set: those read the raw log, which honours the exact window. Every bucket the window touches is present, oldest first, and holds 0 where nothing was served. A bucket marked `partial` does not count its whole span: the window or the start of the data cuts it, or it reaches `data_available_to`, which is still running.
          *
          *     Without a filter the counts cover all forwards of your organization, and with `include_sub_organizations` its sub-organizations' too. `hostname` (one forward, exact) and `domain` (a domain and all its subdomains) exclude each other and need view access to the zone. `hostname` and `protocol` filters are served from the raw log, which keeps 35 days: a window starting earlier with either of them is rejected.
          *
-         *     The window may start at most 35 days back at `minute`, 92 days at `hour` and 25 months at `day`, `week` and `month`; a window starting earlier is rejected with 400. A breakdown keeps 13 months, so over an older window it counts what is kept (`data_available_from` says where the data begins), and a breakdown by `user_agent`, `referrer`, `fqdn`, `domain`, `forward` or `rule` with a `domain` filter reaches back 35 days only, like `hostname` and `protocol`.
+         *     The window may start at most 35 days back at `hour` and 25 months at `day`, `week` and `month`; a window starting earlier is rejected with 400. A breakdown keeps 13 months, so over an older window it counts what is kept (`data_available_from` says where the data begins), and a breakdown by `user_agent`, `referrer`, `fqdn`, `domain`, `forward` or `rule` with a `domain` filter reaches back 35 days only, like `hostname` and `protocol`.
          *
          *     `url` lists host and path of the redirected requests (`www.example.com/shop`, no query string). Full request paths are not kept: per domain and day only the top 5 values with at least 3 hits that day are, for 13 months. It therefore needs a `domain` filter, cannot be combined with `hostname` or `protocol`, and over more than one day is an approximation (the sum of the daily top 5 lists, so a path that never made a day's list is missing). There is no list of URLs across all domains of an organization. Asking for it without `domain`, or with `hostname` or `protocol`, is rejected with 422.
          *
@@ -14459,7 +14459,7 @@ export interface components {
          * @description Time-bucket size of the series.
          * @enum {string}
          */
-        DomainForwardStatisticsGranularity: "minute" | "hour" | "day" | "week" | "month";
+        DomainForwardStatisticsGranularity: "hour" | "day" | "week" | "month";
         /** DomainForwardStatisticsResponse */
         DomainForwardStatisticsResponse: {
             /** @description The top list requested with `breakdown`; null otherwise */
@@ -14482,24 +14482,36 @@ export interface components {
             /**
              * End
              * Format: date-time
-             * @description End of the window, exclusive, as requested
+             * @description End of the window as an instant (UTC), exclusive: the day after `end_date` at 00:00, or `end` as requested
              */
             end: Date;
+            /**
+             * End Date
+             * Format: date
+             * @description Last day of the window, inclusive (UTC); for a window given as `start` and `end`, the day of its last instant
+             */
+            end_date: string;
             /** @description Time-bucket size of the series */
             granularity: components["schemas"]["DomainForwardStatisticsGranularity"];
             /**
              * Start
              * Format: date-time
-             * @description Start of the window, inclusive, as requested
+             * @description Start of the window as an instant (UTC), inclusive: `start_date` at 00:00, or `start` as requested
              */
             start: Date;
+            /**
+             * Start Date
+             * Format: date
+             * @description First day of the window, inclusive (UTC); for a window given as `start` and `end`, the day `start` falls in
+             */
+            start_date: string;
             totals: components["schemas"]["DomainForwardStatisticsTotals"];
         };
         /** DomainForwardStatisticsTotals */
         DomainForwardStatisticsTotals: {
             /**
              * Configured Forwards
-             * @description Number of redirect rules currently configured for the filtered scope (your organization, and its sub-organizations with `include_sub_organizations`). The current state, not the state during the window: it does not depend on `start` and `end`, and it leaves out forwards deleted since, whose traffic still counts in the totals
+             * @description Number of redirect rules currently configured for the filtered scope (your organization, and its sub-organizations with `include_sub_organizations`). The current state, not the state during the window: it does not depend on the window, and it leaves out forwards deleted since, whose traffic still counts in the totals
              */
             configured_forwards: number;
             /**
@@ -31260,16 +31272,20 @@ export interface operations {
     };
     get_domain_forward_statistics_v1_domain_forwards_statistics_get: {
         parameters: {
-            query: {
+            query?: {
                 /** @description Only count redirects of this exact forward hostname. Excludes `domain`. Reaches back 35 days only, like `protocol`: a window starting earlier is rejected. */
                 hostname?: string | null;
                 /** @description Only count redirects of this domain and all its subdomains. Excludes `hostname`. */
                 domain?: string | null;
-                /** @description Start of the window, inclusive (RFC 3339; a value without an offset is read as UTC). */
-                start: Date;
-                /** @description End of the window, exclusive (RFC 3339; a value without an offset is read as UTC). How far it may reach after `start` depends on `granularity`: at most 6 hours for `minute`, 31 days for `hour`, 366 days for `day` and 762 days (25 months) for `week` and `month`. */
-                end: Date;
-                /** @description Time-bucket size. Buckets start on the minute, the hour or the day (UTC); weeks start on Monday and months on the 1st. */
+                /** @description First day of the window, inclusive (YYYY-MM-DD, UTC). Give `start_date` and `end_date`, or, with `granularity=hour` only, `start` and `end`. */
+                start_date?: string | null;
+                /** @description Last day of the window, inclusive (YYYY-MM-DD, UTC). How far it may reach depends on `granularity`: at most 31 days for `hour`, 366 days for `day` and `week`, and 25 calendar months for `month`. */
+                end_date?: string | null;
+                /** @description Start of the window as an instant, inclusive (RFC 3339; a value without an offset is read as UTC). Only with `granularity=hour`, instead of `start_date` and `end_date`, for a window such as the last 24 hours. */
+                start?: Date | null;
+                /** @description End of the window as an instant, exclusive (RFC 3339; a value without an offset is read as UTC). Only with `granularity=hour`, where it may be at most 31 days after `start`. */
+                end?: Date | null;
+                /** @description Time-bucket size. Buckets start on the hour or the day (UTC); weeks start on Monday and months on the 1st. */
                 granularity?: components["schemas"]["DomainForwardStatisticsGranularity"];
                 /** @description Only count redirects requested over this protocol. Reaches back 35 days only, like `hostname`: a window starting earlier is rejected. */
                 protocol?: components["schemas"]["HttpProtocol"] | null;
@@ -31312,7 +31328,7 @@ export interface operations {
                 content: {
                     /** @example {
                      *       "code": "ERROR_DOMAIN_FORWARD_STATISTICS_QUERY",
-                     *       "detail": "'start' must be at most 35 days ago when 'hostname' or 'protocol' is set",
+                     *       "detail": "'start_date' must be at most 35 days ago when 'hostname' or 'protocol' is set",
                      *       "status": 400,
                      *       "title": "Domain forward statistics query rejected.",
                      *       "type": "domain-forward-statistics-query-rejected"
@@ -31360,7 +31376,7 @@ export interface operations {
                 content: {
                     /** @example {
                      *       "code": "ERROR_DOMAIN_FORWARD_STATISTICS_INVALID_QUERY",
-                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for an exact match or 'domain' to filter by domain including all subdomains.",
+                     *       "detail": "'start' and 'end' are only allowed with granularity 'hour'; use 'start_date' and 'end_date' for granularity 'day'",
                      *       "status": 422,
                      *       "title": "Invalid domain forward statistics query.",
                      *       "type": "domain-forward-statistics-invalid-query"

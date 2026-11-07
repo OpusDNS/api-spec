@@ -1029,7 +1029,6 @@ export const DOMAIN_FORWARD_STATISTICS_DIMENSION_VALUES = [
 ] as const satisfies ReadonlyArray<DomainForwardStatisticsDimension>;
 
 export const DOMAIN_FORWARD_STATISTICS_GRANULARITY = {
-  MINUTE: "minute",
   HOUR: "hour",
   DAY: "day",
   WEEK: "week",
@@ -1037,7 +1036,6 @@ export const DOMAIN_FORWARD_STATISTICS_GRANULARITY = {
 } as const satisfies Record<string, DomainForwardStatisticsGranularity>;
 
 export const DOMAIN_FORWARD_STATISTICS_GRANULARITY_VALUES = [
-  'minute',
   'hour',
   'day',
   'week',

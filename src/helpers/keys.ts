@@ -3191,8 +3191,10 @@ export const KEY_DOMAIN_FORWARD_STATISTICS_BUCKETS = 'buckets' satisfies keyof D
 export const KEY_DOMAIN_FORWARD_STATISTICS_DATA_AVAILABLE_FROM = 'data_available_from' satisfies keyof DomainForwardStatistics;
 export const KEY_DOMAIN_FORWARD_STATISTICS_DATA_AVAILABLE_TO = 'data_available_to' satisfies keyof DomainForwardStatistics;
 export const KEY_DOMAIN_FORWARD_STATISTICS_END = 'end' satisfies keyof DomainForwardStatistics;
+export const KEY_DOMAIN_FORWARD_STATISTICS_END_DATE = 'end_date' satisfies keyof DomainForwardStatistics;
 export const KEY_DOMAIN_FORWARD_STATISTICS_GRANULARITY = 'granularity' satisfies keyof DomainForwardStatistics;
 export const KEY_DOMAIN_FORWARD_STATISTICS_START = 'start' satisfies keyof DomainForwardStatistics;
+export const KEY_DOMAIN_FORWARD_STATISTICS_START_DATE = 'start_date' satisfies keyof DomainForwardStatistics;
 export const KEY_DOMAIN_FORWARD_STATISTICS_TOTALS = 'totals' satisfies keyof DomainForwardStatistics;
 
 export const KEYS_DOMAIN_FORWARD_STATISTICS = [
@@ -3201,8 +3203,10 @@ export const KEYS_DOMAIN_FORWARD_STATISTICS = [
   KEY_DOMAIN_FORWARD_STATISTICS_DATA_AVAILABLE_FROM,
   KEY_DOMAIN_FORWARD_STATISTICS_DATA_AVAILABLE_TO,
   KEY_DOMAIN_FORWARD_STATISTICS_END,
+  KEY_DOMAIN_FORWARD_STATISTICS_END_DATE,
   KEY_DOMAIN_FORWARD_STATISTICS_GRANULARITY,
   KEY_DOMAIN_FORWARD_STATISTICS_START,
+  KEY_DOMAIN_FORWARD_STATISTICS_START_DATE,
   KEY_DOMAIN_FORWARD_STATISTICS_TOTALS,
 ] as const satisfies (keyof DomainForwardStatistics)[];
 

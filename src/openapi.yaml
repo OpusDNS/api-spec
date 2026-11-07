@@ -15009,7 +15009,6 @@ components:
     DomainForwardStatisticsGranularity:
       description: Time-bucket size of the series.
       enum:
-      - minute
       - hour
       - day
       - week
@@ -15049,21 +15048,37 @@ components:
             is partial. Null when there is no data
           title: Data Available To
         end:
-          description: End of the window, exclusive, as requested
+          description: 'End of the window as an instant (UTC), exclusive: the day
+            after `end_date` at 00:00, or `end` as requested'
           format: date-time
           title: End
+          type: string
+        end_date:
+          description: Last day of the window, inclusive (UTC); for a window given
+            as `start` and `end`, the day of its last instant
+          format: date
+          title: End Date
           type: string
         granularity:
           $ref: '#/components/schemas/DomainForwardStatisticsGranularity'
           description: Time-bucket size of the series
         start:
-          description: Start of the window, inclusive, as requested
+          description: 'Start of the window as an instant (UTC), inclusive: `start_date`
+            at 00:00, or `start` as requested'
           format: date-time
           title: Start
+          type: string
+        start_date:
+          description: First day of the window, inclusive (UTC); for a window given
+            as `start` and `end`, the day `start` falls in
+          format: date
+          title: Start Date
           type: string
         totals:
           $ref: '#/components/schemas/DomainForwardStatisticsTotals'
       required:
+      - start_date
+      - end_date
       - start
       - end
       - granularity
@@ -15080,8 +15095,8 @@ components:
           description: 'Number of redirect rules currently configured for the filtered
             scope (your organization, and its sub-organizations with `include_sub_organizations`).
             The current state, not the state during the window: it does not depend
-            on `start` and `end`, and it leaves out forwards deleted since, whose
-            traffic still counts in the totals'
+            on the window, and it leaves out forwards deleted since, whose traffic
+            still counts in the totals'
           title: Configured Forwards
           type: integer
         invoked_forwards:
@@ -29470,7 +29485,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-07-140045
+  version: 2026-11-07-141030
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -39153,17 +39168,21 @@ paths:
         (`breakdown`). It replaces the `/metrics` routes, which will be deprecated.
 
 
-        The window runs from `start` (inclusive) to `end` (exclusive), both UTC, and
-        `granularity` sets the bucket width. The window may be at most 6 hours for
-        `minute`, 31 days for `hour`, 366 days for `day` and 762 days (25 months)
-        for `week` and `month` long. Weeks start on Monday and months on the 1st.
-        From `hour` up, the counts are read whole hours (`hour`) or days at a time,
-        so a time of day on `start` or `end` does not cut the hour or day it falls
-        in, unless `hostname` or `protocol` is set: those read the raw log, which
-        honours the exact window. Every bucket the window touches is present, oldest
-        first, and holds 0 where nothing was served. A bucket marked `partial` does
-        not count its whole span: the window or the start of the data cuts it, or
-        it reaches `data_available_to`, which is still running.
+        The window is `start_date` to `end_date`, both days inclusive (YYYY-MM-DD,
+        UTC), like the other statistics routes, and `granularity` sets the bucket
+        width: `hour`, `day`, `week` or `month`. The window may be at most 31 days
+        for `hour`, 366 days for `day` and `week`, and 25 calendar months for `month`
+        long. Weeks start on Monday and months on the 1st. With `granularity=hour`
+        only, `start` and `end` (UTC instants, `end` exclusive) may replace the two
+        dates, for a rolling window such as the last 24 hours; give exactly one of
+        the two pairs. The response echoes the window as days (`start_date`, `end_date`)
+        and as instants (`start`, `end`, `end` exclusive). Hourly counts are read
+        in whole hours, so a time of day inside an hour on `start` or `end` does not
+        cut that hour, unless `hostname` or `protocol` is set: those read the raw
+        log, which honours the exact window. Every bucket the window touches is present,
+        oldest first, and holds 0 where nothing was served. A bucket marked `partial`
+        does not count its whole span: the window or the start of the data cuts it,
+        or it reaches `data_available_to`, which is still running.
 
 
         Without a filter the counts cover all forwards of your organization, and with
@@ -39174,12 +39193,12 @@ paths:
         of them is rejected.
 
 
-        The window may start at most 35 days back at `minute`, 92 days at `hour` and
-        25 months at `day`, `week` and `month`; a window starting earlier is rejected
-        with 400. A breakdown keeps 13 months, so over an older window it counts what
-        is kept (`data_available_from` says where the data begins), and a breakdown
-        by `user_agent`, `referrer`, `fqdn`, `domain`, `forward` or `rule` with a
-        `domain` filter reaches back 35 days only, like `hostname` and `protocol`.
+        The window may start at most 35 days back at `hour` and 25 months at `day`,
+        `week` and `month`; a window starting earlier is rejected with 400. A breakdown
+        keeps 13 months, so over an older window it counts what is kept (`data_available_from`
+        says where the data begins), and a breakdown by `user_agent`, `referrer`,
+        `fqdn`, `domain`, `forward` or `rule` with a `domain` filter reaches back
+        35 days only, like `hostname` and `protocol`.
 
 
         `url` lists host and path of the redirected requests (`www.example.com/shop`,
@@ -39246,42 +39265,75 @@ paths:
           description: Only count redirects of this domain and all its subdomains.
             Excludes `hostname`.
           title: Domain
-      - description: Start of the window, inclusive (RFC 3339; a value without an
-          offset is read as UTC).
+      - description: First day of the window, inclusive (YYYY-MM-DD, UTC). Give `start_date`
+          and `end_date`, or, with `granularity=hour` only, `start` and `end`.
+        in: query
+        name: start_date
+        required: false
+        schema:
+          anyOf:
+          - format: date
+            type: string
+          - type: 'null'
+          description: First day of the window, inclusive (YYYY-MM-DD, UTC). Give
+            `start_date` and `end_date`, or, with `granularity=hour` only, `start`
+            and `end`.
+          title: Start Date
+      - description: 'Last day of the window, inclusive (YYYY-MM-DD, UTC). How far
+          it may reach depends on `granularity`: at most 31 days for `hour`, 366 days
+          for `day` and `week`, and 25 calendar months for `month`.'
+        in: query
+        name: end_date
+        required: false
+        schema:
+          anyOf:
+          - format: date
+            type: string
+          - type: 'null'
+          description: 'Last day of the window, inclusive (YYYY-MM-DD, UTC). How far
+            it may reach depends on `granularity`: at most 31 days for `hour`, 366
+            days for `day` and `week`, and 25 calendar months for `month`.'
+          title: End Date
+      - description: Start of the window as an instant, inclusive (RFC 3339; a value
+          without an offset is read as UTC). Only with `granularity=hour`, instead
+          of `start_date` and `end_date`, for a window such as the last 24 hours.
         in: query
         name: start
-        required: true
+        required: false
         schema:
-          description: Start of the window, inclusive (RFC 3339; a value without an
-            offset is read as UTC).
-          format: date-time
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Start of the window as an instant, inclusive (RFC 3339; a value
+            without an offset is read as UTC). Only with `granularity=hour`, instead
+            of `start_date` and `end_date`, for a window such as the last 24 hours.
           title: Start
-          type: string
-      - description: 'End of the window, exclusive (RFC 3339; a value without an offset
-          is read as UTC). How far it may reach after `start` depends on `granularity`:
-          at most 6 hours for `minute`, 31 days for `hour`, 366 days for `day` and
-          762 days (25 months) for `week` and `month`.'
+      - description: End of the window as an instant, exclusive (RFC 3339; a value
+          without an offset is read as UTC). Only with `granularity=hour`, where it
+          may be at most 31 days after `start`.
         in: query
         name: end
-        required: true
+        required: false
         schema:
-          description: 'End of the window, exclusive (RFC 3339; a value without an
-            offset is read as UTC). How far it may reach after `start` depends on
-            `granularity`: at most 6 hours for `minute`, 31 days for `hour`, 366 days
-            for `day` and 762 days (25 months) for `week` and `month`.'
-          format: date-time
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: End of the window as an instant, exclusive (RFC 3339; a value
+            without an offset is read as UTC). Only with `granularity=hour`, where
+            it may be at most 31 days after `start`.
           title: End
-          type: string
-      - description: Time-bucket size. Buckets start on the minute, the hour or the
-          day (UTC); weeks start on Monday and months on the 1st.
+      - description: Time-bucket size. Buckets start on the hour or the day (UTC);
+          weeks start on Monday and months on the 1st.
         in: query
         name: granularity
         required: false
         schema:
           $ref: '#/components/schemas/DomainForwardStatisticsGranularity'
           default: day
-          description: Time-bucket size. Buckets start on the minute, the hour or
-            the day (UTC); weeks start on Monday and months on the 1st.
+          description: Time-bucket size. Buckets start on the hour or the day (UTC);
+            weeks start on Monday and months on the 1st.
       - description: 'Only count redirects requested over this protocol. Reaches back
           35 days only, like `hostname`: a window starting earlier is rejected.'
         in: query
@@ -39405,8 +39457,10 @@ paths:
                     data_available_from: '2026-09-01T00:00:00Z'
                     data_available_to: '2026-10-20T13:41:07Z'
                     end: '2026-10-21T00:00:00Z'
+                    end_date: '2026-10-20'
                     granularity: day
                     start: '2026-10-18T00:00:00Z'
+                    start_date: '2026-10-18'
                     totals:
                       configured_forwards: 58
                       invoked_forwards: 41
@@ -39436,13 +39490,43 @@ paths:
                     data_available_from: '2026-09-01T00:00:00Z'
                     data_available_to: '2026-10-20T13:41:07Z'
                     end: '2026-10-21T00:00:00Z'
+                    end_date: '2026-10-20'
                     granularity: day
                     start: '2026-10-18T00:00:00Z'
+                    start_date: '2026-10-18'
                     totals:
                       configured_forwards: 58
                       invoked_forwards: 41
                       total_visits: 52300
                       unique_visits: 14870
+                last_24_hours:
+                  description: '`granularity=hour` with `start` and `end` instead
+                    of the dates; shortened to two of the 24 buckets'
+                  summary: Hourly series over a rolling window
+                  value:
+                    buckets:
+                    - partial: false
+                      period_end: '2026-10-19T15:00:00Z'
+                      period_start: '2026-10-19T14:00:00Z'
+                      total_visits: 120
+                      unique_visits: 51
+                    - partial: false
+                      period_end: '2026-10-19T16:00:00Z'
+                      period_start: '2026-10-19T15:00:00Z'
+                      total_visits: 98
+                      unique_visits: 40
+                    data_available_from: '2026-09-01T00:00:00Z'
+                    data_available_to: '2026-10-20T13:41:07Z'
+                    end: '2026-10-20T14:00:00Z'
+                    end_date: '2026-10-20'
+                    granularity: hour
+                    start: '2026-10-19T14:00:00Z'
+                    start_date: '2026-10-19'
+                    totals:
+                      configured_forwards: 58
+                      invoked_forwards: 12
+                      total_visits: 2150
+                      unique_visits: 840
               schema:
                 $ref: '#/components/schemas/DomainForwardStatisticsResponse'
           description: Statistics retrieved successfully
@@ -39451,8 +39535,8 @@ paths:
             application/problem+json:
               example:
                 code: ERROR_DOMAIN_FORWARD_STATISTICS_QUERY
-                detail: '''start'' must be at most 35 days ago when ''hostname'' or
-                  ''protocol'' is set'
+                detail: '''start_date'' must be at most 35 days ago when ''hostname''
+                  or ''protocol'' is set'
                 status: 400
                 title: Domain forward statistics query rejected.
                 type: domain-forward-statistics-query-rejected
@@ -39488,9 +39572,8 @@ paths:
             application/problem+json:
               example:
                 code: ERROR_DOMAIN_FORWARD_STATISTICS_INVALID_QUERY
-                detail: Cannot specify both 'hostname' and 'domain'. Use 'hostname'
-                  for an exact match or 'domain' to filter by domain including all
-                  subdomains.
+                detail: '''start'' and ''end'' are only allowed with granularity ''hour'';
+                  use ''start_date'' and ''end_date'' for granularity ''day'''
                 status: 422
                 title: Invalid domain forward statistics query.
                 type: domain-forward-statistics-invalid-query
