@@ -45,6 +45,8 @@ import type {
   DomainAvailabilityStatus,
   DomainClientStatus,
   DomainContactType,
+  DomainForwardMoverDirection,
+  DomainForwardMoversPeriod,
   DomainForwardSortField,
   DomainForwardStatisticsDimension,
   DomainForwardStatisticsGranularity,
@@ -963,6 +965,26 @@ export const DOMAIN_CONTACT_TYPE_VALUES = [
   'tech',
   'billing',
 ] as const satisfies ReadonlyArray<DomainContactType>;
+
+export const DOMAIN_FORWARD_MOVER_DIRECTION = {
+  DROP: "drop",
+  RISE: "rise",
+} as const satisfies Record<string, DomainForwardMoverDirection>;
+
+export const DOMAIN_FORWARD_MOVER_DIRECTION_VALUES = [
+  'drop',
+  'rise',
+] as const satisfies ReadonlyArray<DomainForwardMoverDirection>;
+
+export const DOMAIN_FORWARD_MOVERS_PERIOD = {
+  "7D": "7d",
+  "30D": "30d",
+} as const satisfies Record<string, DomainForwardMoversPeriod>;
+
+export const DOMAIN_FORWARD_MOVERS_PERIOD_VALUES = [
+  '7d',
+  '30d',
+] as const satisfies ReadonlyArray<DomainForwardMoversPeriod>;
 
 export const DOMAIN_FORWARD_SORT_FIELD = {
   HOSTNAME: "hostname",

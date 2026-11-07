@@ -579,6 +579,11 @@ export type GET_DomainForwardsStatistics_Request = {
 };
 export type GET_DomainForwardsStatistics_Request_Query = GET_DomainForwardsStatistics_Request['parameters']['query'];
 
+export type GET_DomainForwardsStatisticsMovers_Request = {
+  parameters: operations['list_domain_forward_movers_v1_domain_forwards_statistics_movers_get']['parameters'];
+};
+export type GET_DomainForwardsStatisticsMovers_Request_Query = GET_DomainForwardsStatisticsMovers_Request['parameters']['query'];
+
 export type GET_Domains_Request = {
   parameters: operations['get_domains_v1_domains_get']['parameters'];
 };

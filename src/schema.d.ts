@@ -1292,6 +1292,32 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/domain-forwards/statistics/movers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List the domains whose redirects changed most
+         * @description Lists the domains of your organization whose redirects dropped (or rose) most in a fixed period (7 or 30 days) ending on the newest day that is over, against the period of the same length before it. A sharp drop often means the domain no longer points at the OpusDNS redirect servers; a sharp rise can be a campaign or a misconfigured redirect loop. Domains with fewer visits than `min_visits` in both periods are left out.
+         *
+         *     Both periods are whole UTC days: `period_end` is the newest day that is over, so the running day never counts. `change_ratio` is null for a domain that had no redirects in the previous period. `complete` is false while the previous period begins before `data_available_from`: its counts are then too low, and a rise may only be the data catching up.
+         *
+         *     Without `include_sub_organizations` the list covers the forwards of your organization only. Statistics stay with the organization that owned the forward at the time of the redirect, as on `/statistics`.
+         *
+         *     The route answers 501 where no statistics backend is configured.
+         */
+        get: operations["list_domain_forward_movers_v1_domain_forwards_statistics_movers_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/domain-forwards/{hostname}": {
         parameters: {
             query?: never;
@@ -8154,6 +8180,30 @@ export interface components {
              */
             truncated: boolean;
         } | {
+            data?: components["schemas"]["DomainForwardMoversResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_domain_forward_movers_v1_domain_forwards_statistics_movers_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
             data?: components["schemas"]["Pagination_DomainForwardZone_"] | string;
             /**
              * Headers
@@ -14160,6 +14210,105 @@ export interface components {
         DomainForwardMetricsTimeSeriesResponse: {
             /** Results */
             results: components["schemas"]["TimeSeriesBucket"][];
+        };
+        /**
+         * DomainForwardMoverDirection
+         * @description `drop`: the domains that lost the most redirects against the previous period; `rise`: those that gained
+         *     the most.
+         * @enum {string}
+         */
+        DomainForwardMoverDirection: "drop" | "rise";
+        /** DomainForwardMoverResponse */
+        DomainForwardMoverResponse: {
+            /**
+             * Change
+             * @description `total_visits` minus `previous_total_visits`
+             */
+            change: number;
+            /**
+             * Change Ratio
+             * @description `change` relative to `previous_total_visits`; null when the previous period had no redirects
+             */
+            change_ratio: number | null;
+            /**
+             * Domain
+             * @description The domain whose forwards served the redirects, without a trailing dot
+             */
+            domain: string;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description The organization the redirects were counted for
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /**
+             * Previous Total Visits
+             * @description Number of redirects served in the period of the same length before it
+             */
+            previous_total_visits: number;
+            /**
+             * Total Visits
+             * @description Number of redirects served in the period
+             */
+            total_visits: number;
+        };
+        /**
+         * DomainForwardMoversPeriod
+         * @description The movers compare a period with the one of the same length before it.
+         * @enum {string}
+         */
+        DomainForwardMoversPeriod: "7d" | "30d";
+        /** DomainForwardMoversResponse */
+        DomainForwardMoversResponse: {
+            /**
+             * Complete
+             * @description False while the previous period begins before `data_available_from`: its count is then too low, and a rise may only be the data catching up. True when both periods are covered by data
+             */
+            complete: boolean;
+            /**
+             * Data Available From
+             * @description Earliest instant the data behind the answer holds: the later of the retention limit and the first ingested redirect. Null when there is no data
+             */
+            data_available_from: Date | null;
+            /**
+             * Data Available To
+             * @description Time of the latest ingested redirect. Null when there is no data
+             */
+            data_available_to: Date | null;
+            /** @description Whether the list shows drops or rises */
+            direction: components["schemas"]["DomainForwardMoverDirection"];
+            /** @description The period compared with the one before it */
+            period: components["schemas"]["DomainForwardMoversPeriod"];
+            /**
+             * Period End
+             * Format: date
+             * @description Last day of the period (UTC): the newest complete day with data, at most yesterday
+             */
+            period_end: string;
+            /**
+             * Period Start
+             * Format: date
+             * @description First day of the period (UTC)
+             */
+            period_start: string;
+            /**
+             * Previous Period End
+             * Format: date
+             * @description Last day of the period compared with (UTC)
+             */
+            previous_period_end: string;
+            /**
+             * Previous Period Start
+             * Format: date
+             * @description First day of the period compared with (UTC)
+             */
+            previous_period_start: string;
+            /**
+             * Results
+             * @description The domains with the largest drop or rise, the largest first, at most `limit`
+             */
+            results: components["schemas"]["DomainForwardMoverResponse"][];
         };
         /** DomainForwardPatchOp */
         DomainForwardPatchOp: {
@@ -31124,7 +31273,7 @@ export interface operations {
                 granularity?: components["schemas"]["DomainForwardStatisticsGranularity"];
                 /** @description Only count redirects requested over this protocol. Reaches back 35 days only, like `hostname`: a window starting earlier is rejected. */
                 protocol?: components["schemas"]["HttpProtocol"] | null;
-                /** @description Leave out the redirects whose platform is `Bot` or `Unknown`, as the `/metrics` routes do. */
+                /** @description Leave out bots: redirects whose platform is `Bot` or `Unknown`, and crawlers that their user agent names (Googlebot, Applebot, Meta's crawlers and others) whatever platform they report. Redirects stored before November 2026 count by platform only, as the `/metrics` routes do. */
                 exclude_bots?: boolean;
                 /** @description Count the forwards of your sub-organizations too. By default only your own organization's are counted. */
                 include_sub_organizations?: boolean;
@@ -31217,6 +31366,135 @@ export interface operations {
                      *       "type": "domain-forward-statistics-invalid-query"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Implemented */
+            501: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_STATISTICS_NOT_AVAILABLE",
+                     *       "detail": "Domain forward statistics are not available in this environment.",
+                     *       "status": 501,
+                     *       "title": "Domain forward statistics not available.",
+                     *       "type": "domain-forward-statistics-not-available"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_STATISTICS_UNAVAILABLE",
+                     *       "detail": "Domain forward statistics are currently unavailable, please try again later.",
+                     *       "status": 503,
+                     *       "title": "Domain forward statistics unavailable.",
+                     *       "type": "domain-forward-statistics-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    list_domain_forward_movers_v1_domain_forwards_statistics_movers_get: {
+        parameters: {
+            query?: {
+                /** @description Window compared with the window of the same length before it */
+                period?: components["schemas"]["DomainForwardMoversPeriod"];
+                /** @description `drop` lists the domains that lost the most redirects, `rise` those that gained the most */
+                direction?: components["schemas"]["DomainForwardMoverDirection"];
+                /** @description Number of domains to return */
+                limit?: number;
+                /** @description Leave out domains with fewer visits than this in both windows */
+                min_visits?: number;
+                /** @description Leave out bots: redirects whose platform is `Bot` or `Unknown`, and crawlers that their user agent names (Googlebot, Applebot, Meta's crawlers and others) whatever platform they report. Redirects stored before November 2026 count by platform only, as the `/metrics` routes do. */
+                exclude_bots?: boolean;
+                /** @description Count the forwards of your sub-organizations too. By default only your own organization's are counted. */
+                include_sub_organizations?: boolean;
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Movers retrieved successfully */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainForwardMoversResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_STATISTICS_QUERY",
+                     *       "detail": "The organization has 1200 organizations in its sub-tree, more than the 1000 these statistics can count over in one query",
+                     *       "status": 400,
+                     *       "title": "Domain forward statistics query rejected.",
+                     *       "type": "domain-forward-statistics-query-rejected"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
             /** @description Not Implemented */

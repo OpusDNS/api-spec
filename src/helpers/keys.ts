@@ -194,6 +194,8 @@ import type {
   DomainForwardGeoStats,
   DomainForwardMetrics,
   DomainForwardMetricsTimeSeries,
+  DomainForwardMover,
+  DomainForwardMovers,
   DomainForwardPatchOp,
   DomainForwardPatchOps,
   DomainForwardPlatformStats,
@@ -3039,6 +3041,46 @@ export const KEY_DOMAIN_FORWARD_METRICS_TIME_SERIES_RESULTS = 'results' satisfie
 export const KEYS_DOMAIN_FORWARD_METRICS_TIME_SERIES = [
   KEY_DOMAIN_FORWARD_METRICS_TIME_SERIES_RESULTS,
 ] as const satisfies (keyof DomainForwardMetricsTimeSeries)[];
+
+export const KEY_DOMAIN_FORWARD_MOVER_CHANGE = 'change' satisfies keyof DomainForwardMover;
+export const KEY_DOMAIN_FORWARD_MOVER_CHANGE_RATIO = 'change_ratio' satisfies keyof DomainForwardMover;
+export const KEY_DOMAIN_FORWARD_MOVER_DOMAIN = 'domain' satisfies keyof DomainForwardMover;
+export const KEY_DOMAIN_FORWARD_MOVER_ORGANIZATION_ID = 'organization_id' satisfies keyof DomainForwardMover;
+export const KEY_DOMAIN_FORWARD_MOVER_PREVIOUS_TOTAL_VISITS = 'previous_total_visits' satisfies keyof DomainForwardMover;
+export const KEY_DOMAIN_FORWARD_MOVER_TOTAL_VISITS = 'total_visits' satisfies keyof DomainForwardMover;
+
+export const KEYS_DOMAIN_FORWARD_MOVER = [
+  KEY_DOMAIN_FORWARD_MOVER_CHANGE,
+  KEY_DOMAIN_FORWARD_MOVER_CHANGE_RATIO,
+  KEY_DOMAIN_FORWARD_MOVER_DOMAIN,
+  KEY_DOMAIN_FORWARD_MOVER_ORGANIZATION_ID,
+  KEY_DOMAIN_FORWARD_MOVER_PREVIOUS_TOTAL_VISITS,
+  KEY_DOMAIN_FORWARD_MOVER_TOTAL_VISITS,
+] as const satisfies (keyof DomainForwardMover)[];
+
+export const KEY_DOMAIN_FORWARD_MOVERS_COMPLETE = 'complete' satisfies keyof DomainForwardMovers;
+export const KEY_DOMAIN_FORWARD_MOVERS_DATA_AVAILABLE_FROM = 'data_available_from' satisfies keyof DomainForwardMovers;
+export const KEY_DOMAIN_FORWARD_MOVERS_DATA_AVAILABLE_TO = 'data_available_to' satisfies keyof DomainForwardMovers;
+export const KEY_DOMAIN_FORWARD_MOVERS_DIRECTION = 'direction' satisfies keyof DomainForwardMovers;
+export const KEY_DOMAIN_FORWARD_MOVERS_PERIOD = 'period' satisfies keyof DomainForwardMovers;
+export const KEY_DOMAIN_FORWARD_MOVERS_PERIOD_END = 'period_end' satisfies keyof DomainForwardMovers;
+export const KEY_DOMAIN_FORWARD_MOVERS_PERIOD_START = 'period_start' satisfies keyof DomainForwardMovers;
+export const KEY_DOMAIN_FORWARD_MOVERS_PREVIOUS_PERIOD_END = 'previous_period_end' satisfies keyof DomainForwardMovers;
+export const KEY_DOMAIN_FORWARD_MOVERS_PREVIOUS_PERIOD_START = 'previous_period_start' satisfies keyof DomainForwardMovers;
+export const KEY_DOMAIN_FORWARD_MOVERS_RESULTS = 'results' satisfies keyof DomainForwardMovers;
+
+export const KEYS_DOMAIN_FORWARD_MOVERS = [
+  KEY_DOMAIN_FORWARD_MOVERS_COMPLETE,
+  KEY_DOMAIN_FORWARD_MOVERS_DATA_AVAILABLE_FROM,
+  KEY_DOMAIN_FORWARD_MOVERS_DATA_AVAILABLE_TO,
+  KEY_DOMAIN_FORWARD_MOVERS_DIRECTION,
+  KEY_DOMAIN_FORWARD_MOVERS_PERIOD,
+  KEY_DOMAIN_FORWARD_MOVERS_PERIOD_END,
+  KEY_DOMAIN_FORWARD_MOVERS_PERIOD_START,
+  KEY_DOMAIN_FORWARD_MOVERS_PREVIOUS_PERIOD_END,
+  KEY_DOMAIN_FORWARD_MOVERS_PREVIOUS_PERIOD_START,
+  KEY_DOMAIN_FORWARD_MOVERS_RESULTS,
+] as const satisfies (keyof DomainForwardMovers)[];
 
 export const KEY_DOMAIN_FORWARD_PATCH_OP_OP = 'op' satisfies keyof DomainForwardPatchOp;
 export const KEY_DOMAIN_FORWARD_PATCH_OP_REDIRECT = 'redirect' satisfies keyof DomainForwardPatchOp;
