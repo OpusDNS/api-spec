@@ -8,7 +8,9 @@ Two sets of routes serve this data:
 
 - [`GET /v1/domain-forwards/statistics`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics)
   returns totals, a time series and an optional top list in one call.
-  It is described first.
+  [`GET /v1/domain-forwards/statistics/movers`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics/movers)
+  lists the domains whose redirects dropped or rose most.
+  Both are described first.
 - The `/v1/domain-forwards/metrics` routes return one view per route.
   They will be deprecated in favor of the statistics route.
   They are described [further down](#metrics-routes).
@@ -27,13 +29,15 @@ One call returns three things for a window you choose:
 ```bash
 curl --get "$OPUSDNS_API_BASE/v1/domain-forwards/statistics" \
   --header "X-Api-Key: $OPUSDNS_API_KEY" \
-  --data-urlencode "start=2026-10-18T00:00:00Z" \
-  --data-urlencode "end=2026-10-21T00:00:00Z" \
+  --data-urlencode "start_date=2026-10-18" \
+  --data-urlencode "end_date=2026-10-20" \
   --data-urlencode "granularity=day"
 ```
 
 ```json
 {
+  "start_date": "2026-10-18",
+  "end_date": "2026-10-20",
   "start": "2026-10-18T00:00:00Z",
   "end": "2026-10-21T00:00:00Z",
   "granularity": "day",
@@ -72,20 +76,31 @@ curl --get "$OPUSDNS_API_BASE/v1/domain-forwards/statistics" \
 }
 ```
 
+The response gives the window twice: as days (`start_date` and `end_date`, both inclusive)
+and as instants (`start` inclusive, `end` exclusive).
+
 ### Parameters
 
 | Parameter | Description |
 | --- | --- |
-| `start` | Start of the window, inclusive. RFC 3339, in UTC. A value without an offset is read as UTC. Required. |
-| `end` | End of the window, exclusive. Same format. Required. |
-| `granularity` | Bucket width: `minute`, `hour`, `day` (default), `week` or `month`. |
+| `start_date` | First day of the window, inclusive. `YYYY-MM-DD`, in UTC. |
+| `end_date` | Last day of the window, inclusive. Same format. |
+| `start` | Start of the window as an instant, inclusive. RFC 3339, in UTC. A value without an offset is read as UTC. Only with `granularity=hour`, instead of `start_date` and `end_date`. |
+| `end` | End of the window as an instant, exclusive. Same format. Only with `granularity=hour`. |
+| `granularity` | Bucket width: `hour`, `day` (default), `week` or `month`. |
 | `hostname` | Count one forward, matched exactly (e.g., `www.example.com`). Excludes `domain`. |
 | `domain` | Count a domain and all its subdomains. Excludes `hostname`. |
 | `protocol` | Count only redirects requested over `http` or `https`. |
-| `exclude_bots` | Set to `true` to leave out redirects whose platform is `Bot` or `Unknown`. |
+| `exclude_bots` | Set to `true` to leave out bots: redirects whose platform is `Bot` or `Unknown`, and crawlers named by their user agent (Googlebot, Applebot, Meta's crawlers and others), whatever platform they report. Redirects stored before November 2026 are left out by platform only. |
 | `include_sub_organizations` | Set to `true` to count the forwards of your sub-organizations too. By default only your own organization is counted. |
 | `breakdown` | Adds a top list grouped by `browser`, `platform`, `country`, `status_code`, `user_agent`, `referrer`, `url`, `fqdn`, `domain`, `forward` or `rule`. `url` needs a `domain` filter and cannot be combined with `hostname` or `protocol` (see [URL breakdown](#url-breakdown)). |
 | `breakdown_limit` | How many items the top list holds, from 1 to 100. Default `10`. |
+
+Give exactly one pair: `start_date` and `end_date`, or `start` and `end`.
+The dates work with every granularity and cover whole days:
+`start_date=2026-10-18` and `end_date=2026-10-20` are three days, from 2026-10-18 00:00 to 2026-10-21 00:00 UTC.
+`start` and `end` work only with `granularity=hour`, for a rolling window such as the last 24 hours.
+Mixing the pairs, giving only half of one, or `start` and `end` with another granularity is rejected with `422`.
 
 Without a filter, the counts cover all forwards of your organization.
 `hostname` and `domain` need view access to the zone.
@@ -96,30 +111,34 @@ Without a filter, the counts cover all forwards of your organization.
 
 Pick the bucket width that fits the window. These pairs give a readable chart:
 
-| Time range | Granularity | Buckets |
-| --- | --- | --- |
-| Last hour | `minute` | 60 or 61 |
-| Last day | `hour` | 24 or 25 |
-| Last 7 days | `day` | 7 or 8 |
-| Last 30 days | `day` | 30 or 31 |
-| Last year | `month` | 12 or 13 |
+| Time range | Window | Granularity | Buckets |
+| --- | --- | --- | --- |
+| Last day | `start` and `end`, 24 hours apart | `hour` | 24 or 25 |
+| Last 7 days | `start_date` to `end_date`, 7 days | `day` | 7 |
+| Last 30 days | `start_date` to `end_date`, 30 days | `day` | 30 |
+| Last year | `start_date` to `end_date`, one year | `month` | 12 or 13 |
+
+`hour` takes dates too: `start_date` and `end_date` on the same day give 24 buckets.
 
 Each granularity has a longest window:
 
 | Granularity | Longest window |
 | --- | --- |
-| `minute` | 6 hours |
 | `hour` | 31 days |
 | `day` | 366 days |
-| `week` | 762 days (25 months) |
-| `month` | 762 days (25 months) |
+| `week` | 366 days |
+| `month` | 25 calendar months |
 
+Days count both ends: 2026-10-01 to 2026-10-31 is 31 days.
+With `start` and `end`, `end` may be at most 31 days after `start`.
+Months count from the month of `start_date` to the month of `end_date`, both included.
 A longer window is rejected with `422`.
 
-Buckets start on the minute, the hour or the day, in UTC.
+Buckets start on the hour or the day, in UTC.
 Weeks start on Monday and months on the 1st.
-From `hour` up, the counts are read a whole hour (`hour`) or day at a time, so a
-time of day on `start` or `end` does not cut the hour or day it falls in.
+A window of dates always covers whole days.
+With `start` and `end`, hourly counts are read in whole hours, so a time of day
+inside an hour does not cut that hour.
 The exceptions are the `hostname` and `protocol` filters: they read the raw log,
 which honours the exact window.
 
@@ -128,12 +147,36 @@ Example: the last 30 days, one bucket per day, HTTPS only, without bots:
 ```bash
 curl --get "$OPUSDNS_API_BASE/v1/domain-forwards/statistics" \
   --header "X-Api-Key: $OPUSDNS_API_KEY" \
-  --data-urlencode "start=2026-10-04T00:00:00Z" \
-  --data-urlencode "end=2026-11-03T00:00:00Z" \
+  --data-urlencode "start_date=2026-10-04" \
+  --data-urlencode "end_date=2026-11-02" \
   --data-urlencode "granularity=day" \
   --data-urlencode "protocol=https" \
   --data-urlencode "exclude_bots=true"
 ```
+
+Example: the last 24 hours, one bucket per hour:
+
+```bash
+curl --get "$OPUSDNS_API_BASE/v1/domain-forwards/statistics" \
+  --header "X-Api-Key: $OPUSDNS_API_KEY" \
+  --data-urlencode "start=2026-10-19T14:00:00Z" \
+  --data-urlencode "end=2026-10-20T14:00:00Z" \
+  --data-urlencode "granularity=hour"
+```
+
+```json
+{
+  "start_date": "2026-10-19",
+  "end_date": "2026-10-20",
+  "start": "2026-10-19T14:00:00Z",
+  "end": "2026-10-20T14:00:00Z",
+  "granularity": "hour"
+}
+```
+
+The response also carries `totals`, 24 `buckets` and the other fields, as above.
+For a window of instants, `start_date` is the day `start` falls in and `end_date` the day of the window's last instant.
+An `end` at midnight does not reach into the next day.
 
 ### Partial buckets
 
@@ -159,8 +202,8 @@ The list holds at most `breakdown_limit` items, most redirects first:
 ```bash
 curl --get "$OPUSDNS_API_BASE/v1/domain-forwards/statistics" \
   --header "X-Api-Key: $OPUSDNS_API_KEY" \
-  --data-urlencode "start=2026-10-18T00:00:00Z" \
-  --data-urlencode "end=2026-10-21T00:00:00Z" \
+  --data-urlencode "start_date=2026-10-18" \
+  --data-urlencode "end_date=2026-10-20" \
   --data-urlencode "breakdown=country" \
   --data-urlencode "breakdown_limit=3"
 ```
@@ -179,7 +222,7 @@ curl --get "$OPUSDNS_API_BASE/v1/domain-forwards/statistics" \
 }
 ```
 
-The response also carries `start`, `end`, `granularity`, `totals` and `buckets`, as above.
+The response also carries `start_date`, `end_date`, `start`, `end`, `granularity`, `totals` and `buckets`, as above.
 
 | Dimension | `value` |
 | --- | --- |
@@ -254,7 +297,7 @@ The `/v1/domain-forwards/metrics` route counted distinct pairs of domain and pat
 The two numbers are not comparable.
 
 `configured_forwards` is the number of redirect rules configured now.
-It does not depend on `start` and `end`.
+It does not depend on the window.
 It counts rules, not forwards, and leaves out deleted forwards, so it is no upper bound for `invoked_forwards`.
 
 ### Limits and retention
@@ -262,9 +305,8 @@ It counts rules, not forwards, and leaves out deleted forwards, so it is no uppe
 | What | Limit |
 | --- | --- |
 | `hostname` and `protocol` filters | The window must start within the last 35 days. An earlier start is rejected with `400`. |
-| `minute` granularity | The window must start within the last 35 days. An earlier start is rejected with `400`. |
-| `hour` granularity | The window must start within the last 92 days. An earlier start is rejected with `400`. |
-| Totals and time series | 25 months. An earlier start is rejected with `400`. |
+| `hour` granularity | The window must start within the last 35 days. An earlier start is rejected with `400`. |
+| `day`, `week` and `month` granularity | The window must start within the last 25 months. An earlier start is rejected with `400`. |
 | Breakdowns by `browser`, `platform`, `country` and `status_code` | 13 months. |
 | Breakdowns by `user_agent`, `referrer`, `fqdn`, `domain`, `forward` and `rule` | 13 months. Approximate over more than one day. With a `domain` filter, the window must start within the last 35 days (`400` otherwise). |
 | Breakdown by `url` | 13 months. Needs a `domain` filter. Top 5 per domain and day, at least 3 hits that day. Approximate. |
@@ -276,9 +318,10 @@ Other errors:
 
 | Status | When |
 | --- | --- |
-| `400` | The window starts further back than the data is kept (see the limits above), or your organization has more than 1000 organizations in its sub-tree and `include_sub_organizations` is `true`. |
-| `403` | You lack view access to the zone of `hostname` or `domain`. |
-| `422` | The query is invalid: `end` is not after `start`, the window is longer than the granularity allows, `hostname` and `domain` are both set, or `breakdown=url` is used without `domain` or together with `hostname` or `protocol`. |
+| `400` | The window starts further back than the data is kept (see the limits above), or your organization has more than 1000 organizations in its sub-tree and `include_sub_organizations` is `true`. The `detail` names the parameter you sent, `start_date` or `start`. |
+| `403` | You lack permission to view your organization's domain forwards, or view access to the zone of `hostname` or `domain`. |
+| `404` | OpusDNS has no zone for `hostname` or `domain`. |
+| `422` | The query is invalid: no window, only half of a pair, both pairs, `start` and `end` with a granularity other than `hour`, `end_date` before `start_date` or `end` not after `start`, a window longer than the granularity allows or outside 1970-01-01 to 2099-12-31, `hostname` and `domain` both set, `breakdown=domain` together with the `domain` filter, or `breakdown=url` without `domain` or together with `hostname` or `protocol`. |
 | `501` | Statistics are not available in this environment. |
 | `503` | Statistics are temporarily unavailable. Try again later. |
 
@@ -286,7 +329,7 @@ Other errors:
 
 Each metrics route maps to one call of the statistics route.
 The metrics routes take a relative `time_range`.
-Statistics takes an absolute window: set `end` to now and `start` to now minus the range.
+Statistics takes an absolute window: `start_date` and `end_date`, or, with `granularity=hour`, `start` and `end`.
 
 | Metrics route | Statistics parameters | Read from the response |
 | --- | --- | --- |
@@ -302,21 +345,25 @@ Statistics takes an absolute window: set `end` to now and `start` to now minus t
 | `/metrics/visits-by-key?grouping=url` | `breakdown=url&domain=...`, with the [top 5 limitation](#url-breakdown) | `breakdown.items` |
 
 The filters carry over under the same names: `hostname`, `domain`, `protocol` and `exclude_bots`.
-`time_range` becomes `start` and `end`:
+`time_range` becomes a window:
 
-| `time_range` | Closest `granularity` |
-| --- | --- |
-| `1h` | `minute` |
-| `1d` | `hour` |
-| `7d` | `day` |
-| `30d` | `day` |
-| `1y` | `month` |
+| `time_range` | Window | Closest `granularity` |
+| --- | --- | --- |
+| `1h` | `start` one hour before `end` | `hour` |
+| `1d` | `start` 24 hours before `end` | `hour` |
+| `7d` | `start_date` to `end_date`, 7 days | `day` |
+| `30d` | `start_date` to `end_date`, 30 days | `day` |
+| `1y` | `start_date` to `end_date`, one year | `month` |
+
+Statistics has no `minute` granularity, so `1h` has no per-minute equivalent.
+Use `granularity=hour` with `start` one hour before `end`: you get one or two hourly buckets.
+A time of day inside an hour does not cut that hour (see [Choosing a granularity](#choosing-a-granularity)).
 
 `url` has no full replacement.
 Per domain, `breakdown=url&domain=example.com` returns the top 5 paths per day with at least 3 hits.
 Without a domain there is no replacement for the organization-wide URL list of `visits-by-key`: statistics does not offer one.
 
-Two things differ:
+Three things differ:
 
 - **Response shape.** The metrics routes answered `results`, a list of
   entries with `key`, `total` and `unique`, and `timestamp` and `total` for the
@@ -328,6 +375,101 @@ Two things differ:
   `/metrics` answered `total_visits`, `unique_visits`, `invoked_forwards` and
   `configured_forwards` at the top level; they are now under `totals`.
 - **`invoked_forwards`.** See [above](#how-invoked_forwards-differs-from-the-metrics-route).
+- **`exclude_bots`.** Statistics also leaves out crawlers named by their user agent, whatever platform they report.
+  The metrics routes go by platform only.
+  Redirects stored before November 2026 are left out by platform only on both.
+
+## Movers
+
+[`GET /v1/domain-forwards/statistics/movers`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics/movers)
+lists the domains of your organization whose redirects dropped or rose most.
+It compares the last 7 or 30 days that are over with the same number of days before them.
+
+A sharp drop often means the domain no longer points at the OpusDNS redirect servers.
+A sharp rise can be a campaign or a misconfigured redirect loop.
+
+```bash
+curl --get "$OPUSDNS_API_BASE/v1/domain-forwards/statistics/movers" \
+  --header "X-Api-Key: $OPUSDNS_API_KEY" \
+  --data-urlencode "period=30d" \
+  --data-urlencode "direction=drop" \
+  --data-urlencode "limit=2"
+```
+
+```json
+{
+  "period": "30d",
+  "period_start": "2026-10-07",
+  "period_end": "2026-11-05",
+  "previous_period_start": "2026-09-07",
+  "previous_period_end": "2026-10-06",
+  "direction": "drop",
+  "results": [
+    {
+      "domain": "moved-away.example",
+      "organization_id": "organization_01h45ytscbebyvny4gc8cr8ma2",
+      "total_visits": 120,
+      "previous_total_visits": 9800,
+      "change": -9680,
+      "change_ratio": -0.98776
+    },
+    {
+      "domain": "shop.example",
+      "organization_id": "organization_01h45ytscbebyvny4gc8cr8ma2",
+      "total_visits": 4100,
+      "previous_total_visits": 6900,
+      "change": -2800,
+      "change_ratio": -0.4058
+    }
+  ],
+  "data_available_from": "2026-08-01T00:00:00Z",
+  "data_available_to": "2026-11-06T13:41:07Z",
+  "complete": true
+}
+```
+
+The route takes these parameters, and no window and no `hostname`, `domain` or `protocol` filter:
+
+| Parameter | Description |
+| --- | --- |
+| `period` | `7d` or `30d` (default). The period is compared with the period of the same length before it. |
+| `direction` | `drop` (default) lists the domains that lost the most redirects, `rise` the domains that gained the most. |
+| `limit` | How many domains to list, from 1 to 100. Default `20`. |
+| `min_visits` | Leaves out domains with fewer visits than this in both periods. `0` or more. Default `100`. |
+| `exclude_bots` | Set to `true` to leave out bots, as on [statistics](#parameters). |
+| `include_sub_organizations` | Set to `true` to include the forwards of your sub-organizations. By default only your own organization is counted. |
+
+Both periods are whole days in UTC.
+`period_end` is the newest complete day with data, at most yesterday, so the running day never counts.
+
+| Field | Description |
+| --- | --- |
+| `period`, `direction` | As you asked. |
+| `period_start`, `period_end` | First and last day of the period. |
+| `previous_period_start`, `previous_period_end` | First and last day of the period it is compared with. |
+| `results` | The domains with the largest drop or rise, largest first, at most `limit`. An empty list when no domain qualifies. |
+| `domain` | The domain whose forwards served the redirects, without a trailing dot. |
+| `organization_id` | The organization the redirects were counted for. |
+| `total_visits` | Redirects served in the period. |
+| `previous_total_visits` | Redirects served in the previous period. |
+| `change` | `total_visits` minus `previous_total_visits`. |
+| `change_ratio` | `change` divided by `previous_total_visits`, e.g. `-0.5` when the redirects halved. `null` when the previous period had no redirects. |
+| `data_available_from` | Earliest instant the data holds. `null` when there is no data. |
+| `data_available_to` | Time of the latest counted redirect. `null` when there is no data. |
+| `complete` | `false` while the previous period begins before `data_available_from`. Its counts are then too low, and a rise may only be the data catching up. `true` when data covers both periods. |
+
+Redirects count for the organization that owned the forward at the time, as on statistics
+(see [Deleted and transferred forwards](#deleted-and-transferred-forwards)).
+
+Errors:
+
+| Status | When |
+| --- | --- |
+| `400` | Your organization has more than 1000 organizations in its sub-tree and `include_sub_organizations` is `true`, or the query was refused. The `detail` says why. |
+| `403` | You lack permission to view your organization's domain forwards. |
+| `422` | A parameter is invalid: an unknown `period` or `direction`, `limit` outside 1 to 100, or a negative `min_visits`. |
+| `501` | Statistics are not available in this environment. |
+| `503` | Statistics are temporarily unavailable. Try again later. |
 
 ## Metrics routes
 
@@ -494,6 +636,7 @@ most traffic, or which specific redirect URLs are most popular.
 ## Related API Reference
 
 - [`GET /v1/domain-forwards/statistics`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics)
+- [`GET /v1/domain-forwards/statistics/movers`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics/movers)
 - [`GET /v1/domain-forwards/metrics`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/metrics)
 - [`GET /v1/domain-forwards/metrics/time-series`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/metrics/time-series)
 - [`GET /v1/domain-forwards/metrics/browser`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/metrics/browser)

@@ -8,12 +8,17 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 - Added **domain forward statistics**:
   [`GET /v1/domain-forwards/statistics`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics) returns the redirects your domain forwards served in a window, as totals, a series of time buckets and an optional top list.
-  Choose a bucket width from `minute` to `month` with `granularity`, filter by `hostname`, `domain`, `protocol` and `exclude_bots`, and group the redirects with `breakdown` by browser, platform, country, status code, user agent, referrer, URL, FQDN, domain, forward or rule.
+  The window is `start_date` to `end_date`, both days inclusive; with `granularity=hour`, `start` and `end` may replace them for a rolling window such as the last 24 hours.
+  Choose a bucket width from `hour` to `month` with `granularity`, filter by `hostname`, `domain`, `protocol` and `exclude_bots`, and group the redirects with `breakdown` by browser, platform, country, status code, user agent, referrer, URL, FQDN, domain, forward or rule.
   `breakdown=url` lists the top 5 values of host and path per domain and day, each with at least 3 hits that day, kept for 13 months, and is approximate over more than one day.
   It needs a `domain` filter and cannot be combined with `hostname` or `protocol` (`422`); there is no organization-wide list of URLs.
   Unique visits and `invoked_forwards` are estimates; `invoked_forwards` counts distinct forwards, not the domain and path pairs the metrics route counted.
   The `/v1/domain-forwards/metrics` routes stay available and will be deprecated later.
   See [Statistics](/products/dns/domain-forwarding/metrics#statistics) and [URL breakdown](/products/dns/domain-forwarding/metrics#url-breakdown).
+
+- Added **domain forward movers**:
+  [`GET /v1/domain-forwards/statistics/movers`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics/movers) lists the domains whose redirects dropped or rose most in the last 7 or 30 days that are over, against the same number of days before them.
+  See [Movers](/products/dns/domain-forwarding/metrics#movers).
 
 ### 31 October 2026
 
