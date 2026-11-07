@@ -435,7 +435,7 @@ The route takes these parameters, and no window and no `hostname`, `domain` or `
 | `period` | `7d` or `30d` (default). The period is compared with the period of the same length before it. |
 | `direction` | `drop` (default) lists the domains that lost the most redirects, `rise` the domains that gained the most. |
 | `limit` | How many domains to list, from 1 to 100. Default `20`. |
-| `min_visits` | Leaves out domains with fewer visits than this in both periods. `0` or more. Default `100`. |
+| `min_visits` | Leaves out domains with fewer total visits (redirects) than this in both periods. `0` or more. Default `100`. |
 | `exclude_bots` | Set to `true` to leave out bots, as on [statistics](#parameters). |
 | `include_sub_organizations` | Set to `true` to include the forwards of your sub-organizations. By default only your own organization is counted. |
 
@@ -447,7 +447,7 @@ Both periods are whole days in UTC.
 | `period`, `direction` | As you asked. |
 | `period_start`, `period_end` | First and last day of the period. |
 | `previous_period_start`, `previous_period_end` | First and last day of the period it is compared with. |
-| `results` | The domains with the largest drop or rise, largest first, at most `limit`. An empty list when no domain qualifies. |
+| `results` | The domains with the largest drop or rise, ranked by `change` (the difference in total visits, not `change_ratio`), largest first, at most `limit`. An empty list when no domain qualifies. |
 | `domain` | The domain whose forwards served the redirects, without a trailing dot. |
 | `organization_id` | The organization the redirects were counted for. |
 | `total_visits` | Redirects served in the period. |
