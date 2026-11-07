@@ -42,10 +42,12 @@ import type {
   NorIdDeclarationConfirmRequest,
   NorIdResellerDeclarationRequest,
   ObjectTagChanges,
+  OrderCreate,
   OrganizationAttributeUpdate,
   OrganizationCreate,
   OrganizationUpdate,
   OutboundTransferRequest,
+  OwnershipTransferRequest,
   ParkingSignupRequest,
   PreviewMailReq,
   PublicAuthRequestForm,
@@ -239,6 +241,12 @@ export type POST_ConnectRegistrarsByRegistrarCredentialIdSync_Request = {
   parameters: operations['sync_credential_v1_connect_registrars__registrar_credential_id__sync_post']['parameters'];
 };
 export type POST_ConnectRegistrarsByRegistrarCredentialIdSync_Request_Path = POST_ConnectRegistrarsByRegistrarCredentialIdSync_Request['parameters']['path'];
+
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Request = {
+  parameters: operations['list_sync_failures_v1_connect_registrars__registrar_credential_id__sync_failures_get']['parameters'];
+};
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Request_Query = GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Request['parameters']['query'];
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Request_Path = GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Request['parameters']['path'];
 
 export type GET_Contacts_Request = {
   parameters: operations['get_contacts_v1_contacts_get']['parameters'];
@@ -565,6 +573,11 @@ export type GET_DomainForwardsMetricsVisitsByKey_Request = {
   parameters: operations['visits_by_key_v1_domain_forwards_metrics_visits_by_key_get']['parameters'];
 };
 export type GET_DomainForwardsMetricsVisitsByKey_Request_Query = GET_DomainForwardsMetricsVisitsByKey_Request['parameters']['query'];
+
+export type GET_DomainForwardsStatistics_Request = {
+  parameters: operations['get_domain_forward_statistics_v1_domain_forwards_statistics_get']['parameters'];
+};
+export type GET_DomainForwardsStatistics_Request_Query = GET_DomainForwardsStatistics_Request['parameters']['query'];
 
 export type GET_Domains_Request = {
   parameters: operations['get_domains_v1_domains_get']['parameters'];
@@ -935,6 +948,21 @@ export type POST_JobsByBatchIdRetry_Request = {
 export type POST_JobsByBatchIdRetry_Request_Query = POST_JobsByBatchIdRetry_Request['parameters']['query'];
 export type POST_JobsByBatchIdRetry_Request_Path = POST_JobsByBatchIdRetry_Request['parameters']['path'];
 
+export type GET_Orders_Request = {
+  parameters: operations['list_orders_v1_orders_get']['parameters'];
+};
+export type GET_Orders_Request_Query = GET_Orders_Request['parameters']['query'];
+
+export type POST_Orders_Request = {
+  requestBody: OrderCreate;
+};
+export type POST_Orders_Request_Body = POST_Orders_Request['requestBody'];
+
+export type GET_OrdersByOrderId_Request = {
+  parameters: operations['get_order_v1_orders__order_id__get']['parameters'];
+};
+export type GET_OrdersByOrderId_Request_Path = GET_OrdersByOrderId_Request['parameters']['path'];
+
 export type GET_Organizations_Request = {
   parameters: operations['list_organizations_v1_organizations_get']['parameters'];
 };
@@ -996,6 +1024,13 @@ export type GET_OrganizationsByOrganizationIdBillingReceipts_Request = {
 };
 export type GET_OrganizationsByOrganizationIdBillingReceipts_Request_Query = GET_OrganizationsByOrganizationIdBillingReceipts_Request['parameters']['query'];
 export type GET_OrganizationsByOrganizationIdBillingReceipts_Request_Path = GET_OrganizationsByOrganizationIdBillingReceipts_Request['parameters']['path'];
+
+export type POST_OrganizationsByOrganizationIdOwnershipTransfer_Request = {
+  parameters: operations['transfer_ownership_v1_organizations__organization_id__ownership_transfer_post']['parameters'];
+  requestBody: OwnershipTransferRequest;
+};
+export type POST_OrganizationsByOrganizationIdOwnershipTransfer_Request_Path = POST_OrganizationsByOrganizationIdOwnershipTransfer_Request['parameters']['path'];
+export type POST_OrganizationsByOrganizationIdOwnershipTransfer_Request_Body = POST_OrganizationsByOrganizationIdOwnershipTransfer_Request['requestBody'];
 
 export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Request = {
   parameters: operations['get_pricing_plans_v1_organizations__organization_id__pricing_product_type__product_type__get']['parameters'];

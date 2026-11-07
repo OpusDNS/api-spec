@@ -19,6 +19,7 @@ export const AVAILABILITY_STREAM_ENDPOINT = '/v1/availability/stream';
 export const CONNECT_REGISTRARS_ENDPOINT = '/v1/connect/registrars';
 export const CONNECT_REGISTRARS_BY_REGISTRAR_CREDENTIAL_ID_ENDPOINT = '/v1/connect/registrars/{registrar_credential_id}';
 export const CONNECT_REGISTRARS_BY_REGISTRAR_CREDENTIAL_ID_SYNC_ENDPOINT = '/v1/connect/registrars/{registrar_credential_id}/sync';
+export const CONNECT_REGISTRARS_BY_REGISTRAR_CREDENTIAL_ID_SYNC_FAILURES_ENDPOINT = '/v1/connect/registrars/{registrar_credential_id}/sync/failures';
 export const CONTACTS_ENDPOINT = '/v1/contacts';
 export const CONTACTS_ATTRIBUTE_SETS_ENDPOINT = '/v1/contacts/attribute-sets';
 export const CONTACTS_ATTRIBUTE_SETS_BY_CONTACT_ATTRIBUTE_SET_ID_ENDPOINT = '/v1/contacts/attribute-sets/{contact_attribute_set_id}';
@@ -58,6 +59,7 @@ export const DOMAIN_FORWARDS_METRICS_STATUS_CODE_ENDPOINT = '/v1/domain-forwards
 export const DOMAIN_FORWARDS_METRICS_TIME_SERIES_ENDPOINT = '/v1/domain-forwards/metrics/time-series';
 export const DOMAIN_FORWARDS_METRICS_USER_AGENT_ENDPOINT = '/v1/domain-forwards/metrics/user-agent';
 export const DOMAIN_FORWARDS_METRICS_VISITS_BY_KEY_ENDPOINT = '/v1/domain-forwards/metrics/visits-by-key';
+export const DOMAIN_FORWARDS_STATISTICS_ENDPOINT = '/v1/domain-forwards/statistics';
 export const DOMAIN_FORWARDS_BY_HOSTNAME_ENDPOINT = '/v1/domain-forwards/{hostname}';
 export const DOMAIN_FORWARDS_BY_HOSTNAME_DISABLE_ENDPOINT = '/v1/domain-forwards/{hostname}/disable';
 export const DOMAIN_FORWARDS_BY_HOSTNAME_ENABLE_ENDPOINT = '/v1/domain-forwards/{hostname}/enable';
@@ -115,6 +117,8 @@ export const JOBS_BY_BATCH_ID_JOBS_ENDPOINT = '/v1/jobs/{batch_id}/jobs';
 export const JOBS_BY_BATCH_ID_PAUSE_ENDPOINT = '/v1/jobs/{batch_id}/pause';
 export const JOBS_BY_BATCH_ID_RESUME_ENDPOINT = '/v1/jobs/{batch_id}/resume';
 export const JOBS_BY_BATCH_ID_RETRY_ENDPOINT = '/v1/jobs/{batch_id}/retry';
+export const ORDERS_ENDPOINT = '/v1/orders';
+export const ORDERS_BY_ORDER_ID_ENDPOINT = '/v1/orders/{order_id}';
 export const ORGANIZATIONS_ENDPOINT = '/v1/organizations';
 export const ORGANIZATIONS_ATTRIBUTES_ENDPOINT = '/v1/organizations/attributes';
 export const ORGANIZATIONS_IP_RESTRICTIONS_ENDPOINT = '/v1/organizations/ip-restrictions';
@@ -129,6 +133,7 @@ export const ORGANIZATIONS_BY_ORGANIZATION_ID_ENDPOINT = '/v1/organizations/{org
 export const ORGANIZATIONS_BY_ORGANIZATION_ID_ATTRIBUTES_ENDPOINT = '/v1/organizations/{organization_id}/attributes';
 export const ORGANIZATIONS_BY_ORGANIZATION_ID_BILLING_INVOICES_ENDPOINT = '/v1/organizations/{organization_id}/billing/invoices';
 export const ORGANIZATIONS_BY_ORGANIZATION_ID_BILLING_RECEIPTS_ENDPOINT = '/v1/organizations/{organization_id}/billing/receipts';
+export const ORGANIZATIONS_BY_ORGANIZATION_ID_OWNERSHIP_TRANSFER_ENDPOINT = '/v1/organizations/{organization_id}/ownership-transfer';
 export const ORGANIZATIONS_BY_ORGANIZATION_ID_PRICING_PRODUCT_TYPE_BY_PRODUCT_TYPE_ENDPOINT = '/v1/organizations/{organization_id}/pricing/product-type/{product_type}';
 export const ORGANIZATIONS_BY_ORGANIZATION_ID_TRANSACTIONS_ENDPOINT = '/v1/organizations/{organization_id}/transactions';
 export const ORGANIZATIONS_BY_ORGANIZATION_ID_TRANSACTIONS_BY_TRANSACTION_ID_ENDPOINT = '/v1/organizations/{organization_id}/transactions/{transaction_id}';
@@ -194,6 +199,7 @@ export type Endpoint =
   | typeof CONNECT_REGISTRARS_ENDPOINT
   | typeof CONNECT_REGISTRARS_BY_REGISTRAR_CREDENTIAL_ID_ENDPOINT
   | typeof CONNECT_REGISTRARS_BY_REGISTRAR_CREDENTIAL_ID_SYNC_ENDPOINT
+  | typeof CONNECT_REGISTRARS_BY_REGISTRAR_CREDENTIAL_ID_SYNC_FAILURES_ENDPOINT
   | typeof CONTACTS_ENDPOINT
   | typeof CONTACTS_ATTRIBUTE_SETS_ENDPOINT
   | typeof CONTACTS_ATTRIBUTE_SETS_BY_CONTACT_ATTRIBUTE_SET_ID_ENDPOINT
@@ -233,6 +239,7 @@ export type Endpoint =
   | typeof DOMAIN_FORWARDS_METRICS_TIME_SERIES_ENDPOINT
   | typeof DOMAIN_FORWARDS_METRICS_USER_AGENT_ENDPOINT
   | typeof DOMAIN_FORWARDS_METRICS_VISITS_BY_KEY_ENDPOINT
+  | typeof DOMAIN_FORWARDS_STATISTICS_ENDPOINT
   | typeof DOMAIN_FORWARDS_BY_HOSTNAME_ENDPOINT
   | typeof DOMAIN_FORWARDS_BY_HOSTNAME_DISABLE_ENDPOINT
   | typeof DOMAIN_FORWARDS_BY_HOSTNAME_ENABLE_ENDPOINT
@@ -290,6 +297,8 @@ export type Endpoint =
   | typeof JOBS_BY_BATCH_ID_PAUSE_ENDPOINT
   | typeof JOBS_BY_BATCH_ID_RESUME_ENDPOINT
   | typeof JOBS_BY_BATCH_ID_RETRY_ENDPOINT
+  | typeof ORDERS_ENDPOINT
+  | typeof ORDERS_BY_ORDER_ID_ENDPOINT
   | typeof ORGANIZATIONS_ENDPOINT
   | typeof ORGANIZATIONS_ATTRIBUTES_ENDPOINT
   | typeof ORGANIZATIONS_IP_RESTRICTIONS_ENDPOINT
@@ -304,6 +313,7 @@ export type Endpoint =
   | typeof ORGANIZATIONS_BY_ORGANIZATION_ID_ATTRIBUTES_ENDPOINT
   | typeof ORGANIZATIONS_BY_ORGANIZATION_ID_BILLING_INVOICES_ENDPOINT
   | typeof ORGANIZATIONS_BY_ORGANIZATION_ID_BILLING_RECEIPTS_ENDPOINT
+  | typeof ORGANIZATIONS_BY_ORGANIZATION_ID_OWNERSHIP_TRANSFER_ENDPOINT
   | typeof ORGANIZATIONS_BY_ORGANIZATION_ID_PRICING_PRODUCT_TYPE_BY_PRODUCT_TYPE_ENDPOINT
   | typeof ORGANIZATIONS_BY_ORGANIZATION_ID_TRANSACTIONS_ENDPOINT
   | typeof ORGANIZATIONS_BY_ORGANIZATION_ID_TRANSACTIONS_BY_TRANSACTION_ID_ENDPOINT

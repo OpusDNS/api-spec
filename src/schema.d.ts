@@ -430,6 +430,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/connect/registrars/{registrar_credential_id}/sync/failures": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List sync failures
+         * @description Lists the domains the latest sync could not sync, sorted by domain name. Each one has an `error` with a `code`, a `detail` sentence and, when the registrar answered, its own response. Right after a new sync starts, the list can still belong to the previous one: compare `batch_id` with **Get sync status**.
+         */
+        get: operations["list_sync_failures_v1_connect_registrars__registrar_credential_id__sync_failures_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/contacts": {
         parameters: {
             query?: never;
@@ -1228,6 +1248,42 @@ export interface paths {
          * @description Retrieves visit metrics grouped by a specified key (url, fqdn, domain, forward, or rule) with total and unique visit counts.
          */
         get: operations["visits_by_key_v1_domain_forwards_metrics_visits_by_key_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domain-forwards/statistics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get domain forward statistics
+         * @description Counts the redirects your organization's domain forwards served in a window, as a series of buckets and as totals, optionally with a top list (`breakdown`). It replaces the `/metrics` routes, which will be deprecated.
+         *
+         *     The window runs from `start` (inclusive) to `end` (exclusive), both UTC, and `granularity` sets the bucket width. The window may be at most 6 hours for `minute`, 31 days for `hour`, 366 days for `day` and 762 days (25 months) for `week` and `month` long. Weeks start on Monday and months on the 1st. From `hour` up, the counts are read whole hours (`hour`) or days at a time, so a time of day on `start` or `end` does not cut the hour or day it falls in, unless `hostname` or `protocol` is set: those read the raw log, which honours the exact window. Every bucket the window touches is present, oldest first, and holds 0 where nothing was served. A bucket marked `partial` does not count its whole span: the window or the start of the data cuts it, or it reaches `data_available_to`, which is still running.
+         *
+         *     Without a filter the counts cover all forwards of your organization, and with `include_sub_organizations` its sub-organizations' too. `hostname` (one forward, exact) and `domain` (a domain and all its subdomains) exclude each other and need view access to the zone. `hostname` and `protocol` filters are served from the raw log, which keeps 35 days: a window starting earlier with either of them is rejected.
+         *
+         *     The window may start at most 35 days back at `minute`, 92 days at `hour` and 25 months at `day`, `week` and `month`; a window starting earlier is rejected with 400. A breakdown keeps 13 months, so over an older window it counts what is kept (`data_available_from` says where the data begins), and a breakdown by `user_agent`, `referrer`, `fqdn`, `domain`, `forward` or `rule` with a `domain` filter reaches back 35 days only, like `hostname` and `protocol`.
+         *
+         *     `url` lists host and path of the redirected requests (`www.example.com/shop`, no query string). Full request paths are not kept: per domain and day only the top 5 values with at least 3 hits that day are, for 13 months. It therefore needs a `domain` filter, cannot be combined with `hostname` or `protocol`, and over more than one day is an approximation (the sum of the daily top 5 lists, so a path that never made a day's list is missing). There is no list of URLs across all domains of an organization. Asking for it without `domain`, or with `hostname` or `protocol`, is rejected with 422.
+         *
+         *     `unique_visits` and `invoked_forwards` are estimates (HyperLogLog), merged over the window instead of summed over buckets, so the unique visits of buckets do not add up to the total. `invoked_forwards` counts distinct forwards that served a redirect; the `/metrics` route counts distinct domain and path pairs, so the two are not comparable. `configured_forwards` is the number of redirect rules configured now, whatever the window, so `invoked_forwards` can exceed it.
+         *
+         *     Statistics stay with the organization that owned the forward at the time of the redirect: traffic of a deleted forward or domain, or of one moved to another organization, remains in the former owner's totals, series and organization-wide breakdowns until retention ends, and the new owner sees only the traffic since it owns the forward. `domain` and `hostname` filters work only for zones you currently have.
+         *
+         *     A breakdown by `user_agent`, `referrer`, `fqdn`, `domain`, `forward` or `rule` over more than one day, and any breakdown by `url`, is an approximate top list: `approximate` says so. Country data is derived from IP addresses with GeoLite2 data created by MaxMind (https://www.maxmind.com). Redirects without a referrer are grouped as `direct`.
+         *
+         *     The route answers 501 where no statistics backend is configured. It does not depend on the metrics index of the `/metrics` routes.
+         */
+        get: operations["get_domain_forward_statistics_v1_domain_forwards_statistics_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2460,6 +2516,49 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/orders": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List orders
+         * @description Your organization's orders, newest first by default (see `sort_by` and `sort_order`).
+         */
+        get: operations["list_orders_v1_orders_get"];
+        put?: never;
+        /**
+         * Create an order
+         * @description Orders a domain listed on a marketplace. The order is accepted (202) once the price and availability are confirmed; it then progresses on its own, follow it with `GET /v1/orders/{order_id}`.
+         *
+         *     Repeating a request with the same `idempotency_key` and body returns the original order with 200. The same key with a different body is refused with 409.
+         */
+        post: operations["create_order_v1_orders_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/orders/{order_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get an order */
+        get: operations["get_order_v1_orders__order_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/organizations": {
         parameters: {
             query?: never;
@@ -2792,6 +2891,26 @@ export interface paths {
         get: operations["list_receipts_v1_organizations__organization_id__billing_receipts_get"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{organization_id}/ownership-transfer": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Transfer ownership of the organization
+         * @description Makes another active user of the organization its owner, at once. You become an admin, or get your identity provider's default role when it decides your role. Only the owner, on a top-level organization.
+         */
+        post: operations["transfer_ownership_v1_organizations__organization_id__ownership_transfer_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3659,6 +3778,11 @@ export interface components {
              * @example domain_verification_01h45ytscbebyvny4gc8cr8ma2
              */
             verification_id: TypeId<"domain_verification">;
+            /**
+             * Verification Url
+             * @description Where the registrant verifies with the registry, null when the registry handles it otherwise
+             */
+            verification_url: string | null;
         };
         /** AggregationResult */
         AggregationResult: {
@@ -5194,6 +5318,30 @@ export interface components {
              */
             truncated: boolean;
         } | {
+            data?: components["schemas"]["OrderResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_order_v1_orders_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
             data?: components["schemas"]["Organization"] | string;
             /**
              * Headers
@@ -6562,6 +6710,30 @@ export interface components {
              */
             truncated: boolean;
         } | {
+            data?: components["schemas"]["DomainForwardStatisticsResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_domain_forward_statistics_v1_domain_forwards_statistics_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
             data?: components["schemas"]["DomainForward"] | string;
             /**
              * Headers
@@ -6985,6 +7157,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "get_object_logs_v1_archive_object_logs_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["OrderResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_order_v1_orders__order_id__get";
             /** @constant */
             status: "ok";
             /**
@@ -8174,6 +8370,30 @@ export interface components {
              */
             truncated: boolean;
         } | {
+            data?: components["schemas"]["Pagination_OrderResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_orders_v1_orders_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
             data?: components["schemas"]["Pagination_Organization_"] | string;
             /**
              * Headers
@@ -8333,6 +8553,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "list_roles_v1_organizations_roles_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["Pagination_SyncFailure_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_sync_failures_v1_connect_registrars__registrar_credential_id__sync_failures_get";
             /** @constant */
             status: "ok";
             /**
@@ -9797,6 +10041,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "transfer_domain_v1_domains_transfer_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "transfer_ownership_v1_organizations__organization_id__ownership_transfer_post";
             /** @constant */
             status: "ok";
             /**
@@ -11418,6 +11686,11 @@ export interface components {
              * @example domain_verification_01h45ytscbebyvny4gc8cr8ma2
              */
             verification_id: TypeId<"domain_verification">;
+            /**
+             * Verification Url
+             * @description Where the registrant verifies with the registry, null when the registry handles it otherwise
+             */
+            verification_url: string | null;
         };
         /**
          * ContactVerificationClaim
@@ -13963,6 +14236,139 @@ export interface components {
          * @enum {string}
          */
         DomainForwardSortField: "hostname" | "enabled" | "created_on" | "updated_on";
+        /** DomainForwardStatisticsBreakdownItem */
+        DomainForwardStatisticsBreakdownItem: {
+            /**
+             * Total Visits
+             * @description Number of redirects of this group
+             */
+            total_visits: number;
+            /**
+             * Unique Visits
+             * @description Estimated number of distinct visitors (distinct client IP addresses, stored only as a keyed hash), counted with a HyperLogLog sketch and merged over the whole window rather than summed over buckets, so the figures of buckets do not add up to the total
+             */
+            unique_visits: number;
+            /**
+             * Value
+             * @description The group: for `country` an ISO 3166-1 alpha-2 code, with an empty string for unknown; for `status_code` the configured redirect code as a string, e.g. `301`; for `referrer`, `direct` where the request had no referrer; for `url` host and path without query string, e.g. `www.example.com/shop`
+             */
+            value: string;
+        };
+        /** DomainForwardStatisticsBreakdownResponse */
+        DomainForwardStatisticsBreakdownResponse: {
+            /**
+             * Approximate
+             * @description True when the list is an approximation: for `user_agent`, `referrer`, `fqdn`, `domain`, `forward` and `rule`, a window of more than one day is answered from per-day top lists, so the counts are sums of those lists and a value that never made a day's top list is missing or undercounted. `url` is built from the daily top 5 lists of the domain, so it is an approximation as soon as those lists are read. Always false for `browser`, `platform`, `country` and `status_code`, and for any query filtered by `hostname` or `protocol` (except `url`, which cannot be)
+             */
+            approximate: boolean;
+            /** @description What the redirects are grouped by. Country data is derived from IP addresses with GeoLite2 data created by MaxMind (https://www.maxmind.com) */
+            dimension: components["schemas"]["DomainForwardStatisticsDimension"];
+            /**
+             * Items
+             * @description The groups with the most redirects, most first, at most `breakdown_limit`. For `url` at most 5 values per day went into the list, each with at least 3 hits that day
+             */
+            items: components["schemas"]["DomainForwardStatisticsBreakdownItem"][];
+        };
+        /** DomainForwardStatisticsBucket */
+        DomainForwardStatisticsBucket: {
+            /**
+             * Partial
+             * @description True when the counts are not those of the whole bucket: the window cuts the bucket, it begins before `data_available_from`, or it reaches `data_available_to`, which is still running. A bucket without any data is partial too. A partial bucket must not be read as a rise or fall against its neighbours
+             */
+            partial: boolean;
+            /**
+             * Period End
+             * Format: date-time
+             * @description First instant after the bucket (UTC), exclusive: the start of the next bucket
+             */
+            period_end: Date;
+            /**
+             * Period Start
+             * Format: date-time
+             * @description First instant of the bucket (UTC), inclusive
+             */
+            period_start: Date;
+            /**
+             * Total Visits
+             * @description Number of redirects served in the bucket; 0 when none were
+             */
+            total_visits: number;
+            /**
+             * Unique Visits
+             * @description Estimated number of distinct visitors (distinct client IP addresses, stored only as a keyed hash), counted with a HyperLogLog sketch and merged over the whole window rather than summed over buckets, so the figures of buckets do not add up to the total. Counted per bucket; 0 when none were
+             */
+            unique_visits: number;
+        };
+        /**
+         * DomainForwardStatisticsDimension
+         * @description What a breakdown groups the redirects by.
+         * @enum {string}
+         */
+        DomainForwardStatisticsDimension: "browser" | "platform" | "user_agent" | "referrer" | "country" | "status_code" | "url" | "fqdn" | "domain" | "forward" | "rule";
+        /**
+         * DomainForwardStatisticsGranularity
+         * @description Time-bucket size of the series.
+         * @enum {string}
+         */
+        DomainForwardStatisticsGranularity: "minute" | "hour" | "day" | "week" | "month";
+        /** DomainForwardStatisticsResponse */
+        DomainForwardStatisticsResponse: {
+            /** @description The top list requested with `breakdown`; null otherwise */
+            breakdown: components["schemas"]["DomainForwardStatisticsBreakdownResponse"] | null;
+            /**
+             * Buckets
+             * @description One entry per bucket the window touches, oldest first, including buckets without redirects (0)
+             */
+            buckets: components["schemas"]["DomainForwardStatisticsBucket"][];
+            /**
+             * Data Available From
+             * @description Earliest instant the data behind the answer holds: the later of the retention limit and the first ingested redirect. A window reaching further back is empty before it, which is not the same as zero redirects. Null when there is no data
+             */
+            data_available_from: Date | null;
+            /**
+             * Data Available To
+             * @description Time of the latest ingested redirect; a bucket reaching it is partial. Null when there is no data
+             */
+            data_available_to: Date | null;
+            /**
+             * End
+             * Format: date-time
+             * @description End of the window, exclusive, as requested
+             */
+            end: Date;
+            /** @description Time-bucket size of the series */
+            granularity: components["schemas"]["DomainForwardStatisticsGranularity"];
+            /**
+             * Start
+             * Format: date-time
+             * @description Start of the window, inclusive, as requested
+             */
+            start: Date;
+            totals: components["schemas"]["DomainForwardStatisticsTotals"];
+        };
+        /** DomainForwardStatisticsTotals */
+        DomainForwardStatisticsTotals: {
+            /**
+             * Configured Forwards
+             * @description Number of redirect rules currently configured for the filtered scope (your organization, and its sub-organizations with `include_sub_organizations`). The current state, not the state during the window: it does not depend on `start` and `end`, and it leaves out forwards deleted since, whose traffic still counts in the totals
+             */
+            configured_forwards: number;
+            /**
+             * Invoked Forwards
+             * @description Estimated number of distinct forwards (`rule_source_forward`: the forward's hostname, `*.example.com` for a wildcard) that served at least one redirect, counted with a HyperLogLog sketch. The `/metrics` route counts distinct domain and path pairs instead, so the two figures are not comparable, and `configured_forwards` counts redirect rules, so it is no ceiling for this figure: forwards that were deleted or moved to another organization during the window count here too
+             */
+            invoked_forwards: number;
+            /**
+             * Total Visits
+             * @description Number of redirects served in the window
+             */
+            total_visits: number;
+            /**
+             * Unique Visits
+             * @description Estimated number of distinct visitors (distinct client IP addresses, stored only as a keyed hash), counted with a HyperLogLog sketch and merged over the whole window rather than summed over buckets, so the figures of buckets do not add up to the total
+             */
+            unique_visits: number;
+        };
         /** DomainForwardStatusCodeStatsResponse */
         DomainForwardStatusCodeStatsResponse: {
             /** Results */
@@ -15859,6 +16265,11 @@ export interface components {
              * @example domain_verification_01h45ytscbebyvny4gc8cr8ma2
              */
             verification_id: TypeId<"domain_verification">;
+            /**
+             * Verification Url
+             * @description Where the registrant verifies with the registry, null when the registry handles it otherwise
+             */
+            verification_url: string | null;
         };
         /**
          * DomainVerificationStatus
@@ -17880,6 +18291,54 @@ export interface components {
             name: components["schemas"]["MarketplaceName"];
         };
         /**
+         * MarketplaceDomainPurchaseDetail
+         * @description The `marketplace_domain_purchase` part of an item.
+         */
+        MarketplaceDomainPurchaseDetail: {
+            /**
+             * Domain
+             * @description Domain name (ASCII form)
+             */
+            domain: string;
+            /**
+             * Marketplace
+             * @description Marketplace the domain is bought on: `fruits`. More can be added.
+             * @example fruits
+             */
+            marketplace: string;
+            /**
+             * Stage
+             * @description Where the purchase stands: `processing`, `purchasing`, `awaiting_code`, `code_ready`, `completed`, `failed`, `canceled`. Treat a value you do not know as `processing`: stages can be added.
+             * @example processing
+             */
+            stage: string;
+        };
+        /**
+         * MarketplaceDomainPurchaseItemCreate
+         * @description Buy a domain listed on a marketplace.
+         */
+        MarketplaceDomainPurchaseItemCreate: {
+            /** @description Currency of `expected_price` */
+            currency: components["schemas"]["Currency"];
+            /**
+             * Domain
+             * @description Domain name to buy (Unicode or ASCII form)
+             * @example example.com
+             */
+            domain: string;
+            /** @description The price the customer expects to pay, as returned by the marketplace search, as a decimal string with two decimals. The order is refused with a price-changed error when the current price differs. */
+            expected_price: components["schemas"]["StrictMoneyDecimal"];
+            /** @description Marketplace the domain is bought on */
+            marketplace: components["schemas"]["MarketplaceName"];
+            /**
+             * Type
+             * @description Item type
+             * @default marketplace_domain_purchase
+             * @constant
+             */
+            type: "marketplace_domain_purchase";
+        };
+        /**
          * MarketplaceName
          * @description Marketplaces OpusDNS lists domains from.
          * @enum {string}
@@ -18479,6 +18938,95 @@ export interface components {
              */
             api_key: string;
         };
+        /** OrderCreate */
+        OrderCreate: {
+            /**
+             * Idempotency Key
+             * @description Caller-chosen key, unique per organization. Repeating a request with the same key and body returns the original order.
+             */
+            idempotency_key: string;
+            /**
+             * Items
+             * @description Items to order (one for now)
+             */
+            items: components["schemas"]["MarketplaceDomainPurchaseItemCreate"][];
+        };
+        /**
+         * OrderItemResponse
+         * @description The fields every item type has, plus one optional object named after `type`. A new type adds one field.
+         */
+        OrderItemResponse: {
+            /** @description Currency of `price` */
+            currency: components["schemas"]["Currency"];
+            /**
+             * Item Id
+             * Format: typeid
+             * @example order_item_01h45ytscbebyvny4gc8cr8ma2
+             */
+            item_id: TypeId<"order_item">;
+            /** @description Set when `type` is `marketplace_domain_purchase` */
+            marketplace_domain_purchase?: components["schemas"]["MarketplaceDomainPurchaseDetail"] | null;
+            /** @description Price of the item, a decimal string with two decimals */
+            price: components["schemas"]["StrictMoneyDecimal"];
+            /**
+             * Status
+             * @description `pending`, `in_progress`, `completed`, `canceled`, `failed`. `pending` and `in_progress` are open, the others are final. Treat a value you do not know as open: statuses can be added.
+             * @example in_progress
+             */
+            status: string;
+            /**
+             * Type
+             * @description Item type: `marketplace_domain_purchase`
+             * @example marketplace_domain_purchase
+             */
+            type: string;
+        };
+        /**
+         * OrderItemType
+         * @enum {string}
+         */
+        OrderItemType: "marketplace_domain_purchase";
+        /** OrderResponse */
+        OrderResponse: {
+            /**
+             * Created On
+             * Format: date-time
+             */
+            created_on: Date;
+            /** @description Currency of `total_price` and of every item price */
+            currency: components["schemas"]["Currency"];
+            /** Items */
+            items: components["schemas"]["OrderItemResponse"][];
+            /**
+             * Order Id
+             * Format: typeid
+             * @example order_01h45ytscbebyvny4gc8cr8ma2
+             */
+            order_id: TypeId<"order">;
+            /**
+             * Status
+             * @description `pending`, `in_progress`, `completed`, `canceled`, `failed`. `pending` and `in_progress` are open, the others are final. Treat a value you do not know as open: statuses can be added.
+             * @example in_progress
+             */
+            status: string;
+            /** @description Sum of the item prices, a decimal string with two decimals */
+            total_price: components["schemas"]["StrictMoneyDecimal"];
+            /**
+             * Updated On
+             * Format: date-time
+             */
+            updated_on: Date;
+        };
+        /**
+         * OrderSortField
+         * @enum {string}
+         */
+        OrderSortField: "created_on" | "updated_on";
+        /**
+         * OrderStatus
+         * @enum {string}
+         */
+        OrderStatus: "pending" | "in_progress" | "completed" | "canceled" | "failed";
         /** Organization */
         Organization: {
             /**
@@ -19067,6 +19615,16 @@ export interface components {
              */
             domain_name: string;
         };
+        /** OwnershipTransferRequest */
+        OwnershipTransferRequest: {
+            /**
+             * To User Id
+             * Format: typeid
+             * @description The new owner: an active user of the organization
+             * @example user_01h45ytscbebyvny4gc8cr8ma2
+             */
+            to_user_id: TypeId<"user">;
+        };
         /** PageResponse[EmailForwardLog] */
         PageResponse_EmailForwardLog_: {
             pagination: components["schemas"]["PaginationMetadata"];
@@ -19229,6 +19787,12 @@ export interface components {
             /** Results */
             results: components["schemas"]["InvoiceResponse"][];
         };
+        /** Pagination[OrderResponse] */
+        Pagination_OrderResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["OrderResponse"][];
+        };
         /** Pagination[Organization] */
         Pagination_Organization_: {
             pagination: components["schemas"]["PaginationMetadata"];
@@ -19240,6 +19804,12 @@ export interface components {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
             results: components["schemas"]["RegistrarCredential"][];
+        };
+        /** Pagination[SyncFailure] */
+        Pagination_SyncFailure_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["SyncFailure"][];
         };
         /** Pagination[TagResponse] */
         Pagination_TagResponse_: {
@@ -20364,6 +20934,27 @@ export interface components {
             statuses?: string[];
             zone?: components["schemas"]["RegistrarZone"] | null;
         };
+        /**
+         * RegistrarError
+         * @description The error as the registrar itself reported it. A member the registrar didn't send is null.
+         */
+        RegistrarError: {
+            /**
+             * Code
+             * @description The registrar's own result code, in its format
+             */
+            code?: string | null;
+            /**
+             * Message
+             * @description The registrar's own message
+             */
+            message?: string | null;
+            /**
+             * Reference
+             * @description The registrar's transaction or request ID, for its support. Not every registrar sends one
+             */
+            reference?: string | null;
+        };
         /** RegistrarNameserver */
         RegistrarNameserver: {
             /**
@@ -20757,7 +21348,7 @@ export interface components {
          * StatusTagType
          * @enum {string}
          */
-        StatusTagType: "VERIFICATION_REQUIRED" | "CREATE_REQUESTED" | "INBOUND_TRANSFER_PENDING" | "OUTBOUND_TRANSFER_PENDING" | "EXTERNAL" | "IMPORT_REQUESTED" | "IMPORT_PENDING" | "DNSSEC_PENDING" | "TRANSFER_ON_RENEW_PENDING" | "REGISTRANT_CHANGE_LOCKED";
+        StatusTagType: "VERIFICATION_REQUIRED" | "CREATE_REQUESTED" | "INBOUND_TRANSFER_PENDING" | "OUTBOUND_TRANSFER_PENDING" | "EXTERNAL" | "IMPORT_REQUESTED" | "IMPORT_PENDING" | "DNSSEC_PENDING" | "TRANSFER_ON_RENEW_PENDING" | "REGISTRANT_CHANGE_LOCKED" | "UPDATE_PENDING";
         /** @example 12.50 */
         StrictMoneyDecimal: string;
         /** Support */
@@ -20772,6 +21363,70 @@ export interface components {
             url?: string | null;
         };
         /**
+         * SyncFailure
+         * @description A domain the sync could not sync. The list can be shorter than the status's `failed` count.
+         */
+        SyncFailure: {
+            /**
+             * Batch Id
+             * @description ID of the sync it belongs to, as in Get sync status
+             * @example job_01h45ytscbebyvny4gc8cr8ma2
+             */
+            batch_id: string;
+            /**
+             * Created On
+             * Format: date-time
+             * @description When the failure happened
+             */
+            created_on: Date;
+            /**
+             * Domain Name
+             * @description The domain name, spelled as in the domains API
+             * @example example.com
+             */
+            domain_name: string;
+            /** @description Why the domain could not be synced */
+            error: components["schemas"]["SyncFailureError"];
+        };
+        /**
+         * SyncFailureError
+         * @description Why the domain could not be synced, as an RFC 9457 problem with OpusDNS's code.
+         */
+        SyncFailureError: {
+            /**
+             * Code
+             * @description Machine-readable reason, such as `ERROR_REGISTRAR_DOMAIN_NOT_FOUND`
+             */
+            code: string;
+            /**
+             * Detail
+             * @description What went wrong, as a sentence
+             */
+            detail: string;
+            /** @description The error in the registrar's own terms, for people and the registrar's support; null if it sent none. Its format differs per registrar: branch on `code`, not on this */
+            registrar_error?: components["schemas"]["RegistrarError"] | null;
+            /**
+             * Retryable
+             * @description True if a later sync may succeed on its own; false if the cause has to be fixed first
+             */
+            retryable: boolean;
+            /**
+             * Status
+             * @description HTTP status this failure would have as a request of its own
+             */
+            status: number;
+            /**
+             * Title
+             * @description Short summary of the problem type
+             */
+            title: string;
+            /**
+             * Type
+             * @description Problem type, derived from code
+             */
+            type: string;
+        };
+        /**
          * SyncOperationType
          * @enum {string}
          */
@@ -20780,7 +21435,8 @@ export interface components {
         SyncStatus: {
             /**
              * Batch Id
-             * @description ID of this sync. Empty if the credential was never synced
+             * @description ID of this sync. Empty if the account was never synced
+             * @example job_01h45ytscbebyvny4gc8cr8ma2
              */
             batch_id: string;
             /**
@@ -25876,6 +26532,81 @@ export interface operations {
             };
         };
     };
+    list_sync_failures_v1_connect_registrars__registrar_credential_id__sync_failures_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                /** @description ID of the connected registrar account */
+                registrar_credential_id: TypeId<"registrar_credential">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Domains that could not be synced */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_SyncFailure_"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CREDENTIAL_NOT_FOUND",
+                     *       "detail": "Credential not found",
+                     *       "registrar_credential_id": "registrar_credential_01h45ytscbebyvny4gc8cr8ma2",
+                     *       "status": 404,
+                     *       "title": "Registrar Credential Error",
+                     *       "type": "registrar-credential-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     get_contacts_v1_contacts_get: {
         parameters: {
             query?: {
@@ -30378,6 +31109,150 @@ export interface operations {
             };
         };
     };
+    get_domain_forward_statistics_v1_domain_forwards_statistics_get: {
+        parameters: {
+            query: {
+                /** @description Only count redirects of this exact forward hostname. Excludes `domain`. Reaches back 35 days only, like `protocol`: a window starting earlier is rejected. */
+                hostname?: string | null;
+                /** @description Only count redirects of this domain and all its subdomains. Excludes `hostname`. */
+                domain?: string | null;
+                /** @description Start of the window, inclusive (RFC 3339; a value without an offset is read as UTC). */
+                start: Date;
+                /** @description End of the window, exclusive (RFC 3339; a value without an offset is read as UTC). How far it may reach after `start` depends on `granularity`: at most 6 hours for `minute`, 31 days for `hour`, 366 days for `day` and 762 days (25 months) for `week` and `month`. */
+                end: Date;
+                /** @description Time-bucket size. Buckets start on the minute, the hour or the day (UTC); weeks start on Monday and months on the 1st. */
+                granularity?: components["schemas"]["DomainForwardStatisticsGranularity"];
+                /** @description Only count redirects requested over this protocol. Reaches back 35 days only, like `hostname`: a window starting earlier is rejected. */
+                protocol?: components["schemas"]["HttpProtocol"] | null;
+                /** @description Leave out the redirects whose platform is `Bot` or `Unknown`, as the `/metrics` routes do. */
+                exclude_bots?: boolean;
+                /** @description Count the forwards of your sub-organizations too. By default only your own organization's are counted. */
+                include_sub_organizations?: boolean;
+                /** @description Adds a top list of the redirects grouped by this dimension. `country` is derived from the visitor's IP address with GeoLite2 data created by MaxMind (https://www.maxmind.com); an empty value means unknown. `status_code` is the redirect code configured on the rule. `domain` cannot be combined with the `domain` filter. `url` lists host and path of the redirected requests (`www.example.com/shop`, no query string). Full request paths are not kept: per domain and day only the top 5 values with at least 3 hits that day are, for 13 months. It therefore needs a `domain` filter, cannot be combined with `hostname` or `protocol`, and over more than one day is an approximation (the sum of the daily top 5 lists, so a path that never made a day's list is missing). There is no list of URLs across all domains of an organization. */
+                breakdown?: components["schemas"]["DomainForwardStatisticsDimension"] | null;
+                /** @description How many items the breakdown lists. */
+                breakdown_limit?: number;
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Statistics retrieved successfully */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainForwardStatisticsResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_STATISTICS_QUERY",
+                     *       "detail": "'start' must be at most 35 days ago when 'hostname' or 'protocol' is set",
+                     *       "status": 400,
+                     *       "title": "Domain forward statistics query rejected.",
+                     *       "type": "domain-forward-statistics-query-rejected"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_STATISTICS_INVALID_QUERY",
+                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for an exact match or 'domain' to filter by domain including all subdomains.",
+                     *       "status": 422,
+                     *       "title": "Invalid domain forward statistics query.",
+                     *       "type": "domain-forward-statistics-invalid-query"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Implemented */
+            501: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_STATISTICS_NOT_AVAILABLE",
+                     *       "detail": "Domain forward statistics are not available in this environment.",
+                     *       "status": 501,
+                     *       "title": "Domain forward statistics not available.",
+                     *       "type": "domain-forward-statistics-not-available"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_STATISTICS_UNAVAILABLE",
+                     *       "detail": "Domain forward statistics are currently unavailable, please try again later.",
+                     *       "status": 503,
+                     *       "title": "Domain forward statistics unavailable.",
+                     *       "type": "domain-forward-statistics-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
     get_domain_forward_v1_domain_forwards__hostname__get: {
         parameters: {
             query?: never;
@@ -31159,9 +32034,9 @@ export interface operations {
                 tag_mode?: components["schemas"]["TagFilterMode"];
                 /** @description true returns only objects that carry at least one user tag, false only objects that carry none. Status tags are not counted. Combines with tag_ids and the other filters. */
                 has_tags?: boolean | null;
-                /** @description Filter by exact domain name */
+                /** @description Filter by exact domain name, in Unicode or punycode: either stored form matches. Only whole labels match across forms. */
                 name?: string | null;
-                /** @description Search domains by name (contains) or domain ID (exact match) */
+                /** @description Search domains by name (contains) or domain ID (exact match). A name matches in Unicode or punycode, either stored form; only whole labels match across forms. */
                 search?: string | null;
                 /** @description Filter by top-level domain (e.g., 'com', 'org'). Can be specified multiple times (union of all provided values). */
                 tld?: string[] | null;
@@ -35966,6 +36841,249 @@ export interface operations {
             };
         };
     };
+    list_orders_v1_orders_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+                /** @description Only orders with this status */
+                status?: components["schemas"]["OrderStatus"] | null;
+                /** @description Only orders with an item of this type */
+                type?: components["schemas"]["OrderItemType"] | null;
+                /** @description Only orders for this domain name (Unicode or ASCII form) */
+                domain?: string | null;
+                /** @description Only orders created at or after this time */
+                created_after?: Date | null;
+                /** @description Only orders created at or before this time */
+                created_before?: Date | null;
+                /** @description Field to sort by */
+                sort_by?: components["schemas"]["OrderSortField"];
+                /** @description Sort order direction */
+                sort_order?: components["schemas"]["SortOrder"];
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_OrderResponse_"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_order_v1_orders_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OrderCreate"];
+            };
+        };
+        responses: {
+            /** @description An earlier identical request created this order. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrderResponse"];
+                };
+            };
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrderResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_UNREADABLE",
+                     *       "detail": "The order could not be read",
+                     *       "status": 500,
+                     *       "title": "Order Unreadable",
+                     *       "type": "order-unreadable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    /** @description Seconds to wait before retrying */
+                    "Retry-After"?: number;
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_SERVICE_UNAVAILABLE",
+                     *       "detail": "Orders are temporarily unavailable, please retry shortly",
+                     *       "status": 503,
+                     *       "title": "Order Service Unavailable",
+                     *       "type": "order-service-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    get_order_v1_orders__order_id__get: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                order_id: TypeId<"order">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrderResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_NOT_FOUND",
+                     *       "detail": "Order not found",
+                     *       "order_id": "order_01h45ytscbebyvny4gc8cr8ma2",
+                     *       "status": 404,
+                     *       "title": "Order Not Found",
+                     *       "type": "order-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_UNREADABLE",
+                     *       "detail": "The order could not be read",
+                     *       "status": 500,
+                     *       "title": "Order Unreadable",
+                     *       "type": "order-unreadable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
     list_organizations_v1_organizations_get: {
         parameters: {
             query?: {
@@ -37816,6 +38934,80 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Pagination_InvoiceResponse_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    transfer_ownership_v1_organizations__organization_id__ownership_transfer_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                organization_id: TypeId<"organization">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OwnershipTransferRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */

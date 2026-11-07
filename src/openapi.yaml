@@ -68,6 +68,13 @@ components:
           title: Verification Id
           type: string
           x-typeid-prefix: domain_verification
+        verification_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Where the registrant verifies with the registry, null when
+            the registry handles it otherwise
+          title: Verification Url
       required:
       - verification_id
       - source
@@ -77,6 +84,7 @@ components:
       - deadlines
       - contact_id
       - opened_on
+      - verification_url
       title: ActiveDomainVerificationResponse
       type: object
     AggregationResult:
@@ -2361,6 +2369,37 @@ components:
       - properties:
           data:
             anyOf:
+            - $ref: '#/components/schemas/OrderResponse'
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
+            const: create_order_v1_orders_post
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: create_order_v1_orders_post
+        type: object
+      - properties:
+          data:
+            anyOf:
             - $ref: '#/components/schemas/Organization'
             - type: string
           headers:
@@ -4145,6 +4184,37 @@ components:
       - properties:
           data:
             anyOf:
+            - $ref: '#/components/schemas/DomainForwardStatisticsResponse'
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
+            const: get_domain_forward_statistics_v1_domain_forwards_statistics_get
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: get_domain_forward_statistics_v1_domain_forwards_statistics_get
+        type: object
+      - properties:
+          data:
+            anyOf:
             - $ref: '#/components/schemas/DomainForward'
             - type: string
           headers:
@@ -4699,6 +4769,37 @@ components:
         - status
         - operationId
         title: get_object_logs_v1_archive_object_logs_get
+        type: object
+      - properties:
+          data:
+            anyOf:
+            - $ref: '#/components/schemas/OrderResponse'
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
+            const: get_order_v1_orders__order_id__get
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: get_order_v1_orders__order_id__get
         type: object
       - properties:
           data:
@@ -6242,6 +6343,37 @@ components:
       - properties:
           data:
             anyOf:
+            - $ref: '#/components/schemas/Pagination_OrderResponse_'
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
+            const: list_orders_v1_orders_get
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: list_orders_v1_orders_get
+        type: object
+      - properties:
+          data:
+            anyOf:
             - $ref: '#/components/schemas/Pagination_Organization_'
             - type: string
           headers:
@@ -6458,6 +6590,37 @@ components:
         - status
         - operationId
         title: list_roles_v1_organizations_roles_get
+        type: object
+      - properties:
+          data:
+            anyOf:
+            - $ref: '#/components/schemas/Pagination_SyncFailure_'
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
+            const: list_sync_failures_v1_connect_registrars__registrar_credential_id__sync_failures_get
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: list_sync_failures_v1_connect_registrars__registrar_credential_id__sync_failures_get
         type: object
       - properties:
           data:
@@ -8345,6 +8508,36 @@ components:
         - status
         - operationId
         title: transfer_domain_v1_domains_transfer_post
+        type: object
+      - properties:
+          data:
+            anyOf:
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
+            const: transfer_ownership_v1_organizations__organization_id__ownership_transfer_post
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: transfer_ownership_v1_organizations__organization_id__ownership_transfer_post
         type: object
       - properties:
           data:
@@ -10526,6 +10719,13 @@ components:
           title: Verification Id
           type: string
           x-typeid-prefix: domain_verification
+        verification_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Where the registrant verifies with the registry, null when
+            the registry handles it otherwise
+          title: Verification Url
       required:
       - verification_id
       - source
@@ -10535,6 +10735,7 @@ components:
       - deadlines
       - contact_id
       - opened_on
+      - verification_url
       - closed_on
       - close_reason
       - reminders_sent
@@ -14525,6 +14726,226 @@ components:
       - updated_on
       title: DomainForwardSortField
       type: string
+    DomainForwardStatisticsBreakdownItem:
+      properties:
+        total_visits:
+          description: Number of redirects of this group
+          title: Total Visits
+          type: integer
+        unique_visits:
+          description: Estimated number of distinct visitors (distinct client IP addresses,
+            stored only as a keyed hash), counted with a HyperLogLog sketch and merged
+            over the whole window rather than summed over buckets, so the figures
+            of buckets do not add up to the total
+          title: Unique Visits
+          type: integer
+        value:
+          description: 'The group: for `country` an ISO 3166-1 alpha-2 code, with
+            an empty string for unknown; for `status_code` the configured redirect
+            code as a string, e.g. `301`; for `referrer`, `direct` where the request
+            had no referrer; for `url` host and path without query string, e.g. `www.example.com/shop`'
+          title: Value
+          type: string
+      required:
+      - value
+      - total_visits
+      - unique_visits
+      title: DomainForwardStatisticsBreakdownItem
+      type: object
+    DomainForwardStatisticsBreakdownResponse:
+      properties:
+        approximate:
+          description: 'True when the list is an approximation: for `user_agent`,
+            `referrer`, `fqdn`, `domain`, `forward` and `rule`, a window of more than
+            one day is answered from per-day top lists, so the counts are sums of
+            those lists and a value that never made a day''s top list is missing or
+            undercounted. `url` is built from the daily top 5 lists of the domain,
+            so it is an approximation as soon as those lists are read. Always false
+            for `browser`, `platform`, `country` and `status_code`, and for any query
+            filtered by `hostname` or `protocol` (except `url`, which cannot be)'
+          title: Approximate
+          type: boolean
+        dimension:
+          $ref: '#/components/schemas/DomainForwardStatisticsDimension'
+          description: What the redirects are grouped by. Country data is derived
+            from IP addresses with GeoLite2 data created by MaxMind (https://www.maxmind.com)
+        items:
+          description: The groups with the most redirects, most first, at most `breakdown_limit`.
+            For `url` at most 5 values per day went into the list, each with at least
+            3 hits that day
+          items:
+            $ref: '#/components/schemas/DomainForwardStatisticsBreakdownItem'
+          title: Items
+          type: array
+      required:
+      - dimension
+      - approximate
+      - items
+      title: DomainForwardStatisticsBreakdownResponse
+      type: object
+    DomainForwardStatisticsBucket:
+      properties:
+        partial:
+          description: 'True when the counts are not those of the whole bucket: the
+            window cuts the bucket, it begins before `data_available_from`, or it
+            reaches `data_available_to`, which is still running. A bucket without
+            any data is partial too. A partial bucket must not be read as a rise or
+            fall against its neighbours'
+          title: Partial
+          type: boolean
+        period_end:
+          description: 'First instant after the bucket (UTC), exclusive: the start
+            of the next bucket'
+          format: date-time
+          title: Period End
+          type: string
+        period_start:
+          description: First instant of the bucket (UTC), inclusive
+          format: date-time
+          title: Period Start
+          type: string
+        total_visits:
+          description: Number of redirects served in the bucket; 0 when none were
+          title: Total Visits
+          type: integer
+        unique_visits:
+          description: Estimated number of distinct visitors (distinct client IP addresses,
+            stored only as a keyed hash), counted with a HyperLogLog sketch and merged
+            over the whole window rather than summed over buckets, so the figures
+            of buckets do not add up to the total. Counted per bucket; 0 when none
+            were
+          title: Unique Visits
+          type: integer
+      required:
+      - period_start
+      - period_end
+      - total_visits
+      - unique_visits
+      - partial
+      title: DomainForwardStatisticsBucket
+      type: object
+    DomainForwardStatisticsDimension:
+      description: What a breakdown groups the redirects by.
+      enum:
+      - browser
+      - platform
+      - user_agent
+      - referrer
+      - country
+      - status_code
+      - url
+      - fqdn
+      - domain
+      - forward
+      - rule
+      title: DomainForwardStatisticsDimension
+      type: string
+    DomainForwardStatisticsGranularity:
+      description: Time-bucket size of the series.
+      enum:
+      - minute
+      - hour
+      - day
+      - week
+      - month
+      title: DomainForwardStatisticsGranularity
+      type: string
+    DomainForwardStatisticsResponse:
+      properties:
+        breakdown:
+          anyOf:
+          - $ref: '#/components/schemas/DomainForwardStatisticsBreakdownResponse'
+          - type: 'null'
+          description: The top list requested with `breakdown`; null otherwise
+        buckets:
+          description: One entry per bucket the window touches, oldest first, including
+            buckets without redirects (0)
+          items:
+            $ref: '#/components/schemas/DomainForwardStatisticsBucket'
+          title: Buckets
+          type: array
+        data_available_from:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: 'Earliest instant the data behind the answer holds: the later
+            of the retention limit and the first ingested redirect. A window reaching
+            further back is empty before it, which is not the same as zero redirects.
+            Null when there is no data'
+          title: Data Available From
+        data_available_to:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Time of the latest ingested redirect; a bucket reaching it
+            is partial. Null when there is no data
+          title: Data Available To
+        end:
+          description: End of the window, exclusive, as requested
+          format: date-time
+          title: End
+          type: string
+        granularity:
+          $ref: '#/components/schemas/DomainForwardStatisticsGranularity'
+          description: Time-bucket size of the series
+        start:
+          description: Start of the window, inclusive, as requested
+          format: date-time
+          title: Start
+          type: string
+        totals:
+          $ref: '#/components/schemas/DomainForwardStatisticsTotals'
+      required:
+      - start
+      - end
+      - granularity
+      - totals
+      - buckets
+      - breakdown
+      - data_available_from
+      - data_available_to
+      title: DomainForwardStatisticsResponse
+      type: object
+    DomainForwardStatisticsTotals:
+      properties:
+        configured_forwards:
+          description: 'Number of redirect rules currently configured for the filtered
+            scope (your organization, and its sub-organizations with `include_sub_organizations`).
+            The current state, not the state during the window: it does not depend
+            on `start` and `end`, and it leaves out forwards deleted since, whose
+            traffic still counts in the totals'
+          title: Configured Forwards
+          type: integer
+        invoked_forwards:
+          description: 'Estimated number of distinct forwards (`rule_source_forward`:
+            the forward''s hostname, `*.example.com` for a wildcard) that served at
+            least one redirect, counted with a HyperLogLog sketch. The `/metrics`
+            route counts distinct domain and path pairs instead, so the two figures
+            are not comparable, and `configured_forwards` counts redirect rules, so
+            it is no ceiling for this figure: forwards that were deleted or moved
+            to another organization during the window count here too'
+          title: Invoked Forwards
+          type: integer
+        total_visits:
+          description: Number of redirects served in the window
+          title: Total Visits
+          type: integer
+        unique_visits:
+          description: Estimated number of distinct visitors (distinct client IP addresses,
+            stored only as a keyed hash), counted with a HyperLogLog sketch and merged
+            over the whole window rather than summed over buckets, so the figures
+            of buckets do not add up to the total
+          title: Unique Visits
+          type: integer
+      required:
+      - total_visits
+      - unique_visits
+      - invoked_forwards
+      - configured_forwards
+      title: DomainForwardStatisticsTotals
+      type: object
     DomainForwardStatusCodeStatsResponse:
       properties:
         results:
@@ -17255,6 +17676,13 @@ components:
           title: Verification Id
           type: string
           x-typeid-prefix: domain_verification
+        verification_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Where the registrant verifies with the registry, null when
+            the registry handles it otherwise
+          title: Verification Url
       required:
       - verification_id
       - source
@@ -17264,6 +17692,7 @@ components:
       - deadlines
       - contact_id
       - opened_on
+      - verification_url
       - closed_on
       - close_reason
       - reminders_sent
@@ -20187,6 +20616,68 @@ components:
       - name
       title: Marketplace
       type: object
+    MarketplaceDomainPurchaseDetail:
+      description: The `marketplace_domain_purchase` part of an item.
+      properties:
+        domain:
+          description: Domain name (ASCII form)
+          title: Domain
+          type: string
+        marketplace:
+          description: 'Marketplace the domain is bought on: `fruits`. More can be
+            added.'
+          examples:
+          - fruits
+          title: Marketplace
+          type: string
+        stage:
+          description: 'Where the purchase stands: `processing`, `purchasing`, `awaiting_code`,
+            `code_ready`, `completed`, `failed`, `canceled`. Treat a value you do
+            not know as `processing`: stages can be added.'
+          examples:
+          - processing
+          title: Stage
+          type: string
+      required:
+      - domain
+      - marketplace
+      - stage
+      title: MarketplaceDomainPurchaseDetail
+      type: object
+    MarketplaceDomainPurchaseItemCreate:
+      description: Buy a domain listed on a marketplace.
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+          description: Currency of `expected_price`
+        domain:
+          description: Domain name to buy (Unicode or ASCII form)
+          examples:
+          - example.com
+          title: Domain
+          type: string
+        expected_price:
+          $ref: '#/components/schemas/StrictMoneyDecimal'
+          description: The price the customer expects to pay, as returned by the marketplace
+            search, as a decimal string with two decimals. The order is refused with
+            a price-changed error when the current price differs.
+          gt: 0
+        marketplace:
+          $ref: '#/components/schemas/MarketplaceName'
+          description: Marketplace the domain is bought on
+        type:
+          const: marketplace_domain_purchase
+          default: marketplace_domain_purchase
+          description: Item type
+          title: Type
+          type: string
+      required:
+      - domain
+      - marketplace
+      - expected_price
+      - currency
+      title: MarketplaceDomainPurchaseItemCreate
+      type: object
     MarketplaceName:
       description: Marketplaces OpusDNS lists domains from.
       enum:
@@ -21084,6 +21575,141 @@ components:
       - api_key
       title: OpusDnsCredentials
       type: object
+    OrderCreate:
+      properties:
+        idempotency_key:
+          description: Caller-chosen key, unique per organization. Repeating a request
+            with the same key and body returns the original order.
+          maxLength: 255
+          minLength: 1
+          pattern: ^[A-Za-z0-9._:-]+$
+          title: Idempotency Key
+          type: string
+        items:
+          description: Items to order (one for now)
+          items:
+            $ref: '#/components/schemas/MarketplaceDomainPurchaseItemCreate'
+          maxItems: 1
+          minItems: 1
+          title: Items
+          type: array
+      required:
+      - idempotency_key
+      - items
+      title: OrderCreate
+      type: object
+    OrderItemResponse:
+      description: The fields every item type has, plus one optional object named
+        after `type`. A new type adds one field.
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+          description: Currency of `price`
+        item_id:
+          examples:
+          - order_item_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^order_item_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Item Id
+          type: string
+          x-typeid-prefix: order_item
+        marketplace_domain_purchase:
+          anyOf:
+          - $ref: '#/components/schemas/MarketplaceDomainPurchaseDetail'
+          - type: 'null'
+          description: Set when `type` is `marketplace_domain_purchase`
+        price:
+          $ref: '#/components/schemas/StrictMoneyDecimal'
+          description: Price of the item, a decimal string with two decimals
+        status:
+          description: '`pending`, `in_progress`, `completed`, `canceled`, `failed`.
+            `pending` and `in_progress` are open, the others are final. Treat a value
+            you do not know as open: statuses can be added.'
+          examples:
+          - in_progress
+          title: Status
+          type: string
+        type:
+          description: 'Item type: `marketplace_domain_purchase`'
+          examples:
+          - marketplace_domain_purchase
+          title: Type
+          type: string
+      required:
+      - item_id
+      - type
+      - status
+      - price
+      - currency
+      title: OrderItemResponse
+      type: object
+    OrderItemType:
+      enum:
+      - marketplace_domain_purchase
+      title: OrderItemType
+      type: string
+    OrderResponse:
+      properties:
+        created_on:
+          format: date-time
+          title: Created On
+          type: string
+        currency:
+          $ref: '#/components/schemas/Currency'
+          description: Currency of `total_price` and of every item price
+        items:
+          items:
+            $ref: '#/components/schemas/OrderItemResponse'
+          title: Items
+          type: array
+        order_id:
+          examples:
+          - order_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^order_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Order Id
+          type: string
+          x-typeid-prefix: order
+        status:
+          description: '`pending`, `in_progress`, `completed`, `canceled`, `failed`.
+            `pending` and `in_progress` are open, the others are final. Treat a value
+            you do not know as open: statuses can be added.'
+          examples:
+          - in_progress
+          title: Status
+          type: string
+        total_price:
+          $ref: '#/components/schemas/StrictMoneyDecimal'
+          description: Sum of the item prices, a decimal string with two decimals
+        updated_on:
+          format: date-time
+          title: Updated On
+          type: string
+      required:
+      - order_id
+      - status
+      - total_price
+      - currency
+      - items
+      - created_on
+      - updated_on
+      title: OrderResponse
+      type: object
+    OrderSortField:
+      enum:
+      - created_on
+      - updated_on
+      title: OrderSortField
+      type: string
+    OrderStatus:
+      enum:
+      - pending
+      - in_progress
+      - completed
+      - canceled
+      - failed
+      title: OrderStatus
+      type: string
     Organization:
       properties:
         address_1:
@@ -21942,6 +22568,21 @@ components:
       - action
       title: OutboundTransferResponse
       type: object
+    OwnershipTransferRequest:
+      properties:
+        to_user_id:
+          description: 'The new owner: an active user of the organization'
+          examples:
+          - user_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^user_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: To User Id
+          type: string
+          x-typeid-prefix: user
+      required:
+      - to_user_id
+      title: OwnershipTransferRequest
+      type: object
     PageResponse_EmailForwardLog_:
       properties:
         pagination:
@@ -22272,6 +22913,20 @@ components:
       - pagination
       title: Pagination[InvoiceResponse]
       type: object
+    Pagination_OrderResponse_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/OrderResponse'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: Pagination[OrderResponse]
+      type: object
     Pagination_Organization_:
       properties:
         pagination:
@@ -22299,6 +22954,20 @@ components:
       - results
       - pagination
       title: Pagination[RegistrarCredential]
+      type: object
+    Pagination_SyncFailure_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/SyncFailure'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: Pagination[SyncFailure]
       type: object
     Pagination_TagResponse_:
       properties:
@@ -24096,6 +24765,31 @@ components:
       - name
       title: RegistrarDomain
       type: object
+    RegistrarError:
+      description: The error as the registrar itself reported it. A member the registrar
+        didn't send is null.
+      properties:
+        code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The registrar's own result code, in its format
+          title: Code
+        message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The registrar's own message
+          title: Message
+        reference:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The registrar's transaction or request ID, for its support.
+            Not every registrar sends one
+          title: Reference
+      title: RegistrarError
+      type: object
     RegistrarNameserver:
       properties:
         hostname:
@@ -24815,6 +25509,7 @@ components:
       - DNSSEC_PENDING
       - TRANSFER_ON_RENEW_PENDING
       - REGISTRANT_CHANGE_LOCKED
+      - UPDATE_PENDING
       title: StatusTagType
       type: string
     StrictMoneyDecimal:
@@ -24847,6 +25542,82 @@ components:
           title: Url
       title: Support
       type: object
+    SyncFailure:
+      description: A domain the sync could not sync. The list can be shorter than
+        the status's `failed` count.
+      properties:
+        batch_id:
+          description: ID of the sync it belongs to, as in Get sync status
+          examples:
+          - job_01h45ytscbebyvny4gc8cr8ma2
+          title: Batch Id
+          type: string
+        created_on:
+          description: When the failure happened
+          format: date-time
+          title: Created On
+          type: string
+        domain_name:
+          description: The domain name, spelled as in the domains API
+          examples:
+          - example.com
+          title: Domain Name
+          type: string
+        error:
+          $ref: '#/components/schemas/SyncFailureError'
+          description: Why the domain could not be synced
+      required:
+      - domain_name
+      - error
+      - batch_id
+      - created_on
+      title: SyncFailure
+      type: object
+    SyncFailureError:
+      description: Why the domain could not be synced, as an RFC 9457 problem with
+        OpusDNS's code.
+      properties:
+        code:
+          description: Machine-readable reason, such as `ERROR_REGISTRAR_DOMAIN_NOT_FOUND`
+          title: Code
+          type: string
+        detail:
+          description: What went wrong, as a sentence
+          title: Detail
+          type: string
+        registrar_error:
+          anyOf:
+          - $ref: '#/components/schemas/RegistrarError'
+          - type: 'null'
+          description: 'The error in the registrar''s own terms, for people and the
+            registrar''s support; null if it sent none. Its format differs per registrar:
+            branch on `code`, not on this'
+        retryable:
+          description: True if a later sync may succeed on its own; false if the cause
+            has to be fixed first
+          title: Retryable
+          type: boolean
+        status:
+          description: HTTP status this failure would have as a request of its own
+          title: Status
+          type: integer
+        title:
+          description: Short summary of the problem type
+          title: Title
+          type: string
+        type:
+          description: Problem type, derived from code
+          title: Type
+          type: string
+      required:
+      - type
+      - title
+      - status
+      - code
+      - detail
+      - retryable
+      title: SyncFailureError
+      type: object
     SyncOperationType:
       enum:
       - registration
@@ -24857,7 +25628,9 @@ components:
     SyncStatus:
       properties:
         batch_id:
-          description: ID of this sync. Empty if the credential was never synced
+          description: ID of this sync. Empty if the account was never synced
+          examples:
+          - job_01h45ytscbebyvny4gc8cr8ma2
           title: Batch Id
           type: string
         completed_on:
@@ -28531,7 +29304,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-03-174215
+  version: 2026-11-06-162619
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -31580,6 +32353,138 @@ paths:
       - connect
       x-required-permissions:
       - registrar_credentials:manage
+  /v1/connect/registrars/{registrar_credential_id}/sync/failures:
+    get:
+      description: 'Lists the domains the latest sync could not sync, sorted by domain
+        name. Each one has an `error` with a `code`, a `detail` sentence and, when
+        the registrar answered, its own response. Right after a new sync starts, the
+        list can still belong to the previous one: compare `batch_id` with **Get sync
+        status**.'
+      operationId: list_sync_failures_v1_connect_registrars__registrar_credential_id__sync_failures_get
+      parameters:
+      - description: ID of the connected registrar account
+        in: path
+        name: registrar_credential_id
+        required: true
+        schema:
+          examples:
+          - registrar_credential_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^registrar_credential_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Registrar Credential Id
+          type: string
+          x-typeid-prefix: registrar_credential
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                opusdns_refusal:
+                  summary: OpusDNS couldn't add the domain
+                  value:
+                    pagination:
+                      current_page: 1
+                      has_next_page: false
+                      has_previous_page: false
+                      page_size: 10
+                      total_items: 1
+                      total_pages: 1
+                    results:
+                    - batch_id: job_01h45ytscbebyvny4gc8cr8ma2
+                      created_on: '2026-11-03T16:04:42Z'
+                      domain_name: example.co.uk
+                      error:
+                        code: ERROR_TLD_NOT_SUPPORTED
+                        detail: OpusDNS can't manage domains under this TLD yet, so
+                          example.co.uk wasn't added.
+                        retryable: false
+                        status: 422
+                        title: TLD Not Supported
+                        type: tld-not-supported
+                registrar_error:
+                  summary: The registrar reported the error
+                  value:
+                    pagination:
+                      current_page: 1
+                      has_next_page: false
+                      has_previous_page: false
+                      page_size: 10
+                      total_items: 1
+                      total_pages: 1
+                    results:
+                    - batch_id: job_01h45ytscbebyvny4gc8cr8ma2
+                      created_on: '2026-11-03T16:04:42Z'
+                      domain_name: example.se
+                      error:
+                        code: ERROR_REGISTRAR_DOMAIN_NOT_FOUND
+                        detail: The registrar has no domain example.se in this account.
+                        registrar_error:
+                          code: '415'
+                          message: Authentication Error.
+                        retryable: false
+                        status: 404
+                        title: Domain Not Found at Registrar
+                        type: registrar-domain-not-found
+              schema:
+                $ref: '#/components/schemas/Pagination_SyncFailure_'
+          description: Domains that could not be synced
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CREDENTIAL_NOT_FOUND
+                detail: Credential not found
+                registrar_credential_id: registrar_credential_01h45ytscbebyvny4gc8cr8ma2
+                status: 404
+                title: Registrar Credential Error
+                type: registrar-credential-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List sync failures
+      tags:
+      - connect
+      x-required-permissions:
+      - registrar_credentials:read
   /v1/contacts:
     get:
       description: Retrieves a paginated list of all contacts
@@ -38075,6 +38980,386 @@ paths:
       - domain_forward
       x-required-permissions:
       - domain_forwards:read
+  /v1/domain-forwards/statistics:
+    get:
+      description: 'Counts the redirects your organization''s domain forwards served
+        in a window, as a series of buckets and as totals, optionally with a top list
+        (`breakdown`). It replaces the `/metrics` routes, which will be deprecated.
+
+
+        The window runs from `start` (inclusive) to `end` (exclusive), both UTC, and
+        `granularity` sets the bucket width. The window may be at most 6 hours for
+        `minute`, 31 days for `hour`, 366 days for `day` and 762 days (25 months)
+        for `week` and `month` long. Weeks start on Monday and months on the 1st.
+        From `hour` up, the counts are read whole hours (`hour`) or days at a time,
+        so a time of day on `start` or `end` does not cut the hour or day it falls
+        in, unless `hostname` or `protocol` is set: those read the raw log, which
+        honours the exact window. Every bucket the window touches is present, oldest
+        first, and holds 0 where nothing was served. A bucket marked `partial` does
+        not count its whole span: the window or the start of the data cuts it, or
+        it reaches `data_available_to`, which is still running.
+
+
+        Without a filter the counts cover all forwards of your organization, and with
+        `include_sub_organizations` its sub-organizations'' too. `hostname` (one forward,
+        exact) and `domain` (a domain and all its subdomains) exclude each other and
+        need view access to the zone. `hostname` and `protocol` filters are served
+        from the raw log, which keeps 35 days: a window starting earlier with either
+        of them is rejected.
+
+
+        The window may start at most 35 days back at `minute`, 92 days at `hour` and
+        25 months at `day`, `week` and `month`; a window starting earlier is rejected
+        with 400. A breakdown keeps 13 months, so over an older window it counts what
+        is kept (`data_available_from` says where the data begins), and a breakdown
+        by `user_agent`, `referrer`, `fqdn`, `domain`, `forward` or `rule` with a
+        `domain` filter reaches back 35 days only, like `hostname` and `protocol`.
+
+
+        `url` lists host and path of the redirected requests (`www.example.com/shop`,
+        no query string). Full request paths are not kept: per domain and day only
+        the top 5 values with at least 3 hits that day are, for 13 months. It therefore
+        needs a `domain` filter, cannot be combined with `hostname` or `protocol`,
+        and over more than one day is an approximation (the sum of the daily top 5
+        lists, so a path that never made a day''s list is missing). There is no list
+        of URLs across all domains of an organization. Asking for it without `domain`,
+        or with `hostname` or `protocol`, is rejected with 422.
+
+
+        `unique_visits` and `invoked_forwards` are estimates (HyperLogLog), merged
+        over the window instead of summed over buckets, so the unique visits of buckets
+        do not add up to the total. `invoked_forwards` counts distinct forwards that
+        served a redirect; the `/metrics` route counts distinct domain and path pairs,
+        so the two are not comparable. `configured_forwards` is the number of redirect
+        rules configured now, whatever the window, so `invoked_forwards` can exceed
+        it.
+
+
+        Statistics stay with the organization that owned the forward at the time of
+        the redirect: traffic of a deleted forward or domain, or of one moved to another
+        organization, remains in the former owner''s totals, series and organization-wide
+        breakdowns until retention ends, and the new owner sees only the traffic since
+        it owns the forward. `domain` and `hostname` filters work only for zones you
+        currently have.
+
+
+        A breakdown by `user_agent`, `referrer`, `fqdn`, `domain`, `forward` or `rule`
+        over more than one day, and any breakdown by `url`, is an approximate top
+        list: `approximate` says so. Country data is derived from IP addresses with
+        GeoLite2 data created by MaxMind (https://www.maxmind.com). Redirects without
+        a referrer are grouped as `direct`.
+
+
+        The route answers 501 where no statistics backend is configured. It does not
+        depend on the metrics index of the `/metrics` routes.'
+      operationId: get_domain_forward_statistics_v1_domain_forwards_statistics_get
+      parameters:
+      - description: 'Only count redirects of this exact forward hostname. Excludes
+          `domain`. Reaches back 35 days only, like `protocol`: a window starting
+          earlier is rejected.'
+        in: query
+        name: hostname
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: 'Only count redirects of this exact forward hostname. Excludes
+            `domain`. Reaches back 35 days only, like `protocol`: a window starting
+            earlier is rejected.'
+          title: Hostname
+      - description: Only count redirects of this domain and all its subdomains. Excludes
+          `hostname`.
+        in: query
+        name: domain
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Only count redirects of this domain and all its subdomains.
+            Excludes `hostname`.
+          title: Domain
+      - description: Start of the window, inclusive (RFC 3339; a value without an
+          offset is read as UTC).
+        in: query
+        name: start
+        required: true
+        schema:
+          description: Start of the window, inclusive (RFC 3339; a value without an
+            offset is read as UTC).
+          format: date-time
+          title: Start
+          type: string
+      - description: 'End of the window, exclusive (RFC 3339; a value without an offset
+          is read as UTC). How far it may reach after `start` depends on `granularity`:
+          at most 6 hours for `minute`, 31 days for `hour`, 366 days for `day` and
+          762 days (25 months) for `week` and `month`.'
+        in: query
+        name: end
+        required: true
+        schema:
+          description: 'End of the window, exclusive (RFC 3339; a value without an
+            offset is read as UTC). How far it may reach after `start` depends on
+            `granularity`: at most 6 hours for `minute`, 31 days for `hour`, 366 days
+            for `day` and 762 days (25 months) for `week` and `month`.'
+          format: date-time
+          title: End
+          type: string
+      - description: Time-bucket size. Buckets start on the minute, the hour or the
+          day (UTC); weeks start on Monday and months on the 1st.
+        in: query
+        name: granularity
+        required: false
+        schema:
+          $ref: '#/components/schemas/DomainForwardStatisticsGranularity'
+          default: day
+          description: Time-bucket size. Buckets start on the minute, the hour or
+            the day (UTC); weeks start on Monday and months on the 1st.
+      - description: 'Only count redirects requested over this protocol. Reaches back
+          35 days only, like `hostname`: a window starting earlier is rejected.'
+        in: query
+        name: protocol
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/HttpProtocol'
+          - type: 'null'
+          description: 'Only count redirects requested over this protocol. Reaches
+            back 35 days only, like `hostname`: a window starting earlier is rejected.'
+          title: Protocol
+      - description: Leave out the redirects whose platform is `Bot` or `Unknown`,
+          as the `/metrics` routes do.
+        in: query
+        name: exclude_bots
+        required: false
+        schema:
+          default: false
+          description: Leave out the redirects whose platform is `Bot` or `Unknown`,
+            as the `/metrics` routes do.
+          title: Exclude Bots
+          type: boolean
+      - description: Count the forwards of your sub-organizations too. By default
+          only your own organization's are counted.
+        in: query
+        name: include_sub_organizations
+        required: false
+        schema:
+          default: false
+          description: Count the forwards of your sub-organizations too. By default
+            only your own organization's are counted.
+          title: Include Sub Organizations
+          type: boolean
+      - description: 'Adds a top list of the redirects grouped by this dimension.
+          `country` is derived from the visitor''s IP address with GeoLite2 data created
+          by MaxMind (https://www.maxmind.com); an empty value means unknown. `status_code`
+          is the redirect code configured on the rule. `domain` cannot be combined
+          with the `domain` filter. `url` lists host and path of the redirected requests
+          (`www.example.com/shop`, no query string). Full request paths are not kept:
+          per domain and day only the top 5 values with at least 3 hits that day are,
+          for 13 months. It therefore needs a `domain` filter, cannot be combined
+          with `hostname` or `protocol`, and over more than one day is an approximation
+          (the sum of the daily top 5 lists, so a path that never made a day''s list
+          is missing). There is no list of URLs across all domains of an organization.'
+        in: query
+        name: breakdown
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/DomainForwardStatisticsDimension'
+          - type: 'null'
+          description: 'Adds a top list of the redirects grouped by this dimension.
+            `country` is derived from the visitor''s IP address with GeoLite2 data
+            created by MaxMind (https://www.maxmind.com); an empty value means unknown.
+            `status_code` is the redirect code configured on the rule. `domain` cannot
+            be combined with the `domain` filter. `url` lists host and path of the
+            redirected requests (`www.example.com/shop`, no query string). Full request
+            paths are not kept: per domain and day only the top 5 values with at least
+            3 hits that day are, for 13 months. It therefore needs a `domain` filter,
+            cannot be combined with `hostname` or `protocol`, and over more than one
+            day is an approximation (the sum of the daily top 5 lists, so a path that
+            never made a day''s list is missing). There is no list of URLs across
+            all domains of an organization.'
+          title: Breakdown
+      - description: How many items the breakdown lists.
+        in: query
+        name: breakdown_limit
+        required: false
+        schema:
+          default: 10
+          description: How many items the breakdown lists.
+          maximum: 100
+          minimum: 1
+          title: Breakdown Limit
+          type: integer
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                country_breakdown:
+                  description: '`breakdown=country`; the empty value counts the visitors
+                    that could not be located'
+                  summary: Daily series with a country breakdown
+                  value:
+                    breakdown:
+                      approximate: false
+                      dimension: country
+                      items:
+                      - total_visits: 30100
+                        unique_visits: 8200
+                        value: DE
+                      - total_visits: 9800
+                        unique_visits: 3100
+                        value: US
+                      - total_visits: 410
+                        unique_visits: 130
+                        value: ''
+                    buckets:
+                    - partial: false
+                      period_end: '2026-10-19T00:00:00Z'
+                      period_start: '2026-10-18T00:00:00Z'
+                      total_visits: 15100
+                      unique_visits: 6020
+                    - partial: false
+                      period_end: '2026-10-20T00:00:00Z'
+                      period_start: '2026-10-19T00:00:00Z'
+                      total_visits: 21400
+                      unique_visits: 7310
+                    - partial: true
+                      period_end: '2026-10-21T00:00:00Z'
+                      period_start: '2026-10-20T00:00:00Z'
+                      total_visits: 15800
+                      unique_visits: 6480
+                    data_available_from: '2026-09-01T00:00:00Z'
+                    data_available_to: '2026-10-20T13:41:07Z'
+                    end: '2026-10-21T00:00:00Z'
+                    granularity: day
+                    start: '2026-10-18T00:00:00Z'
+                    totals:
+                      configured_forwards: 58
+                      invoked_forwards: 41
+                      total_visits: 52300
+                      unique_visits: 14870
+                daily:
+                  description: Three days; the last one is still running and therefore
+                    partial
+                  summary: Daily series
+                  value:
+                    buckets:
+                    - partial: false
+                      period_end: '2026-10-19T00:00:00Z'
+                      period_start: '2026-10-18T00:00:00Z'
+                      total_visits: 15100
+                      unique_visits: 6020
+                    - partial: false
+                      period_end: '2026-10-20T00:00:00Z'
+                      period_start: '2026-10-19T00:00:00Z'
+                      total_visits: 21400
+                      unique_visits: 7310
+                    - partial: true
+                      period_end: '2026-10-21T00:00:00Z'
+                      period_start: '2026-10-20T00:00:00Z'
+                      total_visits: 15800
+                      unique_visits: 6480
+                    data_available_from: '2026-09-01T00:00:00Z'
+                    data_available_to: '2026-10-20T13:41:07Z'
+                    end: '2026-10-21T00:00:00Z'
+                    granularity: day
+                    start: '2026-10-18T00:00:00Z'
+                    totals:
+                      configured_forwards: 58
+                      invoked_forwards: 41
+                      total_visits: 52300
+                      unique_visits: 14870
+              schema:
+                $ref: '#/components/schemas/DomainForwardStatisticsResponse'
+          description: Statistics retrieved successfully
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_STATISTICS_QUERY
+                detail: '''start'' must be at most 35 days ago when ''hostname'' or
+                  ''protocol'' is set'
+                status: 400
+                title: Domain forward statistics query rejected.
+                type: domain-forward-statistics-query-rejected
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_STATISTICS_INVALID_QUERY
+                detail: Cannot specify both 'hostname' and 'domain'. Use 'hostname'
+                  for an exact match or 'domain' to filter by domain including all
+                  subdomains.
+                status: 422
+                title: Invalid domain forward statistics query.
+                type: domain-forward-statistics-invalid-query
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
+        '501':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_STATISTICS_NOT_AVAILABLE
+                detail: Domain forward statistics are not available in this environment.
+                status: 501
+                title: Domain forward statistics not available.
+                type: domain-forward-statistics-not-available
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Implemented
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_STATISTICS_UNAVAILABLE
+                detail: Domain forward statistics are currently unavailable, please
+                  try again later.
+                status: 503
+                title: Domain forward statistics unavailable.
+                type: domain-forward-statistics-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get domain forward statistics
+      tags:
+      - domain_forward
+      x-required-permissions:
+      - domain_forwards:read
   /v1/domain-forwards/{hostname}:
     delete:
       description: Deletes the domain forward configuration for the specified hostname
@@ -39020,7 +40305,8 @@ paths:
             false only objects that carry none. Status tags are not counted. Combines
             with tag_ids and the other filters.
           title: Has Tags
-      - description: Filter by exact domain name
+      - description: 'Filter by exact domain name, in Unicode or punycode: either
+          stored form matches. Only whole labels match across forms.'
         in: query
         name: name
         required: false
@@ -39028,9 +40314,12 @@ paths:
           anyOf:
           - type: string
           - type: 'null'
-          description: Filter by exact domain name
+          description: 'Filter by exact domain name, in Unicode or punycode: either
+            stored form matches. Only whole labels match across forms.'
           title: Name
-      - description: Search domains by name (contains) or domain ID (exact match)
+      - description: Search domains by name (contains) or domain ID (exact match).
+          A name matches in Unicode or punycode, either stored form; only whole labels
+          match across forms.
         in: query
         name: search
         required: false
@@ -39038,7 +40327,9 @@ paths:
           anyOf:
           - type: string
           - type: 'null'
-          description: Search domains by name (contains) or domain ID (exact match)
+          description: Search domains by name (contains) or domain ID (exact match).
+            A name matches in Unicode or punycode, either stored form; only whole
+            labels match across forms.
           title: Search
       - description: Filter by top-level domain (e.g., 'com', 'org'). Can be specified
           multiple times (union of all provided values).
@@ -45365,6 +46656,374 @@ paths:
       - jobs
       x-required-permissions:
       - jobs:manage
+  /v1/orders:
+    get:
+      description: Your organization's orders, newest first by default (see `sort_by`
+        and `sort_order`).
+      operationId: list_orders_v1_orders_get
+      parameters:
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - description: Only orders with this status
+        in: query
+        name: status
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/OrderStatus'
+          - type: 'null'
+          description: Only orders with this status
+          title: Status
+      - description: Only orders with an item of this type
+        in: query
+        name: type
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/OrderItemType'
+          - type: 'null'
+          description: Only orders with an item of this type
+          title: Type
+      - description: Only orders for this domain name (Unicode or ASCII form)
+        in: query
+        name: domain
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Only orders for this domain name (Unicode or ASCII form)
+          title: Domain
+      - description: Only orders created at or after this time
+        in: query
+        name: created_after
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Only orders created at or after this time
+          title: Created After
+      - description: Only orders created at or before this time
+        in: query
+        name: created_before
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Only orders created at or before this time
+          title: Created Before
+      - description: Field to sort by
+        in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/OrderSortField'
+          default: created_on
+          description: Field to sort by
+      - description: Sort order direction
+        in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
+          description: Sort order direction
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_OrderResponse_'
+          description: Successful Response
+        '403':
+          content:
+            application/problem+json:
+              examples:
+                Orders Feature Disabled:
+                  value:
+                    code: ERROR_ORDERS_FEATURE_DISABLED
+                    detail: Orders are not enabled in this environment
+                    status: 403
+                    title: Orders Feature Disabled
+                    type: orders-feature-disabled
+                Permission Denied:
+                  value:
+                    code: ERROR_PERMISSION_DENIED
+                    detail: Insufficient permissions to perform this action
+                    status: 403
+                    title: Permission Denied
+                    type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List orders
+      tags:
+      - orders
+      x-required-permissions:
+      - domains:read
+    post:
+      description: 'Orders a domain listed on a marketplace. The order is accepted
+        (202) once the price and availability are confirmed; it then progresses on
+        its own, follow it with `GET /v1/orders/{order_id}`.
+
+
+        Repeating a request with the same `idempotency_key` and body returns the original
+        order with 200. The same key with a different body is refused with 409.'
+      operationId: create_order_v1_orders_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCreate'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+          description: An earlier identical request created this order.
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+          description: Successful Response
+        '403':
+          content:
+            application/problem+json:
+              examples:
+                Orders Feature Disabled:
+                  value:
+                    code: ERROR_ORDERS_FEATURE_DISABLED
+                    detail: Orders are not enabled in this environment
+                    status: 403
+                    title: Orders Feature Disabled
+                    type: orders-feature-disabled
+                Permission Denied:
+                  value:
+                    code: ERROR_PERMISSION_DENIED
+                    detail: Insufficient permissions to perform this action
+                    status: 403
+                    title: Permission Denied
+                    type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '409':
+          content:
+            application/problem+json:
+              examples:
+                Order Idempotency Key Conflict:
+                  value:
+                    code: ERROR_ORDER_IDEMPOTENCY_KEY_REUSED
+                    detail: An order with this idempotency key already exists
+                    status: 409
+                    title: Order Idempotency Key Conflict
+                    type: order-idempotency-key-conflict
+                Order Item Not Deliverable:
+                  value:
+                    code: ERROR_ORDER_ITEM_NOT_DELIVERABLE
+                    detail: example.com cannot be delivered to you
+                    domain: example.com
+                    status: 409
+                    title: Order Item Not Deliverable
+                    type: order-item-not-deliverable
+                Order Item Unavailable:
+                  value:
+                    code: ERROR_ORDER_ITEM_UNAVAILABLE
+                    detail: example.com is not available for purchase
+                    domain: example.com
+                    status: 409
+                    title: Order Item Unavailable
+                    type: order-item-unavailable
+                Order Open Limit Reached:
+                  value:
+                    code: ERROR_ORDER_OPEN_LIMIT_REACHED
+                    detail: 'Too many open orders: at most 20 may be in progress at
+                      a time'
+                    limit: 20
+                    status: 409
+                    title: Order Open Limit Reached
+                    type: order-open-limit-reached
+                Order Price Changed:
+                  value:
+                    actual_currency: EUR
+                    actual_price: '12.50'
+                    code: ERROR_ORDER_PRICE_CHANGED
+                    detail: The price changed since it was quoted
+                    expected_currency: EUR
+                    expected_price: '12.10'
+                    status: 409
+                    title: Order Price Changed
+                    type: order-price-changed
+                Order Subject In Progress:
+                  value:
+                    code: ERROR_ORDER_SUBJECT_IN_PROGRESS
+                    detail: An order for example.com is already in progress
+                    status: 409
+                    title: Order Subject In Progress
+                    type: order-subject-in-progress
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '500':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ORDER_UNREADABLE
+                detail: The order could not be read
+                status: 500
+                title: Order Unreadable
+                type: order-unreadable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Internal Server Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ORDER_SERVICE_UNAVAILABLE
+                detail: Orders are temporarily unavailable, please retry shortly
+                status: 503
+                title: Order Service Unavailable
+                type: order-service-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
+          headers:
+            Retry-After:
+              description: Seconds to wait before retrying
+              schema:
+                type: integer
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Create an order
+      tags:
+      - orders
+      x-required-permissions:
+      - domains:manage
+  /v1/orders/{order_id}:
+    get:
+      operationId: get_order_v1_orders__order_id__get
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          examples:
+          - order_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^order_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Order Id
+          type: string
+          x-typeid-prefix: order
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+          description: Successful Response
+        '403':
+          content:
+            application/problem+json:
+              examples:
+                Orders Feature Disabled:
+                  value:
+                    code: ERROR_ORDERS_FEATURE_DISABLED
+                    detail: Orders are not enabled in this environment
+                    status: 403
+                    title: Orders Feature Disabled
+                    type: orders-feature-disabled
+                Permission Denied:
+                  value:
+                    code: ERROR_PERMISSION_DENIED
+                    detail: Insufficient permissions to perform this action
+                    status: 403
+                    title: Permission Denied
+                    type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ORDER_NOT_FOUND
+                detail: Order not found
+                order_id: order_01h45ytscbebyvny4gc8cr8ma2
+                status: 404
+                title: Order Not Found
+                type: order-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '500':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ORDER_UNREADABLE
+                detail: The order could not be read
+                status: 500
+                title: Order Unreadable
+                type: order-unreadable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Internal Server Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get an order
+      tags:
+      - orders
+      x-required-permissions:
+      - domains:read
   /v1/organizations:
     get:
       description: Retrieves a paginated list of organizations under the current organization
@@ -47100,6 +48759,94 @@ paths:
       - organization
       x-required-permissions:
       - billing:manage
+  /v1/organizations/{organization_id}/ownership-transfer:
+    post:
+      description: Makes another active user of the organization its owner, at once.
+        You become an admin, or get your identity provider's default role when it
+        decides your role. Only the owner, on a top-level organization.
+      operationId: transfer_ownership_v1_organizations__organization_id__ownership_transfer_post
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OwnershipTransferRequest'
+        required: true
+      responses:
+        '204':
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              examples:
+                Organization Management Error:
+                  value:
+                    code: ERROR_ROOT_ORGANIZATION_REQUIRED
+                    detail: This endpoint is only available to root organizations.
+                    status: 403
+                    title: Organization Management Error
+                    type: root-organization-required
+                Permission Denied:
+                  value:
+                    code: ERROR_PERMISSION_DENIED
+                    detail: Insufficient permissions to perform this action
+                    status: 403
+                    title: Permission Denied
+                    type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '409':
+          content:
+            application/problem+json:
+              examples:
+                Ownership Transfer Error:
+                  value:
+                    code: ERROR_OWNERSHIP_TRANSFER_CONFLICT
+                    detail: The organization's owner or the new owner's role changed
+                      meanwhile; try again
+                    status: 409
+                    title: Ownership Transfer Error
+                    type: ownership-transfer-conflict
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Transfer ownership of the organization
+      tags:
+      - organization
+      - organization
   /v1/organizations/{organization_id}/pricing/product-type/{product_type}:
     get:
       description: Retrieves pricing data for a specific product type. If a product
@@ -50761,6 +52508,92 @@ tags:
     '
   name: whitelabel
   x-displayName: Whitelabel Branding
+- description: "Endpoints for ordering things on your organization's behalf, starting\
+    \ with domains listed on a marketplace.\n\n### What an order is\n\nAn order is\
+    \ a request to buy something, tracked until it is delivered or fails. Today an\
+    \ order has exactly one item, a domain bought on a marketplace (`marketplace_domain_purchase`).\
+    \ Creating an order answers quickly; the purchase continues in the background,\
+    \ so read the order to follow it.\n\n### Creating an order\n\n`POST /v1/orders`\n\
+    \n```json\n{\n  \"idempotency_key\": \"checkout-2024-0001\",\n  \"items\": [\n\
+    \    {\n      \"type\": \"marketplace_domain_purchase\",\n      \"domain\": \"\
+    example.com\",\n      \"marketplace\": \"fruits\",\n      \"expected_price\":\
+    \ \"12.10\",\n      \"currency\": \"EUR\"\n    }\n  ]\n}\n```\n\n- `idempotency_key`\
+    \ is required: 1-255 characters from `A-Z a-z 0-9 . _ : -`, unique per organization.\n\
+    - `domain` may be given in Unicode or ASCII form; the order reports the ASCII\
+    \ form.\n- `expected_price` and `currency` must be the price domain search shows\
+    \ for this domain. `expected_price` is a decimal string with exactly two decimals\
+    \ (`\"12.10\"`; `\"12.1\"`, `\"12\"` and JSON numbers are refused with `422`).\
+    \ If the current price differs, the order is refused with `ERROR_ORDER_PRICE_CHANGED`,\
+    \ which carries both prices.\n- `type` defaults to `marketplace_domain_purchase`\
+    \ today. It will become required once more item types exist, so send it now.\n\
+    \nA new order answers `202 Accepted`:\n\n```json\n{\n  \"order_id\": \"order_01h2xcejqtf2nbrexx3vqjhp41\"\
+    ,\n  \"status\": \"in_progress\",\n  \"total_price\": \"12.10\",\n  \"currency\"\
+    : \"EUR\",\n  \"items\": [\n    {\n      \"item_id\": \"order_item_01h2xcejqtf2nbrexx3vqjhp42\"\
+    ,\n      \"type\": \"marketplace_domain_purchase\",\n      \"status\": \"in_progress\"\
+    ,\n      \"price\": \"12.10\",\n      \"currency\": \"EUR\",\n      \"marketplace_domain_purchase\"\
+    : {\n        \"domain\": \"example.com\",\n        \"marketplace\": \"fruits\"\
+    ,\n        \"stage\": \"purchasing\"\n      }\n    }\n  ],\n  \"created_on\":\
+    \ \"2024-01-01T12:00:00Z\",\n  \"updated_on\": \"2024-01-01T12:00:00Z\"\n}\n```\n\
+    \n### Idempotency\n\nRepeat a request with the same `idempotency_key` and the\
+    \ same body and you get `200 OK` with the original order, so retrying after a\
+    \ timeout is safe. The same key with a different body answers `409` (`ERROR_ORDER_IDEMPOTENCY_KEY_REUSED`).\
+    \ Domain names are compared in normalized form, so `Example.COM` and `example.com`\
+    \ count as the same body. The `idempotency_key` itself is compared case-insensitively,\
+    \ so `Checkout-1` and `checkout-1` are the same key.\n\n### Reading orders\n\n\
+    `GET /v1/orders/{order_id}` returns one order. `GET /v1/orders` lists your orders,\
+    \ filtered by `status`, `type`, `domain`, `created_after` and `created_before`.\
+    \ Both time bounds are inclusive: an order created at exactly `created_after`\
+    \ or `created_before` is returned, so consecutive windows share their boundary\
+    \ instant.\n\nThe list is sorted by `sort_by` (`created_on`, the default, or `updated_on`)\
+    \ in the direction of `sort_order` (`desc`, the default, or `asc`); orders with\
+    \ the same time are ordered by their ID in the same direction, so paging is stable.\n\
+    \nAn order has `total_price` and `currency`; each item has `price` and `currency`.\
+    \ Prices are decimal strings with two decimals (`\"12.10\"`). Each item also has\
+    \ a `type` and an object named after that type with its own fields. For `marketplace_domain_purchase`\
+    \ that is `marketplace_domain_purchase` with `domain`, `marketplace` and `stage`.\
+    \ Create requests send `expected_price` and `currency` the same way.\n\nOne order\
+    \ that cannot be shown (its stored data is invalid) never fails the list: the\
+    \ list leaves that order out and returns the others. Fetching that order directly\
+    \ answers `500` `ERROR_ORDER_UNREADABLE` with a generic message; contact support\
+    \ with the order ID. Because such an order is left out after the page is chosen,\
+    \ a page can hold fewer entries than the page size, and the pagination totals\
+    \ can still count it. Use `has_next_page` (not the entry count or the totals)\
+    \ to decide whether to fetch the next page.\n\n### Statuses and stages\n\n`status`\
+    \ is a string: today one of `pending`, `in_progress`, `completed`, `canceled`\
+    \ or `failed`. `pending` and `in_progress` are open; the others are final. Treat\
+    \ a value you do not know as open, so your client keeps working when statuses\
+    \ are added. The same goes for `type`, `stage` and `marketplace` (today `fruits`):\
+    \ they are strings that can gain values. `currency` is `EUR` or `USD`.\n\nEach\
+    \ `marketplace_domain_purchase` object has a `stage` that says where the purchase\
+    \ stands:\n\n| Stage | Meaning |\n| --- | --- |\n| `processing` | The order is\
+    \ being prepared or wound up |\n| `purchasing` | The domain is being bought on\
+    \ the marketplace |\n| `awaiting_code` | The domain is bought and its authorization\
+    \ code is being obtained |\n| `code_ready` | The authorization code is ready;\
+    \ the domain can be transferred to you |\n| `completed` | Final: the order is\
+    \ done |\n| `failed` | Final: the order could not be completed |\n| `canceled`\
+    \ | Final: the order was canceled |\n\nTreat unknown stage values as `processing`\
+    \ so your client keeps working when stages are added.\n\n### Errors\n\nErrors\
+    \ follow RFC 9457 problem details; `code` identifies the error.\n\n| Status |\
+    \ Code | Meaning |\n| --- | --- | --- |\n| 403 | `ERROR_ORDERS_FEATURE_DISABLED`\
+    \ | Orders are not enabled in this environment |\n| 404 | `ERROR_ORDER_NOT_FOUND`\
+    \ | No such order for your organization |\n| 409 | `ERROR_ORDER_IDEMPOTENCY_KEY_REUSED`\
+    \ | The key was already used with a different body |\n| 409 | `ERROR_ORDER_SUBJECT_IN_PROGRESS`\
+    \ | Another order for this domain is already in progress |\n| 409 | `ERROR_ORDER_PRICE_CHANGED`\
+    \ | The price changed; the response carries `expected_price`, `expected_currency`,\
+    \ `actual_price` and `actual_currency` |\n| 409 | `ERROR_ORDER_ITEM_UNAVAILABLE`\
+    \ | The domain is not available for purchase |\n| 409 | `ERROR_ORDER_ITEM_NOT_DELIVERABLE`\
+    \ | The domain cannot be delivered to you (for example, its TLD cannot be handed\
+    \ over by auth code) |\n| 409 | `ERROR_ORDER_OPEN_LIMIT_REACHED` | Too many open\
+    \ orders; wait for some to finish |\n| 500 | `ERROR_ORDER_UNREADABLE` | The order's\
+    \ stored data cannot be shown; contact support |\n| 503 | `ERROR_ORDER_SERVICE_UNAVAILABLE`\
+    \ | Temporary failure; retry after the `Retry-After` seconds, with the same `idempotency_key`\
+    \ |\n\n### History\n\nChanges to an order are recorded in the archive. Query `GET\
+    \ /v1/archive/object-logs` with `object_type=Order` (and `object_id` set to the\
+    \ order ID) to see them. Reading the history needs the view-audit-logs permission\
+    \ (`VIEW_AUDIT_LOGS`), which is separate from the permission to read orders: a\
+    \ caller who can read an order may still be refused its history.\n"
+  name: orders
+  x-displayName: Orders
 - description: 'Endpoints for creating and managing organizations.
 
     '
@@ -50970,6 +52803,8 @@ tags:
     2. **Follow the first sync.** It starts automatically. Poll **Get sync status**
     until `status` is `completed`, `failed` or `cancelled`.
 
+    3. **Check what didn''t sync** with **List sync failures**.
+
 
     OpusDNS syncs most connected accounts once a day. To refresh sooner, start a sync
     yourself. It answers `202` with the new sync and its status URL in `Location`,
@@ -51016,6 +52851,54 @@ tags:
 
     Not every failure has an `error_code`. `error_message` always describes what went
     wrong, and `error_detail` contains the registrar''s own message when it sent one.
+
+
+    ### Domains that didn''t sync
+
+
+    **List sync failures** shows each domain the latest sync couldn''t sync, sorted
+    by domain name. Its `error` follows RFC 9457: `code` says why, `detail` says it
+    in a sentence, and `retryable` tells whether a later sync may succeed. When the
+    registrar reported the error itself, `registrar_error` holds its own `code`, `message`
+    and `reference`, which you can quote to the registrar''s support; otherwise it''s
+    `null`. Its content depends on the registrar; programs should branch on `code`.
+    The list can be shorter than the status''s `failed` count. Right after a new sync
+    starts, it can still belong to the previous one: compare its `batch_id` with **Get
+    sync status**.
+
+
+    | code | Meaning |
+
+    |------|---------|
+
+    | `ERROR_REGISTRAR_DOMAIN_NOT_FOUND` | The registrar has no such domain in this
+    account |
+
+    | `ERROR_CREDENTIAL_AUTH` | The registrar rejected the login details. Update them
+    |
+
+    | `ERROR_CREDENTIAL_ACCESS` | The registrar refused access, for example because
+    OpusDNS''s IP address isn''t allowed |
+
+    | `ERROR_REGISTRAR_REJECTED` | The registrar refused to return the domain |
+
+    | `ERROR_REGISTRAR_CONFLICT` | The domain''s current state at the registrar prevents
+    syncing it |
+
+    | `ERROR_REGISTRAR_NOT_SUPPORTED` | The registrar''s API can''t return the domain
+    |
+
+    | `ERROR_REGISTRAR_UNAVAILABLE` | The registrar couldn''t be reached or didn''t
+    answer in time |
+
+    | `ERROR_REGISTRAR_NO_DATA` | The registrar returned no data for the domain |
+
+    | `ERROR_TLD_NOT_SUPPORTED` | OpusDNS can''t manage domains under this TLD yet
+    |
+
+    | `ERROR_INTERNAL` | An error at OpusDNS. Contact support if it persists |
+
+    | `ERROR_DOMAIN_SYNC_FAILED` | Any other reason |
 
 
     ### Good to know
@@ -51146,6 +53029,7 @@ x-tagGroups:
   - domain_forward
   - parking
   - domain_search
+  - orders
   - archive
   - report
   - jobs

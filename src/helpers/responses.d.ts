@@ -36,6 +36,7 @@ import type {
   DomainForwardPlatformStats,
   DomainForwardReferrerStats,
   DomainForwardSet,
+  DomainForwardStatistics,
   DomainForwardStatusCodeStats,
   DomainForwardUserAgentStats,
   DomainForwardVisitsByKey,
@@ -71,6 +72,7 @@ import type {
   MessageList,
   NorIdDeclaration,
   ObjectTagChanges2,
+  Order,
   Organization,
   OrganizationAttribute2,
   OrganizationCredential,
@@ -95,8 +97,10 @@ import type {
   Pagination_EmailForwardZone,
   Pagination_Event,
   Pagination_Invoice,
+  Pagination_Order,
   Pagination_Organization,
   Pagination_RegistrarCredential,
+  Pagination_SyncFailure,
   Pagination_Tag,
   Pagination_UserPublicWithRole,
   ParkingMetrics,
@@ -410,6 +414,13 @@ export type GET_ConnectRegistrarsByRegistrarCredentialIdSync_Response_403 = Prob
 export type GET_ConnectRegistrarsByRegistrarCredentialIdSync_Response_404 = Problem;
 export type GET_ConnectRegistrarsByRegistrarCredentialIdSync_Response_422 = HTTPValidationError;
 
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response = GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response_200 | GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response_403 | GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response_404 | GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response_422;
+
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response_200 = Pagination_SyncFailure;
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response_403 = Problem;
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response_404 = Problem;
+export type GET_ConnectRegistrarsByRegistrarCredentialIdSyncFailures_Response_422 = HTTPValidationError;
+
 export type GET_Contacts_Response = GET_Contacts_Response_200 | GET_Contacts_Response_422;
 
 export type GET_Contacts_Response_200 = Pagination_Contact;
@@ -665,6 +676,16 @@ export type GET_DomainForwardsMetricsVisitsByKey_Response_403 = Problem;
 export type GET_DomainForwardsMetricsVisitsByKey_Response_422 = HTTPValidationError;
 export type GET_DomainForwardsMetricsVisitsByKey_Response_503 = Problem;
 
+export type GET_DomainForwardsStatistics_Response = GET_DomainForwardsStatistics_Response_200 | GET_DomainForwardsStatistics_Response_400 | GET_DomainForwardsStatistics_Response_401 | GET_DomainForwardsStatistics_Response_403 | GET_DomainForwardsStatistics_Response_422 | GET_DomainForwardsStatistics_Response_501 | GET_DomainForwardsStatistics_Response_503;
+
+export type GET_DomainForwardsStatistics_Response_200 = DomainForwardStatistics;
+export type GET_DomainForwardsStatistics_Response_400 = Problem;
+export type GET_DomainForwardsStatistics_Response_401 = Problem;
+export type GET_DomainForwardsStatistics_Response_403 = Problem;
+export type GET_DomainForwardsStatistics_Response_422 = Problem;
+export type GET_DomainForwardsStatistics_Response_501 = Problem;
+export type GET_DomainForwardsStatistics_Response_503 = Problem;
+
 export type GET_DomainSearchSuggest_Response = GET_DomainSearchSuggest_Response_200 | GET_DomainSearchSuggest_Response_401 | GET_DomainSearchSuggest_Response_422 | GET_DomainSearchSuggest_Response_502;
 
 export type GET_DomainSearchSuggest_Response_200 = DomainSearch;
@@ -785,6 +806,20 @@ export type GET_JobsByBatchIdJobs_Response_200 = PageResponse_Job;
 export type GET_JobsByBatchIdJobs_Response_404 = Problem;
 export type GET_JobsByBatchIdJobs_Response_422 = HTTPValidationError;
 export type GET_JobsByBatchIdJobs_Response_503 = Problem;
+
+export type GET_Orders_Response = GET_Orders_Response_200 | GET_Orders_Response_403 | GET_Orders_Response_422;
+
+export type GET_Orders_Response_200 = Pagination_Order;
+export type GET_Orders_Response_403 = Problem;
+export type GET_Orders_Response_422 = HTTPValidationError;
+
+export type GET_OrdersByOrderId_Response = GET_OrdersByOrderId_Response_200 | GET_OrdersByOrderId_Response_403 | GET_OrdersByOrderId_Response_404 | GET_OrdersByOrderId_Response_422 | GET_OrdersByOrderId_Response_500;
+
+export type GET_OrdersByOrderId_Response_200 = Order;
+export type GET_OrdersByOrderId_Response_403 = Problem;
+export type GET_OrdersByOrderId_Response_404 = Problem;
+export type GET_OrdersByOrderId_Response_422 = HTTPValidationError;
+export type GET_OrdersByOrderId_Response_500 = Problem;
 
 export type GET_Organizations_Response = GET_Organizations_Response_200 | GET_Organizations_Response_401 | GET_Organizations_Response_403 | GET_Organizations_Response_422;
 
@@ -1553,12 +1588,29 @@ export type POST_JobsByBatchIdRetry_Response_200 = JobBatchRetry;
 export type POST_JobsByBatchIdRetry_Response_404 = Problem;
 export type POST_JobsByBatchIdRetry_Response_422 = HTTPValidationError;
 
+export type POST_Orders_Response = POST_Orders_Response_200 | POST_Orders_Response_202 | POST_Orders_Response_403 | POST_Orders_Response_409 | POST_Orders_Response_422 | POST_Orders_Response_500 | POST_Orders_Response_503;
+
+export type POST_Orders_Response_200 = Order;
+export type POST_Orders_Response_202 = Order;
+export type POST_Orders_Response_403 = Problem;
+export type POST_Orders_Response_409 = Problem;
+export type POST_Orders_Response_422 = HTTPValidationError;
+export type POST_Orders_Response_500 = Problem;
+export type POST_Orders_Response_503 = Problem;
+
 export type POST_Organizations_Response = POST_Organizations_Response_200 | POST_Organizations_Response_401 | POST_Organizations_Response_403 | POST_Organizations_Response_422;
 
 export type POST_Organizations_Response_200 = Organization;
 export type POST_Organizations_Response_401 = Problem;
 export type POST_Organizations_Response_403 = Problem;
 export type POST_Organizations_Response_422 = Problem;
+
+export type POST_OrganizationsByOrganizationIdOwnershipTransfer_Response = POST_OrganizationsByOrganizationIdOwnershipTransfer_Response_401 | POST_OrganizationsByOrganizationIdOwnershipTransfer_Response_403 | POST_OrganizationsByOrganizationIdOwnershipTransfer_Response_409 | POST_OrganizationsByOrganizationIdOwnershipTransfer_Response_422;
+
+export type POST_OrganizationsByOrganizationIdOwnershipTransfer_Response_401 = Problem;
+export type POST_OrganizationsByOrganizationIdOwnershipTransfer_Response_403 = Problem;
+export type POST_OrganizationsByOrganizationIdOwnershipTransfer_Response_409 = Problem;
+export type POST_OrganizationsByOrganizationIdOwnershipTransfer_Response_422 = HTTPValidationError;
 
 export type POST_OrganizationsIpRestrictions_Response = POST_OrganizationsIpRestrictions_Response_200 | POST_OrganizationsIpRestrictions_Response_401 | POST_OrganizationsIpRestrictions_Response_403 | POST_OrganizationsIpRestrictions_Response_422;
 

@@ -4,7 +4,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
-### 6 November 2026
+### 9 November 2026
 
 - Added **domain forward statistics**:
   [`GET /v1/domain-forwards/statistics`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics) returns the redirects your domain forwards served in a window, as totals, a series of time buckets and an optional top list.
@@ -19,6 +19,13 @@ Track notable updates to the OpusDNS API and developer documentation here.
 - Added **domain forward movers**:
   [`GET /v1/domain-forwards/statistics/movers`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics/movers) lists the domains whose redirects dropped or rose most in the last 7 or 30 days that are over, against the same number of days before them.
   See [Movers](/products/dns/domain-forwarding/metrics#movers).
+
+### 6 November 2026
+
+- Onboarded **[`.gr`](/tld-knowledge-base/cctlds/gr)** (Greece), with `.com.gr`, `.edu.gr`,
+  `.net.gr` and `.org.gr`. Published its TLD Knowledge Base page. Registrations run for 2 years and renewals in steps of 2 years, auth
+  codes are sent to the registrant by email, and a deleted domain is removed 15
+  days after its expiry date.
 
 ### 31 October 2026
 

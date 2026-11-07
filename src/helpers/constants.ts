@@ -46,6 +46,8 @@ import type {
   DomainClientStatus,
   DomainContactType,
   DomainForwardSortField,
+  DomainForwardStatisticsDimension,
+  DomainForwardStatisticsGranularity,
   DomainForwardZoneSortField,
   DomainIncludeField,
   DomainListIncludeField,
@@ -93,6 +95,9 @@ import type {
   NorIdDeclarationStatus,
   ObjectEventType,
   ObjectLogSortField,
+  OrderItemType,
+  OrderSortField,
+  OrderStatus,
   OrganizationCredentialStatus,
   OrganizationSortField,
   OrganizationStatus,
@@ -973,6 +978,50 @@ export const DOMAIN_FORWARD_SORT_FIELD_VALUES = [
   'updated_on',
 ] as const satisfies ReadonlyArray<DomainForwardSortField>;
 
+export const DOMAIN_FORWARD_STATISTICS_DIMENSION = {
+  BROWSER: "browser",
+  PLATFORM: "platform",
+  USER_AGENT: "user_agent",
+  REFERRER: "referrer",
+  COUNTRY: "country",
+  STATUS_CODE: "status_code",
+  URL: "url",
+  FQDN: "fqdn",
+  DOMAIN: "domain",
+  FORWARD: "forward",
+  RULE: "rule",
+} as const satisfies Record<string, DomainForwardStatisticsDimension>;
+
+export const DOMAIN_FORWARD_STATISTICS_DIMENSION_VALUES = [
+  'browser',
+  'platform',
+  'user_agent',
+  'referrer',
+  'country',
+  'status_code',
+  'url',
+  'fqdn',
+  'domain',
+  'forward',
+  'rule',
+] as const satisfies ReadonlyArray<DomainForwardStatisticsDimension>;
+
+export const DOMAIN_FORWARD_STATISTICS_GRANULARITY = {
+  MINUTE: "minute",
+  HOUR: "hour",
+  DAY: "day",
+  WEEK: "week",
+  MONTH: "month",
+} as const satisfies Record<string, DomainForwardStatisticsGranularity>;
+
+export const DOMAIN_FORWARD_STATISTICS_GRANULARITY_VALUES = [
+  'minute',
+  'hour',
+  'day',
+  'week',
+  'month',
+] as const satisfies ReadonlyArray<DomainForwardStatisticsGranularity>;
+
 export const DOMAIN_FORWARD_ZONE_SORT_FIELD = {
   NAME: "name",
   CREATED_ON: "created_on",
@@ -1787,6 +1836,40 @@ export const OBJECT_LOG_SORT_FIELD_VALUES = [
   'performed_by_id',
 ] as const satisfies ReadonlyArray<ObjectLogSortField>;
 
+export const ORDER_ITEM_TYPE = {
+  MARKETPLACE_DOMAIN_PURCHASE: "marketplace_domain_purchase",
+} as const satisfies Record<string, OrderItemType>;
+
+export const ORDER_ITEM_TYPE_VALUES = [
+  'marketplace_domain_purchase',
+] as const satisfies ReadonlyArray<OrderItemType>;
+
+export const ORDER_SORT_FIELD = {
+  CREATED_ON: "created_on",
+  UPDATED_ON: "updated_on",
+} as const satisfies Record<string, OrderSortField>;
+
+export const ORDER_SORT_FIELD_VALUES = [
+  'created_on',
+  'updated_on',
+] as const satisfies ReadonlyArray<OrderSortField>;
+
+export const ORDER_STATUS = {
+  PENDING: "pending",
+  IN_PROGRESS: "in_progress",
+  COMPLETED: "completed",
+  CANCELED: "canceled",
+  FAILED: "failed",
+} as const satisfies Record<string, OrderStatus>;
+
+export const ORDER_STATUS_VALUES = [
+  'pending',
+  'in_progress',
+  'completed',
+  'canceled',
+  'failed',
+] as const satisfies ReadonlyArray<OrderStatus>;
+
 export const ORGANIZATION_CREDENTIAL_STATUS = {
   ACTIVE: "active",
   EXPIRED: "expired",
@@ -2539,6 +2622,7 @@ export const STATUS_TAG_TYPE = {
   DNSSEC_PENDING: "DNSSEC_PENDING",
   TRANSFER_ON_RENEW_PENDING: "TRANSFER_ON_RENEW_PENDING",
   REGISTRANT_CHANGE_LOCKED: "REGISTRANT_CHANGE_LOCKED",
+  UPDATE_PENDING: "UPDATE_PENDING",
 } as const satisfies Record<string, StatusTagType>;
 
 export const STATUS_TAG_TYPE_VALUES = [
@@ -2552,6 +2636,7 @@ export const STATUS_TAG_TYPE_VALUES = [
   'DNSSEC_PENDING',
   'TRANSFER_ON_RENEW_PENDING',
   'REGISTRANT_CHANGE_LOCKED',
+  'UPDATE_PENDING',
 ] as const satisfies ReadonlyArray<StatusTagType>;
 
 export const SYNC_OPERATION_TYPE = {

@@ -203,6 +203,11 @@ import type {
   DomainForwardSetCreateRequest,
   DomainForwardSetRequest,
   DomainForwardSet,
+  DomainForwardStatisticsBreakdownItem,
+  DomainForwardStatisticsBreakdown,
+  DomainForwardStatisticsBucket,
+  DomainForwardStatistics,
+  DomainForwardStatisticsTotals,
   DomainForwardStatusCodeStats,
   DomainForwardUpdateBulkCommand,
   DomainForwardUpdateBulkInstance,
@@ -348,6 +353,8 @@ import type {
   MailTemplateBlock,
   MailTemplateVariable,
   Marketplace,
+  MarketplaceDomainPurchaseDetail,
+  MarketplaceDomainPurchaseItemCreate,
   MemoryFact,
   MemoryFactCreateRequest,
   MemoryFactList,
@@ -381,6 +388,9 @@ import type {
   OpusDnsCredentialCreate,
   OpusDnsCredentialUpdate,
   OpusDnsCredentials,
+  OrderCreate,
+  OrderItem,
+  Order,
   Organization,
   OrganizationAttribute,
   OrganizationAttributeCreate,
@@ -393,6 +403,7 @@ import type {
   OrganizationWithBillingData,
   OutboundTransferRequest,
   OutboundTransfer,
+  OwnershipTransferRequest,
   PageResponse_EmailForwardLog,
   PageResponse_JobBatchMetadata,
   PageResponse_Job,
@@ -460,6 +471,7 @@ import type {
   RegistrarContact,
   RegistrarCredential,
   RegistrarDomain,
+  RegistrarError,
   RegistrarNameserver,
   RegistrarRRSet,
   RegistrarRecord,
@@ -479,6 +491,8 @@ import type {
   StatusCodeStatsBucket,
   StatusTag,
   Support,
+  SyncFailure,
+  SyncFailureError,
   SyncStatus,
   TagCreate,
   TagEnriched,
@@ -572,6 +586,7 @@ export const KEY_ACTIVE_DOMAIN_VERIFICATION_SOURCE = 'source' satisfies keyof Ac
 export const KEY_ACTIVE_DOMAIN_VERIFICATION_STATUS = 'status' satisfies keyof ActiveDomainVerification;
 export const KEY_ACTIVE_DOMAIN_VERIFICATION_TRIGGER = 'trigger' satisfies keyof ActiveDomainVerification;
 export const KEY_ACTIVE_DOMAIN_VERIFICATION_VERIFICATION_ID = 'verification_id' satisfies keyof ActiveDomainVerification;
+export const KEY_ACTIVE_DOMAIN_VERIFICATION_VERIFICATION_URL = 'verification_url' satisfies keyof ActiveDomainVerification;
 
 export const KEYS_ACTIVE_DOMAIN_VERIFICATION = [
   KEY_ACTIVE_DOMAIN_VERIFICATION_CLAIMS,
@@ -582,6 +597,7 @@ export const KEYS_ACTIVE_DOMAIN_VERIFICATION = [
   KEY_ACTIVE_DOMAIN_VERIFICATION_STATUS,
   KEY_ACTIVE_DOMAIN_VERIFICATION_TRIGGER,
   KEY_ACTIVE_DOMAIN_VERIFICATION_VERIFICATION_ID,
+  KEY_ACTIVE_DOMAIN_VERIFICATION_VERIFICATION_URL,
 ] as const satisfies (keyof ActiveDomainVerification)[];
 
 export const KEY_AGGREGATION_RESULT_FIELD = 'field' satisfies keyof AggregationResult;
@@ -1574,6 +1590,7 @@ export const KEY_CONTACT_VERIFICATION_CASE_SOURCE = 'source' satisfies keyof Con
 export const KEY_CONTACT_VERIFICATION_CASE_STATUS = 'status' satisfies keyof ContactVerificationCase;
 export const KEY_CONTACT_VERIFICATION_CASE_TRIGGER = 'trigger' satisfies keyof ContactVerificationCase;
 export const KEY_CONTACT_VERIFICATION_CASE_VERIFICATION_ID = 'verification_id' satisfies keyof ContactVerificationCase;
+export const KEY_CONTACT_VERIFICATION_CASE_VERIFICATION_URL = 'verification_url' satisfies keyof ContactVerificationCase;
 
 export const KEYS_CONTACT_VERIFICATION_CASE = [
   KEY_CONTACT_VERIFICATION_CASE_CLAIMS,
@@ -1590,6 +1607,7 @@ export const KEYS_CONTACT_VERIFICATION_CASE = [
   KEY_CONTACT_VERIFICATION_CASE_STATUS,
   KEY_CONTACT_VERIFICATION_CASE_TRIGGER,
   KEY_CONTACT_VERIFICATION_CASE_VERIFICATION_ID,
+  KEY_CONTACT_VERIFICATION_CASE_VERIFICATION_URL,
 ] as const satisfies (keyof ContactVerificationCase)[];
 
 export const KEY_CONTACT_VERIFICATION_EID_INFORMATION_EID_SCHEME = 'eid_scheme' satisfies keyof ContactVerificationEidInformation;
@@ -3092,6 +3110,72 @@ export const KEYS_DOMAIN_FORWARD_SET = [
   KEY_DOMAIN_FORWARD_SET_UPDATED_ON,
 ] as const satisfies (keyof DomainForwardSet)[];
 
+export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEM_TOTAL_VISITS = 'total_visits' satisfies keyof DomainForwardStatisticsBreakdownItem;
+export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEM_UNIQUE_VISITS = 'unique_visits' satisfies keyof DomainForwardStatisticsBreakdownItem;
+export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEM_VALUE = 'value' satisfies keyof DomainForwardStatisticsBreakdownItem;
+
+export const KEYS_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEM = [
+  KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEM_TOTAL_VISITS,
+  KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEM_UNIQUE_VISITS,
+  KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEM_VALUE,
+] as const satisfies (keyof DomainForwardStatisticsBreakdownItem)[];
+
+export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_APPROXIMATE = 'approximate' satisfies keyof DomainForwardStatisticsBreakdown;
+export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_DIMENSION = 'dimension' satisfies keyof DomainForwardStatisticsBreakdown;
+export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEMS = 'items' satisfies keyof DomainForwardStatisticsBreakdown;
+
+export const KEYS_DOMAIN_FORWARD_STATISTICS_BREAKDOWN = [
+  KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_APPROXIMATE,
+  KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_DIMENSION,
+  KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEMS,
+] as const satisfies (keyof DomainForwardStatisticsBreakdown)[];
+
+export const KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_PARTIAL = 'partial' satisfies keyof DomainForwardStatisticsBucket;
+export const KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_PERIOD_END = 'period_end' satisfies keyof DomainForwardStatisticsBucket;
+export const KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_PERIOD_START = 'period_start' satisfies keyof DomainForwardStatisticsBucket;
+export const KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_TOTAL_VISITS = 'total_visits' satisfies keyof DomainForwardStatisticsBucket;
+export const KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_UNIQUE_VISITS = 'unique_visits' satisfies keyof DomainForwardStatisticsBucket;
+
+export const KEYS_DOMAIN_FORWARD_STATISTICS_BUCKET = [
+  KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_PARTIAL,
+  KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_PERIOD_END,
+  KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_PERIOD_START,
+  KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_TOTAL_VISITS,
+  KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_UNIQUE_VISITS,
+] as const satisfies (keyof DomainForwardStatisticsBucket)[];
+
+export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN = 'breakdown' satisfies keyof DomainForwardStatistics;
+export const KEY_DOMAIN_FORWARD_STATISTICS_BUCKETS = 'buckets' satisfies keyof DomainForwardStatistics;
+export const KEY_DOMAIN_FORWARD_STATISTICS_DATA_AVAILABLE_FROM = 'data_available_from' satisfies keyof DomainForwardStatistics;
+export const KEY_DOMAIN_FORWARD_STATISTICS_DATA_AVAILABLE_TO = 'data_available_to' satisfies keyof DomainForwardStatistics;
+export const KEY_DOMAIN_FORWARD_STATISTICS_END = 'end' satisfies keyof DomainForwardStatistics;
+export const KEY_DOMAIN_FORWARD_STATISTICS_GRANULARITY = 'granularity' satisfies keyof DomainForwardStatistics;
+export const KEY_DOMAIN_FORWARD_STATISTICS_START = 'start' satisfies keyof DomainForwardStatistics;
+export const KEY_DOMAIN_FORWARD_STATISTICS_TOTALS = 'totals' satisfies keyof DomainForwardStatistics;
+
+export const KEYS_DOMAIN_FORWARD_STATISTICS = [
+  KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN,
+  KEY_DOMAIN_FORWARD_STATISTICS_BUCKETS,
+  KEY_DOMAIN_FORWARD_STATISTICS_DATA_AVAILABLE_FROM,
+  KEY_DOMAIN_FORWARD_STATISTICS_DATA_AVAILABLE_TO,
+  KEY_DOMAIN_FORWARD_STATISTICS_END,
+  KEY_DOMAIN_FORWARD_STATISTICS_GRANULARITY,
+  KEY_DOMAIN_FORWARD_STATISTICS_START,
+  KEY_DOMAIN_FORWARD_STATISTICS_TOTALS,
+] as const satisfies (keyof DomainForwardStatistics)[];
+
+export const KEY_DOMAIN_FORWARD_STATISTICS_TOTALS_CONFIGURED_FORWARDS = 'configured_forwards' satisfies keyof DomainForwardStatisticsTotals;
+export const KEY_DOMAIN_FORWARD_STATISTICS_TOTALS_INVOKED_FORWARDS = 'invoked_forwards' satisfies keyof DomainForwardStatisticsTotals;
+export const KEY_DOMAIN_FORWARD_STATISTICS_TOTALS_TOTAL_VISITS = 'total_visits' satisfies keyof DomainForwardStatisticsTotals;
+export const KEY_DOMAIN_FORWARD_STATISTICS_TOTALS_UNIQUE_VISITS = 'unique_visits' satisfies keyof DomainForwardStatisticsTotals;
+
+export const KEYS_DOMAIN_FORWARD_STATISTICS_TOTALS = [
+  KEY_DOMAIN_FORWARD_STATISTICS_TOTALS_CONFIGURED_FORWARDS,
+  KEY_DOMAIN_FORWARD_STATISTICS_TOTALS_INVOKED_FORWARDS,
+  KEY_DOMAIN_FORWARD_STATISTICS_TOTALS_TOTAL_VISITS,
+  KEY_DOMAIN_FORWARD_STATISTICS_TOTALS_UNIQUE_VISITS,
+] as const satisfies (keyof DomainForwardStatisticsTotals)[];
+
 export const KEY_DOMAIN_FORWARD_STATUS_CODE_STATS_RESULTS = 'results' satisfies keyof DomainForwardStatusCodeStats;
 
 export const KEYS_DOMAIN_FORWARD_STATUS_CODE_STATS = [
@@ -3936,6 +4020,7 @@ export const KEY_DOMAIN_VERIFICATION_SOURCE = 'source' satisfies keyof DomainVer
 export const KEY_DOMAIN_VERIFICATION_STATUS = 'status' satisfies keyof DomainVerification;
 export const KEY_DOMAIN_VERIFICATION_TRIGGER = 'trigger' satisfies keyof DomainVerification;
 export const KEY_DOMAIN_VERIFICATION_VERIFICATION_ID = 'verification_id' satisfies keyof DomainVerification;
+export const KEY_DOMAIN_VERIFICATION_VERIFICATION_URL = 'verification_url' satisfies keyof DomainVerification;
 
 export const KEYS_DOMAIN_VERIFICATION = [
   KEY_DOMAIN_VERIFICATION_CLAIMS,
@@ -3950,6 +4035,7 @@ export const KEYS_DOMAIN_VERIFICATION = [
   KEY_DOMAIN_VERIFICATION_STATUS,
   KEY_DOMAIN_VERIFICATION_TRIGGER,
   KEY_DOMAIN_VERIFICATION_VERIFICATION_ID,
+  KEY_DOMAIN_VERIFICATION_VERIFICATION_URL,
 ] as const satisfies (keyof DomainVerification)[];
 
 export const KEY_DOMAIN_WITHDRAW_REQUEST_ZONE_DELETE = 'zone_delete' satisfies keyof DomainWithdrawRequest;
@@ -5014,6 +5100,30 @@ export const KEYS_MARKETPLACE = [
   KEY_MARKETPLACE_NAME,
 ] as const satisfies (keyof Marketplace)[];
 
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_DETAIL_DOMAIN = 'domain' satisfies keyof MarketplaceDomainPurchaseDetail;
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_DETAIL_MARKETPLACE = 'marketplace' satisfies keyof MarketplaceDomainPurchaseDetail;
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_DETAIL_STAGE = 'stage' satisfies keyof MarketplaceDomainPurchaseDetail;
+
+export const KEYS_MARKETPLACE_DOMAIN_PURCHASE_DETAIL = [
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_DETAIL_DOMAIN,
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_DETAIL_MARKETPLACE,
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_DETAIL_STAGE,
+] as const satisfies (keyof MarketplaceDomainPurchaseDetail)[];
+
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_CURRENCY = 'currency' satisfies keyof MarketplaceDomainPurchaseItemCreate;
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_DOMAIN = 'domain' satisfies keyof MarketplaceDomainPurchaseItemCreate;
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_EXPECTED_PRICE = 'expected_price' satisfies keyof MarketplaceDomainPurchaseItemCreate;
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_MARKETPLACE = 'marketplace' satisfies keyof MarketplaceDomainPurchaseItemCreate;
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_TYPE = 'type' satisfies keyof MarketplaceDomainPurchaseItemCreate;
+
+export const KEYS_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE = [
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_CURRENCY,
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_DOMAIN,
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_EXPECTED_PRICE,
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_MARKETPLACE,
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_TYPE,
+] as const satisfies (keyof MarketplaceDomainPurchaseItemCreate)[];
+
 export const KEY_MEMORY_FACT_CREATED_AT = 'created_at' satisfies keyof MemoryFact;
 export const KEY_MEMORY_FACT_EXPIRES_AT = 'expires_at' satisfies keyof MemoryFact;
 export const KEY_MEMORY_FACT_FACT_ID = 'fact_id' satisfies keyof MemoryFact;
@@ -5354,6 +5464,48 @@ export const KEYS_OPUS_DNS_CREDENTIALS = [
   KEY_OPUS_DNS_CREDENTIALS_API_KEY,
 ] as const satisfies (keyof OpusDnsCredentials)[];
 
+export const KEY_ORDER_CREATE_IDEMPOTENCY_KEY = 'idempotency_key' satisfies keyof OrderCreate;
+export const KEY_ORDER_CREATE_ITEMS = 'items' satisfies keyof OrderCreate;
+
+export const KEYS_ORDER_CREATE = [
+  KEY_ORDER_CREATE_IDEMPOTENCY_KEY,
+  KEY_ORDER_CREATE_ITEMS,
+] as const satisfies (keyof OrderCreate)[];
+
+export const KEY_ORDER_ITEM_CURRENCY = 'currency' satisfies keyof OrderItem;
+export const KEY_ORDER_ITEM_ITEM_ID = 'item_id' satisfies keyof OrderItem;
+export const KEY_ORDER_ITEM_MARKETPLACE_DOMAIN_PURCHASE = 'marketplace_domain_purchase' satisfies keyof OrderItem;
+export const KEY_ORDER_ITEM_PRICE = 'price' satisfies keyof OrderItem;
+export const KEY_ORDER_ITEM_STATUS = 'status' satisfies keyof OrderItem;
+export const KEY_ORDER_ITEM_TYPE = 'type' satisfies keyof OrderItem;
+
+export const KEYS_ORDER_ITEM = [
+  KEY_ORDER_ITEM_CURRENCY,
+  KEY_ORDER_ITEM_ITEM_ID,
+  KEY_ORDER_ITEM_MARKETPLACE_DOMAIN_PURCHASE,
+  KEY_ORDER_ITEM_PRICE,
+  KEY_ORDER_ITEM_STATUS,
+  KEY_ORDER_ITEM_TYPE,
+] as const satisfies (keyof OrderItem)[];
+
+export const KEY_ORDER_CREATED_ON = 'created_on' satisfies keyof Order;
+export const KEY_ORDER_CURRENCY = 'currency' satisfies keyof Order;
+export const KEY_ORDER_ITEMS = 'items' satisfies keyof Order;
+export const KEY_ORDER_ORDER_ID = 'order_id' satisfies keyof Order;
+export const KEY_ORDER_STATUS = 'status' satisfies keyof Order;
+export const KEY_ORDER_TOTAL_PRICE = 'total_price' satisfies keyof Order;
+export const KEY_ORDER_UPDATED_ON = 'updated_on' satisfies keyof Order;
+
+export const KEYS_ORDER = [
+  KEY_ORDER_CREATED_ON,
+  KEY_ORDER_CURRENCY,
+  KEY_ORDER_ITEMS,
+  KEY_ORDER_ORDER_ID,
+  KEY_ORDER_STATUS,
+  KEY_ORDER_TOTAL_PRICE,
+  KEY_ORDER_UPDATED_ON,
+] as const satisfies (keyof Order)[];
+
 export const KEY_ORGANIZATION_ADDRESS_1 = 'address_1' satisfies keyof Organization;
 export const KEY_ORGANIZATION_ADDRESS_2 = 'address_2' satisfies keyof Organization;
 export const KEY_ORGANIZATION_ATTRIBUTES = 'attributes' satisfies keyof Organization;
@@ -5627,6 +5779,12 @@ export const KEYS_OUTBOUND_TRANSFER = [
   KEY_OUTBOUND_TRANSFER_DOMAIN_ID,
   KEY_OUTBOUND_TRANSFER_DOMAIN_NAME,
 ] as const satisfies (keyof OutboundTransfer)[];
+
+export const KEY_OWNERSHIP_TRANSFER_REQUEST_TO_USER_ID = 'to_user_id' satisfies keyof OwnershipTransferRequest;
+
+export const KEYS_OWNERSHIP_TRANSFER_REQUEST = [
+  KEY_OWNERSHIP_TRANSFER_REQUEST_TO_USER_ID,
+] as const satisfies (keyof OwnershipTransferRequest)[];
 
 export const KEY_PAGE_RESPONSE_EMAIL_FORWARD_LOG_PAGINATION = 'pagination' satisfies keyof PageResponse_EmailForwardLog;
 export const KEY_PAGE_RESPONSE_EMAIL_FORWARD_LOG_RESULTS = 'results' satisfies keyof PageResponse_EmailForwardLog;
@@ -6398,6 +6556,16 @@ export const KEYS_REGISTRAR_DOMAIN = [
   KEY_REGISTRAR_DOMAIN_ZONE,
 ] as const satisfies (keyof RegistrarDomain)[];
 
+export const KEY_REGISTRAR_ERROR_CODE = 'code' satisfies keyof RegistrarError;
+export const KEY_REGISTRAR_ERROR_MESSAGE = 'message' satisfies keyof RegistrarError;
+export const KEY_REGISTRAR_ERROR_REFERENCE = 'reference' satisfies keyof RegistrarError;
+
+export const KEYS_REGISTRAR_ERROR = [
+  KEY_REGISTRAR_ERROR_CODE,
+  KEY_REGISTRAR_ERROR_MESSAGE,
+  KEY_REGISTRAR_ERROR_REFERENCE,
+] as const satisfies (keyof RegistrarError)[];
+
 export const KEY_REGISTRAR_NAMESERVER_HOSTNAME = 'hostname' satisfies keyof RegistrarNameserver;
 export const KEY_REGISTRAR_NAMESERVER_IP_ADDRESSES = 'ip_addresses' satisfies keyof RegistrarNameserver;
 
@@ -6617,6 +6785,36 @@ export const KEYS_SUPPORT = [
   KEY_SUPPORT_STATUS_URL,
   KEY_SUPPORT_URL,
 ] as const satisfies (keyof Support)[];
+
+export const KEY_SYNC_FAILURE_BATCH_ID = 'batch_id' satisfies keyof SyncFailure;
+export const KEY_SYNC_FAILURE_CREATED_ON = 'created_on' satisfies keyof SyncFailure;
+export const KEY_SYNC_FAILURE_DOMAIN_NAME = 'domain_name' satisfies keyof SyncFailure;
+export const KEY_SYNC_FAILURE_ERROR = 'error' satisfies keyof SyncFailure;
+
+export const KEYS_SYNC_FAILURE = [
+  KEY_SYNC_FAILURE_BATCH_ID,
+  KEY_SYNC_FAILURE_CREATED_ON,
+  KEY_SYNC_FAILURE_DOMAIN_NAME,
+  KEY_SYNC_FAILURE_ERROR,
+] as const satisfies (keyof SyncFailure)[];
+
+export const KEY_SYNC_FAILURE_ERROR_CODE = 'code' satisfies keyof SyncFailureError;
+export const KEY_SYNC_FAILURE_ERROR_DETAIL = 'detail' satisfies keyof SyncFailureError;
+export const KEY_SYNC_FAILURE_ERROR_REGISTRAR_ERROR = 'registrar_error' satisfies keyof SyncFailureError;
+export const KEY_SYNC_FAILURE_ERROR_RETRYABLE = 'retryable' satisfies keyof SyncFailureError;
+export const KEY_SYNC_FAILURE_ERROR_STATUS = 'status' satisfies keyof SyncFailureError;
+export const KEY_SYNC_FAILURE_ERROR_TITLE = 'title' satisfies keyof SyncFailureError;
+export const KEY_SYNC_FAILURE_ERROR_TYPE = 'type' satisfies keyof SyncFailureError;
+
+export const KEYS_SYNC_FAILURE_ERROR = [
+  KEY_SYNC_FAILURE_ERROR_CODE,
+  KEY_SYNC_FAILURE_ERROR_DETAIL,
+  KEY_SYNC_FAILURE_ERROR_REGISTRAR_ERROR,
+  KEY_SYNC_FAILURE_ERROR_RETRYABLE,
+  KEY_SYNC_FAILURE_ERROR_STATUS,
+  KEY_SYNC_FAILURE_ERROR_TITLE,
+  KEY_SYNC_FAILURE_ERROR_TYPE,
+] as const satisfies (keyof SyncFailureError)[];
 
 export const KEY_SYNC_STATUS_BATCH_ID = 'batch_id' satisfies keyof SyncStatus;
 export const KEY_SYNC_STATUS_COMPLETED_ON = 'completed_on' satisfies keyof SyncStatus;

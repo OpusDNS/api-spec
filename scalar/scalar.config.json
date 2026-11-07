@@ -872,6 +872,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/gl.md",
                 "showInSidebar": true
               },
+              "/gr": {
+                "type": "page",
+                "title": "🇬🇷 .gr",
+                "filepath": "content/tld-knowledge-base/cctlds/gr.md",
+                "showInSidebar": true
+              },
               "/info.bh": {
                 "type": "page",
                 "title": "🇧🇭 .info.bh",
