@@ -223,7 +223,7 @@ When no bucket has data, `total_visits`, `unique_visits` and `invoked_forwards` 
 
 Set `breakdown` to a dimension to add a top list.
 `breakdown` then holds up to `breakdown_limit` rows, most redirects first.
-Without a breakdown, it is an empty list.
+Without a breakdown, or when the window shares no time with the data, it is an empty list.
 
 ```bash
 curl --get "$OPUSDNS_API_BASE/v1/domain-forwards/statistics" \
