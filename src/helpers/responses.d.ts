@@ -74,6 +74,7 @@ import type {
   NorIdDeclaration,
   ObjectTagChanges2,
   Order,
+  OrderItemDelivery,
   Organization,
   OrganizationAttribute2,
   OrganizationCredential,
@@ -835,6 +836,16 @@ export type GET_OrdersByOrderId_Response_403 = Problem;
 export type GET_OrdersByOrderId_Response_404 = Problem;
 export type GET_OrdersByOrderId_Response_422 = HTTPValidationError;
 export type GET_OrdersByOrderId_Response_500 = Problem;
+
+export type GET_OrdersByOrderIdItemsByItemIdDelivery_Response = GET_OrdersByOrderIdItemsByItemIdDelivery_Response_200 | GET_OrdersByOrderIdItemsByItemIdDelivery_Response_403 | GET_OrdersByOrderIdItemsByItemIdDelivery_Response_404 | GET_OrdersByOrderIdItemsByItemIdDelivery_Response_409 | GET_OrdersByOrderIdItemsByItemIdDelivery_Response_422 | GET_OrdersByOrderIdItemsByItemIdDelivery_Response_500 | GET_OrdersByOrderIdItemsByItemIdDelivery_Response_503;
+
+export type GET_OrdersByOrderIdItemsByItemIdDelivery_Response_200 = OrderItemDelivery;
+export type GET_OrdersByOrderIdItemsByItemIdDelivery_Response_403 = Problem;
+export type GET_OrdersByOrderIdItemsByItemIdDelivery_Response_404 = Problem;
+export type GET_OrdersByOrderIdItemsByItemIdDelivery_Response_409 = Problem;
+export type GET_OrdersByOrderIdItemsByItemIdDelivery_Response_422 = HTTPValidationError;
+export type GET_OrdersByOrderIdItemsByItemIdDelivery_Response_500 = Problem;
+export type GET_OrdersByOrderIdItemsByItemIdDelivery_Response_503 = Problem;
 
 export type GET_Organizations_Response = GET_Organizations_Response_200 | GET_Organizations_Response_401 | GET_Organizations_Response_403 | GET_Organizations_Response_422;
 

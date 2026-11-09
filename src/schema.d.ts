@@ -2585,6 +2585,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/orders/{order_id}/items/{item_id}/delivery": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get what an order item delivers
+         * @description Returns what an item delivers, in one object named after the item's `type`. For a `marketplace_domain_purchase` that is the transfer auth code, for moving the domain to the registrar of your choice, available once the item's stage is `code_ready`. It can be read when the item's `delivery_available` is true; a 409 means it cannot be read now. The caller needs `domains:manage` and `domain_auth_codes:read`. The response is never cached (`Cache-Control: no-store`).
+         */
+        get: operations["get_order_item_delivery_v1_orders__order_id__items__item_id__delivery_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/organizations": {
         parameters: {
             query?: never;
@@ -7183,6 +7203,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "get_object_logs_v1_archive_object_logs_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["OrderItemDeliveryResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "get_order_item_delivery_v1_orders__order_id__items__item_id__delivery_get";
             /** @constant */
             status: "ok";
             /**
@@ -18473,6 +18517,22 @@ export interface components {
             name: components["schemas"]["MarketplaceName"];
         };
         /**
+         * MarketplaceDomainPurchaseDelivery
+         * @description What a `marketplace_domain_purchase` item delivers: the transfer auth code.
+         */
+        MarketplaceDomainPurchaseDelivery: {
+            /**
+             * Auth Code
+             * @description The transfer auth code. Use it at the registrar you transfer the domain to
+             */
+            auth_code: string;
+            /**
+             * Auth Code Expires On
+             * @description When the auth code expires, if the marketplace told us. Null when it did not
+             */
+            auth_code_expires_on?: Date | null;
+        };
+        /**
          * MarketplaceDomainPurchaseDetail
          * @description The `marketplace_domain_purchase` part of an item.
          */
@@ -19130,12 +19190,28 @@ export interface components {
             items: components["schemas"]["MarketplaceDomainPurchaseItemCreate"][];
         };
         /**
+         * OrderItemDeliveryResponse
+         * @description What an order item delivers: `type` plus one object named after it. Only ever the body of the delivery
+         *     endpoint.
+         */
+        OrderItemDeliveryResponse: {
+            /** @description Set when `type` is `marketplace_domain_purchase` */
+            marketplace_domain_purchase?: components["schemas"]["MarketplaceDomainPurchaseDelivery"] | null;
+            /** @description Item type. More can be added. */
+            type: components["schemas"]["OrderItemType"];
+        };
+        /**
          * OrderItemResponse
          * @description The fields every item type has, plus one optional object named after `type`. A new type adds one field.
          */
         OrderItemResponse: {
             /** @description Currency of `price` */
             currency: components["schemas"]["Currency"];
+            /**
+             * Delivery Available
+             * @description Whether `GET /v1/orders/{order_id}/items/{item_id}/delivery` returns what the item delivers now
+             */
+            delivery_available: boolean;
             /**
              * Item Id
              * Format: typeid
@@ -37448,6 +37524,111 @@ export interface operations {
                      *       "status": 500,
                      *       "title": "Order Unreadable",
                      *       "type": "order-unreadable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    get_order_item_delivery_v1_orders__order_id__items__item_id__delivery_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                order_id: TypeId<"order">;
+                item_id: TypeId<"order_item">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrderItemDeliveryResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_DELIVERY_NOT_AVAILABLE",
+                     *       "detail": "Nothing can be delivered for this item now",
+                     *       "status": 409,
+                     *       "title": "Order Delivery Not Available",
+                     *       "type": "order-delivery-not-available"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_DELIVERY_UNREADABLE",
+                     *       "detail": "The delivery could not be read",
+                     *       "status": 500,
+                     *       "title": "Order Delivery Unreadable",
+                     *       "type": "order-delivery-unreadable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHORIZATION_UNAVAILABLE",
+                     *       "detail": "The authorization service is currently unavailable, please try again later.",
+                     *       "status": 503,
+                     *       "title": "Authorization service unavailable.",
+                     *       "type": "authorization-unavailable"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };

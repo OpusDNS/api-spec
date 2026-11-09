@@ -968,6 +968,11 @@ export type GET_OrdersByOrderId_Request = {
 };
 export type GET_OrdersByOrderId_Request_Path = GET_OrdersByOrderId_Request['parameters']['path'];
 
+export type GET_OrdersByOrderIdItemsByItemIdDelivery_Request = {
+  parameters: operations['get_order_item_delivery_v1_orders__order_id__items__item_id__delivery_get']['parameters'];
+};
+export type GET_OrdersByOrderIdItemsByItemIdDelivery_Request_Path = GET_OrdersByOrderIdItemsByItemIdDelivery_Request['parameters']['path'];
+
 export type GET_Organizations_Request = {
   parameters: operations['list_organizations_v1_organizations_get']['parameters'];
 };

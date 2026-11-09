@@ -120,6 +120,7 @@ export const JOBS_BY_BATCH_ID_RESUME_ENDPOINT = '/v1/jobs/{batch_id}/resume';
 export const JOBS_BY_BATCH_ID_RETRY_ENDPOINT = '/v1/jobs/{batch_id}/retry';
 export const ORDERS_ENDPOINT = '/v1/orders';
 export const ORDERS_BY_ORDER_ID_ENDPOINT = '/v1/orders/{order_id}';
+export const ORDERS_BY_ORDER_ID_ITEMS_BY_ITEM_ID_DELIVERY_ENDPOINT = '/v1/orders/{order_id}/items/{item_id}/delivery';
 export const ORGANIZATIONS_ENDPOINT = '/v1/organizations';
 export const ORGANIZATIONS_ATTRIBUTES_ENDPOINT = '/v1/organizations/attributes';
 export const ORGANIZATIONS_IP_RESTRICTIONS_ENDPOINT = '/v1/organizations/ip-restrictions';
@@ -301,6 +302,7 @@ export type Endpoint =
   | typeof JOBS_BY_BATCH_ID_RETRY_ENDPOINT
   | typeof ORDERS_ENDPOINT
   | typeof ORDERS_BY_ORDER_ID_ENDPOINT
+  | typeof ORDERS_BY_ORDER_ID_ITEMS_BY_ITEM_ID_DELIVERY_ENDPOINT
   | typeof ORGANIZATIONS_ENDPOINT
   | typeof ORGANIZATIONS_ATTRIBUTES_ENDPOINT
   | typeof ORGANIZATIONS_IP_RESTRICTIONS_ENDPOINT

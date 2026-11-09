@@ -354,6 +354,7 @@ import type {
   MailTemplateBlock,
   MailTemplateVariable,
   Marketplace,
+  MarketplaceDomainPurchaseDelivery,
   MarketplaceDomainPurchaseDetail,
   MarketplaceDomainPurchaseItemCreate,
   MemoryFact,
@@ -390,6 +391,7 @@ import type {
   OpusDnsCredentialUpdate,
   OpusDnsCredentials,
   OrderCreate,
+  OrderItemDelivery,
   OrderItem,
   Order,
   Organization,
@@ -5147,6 +5149,14 @@ export const KEYS_MARKETPLACE = [
   KEY_MARKETPLACE_NAME,
 ] as const satisfies (keyof Marketplace)[];
 
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_DELIVERY_AUTH_CODE = 'auth_code' satisfies keyof MarketplaceDomainPurchaseDelivery;
+export const KEY_MARKETPLACE_DOMAIN_PURCHASE_DELIVERY_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' satisfies keyof MarketplaceDomainPurchaseDelivery;
+
+export const KEYS_MARKETPLACE_DOMAIN_PURCHASE_DELIVERY = [
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_DELIVERY_AUTH_CODE,
+  KEY_MARKETPLACE_DOMAIN_PURCHASE_DELIVERY_AUTH_CODE_EXPIRES_ON,
+] as const satisfies (keyof MarketplaceDomainPurchaseDelivery)[];
+
 export const KEY_MARKETPLACE_DOMAIN_PURCHASE_DETAIL_DOMAIN = 'domain' satisfies keyof MarketplaceDomainPurchaseDetail;
 export const KEY_MARKETPLACE_DOMAIN_PURCHASE_DETAIL_MARKETPLACE = 'marketplace' satisfies keyof MarketplaceDomainPurchaseDetail;
 export const KEY_MARKETPLACE_DOMAIN_PURCHASE_DETAIL_STAGE = 'stage' satisfies keyof MarketplaceDomainPurchaseDetail;
@@ -5517,7 +5527,16 @@ export const KEYS_ORDER_CREATE = [
   KEY_ORDER_CREATE_ITEMS,
 ] as const satisfies (keyof OrderCreate)[];
 
+export const KEY_ORDER_ITEM_DELIVERY_MARKETPLACE_DOMAIN_PURCHASE = 'marketplace_domain_purchase' satisfies keyof OrderItemDelivery;
+export const KEY_ORDER_ITEM_DELIVERY_TYPE = 'type' satisfies keyof OrderItemDelivery;
+
+export const KEYS_ORDER_ITEM_DELIVERY = [
+  KEY_ORDER_ITEM_DELIVERY_MARKETPLACE_DOMAIN_PURCHASE,
+  KEY_ORDER_ITEM_DELIVERY_TYPE,
+] as const satisfies (keyof OrderItemDelivery)[];
+
 export const KEY_ORDER_ITEM_CURRENCY = 'currency' satisfies keyof OrderItem;
+export const KEY_ORDER_ITEM_DELIVERY_AVAILABLE = 'delivery_available' satisfies keyof OrderItem;
 export const KEY_ORDER_ITEM_ITEM_ID = 'item_id' satisfies keyof OrderItem;
 export const KEY_ORDER_ITEM_MARKETPLACE_DOMAIN_PURCHASE = 'marketplace_domain_purchase' satisfies keyof OrderItem;
 export const KEY_ORDER_ITEM_PRICE = 'price' satisfies keyof OrderItem;
@@ -5526,6 +5545,7 @@ export const KEY_ORDER_ITEM_TYPE = 'type' satisfies keyof OrderItem;
 
 export const KEYS_ORDER_ITEM = [
   KEY_ORDER_ITEM_CURRENCY,
+  KEY_ORDER_ITEM_DELIVERY_AVAILABLE,
   KEY_ORDER_ITEM_ITEM_ID,
   KEY_ORDER_ITEM_MARKETPLACE_DOMAIN_PURCHASE,
   KEY_ORDER_ITEM_PRICE,
