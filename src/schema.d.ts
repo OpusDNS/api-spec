@@ -1265,23 +1265,23 @@ export interface paths {
         };
         /**
          * Get domain forward statistics
-         * @description Counts the redirects your organization's domain forwards served in a window, as a series of buckets and as totals, optionally with a top list (`breakdown`). It replaces the `/metrics` routes, which will be deprecated.
+         * @description Counts the redirects your organization's domain forwards served in a window, as totals and as a series of buckets, optionally with a top list (`breakdown`). It replaces the `/metrics` routes, which will be deprecated.
          *
-         *     The window is `start_date` to `end_date`, both days inclusive (YYYY-MM-DD, UTC), like the other statistics routes, and `granularity` sets the bucket width: `hour`, `day`, `week` or `month`. The window may be at most 31 days for `hour`, 366 days for `day` and `week`, and 25 calendar months for `month` long. Weeks start on Monday and months on the 1st. With `granularity=hour` only, `start` and `end` (UTC instants, `end` exclusive) may replace the two dates, for a rolling window such as the last 24 hours; give exactly one of the two pairs. The response echoes the window as days (`start_date`, `end_date`) and as instants (`start`, `end`, `end` exclusive). Hourly counts are read in whole hours, so a time of day inside an hour on `start` or `end` does not cut that hour, unless `hostname` or `protocol` is set: those read the raw log, which honours the exact window. Every bucket the window touches is present, oldest first, and holds 0 where nothing was served. A bucket marked `partial` does not count its whole span: the window or the start of the data cuts it, or it reaches `data_available_to`, which is still running.
+         *     The window is `start_date` to `end_date`, both days inclusive (YYYY-MM-DD, UTC), and `granularity` sets the bucket width: `hour`, `day`, `week` or `month`. The window may be at most 31 days for `hour`, 366 days for `day` and `week`, and 25 calendar months for `month` long. Weeks start on Monday and months on the 1st. With `granularity=hour` only, `start` and `end` (UTC instants, `end` exclusive) may replace the two dates, for a rolling window such as the last 24 hours; give exactly one of the two pairs. The response gives the window as days (`start_date`, `end_date`) and as instants (`start`, `end`). Hourly counts are read in whole hours, so a time of day inside an hour does not cut that hour, unless `hostname` or `protocol` is set: then the counts follow the exact instants.
          *
-         *     Without a filter the counts cover all forwards of your organization, and with `include_sub_organizations` its sub-organizations' too. `hostname` (one forward, exact) and `domain` (a domain and all its subdomains) exclude each other and need view access to the zone. `hostname` and `protocol` filters are served from the raw log, which keeps 35 days: a window starting earlier with either of them is rejected.
+         *     Every bucket the window touches is present, oldest first. `period_start` and `period_end` are its first and last day, both inclusive (an hourly bucket holds the day of its hour in both); `start` and `end` are its instants, `end` exclusive. A bucket counts the days it shares with the window and with `data_available_from`..`data_available_to`, from `covered_from` to `covered_to`, and holds 0 when there was no redirect on them. A bucket that shares no time with the data holds null counts: no data, rather than no redirects; the totals are null when the window has no data. A bucket marked `partial` does not count its whole span: the window or the start of the data cuts it, or it reaches `data_available_to` and is still filling. A bucket with null counts is partial too.
          *
-         *     The window may start at most 35 days back at `hour` and 25 months at `day`, `week` and `month`; a window starting earlier is rejected with 400. A breakdown keeps 13 months, so over an older window it counts what is kept (`data_available_from` says where the data begins), and a breakdown by `user_agent`, `referrer`, `fqdn`, `domain`, `forward` or `rule` with a `domain` filter reaches back 35 days only, like `hostname` and `protocol`.
+         *     Without a filter the counts cover all forwards of your organization, and with `include_sub_organizations` its sub-organizations' too. `hostname` (one forward, exact) and `domain` (a domain and all its subdomains) exclude each other and need view access to the zone.
          *
-         *     `url` lists host and path of the redirected requests (`www.example.com/shop`, no query string). Full request paths are not kept: per domain and day only the top 5 values with at least 3 hits that day are, for 13 months. It therefore needs a `domain` filter, cannot be combined with `hostname` or `protocol`, and over more than one day is an approximation (the sum of the daily top 5 lists, so a path that never made a day's list is missing). There is no list of URLs across all domains of an organization. Asking for it without `domain`, or with `hostname` or `protocol`, is rejected with 422.
+         *     The window may start at most 35 days back at `hour`, and 25 months back at `day`, `week` and `month`. With `hostname` or `protocol`, and for a top list by `user_agent`, `referrer`, `fqdn`, `domain`, `forward` or `rule` with a `domain` filter, it may start at most 35 days back. A window that starts earlier is rejected with 400. Top lists are kept for 13 months: over a window that starts earlier, the top list counts only the last 13 months, while the buckets and totals reach further back.
          *
-         *     `unique_visits` and `invoked_forwards` are estimates (HyperLogLog), merged over the window instead of summed over buckets, so the unique visits of buckets do not add up to the total. `invoked_forwards` counts distinct forwards that served a redirect; the `/metrics` route counts distinct domain and path pairs, so the two are not comparable. `configured_forwards` is the number of redirect rules configured now, whatever the window, so `invoked_forwards` can exceed it.
+         *     `breakdown` is a list of rows, most redirects first; it is empty unless requested, and empty when the totals are null. `breakdown_approximate` says whether the list may miss values or count them too low. `url` lists host and path of the redirected requests (`www.example.com/shop`, no query string). Request paths are kept for 13 months only as daily top lists: per domain and day, the 5 values with the most hits, each with at least 3 hits that day. It therefore needs a `domain` filter, cannot be combined with `hostname` or `protocol`, and sums the daily lists, so a path that did not make a day's list is missing for that day. There is no list of URLs across all domains of an organization. Asking for it without `domain`, or with `hostname` or `protocol`, is rejected with 422. Country data is derived from IP addresses with GeoLite2 data created by MaxMind (https://www.maxmind.com). Redirects without a referrer are grouped as `direct`.
          *
-         *     Statistics stay with the organization that owned the forward at the time of the redirect: traffic of a deleted forward or domain, or of one moved to another organization, remains in the former owner's totals, series and organization-wide breakdowns until retention ends, and the new owner sees only the traffic since it owns the forward. `domain` and `hostname` filters work only for zones you currently have.
+         *     `unique_visits` and `invoked_forwards` are estimates (HyperLogLog), counted over the whole window rather than added up from the buckets, so the unique visits of the buckets do not add up to the total. `invoked_forwards` counts distinct forwards that served a redirect; the `/metrics` route counts distinct domain and path pairs, so the two are not comparable. `configured_forwards` is the number of redirect rules configured now, whatever the window, so `invoked_forwards` can exceed it.
          *
-         *     A breakdown by `user_agent`, `referrer`, `fqdn`, `domain`, `forward` or `rule` over more than one day, and any breakdown by `url`, is an approximate top list: `approximate` says so. Country data is derived from IP addresses with GeoLite2 data created by MaxMind (https://www.maxmind.com). Redirects without a referrer are grouped as `direct`.
+         *     Redirects count for the organization that owned the forward when they happened: the traffic of a deleted forward or domain, or of one moved to another organization, stays in the former owner's totals, buckets and organization-wide top lists until retention ends, and the new owner sees only the traffic since it owns the forward. `domain` and `hostname` filters work only for zones you currently have.
          *
-         *     The route answers 501 where no statistics backend is configured. It does not depend on the metrics index of the `/metrics` routes.
+         *     The route answers 501 where statistics are not available in this environment.
          */
         get: operations["get_domain_forward_statistics_v1_domain_forwards_statistics_get"];
         put?: never;
@@ -1307,7 +1307,7 @@ export interface paths {
          *
          *     Without `include_sub_organizations` the list covers the forwards of your organization only. Statistics stay with the organization that owned the forward at the time of the redirect, as on `/statistics`.
          *
-         *     The route answers 501 where no statistics backend is configured.
+         *     The route answers 501 where statistics are not available in this environment.
          */
         get: operations["list_domain_forward_movers_v1_domain_forwards_statistics_movers_get"];
         put?: never;
@@ -14385,8 +14385,19 @@ export interface components {
          * @enum {string}
          */
         DomainForwardSortField: "hostname" | "enabled" | "created_on" | "updated_on";
-        /** DomainForwardStatisticsBreakdownItem */
-        DomainForwardStatisticsBreakdownItem: {
+        /**
+         * DomainForwardStatisticsBreakdown
+         * @description The top list to add: `none`, or the dimension to group the redirects by.
+         * @enum {string}
+         */
+        DomainForwardStatisticsBreakdown: "none" | "browser" | "platform" | "user_agent" | "referrer" | "country" | "status_code" | "url" | "fqdn" | "domain" | "forward" | "rule";
+        /** DomainForwardStatisticsBreakdownRow */
+        DomainForwardStatisticsBreakdownRow: {
+            /**
+             * Key
+             * @description The group: for `country` an ISO 3166-1 alpha-2 code, with an empty string for unknown; for `status_code` the configured redirect code as a string, e.g. `301`; for `referrer`, `direct` where the request had no referrer; for `url` host and path without query string, e.g. `www.example.com/shop`
+             */
+            key: string;
             /**
              * Total Visits
              * @description Number of redirects of this group
@@ -14397,63 +14408,59 @@ export interface components {
              * @description Estimated number of distinct visitors (distinct client IP addresses, stored only as a keyed hash), counted with a HyperLogLog sketch and merged over the whole window rather than summed over buckets, so the figures of buckets do not add up to the total
              */
             unique_visits: number;
-            /**
-             * Value
-             * @description The group: for `country` an ISO 3166-1 alpha-2 code, with an empty string for unknown; for `status_code` the configured redirect code as a string, e.g. `301`; for `referrer`, `direct` where the request had no referrer; for `url` host and path without query string, e.g. `www.example.com/shop`
-             */
-            value: string;
-        };
-        /** DomainForwardStatisticsBreakdownResponse */
-        DomainForwardStatisticsBreakdownResponse: {
-            /**
-             * Approximate
-             * @description True when the list is an approximation: for `user_agent`, `referrer`, `fqdn`, `domain`, `forward` and `rule`, a window of more than one day is answered from per-day top lists, so the counts are sums of those lists and a value that never made a day's top list is missing or undercounted. `url` is built from the daily top 5 lists of the domain, so it is an approximation as soon as those lists are read. Always false for `browser`, `platform`, `country` and `status_code`, and for any query filtered by `hostname` or `protocol` (except `url`, which cannot be)
-             */
-            approximate: boolean;
-            /** @description What the redirects are grouped by. Country data is derived from IP addresses with GeoLite2 data created by MaxMind (https://www.maxmind.com) */
-            dimension: components["schemas"]["DomainForwardStatisticsDimension"];
-            /**
-             * Items
-             * @description The groups with the most redirects, most first, at most `breakdown_limit`. For `url` at most 5 values per day went into the list, each with at least 3 hits that day
-             */
-            items: components["schemas"]["DomainForwardStatisticsBreakdownItem"][];
         };
         /** DomainForwardStatisticsBucket */
         DomainForwardStatisticsBucket: {
             /**
+             * Covered From
+             * @description First day the bucket's counts include: the latest of `period_start`, `start_date` and the day of `data_available_from`. Null when the bucket is not covered: none of its instants lies within both the window and `data_available_from`..`data_available_to`
+             */
+            covered_from: string | null;
+            /**
+             * Covered To
+             * @description Last day the bucket's counts include: the earliest of `period_end`, `end_date` and the day of `data_available_to`. Null when the bucket is not covered
+             */
+            covered_to: string | null;
+            /**
+             * End
+             * Format: date-time
+             * @description First instant after the bucket (UTC), exclusive: the start of the next bucket
+             */
+            end: Date;
+            /**
              * Partial
-             * @description True when the counts are not those of the whole bucket: the window cuts the bucket, it begins before `data_available_from`, or it reaches `data_available_to`, which is still running. A bucket without any data is partial too. A partial bucket must not be read as a rise or fall against its neighbours
+             * @description True when the counts are not those of the whole bucket: the window cuts the bucket, it begins before `data_available_from`, or it reaches `data_available_to`, which is still running. Also true for a bucket that is not covered, which has no counts. A partial bucket must not be read as a rise or fall against its neighbours
              */
             partial: boolean;
             /**
              * Period End
-             * Format: date-time
-             * @description First instant after the bucket (UTC), exclusive: the start of the next bucket
+             * Format: date
+             * @description Last day of the bucket (UTC), inclusive: the day itself (for an hour, the day it falls in), the Sunday of its week, or the last day of its month
              */
-            period_end: Date;
+            period_end: string;
             /**
              * Period Start
+             * Format: date
+             * @description First day of the bucket (UTC); for an hour, the day it falls in
+             */
+            period_start: string;
+            /**
+             * Start
              * Format: date-time
              * @description First instant of the bucket (UTC), inclusive
              */
-            period_start: Date;
+            start: Date;
             /**
              * Total Visits
-             * @description Number of redirects served in the bucket; 0 when none were
+             * @description Number of redirects served in the bucket; 0 when none were. Null when the bucket is not covered: no data, rather than no redirects
              */
-            total_visits: number;
+            total_visits: number | null;
             /**
              * Unique Visits
-             * @description Estimated number of distinct visitors (distinct client IP addresses, stored only as a keyed hash), counted with a HyperLogLog sketch and merged over the whole window rather than summed over buckets, so the figures of buckets do not add up to the total. Counted per bucket; 0 when none were
+             * @description Estimated number of distinct visitors (distinct client IP addresses, stored only as a keyed hash), counted with a HyperLogLog sketch and merged over the whole window rather than summed over buckets, so the figures of buckets do not add up to the total. Counted per bucket; 0 when none were. Null when the bucket is not covered: no data, rather than no redirects
              */
-            unique_visits: number;
+            unique_visits: number | null;
         };
-        /**
-         * DomainForwardStatisticsDimension
-         * @description What a breakdown groups the redirects by.
-         * @enum {string}
-         */
-        DomainForwardStatisticsDimension: "browser" | "platform" | "user_agent" | "referrer" | "country" | "status_code" | "url" | "fqdn" | "domain" | "forward" | "rule";
         /**
          * DomainForwardStatisticsGranularity
          * @description Time-bucket size of the series.
@@ -14462,11 +14469,19 @@ export interface components {
         DomainForwardStatisticsGranularity: "hour" | "day" | "week" | "month";
         /** DomainForwardStatisticsResponse */
         DomainForwardStatisticsResponse: {
-            /** @description The top list requested with `breakdown`; null otherwise */
-            breakdown: components["schemas"]["DomainForwardStatisticsBreakdownResponse"] | null;
+            /**
+             * Breakdown
+             * @description The groups with the most redirects by the dimension requested with `breakdown`, most first, at most `breakdown_limit`; empty unless requested, and empty when the totals are null. For `url` at most 5 values per day went into the list, each with at least 3 hits that day. Country data is derived from IP addresses with GeoLite2 data created by MaxMind (https://www.maxmind.com)
+             */
+            breakdown: components["schemas"]["DomainForwardStatisticsBreakdownRow"][];
+            /**
+             * Breakdown Approximate
+             * @description True when the `breakdown` list may miss values or count them too low. For `user_agent`, `referrer`, `fqdn`, `domain`, `forward` and `rule`, days that are over are usually read from daily top lists, in which a value that did not make a day's list is missing for that day; the current day, and queries with a `hostname`, `domain` or `protocol` filter, are counted from all requests. `url` is built from the daily top 5 lists of the domain and is approximate as soon as the window includes a day that is over. `browser`, `platform`, `country` and `status_code` are counted exactly. Also true when a query has more distinct values than can be ranked at once and the rest is left out. Always false without a breakdown
+             */
+            breakdown_approximate: boolean;
             /**
              * Buckets
-             * @description One entry per bucket the window touches, oldest first, including buckets without redirects (0)
+             * @description One entry per bucket the window touches, oldest first, including buckets without redirects (0) and buckets without data (null)
              */
             buckets: components["schemas"]["DomainForwardStatisticsBucket"][];
             /**
@@ -14476,7 +14491,7 @@ export interface components {
             data_available_from: Date | null;
             /**
              * Data Available To
-             * @description Time of the latest ingested redirect; a bucket reaching it is partial. Null when there is no data
+             * @description Time of the latest ingested redirect, no earlier than the start of the newest bucket with redirects; a bucket reaching it is partial. Null when there is no data
              */
             data_available_to: Date | null;
             /**
@@ -14516,19 +14531,19 @@ export interface components {
             configured_forwards: number;
             /**
              * Invoked Forwards
-             * @description Estimated number of distinct forwards (`rule_source_forward`: the forward's hostname, `*.example.com` for a wildcard) that served at least one redirect, counted with a HyperLogLog sketch. The `/metrics` route counts distinct domain and path pairs instead, so the two figures are not comparable, and `configured_forwards` counts redirect rules, so it is no ceiling for this figure: forwards that were deleted or moved to another organization during the window count here too
+             * @description Estimated number of distinct forwards (`rule_source_forward`: the forward's hostname, `*.example.com` for a wildcard) that served at least one redirect, counted with a HyperLogLog sketch. The `/metrics` route counts distinct domain and path pairs instead, so the two figures are not comparable, and `configured_forwards` counts redirect rules, so it is no ceiling for this figure: forwards that were deleted or moved to another organization during the window count here too. Null when the window has no data: no data, rather than no redirects
              */
-            invoked_forwards: number;
+            invoked_forwards: number | null;
             /**
              * Total Visits
-             * @description Number of redirects served in the window
+             * @description Number of redirects served in the window. Null when the window has no data: no data, rather than no redirects
              */
-            total_visits: number;
+            total_visits: number | null;
             /**
              * Unique Visits
-             * @description Estimated number of distinct visitors (distinct client IP addresses, stored only as a keyed hash), counted with a HyperLogLog sketch and merged over the whole window rather than summed over buckets, so the figures of buckets do not add up to the total
+             * @description Estimated number of distinct visitors (distinct client IP addresses, stored only as a keyed hash), counted with a HyperLogLog sketch and merged over the whole window rather than summed over buckets, so the figures of buckets do not add up to the total. Null when the window has no data: no data, rather than no redirects
              */
-            unique_visits: number;
+            unique_visits: number | null;
         };
         /** DomainForwardStatusCodeStatsResponse */
         DomainForwardStatusCodeStatsResponse: {
@@ -31283,8 +31298,8 @@ export interface operations {
                 exclude_bots?: boolean;
                 /** @description Count the forwards of your sub-organizations too. By default only your own organization's are counted. */
                 include_sub_organizations?: boolean;
-                /** @description Adds a top list of the redirects grouped by this dimension. `country` is derived from the visitor's IP address with GeoLite2 data created by MaxMind (https://www.maxmind.com); an empty value means unknown. `status_code` is the redirect code configured on the rule. `domain` cannot be combined with the `domain` filter. `url` lists host and path of the redirected requests (`www.example.com/shop`, no query string). Full request paths are not kept: per domain and day only the top 5 values with at least 3 hits that day are, for 13 months. It therefore needs a `domain` filter, cannot be combined with `hostname` or `protocol`, and over more than one day is an approximation (the sum of the daily top 5 lists, so a path that never made a day's list is missing). There is no list of URLs across all domains of an organization. */
-                breakdown?: components["schemas"]["DomainForwardStatisticsDimension"] | null;
+                /** @description Adds a top list of the redirects grouped by this dimension; `none` adds none. `country` is derived from the visitor's IP address with GeoLite2 data created by MaxMind (https://www.maxmind.com); an empty key means unknown. `status_code` is the redirect code configured on the rule. `domain` cannot be combined with the `domain` filter. `url` lists host and path of the redirected requests (`www.example.com/shop`, no query string). Request paths are kept for 13 months only as daily top lists: per domain and day, the 5 values with the most hits, each with at least 3 hits that day. It therefore needs a `domain` filter, cannot be combined with `hostname` or `protocol`, and sums the daily lists, so a path that did not make a day's list is missing for that day. There is no list of URLs across all domains of an organization. */
+                breakdown?: components["schemas"]["DomainForwardStatisticsBreakdown"];
                 /** @description How many items the breakdown lists. */
                 breakdown_limit?: number;
             };

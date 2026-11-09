@@ -205,8 +205,7 @@ import type {
   DomainForwardSetCreateRequest,
   DomainForwardSetRequest,
   DomainForwardSet,
-  DomainForwardStatisticsBreakdownItem,
-  DomainForwardStatisticsBreakdown,
+  DomainForwardStatisticsBreakdownRow,
   DomainForwardStatisticsBucket,
   DomainForwardStatistics,
   DomainForwardStatisticsTotals,
@@ -3152,41 +3151,40 @@ export const KEYS_DOMAIN_FORWARD_SET = [
   KEY_DOMAIN_FORWARD_SET_UPDATED_ON,
 ] as const satisfies (keyof DomainForwardSet)[];
 
-export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEM_TOTAL_VISITS = 'total_visits' satisfies keyof DomainForwardStatisticsBreakdownItem;
-export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEM_UNIQUE_VISITS = 'unique_visits' satisfies keyof DomainForwardStatisticsBreakdownItem;
-export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEM_VALUE = 'value' satisfies keyof DomainForwardStatisticsBreakdownItem;
+export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ROW_KEY = 'key' satisfies keyof DomainForwardStatisticsBreakdownRow;
+export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ROW_TOTAL_VISITS = 'total_visits' satisfies keyof DomainForwardStatisticsBreakdownRow;
+export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ROW_UNIQUE_VISITS = 'unique_visits' satisfies keyof DomainForwardStatisticsBreakdownRow;
 
-export const KEYS_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEM = [
-  KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEM_TOTAL_VISITS,
-  KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEM_UNIQUE_VISITS,
-  KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEM_VALUE,
-] as const satisfies (keyof DomainForwardStatisticsBreakdownItem)[];
+export const KEYS_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ROW = [
+  KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ROW_KEY,
+  KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ROW_TOTAL_VISITS,
+  KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ROW_UNIQUE_VISITS,
+] as const satisfies (keyof DomainForwardStatisticsBreakdownRow)[];
 
-export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_APPROXIMATE = 'approximate' satisfies keyof DomainForwardStatisticsBreakdown;
-export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_DIMENSION = 'dimension' satisfies keyof DomainForwardStatisticsBreakdown;
-export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEMS = 'items' satisfies keyof DomainForwardStatisticsBreakdown;
-
-export const KEYS_DOMAIN_FORWARD_STATISTICS_BREAKDOWN = [
-  KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_APPROXIMATE,
-  KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_DIMENSION,
-  KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_ITEMS,
-] as const satisfies (keyof DomainForwardStatisticsBreakdown)[];
-
+export const KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_COVERED_FROM = 'covered_from' satisfies keyof DomainForwardStatisticsBucket;
+export const KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_COVERED_TO = 'covered_to' satisfies keyof DomainForwardStatisticsBucket;
+export const KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_END = 'end' satisfies keyof DomainForwardStatisticsBucket;
 export const KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_PARTIAL = 'partial' satisfies keyof DomainForwardStatisticsBucket;
 export const KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_PERIOD_END = 'period_end' satisfies keyof DomainForwardStatisticsBucket;
 export const KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_PERIOD_START = 'period_start' satisfies keyof DomainForwardStatisticsBucket;
+export const KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_START = 'start' satisfies keyof DomainForwardStatisticsBucket;
 export const KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_TOTAL_VISITS = 'total_visits' satisfies keyof DomainForwardStatisticsBucket;
 export const KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_UNIQUE_VISITS = 'unique_visits' satisfies keyof DomainForwardStatisticsBucket;
 
 export const KEYS_DOMAIN_FORWARD_STATISTICS_BUCKET = [
+  KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_COVERED_FROM,
+  KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_COVERED_TO,
+  KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_END,
   KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_PARTIAL,
   KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_PERIOD_END,
   KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_PERIOD_START,
+  KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_START,
   KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_TOTAL_VISITS,
   KEY_DOMAIN_FORWARD_STATISTICS_BUCKET_UNIQUE_VISITS,
 ] as const satisfies (keyof DomainForwardStatisticsBucket)[];
 
 export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN = 'breakdown' satisfies keyof DomainForwardStatistics;
+export const KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_APPROXIMATE = 'breakdown_approximate' satisfies keyof DomainForwardStatistics;
 export const KEY_DOMAIN_FORWARD_STATISTICS_BUCKETS = 'buckets' satisfies keyof DomainForwardStatistics;
 export const KEY_DOMAIN_FORWARD_STATISTICS_DATA_AVAILABLE_FROM = 'data_available_from' satisfies keyof DomainForwardStatistics;
 export const KEY_DOMAIN_FORWARD_STATISTICS_DATA_AVAILABLE_TO = 'data_available_to' satisfies keyof DomainForwardStatistics;
@@ -3199,6 +3197,7 @@ export const KEY_DOMAIN_FORWARD_STATISTICS_TOTALS = 'totals' satisfies keyof Dom
 
 export const KEYS_DOMAIN_FORWARD_STATISTICS = [
   KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN,
+  KEY_DOMAIN_FORWARD_STATISTICS_BREAKDOWN_APPROXIMATE,
   KEY_DOMAIN_FORWARD_STATISTICS_BUCKETS,
   KEY_DOMAIN_FORWARD_STATISTICS_DATA_AVAILABLE_FROM,
   KEY_DOMAIN_FORWARD_STATISTICS_DATA_AVAILABLE_TO,

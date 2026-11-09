@@ -48,7 +48,7 @@ import type {
   DomainForwardMoverDirection,
   DomainForwardMoversPeriod,
   DomainForwardSortField,
-  DomainForwardStatisticsDimension,
+  DomainForwardStatisticsBreakdown,
   DomainForwardStatisticsGranularity,
   DomainForwardZoneSortField,
   DomainIncludeField,
@@ -1001,7 +1001,8 @@ export const DOMAIN_FORWARD_SORT_FIELD_VALUES = [
   'updated_on',
 ] as const satisfies ReadonlyArray<DomainForwardSortField>;
 
-export const DOMAIN_FORWARD_STATISTICS_DIMENSION = {
+export const DOMAIN_FORWARD_STATISTICS_BREAKDOWN = {
+  NONE: "none",
   BROWSER: "browser",
   PLATFORM: "platform",
   USER_AGENT: "user_agent",
@@ -1013,9 +1014,10 @@ export const DOMAIN_FORWARD_STATISTICS_DIMENSION = {
   DOMAIN: "domain",
   FORWARD: "forward",
   RULE: "rule",
-} as const satisfies Record<string, DomainForwardStatisticsDimension>;
+} as const satisfies Record<string, DomainForwardStatisticsBreakdown>;
 
-export const DOMAIN_FORWARD_STATISTICS_DIMENSION_VALUES = [
+export const DOMAIN_FORWARD_STATISTICS_BREAKDOWN_VALUES = [
+  'none',
   'browser',
   'platform',
   'user_agent',
@@ -1027,7 +1029,7 @@ export const DOMAIN_FORWARD_STATISTICS_DIMENSION_VALUES = [
   'domain',
   'forward',
   'rule',
-] as const satisfies ReadonlyArray<DomainForwardStatisticsDimension>;
+] as const satisfies ReadonlyArray<DomainForwardStatisticsBreakdown>;
 
 export const DOMAIN_FORWARD_STATISTICS_GRANULARITY = {
   HOUR: "hour",
