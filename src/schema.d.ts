@@ -17275,7 +17275,7 @@ export interface components {
          * EventObjectType
          * @enum {string}
          */
-        EventObjectType: "DOMAIN" | "CONTACT" | "HOST" | "ACCOUNT" | "VANITY_NS_SET" | "RAW" | "UNKNOWN";
+        EventObjectType: "DOMAIN" | "CONTACT" | "HOST" | "ACCOUNT" | "VANITY_NS_SET" | "RAW" | "DRAINED" | "UNKNOWN";
         /** EventResponse */
         EventResponse: {
             /**

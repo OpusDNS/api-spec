@@ -1319,6 +1319,7 @@ export const EVENT_OBJECT_TYPE = {
   ACCOUNT: "ACCOUNT",
   VANITY_NS_SET: "VANITY_NS_SET",
   RAW: "RAW",
+  DRAINED: "DRAINED",
   UNKNOWN: "UNKNOWN",
 } as const satisfies Record<string, EventObjectType>;
 
@@ -1329,6 +1330,7 @@ export const EVENT_OBJECT_TYPE_VALUES = [
   'ACCOUNT',
   'VANITY_NS_SET',
   'RAW',
+  'DRAINED',
   'UNKNOWN',
 ] as const satisfies ReadonlyArray<EventObjectType>;
 
