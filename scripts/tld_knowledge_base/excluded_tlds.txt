@@ -6,4 +6,7 @@ ua # WIP
 ee
 is # WIP
 cl # WIP
-za # WIP
+co.za # WIP
+net.za # WIP
+org.za # WIP
+web.za # WIP
