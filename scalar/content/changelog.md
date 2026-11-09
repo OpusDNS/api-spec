@@ -12,6 +12,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
   Choose a bucket width from `hour` to `month` with `granularity`, filter by `hostname`, `domain`, `protocol` and `exclude_bots`, and group the redirects with `breakdown` by browser, platform, country, status code, user agent, referrer, URL, FQDN, domain, forward or rule.
   `breakdown=url` lists the top 5 values of host and path per domain and day, each with at least 3 hits that day, kept for 13 months, and is approximate over more than one day.
   It needs a `domain` filter and cannot be combined with `hostname` or `protocol` (`422`); there is no organization-wide list of URLs.
+  The buckets carry the same fields as those of the DNS and domain statistics (`period_start`, `period_end`, `covered_from`, `covered_to`, `partial`), with `null` counts where there is no data, and `breakdown` is a list of rows with a `key`, like that of the domain statistics.
   Unique visits and `invoked_forwards` are estimates; `invoked_forwards` counts distinct forwards, not the domain and path pairs the metrics route counted.
   The `/v1/domain-forwards/metrics` routes stay available and will be deprecated later.
   See [Statistics](/products/dns/domain-forwarding/metrics#statistics) and [URL breakdown](/products/dns/domain-forwarding/metrics#url-breakdown).

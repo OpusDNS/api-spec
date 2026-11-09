@@ -23,8 +23,14 @@ One call returns three things for a window you choose:
   forwards that were invoked and configured.
 - `buckets`: one entry per time bucket, oldest first, with the redirects and
   unique visits of each. A bucket without traffic is present and holds `0`.
+  A bucket without data holds `null` (see [Partial buckets and buckets without data](#partial-buckets-and-buckets-without-data)).
 - `breakdown`: a top list of the redirects grouped by one dimension. It is
-  `null` unless you ask for it with `breakdown`.
+  an empty list unless you ask for it with `breakdown`.
+
+The buckets have the same fields, with the same meaning, as those of the
+[DNS](/api-reference#tag/dns/GET/v1/dns/statistics) and
+[domain](/api-reference#tag/domain/GET/v1/domains/statistics) statistics:
+`period_start`, `period_end`, `covered_from`, `covered_to` and `partial`.
 
 ```bash
 curl --get "$OPUSDNS_API_BASE/v1/domain-forwards/statistics" \
@@ -49,28 +55,41 @@ curl --get "$OPUSDNS_API_BASE/v1/domain-forwards/statistics" \
   },
   "buckets": [
     {
-      "period_start": "2026-10-18T00:00:00Z",
-      "period_end": "2026-10-19T00:00:00Z",
+      "period_start": "2026-10-18",
+      "period_end": "2026-10-18",
+      "start": "2026-10-18T00:00:00Z",
+      "end": "2026-10-19T00:00:00Z",
+      "covered_from": "2026-10-18",
+      "covered_to": "2026-10-18",
       "total_visits": 15100,
       "unique_visits": 6020,
       "partial": false
     },
     {
-      "period_start": "2026-10-19T00:00:00Z",
-      "period_end": "2026-10-20T00:00:00Z",
+      "period_start": "2026-10-19",
+      "period_end": "2026-10-19",
+      "start": "2026-10-19T00:00:00Z",
+      "end": "2026-10-20T00:00:00Z",
+      "covered_from": "2026-10-19",
+      "covered_to": "2026-10-19",
       "total_visits": 21400,
       "unique_visits": 7310,
       "partial": false
     },
     {
-      "period_start": "2026-10-20T00:00:00Z",
-      "period_end": "2026-10-21T00:00:00Z",
+      "period_start": "2026-10-20",
+      "period_end": "2026-10-20",
+      "start": "2026-10-20T00:00:00Z",
+      "end": "2026-10-21T00:00:00Z",
+      "covered_from": "2026-10-20",
+      "covered_to": "2026-10-20",
       "total_visits": 15800,
       "unique_visits": 6480,
       "partial": true
     }
   ],
-  "breakdown": null,
+  "breakdown": [],
+  "breakdown_approximate": false,
   "data_available_from": "2026-09-01T00:00:00Z",
   "data_available_to": "2026-10-20T13:41:07Z"
 }
@@ -78,6 +97,9 @@ curl --get "$OPUSDNS_API_BASE/v1/domain-forwards/statistics" \
 
 The response gives the window twice: as days (`start_date` and `end_date`, both inclusive)
 and as instants (`start` inclusive, `end` exclusive).
+Each bucket does the same: `period_start` and `period_end` are its first and last day, both inclusive,
+and `start` and `end` its instants, `end` exclusive.
+An hourly bucket reports the day it falls in as both `period_start` and `period_end`; `start` and `end` tell the hours apart.
 
 ### Parameters
 
@@ -93,8 +115,8 @@ and as instants (`start` inclusive, `end` exclusive).
 | `protocol` | Count only redirects requested over `http` or `https`. |
 | `exclude_bots` | Set to `true` to leave out bots: redirects whose platform is `Bot` or `Unknown`, and crawlers named by their user agent (Googlebot, Applebot, Meta's crawlers and others), whatever platform they report. Redirects stored before November 2026 are left out by platform only. |
 | `include_sub_organizations` | Set to `true` to count the forwards of your sub-organizations too. By default only your own organization is counted. |
-| `breakdown` | Adds a top list grouped by `browser`, `platform`, `country`, `status_code`, `user_agent`, `referrer`, `url`, `fqdn`, `domain`, `forward` or `rule`. `url` needs a `domain` filter and cannot be combined with `hostname` or `protocol` (see [URL breakdown](#url-breakdown)). |
-| `breakdown_limit` | How many items the top list holds, from 1 to 100. Default `10`. |
+| `breakdown` | Adds a top list grouped by `browser`, `platform`, `country`, `status_code`, `user_agent`, `referrer`, `url`, `fqdn`, `domain`, `forward` or `rule`. `none` (default) adds none. `url` needs a `domain` filter and cannot be combined with `hostname` or `protocol` (see [URL breakdown](#url-breakdown)). |
+| `breakdown_limit` | How many rows the top list holds, from 1 to 100. Default `10`. |
 
 Give exactly one pair: `start_date` and `end_date`, or `start` and `end`.
 The dates work with every granularity and cover whole days:
@@ -178,7 +200,11 @@ The response also carries `totals`, 24 `buckets` and the other fields, as above.
 For a window of instants, `start_date` is the day `start` falls in and `end_date` the day of the window's last instant.
 An `end` at midnight does not reach into the next day.
 
-### Partial buckets
+### Partial buckets and buckets without data
+
+A bucket counts the days it shares with your window and with the data,
+from `data_available_from` to `data_available_to`.
+`covered_from` and `covered_to` name those days.
 
 A bucket with `partial` set to `true` does not cover its whole span. This happens when:
 
@@ -187,8 +213,13 @@ A bucket with `partial` set to `true` does not cover its whole span. This happen
 - the bucket reaches `data_available_to`, the latest redirect OpusDNS has
   counted, so it is still filling.
 
-A bucket without any data is partial too.
 Do not read a partial bucket as a rise or fall against its neighbours.
+
+A bucket that shares no time with the data has no counts:
+`total_visits`, `unique_visits`, `covered_from` and `covered_to` are `null`, and `partial` is `true`.
+That means no data, not zero redirects.
+When no bucket has data, the counts in `totals` are `null` too.
+`configured_forwards` is always a number: it is the current configuration, whatever the window.
 
 `data_available_from` is the earliest instant the data holds.
 A window that reaches further back is empty before it, which is not the same as zero redirects.
@@ -197,7 +228,9 @@ Both fields are `null` when there is no data.
 ### Breakdowns
 
 Set `breakdown` to add a top list.
-The list holds at most `breakdown_limit` items, most redirects first:
+`breakdown` is a list of rows, most redirects first, with at most `breakdown_limit` rows, like the
+breakdown of the domain statistics.
+Without a breakdown, the list is empty:
 
 ```bash
 curl --get "$OPUSDNS_API_BASE/v1/domain-forwards/statistics" \
@@ -210,21 +243,18 @@ curl --get "$OPUSDNS_API_BASE/v1/domain-forwards/statistics" \
 
 ```json
 {
-  "breakdown": {
-    "dimension": "country",
-    "approximate": false,
-    "items": [
-      { "value": "DE", "total_visits": 30100, "unique_visits": 8200 },
-      { "value": "US", "total_visits": 9800, "unique_visits": 3100 },
-      { "value": "", "total_visits": 410, "unique_visits": 130 }
-    ]
-  }
+  "breakdown": [
+    { "key": "DE", "total_visits": 30100, "unique_visits": 8200 },
+    { "key": "US", "total_visits": 9800, "unique_visits": 3100 },
+    { "key": "", "total_visits": 410, "unique_visits": 130 }
+  ],
+  "breakdown_approximate": false
 }
 ```
 
 The response also carries `start_date`, `end_date`, `start`, `end`, `granularity`, `totals` and `buckets`, as above.
 
-| Dimension | `value` |
+| Dimension | `key` |
 | --- | --- |
 | `browser` | Browser name, e.g. `Chrome`, `Safari`, `Firefox`. |
 | `platform` | Operating system or device, e.g. `Windows`, `MacOS`, `iOS`, `Bot`. |
@@ -246,9 +276,9 @@ For `user_agent`, `referrer`, `fqdn`, `domain`, `forward` and `rule`, a
 window of more than one day is answered from per-day top lists.
 The counts are sums of those lists, and a value that never made a day's top
 list is missing or undercounted.
-`approximate` is `true` in that case.
+`breakdown_approximate` is `true` in that case.
 It is always `false` for `browser`, `platform`, `country` and `status_code`,
-and for any query filtered by `hostname` or `protocol`.
+for any query filtered by `hostname` or `protocol`, and without a breakdown.
 `url` is always built from daily top lists (see below), so it is approximate as soon as those lists are read.
 
 ### URL breakdown
@@ -335,14 +365,14 @@ Statistics takes an absolute window: `start_date` and `end_date`, or, with `gran
 | --- | --- | --- |
 | `/metrics` | none beyond the window | `totals` |
 | `/metrics/time-series` | `granularity` | `buckets` |
-| `/metrics/browser` | `breakdown=browser` | `breakdown.items` |
-| `/metrics/platform` | `breakdown=platform` | `breakdown.items` |
-| `/metrics/user-agent` | `breakdown=user_agent` | `breakdown.items` |
-| `/metrics/referrer` | `breakdown=referrer` | `breakdown.items` |
-| `/metrics/geo` | `breakdown=country` | `breakdown.items` |
-| `/metrics/status-code` | `breakdown=status_code` | `breakdown.items` |
-| `/metrics/visits-by-key?grouping=…` | `breakdown=fqdn`, `domain`, `forward` or `rule` | `breakdown.items` |
-| `/metrics/visits-by-key?grouping=url` | `breakdown=url&domain=...`, with the [top 5 limitation](#url-breakdown) | `breakdown.items` |
+| `/metrics/browser` | `breakdown=browser` | `breakdown` |
+| `/metrics/platform` | `breakdown=platform` | `breakdown` |
+| `/metrics/user-agent` | `breakdown=user_agent` | `breakdown` |
+| `/metrics/referrer` | `breakdown=referrer` | `breakdown` |
+| `/metrics/geo` | `breakdown=country` | `breakdown` |
+| `/metrics/status-code` | `breakdown=status_code` | `breakdown` |
+| `/metrics/visits-by-key?grouping=…` | `breakdown=fqdn`, `domain`, `forward` or `rule` | `breakdown` |
+| `/metrics/visits-by-key?grouping=url` | `breakdown=url&domain=...`, with the [top 5 limitation](#url-breakdown) | `breakdown` |
 
 The filters carry over under the same names: `hostname`, `domain`, `protocol` and `exclude_bots`.
 `time_range` becomes a window:
@@ -368,8 +398,9 @@ Three things differ:
 - **Response shape.** The metrics routes answered `results`, a list of
   entries with `key`, `total` and `unique`, and `timestamp` and `total` for the
   time series.
-  Statistics answers `buckets` with `period_start`, `period_end`, `total_visits`
-  and `unique_visits`, and `breakdown.items` with `value`, `total_visits` and
+  Statistics answers `buckets` with `period_start` and `period_end` (days),
+  `start` and `end` (instants), `covered_from`, `covered_to`, `total_visits`
+  and `unique_visits`, and `breakdown` as a list of rows with `key`, `total_visits` and
   `unique_visits`.
   The referrer, geo and status code routes had no unique count.
   `/metrics` answered `total_visits`, `unique_visits`, `invoked_forwards` and
