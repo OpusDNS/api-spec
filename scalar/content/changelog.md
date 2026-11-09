@@ -7,15 +7,13 @@ Track notable updates to the OpusDNS API and developer documentation here.
 ### 9 November 2026
 
 - Added **domain forward statistics**:
-  [`GET /v1/domain-forwards/statistics`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics) returns the redirects your domain forwards served in a window, as totals, a series of time buckets and an optional top list.
-  The window is `start_date` to `end_date`, both days inclusive; with `granularity=hour`, `start` and `end` may replace them for a rolling window such as the last 24 hours.
-  Choose a bucket width from `hour` to `month` with `granularity`, filter by `hostname`, `domain`, `protocol` and `exclude_bots`, and group the redirects with `breakdown` by browser, platform, country, status code, user agent, referrer, URL, FQDN, domain, forward or rule.
-  `breakdown=url` lists the top 5 values of host and path per domain and day, each with at least 3 hits that day, kept for 13 months, and is approximate over more than one day.
-  It needs a `domain` filter and cannot be combined with `hostname` or `protocol` (`422`); there is no organization-wide list of URLs.
-  The buckets carry the same fields as those of the DNS and domain statistics (`period_start`, `period_end`, `covered_from`, `covered_to`, `partial`), with `null` counts where there is no data, and `breakdown` is a list of rows with a `key`, like that of the domain statistics.
-  Unique visits and `invoked_forwards` are estimates; `invoked_forwards` counts distinct forwards, not the domain and path pairs the metrics route counted.
-  The `/v1/domain-forwards/metrics` routes stay available and will be deprecated later.
-  See [Statistics](/products/dns/domain-forwarding/metrics#statistics) and [URL breakdown](/products/dns/domain-forwarding/metrics#url-breakdown).
+  [`GET /v1/domain-forwards/statistics`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics) returns the redirects your domain forwards served in a window: totals, a time series and an optional top list.
+  Choose the window with `start_date` and `end_date`, or, for hourly buckets, with `start` and `end`, such as the last 24 hours.
+  Buckets are hours, days, weeks or months.
+  Filter by `hostname`, `domain`, `protocol` and `exclude_bots`, and get a top list by browser, platform, country, status code, user agent, referrer, URL, FQDN, domain, forward or rule.
+  A top list of URLs needs a `domain` filter and is built from the daily top 5 paths of that domain.
+  It replaces the `/v1/domain-forwards/metrics` routes, which stay available for now and will be deprecated.
+  See [Statistics](/products/dns/domain-forwarding/metrics#statistics), including how to migrate from the metrics routes.
 
 - Added **domain forward movers**:
   [`GET /v1/domain-forwards/statistics/movers`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics/movers) lists the domains whose redirects dropped or rose most in the last 7 or 30 days that are over, against the same number of days before them.
