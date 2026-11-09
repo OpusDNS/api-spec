@@ -270,7 +270,7 @@ This product includes GeoLite2 data created by MaxMind, available from
 - `user_agent`, `referrer`, `fqdn`, `domain`, `forward` and `rule` have very many distinct values.
   For them OpusDNS keeps daily top lists, and days that are over are usually read from those lists.
   A value that did not make a day's list is missing for that day.
-  The current day, and every query with a `domain` filter, are counted from all requests.
+  The current day, and queries with a `hostname`, `domain` or `protocol` filter, are counted from all requests.
 - `url` is built from daily top 5 lists (see [URL breakdown](#url-breakdown)).
   `breakdown_approximate` is `true` as soon as the window includes a day that is over.
 
