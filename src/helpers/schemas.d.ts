@@ -203,6 +203,7 @@ export type DnssecStatus = components['schemas']['DnssecStatus'];
 export type DomainAmsAccount = components['schemas']['DomainAmsAccountResponse'];
 export type DomainAttributeKey = components['schemas']['DomainAttributeKey'];
 export type DomainAuthCode = components['schemas']['DomainAuthCodeResponse'];
+export type DomainAuthinfo2 = components['schemas']['DomainAuthinfo2Response'];
 export type DomainAvailability = components['schemas']['DomainAvailability'];
 export type DomainAvailabilityError = components['schemas']['DomainAvailabilityError'];
 export type DomainAvailabilityMeta = components['schemas']['DomainAvailabilityMeta'];

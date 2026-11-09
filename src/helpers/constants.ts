@@ -404,6 +404,7 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE = {
   RAS_DOMAIN_LIFECYCLE: "ras_domain_lifecycle",
   AMS_DOMAIN_LIFECYCLE: "ams_domain_lifecycle",
   AMS_MAINTENANCE_FEE: "ams_maintenance_fee",
+  DE_AUTHINFO2: "de_authinfo2",
 } as const satisfies Record<string, BillingTransactionProductType>;
 
 export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
@@ -418,6 +419,7 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
   'ras_domain_lifecycle',
   'ams_domain_lifecycle',
   'ams_maintenance_fee',
+  'de_authinfo2',
 ] as const satisfies ReadonlyArray<BillingTransactionProductType>;
 
 export const BILLING_TRANSACTION_SORT_FIELD = {

@@ -155,6 +155,7 @@ import type {
   DnsZoneVanitySetUpdateRes,
   DomainAmsAccount,
   DomainAuthCode,
+  DomainAuthinfo2,
   DomainAvailability,
   DomainAvailabilityError,
   DomainAvailabilityMeta,
@@ -2588,6 +2589,14 @@ export const KEYS_DOMAIN_AUTH_CODE = [
   KEY_DOMAIN_AUTH_CODE_NAME,
   KEY_DOMAIN_AUTH_CODE_RECIPIENTS,
 ] as const satisfies (keyof DomainAuthCode)[];
+
+export const KEY_DOMAIN_AUTHINFO2_NAME = 'name' satisfies keyof DomainAuthinfo2;
+export const KEY_DOMAIN_AUTHINFO2_SUCCESS = 'success' satisfies keyof DomainAuthinfo2;
+
+export const KEYS_DOMAIN_AUTHINFO2 = [
+  KEY_DOMAIN_AUTHINFO2_NAME,
+  KEY_DOMAIN_AUTHINFO2_SUCCESS,
+] as const satisfies (keyof DomainAuthinfo2)[];
 
 export const KEY_DOMAIN_AVAILABILITY_DOMAIN = 'domain' satisfies keyof DomainAvailability;
 export const KEY_DOMAIN_AVAILABILITY_ERROR = 'error' satisfies keyof DomainAvailability;

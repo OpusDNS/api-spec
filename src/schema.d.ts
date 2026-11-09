@@ -1662,6 +1662,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/domains/tld-specific/de/{domain_reference}/authinfo2": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create an AuthInfo2 for a DENIC domain */
+        post: operations["create_authinfo2_v1_domains_tld_specific_de__domain_reference__authinfo2_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/domains/tld-specific/de/{domain_reference}/transit": {
         parameters: {
             query?: never;
@@ -4364,7 +4381,7 @@ export interface components {
          * BillingTransactionProductType
          * @enum {string}
          */
-        BillingTransactionProductType: "domain" | "zones" | "email_forward" | "domain_forward" | "account_wallet" | "vanity_nameserver" | "whitelabel_branding" | "whitelabel_branding_plus" | "ras_domain_lifecycle" | "ams_domain_lifecycle" | "ams_maintenance_fee";
+        BillingTransactionProductType: "domain" | "zones" | "email_forward" | "domain_forward" | "account_wallet" | "vanity_nameserver" | "whitelabel_branding" | "whitelabel_branding_plus" | "ras_domain_lifecycle" | "ams_domain_lifecycle" | "ams_maintenance_fee" | "de_authinfo2";
         /** BillingTransactionResponse */
         BillingTransactionResponse: {
             /** @description The action performed in the transaction */
@@ -4997,6 +5014,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "create_attribute_set_v1_contacts_attribute_sets_post";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["DomainAuthinfo2Response"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "create_authinfo2_v1_domains_tld_specific_de__domain_reference__authinfo2_post";
             /** @constant */
             status: "ok";
             /**
@@ -13343,6 +13384,19 @@ export interface components {
              * @description The addresses the registry sent the auth code to, when it reports them
              */
             recipients?: string[] | null;
+        };
+        /** DomainAuthinfo2Response */
+        DomainAuthinfo2Response: {
+            /**
+             * Name
+             * @description The domain name
+             */
+            name: string;
+            /**
+             * Success
+             * @description Whether the authinfo2 creation was successful
+             */
+            success: boolean;
         };
         /** DomainAvailability */
         DomainAvailability: {
@@ -33121,6 +33175,61 @@ export interface operations {
                      *       "type": "domain-transfer"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_NOT_FOUND",
+                     *       "detail": "Domain not found",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_authinfo2_v1_domains_tld_specific_de__domain_reference__authinfo2_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                domain_reference: TypeId<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainAuthinfo2Response"];
                 };
             };
             /** @description Not Found */

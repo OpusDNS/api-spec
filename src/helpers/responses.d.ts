@@ -25,6 +25,7 @@ import type {
   DnsZoneVanitySetUpdateRes,
   Domain,
   DomainAuthCode,
+  DomainAuthinfo2,
   DomainAvailabilityList,
   DomainCheck,
   DomainDnssecData,
@@ -1472,6 +1473,12 @@ export type POST_DomainsTldSpecificCzByDomainReferenceAuthCodeRequest_Response_2
 export type POST_DomainsTldSpecificCzByDomainReferenceAuthCodeRequest_Response_400 = Problem;
 export type POST_DomainsTldSpecificCzByDomainReferenceAuthCodeRequest_Response_404 = Problem;
 export type POST_DomainsTldSpecificCzByDomainReferenceAuthCodeRequest_Response_422 = HTTPValidationError;
+
+export type POST_DomainsTldSpecificDeByDomainReferenceAuthinfo2_Response = POST_DomainsTldSpecificDeByDomainReferenceAuthinfo2_Response_200 | POST_DomainsTldSpecificDeByDomainReferenceAuthinfo2_Response_404 | POST_DomainsTldSpecificDeByDomainReferenceAuthinfo2_Response_422;
+
+export type POST_DomainsTldSpecificDeByDomainReferenceAuthinfo2_Response_200 = DomainAuthinfo2;
+export type POST_DomainsTldSpecificDeByDomainReferenceAuthinfo2_Response_404 = Problem;
+export type POST_DomainsTldSpecificDeByDomainReferenceAuthinfo2_Response_422 = HTTPValidationError;
 
 export type POST_DomainsTldSpecificDeByDomainReferenceTransit_Response = POST_DomainsTldSpecificDeByDomainReferenceTransit_Response_200 | POST_DomainsTldSpecificDeByDomainReferenceTransit_Response_404 | POST_DomainsTldSpecificDeByDomainReferenceTransit_Response_422;
 

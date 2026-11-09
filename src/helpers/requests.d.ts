@@ -728,6 +728,11 @@ export type POST_DomainsTldSpecificCzByDomainReferenceAuthCodeRequest_Request = 
 };
 export type POST_DomainsTldSpecificCzByDomainReferenceAuthCodeRequest_Request_Path = POST_DomainsTldSpecificCzByDomainReferenceAuthCodeRequest_Request['parameters']['path'];
 
+export type POST_DomainsTldSpecificDeByDomainReferenceAuthinfo2_Request = {
+  parameters: operations['create_authinfo2_v1_domains_tld_specific_de__domain_reference__authinfo2_post']['parameters'];
+};
+export type POST_DomainsTldSpecificDeByDomainReferenceAuthinfo2_Request_Path = POST_DomainsTldSpecificDeByDomainReferenceAuthinfo2_Request['parameters']['path'];
+
 export type POST_DomainsTldSpecificDeByDomainReferenceTransit_Request = {
   parameters: operations['transit_domain_v1_domains_tld_specific_de__domain_reference__transit_post']['parameters'];
   requestBody: DomainTransitRequest;
