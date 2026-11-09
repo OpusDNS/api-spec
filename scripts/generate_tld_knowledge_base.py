@@ -183,6 +183,7 @@ def load_specs(
 
     specs: list[tuple[Path, dict]] = []
     skipped_manual = 0
+    skipped_customer = 0
     for path in paths:
         try:
             data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
@@ -195,6 +196,11 @@ def load_specs(
         if not include_manual and is_manual(config, _spec_label(path)):
             skipped_manual += 1
             continue
+        # A customer spec (`<tld>@<customer>` in tld-specifications) serves one reseller and
+        # shares its TLD and backend with the public spec, so it must not compete for the page.
+        if (data.get("spec_metadata") or {}).get("customer_spec_ref"):
+            skipped_customer += 1
+            continue
         slug = render.page_slug(data)
         if allowlist is not None and slug not in allowlist:
             continue
@@ -205,6 +211,8 @@ def load_specs(
             "use --include-manual to render them",
             file=sys.stderr,
         )
+    if skipped_customer:
+        print(f"skipped {skipped_customer} customer-specific spec(s)", file=sys.stderr)
     return specs
 
 
