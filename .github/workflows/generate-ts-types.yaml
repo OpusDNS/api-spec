@@ -79,7 +79,6 @@ jobs:
             git rebase origin/main
             npm version minor
             git push
-            npm publish --access public
             echo "changed=true" >> "$GITHUB_OUTPUT"
             # The pushed SHA, not github.sha, which is the pre-run ref.
             echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
@@ -100,3 +99,24 @@ jobs:
           repository: OpusDNS/opusdns-mcp
           event-type: openapi_spec_update
           client-payload: '{"ref": "${{ steps.commit.outputs.sha }}"}'
+
+      # Runs on every run, not only when the spec changed: a publish that failed
+      # after the push (npm or the Sigstore transparency log erroring) left the
+      # version on main but not on npm, and a rerun finds no spec change.
+      - name: Publish to npm
+        run: |
+          version=$(node -p "require('./package.json').version")
+          if [ "$(npm view "@opusdns/api@${version}" version 2>/dev/null)" = "${version}" ]; then
+            echo "@opusdns/api@${version} is already on npm."
+            exit 0
+          fi
+          for attempt in 1 2 3; do
+            if npm publish --access public; then
+              exit 0
+            fi
+            if [ "${attempt}" -lt 3 ]; then
+              echo "npm publish failed (attempt ${attempt}), retrying."
+              sleep $((attempt * 60))
+            fi
+          done
+          exit 1
