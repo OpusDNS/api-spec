@@ -29603,7 +29603,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-09-161403
+  version: 2026-11-09-162141
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -47951,8 +47951,8 @@ paths:
                   value:
                     code: ERROR_ORDER_ITEM_NOT_FOUND
                     detail: Order item not found
-                    item_id: order_item_01m70hd2tse56sdbd2dftvp2c7
-                    order_id: order_01m70hd2trfzkr6s2eyz31ewf5
+                    item_id: order_item_01m70hv2mpegyszjr0ymnzd7mv
+                    order_id: order_01m70hv2mnfm29zcxqsz1csarx
                     status: 404
                     title: Order Item Not Found
                     type: order-item-not-found
@@ -47960,7 +47960,7 @@ paths:
                   value:
                     code: ERROR_ORDER_NOT_FOUND
                     detail: Order not found
-                    order_id: order_01m70hd2tqfyx84vtp1w53231a
+                    order_id: order_01m70hv2mmfrjsbt4hej4gxhzj
                     status: 404
                     title: Order Not Found
                     type: order-not-found
