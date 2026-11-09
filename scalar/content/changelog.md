@@ -4,6 +4,21 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 9 November 2026
+
+- Added **domain forward statistics**:
+  [`GET /v1/domain-forwards/statistics`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics) returns the redirects your domain forwards served in a window: totals, a time series and an optional top list.
+  Choose the window with `start_date` and `end_date`, or, for hourly buckets, with `start` and `end`, such as the last 24 hours.
+  Buckets are hours, days, weeks or months.
+  Filter by `hostname`, `domain`, `protocol` and `exclude_bots`, and get a top list by browser, platform, country, status code, user agent, referrer, URL, FQDN, domain, forward or rule.
+  A top list of URLs needs a `domain` filter and is built from the daily top 5 paths of that domain.
+  It replaces the `/v1/domain-forwards/metrics` routes, which stay available for now and will be deprecated.
+  See [Statistics](/products/dns/domain-forwarding/metrics#statistics), including how to migrate from the metrics routes.
+
+- Added **domain forward movers**:
+  [`GET /v1/domain-forwards/statistics/movers`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics/movers) lists the domains whose redirects dropped or rose most in the last 7 or 30 days that are over, against the same number of days before them.
+  See [Movers](/products/dns/domain-forwarding/metrics#movers).
+
 ### 6 November 2026
 
 - Onboarded **[`.gr`](/tld-knowledge-base/cctlds/gr)** (Greece), with `.com.gr`, `.edu.gr`,
