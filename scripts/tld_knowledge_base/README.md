@@ -28,6 +28,10 @@ no longer produced, but `compiled_specifications/` is gitignored and nothing pru
 older checkout keeps serving stale flat files forever. They are ignored with a warning —
 delete them.
 
+Customer specs (`<tld>@<customer>` in tld-specifications, compiled with
+`spec_metadata.customer_spec_ref`) serve a single reseller and are skipped: they share the
+TLD and backend of the public spec, which is the one the page documents.
+
 ## Multi-backend TLDs
 
 A handful of TLDs are compiled under two registry backends, usually because a migration is

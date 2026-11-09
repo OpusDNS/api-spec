@@ -98,6 +98,7 @@ def _write_spec(
     provisioning_protocol: str = "EPP",
     backend: str = "example_backend",
     version: str = "1.0.0",
+    customer_spec_ref: str | None = None,
 ) -> Path:
     spec = {
         "tld_configuration": {
@@ -110,7 +111,11 @@ def _write_spec(
         }
     }
     spec["spec_metadata"] = {"tld": name, "backend": backend, "version": version}
-    target = input_dir / backend / name / f"{version}.yaml"
+    variant = name
+    if customer_spec_ref:
+        spec["spec_metadata"]["customer_spec_ref"] = customer_spec_ref
+        variant = f"{name}@{customer_spec_ref}"
+    target = input_dir / backend / variant / f"{version}.yaml"
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(yaml.safe_dump(spec), encoding="utf-8")
     return target
@@ -292,6 +297,13 @@ def test_multi_backend_tld_resolves_to_the_configured_backend(tmp_path: Path) ->
     _write_spec(tmp_path, "dual", backend="future")
     resolved = resolve_backends(_specs(tmp_path), {"dual": {"backend": "current"}})
     assert [spec_backend(spec, path) for path, spec in resolved] == ["current"]
+
+
+def test_customer_spec_does_not_compete_with_the_public_spec(tmp_path: Path) -> None:
+    _write_spec(tmp_path, "de", backend="denic")
+    _write_spec(tmp_path, "de", backend="denic", customer_spec_ref="reseller")
+    resolved = resolve_backends(_specs(tmp_path), {})
+    assert [path.parent.name for path, _spec in resolved] == ["de"]
 
 
 def test_multi_backend_tld_without_a_choice_fails(tmp_path: Path) -> None:
