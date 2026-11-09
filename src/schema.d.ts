@@ -18461,33 +18461,23 @@ export interface components {
              * @description Domain name (ASCII form)
              */
             domain: string;
-            /**
-             * Marketplace
-             * @description Marketplace the domain is bought on: `fruits`. More can be added.
-             * @example fruits
-             */
-            marketplace: string;
-            /**
-             * Stage
-             * @description Where the purchase stands: `processing`, `purchasing`, `awaiting_code`, `code_ready`, `completed`, `failed`, `canceled`. Treat a value you do not know as `processing`: stages can be added.
-             * @example processing
-             */
-            stage: string;
+            /** @description Marketplace the domain is bought on. More can be added. */
+            marketplace: components["schemas"]["MarketplaceName"];
+            /** @description Where the purchase stands. Treat a value you do not know as `processing`: stages can be added. */
+            stage: components["schemas"]["MarketplaceDomainPurchasePublicStage"];
         };
         /**
          * MarketplaceDomainPurchaseItemCreate
          * @description Buy a domain listed on a marketplace.
          */
         MarketplaceDomainPurchaseItemCreate: {
-            /** @description Currency of `expected_price` */
-            currency: components["schemas"]["Currency"];
             /**
              * Domain
              * @description Domain name to buy (Unicode or ASCII form)
              * @example example.com
              */
             domain: string;
-            /** @description The price the customer expects to pay, as returned by the marketplace search, as a decimal string with two decimals. The order is refused with a price-changed error when the current price differs. */
+            /** @description The price the customer expects to pay in the organization's billing currency, as returned by the marketplace search, as a decimal string with two decimals. The order is refused with a price-changed error when the current price differs. */
             expected_price: components["schemas"]["StrictMoneyDecimal"];
             /** @description Marketplace the domain is bought on */
             marketplace: components["schemas"]["MarketplaceName"];
@@ -18499,6 +18489,12 @@ export interface components {
              */
             type: "marketplace_domain_purchase";
         };
+        /**
+         * MarketplaceDomainPurchasePublicStage
+         * @description What an API caller sees of an item's progress.
+         * @enum {string}
+         */
+        MarketplaceDomainPurchasePublicStage: "processing" | "purchasing" | "awaiting_code" | "code_ready" | "completed" | "failed" | "canceled";
         /**
          * MarketplaceName
          * @description Marketplaces OpusDNS lists domains from.
@@ -19129,18 +19125,10 @@ export interface components {
             marketplace_domain_purchase?: components["schemas"]["MarketplaceDomainPurchaseDetail"] | null;
             /** @description Price of the item, a decimal string with two decimals */
             price: components["schemas"]["StrictMoneyDecimal"];
-            /**
-             * Status
-             * @description `pending`, `in_progress`, `completed`, `canceled`, `failed`. `pending` and `in_progress` are open, the others are final. Treat a value you do not know as open: statuses can be added.
-             * @example in_progress
-             */
-            status: string;
-            /**
-             * Type
-             * @description Item type: `marketplace_domain_purchase`
-             * @example marketplace_domain_purchase
-             */
-            type: string;
+            /** @description `pending` and `in_progress` are open, the others are final. Treat a value you do not know as open: statuses can be added. */
+            status: components["schemas"]["OrderStatus"];
+            /** @description Item type. More can be added. */
+            type: components["schemas"]["OrderItemType"];
         };
         /**
          * OrderItemType
@@ -19164,12 +19152,8 @@ export interface components {
              * @example order_01h45ytscbebyvny4gc8cr8ma2
              */
             order_id: TypeId<"order">;
-            /**
-             * Status
-             * @description `pending`, `in_progress`, `completed`, `canceled`, `failed`. `pending` and `in_progress` are open, the others are final. Treat a value you do not know as open: statuses can be added.
-             * @example in_progress
-             */
-            status: string;
+            /** @description `pending` and `in_progress` are open, the others are final. Treat a value you do not know as open: statuses can be added. */
+            status: components["schemas"]["OrderStatus"];
             /** @description Sum of the item prices, a decimal string with two decimals */
             total_price: components["schemas"]["StrictMoneyDecimal"];
             /**

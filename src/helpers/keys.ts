@@ -5156,14 +5156,12 @@ export const KEYS_MARKETPLACE_DOMAIN_PURCHASE_DETAIL = [
   KEY_MARKETPLACE_DOMAIN_PURCHASE_DETAIL_STAGE,
 ] as const satisfies (keyof MarketplaceDomainPurchaseDetail)[];
 
-export const KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_CURRENCY = 'currency' satisfies keyof MarketplaceDomainPurchaseItemCreate;
 export const KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_DOMAIN = 'domain' satisfies keyof MarketplaceDomainPurchaseItemCreate;
 export const KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_EXPECTED_PRICE = 'expected_price' satisfies keyof MarketplaceDomainPurchaseItemCreate;
 export const KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_MARKETPLACE = 'marketplace' satisfies keyof MarketplaceDomainPurchaseItemCreate;
 export const KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_TYPE = 'type' satisfies keyof MarketplaceDomainPurchaseItemCreate;
 
 export const KEYS_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE = [
-  KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_CURRENCY,
   KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_DOMAIN,
   KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_EXPECTED_PRICE,
   KEY_MARKETPLACE_DOMAIN_PURCHASE_ITEM_CREATE_MARKETPLACE,

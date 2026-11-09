@@ -20806,20 +20806,12 @@ components:
           title: Domain
           type: string
         marketplace:
-          description: 'Marketplace the domain is bought on: `fruits`. More can be
-            added.'
-          examples:
-          - fruits
-          title: Marketplace
-          type: string
+          $ref: '#/components/schemas/MarketplaceName'
+          description: Marketplace the domain is bought on. More can be added.
         stage:
-          description: 'Where the purchase stands: `processing`, `purchasing`, `awaiting_code`,
-            `code_ready`, `completed`, `failed`, `canceled`. Treat a value you do
-            not know as `processing`: stages can be added.'
-          examples:
-          - processing
-          title: Stage
-          type: string
+          $ref: '#/components/schemas/MarketplaceDomainPurchasePublicStage'
+          description: 'Where the purchase stands. Treat a value you do not know as
+            `processing`: stages can be added.'
       required:
       - domain
       - marketplace
@@ -20829,9 +20821,6 @@ components:
     MarketplaceDomainPurchaseItemCreate:
       description: Buy a domain listed on a marketplace.
       properties:
-        currency:
-          $ref: '#/components/schemas/Currency'
-          description: Currency of `expected_price`
         domain:
           description: Domain name to buy (Unicode or ASCII form)
           examples:
@@ -20840,9 +20829,10 @@ components:
           type: string
         expected_price:
           $ref: '#/components/schemas/StrictMoneyDecimal'
-          description: The price the customer expects to pay, as returned by the marketplace
-            search, as a decimal string with two decimals. The order is refused with
-            a price-changed error when the current price differs.
+          description: The price the customer expects to pay in the organization's
+            billing currency, as returned by the marketplace search, as a decimal
+            string with two decimals. The order is refused with a price-changed error
+            when the current price differs.
           gt: 0
         marketplace:
           $ref: '#/components/schemas/MarketplaceName'
@@ -20857,9 +20847,20 @@ components:
       - domain
       - marketplace
       - expected_price
-      - currency
       title: MarketplaceDomainPurchaseItemCreate
       type: object
+    MarketplaceDomainPurchasePublicStage:
+      description: What an API caller sees of an item's progress.
+      enum:
+      - processing
+      - purchasing
+      - awaiting_code
+      - code_ready
+      - completed
+      - failed
+      - canceled
+      title: MarketplaceDomainPurchasePublicStage
+      type: string
     MarketplaceName:
       description: Marketplaces OpusDNS lists domains from.
       enum:
@@ -21804,19 +21805,12 @@ components:
           $ref: '#/components/schemas/StrictMoneyDecimal'
           description: Price of the item, a decimal string with two decimals
         status:
-          description: '`pending`, `in_progress`, `completed`, `canceled`, `failed`.
-            `pending` and `in_progress` are open, the others are final. Treat a value
-            you do not know as open: statuses can be added.'
-          examples:
-          - in_progress
-          title: Status
-          type: string
+          $ref: '#/components/schemas/OrderStatus'
+          description: '`pending` and `in_progress` are open, the others are final.
+            Treat a value you do not know as open: statuses can be added.'
         type:
-          description: 'Item type: `marketplace_domain_purchase`'
-          examples:
-          - marketplace_domain_purchase
-          title: Type
-          type: string
+          $ref: '#/components/schemas/OrderItemType'
+          description: Item type. More can be added.
       required:
       - item_id
       - type
@@ -21853,13 +21847,9 @@ components:
           type: string
           x-typeid-prefix: order
         status:
-          description: '`pending`, `in_progress`, `completed`, `canceled`, `failed`.
-            `pending` and `in_progress` are open, the others are final. Treat a value
-            you do not know as open: statuses can be added.'
-          examples:
-          - in_progress
-          title: Status
-          type: string
+          $ref: '#/components/schemas/OrderStatus'
+          description: '`pending` and `in_progress` are open, the others are final.
+            Treat a value you do not know as open: statuses can be added.'
         total_price:
           $ref: '#/components/schemas/StrictMoneyDecimal'
           description: Sum of the item prices, a decimal string with two decimals
@@ -29486,7 +29476,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-09-083106
+  version: 2026-11-09-120121
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -47356,11 +47346,10 @@ paths:
                     type: order-open-limit-reached
                 Order Price Changed:
                   value:
-                    actual_currency: EUR
                     actual_price: '12.50'
                     code: ERROR_ORDER_PRICE_CHANGED
+                    currency: EUR
                     detail: The price changed since it was quoted
-                    expected_currency: EUR
                     expected_price: '12.10'
                     status: 409
                     title: Order Price Changed
@@ -52994,18 +52983,20 @@ tags:
     \n```json\n{\n  \"idempotency_key\": \"checkout-2024-0001\",\n  \"items\": [\n\
     \    {\n      \"type\": \"marketplace_domain_purchase\",\n      \"domain\": \"\
     example.com\",\n      \"marketplace\": \"fruits\",\n      \"expected_price\":\
-    \ \"12.10\",\n      \"currency\": \"EUR\"\n    }\n  ]\n}\n```\n\n- `idempotency_key`\
-    \ is required: 1-255 characters from `A-Z a-z 0-9 . _ : -`, unique per organization.\n\
-    - `domain` may be given in Unicode or ASCII form; the order reports the ASCII\
-    \ form.\n- `expected_price` and `currency` must be the price domain search shows\
-    \ for this domain. `expected_price` is a decimal string with exactly two decimals\
-    \ (`\"12.10\"`; `\"12.1\"`, `\"12\"` and JSON numbers are refused with `422`).\
-    \ If the current price differs, the order is refused with `ERROR_ORDER_PRICE_CHANGED`,\
-    \ which carries both prices.\n- `type` defaults to `marketplace_domain_purchase`\
-    \ today. It will become required once more item types exist, so send it now.\n\
-    \nA new order answers `202 Accepted`:\n\n```json\n{\n  \"order_id\": \"order_01h2xcejqtf2nbrexx3vqjhp41\"\
-    ,\n  \"status\": \"in_progress\",\n  \"total_price\": \"12.10\",\n  \"currency\"\
-    : \"EUR\",\n  \"items\": [\n    {\n      \"item_id\": \"order_item_01h2xcejqtf2nbrexx3vqjhp42\"\
+    \ \"12.10\"\n    }\n  ]\n}\n```\n\n- `idempotency_key` is required: 1-255 characters\
+    \ from `A-Z a-z 0-9 . _ : -`, unique per organization.\n- `domain` may be given\
+    \ in Unicode or ASCII form; the order reports the ASCII form.\n- `expected_price`\
+    \ must be the price domain search shows for this domain (`price.amount` of its\
+    \ marketplace item). Orders are priced in your organization's billing currency,\
+    \ the currency domain search shows; the order's `currency` reports it. `expected_price`\
+    \ is a decimal string with exactly two decimals (`\"12.10\"`; `\"12.1\"`, `\"\
+    12\"` and JSON numbers are refused with `422`). If the current price differs,\
+    \ the order is refused with `ERROR_ORDER_PRICE_CHANGED`, which carries both prices.\n\
+    - `type` defaults to `marketplace_domain_purchase` today. It will become required\
+    \ once more item types exist, so send it now.\n\nA new order answers `202 Accepted`:\n\
+    \n```json\n{\n  \"order_id\": \"order_01h2xcejqtf2nbrexx3vqjhp41\",\n  \"status\"\
+    : \"in_progress\",\n  \"total_price\": \"12.10\",\n  \"currency\": \"EUR\",\n\
+    \  \"items\": [\n    {\n      \"item_id\": \"order_item_01h2xcejqtf2nbrexx3vqjhp42\"\
     ,\n      \"type\": \"marketplace_domain_purchase\",\n      \"status\": \"in_progress\"\
     ,\n      \"price\": \"12.10\",\n      \"currency\": \"EUR\",\n      \"marketplace_domain_purchase\"\
     : {\n        \"domain\": \"example.com\",\n        \"marketplace\": \"fruits\"\
@@ -53028,41 +53019,41 @@ tags:
     \ Prices are decimal strings with two decimals (`\"12.10\"`). Each item also has\
     \ a `type` and an object named after that type with its own fields. For `marketplace_domain_purchase`\
     \ that is `marketplace_domain_purchase` with `domain`, `marketplace` and `stage`.\
-    \ Create requests send `expected_price` and `currency` the same way.\n\nOne order\
-    \ that cannot be shown (its stored data is invalid) never fails the list: the\
-    \ list leaves that order out and returns the others. Fetching that order directly\
-    \ answers `500` `ERROR_ORDER_UNREADABLE` with a generic message; contact support\
-    \ with the order ID. Because such an order is left out after the page is chosen,\
-    \ a page can hold fewer entries than the page size, and the pagination totals\
-    \ can still count it. Use `has_next_page` (not the entry count or the totals)\
-    \ to decide whether to fetch the next page.\n\n### Statuses and stages\n\n`status`\
-    \ is a string: today one of `pending`, `in_progress`, `completed`, `canceled`\
-    \ or `failed`. `pending` and `in_progress` are open; the others are final. Treat\
-    \ a value you do not know as open, so your client keeps working when statuses\
-    \ are added. The same goes for `type`, `stage` and `marketplace` (today `fruits`):\
-    \ they are strings that can gain values. `currency` is `EUR` or `USD`.\n\nEach\
-    \ `marketplace_domain_purchase` object has a `stage` that says where the purchase\
-    \ stands:\n\n| Stage | Meaning |\n| --- | --- |\n| `processing` | The order is\
-    \ being prepared or wound up |\n| `purchasing` | The domain is being bought on\
-    \ the marketplace |\n| `awaiting_code` | The domain is bought and its authorization\
-    \ code is being obtained |\n| `code_ready` | The authorization code is ready;\
-    \ the domain can be transferred to you |\n| `completed` | Final: the order is\
-    \ done |\n| `failed` | Final: the order could not be completed |\n| `canceled`\
-    \ | Final: the order was canceled |\n\nTreat unknown stage values as `processing`\
-    \ so your client keeps working when stages are added.\n\n### Errors\n\nErrors\
-    \ follow RFC 9457 problem details; `code` identifies the error.\n\n| Status |\
-    \ Code | Meaning |\n| --- | --- | --- |\n| 403 | `ERROR_ORDERS_FEATURE_DISABLED`\
+    \ Create requests send `expected_price` the same way.\n\nOne order that cannot\
+    \ be shown (its stored data is invalid) never fails the list: the list leaves\
+    \ that order out and returns the others. Fetching that order directly answers\
+    \ `500` `ERROR_ORDER_UNREADABLE` with a generic message; contact support with\
+    \ the order ID. Because such an order is left out after the page is chosen, a\
+    \ page can hold fewer entries than the page size, and the pagination totals can\
+    \ still count it. Use `has_next_page` (not the entry count or the totals) to decide\
+    \ whether to fetch the next page.\n\n### Statuses and stages\n\n`status` is one\
+    \ of `pending`, `in_progress`, `completed`, `canceled` or `failed` (enum `OrderStatus`).\
+    \ `pending` and `in_progress` are open; the others are final. Treat a value you\
+    \ do not know as open, so your client keeps working when statuses are added. `type`\
+    \ (`OrderItemType`), `stage` (`MarketplaceDomainPurchasePublicStage`) and `marketplace`\
+    \ (`MarketplaceName`, today `fruits`) are enums that can gain values too. `currency`\
+    \ is `EUR` or `USD`.\n\nEach `marketplace_domain_purchase` object has a `stage`\
+    \ that says where the purchase stands:\n\n| Stage | Meaning |\n| --- | --- |\n\
+    | `processing` | The order is being prepared or wound up |\n| `purchasing` | The\
+    \ domain is being bought on the marketplace |\n| `awaiting_code` | The domain\
+    \ is bought and its authorization code is being obtained |\n| `code_ready` | The\
+    \ authorization code is ready; the domain can be transferred to you |\n| `completed`\
+    \ | Final: the order is done |\n| `failed` | Final: the order could not be completed\
+    \ |\n| `canceled` | Final: the order was canceled |\n\nTreat unknown stage values\
+    \ as `processing` so your client keeps working when stages are added.\n\n### Errors\n\
+    \nErrors follow RFC 9457 problem details; `code` identifies the error.\n\n| Status\
+    \ | Code | Meaning |\n| --- | --- | --- |\n| 403 | `ERROR_ORDERS_FEATURE_DISABLED`\
     \ | Orders are not enabled in this environment |\n| 404 | `ERROR_ORDER_NOT_FOUND`\
     \ | No such order for your organization |\n| 409 | `ERROR_ORDER_IDEMPOTENCY_KEY_REUSED`\
     \ | The key was already used with a different body |\n| 409 | `ERROR_ORDER_SUBJECT_IN_PROGRESS`\
     \ | Another order for this domain is already in progress |\n| 409 | `ERROR_ORDER_PRICE_CHANGED`\
-    \ | The price changed; the response carries `expected_price`, `expected_currency`,\
-    \ `actual_price` and `actual_currency` |\n| 409 | `ERROR_ORDER_ITEM_UNAVAILABLE`\
-    \ | The domain is not available for purchase |\n| 409 | `ERROR_ORDER_ITEM_NOT_DELIVERABLE`\
-    \ | The domain cannot be delivered to you (for example, its TLD cannot be handed\
-    \ over by auth code) |\n| 409 | `ERROR_ORDER_OPEN_LIMIT_REACHED` | Too many open\
-    \ orders; wait for some to finish |\n| 500 | `ERROR_ORDER_UNREADABLE` | The order's\
-    \ stored data cannot be shown; contact support |\n| 503 | `ERROR_ORDER_SERVICE_UNAVAILABLE`\
+    \ | The price changed; the response carries `expected_price`, `actual_price` and\
+    \ their `currency` |\n| 409 | `ERROR_ORDER_ITEM_UNAVAILABLE` | The domain is not\
+    \ available for purchase |\n| 409 | `ERROR_ORDER_ITEM_NOT_DELIVERABLE` | The domain\
+    \ cannot be delivered to you (for example, its TLD cannot be handed over by auth\
+    \ code) |\n| 409 | `ERROR_ORDER_OPEN_LIMIT_REACHED` | Too many open orders; wait\
+    \ for some to finish |\n| 500 | `ERROR_ORDER_UNREADABLE` | The order's stored\
+    \ data cannot be shown; contact support |\n| 503 | `ERROR_ORDER_SERVICE_UNAVAILABLE`\
     \ | Temporary failure; retry after the `Retry-After` seconds, with the same `idempotency_key`\
     \ |\n\n### History\n\nChanges to an order are recorded in the archive. Query `GET\
     \ /v1/archive/object-logs` with `object_type=Order` (and `object_id` set to the\

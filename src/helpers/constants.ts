@@ -87,6 +87,7 @@ import type {
   LevelOfAssurance,
   LocalPresenceRequirementType,
   MailTemplateCategory,
+  MarketplaceDomainPurchasePublicStage,
   MarketplaceName,
   MemoryFactKind,
   MessageRole,
@@ -1645,6 +1646,26 @@ export const MAIL_TEMPLATE_CATEGORY_VALUES = [
   'tld_specific',
   'unknown',
 ] as const satisfies ReadonlyArray<MailTemplateCategory>;
+
+export const MARKETPLACE_DOMAIN_PURCHASE_PUBLIC_STAGE = {
+  PROCESSING: "processing",
+  PURCHASING: "purchasing",
+  AWAITING_CODE: "awaiting_code",
+  CODE_READY: "code_ready",
+  COMPLETED: "completed",
+  FAILED: "failed",
+  CANCELED: "canceled",
+} as const satisfies Record<string, MarketplaceDomainPurchasePublicStage>;
+
+export const MARKETPLACE_DOMAIN_PURCHASE_PUBLIC_STAGE_VALUES = [
+  'processing',
+  'purchasing',
+  'awaiting_code',
+  'code_ready',
+  'completed',
+  'failed',
+  'canceled',
+] as const satisfies ReadonlyArray<MarketplaceDomainPurchasePublicStage>;
 
 export const MARKETPLACE_NAME = {
   FRUITS: "fruits",

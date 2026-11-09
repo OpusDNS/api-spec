@@ -453,6 +453,7 @@ export type MailTemplateVariable = components['schemas']['MailTemplateVariable']
 export type Marketplace = components['schemas']['Marketplace'];
 export type MarketplaceDomainPurchaseDetail = components['schemas']['MarketplaceDomainPurchaseDetail'];
 export type MarketplaceDomainPurchaseItemCreate = components['schemas']['MarketplaceDomainPurchaseItemCreate'];
+export type MarketplaceDomainPurchasePublicStage = components['schemas']['MarketplaceDomainPurchasePublicStage'];
 export type MarketplaceName = components['schemas']['MarketplaceName'];
 export type MemoryFact = components['schemas']['MemoryFact'];
 export type MemoryFactCreateRequest = components['schemas']['MemoryFactCreateRequest'];
