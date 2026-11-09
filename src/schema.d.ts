@@ -2560,6 +2560,8 @@ export interface paths {
          * @description Orders a domain listed on a marketplace. The order is accepted (202) once the price and availability are confirmed; it then progresses on its own, follow it with `GET /v1/orders/{order_id}`.
          *
          *     Repeating a request with the same `idempotency_key` and body returns the original order with 200. The same key with a different body is refused with 409.
+         *
+         *     The order's price is reserved on the organization's account before the order is created; billing's refusal (403 insufficient funds, 429 daily create limit) creates no order.
          */
         post: operations["create_order_v1_orders_post"];
         delete?: never;
@@ -18571,6 +18573,12 @@ export interface components {
             type: "marketplace_domain_purchase";
         };
         /**
+         * MarketplaceDomainPurchasePublicReason
+         * @description What an API caller sees of why an item is not going as planned; the meanings are in docs/api/orders.md.
+         * @enum {string}
+         */
+        MarketplaceDomainPurchasePublicReason: "price_changed" | "unavailable" | "canceled_by_marketplace" | "failed" | "delayed";
+        /**
          * MarketplaceDomainPurchasePublicStage
          * @description What an API caller sees of an item's progress.
          * @enum {string}
@@ -19222,6 +19230,8 @@ export interface components {
             marketplace_domain_purchase?: components["schemas"]["MarketplaceDomainPurchaseDetail"] | null;
             /** @description Price of the item, a decimal string with two decimals */
             price: components["schemas"]["StrictMoneyDecimal"];
+            /** @description Why the item was canceled or failed, or that an open item is slow. Null while the item is on track, or when no problem is known. Treat a value you do not know as `failed` on a final item and as `delayed` on an open one: reasons can be added. */
+            reason?: components["schemas"]["MarketplaceDomainPurchasePublicReason"] | null;
             /** @description `pending` and `in_progress` are open, the others are final. Treat a value you do not know as open: statuses can be added. */
             status: components["schemas"]["OrderStatus"];
             /** @description Item type. More can be added. */
@@ -19239,9 +19249,12 @@ export interface components {
              * Format: date-time
              */
             created_on: Date;
-            /** @description Currency of `total_price` and of every item price */
-            currency: components["schemas"]["Currency"];
-            /** Items */
+            /** @description Currency of `total_price` and of every item price. Null only in a `GET /v1/orders` list entry for an order that cannot be shown: contact support with the order ID. */
+            currency: components["schemas"]["Currency"] | null;
+            /**
+             * Items
+             * @description The items of the order. Empty only in a `GET /v1/orders` list entry for an order that cannot be shown: contact support with the order ID.
+             */
             items: components["schemas"]["OrderItemResponse"][];
             /**
              * Order Id
@@ -19251,8 +19264,8 @@ export interface components {
             order_id: TypeId<"order">;
             /** @description `pending` and `in_progress` are open, the others are final. Treat a value you do not know as open: statuses can be added. */
             status: components["schemas"]["OrderStatus"];
-            /** @description Sum of the item prices, a decimal string with two decimals */
-            total_price: components["schemas"]["StrictMoneyDecimal"];
+            /** @description Sum of the item prices, a decimal string with two decimals. Null only in a `GET /v1/orders` list entry for an order that cannot be shown: contact support with the order ID. */
+            total_price: components["schemas"]["StrictMoneyDecimal"] | null;
             /**
              * Updated On
              * Format: date-time
@@ -37298,6 +37311,8 @@ export interface operations {
                 type?: components["schemas"]["OrderItemType"] | null;
                 /** @description Only orders for this domain name (Unicode or ASCII form) */
                 domain?: string | null;
+                /** @description Only orders whose domain name contains this text. `%` and `_` match themselves. A Unicode name also matches its punycode form, but a partial Unicode label finds nothing: orders store the ASCII form, and a partial label is converted as if it were whole (only whole labels match across forms). Does not match order IDs. Empty text matches every order. Combined with `domain`, both must match. */
+                search?: string | null;
                 /** @description Only orders created at or after this time */
                 created_after?: Date | null;
                 /** @description Only orders created at or before this time */

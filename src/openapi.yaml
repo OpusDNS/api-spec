@@ -20952,6 +20952,17 @@ components:
       - expected_price
       title: MarketplaceDomainPurchaseItemCreate
       type: object
+    MarketplaceDomainPurchasePublicReason:
+      description: What an API caller sees of why an item is not going as planned;
+        the meanings are in docs/api/orders.md.
+      enum:
+      - price_changed
+      - unavailable
+      - canceled_by_marketplace
+      - failed
+      - delayed
+      title: MarketplaceDomainPurchasePublicReason
+      type: string
     MarketplaceDomainPurchasePublicStage:
       description: What an API caller sees of an item's progress.
       enum:
@@ -21930,6 +21941,14 @@ components:
         price:
           $ref: '#/components/schemas/StrictMoneyDecimal'
           description: Price of the item, a decimal string with two decimals
+        reason:
+          anyOf:
+          - $ref: '#/components/schemas/MarketplaceDomainPurchasePublicReason'
+          - type: 'null'
+          description: 'Why the item was canceled or failed, or that an open item
+            is slow. Null while the item is on track, or when no problem is known.
+            Treat a value you do not know as `failed` on a final item and as `delayed`
+            on an open one: reasons can be added.'
         status:
           $ref: '#/components/schemas/OrderStatus'
           description: '`pending` and `in_progress` are open, the others are final.
@@ -21958,9 +21977,16 @@ components:
           title: Created On
           type: string
         currency:
-          $ref: '#/components/schemas/Currency'
-          description: Currency of `total_price` and of every item price
+          anyOf:
+          - $ref: '#/components/schemas/Currency'
+          - type: 'null'
+          description: 'Currency of `total_price` and of every item price. Null only
+            in a `GET /v1/orders` list entry for an order that cannot be shown: contact
+            support with the order ID.'
         items:
+          description: 'The items of the order. Empty only in a `GET /v1/orders` list
+            entry for an order that cannot be shown: contact support with the order
+            ID.'
           items:
             $ref: '#/components/schemas/OrderItemResponse'
           title: Items
@@ -21978,8 +22004,12 @@ components:
           description: '`pending` and `in_progress` are open, the others are final.
             Treat a value you do not know as open: statuses can be added.'
         total_price:
-          $ref: '#/components/schemas/StrictMoneyDecimal'
-          description: Sum of the item prices, a decimal string with two decimals
+          anyOf:
+          - $ref: '#/components/schemas/StrictMoneyDecimal'
+          - type: 'null'
+          description: 'Sum of the item prices, a decimal string with two decimals.
+            Null only in a `GET /v1/orders` list entry for an order that cannot be
+            shown: contact support with the order ID.'
         updated_on:
           format: date-time
           title: Updated On
@@ -29603,7 +29633,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-09-162141
+  version: 2026-11-09-171225
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -47567,6 +47597,26 @@ paths:
           - type: 'null'
           description: Only orders for this domain name (Unicode or ASCII form)
           title: Domain
+      - description: 'Only orders whose domain name contains this text. `%` and `_`
+          match themselves. A Unicode name also matches its punycode form, but a partial
+          Unicode label finds nothing: orders store the ASCII form, and a partial
+          label is converted as if it were whole (only whole labels match across forms).
+          Does not match order IDs. Empty text matches every order. Combined with
+          `domain`, both must match.'
+        in: query
+        name: search
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: 'Only orders whose domain name contains this text. `%` and
+            `_` match themselves. A Unicode name also matches its punycode form, but
+            a partial Unicode label finds nothing: orders store the ASCII form, and
+            a partial label is converted as if it were whole (only whole labels match
+            across forms). Does not match order IDs. Empty text matches every order.
+            Combined with `domain`, both must match.'
+          title: Search
       - description: Only orders created at or after this time
         in: query
         name: created_after
@@ -47655,7 +47705,12 @@ paths:
 
 
         Repeating a request with the same `idempotency_key` and body returns the original
-        order with 200. The same key with a different body is refused with 409.'
+        order with 200. The same key with a different body is refused with 409.
+
+
+        The order''s price is reserved on the organization''s account before the order
+        is created; billing''s refusal (403 insufficient funds, 429 daily create limit)
+        creates no order.'
       operationId: create_order_v1_orders_post
       parameters:
       - $ref: '#/components/parameters/DatetimeFormatHeader'
@@ -47682,6 +47737,13 @@ paths:
           content:
             application/problem+json:
               examples:
+                Billing Error:
+                  value:
+                    code: ERROR_BILLING_INSUFFICIENT_FUNDS
+                    detail: Insufficient funds, please top up your account
+                    status: 403
+                    title: Billing Error
+                    type: billing-insufficient-funds
                 Orders Feature Disabled:
                   value:
                     code: ERROR_ORDERS_FEATURE_DISABLED
@@ -47951,8 +48013,8 @@ paths:
                   value:
                     code: ERROR_ORDER_ITEM_NOT_FOUND
                     detail: Order item not found
-                    item_id: order_item_01m70hv2mpegyszjr0ymnzd7mv
-                    order_id: order_01m70hv2mnfm29zcxqsz1csarx
+                    item_id: order_item_01m70mqz3mfn5bewsgym583gsd
+                    order_id: order_01m70mqz3keyfavfvqx85853qv
                     status: 404
                     title: Order Item Not Found
                     type: order-item-not-found
@@ -47960,7 +48022,7 @@ paths:
                   value:
                     code: ERROR_ORDER_NOT_FOUND
                     detail: Order not found
-                    order_id: order_01m70hv2mmfrjsbt4hej4gxhzj
+                    order_id: order_01m70mqz3jfd0v7k9j9khya56k
                     status: 404
                     title: Order Not Found
                     type: order-not-found
@@ -53522,10 +53584,15 @@ tags:
     12\"` and JSON numbers are refused with `422`). If the current price differs,\
     \ the order is refused with `ERROR_ORDER_PRICE_CHANGED`, which carries both prices.\n\
     - `type` defaults to `marketplace_domain_purchase` today. It will become required\
-    \ once more item types exist, so send it now.\n\nA new order answers `202 Accepted`:\n\
-    \n```json\n{\n  \"order_id\": \"order_01h2xcejqtf2nbrexx3vqjhp41\",\n  \"status\"\
-    : \"in_progress\",\n  \"total_price\": \"12.10\",\n  \"currency\": \"EUR\",\n\
-    \  \"items\": [\n    {\n      \"item_id\": \"order_item_01h2xcejqtf2nbrexx3vqjhp42\"\
+    \ once more item types exist, so send it now.\n\nCreating an order reserves its\
+    \ price on your organization's account: it is charged once the authorization code\
+    \ is delivered and released if the order is canceled or fails. If the account\
+    \ cannot cover it, the order is refused with `403` (`ERROR_BILLING_INSUFFICIENT_FUNDS`).\
+    \ A purchase counts as a domain create toward your organization's daily create\
+    \ limit; past it, the order is refused with `429` (`ERROR_BILLING_DAILY_LIMIT_REACHED`).\n\
+    \nA new order answers `202 Accepted`:\n\n```json\n{\n  \"order_id\": \"order_01h2xcejqtf2nbrexx3vqjhp41\"\
+    ,\n  \"status\": \"in_progress\",\n  \"total_price\": \"12.10\",\n  \"currency\"\
+    : \"EUR\",\n  \"items\": [\n    {\n      \"item_id\": \"order_item_01h2xcejqtf2nbrexx3vqjhp42\"\
     ,\n      \"type\": \"marketplace_domain_purchase\",\n      \"status\": \"in_progress\"\
     ,\n      \"price\": \"12.10\",\n      \"currency\": \"EUR\",\n      \"delivery_available\"\
     : false,\n      \"marketplace_domain_purchase\": {\n        \"domain\": \"example.com\"\
@@ -53539,28 +53606,35 @@ tags:
     \ The `idempotency_key` itself is compared case-insensitively, so `Checkout-1`\
     \ and `checkout-1` are the same key.\n\n### Reading orders\n\n`GET /v1/orders/{order_id}`\
     \ returns one order. `GET /v1/orders` lists your orders, filtered by `status`,\
-    \ `type`, `domain`, `created_after` and `created_before`. Both time bounds are\
-    \ inclusive: an order created at exactly `created_after` or `created_before` is\
-    \ returned, so consecutive windows share their boundary instant.\n\nThe list is\
-    \ sorted by `sort_by` (`created_on`, the default, or `updated_on`) in the direction\
-    \ of `sort_order` (`desc`, the default, or `asc`); orders with the same time are\
-    \ ordered by their ID in the same direction, so paging is stable.\n\nAn order\
-    \ has `total_price` and `currency`; each item has `price` and `currency`. Prices\
-    \ are decimal strings with two decimals (`\"12.10\"`). Each item also has a `type`\
-    \ and an object named after that type with its own fields. For `marketplace_domain_purchase`\
-    \ that is `marketplace_domain_purchase` with `domain`, `marketplace` and `stage`.\
-    \ Every item also has `delivery_available` (see Delivery). Create requests send\
-    \ `expected_price` the same way.\n\nOne order that cannot be shown (its stored\
-    \ data is invalid) never fails the list: the list leaves that order out and returns\
-    \ the others. Fetching that order directly answers `500` `ERROR_ORDER_UNREADABLE`\
-    \ with a generic message; contact support with the order ID. Because such an order\
-    \ is left out after the page is chosen, a page can hold fewer entries than the\
-    \ page size, and the pagination totals can still count it. Use `has_next_page`\
-    \ (not the entry count or the totals) to decide whether to fetch the next page.\n\
-    \n### Statuses and stages\n\n`status` is one of `pending`, `in_progress`, `completed`,\
-    \ `canceled` or `failed` (enum `OrderStatus`). `pending` and `in_progress` are\
-    \ open; the others are final. Treat a value you do not know as open, so your client\
-    \ keeps working when statuses are added. `type` (`OrderItemType`), `stage` (`MarketplaceDomainPurchasePublicStage`)\
+    \ `type`, `domain`, `search`, `created_after` and `created_before`. Both time\
+    \ bounds are inclusive: an order created at exactly `created_after` or `created_before`\
+    \ is returned, so consecutive windows share their boundary instant. `domain` matches\
+    \ one domain name exactly; `search` matches orders whose domain name contains\
+    \ the text (`%` and `_` count as themselves, it never matches an order ID, and\
+    \ with `domain` both must match). A Unicode name also matches its punycode form,\
+    \ but a partial Unicode label finds nothing, because orders store the ASCII form:\
+    \ search `b\xFCcher.de`, not `b\xFCch`.\n\nThe list is sorted by `sort_by` (`created_on`,\
+    \ the default, or `updated_on`) in the direction of `sort_order` (`desc`, the\
+    \ default, or `asc`); orders with the same time are ordered by their ID in the\
+    \ same direction, so paging is stable.\n\nAn order has `total_price` and `currency`\
+    \ (both `null` for an order that cannot be shown, see below); each item has `price`\
+    \ and `currency`. Prices are decimal strings with two decimals (`\"12.10\"`).\
+    \ Each item also has a `type` and an object named after that type with its own\
+    \ fields. For `marketplace_domain_purchase` that is `marketplace_domain_purchase`\
+    \ with `domain`, `marketplace` and `stage`. Every item also has `delivery_available`\
+    \ (see Delivery). Create requests send `expected_price` the same way.\n\nOne order\
+    \ that cannot be shown (its stored data is invalid) never fails the list. The\
+    \ list returns it as a stub: `order_id`, `status`, `created_on` and `updated_on`\
+    \ are set, `items` is an empty list, and `total_price` and `currency` are `null`.\
+    \ The entries on a page always match the pagination counts, so `total_items` and\
+    \ `has_next_page` can be trusted. If an order has an empty `items` or a `null`\
+    \ `total_price`, show it as \"can't be displayed, contact support with the order\
+    \ ID\". Fetching that order directly answers `500` `ERROR_ORDER_UNREADABLE` with\
+    \ a generic message; contact support with the order ID.\n\n### Statuses and stages\n\
+    \n`status` is one of `pending`, `in_progress`, `completed`, `canceled` or `failed`\
+    \ (enum `OrderStatus`). `pending` and `in_progress` are open; the others are final.\
+    \ Treat a value you do not know as open, so your client keeps working when statuses\
+    \ are added. `type` (`OrderItemType`), `stage` (`MarketplaceDomainPurchasePublicStage`)\
     \ and `marketplace` (`MarketplaceName`, today `fruits`) are enums that can gain\
     \ values too. `currency` is `EUR` or `USD`.\n\nEach `marketplace_domain_purchase`\
     \ object has a `stage` that says where the purchase stands:\n\n| Stage | Meaning\
@@ -53571,32 +53645,44 @@ tags:
     | `completed` | Final: the order is done |\n| `failed` | Final: the order could\
     \ not be completed |\n| `canceled` | Final: the order was canceled |\n\nTreat\
     \ unknown stage values as `processing` so your client keeps working when stages\
-    \ are added.\n\n### Delivery\n\n`GET /v1/orders/{order_id}/items/{item_id}/delivery`\
-    \ returns what an item delivers: `type` and one object named after it. It can\
-    \ be read when the item's `delivery_available` is `true`; poll `GET /v1/orders/{order_id}`\
-    \ until then. If the item's status is final and `delivery_available` is `false`,\
-    \ nothing will be delivered.\n\nFor a `marketplace_domain_purchase` the delivery\
-    \ is the domain's transfer authorization code, so you can move the domain to a\
-    \ registrar of your choice. It is ready when the item's `stage` is `code_ready`.\n\
-    \n```json\n{\n  \"type\": \"marketplace_domain_purchase\",\n  \"marketplace_domain_purchase\"\
-    : {\n    \"auth_code\": \"<auth-code>\",\n    \"auth_code_expires_on\": null\n\
-    \  }\n}\n```\n\n`auth_code_expires_on` is when the code expires, if the marketplace\
-    \ told us; `null` otherwise.\n\nA successful response carries `Cache-Control:\
-    \ no-store`; do not cache or log it.\n\nPermissions:\n\n- Users need the manage-domains\
-    \ and view-domain-auth-codes permissions.\n- API keys need both `domains:manage`\
-    \ and `domain_auth_codes:read`.\n- A parent organization can read the codes of\
-    \ its sub-organizations by sending `X-Organization-Context`.\n- An unknown order\
-    \ or item, or another organization's order, is 404.\n\nTo use the code, start\
-    \ a transfer at the registrar of your choice. We suggest transferring to OpusDNS\
-    \ with the existing transfer API. Updating the registrant after the transfer is\
-    \ up to you.\n\nA code past `auth_code_expires_on` may be rejected by the gaining\
-    \ registrar. Contact support to get a new one.\n\n### Errors\n\nErrors follow\
-    \ RFC 9457 problem details; `code` identifies the error.\n\n| Status | Code |\
-    \ Meaning |\n| --- | --- | --- |\n| 403 | `ERROR_ORDERS_FEATURE_DISABLED` | Orders\
-    \ are not enabled in this environment |\n| 404 | `ERROR_ORDER_NOT_FOUND` | No\
-    \ such order for your organization |\n| 404 | `ERROR_ORDER_ITEM_NOT_FOUND` | The\
-    \ order has no such item |\n| 409 | `ERROR_ORDER_IDEMPOTENCY_KEY_REUSED` | The\
-    \ key was already used with a different body |\n| 409 | `ERROR_ORDER_SUBJECT_IN_PROGRESS`\
+    \ are added.\n\n### Reason\n\nEach item has a `reason` that says why it was canceled\
+    \ or failed, or that an open item is slow. It is `null` while the item is on track,\
+    \ or when no problem is known.\n\n| Reason | On | Meaning |\n| --- | --- | ---\
+    \ |\n| `price_changed` | `canceled` | The marketplace price changed, so the domain\
+    \ was not bought |\n| `unavailable` | `canceled` | The domain is no longer available\
+    \ |\n| `canceled_by_marketplace` | `canceled` | The marketplace canceled the purchase\
+    \ |\n| `failed` | `canceled`, `failed` | Any other failure. Nothing was taken\
+    \ from your account; any amount set aside for the order is released |\n| `delayed`\
+    \ | `in_progress` | The item is taking longer than usual. No action is needed\
+    \ from you; if it stays `delayed`, contact support with the order ID |\n\nTreat\
+    \ unknown reason values like `failed` on a final item and like `delayed` on an\
+    \ open one, so your client keeps working when reasons are added.\n\n### Delivery\n\
+    \n`GET /v1/orders/{order_id}/items/{item_id}/delivery` returns what an item delivers:\
+    \ `type` and one object named after it. It can be read when the item's `delivery_available`\
+    \ is `true`; poll `GET /v1/orders/{order_id}` until then. If the item's status\
+    \ is final and `delivery_available` is `false`, nothing will be delivered.\n\n\
+    For a `marketplace_domain_purchase` the delivery is the domain's transfer authorization\
+    \ code, so you can move the domain to a registrar of your choice. It is ready\
+    \ when the item's `stage` is `code_ready`.\n\n```json\n{\n  \"type\": \"marketplace_domain_purchase\"\
+    ,\n  \"marketplace_domain_purchase\": {\n    \"auth_code\": \"<auth-code>\",\n\
+    \    \"auth_code_expires_on\": null\n  }\n}\n```\n\n`auth_code_expires_on` is\
+    \ when the code expires, if the marketplace told us; `null` otherwise.\n\nA successful\
+    \ response carries `Cache-Control: no-store`; do not cache or log it.\n\nPermissions:\n\
+    \n- Users need the manage-domains and view-domain-auth-codes permissions.\n- API\
+    \ keys need both `domains:manage` and `domain_auth_codes:read`.\n- A parent organization\
+    \ can read the codes of its sub-organizations by sending `X-Organization-Context`.\n\
+    - An unknown order or item, or another organization's order, is 404.\n\nTo use\
+    \ the code, start a transfer at the registrar of your choice. We suggest transferring\
+    \ to OpusDNS with the existing transfer API. Updating the registrant after the\
+    \ transfer is up to you.\n\nA code past `auth_code_expires_on` may be rejected\
+    \ by the gaining registrar. Contact support to get a new one.\n\n### Errors\n\n\
+    Errors follow RFC 9457 problem details; `code` identifies the error.\n\n| Status\
+    \ | Code | Meaning |\n| --- | --- | --- |\n| 403 | `ERROR_ORDERS_FEATURE_DISABLED`\
+    \ | Orders are not enabled in this environment |\n| 403 | `ERROR_BILLING_INSUFFICIENT_FUNDS`\
+    \ | Your organization's account cannot cover the order |\n| 404 | `ERROR_ORDER_NOT_FOUND`\
+    \ | No such order for your organization |\n| 404 | `ERROR_ORDER_ITEM_NOT_FOUND`\
+    \ | The order has no such item |\n| 409 | `ERROR_ORDER_IDEMPOTENCY_KEY_REUSED`\
+    \ | The key was already used with a different body |\n| 409 | `ERROR_ORDER_SUBJECT_IN_PROGRESS`\
     \ | Another order for this domain is already in progress |\n| 409 | `ERROR_ORDER_PRICE_CHANGED`\
     \ | The price changed; the response carries `expected_price`, `actual_price` and\
     \ their `currency` |\n| 409 | `ERROR_ORDER_ITEM_UNAVAILABLE` | The domain is not\
@@ -53605,7 +53691,8 @@ tags:
     \ code) |\n| 409 | `ERROR_ORDER_OPEN_LIMIT_REACHED` | Too many open orders; wait\
     \ for some to finish |\n| 409 | `ERROR_ORDER_DELIVERY_NOT_AVAILABLE` | Nothing\
     \ is delivered yet, or the item is not at a stage where it can be read; read the\
-    \ order and check the item's `delivery_available` |\n| 500 | `ERROR_ORDER_DELIVERY_UNREADABLE`\
+    \ order and check the item's `delivery_available` |\n| 429 | `ERROR_BILLING_DAILY_LIMIT_REACHED`\
+    \ | Your organization reached its daily domain create limit |\n| 500 | `ERROR_ORDER_DELIVERY_UNREADABLE`\
     \ | The stored delivery could not be read; contact support |\n| 500 | `ERROR_ORDER_UNREADABLE`\
     \ | The order's stored data cannot be shown; contact support |\n| 503 | `ERROR_AUTHORIZATION_UNAVAILABLE`\
     \ | The permission check could not be completed; retry later |\n| 503 | `ERROR_ORDER_SERVICE_UNAVAILABLE`\

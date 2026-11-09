@@ -87,6 +87,7 @@ import type {
   LevelOfAssurance,
   LocalPresenceRequirementType,
   MailTemplateCategory,
+  MarketplaceDomainPurchasePublicReason,
   MarketplaceDomainPurchasePublicStage,
   MarketplaceName,
   MemoryFactKind,
@@ -1648,6 +1649,22 @@ export const MAIL_TEMPLATE_CATEGORY_VALUES = [
   'tld_specific',
   'unknown',
 ] as const satisfies ReadonlyArray<MailTemplateCategory>;
+
+export const MARKETPLACE_DOMAIN_PURCHASE_PUBLIC_REASON = {
+  PRICE_CHANGED: "price_changed",
+  UNAVAILABLE: "unavailable",
+  CANCELED_BY_MARKETPLACE: "canceled_by_marketplace",
+  FAILED: "failed",
+  DELAYED: "delayed",
+} as const satisfies Record<string, MarketplaceDomainPurchasePublicReason>;
+
+export const MARKETPLACE_DOMAIN_PURCHASE_PUBLIC_REASON_VALUES = [
+  'price_changed',
+  'unavailable',
+  'canceled_by_marketplace',
+  'failed',
+  'delayed',
+] as const satisfies ReadonlyArray<MarketplaceDomainPurchasePublicReason>;
 
 export const MARKETPLACE_DOMAIN_PURCHASE_PUBLIC_STAGE = {
   PROCESSING: "processing",

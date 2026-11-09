@@ -5540,6 +5540,7 @@ export const KEY_ORDER_ITEM_DELIVERY_AVAILABLE = 'delivery_available' satisfies 
 export const KEY_ORDER_ITEM_ITEM_ID = 'item_id' satisfies keyof OrderItem;
 export const KEY_ORDER_ITEM_MARKETPLACE_DOMAIN_PURCHASE = 'marketplace_domain_purchase' satisfies keyof OrderItem;
 export const KEY_ORDER_ITEM_PRICE = 'price' satisfies keyof OrderItem;
+export const KEY_ORDER_ITEM_REASON = 'reason' satisfies keyof OrderItem;
 export const KEY_ORDER_ITEM_STATUS = 'status' satisfies keyof OrderItem;
 export const KEY_ORDER_ITEM_TYPE = 'type' satisfies keyof OrderItem;
 
@@ -5549,6 +5550,7 @@ export const KEYS_ORDER_ITEM = [
   KEY_ORDER_ITEM_ITEM_ID,
   KEY_ORDER_ITEM_MARKETPLACE_DOMAIN_PURCHASE,
   KEY_ORDER_ITEM_PRICE,
+  KEY_ORDER_ITEM_REASON,
   KEY_ORDER_ITEM_STATUS,
   KEY_ORDER_ITEM_TYPE,
 ] as const satisfies (keyof OrderItem)[];

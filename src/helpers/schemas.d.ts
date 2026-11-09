@@ -453,6 +453,7 @@ export type Marketplace = components['schemas']['Marketplace'];
 export type MarketplaceDomainPurchaseDelivery = components['schemas']['MarketplaceDomainPurchaseDelivery'];
 export type MarketplaceDomainPurchaseDetail = components['schemas']['MarketplaceDomainPurchaseDetail'];
 export type MarketplaceDomainPurchaseItemCreate = components['schemas']['MarketplaceDomainPurchaseItemCreate'];
+export type MarketplaceDomainPurchasePublicReason = components['schemas']['MarketplaceDomainPurchasePublicReason'];
 export type MarketplaceDomainPurchasePublicStage = components['schemas']['MarketplaceDomainPurchasePublicStage'];
 export type MarketplaceName = components['schemas']['MarketplaceName'];
 export type MemoryFact = components['schemas']['MemoryFact'];
