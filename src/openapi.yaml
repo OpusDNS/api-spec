@@ -16448,6 +16448,14 @@ components:
             no event or its start could not be read; buckets are then counted over
             the whole window.
           title: Data Available From
+        data_available_to:
+          description: 'When the domain event log was read: the counts include the
+            movements logged up to about this instant. Buckets count no day after
+            the day of this instant. If the window reaches that day, its bucket is
+            partial, because the day is still running.'
+          format: date-time
+          title: Data Available To
+          type: string
         end_date:
           description: Last day of the window, inclusive
           format: date
@@ -16481,6 +16489,7 @@ components:
       - buckets
       - breakdown
       - data_available_from
+      - data_available_to
       title: DomainStatisticsResponse
       type: object
     DomainStatisticsTotalsResponse:
@@ -29476,7 +29485,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-09-120121
+  version: 2026-11-09-122658
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -41478,7 +41487,8 @@ paths:
 
 
         These counts are read from the domain event log, which begins later than the
-        domains themselves; `data_available_from` reports the oldest event it holds.'
+        domains themselves; `data_available_from` reports the oldest event it holds
+        and `data_available_to` when it was read.'
       operationId: get_domain_statistics_v1_domains_statistics_get
       parameters:
       - description: First day of the window, inclusive (YYYY-MM-DD, UTC)
@@ -41562,15 +41572,198 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                daily:
+                  description: '`breakdown=tld`; the last day is today, which is still
+                    running and therefore partial'
+                  summary: Daily series with a TLD breakdown
+                  value:
+                    breakdown:
+                    - create: 18
+                      delete: 4
+                      key: com
+                      net: 17
+                      renew: 20
+                      restore: 0
+                      total: 21
+                      transfer: 3
+                      transfer_out: 0
+                    - create: 13
+                      delete: 2
+                      key: de
+                      net: 12
+                      renew: 16
+                      restore: 0
+                      total: 14
+                      transfer: 1
+                      transfer_out: 0
+                    buckets:
+                    - covered_from: '2026-10-19'
+                      covered_to: '2026-10-19'
+                      create: 14
+                      delete: 3
+                      net: 13
+                      partial: false
+                      period_end: '2026-10-19'
+                      period_start: '2026-10-19'
+                      renew: 12
+                      restore: 0
+                      transfer: 2
+                      transfer_out: 0
+                    - covered_from: '2026-10-20'
+                      covered_to: '2026-10-20'
+                      create: 12
+                      delete: 2
+                      net: 12
+                      partial: false
+                      period_end: '2026-10-20'
+                      period_start: '2026-10-20'
+                      renew: 12
+                      restore: 0
+                      transfer: 2
+                      transfer_out: 0
+                    - covered_from: '2026-10-21'
+                      covered_to: '2026-10-21'
+                      create: 5
+                      delete: 1
+                      net: 4
+                      partial: true
+                      period_end: '2026-10-21'
+                      period_start: '2026-10-21'
+                      renew: 12
+                      restore: 0
+                      transfer: 0
+                      transfer_out: 0
+                    data_available_from: '2025-10-30T14:02:11Z'
+                    data_available_to: '2026-10-21T09:04:37Z'
+                    end_date: '2026-10-21'
+                    granularity: day
+                    organization_id: organization_01h45ytscbebyvny4gc8cr8ma2
+                    start_date: '2026-10-19'
+                    totals:
+                      create: 31
+                      delete: 6
+                      net: 29
+                      renew: 36
+                      restore: 0
+                      total: 35
+                      transfer: 4
+                      transfer_out: 0
+                monthly:
+                  description: 'The event log begins on 30 October 2025: September
+                    holds no data and carries null counts, October counts from the
+                    30th and is partial, November is counted whole'
+                  summary: Monthly series reaching back before the event log
+                  value:
+                    breakdown: []
+                    buckets:
+                    - partial: true
+                      period_end: '2025-09-30'
+                      period_start: '2025-09-01'
+                    - covered_from: '2025-10-30'
+                      covered_to: '2025-10-31'
+                      create: 22
+                      delete: 3
+                      net: 20
+                      partial: true
+                      period_end: '2025-10-31'
+                      period_start: '2025-10-01'
+                      renew: 19
+                      restore: 0
+                      transfer: 1
+                      transfer_out: 0
+                    - covered_from: '2025-11-01'
+                      covered_to: '2025-11-30'
+                      create: 388
+                      delete: 49
+                      net: 366
+                      partial: false
+                      period_end: '2025-11-30'
+                      period_start: '2025-11-01'
+                      renew: 369
+                      restore: 2
+                      transfer: 36
+                      transfer_out: 9
+                    data_available_from: '2025-10-30T14:02:11Z'
+                    data_available_to: '2026-10-21T09:04:37Z'
+                    end_date: '2025-11-30'
+                    granularity: month
+                    organization_id: organization_01h45ytscbebyvny4gc8cr8ma2
+                    start_date: '2025-09-01'
+                    totals:
+                      create: 410
+                      delete: 52
+                      net: 386
+                      renew: 388
+                      restore: 2
+                      total: 447
+                      transfer: 37
+                      transfer_out: 9
               schema:
                 $ref: '#/components/schemas/DomainStatisticsResponse'
-          description: Successful Response
+          description: Statistics retrieved successfully
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_OBJECT_LOG_QUERY
+                detail: The organization has 2400 organizations in its sub-tree, more
+                  than the 2000 these statistics can count over in one query
+                status: 400
+                title: Object log query rejected.
+                type: object-log-query-rejected
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
+              example:
+                code: ERROR_DOMAIN_STATISTICS_INVALID_QUERY
+                detail: The window must not exceed 92 days at granularity 'day'
+                status: 422
+                title: Invalid domain statistics query.
+                type: domain-statistics-invalid-query
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_OBJECT_LOG
+                detail: The object log is currently unavailable, please try again
+                  later.
+                status: 503
+                title: Object log unavailable.
+                type: object-log-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []

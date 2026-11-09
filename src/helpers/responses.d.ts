@@ -732,10 +732,14 @@ export type GET_DomainsCheck_Response = GET_DomainsCheck_Response_200 | GET_Doma
 export type GET_DomainsCheck_Response_200 = DomainCheck;
 export type GET_DomainsCheck_Response_422 = HTTPValidationError;
 
-export type GET_DomainsStatistics_Response = GET_DomainsStatistics_Response_200 | GET_DomainsStatistics_Response_422;
+export type GET_DomainsStatistics_Response = GET_DomainsStatistics_Response_200 | GET_DomainsStatistics_Response_400 | GET_DomainsStatistics_Response_401 | GET_DomainsStatistics_Response_403 | GET_DomainsStatistics_Response_422 | GET_DomainsStatistics_Response_503;
 
 export type GET_DomainsStatistics_Response_200 = DomainStatistics;
-export type GET_DomainsStatistics_Response_422 = HTTPValidationError;
+export type GET_DomainsStatistics_Response_400 = Problem;
+export type GET_DomainsStatistics_Response_401 = Problem;
+export type GET_DomainsStatistics_Response_403 = Problem;
+export type GET_DomainsStatistics_Response_422 = Problem;
+export type GET_DomainsStatistics_Response_503 = Problem;
 
 export type GET_DomainsSummary_Response = GET_DomainsSummary_Response_200 | GET_DomainsSummary_Response_422;
 

@@ -1548,7 +1548,7 @@ export interface paths {
          *
          *     Every bucket the window touches is present, oldest first, so the series can be charted as is. A bucket counts the days it shares with the window, from the day of `data_available_from` and up to today, from `covered_from` to `covered_to`; without a movement on them it counts zero. A bucket without such a day carries null counts: no data, rather than no movement. A bucket marked `partial` does not count its whole span: the window, the start of the event log or today cuts it, it includes the day the log begins on (unless at midnight), or it reaches today, which is still running. A bucket with null counts is partial too.
          *
-         *     These counts are read from the domain event log, which begins later than the domains themselves; `data_available_from` reports the oldest event it holds.
+         *     These counts are read from the domain event log, which begins later than the domains themselves; `data_available_from` reports the oldest event it holds and `data_available_to` when it was read.
          */
         get: operations["get_domain_statistics_v1_domains_statistics_get"];
         put?: never;
@@ -15387,6 +15387,12 @@ export interface components {
              * @description Oldest event the domain event log holds, which starts later than the domains themselves. Buckets count no day before its day; one left without a day to count carries null counts. Null when the log holds no event or its start could not be read; buckets are then counted over the whole window.
              */
             data_available_from: Date | null;
+            /**
+             * Data Available To
+             * Format: date-time
+             * @description When the domain event log was read: the counts include the movements logged up to about this instant. Buckets count no day after the day of this instant. If the window reaches that day, its bucket is partial, because the day is still running.
+             */
+            data_available_to: Date;
             /**
              * End Date
              * Format: date
@@ -32631,7 +32637,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description Statistics retrieved successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -32640,13 +32646,84 @@ export interface operations {
                     "application/json": components["schemas"]["DomainStatisticsResponse"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_OBJECT_LOG_QUERY",
+                     *       "detail": "The organization has 2400 organizations in its sub-tree, more than the 2000 these statistics can count over in one query",
+                     *       "status": 400,
+                     *       "title": "Object log query rejected.",
+                     *       "type": "object-log-query-rejected"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_STATISTICS_INVALID_QUERY",
+                     *       "detail": "The window must not exceed 92 days at granularity 'day'",
+                     *       "status": 422,
+                     *       "title": "Invalid domain statistics query.",
+                     *       "type": "domain-statistics-invalid-query"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_OBJECT_LOG",
+                     *       "detail": "The object log is currently unavailable, please try again later.",
+                     *       "status": 503,
+                     *       "title": "Object log unavailable.",
+                     *       "type": "object-log-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };

@@ -3683,6 +3683,7 @@ export const KEYS_DOMAIN_STATISTICS_BUCKET = [
 export const KEY_DOMAIN_STATISTICS_BREAKDOWN = 'breakdown' satisfies keyof DomainStatistics;
 export const KEY_DOMAIN_STATISTICS_BUCKETS = 'buckets' satisfies keyof DomainStatistics;
 export const KEY_DOMAIN_STATISTICS_DATA_AVAILABLE_FROM = 'data_available_from' satisfies keyof DomainStatistics;
+export const KEY_DOMAIN_STATISTICS_DATA_AVAILABLE_TO = 'data_available_to' satisfies keyof DomainStatistics;
 export const KEY_DOMAIN_STATISTICS_END_DATE = 'end_date' satisfies keyof DomainStatistics;
 export const KEY_DOMAIN_STATISTICS_GRANULARITY = 'granularity' satisfies keyof DomainStatistics;
 export const KEY_DOMAIN_STATISTICS_ORGANIZATION_ID = 'organization_id' satisfies keyof DomainStatistics;
@@ -3693,6 +3694,7 @@ export const KEYS_DOMAIN_STATISTICS = [
   KEY_DOMAIN_STATISTICS_BREAKDOWN,
   KEY_DOMAIN_STATISTICS_BUCKETS,
   KEY_DOMAIN_STATISTICS_DATA_AVAILABLE_FROM,
+  KEY_DOMAIN_STATISTICS_DATA_AVAILABLE_TO,
   KEY_DOMAIN_STATISTICS_END_DATE,
   KEY_DOMAIN_STATISTICS_GRANULARITY,
   KEY_DOMAIN_STATISTICS_ORGANIZATION_ID,
