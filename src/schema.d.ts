@@ -4381,7 +4381,7 @@ export interface components {
          * BillingTransactionProductType
          * @enum {string}
          */
-        BillingTransactionProductType: "domain" | "zones" | "email_forward" | "domain_forward" | "account_wallet" | "vanity_nameserver" | "whitelabel_branding" | "whitelabel_branding_plus" | "ras_domain_lifecycle" | "ams_domain_lifecycle" | "ams_maintenance_fee" | "de_authinfo2";
+        BillingTransactionProductType: "domain" | "zones" | "email_forward" | "domain_forward" | "account_wallet" | "vanity_nameserver" | "whitelabel_branding" | "whitelabel_branding_plus" | "ras_domain_lifecycle" | "ams_domain_lifecycle" | "ams_maintenance_fee" | "de_authinfo2" | "marketplace_domain_purchase";
         /** BillingTransactionResponse */
         BillingTransactionResponse: {
             /** @description The action performed in the transaction */

@@ -921,6 +921,7 @@ components:
       - ams_domain_lifecycle
       - ams_maintenance_fee
       - de_authinfo2
+      - marketplace_domain_purchase
       title: BillingTransactionProductType
       type: string
     BillingTransactionResponse:
@@ -29680,7 +29681,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-10-082024
+  version: 2026-11-10-093007
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -48112,8 +48113,8 @@ paths:
                   value:
                     code: ERROR_ORDER_ITEM_NOT_FOUND
                     detail: Order item not found
-                    item_id: order_item_01m728ph75efyvh3xsd9g935wv
-                    order_id: order_01m728ph74ed78zqc0xvpnnsjx
+                    item_id: order_item_01m72cp61zead9rfbqgr88hsqh
+                    order_id: order_01m72cp61ye3m941ma8c0aadwd
                     status: 404
                     title: Order Item Not Found
                     type: order-item-not-found
@@ -48121,7 +48122,7 @@ paths:
                   value:
                     code: ERROR_ORDER_NOT_FOUND
                     detail: Order not found
-                    order_id: order_01m728ph73er18znhzrztzyez2
+                    order_id: order_01m72cp61xfyvab2jvm6gpp4dn
                     status: 404
                     title: Order Not Found
                     type: order-not-found
@@ -53686,9 +53687,7 @@ tags:
     \ once more item types exist, so send it now.\n\nCreating an order reserves its\
     \ price on your organization's account: it is charged once the authorization code\
     \ is delivered and released if the order is canceled or fails. If the account\
-    \ cannot cover it, the order is refused with `403` (`ERROR_BILLING_INSUFFICIENT_FUNDS`).\
-    \ A purchase counts as a domain create toward your organization's daily create\
-    \ limit; past it, the order is refused with `429` (`ERROR_BILLING_DAILY_LIMIT_REACHED`).\n\
+    \ cannot cover it, the order is refused with `403` (`ERROR_BILLING_INSUFFICIENT_FUNDS`).\n\
     \nA new order answers `202 Accepted`:\n\n```json\n{\n  \"order_id\": \"order_01h2xcejqtf2nbrexx3vqjhp41\"\
     ,\n  \"status\": \"in_progress\",\n  \"total_price\": \"12.10\",\n  \"currency\"\
     : \"EUR\",\n  \"items\": [\n    {\n      \"item_id\": \"order_item_01h2xcejqtf2nbrexx3vqjhp42\"\
@@ -53794,8 +53793,7 @@ tags:
     \ code) |\n| 409 | `ERROR_ORDER_OPEN_LIMIT_REACHED` | Too many open orders; wait\
     \ for some to finish |\n| 409 | `ERROR_ORDER_DELIVERY_NOT_AVAILABLE` | Nothing\
     \ is delivered yet, or the item is not at a stage where it can be read; read the\
-    \ order and check the item's `delivery_available` |\n| 429 | `ERROR_BILLING_DAILY_LIMIT_REACHED`\
-    \ | Your organization reached its daily domain create limit |\n| 500 | `ERROR_ORDER_DELIVERY_UNREADABLE`\
+    \ order and check the item's `delivery_available` |\n| 500 | `ERROR_ORDER_DELIVERY_UNREADABLE`\
     \ | The stored delivery could not be read; contact support |\n| 500 | `ERROR_ORDER_UNREADABLE`\
     \ | The order's stored data cannot be shown; contact support |\n| 503 | `ERROR_AUTHORIZATION_UNAVAILABLE`\
     \ | The permission check could not be completed; retry later |\n| 503 | `ERROR_ORDER_SERVICE_UNAVAILABLE`\
