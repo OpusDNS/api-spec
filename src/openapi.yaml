@@ -602,8 +602,9 @@ components:
           type: array
         schema:
           default: ''
-          description: portfolio_audit/v1. Any other version arrives with only this
-            field set.
+          description: 'portfolio_audit/v1. Any other version arrives with every other
+            field at its empty default: compare this with the version before reading
+            the rest.'
           title: Schema
           type: string
         scope:
@@ -1981,6 +1982,7 @@ components:
                   domain_recommendations: '#/components/schemas/DomainRecommendationsContext'
                   domains: '#/components/schemas/DomainsContext'
                   email_forwards: '#/components/schemas/EmailForwardsContext'
+                  support_ticket: '#/components/schemas/SupportTicketContext'
                   zones: '#/components/schemas/ZonesContext'
                 propertyName: kind
               oneOf:
@@ -1994,6 +1996,7 @@ components:
               - $ref: '#/components/schemas/BrandingDesignContext'
               - $ref: '#/components/schemas/CallOperationResultContext'
               - $ref: '#/components/schemas/AuditFindingsContext'
+              - $ref: '#/components/schemas/SupportTicketContext'
               title: Response Create Context V1 Ai Concierge Conversations  Conversation
                 Id  Contexts Post
             - type: string
@@ -3949,6 +3952,7 @@ components:
                   domain_recommendations: '#/components/schemas/DomainRecommendationsContext'
                   domains: '#/components/schemas/DomainsContext'
                   email_forwards: '#/components/schemas/EmailForwardsContext'
+                  support_ticket: '#/components/schemas/SupportTicketContext'
                   zones: '#/components/schemas/ZonesContext'
                 propertyName: kind
               oneOf:
@@ -3962,6 +3966,7 @@ components:
               - $ref: '#/components/schemas/BrandingDesignContext'
               - $ref: '#/components/schemas/CallOperationResultContext'
               - $ref: '#/components/schemas/AuditFindingsContext'
+              - $ref: '#/components/schemas/SupportTicketContext'
               title: Response Get Context V1 Ai Concierge Contexts  Context Id  Get
             - type: string
           headers:
@@ -11267,6 +11272,7 @@ components:
                 domain_recommendations: '#/components/schemas/DomainRecommendationsContext'
                 domains: '#/components/schemas/DomainsContext'
                 email_forwards: '#/components/schemas/EmailForwardsContext'
+                support_ticket: '#/components/schemas/SupportTicketContext'
                 zones: '#/components/schemas/ZonesContext'
               propertyName: kind
             oneOf:
@@ -11280,6 +11286,7 @@ components:
             - $ref: '#/components/schemas/BrandingDesignContext'
             - $ref: '#/components/schemas/CallOperationResultContext'
             - $ref: '#/components/schemas/AuditFindingsContext'
+            - $ref: '#/components/schemas/SupportTicketContext'
           title: Results
           type: array
       required:
@@ -25901,6 +25908,151 @@ components:
           title: Url
       title: Support
       type: object
+    SupportTicketContext:
+      properties:
+        context_id:
+          examples:
+          - ctx_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^ctx_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Context Id
+          type: string
+          x-typeid-prefix: ctx
+        conversation_id:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        kind:
+          const: support_ticket
+          default: support_ticket
+          title: Kind
+          type: string
+        organization_id:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        payload:
+          $ref: '#/components/schemas/SupportTicketContextPayload'
+        user_id:
+          title: User Id
+          type: string
+      required:
+      - context_id
+      - conversation_id
+      - organization_id
+      - user_id
+      - created_at
+      - payload
+      title: SupportTicketContext
+      type: object
+    SupportTicketContextPayload:
+      properties:
+        category:
+          default: ''
+          description: transfer | api_error | job | dns | billing | account | question
+            | other
+          title: Category
+          type: string
+        checks:
+          description: What was checked, one line each, as listed in `content`.
+          items:
+            type: string
+          title: Checks
+          type: array
+        content:
+          default: ''
+          description: 'The ticket text for the support form''s content field: the
+            summary in the user''s language, then what was checked, the references
+            and the conversation, labelled in English.'
+          title: Content
+          type: string
+        outcome:
+          default: ''
+          description: needs_support (the cause needs the support team) | unresolved
+            (the checks found no cause) | user_requested (the user asked for a person)
+          title: Outcome
+          type: string
+        references:
+          $ref: '#/components/schemas/SupportTicketReferences'
+        replaces:
+          default: ''
+          description: The context id of the draft this one supersedes in the same
+            conversation; empty for the first. Offer only the newest draft.
+          title: Replaces
+          type: string
+        schema:
+          default: ''
+          description: 'support_ticket/v1. Any other version arrives with every other
+            field at its empty default: compare this with the version before offering
+            to send the draft.'
+          title: Schema
+          type: string
+        subject:
+          default: ''
+          description: One line; the support form's subject.
+          title: Subject
+          type: string
+        summary:
+          default: ''
+          description: The summary alone, as `content` opens with it.
+          title: Summary
+          type: string
+      required:
+      - schema
+      - subject
+      - content
+      - summary
+      - checks
+      - category
+      - outcome
+      - references
+      - replaces
+      title: SupportTicketContextPayload
+      type: object
+    SupportTicketReferences:
+      properties:
+        batch_ids:
+          items:
+            type: string
+          title: Batch Ids
+          type: array
+        domains:
+          description: Domain names, ACE, lower case.
+          items:
+            type: string
+          title: Domains
+          type: array
+        job_ids:
+          items:
+            type: string
+          title: Job Ids
+          type: array
+        request_ids:
+          description: Server request ids (the X-Server-Request-ID header), 32 hex
+            digits.
+          items:
+            type: string
+          title: Request Ids
+          type: array
+      required:
+      - domains
+      - request_ids
+      - job_ids
+      - batch_ids
+      title: SupportTicketReferences
+      type: object
     SyncFailure:
       description: A domain the sync could not sync. The list can be shorter than
         the status's `failed` count.
@@ -29682,7 +29834,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-10-121806
+  version: 2026-11-10-123536
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -29720,6 +29872,7 @@ paths:
                     domain_recommendations: '#/components/schemas/DomainRecommendationsContext'
                     domains: '#/components/schemas/DomainsContext'
                     email_forwards: '#/components/schemas/EmailForwardsContext'
+                    support_ticket: '#/components/schemas/SupportTicketContext'
                     zones: '#/components/schemas/ZonesContext'
                   propertyName: kind
                 oneOf:
@@ -29733,6 +29886,7 @@ paths:
                 - $ref: '#/components/schemas/BrandingDesignContext'
                 - $ref: '#/components/schemas/CallOperationResultContext'
                 - $ref: '#/components/schemas/AuditFindingsContext'
+                - $ref: '#/components/schemas/SupportTicketContext'
                 title: Response Get Context V1 Ai Concierge Contexts  Context Id  Get
           description: Successful Response
         '401':
@@ -30328,6 +30482,7 @@ paths:
                     domain_recommendations: '#/components/schemas/DomainRecommendationsContext'
                     domains: '#/components/schemas/DomainsContext'
                     email_forwards: '#/components/schemas/EmailForwardsContext'
+                    support_ticket: '#/components/schemas/SupportTicketContext'
                     zones: '#/components/schemas/ZonesContext'
                   propertyName: kind
                 oneOf:
@@ -30341,6 +30496,7 @@ paths:
                 - $ref: '#/components/schemas/BrandingDesignContext'
                 - $ref: '#/components/schemas/CallOperationResultContext'
                 - $ref: '#/components/schemas/AuditFindingsContext'
+                - $ref: '#/components/schemas/SupportTicketContext'
                 title: Response Create Context V1 Ai Concierge Conversations  Conversation
                   Id  Contexts Post
           description: Successful Response
@@ -48128,8 +48284,8 @@ paths:
                   value:
                     code: ERROR_ORDER_ITEM_NOT_FOUND
                     detail: Order item not found
-                    item_id: order_item_01m72p9s77f8290bmdsf1navc8
-                    order_id: order_01m72p9s76e7patvwvybq3ygff
+                    item_id: order_item_01m72q9t65ewdvj71pf7d6s3ns
+                    order_id: order_01m72q9t64erwvn3cvx038hhyz
                     status: 404
                     title: Order Item Not Found
                     type: order-item-not-found
@@ -48137,7 +48293,7 @@ paths:
                   value:
                     code: ERROR_ORDER_NOT_FOUND
                     detail: Order not found
-                    order_id: order_01m72p9s75fehsmtyd1zn446xk
+                    order_id: order_01m72q9t63fqjr1vws6c3q66fn
                     status: 404
                     title: Order Not Found
                     type: order-not-found

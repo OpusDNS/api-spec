@@ -4180,7 +4180,7 @@ export interface components {
             rules: components["schemas"]["AuditRule"][];
             /**
              * Schema
-             * @description portfolio_audit/v1. Any other version arrives with only this field set.
+             * @description portfolio_audit/v1. Any other version arrives with every other field at its empty default: compare this with the version before reading the rest.
              * @default
              */
             schema: string;
@@ -5097,7 +5097,7 @@ export interface components {
              */
             truncated: boolean;
         } | {
-            data?: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"] | components["schemas"]["AuditFindingsContext"]) | string;
+            data?: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"] | components["schemas"]["AuditFindingsContext"] | components["schemas"]["SupportTicketContext"]) | string;
             /**
              * Headers
              * @description Selected response headers
@@ -6609,7 +6609,7 @@ export interface components {
              */
             truncated: boolean;
         } | {
-            data?: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"] | components["schemas"]["AuditFindingsContext"]) | string;
+            data?: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"] | components["schemas"]["AuditFindingsContext"] | components["schemas"]["SupportTicketContext"]) | string;
             /**
              * Headers
              * @description Selected response headers
@@ -12088,7 +12088,7 @@ export interface components {
         ContextListResponse: {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
-            results: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"] | components["schemas"]["AuditFindingsContext"])[];
+            results: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"] | components["schemas"]["AuditFindingsContext"] | components["schemas"]["SupportTicketContext"])[];
         };
         /** ContextMeta */
         ContextMeta: {
@@ -21672,6 +21672,108 @@ export interface components {
             /** Url */
             url?: string | null;
         };
+        /** SupportTicketContext */
+        SupportTicketContext: {
+            /**
+             * Context Id
+             * Format: typeid
+             * @example ctx_01h45ytscbebyvny4gc8cr8ma2
+             */
+            context_id: TypeId<"ctx">;
+            /**
+             * Conversation Id
+             * Format: typeid
+             * @example conv_01h45ytscbebyvny4gc8cr8ma2
+             */
+            conversation_id: TypeId<"conv">;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: Date;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "support_ticket";
+            /**
+             * Organization Id
+             * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            payload: components["schemas"]["SupportTicketContextPayload"];
+            /** User Id */
+            user_id: string;
+        };
+        /** SupportTicketContextPayload */
+        SupportTicketContextPayload: {
+            /**
+             * Category
+             * @description transfer | api_error | job | dns | billing | account | question | other
+             * @default
+             */
+            category: string;
+            /**
+             * Checks
+             * @description What was checked, one line each, as listed in `content`.
+             */
+            checks: string[];
+            /**
+             * Content
+             * @description The ticket text for the support form's content field: the summary in the user's language, then what was checked, the references and the conversation, labelled in English.
+             * @default
+             */
+            content: string;
+            /**
+             * Outcome
+             * @description needs_support (the cause needs the support team) | unresolved (the checks found no cause) | user_requested (the user asked for a person)
+             * @default
+             */
+            outcome: string;
+            references: components["schemas"]["SupportTicketReferences"];
+            /**
+             * Replaces
+             * @description The context id of the draft this one supersedes in the same conversation; empty for the first. Offer only the newest draft.
+             * @default
+             */
+            replaces: string;
+            /**
+             * Schema
+             * @description support_ticket/v1. Any other version arrives with every other field at its empty default: compare this with the version before offering to send the draft.
+             * @default
+             */
+            schema: string;
+            /**
+             * Subject
+             * @description One line; the support form's subject.
+             * @default
+             */
+            subject: string;
+            /**
+             * Summary
+             * @description The summary alone, as `content` opens with it.
+             * @default
+             */
+            summary: string;
+        };
+        /** SupportTicketReferences */
+        SupportTicketReferences: {
+            /** Batch Ids */
+            batch_ids: string[];
+            /**
+             * Domains
+             * @description Domain names, ACE, lower case.
+             */
+            domains: string[];
+            /** Job Ids */
+            job_ids: string[];
+            /**
+             * Request Ids
+             * @description Server request ids (the X-Server-Request-ID header), 32 hex digits.
+             */
+            request_ids: string[];
+        };
         /**
          * SyncFailure
          * @description A domain the sync could not sync. The list can be shorter than the status's `failed` count.
@@ -24289,7 +24391,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"] | components["schemas"]["AuditFindingsContext"];
+                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"] | components["schemas"]["AuditFindingsContext"] | components["schemas"]["SupportTicketContext"];
                 };
             };
             /** @description Unauthorized */
@@ -24908,7 +25010,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"] | components["schemas"]["AuditFindingsContext"];
+                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"] | components["schemas"]["AggregationsContext"] | components["schemas"]["BrandingDesignContext"] | components["schemas"]["CallOperationResultContext"] | components["schemas"]["AuditFindingsContext"] | components["schemas"]["SupportTicketContext"];
                 };
             };
             /** @description Unauthorized */

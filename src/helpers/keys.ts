@@ -494,6 +494,9 @@ import type {
   StatusCodeStatsBucket,
   StatusTag,
   Support,
+  SupportTicketContext,
+  SupportTicketContextPayload,
+  SupportTicketReferences,
   SyncFailure,
   SyncFailureError,
   SyncStatus,
@@ -6849,6 +6852,58 @@ export const KEYS_SUPPORT = [
   KEY_SUPPORT_STATUS_URL,
   KEY_SUPPORT_URL,
 ] as const satisfies (keyof Support)[];
+
+export const KEY_SUPPORT_TICKET_CONTEXT_CONTEXT_ID = 'context_id' satisfies keyof SupportTicketContext;
+export const KEY_SUPPORT_TICKET_CONTEXT_CONVERSATION_ID = 'conversation_id' satisfies keyof SupportTicketContext;
+export const KEY_SUPPORT_TICKET_CONTEXT_CREATED_AT = 'created_at' satisfies keyof SupportTicketContext;
+export const KEY_SUPPORT_TICKET_CONTEXT_KIND = 'kind' satisfies keyof SupportTicketContext;
+export const KEY_SUPPORT_TICKET_CONTEXT_ORGANIZATION_ID = 'organization_id' satisfies keyof SupportTicketContext;
+export const KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD = 'payload' satisfies keyof SupportTicketContext;
+export const KEY_SUPPORT_TICKET_CONTEXT_USER_ID = 'user_id' satisfies keyof SupportTicketContext;
+
+export const KEYS_SUPPORT_TICKET_CONTEXT = [
+  KEY_SUPPORT_TICKET_CONTEXT_CONTEXT_ID,
+  KEY_SUPPORT_TICKET_CONTEXT_CONVERSATION_ID,
+  KEY_SUPPORT_TICKET_CONTEXT_CREATED_AT,
+  KEY_SUPPORT_TICKET_CONTEXT_KIND,
+  KEY_SUPPORT_TICKET_CONTEXT_ORGANIZATION_ID,
+  KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD,
+  KEY_SUPPORT_TICKET_CONTEXT_USER_ID,
+] as const satisfies (keyof SupportTicketContext)[];
+
+export const KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_CATEGORY = 'category' satisfies keyof SupportTicketContextPayload;
+export const KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_CHECKS = 'checks' satisfies keyof SupportTicketContextPayload;
+export const KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_CONTENT = 'content' satisfies keyof SupportTicketContextPayload;
+export const KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_OUTCOME = 'outcome' satisfies keyof SupportTicketContextPayload;
+export const KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_REFERENCES = 'references' satisfies keyof SupportTicketContextPayload;
+export const KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_REPLACES = 'replaces' satisfies keyof SupportTicketContextPayload;
+export const KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_SCHEMA = 'schema' satisfies keyof SupportTicketContextPayload;
+export const KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_SUBJECT = 'subject' satisfies keyof SupportTicketContextPayload;
+export const KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_SUMMARY = 'summary' satisfies keyof SupportTicketContextPayload;
+
+export const KEYS_SUPPORT_TICKET_CONTEXT_PAYLOAD = [
+  KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_CATEGORY,
+  KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_CHECKS,
+  KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_CONTENT,
+  KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_OUTCOME,
+  KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_REFERENCES,
+  KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_REPLACES,
+  KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_SCHEMA,
+  KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_SUBJECT,
+  KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD_SUMMARY,
+] as const satisfies (keyof SupportTicketContextPayload)[];
+
+export const KEY_SUPPORT_TICKET_REFERENCES_BATCH_IDS = 'batch_ids' satisfies keyof SupportTicketReferences;
+export const KEY_SUPPORT_TICKET_REFERENCES_DOMAINS = 'domains' satisfies keyof SupportTicketReferences;
+export const KEY_SUPPORT_TICKET_REFERENCES_JOB_IDS = 'job_ids' satisfies keyof SupportTicketReferences;
+export const KEY_SUPPORT_TICKET_REFERENCES_REQUEST_IDS = 'request_ids' satisfies keyof SupportTicketReferences;
+
+export const KEYS_SUPPORT_TICKET_REFERENCES = [
+  KEY_SUPPORT_TICKET_REFERENCES_BATCH_IDS,
+  KEY_SUPPORT_TICKET_REFERENCES_DOMAINS,
+  KEY_SUPPORT_TICKET_REFERENCES_JOB_IDS,
+  KEY_SUPPORT_TICKET_REFERENCES_REQUEST_IDS,
+] as const satisfies (keyof SupportTicketReferences)[];
 
 export const KEY_SYNC_FAILURE_BATCH_ID = 'batch_id' satisfies keyof SyncFailure;
 export const KEY_SYNC_FAILURE_CREATED_ON = 'created_on' satisfies keyof SyncFailure;
