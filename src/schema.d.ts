@@ -12132,13 +12132,6 @@ export interface components {
             /** Results */
             results: components["schemas"]["RegistrarDomain"][];
         };
-        /** ContextPayload[RegistrarZone] */
-        ContextPayload_RegistrarZone_: {
-            meta?: components["schemas"]["ContextMeta"] | null;
-            pagination?: components["schemas"]["PaginationMetadata"] | null;
-            /** Results */
-            results: components["schemas"]["RegistrarZone"][];
-        };
         /** Conversation */
         Conversation: {
             /**
@@ -21279,17 +21272,20 @@ export interface components {
              */
             ip_addresses: string[];
         };
-        /** RegistrarRRSet */
+        /**
+         * RegistrarRRSet
+         * @description A DNS record set from an external registrar or `GET /v1/dns`.
+         *
+         *     Shaped like `DnsRrsetResponse`: MX and SRV values start with their priority.
+         */
         RegistrarRRSet: {
             /** Name */
             name: string;
-            /** Priority */
-            priority?: number | null;
             /**
-             * Record
+             * Records
              * @default []
              */
-            record: components["schemas"]["RegistrarRecord"][];
+            records: components["schemas"]["RegistrarRecord"][];
             /** Ttl */
             ttl: number;
             /** Type */
@@ -21300,7 +21296,10 @@ export interface components {
             /** Rdata */
             rdata: string;
         };
-        /** RegistrarZone */
+        /**
+         * RegistrarZone
+         * @description A DNS zone read from an external registrar, or from `GET /v1/dns` in a zones context.
+         */
         RegistrarZone: {
             /** Name */
             name: string;
@@ -23971,7 +23970,7 @@ export interface components {
              * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id: TypeId<"organization">;
-            payload: components["schemas"]["ContextPayload_RegistrarZone_"];
+            payload: components["schemas"]["ZonesContextPayload"];
             /** User Id */
             user_id: string;
         };
@@ -23982,7 +23981,14 @@ export interface components {
              * @enum {string}
              */
             kind: "zones";
-            payload: components["schemas"]["ContextPayload_RegistrarZone_"];
+            payload: components["schemas"]["ZonesContextPayload"];
+        };
+        /** ZonesContextPayload */
+        ZonesContextPayload: {
+            meta?: components["schemas"]["ContextMeta"] | null;
+            pagination?: components["schemas"]["PaginationMetadata"] | null;
+            /** Results */
+            results: components["schemas"]["RegistrarZone"][];
         };
         /** RequestAuthcodeResponse */
         api__domain__tld_specific__be__models__RequestAuthcodeResponse: {

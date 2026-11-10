@@ -11396,25 +11396,6 @@ components:
       - results
       title: ContextPayload[RegistrarDomain]
       type: object
-    ContextPayload_RegistrarZone_:
-      properties:
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/ContextMeta'
-          - type: 'null'
-        pagination:
-          anyOf:
-          - $ref: '#/components/schemas/PaginationMetadata'
-          - type: 'null'
-        results:
-          items:
-            $ref: '#/components/schemas/RegistrarZone'
-          title: Results
-          type: array
-      required:
-      - results
-      title: ContextPayload[RegistrarZone]
-      type: object
     Conversation:
       properties:
         conversation_id:
@@ -25182,20 +25163,19 @@ components:
       title: RegistrarNameserver
       type: object
     RegistrarRRSet:
+      description: 'A DNS record set from an external registrar or `GET /v1/dns`.
+
+
+        Shaped like `DnsRrsetResponse`: MX and SRV values start with their priority.'
       properties:
         name:
           title: Name
           type: string
-        priority:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Priority
-        record:
+        records:
           default: []
           items:
             $ref: '#/components/schemas/RegistrarRecord'
-          title: Record
+          title: Records
           type: array
         ttl:
           title: Ttl
@@ -25205,8 +25185,8 @@ components:
           type: string
       required:
       - name
-      - ttl
       - type
+      - ttl
       title: RegistrarRRSet
       type: object
     RegistrarRecord:
@@ -25219,6 +25199,8 @@ components:
       title: RegistrarRecord
       type: object
     RegistrarZone:
+      description: A DNS zone read from an external registrar, or from `GET /v1/dns`
+        in a zones context.
       properties:
         name:
           title: Name
@@ -29254,7 +29236,7 @@ components:
           type: string
           x-typeid-prefix: organization
         payload:
-          $ref: '#/components/schemas/ContextPayload_RegistrarZone_'
+          $ref: '#/components/schemas/ZonesContextPayload'
         user_id:
           title: User Id
           type: string
@@ -29275,10 +29257,29 @@ components:
           title: Kind
           type: string
         payload:
-          $ref: '#/components/schemas/ContextPayload_RegistrarZone_'
+          $ref: '#/components/schemas/ZonesContextPayload'
       required:
       - payload
       title: ZonesContextCreate
+      type: object
+    ZonesContextPayload:
+      properties:
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/ContextMeta'
+          - type: 'null'
+        pagination:
+          anyOf:
+          - $ref: '#/components/schemas/PaginationMetadata'
+          - type: 'null'
+        results:
+          items:
+            $ref: '#/components/schemas/RegistrarZone'
+          title: Results
+          type: array
+      required:
+      - results
+      title: ZonesContextPayload
       type: object
     api__domain__tld_specific__be__models__RequestAuthcodeResponse:
       properties:
@@ -29681,7 +29682,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-10-103732
+  version: 2026-11-10-105427
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -48127,8 +48128,8 @@ paths:
                   value:
                     code: ERROR_ORDER_ITEM_NOT_FOUND
                     detail: Order item not found
-                    item_id: order_item_01m72ghmdge21s0jfx8stvfpsn
-                    order_id: order_01m72ghmdfek6aaywe6257ng0x
+                    item_id: order_item_01m72hgkbmethave6ahhtx4eha
+                    order_id: order_01m72hgkbkf1yrt10eybbet162
                     status: 404
                     title: Order Item Not Found
                     type: order-item-not-found
@@ -48136,7 +48137,7 @@ paths:
                   value:
                     code: ERROR_ORDER_NOT_FOUND
                     detail: Order not found
-                    order_id: order_01m72ghmdeebq9tr96hvmrsq1c
+                    order_id: order_01m72hgkbjeh9vnzr910mvkztk
                     status: 404
                     title: Order Not Found
                     type: order-not-found

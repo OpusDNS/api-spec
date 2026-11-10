@@ -87,7 +87,6 @@ import type {
   ContextPayload_EmailForward,
   ContextPayload_RegistrarContact,
   ContextPayload_RegistrarDomain,
-  ContextPayload_RegistrarZone,
   Conversation,
   ConversationCreateRequest,
   ConversationList,
@@ -569,6 +568,7 @@ import type {
   ZoneVanitySetUpdate,
   ZonesContext,
   ZonesContextCreate,
+  ZonesContextPayload,
   RequestAuthcode,
   RequestAuthcode2,
   RequestAuthcode3,
@@ -1819,16 +1819,6 @@ export const KEYS_CONTEXT_PAYLOAD_REGISTRAR_DOMAIN = [
   KEY_CONTEXT_PAYLOAD_REGISTRAR_DOMAIN_PAGINATION,
   KEY_CONTEXT_PAYLOAD_REGISTRAR_DOMAIN_RESULTS,
 ] as const satisfies (keyof ContextPayload_RegistrarDomain)[];
-
-export const KEY_CONTEXT_PAYLOAD_REGISTRAR_ZONE_META = 'meta' satisfies keyof ContextPayload_RegistrarZone;
-export const KEY_CONTEXT_PAYLOAD_REGISTRAR_ZONE_PAGINATION = 'pagination' satisfies keyof ContextPayload_RegistrarZone;
-export const KEY_CONTEXT_PAYLOAD_REGISTRAR_ZONE_RESULTS = 'results' satisfies keyof ContextPayload_RegistrarZone;
-
-export const KEYS_CONTEXT_PAYLOAD_REGISTRAR_ZONE = [
-  KEY_CONTEXT_PAYLOAD_REGISTRAR_ZONE_META,
-  KEY_CONTEXT_PAYLOAD_REGISTRAR_ZONE_PAGINATION,
-  KEY_CONTEXT_PAYLOAD_REGISTRAR_ZONE_RESULTS,
-] as const satisfies (keyof ContextPayload_RegistrarZone)[];
 
 export const KEY_CONVERSATION_CONVERSATION_ID = 'conversation_id' satisfies keyof Conversation;
 export const KEY_CONVERSATION_CREATED_AT = 'created_at' satisfies keyof Conversation;
@@ -6651,15 +6641,13 @@ export const KEYS_REGISTRAR_NAMESERVER = [
 ] as const satisfies (keyof RegistrarNameserver)[];
 
 export const KEY_REGISTRAR_RR_SET_NAME = 'name' satisfies keyof RegistrarRRSet;
-export const KEY_REGISTRAR_RR_SET_PRIORITY = 'priority' satisfies keyof RegistrarRRSet;
-export const KEY_REGISTRAR_RR_SET_RECORD = 'record' satisfies keyof RegistrarRRSet;
+export const KEY_REGISTRAR_RR_SET_RECORDS = 'records' satisfies keyof RegistrarRRSet;
 export const KEY_REGISTRAR_RR_SET_TTL = 'ttl' satisfies keyof RegistrarRRSet;
 export const KEY_REGISTRAR_RR_SET_TYPE = 'type' satisfies keyof RegistrarRRSet;
 
 export const KEYS_REGISTRAR_RR_SET = [
   KEY_REGISTRAR_RR_SET_NAME,
-  KEY_REGISTRAR_RR_SET_PRIORITY,
-  KEY_REGISTRAR_RR_SET_RECORD,
+  KEY_REGISTRAR_RR_SET_RECORDS,
   KEY_REGISTRAR_RR_SET_TTL,
   KEY_REGISTRAR_RR_SET_TYPE,
 ] as const satisfies (keyof RegistrarRRSet)[];
@@ -7979,6 +7967,16 @@ export const KEYS_ZONES_CONTEXT_CREATE = [
   KEY_ZONES_CONTEXT_CREATE_KIND,
   KEY_ZONES_CONTEXT_CREATE_PAYLOAD,
 ] as const satisfies (keyof ZonesContextCreate)[];
+
+export const KEY_ZONES_CONTEXT_PAYLOAD_META = 'meta' satisfies keyof ZonesContextPayload;
+export const KEY_ZONES_CONTEXT_PAYLOAD_PAGINATION = 'pagination' satisfies keyof ZonesContextPayload;
+export const KEY_ZONES_CONTEXT_PAYLOAD_RESULTS = 'results' satisfies keyof ZonesContextPayload;
+
+export const KEYS_ZONES_CONTEXT_PAYLOAD = [
+  KEY_ZONES_CONTEXT_PAYLOAD_META,
+  KEY_ZONES_CONTEXT_PAYLOAD_PAGINATION,
+  KEY_ZONES_CONTEXT_PAYLOAD_RESULTS,
+] as const satisfies (keyof ZonesContextPayload)[];
 
 export const KEY_REQUEST_AUTHCODE_DETAIL = 'detail' satisfies keyof RequestAuthcode;
 export const KEY_REQUEST_AUTHCODE_NAME = 'name' satisfies keyof RequestAuthcode;
