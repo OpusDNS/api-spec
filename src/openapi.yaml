@@ -29680,7 +29680,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-10-012321
+  version: 2026-11-10-082024
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -48047,11 +48047,10 @@ paths:
     get:
       description: 'Returns what an item delivers, in one object named after the item''s
         `type`. For a `marketplace_domain_purchase` that is the transfer auth code,
-        for moving the domain to the registrar of your choice, available once the
-        item''s stage is `code_ready`. It can be read when the item''s `delivery_available`
-        is true; a 409 means it cannot be read now. The caller needs `domains:manage`
-        and `domain_auth_codes:read`. The response is never cached (`Cache-Control:
-        no-store`).'
+        for moving the domain to the registrar of your choice. It can be read when
+        the item''s `delivery_available` is true; a 409 means it cannot be read now.
+        The caller needs `domains:manage` and `domain_auth_codes:read`. The response
+        is never cached (`Cache-Control: no-store`).'
       operationId: get_order_item_delivery_v1_orders__order_id__items__item_id__delivery_get
       parameters:
       - in: path
@@ -48113,8 +48112,8 @@ paths:
                   value:
                     code: ERROR_ORDER_ITEM_NOT_FOUND
                     detail: Order item not found
-                    item_id: order_item_01m71gtw84f7dtdvmehyq41rae
-                    order_id: order_01m71gtw83ew0bne1vqtex48xf
+                    item_id: order_item_01m728ph75efyvh3xsd9g935wv
+                    order_id: order_01m728ph74ed78zqc0xvpnnsjx
                     status: 404
                     title: Order Item Not Found
                     type: order-item-not-found
@@ -48122,7 +48121,7 @@ paths:
                   value:
                     code: ERROR_ORDER_NOT_FOUND
                     detail: Order not found
-                    order_id: order_01m71gtw82fczse2zhj3bnd5h7
+                    order_id: order_01m728ph73er18znhzrztzyez2
                     status: 404
                     title: Order Not Found
                     type: order-not-found
@@ -53741,44 +53740,48 @@ tags:
     \ |\n| --- | --- |\n| `processing` | The order is being prepared or wound up |\n\
     | `purchasing` | The domain is being bought on the marketplace |\n| `awaiting_code`\
     \ | The domain is bought and its authorization code is being obtained |\n| `code_ready`\
-    \ | The authorization code is ready; the domain can be transferred to you |\n\
-    | `completed` | Final: the order is done |\n| `failed` | Final: the order could\
-    \ not be completed |\n| `canceled` | Final: the order was canceled |\n\nTreat\
-    \ unknown stage values as `processing` so your client keeps working when stages\
-    \ are added.\n\n### Reason\n\nEach item has a `reason` that says why it was canceled\
-    \ or failed, or that an open item is slow. It is `null` while the item is on track,\
-    \ or when no problem is known.\n\n| Reason | On | Meaning |\n| --- | --- | ---\
-    \ |\n| `price_changed` | `canceled` | The marketplace price changed, so the domain\
-    \ was not bought |\n| `unavailable` | `canceled` | The domain is no longer available\
-    \ |\n| `canceled_by_marketplace` | `canceled` | The marketplace canceled the purchase\
-    \ |\n| `failed` | `canceled`, `failed` | Any other failure. Nothing was taken\
-    \ from your account; any amount set aside for the order is released |\n| `delayed`\
-    \ | `in_progress` | The item is taking longer than usual. No action is needed\
-    \ from you; if it stays `delayed`, contact support with the order ID |\n\nTreat\
-    \ unknown reason values like `failed` on a final item and like `delayed` on an\
-    \ open one, so your client keeps working when reasons are added.\n\n### Delivery\n\
-    \n`GET /v1/orders/{order_id}/items/{item_id}/delivery` returns what an item delivers:\
-    \ `type` and one object named after it. It can be read when the item's `delivery_available`\
-    \ is `true`; poll `GET /v1/orders/{order_id}` until then. If the item's status\
-    \ is final and `delivery_available` is `false`, nothing will be delivered.\n\n\
-    For a `marketplace_domain_purchase` the delivery is the domain's transfer authorization\
-    \ code, so you can move the domain to a registrar of your choice. It is ready\
-    \ when the item's `stage` is `code_ready`.\n\n```json\n{\n  \"type\": \"marketplace_domain_purchase\"\
-    ,\n  \"marketplace_domain_purchase\": {\n    \"auth_code\": \"<auth-code>\",\n\
-    \    \"auth_code_expires_on\": null\n  }\n}\n```\n\n`auth_code_expires_on` is\
-    \ when the code expires, if the marketplace told us; `null` otherwise.\n\nA successful\
-    \ response carries `Cache-Control: no-store`; do not cache or log it.\n\nPermissions:\n\
-    \n- Users need the manage-domains and view-domain-auth-codes permissions.\n- API\
-    \ keys need both `domains:manage` and `domain_auth_codes:read`.\n- A parent organization\
-    \ can read the codes of its sub-organizations by sending `X-Organization-Context`.\n\
-    - An unknown order or item, or another organization's order, is 404.\n\nTo use\
-    \ the code, start a transfer at the registrar of your choice. We suggest transferring\
-    \ to OpusDNS with the existing transfer API. Updating the registrant after the\
-    \ transfer is up to you.\n\nA code past `auth_code_expires_on` may be rejected\
-    \ by the gaining registrar. Contact support to get a new one.\n\n### Errors\n\n\
-    Errors follow RFC 9457 problem details; `code` identifies the error.\n\n| Status\
-    \ | Code | Meaning |\n| --- | --- | --- |\n| 403 | `ERROR_ORDERS_FEATURE_DISABLED`\
-    \ | Orders are not enabled in this environment |\n| 403 | `ERROR_BILLING_INSUFFICIENT_FUNDS`\
+    \ | The authorization code is ready; a short step before `completed` |\n| `completed`\
+    \ | Final: the authorization code is available and the order is done. The price\
+    \ is charged at this point; the domain itself moves when you transfer it |\n|\
+    \ `failed` | Final: the order could not be completed |\n| `canceled` | Final:\
+    \ the order was canceled |\n\nTreat unknown stage values as `processing` so your\
+    \ client keeps working when stages are added.\n\n### Reason\n\nEach item has a\
+    \ `reason` that says why it was canceled or failed, or that an open item is slow.\
+    \ It is `null` while the item is on track, or when no problem is known.\n\n| Reason\
+    \ | On | Meaning |\n| --- | --- | --- |\n| `price_changed` | `canceled` | The\
+    \ marketplace price changed, so the domain was not bought |\n| `unavailable` |\
+    \ `canceled` | The domain is no longer available |\n| `canceled_by_marketplace`\
+    \ | `canceled` | The marketplace canceled the purchase |\n| `failed` | `canceled`,\
+    \ `failed` | Any other failure. Nothing was taken from your account; any amount\
+    \ set aside for the order is released |\n| `delayed` | `in_progress` | The item\
+    \ is taking longer than usual. No action is needed from you; if it stays `delayed`,\
+    \ contact support with the order ID |\n\nTreat unknown reason values like `failed`\
+    \ on a final item and like `delayed` on an open one, so your client keeps working\
+    \ when reasons are added.\n\n### Delivery\n\n`GET /v1/orders/{order_id}/items/{item_id}/delivery`\
+    \ returns what an item delivers: `type` and one object named after it. It can\
+    \ be read when the item's `delivery_available` is `true`; poll `GET /v1/orders/{order_id}`\
+    \ until then. If the item's status is final and `delivery_available` is `false`,\
+    \ nothing will be delivered.\n\nFor a `marketplace_domain_purchase` the delivery\
+    \ is the domain's transfer authorization code, so you can move the domain to a\
+    \ registrar of your choice. It is ready once the item's `delivery_available` is\
+    \ `true`: an item completes as soon as its code is available (`code_ready` is\
+    \ only a short step before `completed`), and the code stays readable on a completed\
+    \ item.\n\n```json\n{\n  \"type\": \"marketplace_domain_purchase\",\n  \"marketplace_domain_purchase\"\
+    : {\n    \"auth_code\": \"<auth-code>\",\n    \"auth_code_expires_on\": null\n\
+    \  }\n}\n```\n\n`auth_code_expires_on` is when the code expires, if the marketplace\
+    \ told us; `null` otherwise.\n\nA successful response carries `Cache-Control:\
+    \ no-store`; do not cache or log it.\n\nPermissions:\n\n- Users need the manage-domains\
+    \ and view-domain-auth-codes permissions.\n- API keys need both `domains:manage`\
+    \ and `domain_auth_codes:read`.\n- A parent organization can read the codes of\
+    \ its sub-organizations by sending `X-Organization-Context`.\n- An unknown order\
+    \ or item, or another organization's order, is 404.\n\nTo use the code, start\
+    \ a transfer at the registrar of your choice. We suggest transferring to OpusDNS\
+    \ with the existing transfer API. Updating the registrant after the transfer is\
+    \ up to you.\n\nA code past `auth_code_expires_on` may be rejected by the gaining\
+    \ registrar. Contact support to get a new one.\n\n### Errors\n\nErrors follow\
+    \ RFC 9457 problem details; `code` identifies the error.\n\n| Status | Code |\
+    \ Meaning |\n| --- | --- | --- |\n| 403 | `ERROR_ORDERS_FEATURE_DISABLED` | Orders\
+    \ are not enabled in this environment |\n| 403 | `ERROR_BILLING_INSUFFICIENT_FUNDS`\
     \ | Your organization's account cannot cover the order |\n| 404 | `ERROR_ORDER_NOT_FOUND`\
     \ | No such order for your organization |\n| 404 | `ERROR_ORDER_ITEM_NOT_FOUND`\
     \ | The order has no such item |\n| 409 | `ERROR_ORDER_IDEMPOTENCY_KEY_REUSED`\

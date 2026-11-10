@@ -2613,7 +2613,7 @@ export interface paths {
         };
         /**
          * Get what an order item delivers
-         * @description Returns what an item delivers, in one object named after the item's `type`. For a `marketplace_domain_purchase` that is the transfer auth code, for moving the domain to the registrar of your choice, available once the item's stage is `code_ready`. It can be read when the item's `delivery_available` is true; a 409 means it cannot be read now. The caller needs `domains:manage` and `domain_auth_codes:read`. The response is never cached (`Cache-Control: no-store`).
+         * @description Returns what an item delivers, in one object named after the item's `type`. For a `marketplace_domain_purchase` that is the transfer auth code, for moving the domain to the registrar of your choice. It can be read when the item's `delivery_available` is true; a 409 means it cannot be read now. The caller needs `domains:manage` and `domain_auth_codes:read`. The response is never cached (`Cache-Control: no-store`).
          */
         get: operations["get_order_item_delivery_v1_orders__order_id__items__item_id__delivery_get"];
         put?: never;
