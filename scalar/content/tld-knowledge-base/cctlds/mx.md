@@ -82,7 +82,7 @@
 | Property | Value |
 | --- | --- |
 | Transfer Lock Enabled | ❌ No |
-| Transfer Duration | 5 days |
+| Transfer Duration | 10 days |
 | Transfer Extends Domain | ✅ Yes (+1 year) |
 | Transfer via AuthInfo | ✅ Yes |
 | Confirmation Required | ✅ Yes (registrar) |
