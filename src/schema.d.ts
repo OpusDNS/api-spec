@@ -347,7 +347,7 @@ export interface paths {
          * Stream domain availability results
          * @description Stream domain availability results using Server-Sent Events (SSE) until the `done` event is received.
          *
-         *     With `marketplaces` (e.g. `["fruits"]`, or `["all"]`), a taken domain that can be bought on one of them is reported as `market_available` with `marketplace: {"name": ...}` (best-effort); taken domains may then arrive slightly later.
+         *     With `marketplaces` (e.g. `["fruits"]`, or `["all"]`), for organizations billed in EUR, a taken domain that can be bought on one of them is reported as `market_available` with `marketplace: {"name": ...}` (best-effort); taken domains may then arrive slightly later. For other organizations `marketplaces` is ignored and taken domains are reported as `unavailable`.
          */
         post: operations["stream_availability_post_v1_availability_stream_post"];
         delete?: never;
@@ -1448,7 +1448,7 @@ export interface paths {
          *     well, with `limit` capping them separately from the suggestions; the organization's TLD restriction
          *     and `premium` do not apply to them. `meta.total` counts all items in `results`, both entries of a
          *     domain included. Marketplace domains are best-effort and left out when the marketplace does not
-         *     answer in time.
+         *     answer in time. They are only added for organizations billed in EUR; for others `marketplaces` is ignored.
          */
         get: operations["suggest_v1_domain_search_suggest_get"];
         put?: never;
@@ -2577,6 +2577,8 @@ export interface paths {
          * @description Orders a domain listed on a marketplace. The order is accepted (202) once the price and availability are confirmed; it then progresses on its own, follow it with `GET /v1/orders/{order_id}`.
          *
          *     Repeating a request with the same `idempotency_key` and body returns the original order with 200. The same key with a different body is refused with 409.
+         *
+         *     Only organizations billed in EUR can order; others are refused with 403 `ERROR_ORDER_CURRENCY_NOT_SUPPORTED`.
          *
          *     The order's price is reserved on the organization's account before the order is created; billing's refusal (403 insufficient funds, 429 daily create limit) creates no order.
          */

@@ -29681,7 +29681,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-10-101519
+  version: 2026-11-10-103732
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -32043,9 +32043,11 @@ paths:
         until the `done` event is received.
 
 
-        With `marketplaces` (e.g. `["fruits"]`, or `["all"]`), a taken domain that
-        can be bought on one of them is reported as `market_available` with `marketplace:
-        {"name": ...}` (best-effort); taken domains may then arrive slightly later.'
+        With `marketplaces` (e.g. `["fruits"]`, or `["all"]`), for organizations billed
+        in EUR, a taken domain that can be bought on one of them is reported as `market_available`
+        with `marketplace: {"name": ...}` (best-effort); taken domains may then arrive
+        slightly later. For other organizations `marketplaces` is ignored and taken
+        domains are reported as `unavailable`.'
       operationId: stream_availability_post_v1_availability_stream_post
       parameters:
       - $ref: '#/components/parameters/DatetimeFormatHeader'
@@ -40816,7 +40818,8 @@ paths:
         \ from the suggestions; the organization's TLD restriction\nand `premium`\
         \ do not apply to them. `meta.total` counts all items in `results`, both entries\
         \ of a\ndomain included. Marketplace domains are best-effort and left out\
-        \ when the marketplace does not\nanswer in time."
+        \ when the marketplace does not\nanswer in time. They are only added for organizations\
+        \ billed in EUR; for others `marketplaces` is ignored."
       operationId: suggest_v1_domain_search_suggest_get
       parameters:
       - description: The primary keyword or phrase for the domain search. A full domain
@@ -47809,6 +47812,9 @@ paths:
         order with 200. The same key with a different body is refused with 409.
 
 
+        Only organizations billed in EUR can order; others are refused with 403 `ERROR_ORDER_CURRENCY_NOT_SUPPORTED`.
+
+
         The order''s price is reserved on the organization''s account before the order
         is created; billing''s refusal (403 insufficient funds, 429 daily create limit)
         creates no order.'
@@ -47845,6 +47851,14 @@ paths:
                     status: 403
                     title: Billing Error
                     type: billing-insufficient-funds
+                Order Currency Not Supported:
+                  value:
+                    code: ERROR_ORDER_CURRENCY_NOT_SUPPORTED
+                    detail: Marketplace orders are available to organizations billed
+                      in EUR
+                    status: 403
+                    title: Order Currency Not Supported
+                    type: order-currency-not-supported
                 Orders Feature Disabled:
                   value:
                     code: ERROR_ORDERS_FEATURE_DISABLED
@@ -48113,8 +48127,8 @@ paths:
                   value:
                     code: ERROR_ORDER_ITEM_NOT_FOUND
                     detail: Order item not found
-                    item_id: order_item_01m72f8ygmexyrwz16g69svqvd
-                    order_id: order_01m72f8ygkevbtcmqd3nqvnkzh
+                    item_id: order_item_01m72ghmdge21s0jfx8stvfpsn
+                    order_id: order_01m72ghmdfek6aaywe6257ng0x
                     status: 404
                     title: Order Item Not Found
                     type: order-item-not-found
@@ -48122,7 +48136,7 @@ paths:
                   value:
                     code: ERROR_ORDER_NOT_FOUND
                     detail: Order not found
-                    order_id: order_01m72f8ygjez1vd568z27tc0xp
+                    order_id: order_01m72ghmdeebq9tr96hvmrsq1c
                     status: 404
                     title: Order Not Found
                     type: order-not-found
@@ -53684,10 +53698,13 @@ tags:
     12\"` and JSON numbers are refused with `422`). If the current price differs,\
     \ the order is refused with `ERROR_ORDER_PRICE_CHANGED`, which carries both prices.\n\
     - `type` defaults to `marketplace_domain_purchase` today. It will become required\
-    \ once more item types exist, so send it now.\n\nCreating an order reserves its\
-    \ price on your organization's account: it is charged once the authorization code\
-    \ is delivered and released if the order is canceled or fails. If the account\
-    \ cannot cover it, the order is refused with `403` (`ERROR_BILLING_INSUFFICIENT_FUNDS`).\n\
+    \ once more item types exist, so send it now.\n\nMarketplace orders are available\
+    \ to organizations billed in EUR. Any other organization is refused with `403`\
+    \ `ERROR_ORDER_CURRENCY_NOT_SUPPORTED` before anything is created, so the same\
+    \ request can be sent again once the organization is billed in EUR.\n\nCreating\
+    \ an order reserves its price on your organization's account: it is charged once\
+    \ the authorization code is delivered and released if the order is canceled or\
+    \ fails. If the account cannot cover it, the order is refused with `403` (`ERROR_BILLING_INSUFFICIENT_FUNDS`).\n\
     \nA new order answers `202 Accepted`:\n\n```json\n{\n  \"order_id\": \"order_01h2xcejqtf2nbrexx3vqjhp41\"\
     ,\n  \"status\": \"in_progress\",\n  \"total_price\": \"12.10\",\n  \"currency\"\
     : \"EUR\",\n  \"items\": [\n    {\n      \"item_id\": \"order_item_01h2xcejqtf2nbrexx3vqjhp42\"\
@@ -53780,20 +53797,22 @@ tags:
     \ registrar. Contact support to get a new one.\n\n### Errors\n\nErrors follow\
     \ RFC 9457 problem details; `code` identifies the error.\n\n| Status | Code |\
     \ Meaning |\n| --- | --- | --- |\n| 403 | `ERROR_ORDERS_FEATURE_DISABLED` | Orders\
-    \ are not enabled in this environment |\n| 403 | `ERROR_BILLING_INSUFFICIENT_FUNDS`\
-    \ | Your organization's account cannot cover the order |\n| 404 | `ERROR_ORDER_NOT_FOUND`\
-    \ | No such order for your organization |\n| 404 | `ERROR_ORDER_ITEM_NOT_FOUND`\
-    \ | The order has no such item |\n| 409 | `ERROR_ORDER_IDEMPOTENCY_KEY_REUSED`\
-    \ | The key was already used with a different body |\n| 409 | `ERROR_ORDER_SUBJECT_IN_PROGRESS`\
-    \ | Another order for this domain is already in progress |\n| 409 | `ERROR_ORDER_PRICE_CHANGED`\
-    \ | The price changed; the response carries `expected_price`, `actual_price` and\
-    \ their `currency` |\n| 409 | `ERROR_ORDER_ITEM_UNAVAILABLE` | The domain is not\
-    \ available for purchase |\n| 409 | `ERROR_ORDER_ITEM_NOT_DELIVERABLE` | The domain\
-    \ cannot be delivered to you (for example, its TLD cannot be handed over by auth\
-    \ code) |\n| 409 | `ERROR_ORDER_OPEN_LIMIT_REACHED` | Too many open orders; wait\
-    \ for some to finish |\n| 409 | `ERROR_ORDER_DELIVERY_NOT_AVAILABLE` | Nothing\
-    \ is delivered yet, or the item is not at a stage where it can be read; read the\
-    \ order and check the item's `delivery_available` |\n| 500 | `ERROR_ORDER_DELIVERY_UNREADABLE`\
+    \ are not enabled in this environment |\n| 403 | `ERROR_ORDER_CURRENCY_NOT_SUPPORTED`\
+    \ | Marketplace orders are available to organizations billed in EUR |\n| 403 |\
+    \ `ERROR_BILLING_INSUFFICIENT_FUNDS` | Your organization's account cannot cover\
+    \ the order |\n| 404 | `ERROR_ORDER_NOT_FOUND` | No such order for your organization\
+    \ |\n| 404 | `ERROR_ORDER_ITEM_NOT_FOUND` | The order has no such item |\n| 409\
+    \ | `ERROR_ORDER_IDEMPOTENCY_KEY_REUSED` | The key was already used with a different\
+    \ body |\n| 409 | `ERROR_ORDER_SUBJECT_IN_PROGRESS` | Another order for this domain\
+    \ is already in progress |\n| 409 | `ERROR_ORDER_PRICE_CHANGED` | The price changed;\
+    \ the response carries `expected_price`, `actual_price` and their `currency` |\n\
+    | 409 | `ERROR_ORDER_ITEM_UNAVAILABLE` | The domain is not available for purchase\
+    \ |\n| 409 | `ERROR_ORDER_ITEM_NOT_DELIVERABLE` | The domain cannot be delivered\
+    \ to you (for example, its TLD cannot be handed over by auth code) |\n| 409 |\
+    \ `ERROR_ORDER_OPEN_LIMIT_REACHED` | Too many open orders; wait for some to finish\
+    \ |\n| 409 | `ERROR_ORDER_DELIVERY_NOT_AVAILABLE` | Nothing is delivered yet,\
+    \ or the item is not at a stage where it can be read; read the order and check\
+    \ the item's `delivery_available` |\n| 500 | `ERROR_ORDER_DELIVERY_UNREADABLE`\
     \ | The stored delivery could not be read; contact support |\n| 500 | `ERROR_ORDER_UNREADABLE`\
     \ | The order's stored data cannot be shown; contact support |\n| 503 | `ERROR_AUTHORIZATION_UNAVAILABLE`\
     \ | The permission check could not be completed; retry later |\n| 503 | `ERROR_ORDER_SERVICE_UNAVAILABLE`\
