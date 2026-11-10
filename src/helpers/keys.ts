@@ -6859,6 +6859,7 @@ export const KEY_SUPPORT_TICKET_CONTEXT_CREATED_AT = 'created_at' satisfies keyo
 export const KEY_SUPPORT_TICKET_CONTEXT_KIND = 'kind' satisfies keyof SupportTicketContext;
 export const KEY_SUPPORT_TICKET_CONTEXT_ORGANIZATION_ID = 'organization_id' satisfies keyof SupportTicketContext;
 export const KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD = 'payload' satisfies keyof SupportTicketContext;
+export const KEY_SUPPORT_TICKET_CONTEXT_SENT_AT = 'sent_at' satisfies keyof SupportTicketContext;
 export const KEY_SUPPORT_TICKET_CONTEXT_USER_ID = 'user_id' satisfies keyof SupportTicketContext;
 
 export const KEYS_SUPPORT_TICKET_CONTEXT = [
@@ -6868,6 +6869,7 @@ export const KEYS_SUPPORT_TICKET_CONTEXT = [
   KEY_SUPPORT_TICKET_CONTEXT_KIND,
   KEY_SUPPORT_TICKET_CONTEXT_ORGANIZATION_ID,
   KEY_SUPPORT_TICKET_CONTEXT_PAYLOAD,
+  KEY_SUPPORT_TICKET_CONTEXT_SENT_AT,
   KEY_SUPPORT_TICKET_CONTEXT_USER_ID,
 ] as const satisfies (keyof SupportTicketContext)[];
 

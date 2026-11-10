@@ -21703,6 +21703,11 @@ export interface components {
              */
             organization_id: TypeId<"organization">;
             payload: components["schemas"]["SupportTicketContextPayload"];
+            /**
+             * Sent At
+             * @description When the user sent this draft to support (POST /v1/ai-concierge/support-tickets); null until then.
+             */
+            sent_at?: Date | null;
             /** User Id */
             user_id: string;
         };
