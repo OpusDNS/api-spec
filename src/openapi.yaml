@@ -21931,6 +21931,24 @@ components:
       - items
       title: OrderCreate
       type: object
+    OrderErrorCodes:
+      enum:
+      - ERROR_ORDERS_FEATURE_DISABLED
+      - ERROR_ORDER_CURRENCY_NOT_SUPPORTED
+      - ERROR_ORDER_NOT_FOUND
+      - ERROR_ORDER_IDEMPOTENCY_KEY_REUSED
+      - ERROR_ORDER_SUBJECT_IN_PROGRESS
+      - ERROR_ORDER_PRICE_CHANGED
+      - ERROR_ORDER_ITEM_UNAVAILABLE
+      - ERROR_ORDER_ITEM_NOT_DELIVERABLE
+      - ERROR_ORDER_OPEN_LIMIT_REACHED
+      - ERROR_ORDER_SERVICE_UNAVAILABLE
+      - ERROR_ORDER_ITEM_NOT_FOUND
+      - ERROR_ORDER_DELIVERY_NOT_AVAILABLE
+      - ERROR_ORDER_DELIVERY_UNREADABLE
+      - ERROR_ORDER_UNREADABLE
+      title: OrderErrorCodes
+      type: string
     OrderItemDeliveryResponse:
       description: 'What an order item delivers: `type` plus one object named after
         it. Only ever the body of the delivery
@@ -29842,7 +29860,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-10-132708
+  version: 2026-11-10-134803
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -48292,8 +48310,8 @@ paths:
                   value:
                     code: ERROR_ORDER_ITEM_NOT_FOUND
                     detail: Order item not found
-                    item_id: order_item_01m72t85nhe2ta391vmz66ybd8
-                    order_id: order_01m72t85ngf1h84sn6wx3ja0dh
+                    item_id: order_item_01m72vefq0fnpragnr7macgwxw
+                    order_id: order_01m72vefpzfbhsjv1026sgavw7
                     status: 404
                     title: Order Item Not Found
                     type: order-item-not-found
@@ -48301,7 +48319,7 @@ paths:
                   value:
                     code: ERROR_ORDER_NOT_FOUND
                     detail: Order not found
-                    order_id: order_01m72t85nfeehsw4wpcachzwsz
+                    order_id: order_01m72vefpyf4b87ywfx4sbtwgy
                     status: 404
                     title: Order Not Found
                     type: order-not-found
@@ -53960,9 +53978,10 @@ tags:
     \ with the existing transfer API. Updating the registrant after the transfer is\
     \ up to you.\n\nA code past `auth_code_expires_on` may be rejected by the gaining\
     \ registrar. Contact support to get a new one.\n\n### Errors\n\nErrors follow\
-    \ RFC 9457 problem details; `code` identifies the error.\n\n| Status | Code |\
-    \ Meaning |\n| --- | --- | --- |\n| 403 | `ERROR_ORDERS_FEATURE_DISABLED` | Orders\
-    \ are not enabled in this environment |\n| 403 | `ERROR_ORDER_CURRENCY_NOT_SUPPORTED`\
+    \ RFC 9457 problem details; `code` identifies the error. The `ERROR_ORDER_*` codes\
+    \ are published in the API spec as the `OrderErrorCodes` enum.\n\n| Status | Code\
+    \ | Meaning |\n| --- | --- | --- |\n| 403 | `ERROR_ORDERS_FEATURE_DISABLED` |\
+    \ Orders are not enabled in this environment |\n| 403 | `ERROR_ORDER_CURRENCY_NOT_SUPPORTED`\
     \ | Marketplace orders are available to organizations billed in EUR |\n| 403 |\
     \ `ERROR_BILLING_INSUFFICIENT_FUNDS` | Your organization's account cannot cover\
     \ the order |\n| 404 | `ERROR_ORDER_NOT_FOUND` | No such order for your organization\

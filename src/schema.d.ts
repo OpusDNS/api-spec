@@ -19247,6 +19247,11 @@ export interface components {
             items: components["schemas"]["MarketplaceDomainPurchaseItemCreate"][];
         };
         /**
+         * OrderErrorCodes
+         * @enum {string}
+         */
+        OrderErrorCodes: "ERROR_ORDERS_FEATURE_DISABLED" | "ERROR_ORDER_CURRENCY_NOT_SUPPORTED" | "ERROR_ORDER_NOT_FOUND" | "ERROR_ORDER_IDEMPOTENCY_KEY_REUSED" | "ERROR_ORDER_SUBJECT_IN_PROGRESS" | "ERROR_ORDER_PRICE_CHANGED" | "ERROR_ORDER_ITEM_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_DELIVERABLE" | "ERROR_ORDER_OPEN_LIMIT_REACHED" | "ERROR_ORDER_SERVICE_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_FOUND" | "ERROR_ORDER_DELIVERY_NOT_AVAILABLE" | "ERROR_ORDER_DELIVERY_UNREADABLE" | "ERROR_ORDER_UNREADABLE";
+        /**
          * OrderItemDeliveryResponse
          * @description What an order item delivers: `type` plus one object named after it. Only ever the body of the delivery
          *     endpoint.

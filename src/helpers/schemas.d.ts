@@ -499,6 +499,7 @@ export type OpusDnsCredentialCreate = components['schemas']['OpusDnsCredentialCr
 export type OpusDnsCredentialUpdate = components['schemas']['OpusDnsCredentialUpdate'];
 export type OpusDnsCredentials = components['schemas']['OpusDnsCredentials'];
 export type OrderCreate = components['schemas']['OrderCreate'];
+export type OrderErrorCodes = components['schemas']['OrderErrorCodes'];
 export type OrderItemDelivery = components['schemas']['OrderItemDeliveryResponse'];
 export type OrderItem = components['schemas']['OrderItemResponse'];
 export type OrderItemType = components['schemas']['OrderItemType'];
