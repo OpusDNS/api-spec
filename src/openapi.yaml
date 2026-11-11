@@ -29860,7 +29860,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-11-095044
+  version: 2026-11-11-130757
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -54212,7 +54212,8 @@ tags:
 
     Connect comes with the AI Concierge: only users who have the AI Concierge can
     use it, in addition to the `registrar_credentials` permissions of their role.
-    API keys can''t use it.
+    An API key can use it only after OpusDNS has enabled the AI Concierge for that
+    key.
 
 
     ### How it works
