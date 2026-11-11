@@ -1437,7 +1437,8 @@ export interface paths {
          *     specific domain.
          *
          *     With `marketplaces=fruits` (repeatable, or `marketplaces=all`), domains for sale on the marketplace are added to
-         *     `results` after the suggestions, which are returned unchanged and in their order. These items have
+         *     `results`: the ones closest to `query` at a few places among the suggestions, never before the first one, and the
+         *     others after the suggestions. The suggestions themselves are unchanged and keep their order. Marketplace items have
          *     `available: false` and `marketplace` set (`name`, the marketplace the domain is for sale on). `price.amount` is
          *     the price to acquire the domain from the marketplace, in the listing's currency, for a period of 1 year. It does
          *     not include a transfer: the customer transfers the domain with the auth code, and that transfer is charged
@@ -15363,7 +15364,7 @@ export interface components {
             connected_account?: components["schemas"]["DomainAmsAccountResponse"] | null;
             /** Domain */
             domain: string;
-            /** @description Set on a domain for sale on a marketplace, added after the suggestions with `available: false`; null on suggestions. On such an item `price.amount` is the price to acquire the domain from the marketplace (for 1 year, in the listing's currency; it does not include a transfer, which the customer does with the auth code and is charged separately; null when the domain could not be priced), and `renewal_price` is the TLD's standard renewal price. A domain can appear twice: as a suggestion with its registry fields, and as a marketplace item. */
+            /** @description Set on a domain for sale on a marketplace, added to the suggestions with `available: false`; null on suggestions. On such an item `price.amount` is the price to acquire the domain from the marketplace (for 1 year, in the listing's currency; it does not include a transfer, which the customer does with the auth code and is charged separately; null when the domain could not be priced), and `renewal_price` is the TLD's standard renewal price. A domain can appear twice: as a suggestion with its registry fields, and as a marketplace item. */
             marketplace?: components["schemas"]["Marketplace"] | null;
             /** Premium */
             premium: boolean;
@@ -32505,7 +32506,7 @@ export interface operations {
                 query: string;
                 /** @description Restricts results to these TLDs. This is a filter, not a guarantee: suggestions are ranked by relevance across the whole requested set, so a listed TLD may be absent from the results even when available names exist in it, and raising `limit` does not change that. To guarantee a TLD is represented, query it on its own. */
                 tlds?: string[] | null;
-                /** @description The maximum number of domain suggestions to return; with `marketplaces`, also caps the marketplace domains added after them */
+                /** @description The maximum number of domain suggestions to return; with `marketplaces`, also caps the marketplace domains added to them */
                 limit?: number | null;
                 /** @description Whether to include premium domains in the suggestions */
                 premium?: boolean | null;

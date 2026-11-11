@@ -16331,14 +16331,14 @@ components:
           anyOf:
           - $ref: '#/components/schemas/Marketplace'
           - type: 'null'
-          description: 'Set on a domain for sale on a marketplace, added after the
-            suggestions with `available: false`; null on suggestions. On such an item
-            `price.amount` is the price to acquire the domain from the marketplace
-            (for 1 year, in the listing''s currency; it does not include a transfer,
-            which the customer does with the auth code and is charged separately;
-            null when the domain could not be priced), and `renewal_price` is the
-            TLD''s standard renewal price. A domain can appear twice: as a suggestion
-            with its registry fields, and as a marketplace item.'
+          description: 'Set on a domain for sale on a marketplace, added to the suggestions
+            with `available: false`; null on suggestions. On such an item `price.amount`
+            is the price to acquire the domain from the marketplace (for 1 year, in
+            the listing''s currency; it does not include a transfer, which the customer
+            does with the auth code and is charged separately; null when the domain
+            could not be priced), and `renewal_price` is the TLD''s standard renewal
+            price. A domain can appear twice: as a suggestion with its registry fields,
+            and as a marketplace item.'
         premium:
           title: Premium
           type: boolean
@@ -29860,7 +29860,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-10-142742
+  version: 2026-11-11-095044
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -40987,22 +40987,24 @@ paths:
         \ a full domain name, or `GET /v1/availability`, whenever you need a definitive\
         \ answer about a\nspecific domain.\n\nWith `marketplaces=fruits` (repeatable,\
         \ or `marketplaces=all`), domains for sale on the marketplace are added to\n\
-        `results` after the suggestions, which are returned unchanged and in their\
-        \ order. These items have\n`available: false` and `marketplace` set (`name`,\
-        \ the marketplace the domain is for sale on). `price.amount` is\nthe price\
-        \ to acquire the domain from the marketplace, in the listing's currency, for\
-        \ a period of 1 year. It does\nnot include a transfer: the customer transfers\
-        \ the domain with the auth code, and that transfer is charged\nseparately.\
-        \ When the domain cannot be priced, `price.amount` is null. `renewal_price`\
-        \ is the TLD's standard\nrenewal price, and may be set on an unpriced item.\
-        \ `marketplace` is null on\nsuggestions. A domain can appear twice: as a suggestion\
-        \ with its registry fields, and as a\nmarketplace item. `limit` and `tlds`\
-        \ apply to the marketplace domains as\nwell, with `limit` capping them separately\
-        \ from the suggestions; the organization's TLD restriction\nand `premium`\
-        \ do not apply to them. `meta.total` counts all items in `results`, both entries\
-        \ of a\ndomain included. Marketplace domains are best-effort and left out\
-        \ when the marketplace does not\nanswer in time. They are only added for organizations\
-        \ billed in EUR; for others `marketplaces` is ignored."
+        `results`: the ones closest to `query` at a few places among the suggestions,\
+        \ never before the first one, and the\nothers after the suggestions. The suggestions\
+        \ themselves are unchanged and keep their order. Marketplace items have\n\
+        `available: false` and `marketplace` set (`name`, the marketplace the domain\
+        \ is for sale on). `price.amount` is\nthe price to acquire the domain from\
+        \ the marketplace, in the listing's currency, for a period of 1 year. It does\n\
+        not include a transfer: the customer transfers the domain with the auth code,\
+        \ and that transfer is charged\nseparately. When the domain cannot be priced,\
+        \ `price.amount` is null. `renewal_price` is the TLD's standard\nrenewal price,\
+        \ and may be set on an unpriced item. `marketplace` is null on\nsuggestions.\
+        \ A domain can appear twice: as a suggestion with its registry fields, and\
+        \ as a\nmarketplace item. `limit` and `tlds` apply to the marketplace domains\
+        \ as\nwell, with `limit` capping them separately from the suggestions; the\
+        \ organization's TLD restriction\nand `premium` do not apply to them. `meta.total`\
+        \ counts all items in `results`, both entries of a\ndomain included. Marketplace\
+        \ domains are best-effort and left out when the marketplace does not\nanswer\
+        \ in time. They are only added for organizations billed in EUR; for others\
+        \ `marketplaces` is ignored."
       operationId: suggest_v1_domain_search_suggest_get
       parameters:
       - description: The primary keyword or phrase for the domain search. A full domain
@@ -41044,7 +41046,7 @@ paths:
             TLD is represented, query it on its own.'
           title: Tlds
       - description: The maximum number of domain suggestions to return; with `marketplaces`,
-          also caps the marketplace domains added after them
+          also caps the marketplace domains added to them
         in: query
         name: limit
         required: false
@@ -41055,7 +41057,7 @@ paths:
             type: integer
           - type: 'null'
           description: The maximum number of domain suggestions to return; with `marketplaces`,
-            also caps the marketplace domains added after them
+            also caps the marketplace domains added to them
           title: Limit
       - description: Whether to include premium domains in the suggestions
         in: query
