@@ -13594,7 +13594,7 @@ export interface components {
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
-             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration.
+             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration and registrant change.
              *     - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant change.
              *     - `de_general_request_contact`, `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` =
              *       `REQUEST`. `.de` only.
@@ -13614,8 +13614,8 @@ export interface components {
              *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
              *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
              *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
-             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
-             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
+             *     `travel_industry_acknowledgement` and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance` and
+             *     `internet_ee_registrant_agreement` stay settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"
@@ -13706,7 +13706,7 @@ export interface components {
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
-             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration.
+             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration and registrant change.
              *     - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant change.
              *     - `de_general_request_contact`, `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` =
              *       `REQUEST`. `.de` only.
@@ -13726,8 +13726,8 @@ export interface components {
              *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
              *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
              *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
-             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
-             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
+             *     `travel_industry_acknowledgement` and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance` and
+             *     `internet_ee_registrant_agreement` stay settable for a registrant change but cannot be removed with an empty value.
              *
              */
             attributes?: {
@@ -13790,7 +13790,7 @@ export interface components {
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
-             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration.
+             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration and registrant change.
              *     - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant change.
              *     - `de_general_request_contact`, `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` =
              *       `REQUEST`. `.de` only.
@@ -13810,8 +13810,8 @@ export interface components {
              *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
              *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
              *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
-             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
-             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
+             *     `travel_industry_acknowledgement` and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance` and
+             *     `internet_ee_registrant_agreement` stay settable for a registrant change but cannot be removed with an empty value.
              *
              */
             attributes?: {
@@ -13878,7 +13878,7 @@ export interface components {
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
-             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration.
+             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration and registrant change.
              *     - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant change.
              *     - `de_general_request_contact`, `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` =
              *       `REQUEST`. `.de` only.
@@ -13898,8 +13898,8 @@ export interface components {
              *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
              *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
              *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
-             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
-             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
+             *     `travel_industry_acknowledgement` and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance` and
+             *     `internet_ee_registrant_agreement` stay settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"
@@ -15701,7 +15701,7 @@ export interface components {
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
-             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration.
+             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration and registrant change.
              *     - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant change.
              *     - `de_general_request_contact`, `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` =
              *       `REQUEST`. `.de` only.
@@ -15721,8 +15721,8 @@ export interface components {
              *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
              *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
              *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
-             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
-             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
+             *     `travel_industry_acknowledgement` and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance` and
+             *     `internet_ee_registrant_agreement` stay settable for a registrant change but cannot be removed with an empty value.
              *
              */
             attributes?: {
@@ -15785,7 +15785,7 @@ export interface components {
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
-             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration.
+             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration and registrant change.
              *     - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant change.
              *     - `de_general_request_contact`, `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` =
              *       `REQUEST`. `.de` only.
@@ -15805,8 +15805,8 @@ export interface components {
              *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
              *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
              *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
-             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
-             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
+             *     `travel_industry_acknowledgement` and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance` and
+             *     `internet_ee_registrant_agreement` stay settable for a registrant change but cannot be removed with an empty value.
              *
              */
             attributes?: {
@@ -15869,7 +15869,7 @@ export interface components {
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
-             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration.
+             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration and registrant change.
              *     - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant change.
              *     - `de_general_request_contact`, `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` =
              *       `REQUEST`. `.de` only.
@@ -15889,8 +15889,8 @@ export interface components {
              *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
              *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
              *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
-             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
-             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
+             *     `travel_industry_acknowledgement` and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance` and
+             *     `internet_ee_registrant_agreement` stay settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"
@@ -15953,7 +15953,7 @@ export interface components {
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
-             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration.
+             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration and registrant change.
              *     - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant change.
              *     - `de_general_request_contact`, `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` =
              *       `REQUEST`. `.de` only.
@@ -15973,8 +15973,8 @@ export interface components {
              *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
              *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
              *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
-             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
-             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
+             *     `travel_industry_acknowledgement` and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance` and
+             *     `internet_ee_registrant_agreement` stay settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"
@@ -16069,7 +16069,7 @@ export interface components {
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
-             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration.
+             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration and registrant change.
              *     - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant change.
              *     - `de_general_request_contact`, `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` =
              *       `REQUEST`. `.de` only.
@@ -16089,8 +16089,8 @@ export interface components {
              *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
              *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
              *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
-             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
-             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
+             *     `travel_industry_acknowledgement` and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance` and
+             *     `internet_ee_registrant_agreement` stay settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"
@@ -16171,7 +16171,7 @@ export interface components {
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
-             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration.
+             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration and registrant change.
              *     - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant change.
              *     - `de_general_request_contact`, `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` =
              *       `REQUEST`. `.de` only.
@@ -16191,8 +16191,8 @@ export interface components {
              *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
              *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
              *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
-             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
-             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
+             *     `travel_industry_acknowledgement` and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance` and
+             *     `internet_ee_registrant_agreement` stay settable for a registrant change but cannot be removed with an empty value.
              *
              */
             attributes?: {
@@ -16258,7 +16258,7 @@ export interface components {
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
-             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration.
+             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration and registrant change.
              *     - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant change.
              *     - `de_general_request_contact`, `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` =
              *       `REQUEST`. `.de` only.
@@ -16278,8 +16278,8 @@ export interface components {
              *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
              *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
              *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
-             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
-             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
+             *     `travel_industry_acknowledgement` and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance` and
+             *     `internet_ee_registrant_agreement` stay settable for a registrant change but cannot be removed with an empty value.
              *
              */
             attributes?: {
@@ -16341,7 +16341,7 @@ export interface components {
              *     - `music_registrant_attestation`: `true`. `.music` registration.
              *     - `nic_it_compliance_confirmation`: `true`. `.it` registration and transfer.
              *     - `travel_industry_acknowledgement`: `true`. `.travel` registration.
-             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration.
+             *     - `internet_ee_registrant_agreement`: `true`. `.ee` registration and registrant change.
              *     - `punktum_dk_terms_acceptance`: `true`. `.dk` registration and registrant change.
              *     - `de_general_request_contact`, `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE` =
              *       `REQUEST`. `.de` only.
@@ -16361,8 +16361,8 @@ export interface components {
              *     `auto_renew_period`, whose only accepted values are `monthly` and `yearly`. `.dk` also reads
              *     `punktum_dk_terms_acceptance` to confirm a registrant change. An update cannot change what the registrant accepted at
              *     registration, so these are rejected on update: `music_registrant_attestation`, `nic_it_compliance_confirmation`,
-             *     `travel_industry_acknowledgement`, `internet_ee_registrant_agreement` and the three `nor_id_applicant_*` keys.
-             *     `punktum_dk_terms_acceptance` stays settable for a registrant change but cannot be removed with an empty value.
+             *     `travel_industry_acknowledgement` and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance` and
+             *     `internet_ee_registrant_agreement` stay settable for a registrant change but cannot be removed with an empty value.
              *
              * @example {
              *       "auto_renew_period": "monthly"

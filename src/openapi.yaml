@@ -13715,8 +13715,8 @@ components:
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
             \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
-            \ `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`: `true`.\
-            \ `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
@@ -13733,9 +13733,9 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
-            \ `internet_ee_registrant_agreement` and the three `nor_id_applicant_*`\
-            \ keys.\n`punktum_dk_terms_acceptance` stays settable for a registrant\
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
+            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
+            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
             \ change but cannot be removed with an empty value.\n"
           examples:
           - auto_renew_period: monthly
@@ -13849,8 +13849,8 @@ components:
             - `music_registrant_attestation`: `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
             \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
-            \ `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`: `true`.\
-            \ `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
@@ -13867,9 +13867,9 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
-            \ `internet_ee_registrant_agreement` and the three `nor_id_applicant_*`\
-            \ keys.\n`punktum_dk_terms_acceptance` stays settable for a registrant\
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
+            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
+            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
             \ change but cannot be removed with an empty value.\n"
           title: Attributes
         auth_code:
@@ -13968,8 +13968,8 @@ components:
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
             \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
-            \ `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`: `true`.\
-            \ `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
@@ -13986,9 +13986,9 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
-            \ `internet_ee_registrant_agreement` and the three `nor_id_applicant_*`\
-            \ keys.\n`punktum_dk_terms_acceptance` stays settable for a registrant\
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
+            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
+            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
             \ change but cannot be removed with an empty value.\n"
           title: Attributes
         auth_code:
@@ -14077,8 +14077,8 @@ components:
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
             \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
-            \ `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`: `true`.\
-            \ `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
@@ -14095,9 +14095,9 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
-            \ `internet_ee_registrant_agreement` and the three `nor_id_applicant_*`\
-            \ keys.\n`punktum_dk_terms_acceptance` stays settable for a registrant\
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
+            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
+            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
             \ change but cannot be removed with an empty value.\n"
           examples:
           - auto_renew_period: monthly
@@ -16870,8 +16870,8 @@ components:
             - `music_registrant_attestation`: `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
             \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
-            \ `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`: `true`.\
-            \ `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
@@ -16888,9 +16888,9 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
-            \ `internet_ee_registrant_agreement` and the three `nor_id_applicant_*`\
-            \ keys.\n`punktum_dk_terms_acceptance` stays settable for a registrant\
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
+            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
+            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
             \ change but cannot be removed with an empty value.\n"
           title: Attributes
         auth_code:
@@ -16992,8 +16992,8 @@ components:
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
             \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
-            \ `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`: `true`.\
-            \ `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
@@ -17010,9 +17010,9 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
-            \ `internet_ee_registrant_agreement` and the three `nor_id_applicant_*`\
-            \ keys.\n`punktum_dk_terms_acceptance` stays settable for a registrant\
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
+            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
+            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
             \ change but cannot be removed with an empty value.\n"
           title: Attributes
         contacts:
@@ -17095,8 +17095,8 @@ components:
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
             \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
-            \ `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`: `true`.\
-            \ `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
@@ -17113,9 +17113,9 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
-            \ `internet_ee_registrant_agreement` and the three `nor_id_applicant_*`\
-            \ keys.\n`punktum_dk_terms_acceptance` stays settable for a registrant\
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
+            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
+            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
             \ change but cannot be removed with an empty value.\n"
           examples:
           - auto_renew_period: monthly
@@ -17200,8 +17200,8 @@ components:
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
             \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
-            \ `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`: `true`.\
-            \ `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
@@ -17218,9 +17218,9 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
-            \ `internet_ee_registrant_agreement` and the three `nor_id_applicant_*`\
-            \ keys.\n`punktum_dk_terms_acceptance` stays settable for a registrant\
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
+            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
+            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
             \ change but cannot be removed with an empty value.\n"
           examples:
           - auto_renew_period: monthly
@@ -17350,8 +17350,8 @@ components:
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
             \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
-            \ `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`: `true`.\
-            \ `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
@@ -17368,9 +17368,9 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
-            \ `internet_ee_registrant_agreement` and the three `nor_id_applicant_*`\
-            \ keys.\n`punktum_dk_terms_acceptance` stays settable for a registrant\
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
+            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
+            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
             \ change but cannot be removed with an empty value.\n"
           examples:
           - auto_renew_period: monthly
@@ -17474,8 +17474,8 @@ components:
             - `music_registrant_attestation`: `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
             \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
-            \ `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`: `true`.\
-            \ `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
@@ -17492,9 +17492,9 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
-            \ `internet_ee_registrant_agreement` and the three `nor_id_applicant_*`\
-            \ keys.\n`punktum_dk_terms_acceptance` stays settable for a registrant\
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
+            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
+            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
             \ change but cannot be removed with an empty value.\n"
           title: Attributes
         auth_code:
@@ -17594,8 +17594,8 @@ components:
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
             \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
-            \ `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`: `true`.\
-            \ `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
@@ -17612,9 +17612,9 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
-            \ `internet_ee_registrant_agreement` and the three `nor_id_applicant_*`\
-            \ keys.\n`punktum_dk_terms_acceptance` stays settable for a registrant\
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
+            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
+            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
             \ change but cannot be removed with an empty value.\n"
           title: Attributes
         contacts:
@@ -17701,8 +17701,8 @@ components:
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
             \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
-            \ `true`. `.ee` registration.\n- `punktum_dk_terms_acceptance`: `true`.\
-            \ `.dk` registration and registrant change.\n- `de_general_request_contact`,\
+            \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
+            \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
             \ =\n  `REQUEST`. `.de` only.\n\nBoolean keys also accept `1` and `yes`.\n\
             \nWritten by the platform and rejected if supplied: `verification_required`,\
@@ -17719,9 +17719,9 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
-            \ `internet_ee_registrant_agreement` and the three `nor_id_applicant_*`\
-            \ keys.\n`punktum_dk_terms_acceptance` stays settable for a registrant\
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
+            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
+            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
             \ change but cannot be removed with an empty value.\n"
           examples:
           - auto_renew_period: monthly
@@ -29860,7 +29860,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-11-130757
+  version: 2026-11-11-220519
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
