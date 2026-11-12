@@ -29860,7 +29860,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-11-220519
+  version: 2026-11-12-095935
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -54140,11 +54140,11 @@ tags:
     \ to be manually requested.\n\nBoth types maintain their own retention of 30 reports\
     \ each, so requesting on-demand reports will not displace the monthly archive.\n\
     \n### Registrar Portfolio PDF Reports\n\nRegistrar portfolio reports are requested\
-    \ with `POST /v1/reports` and require `registrar_credential_id`. Requesting and\
-    \ downloading one requires the same permissions as Connect, which comes with the\
-    \ AI Concierge:\n\n```json\n{\n  \"report_type\": \"registrar_portfolio_pdf\"\
-    ,\n  \"registrar_credential_id\": \"registrar_credential_...\"\n}\n```\n\nThe\
-    \ report uses registrar data from the registrar-elements OpenSearch index, populated\
+    \ with `POST /v1/reports` and require `registrar_credential_id`:\n\n```json\n\
+    {\n  \"report_type\": \"registrar_portfolio_pdf\",\n  \"registrar_credential_id\"\
+    : \"registrar_credential_...\"\n}\n```\n\nRequesting and downloading one requires\
+    \ the AI Concierge and `registrar_credentials:read`, like Connect.\n\nThe report\
+    \ uses registrar data from the registrar-elements OpenSearch index, populated\
     \ by the scheduled daily registrar syncs. Report generation does not trigger a\
     \ sync; it uses the most recently synced data as-is. If the credential has no\
     \ portfolio data yet (for example, a credential created since the last sync),\
@@ -54210,10 +54210,9 @@ tags:
     OpusDNS stores the login details encrypted and never returns them.
 
 
-    Connect comes with the AI Concierge: only users who have the AI Concierge can
-    use it, in addition to the `registrar_credentials` permissions of their role.
-    An API key can use it only after OpusDNS has enabled the AI Concierge for that
-    key.
+    Connect''s endpoints require the AI Concierge in addition to the `registrar_credentials`
+    permissions of the user''s role. An API key can call them only after OpusDNS has
+    enabled the AI Concierge for that key.
 
 
     ### How it works
