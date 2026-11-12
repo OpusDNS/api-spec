@@ -836,6 +836,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/edu.bh.md",
                 "showInSidebar": true
               },
+              "/ee": {
+                "type": "page",
+                "title": "🇪🇪 .ee",
+                "filepath": "content/tld-knowledge-base/cctlds/ee.md",
+                "showInSidebar": true
+              },
               "/eu": {
                 "type": "page",
                 "title": "🇪🇺 .eu",
