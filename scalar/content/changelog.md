@@ -4,6 +4,13 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 12 November 2026
+
+- Onboarded **[`.ee`](/tld-knowledge-base/cctlds/ee)** (Estonia). Published its TLD Knowledge Base page. Every
+  contact is identified through `INTERNET_EE_IDENT_TYPE`, `INTERNET_EE_IDENT_CC` and `INTERNET_EE_IDENT_VALUE`,
+  registrations require `internet_ee_registrant_agreement`, and a deleted domain remains registered until its
+  expiry date.
+
 ### 9 November 2026
 
 - Added **domain forward statistics**:
