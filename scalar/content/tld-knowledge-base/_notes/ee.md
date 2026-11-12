@@ -1,8 +1,10 @@
 ## Contacts
 
-A `.ee` domain carries one registrant, **one to ten** administrative contacts and **one to ten** technical contacts. Billing contacts are not supported.
+A `.ee` domain requires one registrant and carries **up to ten** administrative contacts and **up to ten** technical contacts. Billing contacts are not supported.
 
-An administrative contact must be at least 18 years old.
+- An administrative contact is optional when the registrant is a natural person, and required when the registrant is an organization.
+- An administrative contact must be a natural person, with `INTERNET_EE_IDENT_TYPE` set to `priv` or `birthday`, and must be at least 18 years old.
+- Technical contacts are optional.
 
 ## Contact Attributes
 
