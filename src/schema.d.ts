@@ -17675,14 +17675,30 @@ export interface components {
             redirect_code: components["schemas"]["RedirectCode"];
             /** Request Hostname */
             request_hostname: string;
-            /** Request Path */
+            /**
+             * Request Path
+             * @description Path to redirect. Matched exactly, ignoring a trailing slash: `/` matches only the start page. `*` stands for whole path segments: `/*` matches every path, `/docs/*` matches `/docs` and everything below it, `/a/*\/c` matches any one segment in place of `*`. A `*` inside a segment, as in `/blog*`, is matched literally. An exact path wins over a wildcard.
+             * @example /
+             * @example /*
+             * @example /old-path
+             */
             request_path: string;
             request_protocol: components["schemas"]["HttpProtocol"];
             /** Request Subdomain */
             request_subdomain?: string | null;
-            /** Target Hostname */
+            /**
+             * Target Hostname
+             * @description Hostname to redirect to, without protocol or path, e.g. `www.example.org`.
+             * @example www.example.org
+             */
             target_hostname: string;
-            /** Target Path */
+            /**
+             * Target Path
+             * @description Path to redirect to. A `*` is replaced by the part of the request path that the wildcard in `request_path` matched: with `request_path` `/*`, `target_path` `/*` keeps the path and `/` sends every path to the start page. The request's query string is appended.
+             * @example /
+             * @example /*
+             * @example /new-path
+             */
             target_path: string;
             target_protocol: components["schemas"]["HttpProtocol"];
         };
@@ -17699,11 +17715,27 @@ export interface components {
         /** HttpRedirectRequest */
         HttpRedirectRequest: {
             redirect_code: components["schemas"]["RedirectCode"];
-            /** Request Path */
+            /**
+             * Request Path
+             * @description Path to redirect. Matched exactly, ignoring a trailing slash: `/` matches only the start page. `*` stands for whole path segments: `/*` matches every path, `/docs/*` matches `/docs` and everything below it, `/a/*\/c` matches any one segment in place of `*`. A `*` inside a segment, as in `/blog*`, is matched literally. An exact path wins over a wildcard.
+             * @example /
+             * @example /*
+             * @example /old-path
+             */
             request_path: string;
-            /** Target Hostname */
+            /**
+             * Target Hostname
+             * @description Hostname to redirect to, without protocol or path, e.g. `www.example.org`.
+             * @example www.example.org
+             */
             target_hostname: string;
-            /** Target Path */
+            /**
+             * Target Path
+             * @description Path to redirect to. A `*` is replaced by the part of the request path that the wildcard in `request_path` matched: with `request_path` `/*`, `target_path` `/*` keeps the path and `/` sends every path to the start page. The request's query string is appended.
+             * @example /
+             * @example /*
+             * @example /new-path
+             */
             target_path: string;
             target_protocol: components["schemas"]["HttpProtocol"];
         };
@@ -17712,14 +17744,30 @@ export interface components {
             redirect_code: components["schemas"]["RedirectCode"];
             /** Request Hostname */
             request_hostname: string;
-            /** Request Path */
+            /**
+             * Request Path
+             * @description Path to redirect. Matched exactly, ignoring a trailing slash: `/` matches only the start page. `*` stands for whole path segments: `/*` matches every path, `/docs/*` matches `/docs` and everything below it, `/a/*\/c` matches any one segment in place of `*`. A `*` inside a segment, as in `/blog*`, is matched literally. An exact path wins over a wildcard.
+             * @example /
+             * @example /*
+             * @example /old-path
+             */
             request_path: string;
             request_protocol: components["schemas"]["HttpProtocol"];
             /** Request Subdomain */
             request_subdomain?: string | null;
-            /** Target Hostname */
+            /**
+             * Target Hostname
+             * @description Hostname to redirect to, without protocol or path, e.g. `www.example.org`.
+             * @example www.example.org
+             */
             target_hostname: string;
-            /** Target Path */
+            /**
+             * Target Path
+             * @description Path to redirect to. A `*` is replaced by the part of the request path that the wildcard in `request_path` matched: with `request_path` `/*`, `target_path` `/*` keeps the path and `/` sends every path to the start page. The request's query string is appended.
+             * @example /
+             * @example /*
+             * @example /new-path
+             */
             target_path: string;
             target_protocol: components["schemas"]["HttpProtocol"];
         };
@@ -30329,7 +30377,7 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
-                /** @description Search by hostname */
+                /** @description Search by domain name (partial match), e.g. `example` finds forwards on `example.com`, `www.example.com` and `my-example.org`. Subdomains are not searched: `www` does not find `www.example.com`. */
                 search?: string | null;
                 /** @description Field to sort by */
                 sort_by?: components["schemas"]["DomainForwardSortField"];
@@ -35257,7 +35305,7 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
-                /** @description Search by hostname */
+                /** @description Search by domain name (partial match), e.g. `example` finds email forwards on `example.com`, `www.example.com` and `my-example.org`. Subdomains are not searched: `www` does not find `www.example.com`. */
                 search?: string | null;
                 /** @description Filter by enabled status */
                 enabled?: boolean | null;

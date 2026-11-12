@@ -19605,6 +19605,15 @@ components:
           title: Request Hostname
           type: string
         request_path:
+          description: 'Path to redirect. Matched exactly, ignoring a trailing slash:
+            `/` matches only the start page. `*` stands for whole path segments: `/*`
+            matches every path, `/docs/*` matches `/docs` and everything below it,
+            `/a/*/c` matches any one segment in place of `*`. A `*` inside a segment,
+            as in `/blog*`, is matched literally. An exact path wins over a wildcard.'
+          examples:
+          - /
+          - /*
+          - /old-path
           title: Request Path
           type: string
         request_protocol:
@@ -19615,9 +19624,20 @@ components:
           - type: 'null'
           title: Request Subdomain
         target_hostname:
+          description: Hostname to redirect to, without protocol or path, e.g. `www.example.org`.
+          examples:
+          - www.example.org
           title: Target Hostname
           type: string
         target_path:
+          description: 'Path to redirect to. A `*` is replaced by the part of the
+            request path that the wildcard in `request_path` matched: with `request_path`
+            `/*`, `target_path` `/*` keeps the path and `/` sends every path to the
+            start page. The request''s query string is appended.'
+          examples:
+          - /
+          - /*
+          - /new-path
           title: Target Path
           type: string
         target_protocol:
@@ -19658,12 +19678,32 @@ components:
         redirect_code:
           $ref: '#/components/schemas/RedirectCode'
         request_path:
+          description: 'Path to redirect. Matched exactly, ignoring a trailing slash:
+            `/` matches only the start page. `*` stands for whole path segments: `/*`
+            matches every path, `/docs/*` matches `/docs` and everything below it,
+            `/a/*/c` matches any one segment in place of `*`. A `*` inside a segment,
+            as in `/blog*`, is matched literally. An exact path wins over a wildcard.'
+          examples:
+          - /
+          - /*
+          - /old-path
           title: Request Path
           type: string
         target_hostname:
+          description: Hostname to redirect to, without protocol or path, e.g. `www.example.org`.
+          examples:
+          - www.example.org
           title: Target Hostname
           type: string
         target_path:
+          description: 'Path to redirect to. A `*` is replaced by the part of the
+            request path that the wildcard in `request_path` matched: with `request_path`
+            `/*`, `target_path` `/*` keeps the path and `/` sends every path to the
+            start page. The request''s query string is appended.'
+          examples:
+          - /
+          - /*
+          - /new-path
           title: Target Path
           type: string
         target_protocol:
@@ -19684,6 +19724,15 @@ components:
           title: Request Hostname
           type: string
         request_path:
+          description: 'Path to redirect. Matched exactly, ignoring a trailing slash:
+            `/` matches only the start page. `*` stands for whole path segments: `/*`
+            matches every path, `/docs/*` matches `/docs` and everything below it,
+            `/a/*/c` matches any one segment in place of `*`. A `*` inside a segment,
+            as in `/blog*`, is matched literally. An exact path wins over a wildcard.'
+          examples:
+          - /
+          - /*
+          - /old-path
           title: Request Path
           type: string
         request_protocol:
@@ -19694,9 +19743,20 @@ components:
           - type: 'null'
           title: Request Subdomain
         target_hostname:
+          description: Hostname to redirect to, without protocol or path, e.g. `www.example.org`.
+          examples:
+          - www.example.org
           title: Target Hostname
           type: string
         target_path:
+          description: 'Path to redirect to. A `*` is replaced by the part of the
+            request path that the wildcard in `request_path` matched: with `request_path`
+            `/*`, `target_path` `/*` keeps the path and `/` sends every path to the
+            start page. The request''s query string is appended.'
+          examples:
+          - /
+          - /*
+          - /new-path
           title: Target Path
           type: string
         target_protocol:
@@ -29860,7 +29920,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-12-095935
+  version: 2026-11-12-104804
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -37733,7 +37793,9 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
-      - description: Search by hostname
+      - description: 'Search by domain name (partial match), e.g. `example` finds
+          forwards on `example.com`, `www.example.com` and `my-example.org`. Subdomains
+          are not searched: `www` does not find `www.example.com`.'
         in: query
         name: search
         required: false
@@ -37741,7 +37803,9 @@ paths:
           anyOf:
           - type: string
           - type: 'null'
-          description: Search by hostname
+          description: 'Search by domain name (partial match), e.g. `example` finds
+            forwards on `example.com`, `www.example.com` and `my-example.org`. Subdomains
+            are not searched: `www` does not find `www.example.com`.'
           title: Search
       - description: Field to sort by
         in: query
@@ -44780,7 +44844,9 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
-      - description: Search by hostname
+      - description: 'Search by domain name (partial match), e.g. `example` finds
+          email forwards on `example.com`, `www.example.com` and `my-example.org`.
+          Subdomains are not searched: `www` does not find `www.example.com`.'
         in: query
         name: search
         required: false
@@ -44788,7 +44854,9 @@ paths:
           anyOf:
           - type: string
           - type: 'null'
-          description: Search by hostname
+          description: 'Search by domain name (partial match), e.g. `example` finds
+            email forwards on `example.com`, `www.example.com` and `my-example.org`.
+            Subdomains are not searched: `www` does not find `www.example.com`.'
           title: Search
       - description: Filter by enabled status
         in: query
