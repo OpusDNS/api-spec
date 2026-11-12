@@ -107,6 +107,8 @@
 
 A `.ee` domain carries one registrant, **one to ten** administrative contacts and **one to ten** technical contacts. Billing contacts are not supported.
 
+An administrative contact must be at least 18 years old.
+
 ## Contact Attributes
 
 Every `.ee` contact carries three registry-specific attributes, all of them required:
@@ -127,7 +129,9 @@ These per-attribute constraints are machine-readable: each `possible_attributes`
 | --- | --- | --- | --- | --- |
 | `priv` | A natural person with a personal identification code | Country that issued the code | Personal identification code | `EE`, `38001085718` |
 | `birthday` | A natural person with no personal identification code | Country of nationality | Date of birth as `YYYY-MM-DD` | `DE`, `1987-01-01` |
-| `org` | An organization | Country of registration | Company registration number | `EE`, `12345678` |
+| `org` | An organization | Country of registration | Company registration number | `DE`, `HRB 123456` |
+
+An Estonian personal identification code or company registration number must be a valid, existing one.
 
 ## Registration
 
@@ -156,10 +160,13 @@ A `.ee` transfer is **immediate**. [`POST /v1/domains/transfer`](/api-reference#
 
 - An `auth_code` is required.
 - The transfer does **not renew** the domain, and the expiry date does not change.
-- Contacts are optional in the request.
+- Contacts are optional in the request. When none are supplied, the domain keeps its existing contacts.
 
 ## Deletion and restore
 
 A `.ee` domain is not deleted immediately. After [`DELETE /v1/domains/{domain_reference}`](/api-reference#tag/domain/DELETE/v1/domains/{domain_reference}), the domain remains registered until its expiry date and is not renewed.
 
-After the expiry date, the domain can be restored with [`POST /v1/domains/{domain_reference}/restore`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/restore) for **45 days**. The restore renews the domain.
+The domain can be restored with [`POST /v1/domains/{domain_reference}/restore`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/restore):
+
+- Until the expiry date, the restore takes the deletion back and does not renew the domain.
+- For **45 days** after the expiry date, the restore renews the domain for one year.
