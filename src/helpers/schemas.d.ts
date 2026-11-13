@@ -470,6 +470,7 @@ export type MonikerCredentialCreate = components['schemas']['MonikerCredentialCr
 export type MonikerCredentialUpdate = components['schemas']['MonikerCredentialUpdate'];
 export type MonikerCredentials = components['schemas']['MonikerCredentials'];
 export type Nameserver = components['schemas']['Nameserver'];
+export type NextActionType = components['schemas']['NextActionType'];
 export type NicDirectCredentialCreate = components['schemas']['NicDirectCredentialCreate'];
 export type NicDirectCredentialUpdate = components['schemas']['NicDirectCredentialUpdate'];
 export type NicDirectCredentials = components['schemas']['NicDirectCredentials'];

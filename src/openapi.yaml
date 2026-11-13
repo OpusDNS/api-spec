@@ -16037,7 +16037,10 @@ components:
           - format: date-time
             type: string
           - type: 'null'
-          description: When the domain will be deleted
+          deprecated: true
+          description: Deprecated, always null. For the date a deleted domain is removed
+            for good, read `next_action_on` where `next_action_type` is `purge`; `canceled_on`
+            is when it was deleted.
           title: Deleted On
         domain_id:
           examples:
@@ -16079,6 +16082,25 @@ components:
             $ref: '#/components/schemas/Nameserver'
           title: Nameservers
           type: array
+        next_action_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: When the action in `next_action_type` is due. Null when `next_action_type`
+            is null. Can lie in the past while the action is still being retried.
+          title: Next Action On
+        next_action_type:
+          anyOf:
+          - $ref: '#/components/schemas/NextActionType'
+          - type: 'null'
+          description: 'What OpusDNS does to the domain next on its own: `renew` (renewed
+            and charged; for monthly billing, the next monthly charge), `expire` (deleted
+            because the renewal mode is ''expire'') or `purge` (already deleted, removed
+            for good on that date; a restore is only possible during the registry''s
+            redemption period, which ends earlier). Null for externally managed domains
+            and when no date is scheduled. More values may be added; treat unknown
+            values as ''other''.'
         owner_id:
           default: None
           description: The organization that owns the domain
@@ -21375,6 +21397,13 @@ components:
       - hostname
       title: Nameserver
       type: object
+    NextActionType:
+      enum:
+      - renew
+      - expire
+      - purge
+      title: NextActionType
+      type: string
     NicDirectCredentialCreate:
       properties:
         credentials:
@@ -29929,7 +29958,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-13-121409
+  version: 2026-11-13-133452
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

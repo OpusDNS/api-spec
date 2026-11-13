@@ -93,6 +93,7 @@ import type {
   MemoryFactKind,
   MessageRole,
   MetricsGrouping,
+  NextActionType,
   NizzaClaim,
   NizzaVerificationProof,
   NorIdDeclarationPurpose,
@@ -1740,6 +1741,18 @@ export const METRICS_GROUPING_VALUES = [
   'forward',
   'rule',
 ] as const satisfies ReadonlyArray<MetricsGrouping>;
+
+export const NEXT_ACTION_TYPE = {
+  RENEW: "renew",
+  EXPIRE: "expire",
+  PURGE: "purge",
+} as const satisfies Record<string, NextActionType>;
+
+export const NEXT_ACTION_TYPE_VALUES = [
+  'renew',
+  'expire',
+  'purge',
+] as const satisfies ReadonlyArray<NextActionType>;
 
 export const NIZZA_CLAIM = {
   EMAIL: "EMAIL",

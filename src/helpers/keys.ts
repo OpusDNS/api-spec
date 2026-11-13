@@ -3513,6 +3513,8 @@ export const KEY_DOMAIN_HOSTS = 'hosts' satisfies keyof Domain;
 export const KEY_DOMAIN_IS_PREMIUM = 'is_premium' satisfies keyof Domain;
 export const KEY_DOMAIN_NAME = 'name' satisfies keyof Domain;
 export const KEY_DOMAIN_NAMESERVERS = 'nameservers' satisfies keyof Domain;
+export const KEY_DOMAIN_NEXT_ACTION_ON = 'next_action_on' satisfies keyof Domain;
+export const KEY_DOMAIN_NEXT_ACTION_TYPE = 'next_action_type' satisfies keyof Domain;
 export const KEY_DOMAIN_OWNER_ID = 'owner_id' satisfies keyof Domain;
 export const KEY_DOMAIN_READ_ONLY = 'read_only' satisfies keyof Domain;
 export const KEY_DOMAIN_REGISTERED_ON = 'registered_on' satisfies keyof Domain;
@@ -3547,6 +3549,8 @@ export const KEYS_DOMAIN = [
   KEY_DOMAIN_IS_PREMIUM,
   KEY_DOMAIN_NAME,
   KEY_DOMAIN_NAMESERVERS,
+  KEY_DOMAIN_NEXT_ACTION_ON,
+  KEY_DOMAIN_NEXT_ACTION_TYPE,
   KEY_DOMAIN_OWNER_ID,
   KEY_DOMAIN_READ_ONLY,
   KEY_DOMAIN_REGISTERED_ON,

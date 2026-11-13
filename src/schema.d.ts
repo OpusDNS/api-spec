@@ -15169,7 +15169,8 @@ export interface components {
             created_on?: Date;
             /**
              * Deleted On
-             * @description When the domain will be deleted
+             * @deprecated
+             * @description Deprecated, always null. For the date a deleted domain is removed for good, read `next_action_on` where `next_action_type` is `purge`; `canceled_on` is when it was deleted.
              */
             deleted_on?: Date | null;
             /**
@@ -15205,6 +15206,13 @@ export interface components {
              * @description The nameservers of the domain
              */
             nameservers?: components["schemas"]["Nameserver"][];
+            /**
+             * Next Action On
+             * @description When the action in `next_action_type` is due. Null when `next_action_type` is null. Can lie in the past while the action is still being retried.
+             */
+            next_action_on?: Date | null;
+            /** @description What OpusDNS does to the domain next on its own: `renew` (renewed and charged; for monthly billing, the next monthly charge), `expire` (deleted because the renewal mode is 'expire') or `purge` (already deleted, removed for good on that date; a restore is only possible during the registry's redemption period, which ends earlier). Null for externally managed domains and when no date is scheduled. More values may be added; treat unknown values as 'other'. */
+            next_action_type?: components["schemas"]["NextActionType"] | null;
             /**
              * Owner Id
              * Format: typeid
@@ -18883,6 +18891,11 @@ export interface components {
              */
             ip_addresses?: string[];
         };
+        /**
+         * NextActionType
+         * @enum {string}
+         */
+        NextActionType: "renew" | "expire" | "purge";
         /** NicDirectCredentialCreate */
         NicDirectCredentialCreate: {
             /** @description Login details for the account; the fields depend on `registrar` */
