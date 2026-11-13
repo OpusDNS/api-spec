@@ -1431,7 +1431,9 @@ export interface paths {
          *     - **Keyword or phrase** (e.g. `bluewidgets`) — every result is a generated name, and its `available`
          *       flag is best-effort.
          *     - **Full domain name** (e.g. `bluewidgets.de`) — the queried domain is always returned as the first
-         *       result, with availability checked directly against the registry.
+         *       result, with availability checked directly against the registry. `available: false` with an `error`
+         *       (as in `GET /v1/domains/check`) means the name can't be registered here or wasn't checked, not that
+         *       it is taken.
          *
          *     Use a full domain name, or `GET /v1/availability`, whenever you need a definitive answer about a
          *     specific domain.
@@ -15364,6 +15366,8 @@ export interface components {
             connected_account?: components["schemas"]["DomainAmsAccountResponse"] | null;
             /** Domain */
             domain: string;
+            /** @description Set on the exact match of a full domain name query when it could not be checked normally: a `validation_error` (the name is invalid or its TLD is not available for registration) or a `check_error` (the registry check failed). `available` is then false, which does not mean the domain is taken. Null otherwise, and always null on generated suggestions. */
+            error?: components["schemas"]["DomainAvailabilityError"] | null;
             /** @description Set on a domain for sale on a marketplace, added to the suggestions with `available: false`; null on suggestions. On such an item `price.amount` is the price to acquire the domain from the marketplace (for 1 year, in the listing's currency; it does not include a transfer, which the customer does with the auth code and is charged separately; null when the domain could not be priced), and `renewal_price` is the TLD's standard renewal price. A domain can appear twice: as a suggestion with its registry fields, and as a marketplace item. */
             marketplace?: components["schemas"]["Marketplace"] | null;
             /** Premium */

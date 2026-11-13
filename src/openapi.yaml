@@ -16327,6 +16327,15 @@ components:
         domain:
           title: Domain
           type: string
+        error:
+          anyOf:
+          - $ref: '#/components/schemas/DomainAvailabilityError'
+          - type: 'null'
+          description: 'Set on the exact match of a full domain name query when it
+            could not be checked normally: a `validation_error` (the name is invalid
+            or its TLD is not available for registration) or a `check_error` (the
+            registry check failed). `available` is then false, which does not mean
+            the domain is taken. Null otherwise, and always null on generated suggestions.'
         marketplace:
           anyOf:
           - $ref: '#/components/schemas/Marketplace'
@@ -29920,7 +29929,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-12-104804
+  version: 2026-11-13-121409
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -41047,8 +41056,10 @@ paths:
         \ or phrase** (e.g. `bluewidgets`) \u2014 every result is a generated name,\
         \ and its `available`\n  flag is best-effort.\n- **Full domain name** (e.g.\
         \ `bluewidgets.de`) \u2014 the queried domain is always returned as the first\n\
-        \  result, with availability checked directly against the registry.\n\nUse\
-        \ a full domain name, or `GET /v1/availability`, whenever you need a definitive\
+        \  result, with availability checked directly against the registry. `available:\
+        \ false` with an `error`\n  (as in `GET /v1/domains/check`) means the name\
+        \ can't be registered here or wasn't checked, not that\n  it is taken.\n\n\
+        Use a full domain name, or `GET /v1/availability`, whenever you need a definitive\
         \ answer about a\nspecific domain.\n\nWith `marketplaces=fruits` (repeatable,\
         \ or `marketplaces=all`), domains for sale on the marketplace are added to\n\
         `results`: the ones closest to `query` at a few places among the suggestions,\
@@ -53779,7 +53790,12 @@ tags:
     \ so a suggestion can occasionally be shown as available when it is not.\n\nAvailability\
     \ is authoritative in two cases: when the query is a full domain name (the first\
     \ result), and for domains checked via `GET /v1/availability`. Always confirm\
-    \ with one of those before presenting a domain as purchasable.\n"
+    \ with one of those before presenting a domain as purchasable.\n\nWhen a full\
+    \ domain name cannot be registered here or could not be checked, the first result\
+    \ has `available: false` and an `error`, in the same shape as `GET /v1/domains/check`:\
+    \ a `validation_error` when the name is invalid or its TLD is not available for\
+    \ registration, or a `check_error` when the registry check failed (retry later).\
+    \ Neither means the domain is taken.\n"
   name: domain_search
   x-displayName: Domain search
 - description: "Endpoints for managing host objects (nameserver glue records).\n\n\
