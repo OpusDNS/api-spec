@@ -107,8 +107,9 @@ To tell hourly buckets apart, use their `start` and `end`.
 | `start` | Start of the window as an instant, inclusive. RFC 3339; a value without an offset is read as UTC. Only with `granularity=hour`, instead of `start_date` and `end_date`. |
 | `end` | End of the window as an instant, exclusive. Same format. Only with `granularity=hour`. |
 | `granularity` | Bucket width: `hour`, `day` (default), `week` or `month`. |
-| `hostname` | Count one forward, matched exactly (e.g., `www.example.com`). Cannot be combined with `domain`. |
-| `domain` | Count a domain and all its subdomains. Cannot be combined with `hostname`. |
+| `forward` | Count the redirects of a forward, named as `breakdown=forward` lists it: `example.com`, `www.example.com`, or `*.example.com` for a wildcard forward, which counts every host it served. Repeat it to combine forwards, e.g. `forward=example.com&forward=*.example.com`; at most 20. Cannot be combined with `hostname` or `domain`. |
+| `hostname` | Count the redirects requested for one host name (FQDN), e.g. `www.example.com`, whichever forward served them. Cannot be combined with `domain` or `forward`. |
+| `domain` | Count the registered domain of the name and all its subdomains: `www.example.com` counts all of `example.com`. Cannot be combined with `hostname` or `forward`. |
 | `protocol` | Count only redirects requested over `http` or `https`. |
 | `exclude_bots` | Set to `true` to leave out bots: redirects whose platform is `Bot` or `Unknown`, and crawlers named by their user agent (Googlebot, Applebot, Meta's crawlers and others), whatever platform they report. For redirects stored before November 2026, only the platform is checked. |
 | `include_sub_organizations` | Set to `true` to count the forwards of your sub-organizations too. By default only your own organization is counted. |
@@ -124,7 +125,16 @@ Give exactly one pair, `start_date` and `end_date` or `start` and `end`:
 Mixing the pairs, giving only half of one, or giving instants with another granularity is rejected with `422`.
 
 Without a filter, the counts cover all forwards of your organization.
-`hostname` and `domain` need view access to the zone.
+`forward`, `hostname` and `domain` need view access to the zones they name.
+
+`forward` and `hostname` differ for wildcard forwards.
+Take a forward `*.example.com` that serves `shop.example.com` and `blog.example.com`:
+
+- `forward=*.example.com` counts the redirects of both hosts.
+- `hostname=shop.example.com` counts only the redirects of `shop.example.com`.
+- `hostname=*.example.com` counts nothing, because no visitor requests that literal host.
+
+For an exact forward such as `www.example.com`, both filters count the same.
 
 ### Choosing a granularity
 
@@ -156,7 +166,7 @@ A longer window is rejected with `422`.
 Buckets start on the hour or on the day, in UTC.
 Weeks start on Monday and months on the 1st.
 With `start` and `end`, hourly counts are read in whole hours: a `start` of 14:20 still counts the hour from 14:00 in full.
-With `hostname` or `protocol`, the counts follow the exact instants instead.
+With `forward`, `hostname` or `protocol`, the counts follow the exact instants instead.
 
 Example: the last 30 days, one bucket per day, HTTPS only, without bots:
 
@@ -270,7 +280,7 @@ This product includes GeoLite2 data created by MaxMind, available from
 - `user_agent`, `referrer`, `fqdn`, `domain`, `forward` and `rule` have very many distinct values.
   For them OpusDNS keeps daily top lists, and days that are over are usually read from those lists.
   A value that did not make a day's list is missing for that day.
-  The current day, and queries with a `hostname`, `domain` or `protocol` filter, are counted from all requests.
+  The current day, and queries with a `forward`, `hostname`, `domain` or `protocol` filter, are counted from all requests.
 - `url` is built from daily top 5 lists (see [URL breakdown](#url-breakdown)).
   `breakdown_approximate` is `true` as soon as the window includes a day that is over.
 
@@ -288,7 +298,7 @@ For `breakdown=url`, this means:
 
 - It needs a `domain` filter. Without one the request is rejected with `422`.
   There is no list of URLs across all domains of an organization.
-- It cannot be combined with `hostname` or `protocol` (`422`).
+- It cannot be combined with `forward`, `hostname` or `protocol` (`422`).
 - Over several days, the list is the sum of the daily top 5 lists.
   A path that did not make a day's list is missing for that day, so counts can be too low.
   Paths with fewer than 3 hits a day never appear.
@@ -300,7 +310,7 @@ Every redirect counts for the organization that owned the forward when the redir
 If a forward or domain is deleted, or moved to another organization, its past traffic stays with the former owner until retention ends.
 It stays in that owner's totals, buckets and organization-wide breakdowns (`domain`, `fqdn`, `forward`, `rule`).
 The new owner sees only the traffic from the time it owns the forward.
-The `domain` and `hostname` filters work only for zones you currently have.
+The `forward`, `hostname` and `domain` filters work only for zones you currently have.
 
 ### Estimates
 
@@ -320,6 +330,8 @@ A forward is identified by its source hostname, such as `www.example.com` or `*.
 Forwards that were deleted or moved to another organization since then count too.
 
 `configured_forwards` counts the redirect rules configured now, whatever the window.
+With `forward`, it counts the rules of those forwards.
+With `hostname`, it counts only the rules of a forward configured for exactly that name, so it is `0` for a host that a wildcard forward serves.
 It counts rules, not forwards, and leaves out deleted forwards.
 `invoked_forwards` can therefore be higher than `configured_forwards`.
 
@@ -332,7 +344,7 @@ Its number and the one of the statistics route are not comparable.
 | --- | --- |
 | `hour` granularity | The window must start within the last 35 days. |
 | `day`, `week` and `month` granularity | The window must start within the last 25 months. |
-| `hostname` and `protocol` filters | The window must start within the last 35 days. |
+| `forward`, `hostname` and `protocol` filters | The window must start within the last 35 days. |
 | Breakdowns | Kept for 13 months. Over a window that starts earlier, the top list counts only the last 13 months, while `buckets` and `totals` reach further back. |
 | Breakdowns by `user_agent`, `referrer`, `fqdn`, `domain`, `forward` and `rule` with a `domain` filter | The window must start within the last 35 days. |
 
@@ -343,9 +355,9 @@ A window that starts earlier than its limit allows is rejected with `400`.
 | Status | When |
 | --- | --- |
 | `400` | The window starts earlier than the limits above allow. The `detail` names the parameter you sent, `start_date` or `start`. Also when `include_sub_organizations` is `true` and your organization has more than 1000 organizations in its sub-tree. |
-| `403` | You lack permission to view your organization's domain forwards, or view access to the zone of `hostname` or `domain`. |
-| `404` | OpusDNS has no zone for `hostname` or `domain`. |
-| `422` | The query is invalid: no window, only half of a pair, both pairs, instants with a granularity other than `hour`, `end_date` before `start_date` or `end` not after `start`, a window longer than the granularity allows or outside 1970-01-01 to 2099-12-31, `hostname` and `domain` both set, `breakdown=domain` together with the `domain` filter, or `breakdown=url` without `domain` or together with `hostname` or `protocol`. |
+| `403` | You lack permission to view your organization's domain forwards, or view access to a zone that `forward`, `hostname` or `domain` names. |
+| `404` | OpusDNS has no zone for a `forward`, `hostname` or `domain`. |
+| `422` | The query is invalid: no window, only half of a pair, both pairs, instants with a granularity other than `hour`, `end_date` before `start_date` or `end` not after `start`, a window longer than the granularity allows or outside 1970-01-01 to 2099-12-31, `hostname` and `domain` both set, `forward` together with `hostname` or `domain`, more than 20 `forward` values, `breakdown=domain` together with the `domain` filter, or `breakdown=url` without `domain` or together with `forward`, `hostname` or `protocol`. |
 | `501` | Statistics are not available in this environment. |
 | `503` | Statistics are temporarily unavailable. Try again later. |
 
@@ -368,7 +380,10 @@ The statistics route takes an absolute window: `start_date` and `end_date`, or, 
 | `/metrics/visits-by-key?grouping=…` | `breakdown=fqdn`, `domain`, `forward` or `rule` | `breakdown` |
 | `/metrics/visits-by-key?grouping=url` | `breakdown=url&domain=...`, with the [top 5 limitation](#url-breakdown) | `breakdown` |
 
-The filters keep their names: `hostname`, `domain`, `protocol` and `exclude_bots`.
+`domain`, `protocol` and `exclude_bots` keep their names.
+The `hostname` of the `/metrics` routes selects a forward: use `forward` for it.
+The new `hostname` counts the requests for one host name.
+For an exact forward the two count the same, but `hostname` never matches a wildcard forward.
 `time_range` becomes a window:
 
 | `time_range` | Window | Closest `granularity` |

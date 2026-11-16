@@ -4,6 +4,15 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 16 November 2026
+
+- Added the **`forward` filter** to
+  [`GET /v1/domain-forwards/statistics`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics).
+  It counts the redirects of a forward, a wildcard forward such as `*.example.com` included, and can be repeated: `forward=example.com&forward=*.example.com` counts a domain and its wildcard together.
+  `hostname` counts the redirects requested for one host name, whichever forward served them, so it never matches a wildcard forward.
+  When you move from the `/v1/domain-forwards/metrics` routes, use `forward` in place of their `hostname`.
+  See [Statistics](/products/dns/domain-forwarding/metrics#statistics).
+
 ### 9 November 2026
 
 - Added **domain forward statistics**:
