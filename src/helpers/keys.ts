@@ -221,6 +221,8 @@ import type {
   DomainForwardsContextCreate,
   DomainHost,
   DomainLifecycleBase,
+  DomainModificationDetails,
+  DomainModificationPart,
   DomainNameParts,
   DomainPeriod,
   DomainRecommendationsContext,
@@ -264,6 +266,7 @@ import type {
   DomainUpdateBulkTemplate,
   DomainUpdateCommand,
   DomainUpdatePayloadData,
+  DomainUpdatePending,
   DomainUpdateWorkerPayload,
   DomainValidationIssue,
   DomainVerificationDetails,
@@ -3365,6 +3368,30 @@ export const KEYS_DOMAIN_LIFECYCLE_BASE = [
   KEY_DOMAIN_LIFECYCLE_BASE_TRANSFER_RENEWAL_PERIODS,
 ] as const satisfies (keyof DomainLifecycleBase)[];
 
+export const KEY_DOMAIN_MODIFICATION_DETAILS_DETAIL_TYPE = 'detail_type' satisfies keyof DomainModificationDetails;
+export const KEY_DOMAIN_MODIFICATION_DETAILS_PART = 'part' satisfies keyof DomainModificationDetails;
+export const KEY_DOMAIN_MODIFICATION_DETAILS_REQUEST_ID = 'request_id' satisfies keyof DomainModificationDetails;
+
+export const KEYS_DOMAIN_MODIFICATION_DETAILS = [
+  KEY_DOMAIN_MODIFICATION_DETAILS_DETAIL_TYPE,
+  KEY_DOMAIN_MODIFICATION_DETAILS_PART,
+  KEY_DOMAIN_MODIFICATION_DETAILS_REQUEST_ID,
+] as const satisfies (keyof DomainModificationDetails)[];
+
+export const KEY_DOMAIN_MODIFICATION_PART_AFTER = 'after' satisfies keyof DomainModificationPart;
+export const KEY_DOMAIN_MODIFICATION_PART_BEFORE = 'before' satisfies keyof DomainModificationPart;
+export const KEY_DOMAIN_MODIFICATION_PART_FIELDS = 'fields' satisfies keyof DomainModificationPart;
+export const KEY_DOMAIN_MODIFICATION_PART_MESSAGE = 'message' satisfies keyof DomainModificationPart;
+export const KEY_DOMAIN_MODIFICATION_PART_STATUS = 'status' satisfies keyof DomainModificationPart;
+
+export const KEYS_DOMAIN_MODIFICATION_PART = [
+  KEY_DOMAIN_MODIFICATION_PART_AFTER,
+  KEY_DOMAIN_MODIFICATION_PART_BEFORE,
+  KEY_DOMAIN_MODIFICATION_PART_FIELDS,
+  KEY_DOMAIN_MODIFICATION_PART_MESSAGE,
+  KEY_DOMAIN_MODIFICATION_PART_STATUS,
+] as const satisfies (keyof DomainModificationPart)[];
+
 export const KEY_DOMAIN_NAME_PARTS_DOMAIN = 'domain' satisfies keyof DomainNameParts;
 export const KEY_DOMAIN_NAME_PARTS_SUBDOMAIN = 'subdomain' satisfies keyof DomainNameParts;
 export const KEY_DOMAIN_NAME_PARTS_SUFFIX = 'suffix' satisfies keyof DomainNameParts;
@@ -4018,6 +4045,16 @@ export const KEYS_DOMAIN_UPDATE_PAYLOAD_DATA = [
   KEY_DOMAIN_UPDATE_PAYLOAD_DATA_STATUS_CHANGES,
   KEY_DOMAIN_UPDATE_PAYLOAD_DATA_STATUSES,
 ] as const satisfies (keyof DomainUpdatePayloadData)[];
+
+export const KEY_DOMAIN_UPDATE_PENDING_NAME = 'name' satisfies keyof DomainUpdatePending;
+export const KEY_DOMAIN_UPDATE_PENDING_REQUEST_ID = 'request_id' satisfies keyof DomainUpdatePending;
+export const KEY_DOMAIN_UPDATE_PENDING_STATUS = 'status' satisfies keyof DomainUpdatePending;
+
+export const KEYS_DOMAIN_UPDATE_PENDING = [
+  KEY_DOMAIN_UPDATE_PENDING_NAME,
+  KEY_DOMAIN_UPDATE_PENDING_REQUEST_ID,
+  KEY_DOMAIN_UPDATE_PENDING_STATUS,
+] as const satisfies (keyof DomainUpdatePending)[];
 
 export const KEY_DOMAIN_UPDATE_WORKER_PAYLOAD_DOMAIN = 'domain' satisfies keyof DomainUpdateWorkerPayload;
 export const KEY_DOMAIN_UPDATE_WORKER_PAYLOAD_OPERATION = 'operation' satisfies keyof DomainUpdateWorkerPayload;

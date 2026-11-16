@@ -53,6 +53,7 @@ import type {
   DomainForwardZoneSortField,
   DomainIncludeField,
   DomainListIncludeField,
+  DomainModificationPartStatus,
   DomainSortField,
   DomainStatisticsBreakdown,
   DomainStatus,
@@ -1087,6 +1088,20 @@ export const DOMAIN_LIST_INCLUDE_FIELD_VALUES = [
   'tags',
   'connected_account',
 ] as const satisfies ReadonlyArray<DomainListIncludeField>;
+
+export const DOMAIN_MODIFICATION_PART_STATUS = {
+  VERIFIED: "verified",
+  ACCEPTED: "accepted",
+  FAILED: "failed",
+  UNCONFIRMED: "unconfirmed",
+} as const satisfies Record<string, DomainModificationPartStatus>;
+
+export const DOMAIN_MODIFICATION_PART_STATUS_VALUES = [
+  'verified',
+  'accepted',
+  'failed',
+  'unconfirmed',
+] as const satisfies ReadonlyArray<DomainModificationPartStatus>;
 
 export const DOMAIN_SORT_FIELD = {
   NAME: "name",

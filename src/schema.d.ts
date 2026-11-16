@@ -1935,7 +1935,11 @@ export interface paths {
          *     `transfer_lock` is read-only and cannot be set here: send it in the request body and it is
          *     ignored, leaving the lock unchanged. Use `status_changes` to release a lock before a
          *     transfer out, for example
-         *     `{"status_changes": {"remove": ["clientTransferProhibited"]}}`.
+         *     `{"status_changes": {"remove": ["clientTransferProhibited"]}}`. <br>
+         *     For a domain held at another registrar, only the transfer lock can be changed, on its own, and only
+         *     while the domain is not `read_only` (403 otherwise): any other field is refused with 422 before
+         *     anything is sent to that registrar. If the registrar has not finished
+         *     the change when it answers, the response is 202 and the outcome is reported as a domain event.
          */
         patch: operations["update_domain_v1_domains__domain_reference__patch"];
         trace?: never;
@@ -10336,7 +10340,7 @@ export interface components {
              */
             truncated: boolean;
         } | {
-            data?: components["schemas"]["DomainResponse"] | string;
+            data?: components["schemas"]["DomainResponse"] | components["schemas"]["DomainUpdatePendingResponse"] | string;
             /**
              * Headers
              * @description Selected response headers
@@ -14883,6 +14887,41 @@ export interface components {
          * @enum {string}
          */
         DomainListIncludeField: "tags" | "connected_account";
+        /**
+         * DomainModificationDetails
+         * @description The outcome of one part of an update that completed after the request was answered with 202.
+         *
+         *     One event per part, each carrying the request id the 202 returned, so an update made of several
+         *     parts reports each one without the shape changing.
+         */
+        DomainModificationDetails: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            detail_type: "domain_modification";
+            part: components["schemas"]["DomainModificationPart"];
+            /** Request Id */
+            request_id: string;
+        };
+        /**
+         * DomainModificationPart
+         * @description One part of an update: the fields a single registrar call carries, and how it ended.
+         */
+        DomainModificationPart: {
+            after?: components["schemas"]["JsonValue"];
+            before?: components["schemas"]["JsonValue"];
+            /** Fields */
+            fields: string[];
+            /** Message */
+            message?: string | null;
+            status: components["schemas"]["DomainModificationPartStatus"];
+        };
+        /**
+         * DomainModificationPartStatus
+         * @enum {string}
+         */
+        DomainModificationPartStatus: "verified" | "accepted" | "failed" | "unconfirmed";
         /** DomainNameParts */
         DomainNameParts: {
             /**
@@ -16419,6 +16458,26 @@ export interface components {
              */
             statuses?: components["schemas"]["DomainClientStatus"][] | null;
         };
+        /** DomainUpdatePendingResponse */
+        DomainUpdatePendingResponse: {
+            /**
+             * Name
+             * @description The domain name the update was requested for
+             */
+            name: string;
+            /**
+             * Request Id
+             * @description Identifier of this update, carried by its outcome events
+             */
+            request_id: string;
+            /**
+             * Status
+             * @description The registrar holding the domain has taken the update and is still completing it. The outcome is reported as domain events carrying `request_id`.
+             * @default update_pending
+             * @constant
+             */
+            status: "update_pending";
+        };
         /** DomainUpdateWorkerPayload */
         DomainUpdateWorkerPayload: {
             domain: components["schemas"]["DomainUpdatePayloadData"];
@@ -17386,7 +17445,7 @@ export interface components {
         /** EventData */
         EventData: {
             /** Details */
-            details?: (components["schemas"]["DomainRenewalDetails"] | components["schemas"]["DomainVerificationDetails"] | components["schemas"]["RegistrantChangeDetails"]) | null;
+            details?: (components["schemas"]["DomainRenewalDetails"] | components["schemas"]["DomainVerificationDetails"] | components["schemas"]["RegistrantChangeDetails"] | components["schemas"]["DomainModificationDetails"]) | null;
             error?: components["schemas"]["EventError"] | null;
             /** Message */
             message: string;
@@ -34480,8 +34539,43 @@ export interface operations {
                     "application/json": components["schemas"]["DomainResponse"];
                 };
             };
+            /** @description The domain is held at another registrar, which has taken the transfer-lock change but not finished it. Its outcome is reported as a domain modification event carrying `request_id`; until then a further update of the domain is refused with 409. */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainUpdatePendingResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_READ_ONLY",
+                     *       "detail": "Domain is held at an external registrar and is read only",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 403,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-read-only-external"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Not Found */
             404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -34495,6 +34589,40 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_REGISTRAR_UPDATE_FAILED",
+                     *       "detail": "The registrar holding the domain did not complete the update: Lock change rejected",
+                     *       "domain_name": "example.com",
+                     *       "status": 502,
+                     *       "title": "Registrar Update Failed",
+                     *       "type": "domain-registrar-update-failed"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_REGISTRAR_UNAVAILABLE",
+                     *       "detail": "The registrar currently holding the domain is unavailable, please retry later",
+                     *       "domain_name": "example.com",
+                     *       "status": 503,
+                     *       "title": "Registrar Unavailable",
+                     *       "type": "domain-registrar-unavailable"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };

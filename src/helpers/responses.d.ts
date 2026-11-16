@@ -50,6 +50,7 @@ import type {
   DomainStatistics,
   DomainSummary,
   DomainTransit,
+  DomainUpdatePending,
   DomainVerification,
   DomainWithdraw,
   EmailForward,
@@ -1164,11 +1165,16 @@ export type PATCH_DomainForwardsByHostnameEnable_Response_401 = Problem;
 export type PATCH_DomainForwardsByHostnameEnable_Response_403 = Problem;
 export type PATCH_DomainForwardsByHostnameEnable_Response_422 = HTTPValidationError;
 
-export type PATCH_DomainsByDomainReference_Response = PATCH_DomainsByDomainReference_Response_200 | PATCH_DomainsByDomainReference_Response_404 | PATCH_DomainsByDomainReference_Response_422;
+export type PATCH_DomainsByDomainReference_Response = PATCH_DomainsByDomainReference_Response_200 | PATCH_DomainsByDomainReference_Response_202 | PATCH_DomainsByDomainReference_Response_403 | PATCH_DomainsByDomainReference_Response_404 | PATCH_DomainsByDomainReference_Response_409 | PATCH_DomainsByDomainReference_Response_422 | PATCH_DomainsByDomainReference_Response_502 | PATCH_DomainsByDomainReference_Response_503;
 
 export type PATCH_DomainsByDomainReference_Response_200 = Domain;
+export type PATCH_DomainsByDomainReference_Response_202 = DomainUpdatePending;
+export type PATCH_DomainsByDomainReference_Response_403 = Problem;
 export type PATCH_DomainsByDomainReference_Response_404 = Problem;
+export type PATCH_DomainsByDomainReference_Response_409 = Problem;
 export type PATCH_DomainsByDomainReference_Response_422 = Problem;
+export type PATCH_DomainsByDomainReference_Response_502 = Problem;
+export type PATCH_DomainsByDomainReference_Response_503 = Problem;
 
 export type PATCH_EmailForwardsByEmailForwardIdDisable_Response = PATCH_EmailForwardsByEmailForwardIdDisable_Response_401 | PATCH_EmailForwardsByEmailForwardIdDisable_Response_403 | PATCH_EmailForwardsByEmailForwardIdDisable_Response_404 | PATCH_EmailForwardsByEmailForwardIdDisable_Response_422;
 

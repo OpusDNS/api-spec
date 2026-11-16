@@ -8802,6 +8802,7 @@ components:
           data:
             anyOf:
             - $ref: '#/components/schemas/DomainResponse'
+            - $ref: '#/components/schemas/DomainUpdatePendingResponse'
             - type: string
           headers:
             additionalProperties:
@@ -15638,6 +15639,64 @@ components:
       - connected_account
       title: DomainListIncludeField
       type: string
+    DomainModificationDetails:
+      description: 'The outcome of one part of an update that completed after the
+        request was answered with 202.
+
+
+        One event per part, each carrying the request id the 202 returned, so an update
+        made of several
+
+        parts reports each one without the shape changing.'
+      properties:
+        detail_type:
+          const: domain_modification
+          default: domain_modification
+          title: Detail Type
+          type: string
+        part:
+          $ref: '#/components/schemas/DomainModificationPart'
+        request_id:
+          title: Request Id
+          type: string
+      required:
+      - request_id
+      - part
+      title: DomainModificationDetails
+      type: object
+    DomainModificationPart:
+      description: 'One part of an update: the fields a single registrar call carries,
+        and how it ended.'
+      properties:
+        after:
+          $ref: '#/components/schemas/JsonValue'
+        before:
+          $ref: '#/components/schemas/JsonValue'
+        fields:
+          items:
+            type: string
+          title: Fields
+          type: array
+        message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Message
+        status:
+          $ref: '#/components/schemas/DomainModificationPartStatus'
+      required:
+      - fields
+      - status
+      title: DomainModificationPart
+      type: object
+    DomainModificationPartStatus:
+      enum:
+      - verified
+      - accepted
+      - failed
+      - unconfirmed
+      title: DomainModificationPartStatus
+      type: string
     DomainNameParts:
       properties:
         domain:
@@ -17813,6 +17872,29 @@ components:
       - domain_id
       title: DomainUpdatePayloadData
       type: object
+    DomainUpdatePendingResponse:
+      properties:
+        name:
+          description: The domain name the update was requested for
+          title: Name
+          type: string
+        request_id:
+          description: Identifier of this update, carried by its outcome events
+          title: Request Id
+          type: string
+        status:
+          const: update_pending
+          default: update_pending
+          description: The registrar holding the domain has taken the update and is
+            still completing it. The outcome is reported as domain events carrying
+            `request_id`.
+          title: Status
+          type: string
+      required:
+      - name
+      - request_id
+      title: DomainUpdatePendingResponse
+      type: object
     DomainUpdateWorkerPayload:
       properties:
         domain:
@@ -19177,6 +19259,7 @@ components:
           anyOf:
           - discriminator:
               mapping:
+                domain_modification: '#/components/schemas/DomainModificationDetails'
                 domain_renewal: '#/components/schemas/DomainRenewalDetails'
                 domain_verification: '#/components/schemas/DomainVerificationDetails'
                 registrant_change: '#/components/schemas/RegistrantChangeDetails'
@@ -19185,6 +19268,7 @@ components:
             - $ref: '#/components/schemas/DomainRenewalDetails'
             - $ref: '#/components/schemas/DomainVerificationDetails'
             - $ref: '#/components/schemas/RegistrantChangeDetails'
+            - $ref: '#/components/schemas/DomainModificationDetails'
           - type: 'null'
           title: Details
         error:
@@ -29960,7 +30044,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-16-154818
+  version: 2026-11-16-212504
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -43875,7 +43959,18 @@ paths:
 
         transfer out, for example
 
-        `{"status_changes": {"remove": ["clientTransferProhibited"]}}`.'
+        `{"status_changes": {"remove": ["clientTransferProhibited"]}}`. <br>
+
+        For a domain held at another registrar, only the transfer lock can be changed,
+        on its own, and only
+
+        while the domain is not `read_only` (403 otherwise): any other field is refused
+        with 422 before
+
+        anything is sent to that registrar. If the registrar has not finished
+
+        the change when it answers, the response is 202 and the outcome is reported
+        as a domain event.'
       operationId: update_domain_v1_domains__domain_reference__patch
       parameters:
       - in: path
@@ -43905,6 +44000,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/DomainResponse'
           description: Successful Response
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainUpdatePendingResponse'
+          description: The domain is held at another registrar, which has taken the
+            transfer-lock change but not finished it. Its outcome is reported as a
+            domain modification event carrying `request_id`; until then a further
+            update of the domain is refused with 409.
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_READ_ONLY
+                detail: Domain is held at an external registrar and is read only
+                domain_name: Additional error context.
+                status: 403
+                title: Domain Management Error
+                type: domain-read-only-external
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '404':
           content:
             application/problem+json:
@@ -43928,6 +44045,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              examples:
+                Domain Management Error:
+                  value:
+                    code: ERROR_DOMAIN_TRANSFER_ON_RENEW_PENDING
+                    detail: A renewal is transferring this domain into OpusDNS; its
+                      transfer lock cannot be changed until the transfer completes
+                      or fails
+                    domain_name: example.com
+                    status: 409
+                    title: Domain Management Error
+                    type: domain-transfer-on-renew-pending
+                Domain Update Pending:
+                  value:
+                    code: ERROR_DOMAIN_UPDATE_PENDING
+                    detail: An earlier update of this domain is still pending at the
+                      registry, retry once it has completed
+                    domain_name: example.com
+                    status: 409
+                    title: Domain Update Pending
+                    type: domain-update-pending
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
         '422':
           content:
             application/problem+json:
@@ -43954,9 +44097,59 @@ paths:
                     title: Domain Management Error
                     tld: lu
                     type: domain-registrant-change-not-supported
+                Registrar Credential Rejected:
+                  value:
+                    code: ERROR_REGISTRAR_CREDENTIAL_REJECTED
+                    detail: INTERNETX rejected the connected registrar credential
+                      holding the domain. Update the credential under Connected Registrars,
+                      then retry the update
+                    domain_name: example.com
+                    registrar: INTERNETX
+                    status: 422
+                    title: Registrar Credential Rejected
+                    type: domain-registrar-credential-rejected
+                Update Not Supported By Registrar:
+                  value:
+                    code: ERROR_DOMAIN_UPDATE_NOT_SUPPORTED_BY_REGISTRAR
+                    detail: The registrar holding the domain cannot change nameservers
+                      through OpusDNS; nothing was sent to it
+                    domain_name: example.com
+                    status: 422
+                    title: Update Not Supported By Registrar
+                    type: domain-update-not-supported-by-registrar
+                    unsupported_fields:
+                    - nameservers
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Unprocessable Content
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_REGISTRAR_UPDATE_FAILED
+                detail: 'The registrar holding the domain did not complete the update:
+                  Lock change rejected'
+                domain_name: example.com
+                status: 502
+                title: Registrar Update Failed
+                type: domain-registrar-update-failed
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_REGISTRAR_UNAVAILABLE
+                detail: The registrar currently holding the domain is unavailable,
+                  please retry later
+                domain_name: example.com
+                status: 503
+                title: Registrar Unavailable
+                type: domain-registrar-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
