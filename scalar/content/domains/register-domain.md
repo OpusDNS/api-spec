@@ -61,6 +61,42 @@ Continue only when `available` is `true`. If `claims_key` is present, follow the
 [Trademarked Domains](/products/domains/trademarked-domains) workflow before
 registering.
 
+### Internationalized domain names
+
+A domain name with non-ASCII characters, such as `bücher.de`, is registered
+under its A-label, the ASCII form that starts with `xn--` (`xn--bcher-kva.de`,
+also called punycode).
+
+**Send the Unicode name.** `GET /v1/domains/check` and `POST /v1/domains`
+convert it to the A-label (IDNA2008 with UTS-46 mapping). The domain in the
+registration response carries the A-label as `name`.
+
+```bash
+curl --get "$OPUSDNS_API_BASE/v1/domains/check" \
+  --header "X-Api-Key: $OPUSDNS_API_KEY" \
+  --data-urlencode "domains=bücher.de"
+```
+
+**Do not write an A-label by hand**, and do not let a language model write
+one. The characters after the last hyphen encode which letters are missing
+and where, so a wrong ending is usually still a valid name, for a different
+domain:
+
+| Sent | Stands for |
+| --- | --- |
+| `xn--bcher-kva.de` | `bücher.de` |
+| `xn--bcher-bsa.de` | `bécher.de` |
+
+The API checks and registers the name it is given. If you need to send
+A-labels, produce them with an IDNA2008 library and decode them back to
+compare with the name you meant.
+
+`POST /v1/domains` takes Unicode names written with precomposed Latin letters
+(NFC), such as `ü`, `é` or `ø`. For other scripts, send the A-label from a
+library. `GET /v1/domains/check` takes Unicode in any script. A name that is
+not a valid IDN comes back from the check with `available: false` and an
+`error` of type `validation_error`.
+
 ## 2. Prepare contacts
 
 Domain registrations require contact data. Contacts represent the people or
@@ -164,7 +200,7 @@ curl "$OPUSDNS_API_BASE/v1/domains" \
 
 | Field | Required | Description |
 | --- | --- | --- |
-| `name` | Yes | The fully qualified domain name to register (e.g., `example.com`). |
+| `name` | Yes | The fully qualified domain name to register (e.g., `example.com`). For a name with non-ASCII characters send the Unicode form (`bücher.de`), see [Internationalized domain names](#internationalized-domain-names). |
 | `contacts` | Yes | Contact IDs keyed by role. At minimum, a `registrant` is always required. |
 | `renewal_mode` | Yes | `"renew"` for automatic renewal or `"expire"` to let the domain expire. |
 | `period` | Yes | Registration length. Uses `unit` (`y` for years, `m` for months, `d` for days) and `value`. |

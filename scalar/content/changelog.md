@@ -4,6 +4,18 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 17 November 2026
+
+- Documented **internationalized domain names (IDNs) in Unicode**.
+  [`GET /v1/domains/check`](/api-reference#tag/domain/GET/v1/domains/check) and
+  [`POST /v1/domains`](/api-reference#tag/domain/POST/v1/domains) take a name
+  with non-ASCII characters in Unicode (`bücher.de`) and convert it to its
+  A-label (`xn--bcher-kva.de`) for you. Send the Unicode name. Do not write an
+  `xn--` label by hand: a wrong one can be a valid name for a different
+  domain, which is then checked and registered as requested. This corrects the
+  note of 25 August 2026, which said to send the punycode form. See
+  [Internationalized domain names](/products/domains/register#internationalized-domain-names).
+
 ### 16 November 2026
 
 - Added the **`forward` filter** to
@@ -866,9 +878,10 @@ Track notable updates to the OpusDNS API and developer documentation here.
 - Fixed **IDN registrations on Verisign TLDs**. Registering an internationalized
   domain under `.com`, `.net`, `.cc`, or `.name` failed at the registry with
   `Language tag required for IDN label domain names`, because the required
-  language tag was not sent. It is now included on registration. Note that the
-  API does not convert a Unicode name to its A-label for you — send the
-  punycode form (`xn--…`).
+  language tag was not sent. It is now included on registration. At that time
+  registration did not convert a Unicode name to its A-label. It does now: send
+  the Unicode name, see
+  [Internationalized domain names](/products/domains/register#internationalized-domain-names).
 
 ### 20 August 2026
 
