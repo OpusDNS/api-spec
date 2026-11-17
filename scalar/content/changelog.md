@@ -11,8 +11,8 @@ Track notable updates to the OpusDNS API and developer documentation here.
   [`GET /v1/domains/check`](/api-reference#tag/domain/GET/v1/domains/check) and
   [`GET /v1/availability`](/api-reference#tag/availability/GET/v1/availability)
   (and its stream), `name_ace` and `name_unicode` on a domain. A name can be
-  sent in Unicode (`bücher.example`) or in its ASCII form
-  (`xn--bcher-kva.example`); registration accepts Unicode in Latin script.
+  sent in Unicode (`dömäin.example`) or in its ASCII form
+  (`xn--dmin-moa0i.example`); registration accepts Unicode in Latin script.
   This corrects the note of 25 August 2026, which said to send the punycode
   form. See
   [Internationalized domain names](/products/domains/register#internationalized-domain-names).
