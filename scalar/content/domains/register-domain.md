@@ -33,13 +33,17 @@ The response returns one result per domain:
       "domain": "example.com",
       "available": true,
       "reason": null,
-      "is_premium": false
+      "is_premium": false,
+      "domain_ace": "example.com",
+      "domain_unicode": "example.com"
     },
     {
       "domain": "example.net",
       "available": false,
       "reason": "already_registered",
-      "is_premium": false
+      "is_premium": false,
+      "domain_ace": "example.net",
+      "domain_unicode": "example.net"
     }
   ]
 }
@@ -84,7 +88,7 @@ A registered domain shows them as `name_ace` and `name_unicode`.
 If you send the ASCII form, check `domain_unicode` before you register: a
 mistyped `xn--` name can be a valid name for a different domain.
 
-`POST /v1/domains` accepts Unicode names in Latin script. For other scripts,
+`POST /v1/domains` accepts Unicode names in Latin script. For any other name,
 send the `domain_ace` from the check result.
 
 ## 2. Prepare contacts
@@ -221,6 +225,8 @@ The registration returns a `DomainResponse` with the full domain details:
 {
   "domain_id": "dom_01h45ytscbebyvny4gc8cr8ma2",
   "name": "example.com",
+  "name_ace": "example.com",
+  "name_unicode": "example.com",
   "sld": "example",
   "tld": "com",
   "roid": "12345678_DOMAIN_COM-VRSN",
