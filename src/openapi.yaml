@@ -13411,6 +13411,18 @@ components:
         domain:
           title: Domain
           type: string
+        domain_ace:
+          description: The checked name in its ASCII form.
+          examples:
+          - xn--bcher-kva.de
+          title: Domain Ace
+          type: string
+        domain_unicode:
+          description: The checked name in Unicode.
+          examples:
+          - "b\xFCcher.de"
+          title: Domain Unicode
+          type: string
         error:
           anyOf:
           - $ref: '#/components/schemas/DomainAvailabilityError'
@@ -13432,6 +13444,8 @@ components:
             at present.'
       required:
       - domain
+      - domain_ace
+      - domain_unicode
       - status
       title: DomainAvailability
       type: object
@@ -13534,6 +13548,8 @@ components:
     DomainAvailabilityRequest:
       properties:
         domains:
+          description: "The domain names to check. A name can be sent in Unicode (`b\xFC\
+            cher.de`) or in its ASCII form (`xn--bcher-kva.de`)."
           items:
             maxLength: 1024
             type: string
@@ -30088,7 +30104,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-17-100135
+  version: 2026-11-17-103248
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -32298,11 +32314,8 @@ paths:
         of failing the whole request.
       operationId: bulk_availability_v1_availability_get
       parameters:
-      - description: '
-
-          Specify one or more domains to check for availability.
-
-          '
+      - description: "\nSpecify one or more domains to check for availability.\n\n\
+          A name can be sent in Unicode (`b\xFCcher.de`) or in its ASCII form\n(`xn--bcher-kva.de`).\n"
         examples:
           list:
             summary: A list of domains
@@ -32313,11 +32326,9 @@ paths:
         name: domains
         required: true
         schema:
-          description: '
-
-            Specify one or more domains to check for availability.
-
-            '
+          description: "\nSpecify one or more domains to check for availability.\n\
+            \nA name can be sent in Unicode (`b\xFCcher.de`) or in its ASCII form\n\
+            (`xn--bcher-kva.de`).\n"
           items:
             maxLength: 1024
             type: string
@@ -32363,11 +32374,8 @@ paths:
         until the `done` event is received.
       operationId: stream_availability_v1_availability_stream_get
       parameters:
-      - description: '
-
-          Specify one or more domains to check for availability.
-
-          '
+      - description: "\nSpecify one or more domains to check for availability.\n\n\
+          A name can be sent in Unicode (`b\xFCcher.de`) or in its ASCII form\n(`xn--bcher-kva.de`).\n"
         examples:
           list:
             summary: A list of domains
@@ -32378,11 +32386,9 @@ paths:
         name: domains
         required: true
         schema:
-          description: '
-
-            Specify one or more domains to check for availability.
-
-            '
+          description: "\nSpecify one or more domains to check for availability.\n\
+            \nA name can be sent in Unicode (`b\xFCcher.de`) or in its ASCII form\n\
+            (`xn--bcher-kva.de`).\n"
           items:
             maxLength: 1024
             type: string
@@ -32398,30 +32404,38 @@ paths:
                 Data:
                   description: One event per domain, in the order the results arrive
                   summary: Availability data
-                  value: 'data: {"domain":"opusdns.com","status":"unavailable","error":null,"marketplace":null}'
+                  value: 'data: {"domain":"opusdns.com","domain_ace":"opusdns.com","domain_unicode":"opusdns.com","status":"unavailable","error":null,"marketplace":null}'
                 Event:
                   description: Sent last, after every domain's result
                   summary: Event
                   value: 'event: done'
+                IDN:
+                  description: '`domain_ace` and `domain_unicode` show the checked
+                    name in both forms'
+                  summary: Internationalized domain
+                  value: "data: {\"domain\":\"b\xFCcher.de\",\"domain_ace\":\"xn--bcher-kva.de\"\
+                    ,\"domain_unicode\":\"b\xFCcher.de\",\"status\":\"available\"\
+                    ,\"error\":null,\"marketplace\":null}"
                 Invalid:
                   description: An invalid domain is reported as unavailable, with
                     the problems in `error`
                   summary: Invalid domain
-                  value: "data: {\"domain\":\"m\u03C9nchen\u0436.com\",\"status\"\
-                    :\"unavailable\",\"error\":{\"type\":\"validation_error\",\"message\"\
-                    :\"The domain name m\u03C9nchen\u0436.com is not valid.\",\"code\"\
-                    :\"ERROR_DOMAIN_NAME_INVALID\",\"detail\":\"The domain name m\u03C9\
-                    nchen\u0436.com is not valid.\",\"tld\":\"com\",\"errors\":[{\"\
-                    code\":\"ERROR_DOMAIN_CHARACTER_NOT_ALLOWED\",\"detail\":\"\\\"\
-                    \u03C9\\\" (U+03C9) is not allowed in \\\"m\u03C9nchen\u0436\\\
-                    \" by the .com registry.\",\"label\":\"m\u03C9nchen\u0436\",\"\
-                    character\":\"\u03C9\",\"codepoint\":\"U+03C9\",\"position\":1},{\"\
-                    code\":\"ERROR_DOMAIN_CHARACTER_NOT_ALLOWED\",\"detail\":\"\\\"\
-                    \u0436\\\" (U+0436) is not allowed in \\\"m\u03C9nchen\u0436\\\
-                    \" by the .com registry.\",\"label\":\"m\u03C9nchen\u0436\",\"\
-                    character\":\"\u0436\",\"codepoint\":\"U+0436\",\"position\":7}],\"\
-                    title\":\"Domain Management Error\",\"status\":400},\"marketplace\"\
-                    :null}"
+                  value: "data: {\"domain\":\"m\u03C9nchen\u0436.com\",\"domain_ace\"\
+                    :\"xn--mnchen-i2e19f.com\",\"domain_unicode\":\"m\u03C9nchen\u0436\
+                    .com\",\"status\":\"unavailable\",\"error\":{\"type\":\"validation_error\"\
+                    ,\"message\":\"The domain name m\u03C9nchen\u0436.com is not valid.\"\
+                    ,\"code\":\"ERROR_DOMAIN_NAME_INVALID\",\"detail\":\"The domain\
+                    \ name m\u03C9nchen\u0436.com is not valid.\",\"tld\":\"com\"\
+                    ,\"errors\":[{\"code\":\"ERROR_DOMAIN_CHARACTER_NOT_ALLOWED\"\
+                    ,\"detail\":\"\\\"\u03C9\\\" (U+03C9) is not allowed in \\\"m\u03C9\
+                    nchen\u0436\\\" by the .com registry.\",\"label\":\"m\u03C9nchen\u0436\
+                    \",\"character\":\"\u03C9\",\"codepoint\":\"U+03C9\",\"position\"\
+                    :1},{\"code\":\"ERROR_DOMAIN_CHARACTER_NOT_ALLOWED\",\"detail\"\
+                    :\"\\\"\u0436\\\" (U+0436) is not allowed in \\\"m\u03C9nchen\u0436\
+                    \\\" by the .com registry.\",\"label\":\"m\u03C9nchen\u0436\"\
+                    ,\"character\":\"\u0436\",\"codepoint\":\"U+0436\",\"position\"\
+                    :7}],\"title\":\"Domain Management Error\",\"status\":400},\"\
+                    marketplace\":null}"
               schema:
                 type: string
           description: Successful Response
@@ -32476,30 +32490,38 @@ paths:
                 Data:
                   description: One event per domain, in the order the results arrive
                   summary: Availability data
-                  value: 'data: {"domain":"opusdns.com","status":"unavailable","error":null,"marketplace":null}'
+                  value: 'data: {"domain":"opusdns.com","domain_ace":"opusdns.com","domain_unicode":"opusdns.com","status":"unavailable","error":null,"marketplace":null}'
                 Event:
                   description: Sent last, after every domain's result
                   summary: Event
                   value: 'event: done'
+                IDN:
+                  description: '`domain_ace` and `domain_unicode` show the checked
+                    name in both forms'
+                  summary: Internationalized domain
+                  value: "data: {\"domain\":\"b\xFCcher.de\",\"domain_ace\":\"xn--bcher-kva.de\"\
+                    ,\"domain_unicode\":\"b\xFCcher.de\",\"status\":\"available\"\
+                    ,\"error\":null,\"marketplace\":null}"
                 Invalid:
                   description: An invalid domain is reported as unavailable, with
                     the problems in `error`
                   summary: Invalid domain
-                  value: "data: {\"domain\":\"m\u03C9nchen\u0436.com\",\"status\"\
-                    :\"unavailable\",\"error\":{\"type\":\"validation_error\",\"message\"\
-                    :\"The domain name m\u03C9nchen\u0436.com is not valid.\",\"code\"\
-                    :\"ERROR_DOMAIN_NAME_INVALID\",\"detail\":\"The domain name m\u03C9\
-                    nchen\u0436.com is not valid.\",\"tld\":\"com\",\"errors\":[{\"\
-                    code\":\"ERROR_DOMAIN_CHARACTER_NOT_ALLOWED\",\"detail\":\"\\\"\
-                    \u03C9\\\" (U+03C9) is not allowed in \\\"m\u03C9nchen\u0436\\\
-                    \" by the .com registry.\",\"label\":\"m\u03C9nchen\u0436\",\"\
-                    character\":\"\u03C9\",\"codepoint\":\"U+03C9\",\"position\":1},{\"\
-                    code\":\"ERROR_DOMAIN_CHARACTER_NOT_ALLOWED\",\"detail\":\"\\\"\
-                    \u0436\\\" (U+0436) is not allowed in \\\"m\u03C9nchen\u0436\\\
-                    \" by the .com registry.\",\"label\":\"m\u03C9nchen\u0436\",\"\
-                    character\":\"\u0436\",\"codepoint\":\"U+0436\",\"position\":7}],\"\
-                    title\":\"Domain Management Error\",\"status\":400},\"marketplace\"\
-                    :null}"
+                  value: "data: {\"domain\":\"m\u03C9nchen\u0436.com\",\"domain_ace\"\
+                    :\"xn--mnchen-i2e19f.com\",\"domain_unicode\":\"m\u03C9nchen\u0436\
+                    .com\",\"status\":\"unavailable\",\"error\":{\"type\":\"validation_error\"\
+                    ,\"message\":\"The domain name m\u03C9nchen\u0436.com is not valid.\"\
+                    ,\"code\":\"ERROR_DOMAIN_NAME_INVALID\",\"detail\":\"The domain\
+                    \ name m\u03C9nchen\u0436.com is not valid.\",\"tld\":\"com\"\
+                    ,\"errors\":[{\"code\":\"ERROR_DOMAIN_CHARACTER_NOT_ALLOWED\"\
+                    ,\"detail\":\"\\\"\u03C9\\\" (U+03C9) is not allowed in \\\"m\u03C9\
+                    nchen\u0436\\\" by the .com registry.\",\"label\":\"m\u03C9nchen\u0436\
+                    \",\"character\":\"\u03C9\",\"codepoint\":\"U+03C9\",\"position\"\
+                    :1},{\"code\":\"ERROR_DOMAIN_CHARACTER_NOT_ALLOWED\",\"detail\"\
+                    :\"\\\"\u0436\\\" (U+0436) is not allowed in \\\"m\u03C9nchen\u0436\
+                    \\\" by the .com registry.\",\"label\":\"m\u03C9nchen\u0436\"\
+                    ,\"character\":\"\u0436\",\"codepoint\":\"U+0436\",\"position\"\
+                    :7}],\"title\":\"Domain Management Error\",\"status\":400},\"\
+                    marketplace\":null}"
               schema:
                 type: string
           description: Successful Response

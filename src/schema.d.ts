@@ -13404,6 +13404,18 @@ export interface components {
         DomainAvailability: {
             /** Domain */
             domain: string;
+            /**
+             * Domain Ace
+             * @description The checked name in its ASCII form.
+             * @example xn--bcher-kva.de
+             */
+            domain_ace: string;
+            /**
+             * Domain Unicode
+             * @description The checked name in Unicode.
+             * @example bücher.de
+             */
+            domain_unicode: string;
             /** @description Why the domain could not be checked: a `validation_error` (the name is invalid; status `unavailable`) or a `check_error` (status `error`). Null otherwise; a status `error` may also come without one. */
             error?: components["schemas"]["DomainAvailabilityError"] | null;
             /** @description The marketplace a taken domain can be bought on; set on `market_available` results of `POST /v1/availability/stream` with `marketplaces`; null otherwise, or when the marketplace is not known yet. */
@@ -13492,7 +13504,10 @@ export interface components {
         };
         /** DomainAvailabilityRequest */
         DomainAvailabilityRequest: {
-            /** Domains */
+            /**
+             * Domains
+             * @description The domain names to check. A name can be sent in Unicode (`bücher.de`) or in its ASCII form (`xn--bcher-kva.de`).
+             */
             domains: string[];
             /**
              * Marketplaces
@@ -26374,6 +26389,9 @@ export interface operations {
             query: {
                 /** @description
                  *     Specify one or more domains to check for availability.
+                 *
+                 *     A name can be sent in Unicode (`bücher.de`) or in its ASCII form
+                 *     (`xn--bcher-kva.de`).
                  *      */
                 domains: string[];
             };
@@ -26431,6 +26449,9 @@ export interface operations {
             query: {
                 /** @description
                  *     Specify one or more domains to check for availability.
+                 *
+                 *     A name can be sent in Unicode (`bücher.de`) or in its ASCII form
+                 *     (`xn--bcher-kva.de`).
                  *      */
                 domains: string[];
             };
