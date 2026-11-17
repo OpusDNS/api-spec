@@ -13658,7 +13658,8 @@ export interface components {
             expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
             /**
              * Name
-             * @description The domain to be created
+             * @description The domain name, in Unicode (`bücher.de`) or in its ASCII form (`xn--bcher-kva.de`).
+             * @example bücher.de
              */
             name: string;
             /**
@@ -13942,7 +13943,8 @@ export interface components {
             expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
             /**
              * Name
-             * @description The domain to be created
+             * @description The domain name, in Unicode (`bücher.de`) or in its ASCII form (`xn--bcher-kva.de`).
+             * @example bücher.de
              */
             name: string;
             /**
@@ -15241,6 +15243,18 @@ export interface components {
              */
             name: string;
             /**
+             * Name Ace
+             * @description The domain name in its ASCII form.
+             * @example xn--bcher-kva.de
+             */
+            readonly name_ace: string;
+            /**
+             * Name Unicode
+             * @description The domain name in Unicode.
+             * @example bücher.de
+             */
+            readonly name_unicode: string;
+            /**
              * Nameservers
              * @description The nameservers of the domain
              */
@@ -15973,7 +15987,8 @@ export interface components {
             expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
             /**
              * Name
-             * @description The domain to be created
+             * @description The domain name, in Unicode (`bücher.de`) or in its ASCII form (`xn--bcher-kva.de`).
+             * @example bücher.de
              */
             name: string;
             /**
@@ -16057,7 +16072,8 @@ export interface components {
             expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
             /**
              * Name
-             * @description The domain to be created
+             * @description The domain name, in Unicode (`bücher.de`) or in its ASCII form (`xn--bcher-kva.de`).
+             * @example bücher.de
              */
             name: string;
             /**
@@ -24469,6 +24485,18 @@ export interface components {
              * @example example.com
              */
             domain: string;
+            /**
+             * Domain Ace
+             * @description The checked name in its ASCII form.
+             * @example xn--bcher-kva.de
+             */
+            readonly domain_ace: string;
+            /**
+             * Domain Unicode
+             * @description The checked name in Unicode.
+             * @example bücher.de
+             */
+            readonly domain_unicode: string;
             /** @description Error that prevented this domain from being checked: `validation_error` if the domain name is invalid or its TLD is not supported, `check_error` if the registry check failed. */
             error?: components["schemas"]["DomainAvailabilityError"] | null;
             /**
@@ -32903,6 +32931,9 @@ export interface operations {
                  *     Each domain is checked for availability and, when applicable, enriched with
                  *     trademark claims information and premium pricing. The list of domains may
                  *     include a mix of TLDs.
+                 *
+                 *     A name can be sent in Unicode (`bücher.de`) or in its ASCII form
+                 *     (`xn--bcher-kva.de`).
                  *      */
                 domains: string[];
             };

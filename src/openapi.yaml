@@ -13775,7 +13775,10 @@ components:
           description: Expected price for premium domain confirmation
           title: Expected Price
         name:
-          description: The domain to be created
+          description: "The domain name, in Unicode (`b\xFCcher.de`) or in its ASCII\
+            \ form (`xn--bcher-kva.de`)."
+          examples:
+          - "b\xFCcher.de"
           title: Name
           type: string
         nameservers:
@@ -14137,7 +14140,10 @@ components:
           description: Expected price for premium domain confirmation
           title: Expected Price
         name:
-          description: The domain to be created
+          description: "The domain name, in Unicode (`b\xFCcher.de`) or in its ASCII\
+            \ form (`xn--bcher-kva.de`)."
+          examples:
+          - "b\xFCcher.de"
           title: Name
           type: string
         nameservers:
@@ -16137,6 +16143,20 @@ components:
           - example.com
           title: Name
           type: string
+        name_ace:
+          description: The domain name in its ASCII form.
+          examples:
+          - xn--bcher-kva.de
+          readOnly: true
+          title: Name Ace
+          type: string
+        name_unicode:
+          description: The domain name in Unicode.
+          examples:
+          - "b\xFCcher.de"
+          readOnly: true
+          title: Name Unicode
+          type: string
         nameservers:
           description: The nameservers of the domain
           items:
@@ -16298,6 +16318,8 @@ components:
       - sld
       - tld
       - roid
+      - name_ace
+      - name_unicode
       title: DomainResponse
       type: object
     DomainRestoreRequest:
@@ -17241,7 +17263,10 @@ components:
           description: Expected price for premium domain confirmation
           title: Expected Price
         name:
-          description: The domain to be created
+          description: "The domain name, in Unicode (`b\xFCcher.de`) or in its ASCII\
+            \ form (`xn--bcher-kva.de`)."
+          examples:
+          - "b\xFCcher.de"
           title: Name
           type: string
         nameservers:
@@ -17346,7 +17371,10 @@ components:
           description: Expected price for premium domain confirmation
           title: Expected Price
         name:
-          description: The domain to be created
+          description: "The domain name, in Unicode (`b\xFCcher.de`) or in its ASCII\
+            \ form (`xn--bcher-kva.de`)."
+          examples:
+          - "b\xFCcher.de"
           title: Name
           type: string
         nameservers:
@@ -29939,6 +29967,20 @@ components:
           - example.com
           title: Domain
           type: string
+        domain_ace:
+          description: The checked name in its ASCII form.
+          examples:
+          - xn--bcher-kva.de
+          readOnly: true
+          title: Domain Ace
+          type: string
+        domain_unicode:
+          description: The checked name in Unicode.
+          examples:
+          - "b\xFCcher.de"
+          readOnly: true
+          title: Domain Unicode
+          type: string
         error:
           anyOf:
           - $ref: '#/components/schemas/DomainAvailabilityError'
@@ -29972,6 +30014,8 @@ components:
       - domain
       - available
       - reason
+      - domain_ace
+      - domain_unicode
       title: DomainAvailabilityResponse
       type: object
   securitySchemes:
@@ -30044,7 +30088,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-16-212504
+  version: 2026-11-17-100135
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -42023,18 +42067,11 @@ paths:
         not cached.'
       operationId: epp_check_domain_v1_domains_check_get
       parameters:
-      - description: '
-
-          One or more fully-qualified domain names to check at the registry.
-
-
-          Each domain is checked for availability and, when applicable, enriched with
-
-          trademark claims information and premium pricing. The list of domains may
-
-          include a mix of TLDs.
-
-          '
+      - description: "\nOne or more fully-qualified domain names to check at the registry.\n\
+          \nEach domain is checked for availability and, when applicable, enriched\
+          \ with\ntrademark claims information and premium pricing. The list of domains\
+          \ may\ninclude a mix of TLDs.\n\nA name can be sent in Unicode (`b\xFCcher.de`)\
+          \ or in its ASCII form\n(`xn--bcher-kva.de`).\n"
         examples:
           list:
             summary: A list of domain names to check
@@ -42045,20 +42082,11 @@ paths:
         name: domains
         required: true
         schema:
-          description: '
-
-            One or more fully-qualified domain names to check at the registry.
-
-
-            Each domain is checked for availability and, when applicable, enriched
-            with
-
-            trademark claims information and premium pricing. The list of domains
-            may
-
-            include a mix of TLDs.
-
-            '
+          description: "\nOne or more fully-qualified domain names to check at the\
+            \ registry.\n\nEach domain is checked for availability and, when applicable,\
+            \ enriched with\ntrademark claims information and premium pricing. The\
+            \ list of domains may\ninclude a mix of TLDs.\n\nA name can be sent in\
+            \ Unicode (`b\xFCcher.de`) or in its ASCII form\n(`xn--bcher-kva.de`).\n"
           items:
             maxLength: 1024
             type: string

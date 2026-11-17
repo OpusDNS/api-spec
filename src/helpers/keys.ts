@@ -3539,6 +3539,8 @@ export const KEY_DOMAIN_EXPIRES_ON = 'expires_on' satisfies keyof Domain;
 export const KEY_DOMAIN_HOSTS = 'hosts' satisfies keyof Domain;
 export const KEY_DOMAIN_IS_PREMIUM = 'is_premium' satisfies keyof Domain;
 export const KEY_DOMAIN_NAME = 'name' satisfies keyof Domain;
+export const KEY_DOMAIN_NAME_ACE = 'name_ace' satisfies keyof Domain;
+export const KEY_DOMAIN_NAME_UNICODE = 'name_unicode' satisfies keyof Domain;
 export const KEY_DOMAIN_NAMESERVERS = 'nameservers' satisfies keyof Domain;
 export const KEY_DOMAIN_NEXT_ACTION_ON = 'next_action_on' satisfies keyof Domain;
 export const KEY_DOMAIN_NEXT_ACTION_TYPE = 'next_action_type' satisfies keyof Domain;
@@ -3575,6 +3577,8 @@ export const KEYS_DOMAIN = [
   KEY_DOMAIN_HOSTS,
   KEY_DOMAIN_IS_PREMIUM,
   KEY_DOMAIN_NAME,
+  KEY_DOMAIN_NAME_ACE,
+  KEY_DOMAIN_NAME_UNICODE,
   KEY_DOMAIN_NAMESERVERS,
   KEY_DOMAIN_NEXT_ACTION_ON,
   KEY_DOMAIN_NEXT_ACTION_TYPE,
@@ -8201,6 +8205,8 @@ export const KEYS_DOMAIN_AVAILABILITY_LIST = [
 export const KEY_DOMAIN_AVAILABILITY_CHECK_AVAILABLE = 'available' satisfies keyof DomainAvailabilityCheck;
 export const KEY_DOMAIN_AVAILABILITY_CHECK_CLAIMS_KEY = 'claims_key' satisfies keyof DomainAvailabilityCheck;
 export const KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN = 'domain' satisfies keyof DomainAvailabilityCheck;
+export const KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN_ACE = 'domain_ace' satisfies keyof DomainAvailabilityCheck;
+export const KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN_UNICODE = 'domain_unicode' satisfies keyof DomainAvailabilityCheck;
 export const KEY_DOMAIN_AVAILABILITY_CHECK_ERROR = 'error' satisfies keyof DomainAvailabilityCheck;
 export const KEY_DOMAIN_AVAILABILITY_CHECK_IS_PREMIUM = 'is_premium' satisfies keyof DomainAvailabilityCheck;
 export const KEY_DOMAIN_AVAILABILITY_CHECK_PREMIUM_PRICING = 'premium_pricing' satisfies keyof DomainAvailabilityCheck;
@@ -8210,6 +8216,8 @@ export const KEYS_DOMAIN_AVAILABILITY_CHECK = [
   KEY_DOMAIN_AVAILABILITY_CHECK_AVAILABLE,
   KEY_DOMAIN_AVAILABILITY_CHECK_CLAIMS_KEY,
   KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN,
+  KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN_ACE,
+  KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN_UNICODE,
   KEY_DOMAIN_AVAILABILITY_CHECK_ERROR,
   KEY_DOMAIN_AVAILABILITY_CHECK_IS_PREMIUM,
   KEY_DOMAIN_AVAILABILITY_CHECK_PREMIUM_PRICING,
