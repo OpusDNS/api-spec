@@ -33,13 +33,17 @@ The response returns one result per domain:
       "domain": "example.com",
       "available": true,
       "reason": null,
-      "is_premium": false
+      "is_premium": false,
+      "domain_ace": "example.com",
+      "domain_unicode": "example.com"
     },
     {
       "domain": "example.net",
       "available": false,
       "reason": "already_registered",
-      "is_premium": false
+      "is_premium": false,
+      "domain_ace": "example.net",
+      "domain_unicode": "example.net"
     }
   ]
 }
@@ -56,10 +60,36 @@ The `is_premium` flag indicates whether the domain carries premium pricing. When
 | `claims_key` | Present when trademark claims acceptance is required. |
 | `is_premium` | Whether the domain carries premium pricing. |
 | `premium_pricing` | Premium prices per action when pricing is available. |
+| `domain_ace` | The checked name in its ASCII form. |
+| `domain_unicode` | The checked name in Unicode. |
 
 Continue only when `available` is `true`. If `claims_key` is present, follow the
 [Trademarked Domains](/products/domains/trademarked-domains) workflow before
 registering.
+
+### Internationalized domain names
+
+A name with non-ASCII characters can be sent in Unicode (`dömäin.example`) or
+in its ASCII form (`xn--dmin-moa0i.example`). Each result shows both:
+
+```json
+{
+  "domain": "dömäin.example",
+  "available": true,
+  "reason": null,
+  "is_premium": false,
+  "domain_ace": "xn--dmin-moa0i.example",
+  "domain_unicode": "dömäin.example"
+}
+```
+
+A registered domain shows them as `name_ace` and `name_unicode`.
+
+If you send the ASCII form, check `domain_unicode` before you register: a
+mistyped `xn--` name can be a valid name for a different domain.
+
+`POST /v1/domains` accepts Unicode names in Latin script. For any other name,
+send the `domain_ace` from the check result.
 
 ## 2. Prepare contacts
 
@@ -164,7 +194,7 @@ curl "$OPUSDNS_API_BASE/v1/domains" \
 
 | Field | Required | Description |
 | --- | --- | --- |
-| `name` | Yes | The fully qualified domain name to register (e.g., `example.com`). |
+| `name` | Yes | The fully qualified domain name to register (e.g., `example.com`). For names with non-ASCII characters, see [Internationalized domain names](#internationalized-domain-names). |
 | `contacts` | Yes | Contact IDs keyed by role. At minimum, a `registrant` is always required. |
 | `renewal_mode` | Yes | `"renew"` for automatic renewal or `"expire"` to let the domain expire. |
 | `period` | Yes | Registration length. Uses `unit` (`y` for years, `m` for months, `d` for days) and `value`. |
@@ -195,6 +225,8 @@ The registration returns a `DomainResponse` with the full domain details:
 {
   "domain_id": "dom_01h45ytscbebyvny4gc8cr8ma2",
   "name": "example.com",
+  "name_ace": "example.com",
+  "name_unicode": "example.com",
   "sld": "example",
   "tld": "com",
   "roid": "12345678_DOMAIN_COM-VRSN",

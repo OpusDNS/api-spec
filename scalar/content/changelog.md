@@ -4,6 +4,17 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 17 November 2026
+
+- Added **both forms of an internationalized domain name (IDN) to responses**:
+  `domain_ace` and `domain_unicode` on each result of
+  [`GET /v1/domains/check`](/api-reference#tag/domain/GET/v1/domains/check) and
+  [`GET /v1/availability`](/api-reference#tag/availability/GET/v1/availability)
+  (and its stream), `name_ace` and `name_unicode` on a domain. A name can be
+  sent in Unicode (`dömäin.example`) or in its ASCII form
+  (`xn--dmin-moa0i.example`); registration accepts Unicode in Latin script. See
+  [Internationalized domain names](/products/domains/register#internationalized-domain-names).
+
 ### 16 November 2026
 
 - Added the **`forward` filter** to
@@ -866,9 +877,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
 - Fixed **IDN registrations on Verisign TLDs**. Registering an internationalized
   domain under `.com`, `.net`, `.cc`, or `.name` failed at the registry with
   `Language tag required for IDN label domain names`, because the required
-  language tag was not sent. It is now included on registration. Note that the
-  API does not convert a Unicode name to its A-label for you — send the
-  punycode form (`xn--…`).
+  language tag was not sent. It is now included on registration.
 
 ### 20 August 2026
 

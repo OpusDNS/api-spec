@@ -9,6 +9,8 @@ returned by all domain endpoints — registration, transfer, update, and retriev
 {
   "domain_id": "dom_01h45ytscbebyvny4gc8cr8ma2",
   "name": "example.com",
+  "name_ace": "example.com",
+  "name_unicode": "example.com",
   "sld": "example",
   "tld": "com",
   "roid": "12345678_DOMAIN_COM-VRSN",
@@ -51,6 +53,8 @@ returned by all domain endpoints — registration, transfer, update, and retriev
 | --- | --- | --- |
 | `domain_id` | `string` | Unique identifier for the domain (TypeID format). |
 | `name` | `string` | The fully qualified domain name (e.g., `example.com`). |
+| `name_ace` | `string` | The domain name in its ASCII form (e.g., `xn--dmin-moa0i.example`). |
+| `name_unicode` | `string` | The domain name in Unicode (e.g., `dömäin.example`). |
 | `sld` | `string` | The second-level domain — the part before the TLD (e.g., `example`). |
 | `tld` | `string` | The top-level domain (e.g., `com`, `de`, `io`). |
 | `roid` | `string` | The registry object identifier assigned by the registry. |
