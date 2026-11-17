@@ -12,8 +12,8 @@ Track notable updates to the OpusDNS API and developer documentation here.
   [`GET /v1/availability`](/api-reference#tag/availability/GET/v1/availability)
   (and its stream), `name_ace` and `name_unicode` on a domain. A name can be
   sent in Unicode (`bücher.de`) or in its ASCII form (`xn--bcher-kva.de`);
-  this corrects the note of 25 August 2026, which said to send the punycode
-  form. See
+  registration accepts Unicode in Latin script. This corrects the note of
+  25 August 2026, which said to send the punycode form. See
   [Internationalized domain names](/products/domains/register#internationalized-domain-names).
 
 ### 16 November 2026
@@ -879,8 +879,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
   domain under `.com`, `.net`, `.cc`, or `.name` failed at the registry with
   `Language tag required for IDN label domain names`, because the required
   language tag was not sent. It is now included on registration. At that time
-  registration did not convert a Unicode name to its A-label. It does now: send
-  the Unicode name, see
+  registration did not convert a Unicode name to its A-label. It does now, see
   [Internationalized domain names](/products/domains/register#internationalized-domain-names).
 
 ### 20 August 2026

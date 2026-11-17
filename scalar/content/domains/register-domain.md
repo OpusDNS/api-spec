@@ -70,20 +70,22 @@ its ASCII form (`xn--bcher-kva.de`). Each result shows both:
 
 ```json
 {
-  "domain": "bücher.de",
+  "domain": "bücher-example.de",
   "available": true,
-  "domain_ace": "xn--bcher-kva.de",
-  "domain_unicode": "bücher.de"
+  "reason": null,
+  "is_premium": false,
+  "domain_ace": "xn--bcher-example-wob.de",
+  "domain_unicode": "bücher-example.de"
 }
 ```
 
 A registered domain shows them as `name_ace` and `name_unicode`.
 
 If you send the ASCII form, check `domain_unicode` before you register: a
-mistyped `xn--` name is usually a valid name for a different domain.
+mistyped `xn--` name can be a valid name for a different domain.
 
 `POST /v1/domains` accepts Unicode names in Latin script. For other scripts,
-send the ASCII form.
+send the `domain_ace` from the check result.
 
 ## 2. Prepare contacts
 
