@@ -69,8 +69,8 @@ registering.
 
 ### Internationalized domain names
 
-A name with non-ASCII characters can be sent in Unicode (`bücher.example`) or in
-its ASCII form (`xn--bcher-kva.example`). Each result shows both:
+A name with non-ASCII characters can be sent in Unicode (`bücher.example`) or
+in its ASCII form (`xn--bcher-kva.example`). Each result shows both:
 
 ```json
 {
