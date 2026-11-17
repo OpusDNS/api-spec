@@ -65,48 +65,25 @@ registering.
 
 ### Internationalized domain names
 
-A domain name with non-ASCII characters, such as `bücher.de`, is registered
-under its A-label, the ASCII form that starts with `xn--` (`xn--bcher-kva.de`,
-also called punycode).
+A name with non-ASCII characters can be sent in Unicode (`bücher.de`) or in
+its ASCII form (`xn--bcher-kva.de`). Each result shows both:
 
-**Send the Unicode name.** `GET /v1/domains/check` and `POST /v1/domains`
-accept it and convert it for the registry (IDNA2008 with UTS-46 mapping).
-
-The responses show the name in both forms, so you can see which domain a
-request was about:
-
-| Response | ASCII form | Unicode |
-| --- | --- | --- |
-| A result of `GET /v1/domains/check` or `/v1/availability` | `domain_ace` | `domain_unicode` |
-| A domain | `name_ace` | `name_unicode` |
-
-Compare the Unicode form with the name you meant before you register.
-
-```bash
-curl --get "$OPUSDNS_API_BASE/v1/domains/check" \
-  --header "X-Api-Key: $OPUSDNS_API_KEY" \
-  --data-urlencode "domains=bücher.de"
+```json
+{
+  "domain": "bücher.de",
+  "available": true,
+  "domain_ace": "xn--bcher-kva.de",
+  "domain_unicode": "bücher.de"
+}
 ```
 
-**Do not write an A-label by hand**, and do not let a language model write
-one. The characters after the last hyphen encode which letters are missing
-and where, so a wrong ending is usually still a valid name, for a different
-domain:
+A registered domain shows them as `name_ace` and `name_unicode`.
 
-| Sent | Stands for |
-| --- | --- |
-| `xn--bcher-kva.de` | `bücher.de` |
-| `xn--bcher-bsa.de` | `bécher.de` |
+If you send the ASCII form, check `domain_unicode` before you register: a
+mistyped `xn--` name is usually a valid name for a different domain.
 
-The API checks and registers the name it is given. If you need to send
-A-labels, produce them with an IDNA2008 library, and check `domain_unicode`
-in the result.
-
-`POST /v1/domains` takes Unicode names written with precomposed Latin letters
-(NFC), such as `ü`, `é` or `ø`. For other scripts, send the A-label from a
-library. `GET /v1/domains/check` takes Unicode in any script. A name that is
-not a valid IDN comes back from the check with `available: false` and an
-`error` of type `validation_error`.
+`POST /v1/domains` accepts Unicode names in Latin script. For other scripts,
+send the ASCII form.
 
 ## 2. Prepare contacts
 
@@ -211,7 +188,7 @@ curl "$OPUSDNS_API_BASE/v1/domains" \
 
 | Field | Required | Description |
 | --- | --- | --- |
-| `name` | Yes | The fully qualified domain name to register (e.g., `example.com`). For a name with non-ASCII characters send the Unicode form (`bücher.de`), see [Internationalized domain names](#internationalized-domain-names). |
+| `name` | Yes | The fully qualified domain name to register (e.g., `example.com`). For names with non-ASCII characters, see [Internationalized domain names](#internationalized-domain-names). |
 | `contacts` | Yes | Contact IDs keyed by role. At minimum, a `registrant` is always required. |
 | `renewal_mode` | Yes | `"renew"` for automatic renewal or `"expire"` to let the domain expire. |
 | `period` | Yes | Registration length. Uses `unit` (`y` for years, `m` for months, `d` for days) and `value`. |

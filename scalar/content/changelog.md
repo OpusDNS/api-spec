@@ -6,18 +6,14 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ### 17 November 2026
 
-- Added **both forms of an internationalized domain name (IDN) to responses**, and documented that names are sent in Unicode.
+- Added **both forms of an internationalized domain name (IDN) to responses**:
+  `domain_ace` and `domain_unicode` on each result of
   [`GET /v1/domains/check`](/api-reference#tag/domain/GET/v1/domains/check) and
-  [`POST /v1/domains`](/api-reference#tag/domain/POST/v1/domains) take a name
-  with non-ASCII characters in Unicode (`bücher.de`) and convert it to its
-  A-label (`xn--bcher-kva.de`) for you. Send the Unicode name. Do not write an
-  `xn--` label by hand: a wrong one can be a valid name for a different
-  domain, which is then checked and registered as requested. This corrects the
-  note of 25 August 2026, which said to send the punycode form.
-  Responses now show the name in both forms: `domain_ace` and
-  `domain_unicode` on each result of `GET /v1/domains/check` and
   [`GET /v1/availability`](/api-reference#tag/availability/GET/v1/availability)
-  (and its stream), `name_ace` and `name_unicode` on a domain. See
+  (and its stream), `name_ace` and `name_unicode` on a domain. A name can be
+  sent in Unicode (`bücher.de`) or in its ASCII form (`xn--bcher-kva.de`);
+  this corrects the note of 25 August 2026, which said to send the punycode
+  form. See
   [Internationalized domain names](/products/domains/register#internationalized-domain-names).
 
 ### 16 November 2026
