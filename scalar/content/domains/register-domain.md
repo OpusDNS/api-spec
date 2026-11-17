@@ -69,17 +69,17 @@ registering.
 
 ### Internationalized domain names
 
-A name with non-ASCII characters can be sent in Unicode (`bücher.de`) or in
-its ASCII form (`xn--bcher-kva.de`). Each result shows both:
+A name with non-ASCII characters can be sent in Unicode (`bücher.example`) or in
+its ASCII form (`xn--bcher-kva.example`). Each result shows both:
 
 ```json
 {
-  "domain": "bücher-example.de",
+  "domain": "bücher.example",
   "available": true,
   "reason": null,
   "is_premium": false,
-  "domain_ace": "xn--bcher-example-wob.de",
-  "domain_unicode": "bücher-example.de"
+  "domain_ace": "xn--bcher-kva.example",
+  "domain_unicode": "bücher.example"
 }
 ```
 

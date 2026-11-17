@@ -53,8 +53,8 @@ returned by all domain endpoints — registration, transfer, update, and retriev
 | --- | --- | --- |
 | `domain_id` | `string` | Unique identifier for the domain (TypeID format). |
 | `name` | `string` | The fully qualified domain name (e.g., `example.com`). |
-| `name_ace` | `string` | The domain name in its ASCII form (e.g., `xn--bcher-kva.de`). |
-| `name_unicode` | `string` | The domain name in Unicode (e.g., `bücher.de`). |
+| `name_ace` | `string` | The domain name in its ASCII form (e.g., `xn--bcher-kva.example`). |
+| `name_unicode` | `string` | The domain name in Unicode (e.g., `bücher.example`). |
 | `sld` | `string` | The second-level domain — the part before the TLD (e.g., `example`). |
 | `tld` | `string` | The top-level domain (e.g., `com`, `de`, `io`). |
 | `roid` | `string` | The registry object identifier assigned by the registry. |
