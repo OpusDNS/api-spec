@@ -13407,13 +13407,13 @@ export interface components {
             /**
              * Domain Ace
              * @description The checked name in its ASCII form.
-             * @example xn--bcher-kva.de
+             * @example xn--dmin-moa0i.example
              */
             domain_ace: string;
             /**
              * Domain Unicode
              * @description The checked name in Unicode.
-             * @example bücher.de
+             * @example dömäin.example
              */
             domain_unicode: string;
             /** @description Why the domain could not be checked: a `validation_error` (the name is invalid; status `unavailable`) or a `check_error` (status `error`). Null otherwise; a status `error` may also come without one. */
@@ -13427,26 +13427,26 @@ export interface components {
          * DomainAvailabilityError
          * @example {
          *       "code": "ERROR_DOMAIN_NAME_INVALID",
-         *       "detail": "The domain name mωnchenж.com is not valid.",
+         *       "detail": "The domain name dωmäinж.com is not valid.",
          *       "errors": [
          *         {
          *           "character": "ω",
          *           "code": "ERROR_DOMAIN_CHARACTER_NOT_ALLOWED",
          *           "codepoint": "U+03C9",
-         *           "detail": "\"ω\" (U+03C9) is not allowed in \"mωnchenж\" by the .com registry.",
-         *           "label": "mωnchenж",
+         *           "detail": "\"ω\" (U+03C9) is not allowed in \"dωmäinж\" by the .com registry.",
+         *           "label": "dωmäinж",
          *           "position": 1
          *         },
          *         {
          *           "character": "ж",
          *           "code": "ERROR_DOMAIN_CHARACTER_NOT_ALLOWED",
          *           "codepoint": "U+0436",
-         *           "detail": "\"ж\" (U+0436) is not allowed in \"mωnchenж\" by the .com registry.",
-         *           "label": "mωnchenж",
-         *           "position": 7
+         *           "detail": "\"ж\" (U+0436) is not allowed in \"dωmäinж\" by the .com registry.",
+         *           "label": "dωmäinж",
+         *           "position": 6
          *         }
          *       ],
-         *       "message": "The domain name mωnchenж.com is not valid.",
+         *       "message": "The domain name dωmäinж.com is not valid.",
          *       "status": 400,
          *       "title": "Domain Management Error",
          *       "tld": "com",
@@ -13506,7 +13506,7 @@ export interface components {
         DomainAvailabilityRequest: {
             /**
              * Domains
-             * @description The domain names to check. A name can be sent in Unicode (`bücher.de`) or in its ASCII form (`xn--bcher-kva.de`).
+             * @description The domain names to check. A name can be sent in Unicode (`dömäin.example`) or in its ASCII form (`xn--dmin-moa0i.example`).
              */
             domains: string[];
             /**
@@ -13673,8 +13673,8 @@ export interface components {
             expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
             /**
              * Name
-             * @description The domain name, in Unicode (`bücher.de`) or in its ASCII form (`xn--bcher-kva.de`).
-             * @example bücher.de
+             * @description The domain name, in Unicode (`dömäin.example`) or in its ASCII form (`xn--dmin-moa0i.example`).
+             * @example dömäin.example
              */
             name: string;
             /**
@@ -13958,8 +13958,8 @@ export interface components {
             expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
             /**
              * Name
-             * @description The domain name, in Unicode (`bücher.de`) or in its ASCII form (`xn--bcher-kva.de`).
-             * @example bücher.de
+             * @description The domain name, in Unicode (`dömäin.example`) or in its ASCII form (`xn--dmin-moa0i.example`).
+             * @example dömäin.example
              */
             name: string;
             /**
@@ -15260,13 +15260,13 @@ export interface components {
             /**
              * Name Ace
              * @description The domain name in its ASCII form.
-             * @example xn--bcher-kva.de
+             * @example xn--dmin-moa0i.example
              */
             readonly name_ace: string;
             /**
              * Name Unicode
              * @description The domain name in Unicode.
-             * @example bücher.de
+             * @example dömäin.example
              */
             readonly name_unicode: string;
             /**
@@ -16002,8 +16002,8 @@ export interface components {
             expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
             /**
              * Name
-             * @description The domain name, in Unicode (`bücher.de`) or in its ASCII form (`xn--bcher-kva.de`).
-             * @example bücher.de
+             * @description The domain name, in Unicode (`dömäin.example`) or in its ASCII form (`xn--dmin-moa0i.example`).
+             * @example dömäin.example
              */
             name: string;
             /**
@@ -16087,8 +16087,8 @@ export interface components {
             expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
             /**
              * Name
-             * @description The domain name, in Unicode (`bücher.de`) or in its ASCII form (`xn--bcher-kva.de`).
-             * @example bücher.de
+             * @description The domain name, in Unicode (`dömäin.example`) or in its ASCII form (`xn--dmin-moa0i.example`).
+             * @example dömäin.example
              */
             name: string;
             /**
@@ -24503,13 +24503,13 @@ export interface components {
             /**
              * Domain Ace
              * @description The checked name in its ASCII form.
-             * @example xn--bcher-kva.de
+             * @example xn--dmin-moa0i.example
              */
             readonly domain_ace: string;
             /**
              * Domain Unicode
              * @description The checked name in Unicode.
-             * @example bücher.de
+             * @example dömäin.example
              */
             readonly domain_unicode: string;
             /** @description Error that prevented this domain from being checked: `validation_error` if the domain name is invalid or its TLD is not supported, `check_error` if the registry check failed. */
@@ -26390,8 +26390,8 @@ export interface operations {
                 /** @description
                  *     Specify one or more domains to check for availability.
                  *
-                 *     A name can be sent in Unicode (`bücher.de`) or in its ASCII form
-                 *     (`xn--bcher-kva.de`).
+                 *     A name can be sent in Unicode (`dömäin.example`) or in its ASCII form
+                 *     (`xn--dmin-moa0i.example`).
                  *      */
                 domains: string[];
             };
@@ -26450,8 +26450,8 @@ export interface operations {
                 /** @description
                  *     Specify one or more domains to check for availability.
                  *
-                 *     A name can be sent in Unicode (`bücher.de`) or in its ASCII form
-                 *     (`xn--bcher-kva.de`).
+                 *     A name can be sent in Unicode (`dömäin.example`) or in its ASCII form
+                 *     (`xn--dmin-moa0i.example`).
                  *      */
                 domains: string[];
             };
@@ -32953,8 +32953,8 @@ export interface operations {
                  *     trademark claims information and premium pricing. The list of domains may
                  *     include a mix of TLDs.
                  *
-                 *     A name can be sent in Unicode (`bücher.de`) or in its ASCII form
-                 *     (`xn--bcher-kva.de`).
+                 *     A name can be sent in Unicode (`dömäin.example`) or in its ASCII form
+                 *     (`xn--dmin-moa0i.example`).
                  *      */
                 domains: string[];
             };

@@ -13414,13 +13414,13 @@ components:
         domain_ace:
           description: The checked name in its ASCII form.
           examples:
-          - xn--bcher-kva.de
+          - xn--dmin-moa0i.example
           title: Domain Ace
           type: string
         domain_unicode:
           description: The checked name in Unicode.
           examples:
-          - "b\xFCcher.de"
+          - "d\xF6m\xE4in.example"
           title: Domain Unicode
           type: string
         error:
@@ -13452,23 +13452,23 @@ components:
     DomainAvailabilityError:
       examples:
       - code: ERROR_DOMAIN_NAME_INVALID
-        detail: "The domain name m\u03C9nchen\u0436.com is not valid."
+        detail: "The domain name d\u03C9m\xE4in\u0436.com is not valid."
         errors:
         - character: "\u03C9"
           code: ERROR_DOMAIN_CHARACTER_NOT_ALLOWED
           codepoint: U+03C9
-          detail: "\"\u03C9\" (U+03C9) is not allowed in \"m\u03C9nchen\u0436\" by\
-            \ the .com registry."
-          label: "m\u03C9nchen\u0436"
+          detail: "\"\u03C9\" (U+03C9) is not allowed in \"d\u03C9m\xE4in\u0436\"\
+            \ by the .com registry."
+          label: "d\u03C9m\xE4in\u0436"
           position: 1
         - character: "\u0436"
           code: ERROR_DOMAIN_CHARACTER_NOT_ALLOWED
           codepoint: U+0436
-          detail: "\"\u0436\" (U+0436) is not allowed in \"m\u03C9nchen\u0436\" by\
-            \ the .com registry."
-          label: "m\u03C9nchen\u0436"
-          position: 7
-        message: "The domain name m\u03C9nchen\u0436.com is not valid."
+          detail: "\"\u0436\" (U+0436) is not allowed in \"d\u03C9m\xE4in\u0436\"\
+            \ by the .com registry."
+          label: "d\u03C9m\xE4in\u0436"
+          position: 6
+        message: "The domain name d\u03C9m\xE4in\u0436.com is not valid."
         status: 400
         title: Domain Management Error
         tld: com
@@ -13548,8 +13548,8 @@ components:
     DomainAvailabilityRequest:
       properties:
         domains:
-          description: "The domain names to check. A name can be sent in Unicode (`b\xFC\
-            cher.de`) or in its ASCII form (`xn--bcher-kva.de`)."
+          description: "The domain names to check. A name can be sent in Unicode (`d\xF6\
+            m\xE4in.example`) or in its ASCII form (`xn--dmin-moa0i.example`)."
           items:
             maxLength: 1024
             type: string
@@ -13791,10 +13791,10 @@ components:
           description: Expected price for premium domain confirmation
           title: Expected Price
         name:
-          description: "The domain name, in Unicode (`b\xFCcher.de`) or in its ASCII\
-            \ form (`xn--bcher-kva.de`)."
+          description: "The domain name, in Unicode (`d\xF6m\xE4in.example`) or in\
+            \ its ASCII form (`xn--dmin-moa0i.example`)."
           examples:
-          - "b\xFCcher.de"
+          - "d\xF6m\xE4in.example"
           title: Name
           type: string
         nameservers:
@@ -14156,10 +14156,10 @@ components:
           description: Expected price for premium domain confirmation
           title: Expected Price
         name:
-          description: "The domain name, in Unicode (`b\xFCcher.de`) or in its ASCII\
-            \ form (`xn--bcher-kva.de`)."
+          description: "The domain name, in Unicode (`d\xF6m\xE4in.example`) or in\
+            \ its ASCII form (`xn--dmin-moa0i.example`)."
           examples:
-          - "b\xFCcher.de"
+          - "d\xF6m\xE4in.example"
           title: Name
           type: string
         nameservers:
@@ -16162,14 +16162,14 @@ components:
         name_ace:
           description: The domain name in its ASCII form.
           examples:
-          - xn--bcher-kva.de
+          - xn--dmin-moa0i.example
           readOnly: true
           title: Name Ace
           type: string
         name_unicode:
           description: The domain name in Unicode.
           examples:
-          - "b\xFCcher.de"
+          - "d\xF6m\xE4in.example"
           readOnly: true
           title: Name Unicode
           type: string
@@ -17279,10 +17279,10 @@ components:
           description: Expected price for premium domain confirmation
           title: Expected Price
         name:
-          description: "The domain name, in Unicode (`b\xFCcher.de`) or in its ASCII\
-            \ form (`xn--bcher-kva.de`)."
+          description: "The domain name, in Unicode (`d\xF6m\xE4in.example`) or in\
+            \ its ASCII form (`xn--dmin-moa0i.example`)."
           examples:
-          - "b\xFCcher.de"
+          - "d\xF6m\xE4in.example"
           title: Name
           type: string
         nameservers:
@@ -17387,10 +17387,10 @@ components:
           description: Expected price for premium domain confirmation
           title: Expected Price
         name:
-          description: "The domain name, in Unicode (`b\xFCcher.de`) or in its ASCII\
-            \ form (`xn--bcher-kva.de`)."
+          description: "The domain name, in Unicode (`d\xF6m\xE4in.example`) or in\
+            \ its ASCII form (`xn--dmin-moa0i.example`)."
           examples:
-          - "b\xFCcher.de"
+          - "d\xF6m\xE4in.example"
           title: Name
           type: string
         nameservers:
@@ -29986,14 +29986,14 @@ components:
         domain_ace:
           description: The checked name in its ASCII form.
           examples:
-          - xn--bcher-kva.de
+          - xn--dmin-moa0i.example
           readOnly: true
           title: Domain Ace
           type: string
         domain_unicode:
           description: The checked name in Unicode.
           examples:
-          - "b\xFCcher.de"
+          - "d\xF6m\xE4in.example"
           readOnly: true
           title: Domain Unicode
           type: string
@@ -30104,7 +30104,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-17-103248
+  version: 2026-11-17-132757
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -32315,7 +32315,8 @@ paths:
       operationId: bulk_availability_v1_availability_get
       parameters:
       - description: "\nSpecify one or more domains to check for availability.\n\n\
-          A name can be sent in Unicode (`b\xFCcher.de`) or in its ASCII form\n(`xn--bcher-kva.de`).\n"
+          A name can be sent in Unicode (`d\xF6m\xE4in.example`) or in its ASCII form\n\
+          (`xn--dmin-moa0i.example`).\n"
         examples:
           list:
             summary: A list of domains
@@ -32327,8 +32328,8 @@ paths:
         required: true
         schema:
           description: "\nSpecify one or more domains to check for availability.\n\
-            \nA name can be sent in Unicode (`b\xFCcher.de`) or in its ASCII form\n\
-            (`xn--bcher-kva.de`).\n"
+            \nA name can be sent in Unicode (`d\xF6m\xE4in.example`) or in its ASCII\
+            \ form\n(`xn--dmin-moa0i.example`).\n"
           items:
             maxLength: 1024
             type: string
@@ -32375,7 +32376,8 @@ paths:
       operationId: stream_availability_v1_availability_stream_get
       parameters:
       - description: "\nSpecify one or more domains to check for availability.\n\n\
-          A name can be sent in Unicode (`b\xFCcher.de`) or in its ASCII form\n(`xn--bcher-kva.de`).\n"
+          A name can be sent in Unicode (`d\xF6m\xE4in.example`) or in its ASCII form\n\
+          (`xn--dmin-moa0i.example`).\n"
         examples:
           list:
             summary: A list of domains
@@ -32387,8 +32389,8 @@ paths:
         required: true
         schema:
           description: "\nSpecify one or more domains to check for availability.\n\
-            \nA name can be sent in Unicode (`b\xFCcher.de`) or in its ASCII form\n\
-            (`xn--bcher-kva.de`).\n"
+            \nA name can be sent in Unicode (`d\xF6m\xE4in.example`) or in its ASCII\
+            \ form\n(`xn--dmin-moa0i.example`).\n"
           items:
             maxLength: 1024
             type: string
@@ -32413,29 +32415,29 @@ paths:
                   description: '`domain_ace` and `domain_unicode` show the checked
                     name in both forms'
                   summary: Internationalized domain
-                  value: "data: {\"domain\":\"b\xFCcher.de\",\"domain_ace\":\"xn--bcher-kva.de\"\
-                    ,\"domain_unicode\":\"b\xFCcher.de\",\"status\":\"available\"\
-                    ,\"error\":null,\"marketplace\":null}"
+                  value: "data: {\"domain\":\"d\xF6m\xE4in.example\",\"domain_ace\"\
+                    :\"xn--dmin-moa0i.example\",\"domain_unicode\":\"d\xF6m\xE4in.example\"\
+                    ,\"status\":\"available\",\"error\":null,\"marketplace\":null}"
                 Invalid:
                   description: An invalid domain is reported as unavailable, with
                     the problems in `error`
                   summary: Invalid domain
-                  value: "data: {\"domain\":\"m\u03C9nchen\u0436.com\",\"domain_ace\"\
-                    :\"xn--mnchen-i2e19f.com\",\"domain_unicode\":\"m\u03C9nchen\u0436\
-                    .com\",\"status\":\"unavailable\",\"error\":{\"type\":\"validation_error\"\
-                    ,\"message\":\"The domain name m\u03C9nchen\u0436.com is not valid.\"\
-                    ,\"code\":\"ERROR_DOMAIN_NAME_INVALID\",\"detail\":\"The domain\
-                    \ name m\u03C9nchen\u0436.com is not valid.\",\"tld\":\"com\"\
-                    ,\"errors\":[{\"code\":\"ERROR_DOMAIN_CHARACTER_NOT_ALLOWED\"\
-                    ,\"detail\":\"\\\"\u03C9\\\" (U+03C9) is not allowed in \\\"m\u03C9\
-                    nchen\u0436\\\" by the .com registry.\",\"label\":\"m\u03C9nchen\u0436\
-                    \",\"character\":\"\u03C9\",\"codepoint\":\"U+03C9\",\"position\"\
-                    :1},{\"code\":\"ERROR_DOMAIN_CHARACTER_NOT_ALLOWED\",\"detail\"\
-                    :\"\\\"\u0436\\\" (U+0436) is not allowed in \\\"m\u03C9nchen\u0436\
-                    \\\" by the .com registry.\",\"label\":\"m\u03C9nchen\u0436\"\
-                    ,\"character\":\"\u0436\",\"codepoint\":\"U+0436\",\"position\"\
-                    :7}],\"title\":\"Domain Management Error\",\"status\":400},\"\
-                    marketplace\":null}"
+                  value: "data: {\"domain\":\"d\u03C9m\xE4in\u0436.com\",\"domain_ace\"\
+                    :\"xn--dmin-moa855b6va.com\",\"domain_unicode\":\"d\u03C9m\xE4\
+                    in\u0436.com\",\"status\":\"unavailable\",\"error\":{\"type\"\
+                    :\"validation_error\",\"message\":\"The domain name d\u03C9m\xE4\
+                    in\u0436.com is not valid.\",\"code\":\"ERROR_DOMAIN_NAME_INVALID\"\
+                    ,\"detail\":\"The domain name d\u03C9m\xE4in\u0436.com is not\
+                    \ valid.\",\"tld\":\"com\",\"errors\":[{\"code\":\"ERROR_DOMAIN_CHARACTER_NOT_ALLOWED\"\
+                    ,\"detail\":\"\\\"\u03C9\\\" (U+03C9) is not allowed in \\\"d\u03C9\
+                    m\xE4in\u0436\\\" by the .com registry.\",\"label\":\"d\u03C9\
+                    m\xE4in\u0436\",\"character\":\"\u03C9\",\"codepoint\":\"U+03C9\"\
+                    ,\"position\":1},{\"code\":\"ERROR_DOMAIN_CHARACTER_NOT_ALLOWED\"\
+                    ,\"detail\":\"\\\"\u0436\\\" (U+0436) is not allowed in \\\"d\u03C9\
+                    m\xE4in\u0436\\\" by the .com registry.\",\"label\":\"d\u03C9\
+                    m\xE4in\u0436\",\"character\":\"\u0436\",\"codepoint\":\"U+0436\"\
+                    ,\"position\":6}],\"title\":\"Domain Management Error\",\"status\"\
+                    :400},\"marketplace\":null}"
               schema:
                 type: string
           description: Successful Response
@@ -32499,29 +32501,29 @@ paths:
                   description: '`domain_ace` and `domain_unicode` show the checked
                     name in both forms'
                   summary: Internationalized domain
-                  value: "data: {\"domain\":\"b\xFCcher.de\",\"domain_ace\":\"xn--bcher-kva.de\"\
-                    ,\"domain_unicode\":\"b\xFCcher.de\",\"status\":\"available\"\
-                    ,\"error\":null,\"marketplace\":null}"
+                  value: "data: {\"domain\":\"d\xF6m\xE4in.example\",\"domain_ace\"\
+                    :\"xn--dmin-moa0i.example\",\"domain_unicode\":\"d\xF6m\xE4in.example\"\
+                    ,\"status\":\"available\",\"error\":null,\"marketplace\":null}"
                 Invalid:
                   description: An invalid domain is reported as unavailable, with
                     the problems in `error`
                   summary: Invalid domain
-                  value: "data: {\"domain\":\"m\u03C9nchen\u0436.com\",\"domain_ace\"\
-                    :\"xn--mnchen-i2e19f.com\",\"domain_unicode\":\"m\u03C9nchen\u0436\
-                    .com\",\"status\":\"unavailable\",\"error\":{\"type\":\"validation_error\"\
-                    ,\"message\":\"The domain name m\u03C9nchen\u0436.com is not valid.\"\
-                    ,\"code\":\"ERROR_DOMAIN_NAME_INVALID\",\"detail\":\"The domain\
-                    \ name m\u03C9nchen\u0436.com is not valid.\",\"tld\":\"com\"\
-                    ,\"errors\":[{\"code\":\"ERROR_DOMAIN_CHARACTER_NOT_ALLOWED\"\
-                    ,\"detail\":\"\\\"\u03C9\\\" (U+03C9) is not allowed in \\\"m\u03C9\
-                    nchen\u0436\\\" by the .com registry.\",\"label\":\"m\u03C9nchen\u0436\
-                    \",\"character\":\"\u03C9\",\"codepoint\":\"U+03C9\",\"position\"\
-                    :1},{\"code\":\"ERROR_DOMAIN_CHARACTER_NOT_ALLOWED\",\"detail\"\
-                    :\"\\\"\u0436\\\" (U+0436) is not allowed in \\\"m\u03C9nchen\u0436\
-                    \\\" by the .com registry.\",\"label\":\"m\u03C9nchen\u0436\"\
-                    ,\"character\":\"\u0436\",\"codepoint\":\"U+0436\",\"position\"\
-                    :7}],\"title\":\"Domain Management Error\",\"status\":400},\"\
-                    marketplace\":null}"
+                  value: "data: {\"domain\":\"d\u03C9m\xE4in\u0436.com\",\"domain_ace\"\
+                    :\"xn--dmin-moa855b6va.com\",\"domain_unicode\":\"d\u03C9m\xE4\
+                    in\u0436.com\",\"status\":\"unavailable\",\"error\":{\"type\"\
+                    :\"validation_error\",\"message\":\"The domain name d\u03C9m\xE4\
+                    in\u0436.com is not valid.\",\"code\":\"ERROR_DOMAIN_NAME_INVALID\"\
+                    ,\"detail\":\"The domain name d\u03C9m\xE4in\u0436.com is not\
+                    \ valid.\",\"tld\":\"com\",\"errors\":[{\"code\":\"ERROR_DOMAIN_CHARACTER_NOT_ALLOWED\"\
+                    ,\"detail\":\"\\\"\u03C9\\\" (U+03C9) is not allowed in \\\"d\u03C9\
+                    m\xE4in\u0436\\\" by the .com registry.\",\"label\":\"d\u03C9\
+                    m\xE4in\u0436\",\"character\":\"\u03C9\",\"codepoint\":\"U+03C9\"\
+                    ,\"position\":1},{\"code\":\"ERROR_DOMAIN_CHARACTER_NOT_ALLOWED\"\
+                    ,\"detail\":\"\\\"\u0436\\\" (U+0436) is not allowed in \\\"d\u03C9\
+                    m\xE4in\u0436\\\" by the .com registry.\",\"label\":\"d\u03C9\
+                    m\xE4in\u0436\",\"character\":\"\u0436\",\"codepoint\":\"U+0436\"\
+                    ,\"position\":6}],\"title\":\"Domain Management Error\",\"status\"\
+                    :400},\"marketplace\":null}"
               schema:
                 type: string
           description: Successful Response
@@ -42092,8 +42094,8 @@ paths:
       - description: "\nOne or more fully-qualified domain names to check at the registry.\n\
           \nEach domain is checked for availability and, when applicable, enriched\
           \ with\ntrademark claims information and premium pricing. The list of domains\
-          \ may\ninclude a mix of TLDs.\n\nA name can be sent in Unicode (`b\xFCcher.de`)\
-          \ or in its ASCII form\n(`xn--bcher-kva.de`).\n"
+          \ may\ninclude a mix of TLDs.\n\nA name can be sent in Unicode (`d\xF6m\xE4\
+          in.example`) or in its ASCII form\n(`xn--dmin-moa0i.example`).\n"
         examples:
           list:
             summary: A list of domain names to check
@@ -42108,7 +42110,7 @@ paths:
             \ registry.\n\nEach domain is checked for availability and, when applicable,\
             \ enriched with\ntrademark claims information and premium pricing. The\
             \ list of domains may\ninclude a mix of TLDs.\n\nA name can be sent in\
-            \ Unicode (`b\xFCcher.de`) or in its ASCII form\n(`xn--bcher-kva.de`).\n"
+            \ Unicode (`d\xF6m\xE4in.example`) or in its ASCII form\n(`xn--dmin-moa0i.example`).\n"
           items:
             maxLength: 1024
             type: string
