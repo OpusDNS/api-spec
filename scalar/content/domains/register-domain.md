@@ -56,6 +56,8 @@ The `is_premium` flag indicates whether the domain carries premium pricing. When
 | `claims_key` | Present when trademark claims acceptance is required. |
 | `is_premium` | Whether the domain carries premium pricing. |
 | `premium_pricing` | Premium prices per action when pricing is available. |
+| `domain_ace` | The checked name in its ASCII form. |
+| `domain_unicode` | The checked name in Unicode. |
 
 Continue only when `available` is `true`. If `claims_key` is present, follow the
 [Trademarked Domains](/products/domains/trademarked-domains) workflow before
@@ -68,8 +70,17 @@ under its A-label, the ASCII form that starts with `xn--` (`xn--bcher-kva.de`,
 also called punycode).
 
 **Send the Unicode name.** `GET /v1/domains/check` and `POST /v1/domains`
-convert it to the A-label (IDNA2008 with UTS-46 mapping). The domain in the
-registration response carries the A-label as `name`.
+accept it and convert it for the registry (IDNA2008 with UTS-46 mapping).
+
+The responses show the name in both forms, so you can see which domain a
+request was about:
+
+| Response | ASCII form | Unicode |
+| --- | --- | --- |
+| A result of `GET /v1/domains/check` or `/v1/availability` | `domain_ace` | `domain_unicode` |
+| A domain | `name_ace` | `name_unicode` |
+
+Compare the Unicode form with the name you meant before you register.
 
 ```bash
 curl --get "$OPUSDNS_API_BASE/v1/domains/check" \
@@ -88,8 +99,8 @@ domain:
 | `xn--bcher-bsa.de` | `bécher.de` |
 
 The API checks and registers the name it is given. If you need to send
-A-labels, produce them with an IDNA2008 library and decode them back to
-compare with the name you meant.
+A-labels, produce them with an IDNA2008 library, and check `domain_unicode`
+in the result.
 
 `POST /v1/domains` takes Unicode names written with precomposed Latin letters
 (NFC), such as `ü`, `é` or `ø`. For other scripts, send the A-label from a
