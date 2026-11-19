@@ -4,6 +4,20 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 18 November 2026
+
+- Changed **domain lookups to find an internationalized domain name (IDN) in
+  either form**.
+  [`GET /v1/domains/{domain_reference}`](/api-reference#tag/domain/GET/v1/domains/{domain_reference})
+  and the other `/v1/domains/{domain_reference}/…` endpoints find a domain by
+  its Unicode name (`dömäin.example`) or its ASCII form
+  (`xn--dmin-moa0i.example`). If a Unicode name is refused with 422 in the
+  path, send its ASCII form.
+  In [`GET /v1/domains`](/api-reference#tag/domain/GET/v1/domains), the `name`
+  filter matches either form, and `search` matches part of a name in either
+  form and ignores accents: `dömä` and `doma` both find `xn--dmin-moa0i.example`.
+  `name` in a response can be either form; compare domains by `name_ace`.
+
 ### 17 November 2026
 
 - Added **both forms of an internationalized domain name (IDN) to responses**:
