@@ -9,15 +9,14 @@ Track notable updates to the OpusDNS API and developer documentation here.
 - Changed **domain lookups to find an internationalized domain name (IDN) in
   either form**.
   [`GET /v1/domains/{domain_reference}`](/api-reference#tag/domain/GET/v1/domains/{domain_reference})
-  and the other endpoints that take a domain name in the path find a domain by
+  and the other `/v1/domains/{domain_reference}/…` endpoints find a domain by
   its Unicode name (`dömäin.example`) or its ASCII form
-  (`xn--dmin-moa0i.example`), whichever form it is stored in. A Unicode name in
-  the path must be in Latin script; send any other name in its ASCII form.
+  (`xn--dmin-moa0i.example`). If a Unicode name is refused with 422 in the
+  path, send its ASCII form.
   In [`GET /v1/domains`](/api-reference#tag/domain/GET/v1/domains), the `name`
   filter matches either form, and `search` matches part of a name in either
   form and ignores accents: `dömä` and `doma` both find `xn--dmin-moa0i.example`.
-  `name` in a response keeps the stored form; `name_ace` and `name_unicode`
-  show both.
+  `name` in a response can be either form; compare domains by `name_ace`.
 
 ### 17 November 2026
 
