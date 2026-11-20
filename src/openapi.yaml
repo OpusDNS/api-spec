@@ -30106,7 +30106,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-20-122234
+  version: 2026-11-20-123005
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -54382,11 +54382,30 @@ tags:
     \ a transfer at the registrar of your choice. We suggest transferring to OpusDNS\
     \ with the existing transfer API. Updating the registrant after the transfer is\
     \ up to you.\n\nA code past `auth_code_expires_on` may be rejected by the gaining\
-    \ registrar. Contact support to get a new one.\n\n### Errors\n\nErrors follow\
-    \ RFC 9457 problem details; `code` identifies the error. The `ERROR_ORDER_*` codes\
-    \ are published in the API spec as the `OrderErrorCodes` enum.\n\n| Status | Code\
-    \ | Meaning |\n| --- | --- | --- |\n| 403 | `ERROR_ORDERS_FEATURE_DISABLED` |\
-    \ Orders are not enabled in this environment |\n| 403 | `ERROR_ORDER_CURRENCY_NOT_SUPPORTED`\
+    \ registrar. Contact support to get a new one.\n\n### Events\n\nOrder progress\
+    \ also appears in the event feed: `GET /v1/events?object_type=ORDER`, and add\
+    \ `object_id=<order id>` for one order. The events have `type` `MARKETPLACE_DOMAIN_PURCHASE`.\
+    \ Listing events needs the view-events permission (`VIEW_EVENTS`); API keys need\
+    \ `events:read`.\n\n| Subtype | When | Message |\n| --- | --- | --- |\n| `NOTIFICATION`\
+    \ | The domain was bought on the marketplace; the item shows stage `awaiting_code`\
+    \ | `Order for <domain> placed` |\n| `SUCCESS` | The authorization code is ready;\
+    \ the item's `delivery_available` is `true` | `Auth code for <domain> is ready`\
+    \ |\n| `CANCELED` | The order was canceled; `error.code` is the item's `reason`\
+    \ (`price_changed`, `unavailable` or `canceled_by_marketplace`) | `Order for <domain>\
+    \ was canceled` |\n| `FAILURE` | The order failed: the item's `reason` is `failed`,\
+    \ and `error.code` is `failed` | `Order for <domain> failed` |\n\n`<domain>` is\
+    \ the ASCII form. An event never carries the authorization code: read it through\
+    \ Delivery. The order stays the source of truth and an event is a notification,\
+    \ so read the order for its state.\n\nAcknowledge an event with `PATCH /v1/events/{event_id}`\
+    \ (needs `MANAGE_EVENTS`; API keys need `events:manage`); acknowledged events\
+    \ leave the default list. Creating an order writes no event, because the create\
+    \ call returns the order, and an order that is slow or stuck (`reason` `delayed`)\
+    \ writes none either.\n\nHistory below records the changes to an order in the\
+    \ archive; the event feed notifies you of the milestones above.\n\n### Errors\n\
+    \nErrors follow RFC 9457 problem details; `code` identifies the error. The `ERROR_ORDER_*`\
+    \ codes are published in the API spec as the `OrderErrorCodes` enum.\n\n| Status\
+    \ | Code | Meaning |\n| --- | --- | --- |\n| 403 | `ERROR_ORDERS_FEATURE_DISABLED`\
+    \ | Orders are not enabled in this environment |\n| 403 | `ERROR_ORDER_CURRENCY_NOT_SUPPORTED`\
     \ | Marketplace orders are available to organizations billed in EUR |\n| 403 |\
     \ `ERROR_BILLING_INSUFFICIENT_FUNDS` | Your organization's account cannot cover\
     \ the order |\n| 404 | `ERROR_ORDER_NOT_FOUND` | No such order for your organization\
