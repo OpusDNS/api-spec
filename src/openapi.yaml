@@ -30106,7 +30106,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-20-134305
+  version: 2026-11-20-175137
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -44015,13 +44015,16 @@ paths:
 
         `{"status_changes": {"remove": ["clientTransferProhibited"]}}`. <br>
 
-        For a domain held at another registrar, only the transfer lock can be changed,
-        on its own, and only
+        For a domain held at another registrar, only the transfer lock or the nameservers
+        can be changed,
 
-        while the domain is not `read_only` (403 otherwise): any other field is refused
-        with 422 before
+        one of the two per request, and only while the domain is not `read_only` (403
+        otherwise): any other
 
-        anything is sent to that registrar. If the registrar has not finished
+        field, glue records (`ip_addresses`), or both in one request are refused with
+        422 before anything is
+
+        sent to that registrar. If the registrar has not finished
 
         the change when it answers, the response is 202 and the outcome is reported
         as a domain event.'
@@ -44060,9 +44063,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/DomainUpdatePendingResponse'
           description: The domain is held at another registrar, which has taken the
-            transfer-lock change but not finished it. Its outcome is reported as a
-            domain modification event carrying `request_id`; until then a further
-            update of the domain is refused with 409.
+            transfer-lock or nameserver change but not finished it. Its outcome is
+            reported as a domain modification event carrying `request_id`; until then
+            a further update of the domain is refused with 409.
         '403':
           content:
             application/problem+json:
@@ -44107,8 +44110,8 @@ paths:
                   value:
                     code: ERROR_DOMAIN_TRANSFER_ON_RENEW_PENDING
                     detail: A renewal is transferring this domain into OpusDNS; its
-                      transfer lock cannot be changed until the transfer completes
-                      or fails
+                      nameservers cannot be changed until the transfer completes or
+                      fails
                     domain_name: example.com
                     status: 409
                     title: Domain Management Error
@@ -44165,14 +44168,14 @@ paths:
                 Update Not Supported By Registrar:
                   value:
                     code: ERROR_DOMAIN_UPDATE_NOT_SUPPORTED_BY_REGISTRAR
-                    detail: The registrar holding the domain cannot change nameservers
+                    detail: The registrar holding the domain cannot change contacts
                       through OpusDNS; nothing was sent to it
                     domain_name: example.com
                     status: 422
                     title: Update Not Supported By Registrar
                     type: domain-update-not-supported-by-registrar
                     unsupported_fields:
-                    - nameservers
+                    - contacts
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Unprocessable Content

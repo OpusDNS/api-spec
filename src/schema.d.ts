@@ -1936,9 +1936,10 @@ export interface paths {
          *     ignored, leaving the lock unchanged. Use `status_changes` to release a lock before a
          *     transfer out, for example
          *     `{"status_changes": {"remove": ["clientTransferProhibited"]}}`. <br>
-         *     For a domain held at another registrar, only the transfer lock can be changed, on its own, and only
-         *     while the domain is not `read_only` (403 otherwise): any other field is refused with 422 before
-         *     anything is sent to that registrar. If the registrar has not finished
+         *     For a domain held at another registrar, only the transfer lock or the nameservers can be changed,
+         *     one of the two per request, and only while the domain is not `read_only` (403 otherwise): any other
+         *     field, glue records (`ip_addresses`), or both in one request are refused with 422 before anything is
+         *     sent to that registrar. If the registrar has not finished
          *     the change when it answers, the response is 202 and the outcome is reported as a domain event.
          */
         patch: operations["update_domain_v1_domains__domain_reference__patch"];
@@ -34591,7 +34592,7 @@ export interface operations {
                     "application/json": components["schemas"]["DomainResponse"];
                 };
             };
-            /** @description The domain is held at another registrar, which has taken the transfer-lock change but not finished it. Its outcome is reported as a domain modification event carrying `request_id`; until then a further update of the domain is refused with 409. */
+            /** @description The domain is held at another registrar, which has taken the transfer-lock or nameserver change but not finished it. Its outcome is reported as a domain modification event carrying `request_id`; until then a further update of the domain is refused with 409. */
             202: {
                 headers: {
                     [name: string]: unknown;
