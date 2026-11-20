@@ -1936,8 +1936,8 @@ export interface paths {
          *     ignored, leaving the lock unchanged. Use `status_changes` to release a lock before a
          *     transfer out, for example
          *     `{"status_changes": {"remove": ["clientTransferProhibited"]}}`. <br>
-         *     For a domain held at another registrar, only the transfer lock or the nameservers can be changed,
-         *     one of the two per request, and only while the domain is not `read_only` (403 otherwise): any other
+         *     A `read_only` domain held at another registrar is refused with 403. Otherwise only its transfer
+         *     lock or its nameservers can be changed, one of the two per request; any other
          *     field, glue records (`ip_addresses`), or both in one request are refused with 422 before anything is
          *     sent to that registrar. If the registrar has not finished
          *     the change when it answers, the response is 202 and the outcome is reported as a domain event.
@@ -15292,7 +15292,7 @@ export interface components {
             owner_id: TypeId<"organization">;
             /**
              * Read Only
-             * @description Whether the domain is read-only in OpusDNS. When `true`, the domain is listed in your portfolio but cannot be managed — for example while it awaits a migration, is locked for legal reasons, or is managed at an external registrar. The flag is set and removed by OpusDNS; it cannot be changed through the API.
+             * @description Whether the domain is read-only in OpusDNS. When `true`, the domain is listed in your portfolio but cannot be managed — for example while it awaits a migration or is locked for legal reasons. A domain held at another registrar is normally not read-only, but only the changes that OpusDNS can forward to that registrar are accepted. The flag is set and removed by OpusDNS; it cannot be changed through the API.
              * @default false
              */
             read_only: boolean;

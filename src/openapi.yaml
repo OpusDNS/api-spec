@@ -16212,9 +16212,11 @@ components:
           default: false
           description: "Whether the domain is read-only in OpusDNS. When `true`, the\
             \ domain is listed in your portfolio but cannot be managed \u2014 for\
-            \ example while it awaits a migration, is locked for legal reasons, or\
-            \ is managed at an external registrar. The flag is set and removed by\
-            \ OpusDNS; it cannot be changed through the API."
+            \ example while it awaits a migration or is locked for legal reasons.\
+            \ A domain held at another registrar is normally not read-only, but only\
+            \ the changes that OpusDNS can forward to that registrar are accepted.\
+            \ The flag is set and removed by OpusDNS; it cannot be changed through\
+            \ the API."
           title: Read Only
           type: boolean
         registered_on:
@@ -30106,7 +30108,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-20-175137
+  version: 2026-11-20-210944
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -44015,11 +44017,10 @@ paths:
 
         `{"status_changes": {"remove": ["clientTransferProhibited"]}}`. <br>
 
-        For a domain held at another registrar, only the transfer lock or the nameservers
-        can be changed,
+        A `read_only` domain held at another registrar is refused with 403. Otherwise
+        only its transfer
 
-        one of the two per request, and only while the domain is not `read_only` (403
-        otherwise): any other
+        lock or its nameservers can be changed, one of the two per request; any other
 
         field, glue records (`ip_addresses`), or both in one request are refused with
         422 before anything is
