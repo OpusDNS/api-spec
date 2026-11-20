@@ -17494,7 +17494,7 @@ export interface components {
          * EventObjectType
          * @enum {string}
          */
-        EventObjectType: "DOMAIN" | "CONTACT" | "HOST" | "ACCOUNT" | "VANITY_NS_SET" | "RAW" | "DRAINED" | "UNKNOWN";
+        EventObjectType: "DOMAIN" | "CONTACT" | "HOST" | "ACCOUNT" | "VANITY_NS_SET" | "ORDER" | "RAW" | "DRAINED" | "UNKNOWN";
         /** EventResponse */
         EventResponse: {
             /**
@@ -17544,7 +17544,7 @@ export interface components {
          * EventType
          * @enum {string}
          */
-        EventType: "REGISTRATION" | "RENEWAL" | "MODIFICATION" | "DELETION" | "INBOUND_TRANSFER" | "OUTBOUND_TRANSFER" | "TRANSIT" | "WITHDRAW" | "VERIFICATION" | "BALANCE" | "VANITY_NS_PROVISION" | "VANITY_NS_SUSPENSION" | "VANITY_NS_RESTORATION" | "VANITY_NS_TERMINATION" | "CLONE" | "REGISTRANT_CHANGE";
+        EventType: "REGISTRATION" | "RENEWAL" | "MODIFICATION" | "DELETION" | "INBOUND_TRANSFER" | "OUTBOUND_TRANSFER" | "TRANSIT" | "WITHDRAW" | "VERIFICATION" | "BALANCE" | "VANITY_NS_PROVISION" | "VANITY_NS_SUSPENSION" | "VANITY_NS_RESTORATION" | "VANITY_NS_TERMINATION" | "CLONE" | "REGISTRANT_CHANGE" | "MARKETPLACE_DOMAIN_PURCHASE";
         /**
          * EventVersion
          * @enum {string}
