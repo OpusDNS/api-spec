@@ -40394,6 +40394,22 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_SSO_FALLBACK_ACCOUNT_PROTECTED",
+                     *       "detail": "A fallback account cannot be deleted while its organization enforces single sign-on",
+                     *       "status": 409,
+                     *       "title": "SSO Error",
+                     *       "type": "sso-fallback-account-protected"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
