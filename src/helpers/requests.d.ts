@@ -529,51 +529,6 @@ export type PATCH_DomainForwardsByHostnameEnable_Request = {
 };
 export type PATCH_DomainForwardsByHostnameEnable_Request_Path = PATCH_DomainForwardsByHostnameEnable_Request['parameters']['path'];
 
-export type GET_DomainForwardsMetrics_Request = {
-  parameters: operations['metrics_v1_domain_forwards_metrics_get']['parameters'];
-};
-export type GET_DomainForwardsMetrics_Request_Query = GET_DomainForwardsMetrics_Request['parameters']['query'];
-
-export type GET_DomainForwardsMetricsBrowser_Request = {
-  parameters: operations['browser_stats_v1_domain_forwards_metrics_browser_get']['parameters'];
-};
-export type GET_DomainForwardsMetricsBrowser_Request_Query = GET_DomainForwardsMetricsBrowser_Request['parameters']['query'];
-
-export type GET_DomainForwardsMetricsGeo_Request = {
-  parameters: operations['geo_stats_v1_domain_forwards_metrics_geo_get']['parameters'];
-};
-export type GET_DomainForwardsMetricsGeo_Request_Query = GET_DomainForwardsMetricsGeo_Request['parameters']['query'];
-
-export type GET_DomainForwardsMetricsPlatform_Request = {
-  parameters: operations['platform_stats_v1_domain_forwards_metrics_platform_get']['parameters'];
-};
-export type GET_DomainForwardsMetricsPlatform_Request_Query = GET_DomainForwardsMetricsPlatform_Request['parameters']['query'];
-
-export type GET_DomainForwardsMetricsReferrer_Request = {
-  parameters: operations['referrer_stats_v1_domain_forwards_metrics_referrer_get']['parameters'];
-};
-export type GET_DomainForwardsMetricsReferrer_Request_Query = GET_DomainForwardsMetricsReferrer_Request['parameters']['query'];
-
-export type GET_DomainForwardsMetricsStatusCode_Request = {
-  parameters: operations['status_code_stats_v1_domain_forwards_metrics_status_code_get']['parameters'];
-};
-export type GET_DomainForwardsMetricsStatusCode_Request_Query = GET_DomainForwardsMetricsStatusCode_Request['parameters']['query'];
-
-export type GET_DomainForwardsMetricsTimeSeries_Request = {
-  parameters: operations['time_series_v1_domain_forwards_metrics_time_series_get']['parameters'];
-};
-export type GET_DomainForwardsMetricsTimeSeries_Request_Query = GET_DomainForwardsMetricsTimeSeries_Request['parameters']['query'];
-
-export type GET_DomainForwardsMetricsUserAgent_Request = {
-  parameters: operations['user_agent_stats_v1_domain_forwards_metrics_user_agent_get']['parameters'];
-};
-export type GET_DomainForwardsMetricsUserAgent_Request_Query = GET_DomainForwardsMetricsUserAgent_Request['parameters']['query'];
-
-export type GET_DomainForwardsMetricsVisitsByKey_Request = {
-  parameters: operations['visits_by_key_v1_domain_forwards_metrics_visits_by_key_get']['parameters'];
-};
-export type GET_DomainForwardsMetricsVisitsByKey_Request_Query = GET_DomainForwardsMetricsVisitsByKey_Request['parameters']['query'];
-
 export type GET_DomainForwardsStatistics_Request = {
   parameters: operations['get_domain_forward_statistics_v1_domain_forwards_statistics_get']['parameters'];
 };

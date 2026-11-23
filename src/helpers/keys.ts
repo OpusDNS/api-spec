@@ -36,7 +36,6 @@ import type {
   BrandingDesignVariant,
   BrandingDesignWrite,
   BrandingDocument,
-  BrowserStatsBucket,
   BulkObjectTagChanges,
   CallOperationResultContext,
   CentralNicCredentialCreate,
@@ -176,7 +175,6 @@ import type {
   DomainDnssecDataCreate,
   DomainDnssecData,
   DomainForward,
-  DomainForwardBrowserStats,
   DomainForwardCreateBulkCommand,
   DomainForwardCreateBulkInstance,
   DomainForwardCreateBulkPayload,
@@ -191,17 +189,12 @@ import type {
   DomainForwardEnableBulkCommand,
   DomainForwardEnableBulkInstance,
   DomainForwardEnableBulkPayload,
-  DomainForwardGeoStats,
-  DomainForwardMetrics,
-  DomainForwardMetricsTimeSeries,
   DomainForwardMover,
   DomainForwardMovers,
   DomainForwardPatchOp,
   DomainForwardPatchOps,
-  DomainForwardPlatformStats,
   DomainForwardProtocolSetRequest,
   DomainForwardProtocolSet,
-  DomainForwardReferrerStats,
   DomainForwardSetCreateRequest,
   DomainForwardSetRequest,
   DomainForwardSet,
@@ -209,13 +202,10 @@ import type {
   DomainForwardStatisticsBucket,
   DomainForwardStatistics,
   DomainForwardStatisticsTotals,
-  DomainForwardStatusCodeStats,
   DomainForwardUpdateBulkCommand,
   DomainForwardUpdateBulkInstance,
   DomainForwardUpdateBulkPayload,
   DomainForwardUpdateBulkTemplate,
-  DomainForwardUserAgentStats,
-  DomainForwardVisitsByKey,
   DomainForwardZone,
   DomainForwardsContext,
   DomainForwardsContextCreate,
@@ -317,7 +307,6 @@ import type {
   EventResponse,
   Footer,
   GeneralAvailabilityBase,
-  GeoStatsBucket,
   GetPrices,
   HTTPValidationError,
   HostCreate,
@@ -447,7 +436,6 @@ import type {
   ParkingStatistics,
   ParkingTotalMetrics,
   Period,
-  PlatformStatsBucket,
   PremiumDomainsBase,
   PremiumPriceEntryRes,
   PremiumPricingAction,
@@ -470,7 +458,6 @@ import type {
   RealtimeRegisterCredentialCreate,
   RealtimeRegisterCredentialUpdate,
   RealtimeRegisterCredentials,
-  ReferrerStatsBucket,
   RegistrantChangeDetails,
   RegistrantChangeField,
   RegistrantChangePolicyBase,
@@ -494,7 +481,6 @@ import type {
   Signup,
   SldLength,
   StatusChanges,
-  StatusCodeStatsBucket,
   StatusTag,
   Support,
   SupportTicketContext,
@@ -509,7 +495,6 @@ import type {
   TagUpdate,
   TermsOfServiceAccept,
   Theme,
-  TimeSeriesBucket,
   TldBase,
   TldResponseShort,
   TldSpecification,
@@ -527,7 +512,6 @@ import type {
   TransferPoliciesBase,
   UnknownContext,
   User,
-  UserAgentStatsBucket,
   UserAgreementAcceptance,
   UserAttributeBase,
   UserAttribute,
@@ -552,7 +536,6 @@ import type {
   VerificationDeadline,
   VerificationRegistrantDetails,
   Verification,
-  VisitsByKeyBucket,
   WaitlistApplyRequest,
   WaitlistEntry,
   WaitlistProductList,
@@ -1095,16 +1078,6 @@ export const KEYS_BRANDING_DOCUMENT = [
   KEY_BRANDING_DOCUMENT_THEME,
   KEY_BRANDING_DOCUMENT_VERSION,
 ] as const satisfies (keyof BrandingDocument)[];
-
-export const KEY_BROWSER_STATS_BUCKET_KEY = 'key' satisfies keyof BrowserStatsBucket;
-export const KEY_BROWSER_STATS_BUCKET_TOTAL = 'total' satisfies keyof BrowserStatsBucket;
-export const KEY_BROWSER_STATS_BUCKET_UNIQUE = 'unique' satisfies keyof BrowserStatsBucket;
-
-export const KEYS_BROWSER_STATS_BUCKET = [
-  KEY_BROWSER_STATS_BUCKET_KEY,
-  KEY_BROWSER_STATS_BUCKET_TOTAL,
-  KEY_BROWSER_STATS_BUCKET_UNIQUE,
-] as const satisfies (keyof BrowserStatsBucket)[];
 
 export const KEY_BULK_OBJECT_TAG_CHANGES_ADD = 'add' satisfies keyof BulkObjectTagChanges;
 export const KEY_BULK_OBJECT_TAG_CHANGES_OBJECTS = 'objects' satisfies keyof BulkObjectTagChanges;
@@ -2894,12 +2867,6 @@ export const KEYS_DOMAIN_FORWARD = [
   KEY_DOMAIN_FORWARD_UPDATED_ON,
 ] as const satisfies (keyof DomainForward)[];
 
-export const KEY_DOMAIN_FORWARD_BROWSER_STATS_RESULTS = 'results' satisfies keyof DomainForwardBrowserStats;
-
-export const KEYS_DOMAIN_FORWARD_BROWSER_STATS = [
-  KEY_DOMAIN_FORWARD_BROWSER_STATS_RESULTS,
-] as const satisfies (keyof DomainForwardBrowserStats)[];
-
 export const KEY_DOMAIN_FORWARD_CREATE_BULK_COMMAND_COMMAND = 'command' satisfies keyof DomainForwardCreateBulkCommand;
 export const KEY_DOMAIN_FORWARD_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY = 'idempotency_key' satisfies keyof DomainForwardCreateBulkCommand;
 export const KEY_DOMAIN_FORWARD_CREATE_BULK_COMMAND_PAYLOAD = 'payload' satisfies keyof DomainForwardCreateBulkCommand;
@@ -3028,30 +2995,6 @@ export const KEYS_DOMAIN_FORWARD_ENABLE_BULK_PAYLOAD = [
   KEY_DOMAIN_FORWARD_ENABLE_BULK_PAYLOAD_INSTANCES,
 ] as const satisfies (keyof DomainForwardEnableBulkPayload)[];
 
-export const KEY_DOMAIN_FORWARD_GEO_STATS_RESULTS = 'results' satisfies keyof DomainForwardGeoStats;
-
-export const KEYS_DOMAIN_FORWARD_GEO_STATS = [
-  KEY_DOMAIN_FORWARD_GEO_STATS_RESULTS,
-] as const satisfies (keyof DomainForwardGeoStats)[];
-
-export const KEY_DOMAIN_FORWARD_METRICS_CONFIGURED_FORWARDS = 'configured_forwards' satisfies keyof DomainForwardMetrics;
-export const KEY_DOMAIN_FORWARD_METRICS_INVOKED_FORWARDS = 'invoked_forwards' satisfies keyof DomainForwardMetrics;
-export const KEY_DOMAIN_FORWARD_METRICS_TOTAL_VISITS = 'total_visits' satisfies keyof DomainForwardMetrics;
-export const KEY_DOMAIN_FORWARD_METRICS_UNIQUE_VISITS = 'unique_visits' satisfies keyof DomainForwardMetrics;
-
-export const KEYS_DOMAIN_FORWARD_METRICS = [
-  KEY_DOMAIN_FORWARD_METRICS_CONFIGURED_FORWARDS,
-  KEY_DOMAIN_FORWARD_METRICS_INVOKED_FORWARDS,
-  KEY_DOMAIN_FORWARD_METRICS_TOTAL_VISITS,
-  KEY_DOMAIN_FORWARD_METRICS_UNIQUE_VISITS,
-] as const satisfies (keyof DomainForwardMetrics)[];
-
-export const KEY_DOMAIN_FORWARD_METRICS_TIME_SERIES_RESULTS = 'results' satisfies keyof DomainForwardMetricsTimeSeries;
-
-export const KEYS_DOMAIN_FORWARD_METRICS_TIME_SERIES = [
-  KEY_DOMAIN_FORWARD_METRICS_TIME_SERIES_RESULTS,
-] as const satisfies (keyof DomainForwardMetricsTimeSeries)[];
-
 export const KEY_DOMAIN_FORWARD_MOVER_CHANGE = 'change' satisfies keyof DomainForwardMover;
 export const KEY_DOMAIN_FORWARD_MOVER_CHANGE_RATIO = 'change_ratio' satisfies keyof DomainForwardMover;
 export const KEY_DOMAIN_FORWARD_MOVER_DOMAIN = 'domain' satisfies keyof DomainForwardMover;
@@ -3106,12 +3049,6 @@ export const KEYS_DOMAIN_FORWARD_PATCH_OPS = [
   KEY_DOMAIN_FORWARD_PATCH_OPS_OPS,
 ] as const satisfies (keyof DomainForwardPatchOps)[];
 
-export const KEY_DOMAIN_FORWARD_PLATFORM_STATS_RESULTS = 'results' satisfies keyof DomainForwardPlatformStats;
-
-export const KEYS_DOMAIN_FORWARD_PLATFORM_STATS = [
-  KEY_DOMAIN_FORWARD_PLATFORM_STATS_RESULTS,
-] as const satisfies (keyof DomainForwardPlatformStats)[];
-
 export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_REDIRECTS = 'redirects' satisfies keyof DomainForwardProtocolSetRequest;
 
 export const KEYS_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST = [
@@ -3127,12 +3064,6 @@ export const KEYS_DOMAIN_FORWARD_PROTOCOL_SET = [
   KEY_DOMAIN_FORWARD_PROTOCOL_SET_REDIRECTS,
   KEY_DOMAIN_FORWARD_PROTOCOL_SET_UPDATED_ON,
 ] as const satisfies (keyof DomainForwardProtocolSet)[];
-
-export const KEY_DOMAIN_FORWARD_REFERRER_STATS_RESULTS = 'results' satisfies keyof DomainForwardReferrerStats;
-
-export const KEYS_DOMAIN_FORWARD_REFERRER_STATS = [
-  KEY_DOMAIN_FORWARD_REFERRER_STATS_RESULTS,
-] as const satisfies (keyof DomainForwardReferrerStats)[];
 
 export const KEY_DOMAIN_FORWARD_SET_CREATE_REQUEST_PROTOCOL = 'protocol' satisfies keyof DomainForwardSetCreateRequest;
 export const KEY_DOMAIN_FORWARD_SET_CREATE_REQUEST_REDIRECTS = 'redirects' satisfies keyof DomainForwardSetCreateRequest;
@@ -3232,12 +3163,6 @@ export const KEYS_DOMAIN_FORWARD_STATISTICS_TOTALS = [
   KEY_DOMAIN_FORWARD_STATISTICS_TOTALS_UNIQUE_VISITS,
 ] as const satisfies (keyof DomainForwardStatisticsTotals)[];
 
-export const KEY_DOMAIN_FORWARD_STATUS_CODE_STATS_RESULTS = 'results' satisfies keyof DomainForwardStatusCodeStats;
-
-export const KEYS_DOMAIN_FORWARD_STATUS_CODE_STATS = [
-  KEY_DOMAIN_FORWARD_STATUS_CODE_STATS_RESULTS,
-] as const satisfies (keyof DomainForwardStatusCodeStats)[];
-
 export const KEY_DOMAIN_FORWARD_UPDATE_BULK_COMMAND_COMMAND = 'command' satisfies keyof DomainForwardUpdateBulkCommand;
 export const KEY_DOMAIN_FORWARD_UPDATE_BULK_COMMAND_IDEMPOTENCY_KEY = 'idempotency_key' satisfies keyof DomainForwardUpdateBulkCommand;
 export const KEY_DOMAIN_FORWARD_UPDATE_BULK_COMMAND_PAYLOAD = 'payload' satisfies keyof DomainForwardUpdateBulkCommand;
@@ -3279,18 +3204,6 @@ export const KEYS_DOMAIN_FORWARD_UPDATE_BULK_TEMPLATE = [
   KEY_DOMAIN_FORWARD_UPDATE_BULK_TEMPLATE_HTTP,
   KEY_DOMAIN_FORWARD_UPDATE_BULK_TEMPLATE_HTTPS,
 ] as const satisfies (keyof DomainForwardUpdateBulkTemplate)[];
-
-export const KEY_DOMAIN_FORWARD_USER_AGENT_STATS_RESULTS = 'results' satisfies keyof DomainForwardUserAgentStats;
-
-export const KEYS_DOMAIN_FORWARD_USER_AGENT_STATS = [
-  KEY_DOMAIN_FORWARD_USER_AGENT_STATS_RESULTS,
-] as const satisfies (keyof DomainForwardUserAgentStats)[];
-
-export const KEY_DOMAIN_FORWARD_VISITS_BY_KEY_RESULTS = 'results' satisfies keyof DomainForwardVisitsByKey;
-
-export const KEYS_DOMAIN_FORWARD_VISITS_BY_KEY = [
-  KEY_DOMAIN_FORWARD_VISITS_BY_KEY_RESULTS,
-] as const satisfies (keyof DomainForwardVisitsByKey)[];
 
 export const KEY_DOMAIN_FORWARD_ZONE_DOMAIN_FORWARDS = 'domain_forwards' satisfies keyof DomainForwardZone;
 export const KEY_DOMAIN_FORWARD_ZONE_ZONE_ID = 'zone_id' satisfies keyof DomainForwardZone;
@@ -4655,14 +4568,6 @@ export const KEY_GENERAL_AVAILABILITY_BASE_START_DATE = 'start_date' satisfies k
 export const KEYS_GENERAL_AVAILABILITY_BASE = [
   KEY_GENERAL_AVAILABILITY_BASE_START_DATE,
 ] as const satisfies (keyof GeneralAvailabilityBase)[];
-
-export const KEY_GEO_STATS_BUCKET_KEY = 'key' satisfies keyof GeoStatsBucket;
-export const KEY_GEO_STATS_BUCKET_TOTAL = 'total' satisfies keyof GeoStatsBucket;
-
-export const KEYS_GEO_STATS_BUCKET = [
-  KEY_GEO_STATS_BUCKET_KEY,
-  KEY_GEO_STATS_BUCKET_TOTAL,
-] as const satisfies (keyof GeoStatsBucket)[];
 
 export const KEY_GET_PRICES_PRICES = 'prices' satisfies keyof GetPrices;
 
@@ -6316,16 +6221,6 @@ export const KEYS_PERIOD = [
   KEY_PERIOD_VALUE,
 ] as const satisfies (keyof Period)[];
 
-export const KEY_PLATFORM_STATS_BUCKET_KEY = 'key' satisfies keyof PlatformStatsBucket;
-export const KEY_PLATFORM_STATS_BUCKET_TOTAL = 'total' satisfies keyof PlatformStatsBucket;
-export const KEY_PLATFORM_STATS_BUCKET_UNIQUE = 'unique' satisfies keyof PlatformStatsBucket;
-
-export const KEYS_PLATFORM_STATS_BUCKET = [
-  KEY_PLATFORM_STATS_BUCKET_KEY,
-  KEY_PLATFORM_STATS_BUCKET_TOTAL,
-  KEY_PLATFORM_STATS_BUCKET_UNIQUE,
-] as const satisfies (keyof PlatformStatsBucket)[];
-
 export const KEY_PREMIUM_DOMAINS_BASE_AFFECTS = 'affects' satisfies keyof PremiumDomainsBase;
 export const KEY_PREMIUM_DOMAINS_BASE_SOURCE = 'source' satisfies keyof PremiumDomainsBase;
 export const KEY_PREMIUM_DOMAINS_BASE_SUPPORTED = 'supported' satisfies keyof PremiumDomainsBase;
@@ -6543,16 +6438,6 @@ export const KEY_REALTIME_REGISTER_CREDENTIALS_API_KEY = 'api_key' satisfies key
 export const KEYS_REALTIME_REGISTER_CREDENTIALS = [
   KEY_REALTIME_REGISTER_CREDENTIALS_API_KEY,
 ] as const satisfies (keyof RealtimeRegisterCredentials)[];
-
-export const KEY_REFERRER_STATS_BUCKET_KEY = 'key' satisfies keyof ReferrerStatsBucket;
-export const KEY_REFERRER_STATS_BUCKET_TOTAL = 'total' satisfies keyof ReferrerStatsBucket;
-export const KEY_REFERRER_STATS_BUCKET_UNIQUE = 'unique' satisfies keyof ReferrerStatsBucket;
-
-export const KEYS_REFERRER_STATS_BUCKET = [
-  KEY_REFERRER_STATS_BUCKET_KEY,
-  KEY_REFERRER_STATS_BUCKET_TOTAL,
-  KEY_REFERRER_STATS_BUCKET_UNIQUE,
-] as const satisfies (keyof ReferrerStatsBucket)[];
 
 export const KEY_REGISTRANT_CHANGE_DETAILS_CONFIRMATION_DEADLINE = 'confirmation_deadline' satisfies keyof RegistrantChangeDetails;
 export const KEY_REGISTRANT_CHANGE_DETAILS_CONFIRMATION_METHOD = 'confirmation_method' satisfies keyof RegistrantChangeDetails;
@@ -6874,14 +6759,6 @@ export const KEYS_STATUS_CHANGES = [
   KEY_STATUS_CHANGES_REMOVE,
 ] as const satisfies (keyof StatusChanges)[];
 
-export const KEY_STATUS_CODE_STATS_BUCKET_KEY = 'key' satisfies keyof StatusCodeStatsBucket;
-export const KEY_STATUS_CODE_STATS_BUCKET_TOTAL = 'total' satisfies keyof StatusCodeStatsBucket;
-
-export const KEYS_STATUS_CODE_STATS_BUCKET = [
-  KEY_STATUS_CODE_STATS_BUCKET_KEY,
-  KEY_STATUS_CODE_STATS_BUCKET_TOTAL,
-] as const satisfies (keyof StatusCodeStatsBucket)[];
-
 export const KEY_STATUS_TAG_COLOR = 'color' satisfies keyof StatusTag;
 export const KEY_STATUS_TAG_DESCRIPTION = 'description' satisfies keyof StatusTag;
 export const KEY_STATUS_TAG_LABEL = 'label' satisfies keyof StatusTag;
@@ -7093,14 +6970,6 @@ export const KEYS_THEME = [
   KEY_THEME_LIGHT,
   KEY_THEME_RADIUS,
 ] as const satisfies (keyof Theme)[];
-
-export const KEY_TIME_SERIES_BUCKET_TIMESTAMP = 'timestamp' satisfies keyof TimeSeriesBucket;
-export const KEY_TIME_SERIES_BUCKET_TOTAL = 'total' satisfies keyof TimeSeriesBucket;
-
-export const KEYS_TIME_SERIES_BUCKET = [
-  KEY_TIME_SERIES_BUCKET_TIMESTAMP,
-  KEY_TIME_SERIES_BUCKET_TOTAL,
-] as const satisfies (keyof TimeSeriesBucket)[];
 
 export const KEY_TLD_BASE_NAME = 'name' satisfies keyof TldBase;
 export const KEY_TLD_BASE_THIRD_LEVEL_STRUCTURE = 'third_level_structure' satisfies keyof TldBase;
@@ -7385,16 +7254,6 @@ export const KEYS_USER = [
   KEY_USER_USER_ID,
   KEY_USER_USERNAME,
 ] as const satisfies (keyof User)[];
-
-export const KEY_USER_AGENT_STATS_BUCKET_KEY = 'key' satisfies keyof UserAgentStatsBucket;
-export const KEY_USER_AGENT_STATS_BUCKET_TOTAL = 'total' satisfies keyof UserAgentStatsBucket;
-export const KEY_USER_AGENT_STATS_BUCKET_UNIQUE = 'unique' satisfies keyof UserAgentStatsBucket;
-
-export const KEYS_USER_AGENT_STATS_BUCKET = [
-  KEY_USER_AGENT_STATS_BUCKET_KEY,
-  KEY_USER_AGENT_STATS_BUCKET_TOTAL,
-  KEY_USER_AGENT_STATS_BUCKET_UNIQUE,
-] as const satisfies (keyof UserAgentStatsBucket)[];
 
 export const KEY_USER_AGREEMENT_ACCEPTANCE_ACCEPTED = 'accepted' satisfies keyof UserAgreementAcceptance;
 export const KEY_USER_AGREEMENT_ACCEPTANCE_TYPE = 'type' satisfies keyof UserAgreementAcceptance;
@@ -7777,16 +7636,6 @@ export const KEYS_VERIFICATION = [
   KEY_VERIFICATION_CLAIMS,
   KEY_VERIFICATION_DEADLINES,
 ] as const satisfies (keyof Verification)[];
-
-export const KEY_VISITS_BY_KEY_BUCKET_KEY = 'key' satisfies keyof VisitsByKeyBucket;
-export const KEY_VISITS_BY_KEY_BUCKET_TOTAL = 'total' satisfies keyof VisitsByKeyBucket;
-export const KEY_VISITS_BY_KEY_BUCKET_UNIQUE = 'unique' satisfies keyof VisitsByKeyBucket;
-
-export const KEYS_VISITS_BY_KEY_BUCKET = [
-  KEY_VISITS_BY_KEY_BUCKET_KEY,
-  KEY_VISITS_BY_KEY_BUCKET_TOTAL,
-  KEY_VISITS_BY_KEY_BUCKET_UNIQUE,
-] as const satisfies (keyof VisitsByKeyBucket)[];
 
 export const KEY_WAITLIST_APPLY_REQUEST_NOTE = 'note' satisfies keyof WaitlistApplyRequest;
 

@@ -50,15 +50,6 @@ export const DNS_BY_ZONE_NAME_STATISTICS_ENDPOINT = '/v1/dns/{zone_name}/statist
 export const DNS_BY_ZONE_NAME_STATISTICS_NXDOMAINS_ENDPOINT = '/v1/dns/{zone_name}/statistics/nxdomains';
 export const DNS_BY_ZONE_NAME_VANITY_SET_ENDPOINT = '/v1/dns/{zone_name}/vanity-set';
 export const DOMAIN_FORWARDS_ENDPOINT = '/v1/domain-forwards';
-export const DOMAIN_FORWARDS_METRICS_ENDPOINT = '/v1/domain-forwards/metrics';
-export const DOMAIN_FORWARDS_METRICS_BROWSER_ENDPOINT = '/v1/domain-forwards/metrics/browser';
-export const DOMAIN_FORWARDS_METRICS_GEO_ENDPOINT = '/v1/domain-forwards/metrics/geo';
-export const DOMAIN_FORWARDS_METRICS_PLATFORM_ENDPOINT = '/v1/domain-forwards/metrics/platform';
-export const DOMAIN_FORWARDS_METRICS_REFERRER_ENDPOINT = '/v1/domain-forwards/metrics/referrer';
-export const DOMAIN_FORWARDS_METRICS_STATUS_CODE_ENDPOINT = '/v1/domain-forwards/metrics/status-code';
-export const DOMAIN_FORWARDS_METRICS_TIME_SERIES_ENDPOINT = '/v1/domain-forwards/metrics/time-series';
-export const DOMAIN_FORWARDS_METRICS_USER_AGENT_ENDPOINT = '/v1/domain-forwards/metrics/user-agent';
-export const DOMAIN_FORWARDS_METRICS_VISITS_BY_KEY_ENDPOINT = '/v1/domain-forwards/metrics/visits-by-key';
 export const DOMAIN_FORWARDS_STATISTICS_ENDPOINT = '/v1/domain-forwards/statistics';
 export const DOMAIN_FORWARDS_STATISTICS_MOVERS_ENDPOINT = '/v1/domain-forwards/statistics/movers';
 export const DOMAIN_FORWARDS_BY_HOSTNAME_ENDPOINT = '/v1/domain-forwards/{hostname}';
@@ -233,15 +224,6 @@ export type Endpoint =
   | typeof DNS_BY_ZONE_NAME_STATISTICS_NXDOMAINS_ENDPOINT
   | typeof DNS_BY_ZONE_NAME_VANITY_SET_ENDPOINT
   | typeof DOMAIN_FORWARDS_ENDPOINT
-  | typeof DOMAIN_FORWARDS_METRICS_ENDPOINT
-  | typeof DOMAIN_FORWARDS_METRICS_BROWSER_ENDPOINT
-  | typeof DOMAIN_FORWARDS_METRICS_GEO_ENDPOINT
-  | typeof DOMAIN_FORWARDS_METRICS_PLATFORM_ENDPOINT
-  | typeof DOMAIN_FORWARDS_METRICS_REFERRER_ENDPOINT
-  | typeof DOMAIN_FORWARDS_METRICS_STATUS_CODE_ENDPOINT
-  | typeof DOMAIN_FORWARDS_METRICS_TIME_SERIES_ENDPOINT
-  | typeof DOMAIN_FORWARDS_METRICS_USER_AGENT_ENDPOINT
-  | typeof DOMAIN_FORWARDS_METRICS_VISITS_BY_KEY_ENDPOINT
   | typeof DOMAIN_FORWARDS_STATISTICS_ENDPOINT
   | typeof DOMAIN_FORWARDS_STATISTICS_MOVERS_ENDPOINT
   | typeof DOMAIN_FORWARDS_BY_HOSTNAME_ENDPOINT

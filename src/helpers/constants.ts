@@ -94,7 +94,6 @@ import type {
   MarketplaceName,
   MemoryFactKind,
   MessageRole,
-  MetricsGrouping,
   NextActionType,
   NizzaClaim,
   NizzaVerificationProof,
@@ -117,7 +116,6 @@ import type {
   PostalAddressType,
   PremiumAffectsType,
   PremiumSourceType,
-  Protocol,
   PublicResource,
   PublicRole,
   PublicScope,
@@ -147,7 +145,6 @@ import type {
   TagFilterMode,
   TagSortField,
   TagType,
-  TimeRange,
   TransferAckType,
   UsageGranularity,
   UsageProduct,
@@ -1764,22 +1761,6 @@ export const MESSAGE_ROLE_VALUES = [
   'tool',
 ] as const satisfies ReadonlyArray<MessageRole>;
 
-export const METRICS_GROUPING = {
-  URL: "url",
-  FQDN: "fqdn",
-  DOMAIN: "domain",
-  FORWARD: "forward",
-  RULE: "rule",
-} as const satisfies Record<string, MetricsGrouping>;
-
-export const METRICS_GROUPING_VALUES = [
-  'url',
-  'fqdn',
-  'domain',
-  'forward',
-  'rule',
-] as const satisfies ReadonlyArray<MetricsGrouping>;
-
 export const NEXT_ACTION_TYPE = {
   RENEW: "renew",
   EXPIRE: "expire",
@@ -2153,16 +2134,6 @@ export const PREMIUM_SOURCE_TYPE_VALUES = [
   'CSV',
   'manual',
 ] as const satisfies ReadonlyArray<PremiumSourceType>;
-
-export const PROTOCOL = {
-  HTTP: "http",
-  HTTPS: "https",
-} as const satisfies Record<string, Protocol>;
-
-export const PROTOCOL_VALUES = [
-  'http',
-  'https',
-] as const satisfies ReadonlyArray<Protocol>;
 
 export const PUBLIC_RESOURCE = {
   ORGANIZATION: "organization",
@@ -2890,22 +2861,6 @@ export const TAG_TYPE_VALUES = [
   'CONTACT',
   'ZONE',
 ] as const satisfies ReadonlyArray<TagType>;
-
-export const TIME_RANGE = {
-  "1H": "1h",
-  "1D": "1d",
-  "7D": "7d",
-  "30D": "30d",
-  "1Y": "1y",
-} as const satisfies Record<string, TimeRange>;
-
-export const TIME_RANGE_VALUES = [
-  '1h',
-  '1d',
-  '7d',
-  '30d',
-  '1y',
-] as const satisfies ReadonlyArray<TimeRange>;
 
 export const TRANSFER_ACK_TYPE = {
   NONE: "none",

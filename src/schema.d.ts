@@ -1076,186 +1076,6 @@ export interface paths {
         patch: operations["patch_redirects_v1_domain_forwards_patch"];
         trace?: never;
     };
-    "/v1/domain-forwards/metrics": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get domain forward metrics
-         * @description Retrieves overall metrics for domain forwards including total and unique visit counts.
-         */
-        get: operations["metrics_v1_domain_forwards_metrics_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domain-forwards/metrics/browser": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get browser statistics
-         * @description Retrieves visitor traffic broken down by browser type (Chrome, Safari, Firefox, etc.) with total and unique visit counts.
-         */
-        get: operations["browser_stats_v1_domain_forwards_metrics_browser_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domain-forwards/metrics/geo": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get geographic statistics
-         * @description Retrieves visitor traffic broken down by geographic location (country code) with visit counts.
-         */
-        get: operations["geo_stats_v1_domain_forwards_metrics_geo_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domain-forwards/metrics/platform": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get platform statistics
-         * @description Retrieves visitor traffic broken down by platform (Windows, Macintosh, iOS, Android, Linux) with total and unique visit counts.
-         */
-        get: operations["platform_stats_v1_domain_forwards_metrics_platform_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domain-forwards/metrics/referrer": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get referrer statistics
-         * @description Retrieves visitor referral sources (where traffic came from) with total and unique visit counts.
-         */
-        get: operations["referrer_stats_v1_domain_forwards_metrics_referrer_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domain-forwards/metrics/status-code": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get HTTP status code statistics
-         * @description Retrieves distribution of HTTP redirect status codes (301, 302, 307, 308) used across forwards.
-         */
-        get: operations["status_code_stats_v1_domain_forwards_metrics_status_code_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domain-forwards/metrics/time-series": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get domain forward time series metrics
-         * @description Retrieves visit counts bucketed by time intervals (hourly, daily) for the specified time range.
-         */
-        get: operations["time_series_v1_domain_forwards_metrics_time_series_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domain-forwards/metrics/user-agent": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get user agent statistics
-         * @description Retrieves visitor traffic broken down by user agent string with total and unique visit counts.
-         */
-        get: operations["user_agent_stats_v1_domain_forwards_metrics_user_agent_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domain-forwards/metrics/visits-by-key": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get visits grouped by key
-         * @description Retrieves visit metrics grouped by a specified key (url, fqdn, domain, forward, or rule) with total and unique visit counts.
-         */
-        get: operations["visits_by_key_v1_domain_forwards_metrics_visits_by_key_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/domain-forwards/statistics": {
         parameters: {
             query?: never;
@@ -1265,7 +1085,7 @@ export interface paths {
         };
         /**
          * Get domain forward statistics
-         * @description Counts the redirects your organization's domain forwards served in a window, as totals and as a series of buckets, optionally with a top list (`breakdown`). It replaces the `/metrics` routes, which will be deprecated.
+         * @description Counts the redirects your organization's domain forwards served in a window, as totals and as a series of buckets, optionally with a top list (`breakdown`).
          *
          *     The window is `start_date` to `end_date`, both days inclusive (YYYY-MM-DD, UTC), and `granularity` sets the bucket width: `hour`, `day`, `week` or `month`. The window may be at most 31 days for `hour`, 366 days for `day` and `week`, and 25 calendar months for `month` long. Weeks start on Monday and months on the 1st. With `granularity=hour` only, `start` and `end` (UTC instants, `end` exclusive) may replace the two dates, for a rolling window such as the last 24 hours; give exactly one of the two pairs. The response gives the window as days (`start_date`, `end_date`) and as instants (`start`, `end`). Hourly counts are read in whole hours, so a time of day inside an hour does not cut that hour, unless `hostname`, `forward` or `protocol` is set: then the counts follow the exact instants.
          *
@@ -1277,7 +1097,7 @@ export interface paths {
          *
          *     `breakdown` is a list of rows, most redirects first; it is empty unless requested, and empty when the totals are null. `breakdown_approximate` says whether the list may miss values or count them too low. `url` lists host and path of the redirected requests (`www.example.com/shop`, no query string). Request paths are kept for 13 months only as daily top lists: per domain and day, the 5 values with the most hits, each with at least 3 hits that day. It therefore needs a `domain` filter, cannot be combined with `hostname`, `forward` or `protocol`, and sums the daily lists, so a path that did not make a day's list is missing for that day. There is no list of URLs across all domains of an organization. Asking for it without `domain`, or with `hostname`, `forward` or `protocol`, is rejected with 422. Country data is derived from IP addresses with GeoLite2 data created by MaxMind (https://www.maxmind.com). Redirects without a referrer are grouped as `direct`.
          *
-         *     `unique_visits` and `invoked_forwards` are estimates (HyperLogLog), counted over the whole window rather than added up from the buckets, so the unique visits of the buckets do not add up to the total. `invoked_forwards` counts distinct forwards that served a redirect; the `/metrics` route counts distinct domain and path pairs, so the two are not comparable. `configured_forwards` is the number of redirect rules configured now, whatever the window, so `invoked_forwards` can exceed it.
+         *     `unique_visits` and `invoked_forwards` are estimates (HyperLogLog), counted over the whole window rather than added up from the buckets, so the unique visits of the buckets do not add up to the total. `invoked_forwards` counts distinct forwards that served a redirect. `configured_forwards` is the number of redirect rules configured now, whatever the window, so `invoked_forwards` can exceed it.
          *
          *     Redirects count for the organization that owned the forward when they happened: the traffic of a deleted forward or domain, or of one moved to another organization, stays in the former owner's totals, buckets and organization-wide top lists until retention ends, and the new owner sees only the traffic since it owns the forward. `domain`, `hostname` and `forward` filters work only for zones you currently have.
          *
@@ -4650,15 +4470,6 @@ export interface components {
              */
             version: number;
         };
-        /** BrowserStatsBucket */
-        BrowserStatsBucket: {
-            /** Key */
-            key: string;
-            /** Total */
-            total: number;
-            /** Unique */
-            unique: number;
-        };
         /** BulkObjectTagChanges */
         BulkObjectTagChanges: {
             /**
@@ -4760,30 +4571,6 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "attest_contact_verification_v1_contacts__contact_id__verifications_attest_post";
-            /** @constant */
-            status: "ok";
-            /**
-             * Truncated
-             * @description True when the gateway capped an oversized payload
-             * @default false
-             */
-            truncated: boolean;
-        } | {
-            data?: components["schemas"]["DomainForwardBrowserStatsResponse"] | string;
-            /**
-             * Headers
-             * @description Selected response headers
-             */
-            headers?: {
-                [key: string]: string;
-            };
-            /**
-             * Httpstatus
-             * @description HTTP status returned by the underlying API
-             */
-            httpStatus?: number | null;
-            /** @constant */
-            operationId: "browser_stats_v1_domain_forwards_metrics_browser_get";
             /** @constant */
             status: "ok";
             /**
@@ -6416,30 +6203,6 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "epp_check_domain_v1_domains_check_get";
-            /** @constant */
-            status: "ok";
-            /**
-             * Truncated
-             * @description True when the gateway capped an oversized payload
-             * @default false
-             */
-            truncated: boolean;
-        } | {
-            data?: components["schemas"]["DomainForwardGeoStatsResponse"] | string;
-            /**
-             * Headers
-             * @description Selected response headers
-             */
-            headers?: {
-                [key: string]: string;
-            };
-            /**
-             * Httpstatus
-             * @description HTTP status returned by the underlying API
-             */
-            httpStatus?: number | null;
-            /** @constant */
-            operationId: "geo_stats_v1_domain_forwards_metrics_geo_get";
             /** @constant */
             status: "ok";
             /**
@@ -8973,30 +8736,6 @@ export interface components {
              */
             truncated: boolean;
         } | {
-            data?: components["schemas"]["DomainForwardMetricsResponse"] | string;
-            /**
-             * Headers
-             * @description Selected response headers
-             */
-            headers?: {
-                [key: string]: string;
-            };
-            /**
-             * Httpstatus
-             * @description HTTP status returned by the underlying API
-             */
-            httpStatus?: number | null;
-            /** @constant */
-            operationId: "metrics_v1_domain_forwards_metrics_get";
-            /** @constant */
-            status: "ok";
-            /**
-             * Truncated
-             * @description True when the gateway capped an oversized payload
-             * @default false
-             */
-            truncated: boolean;
-        } | {
             data?: components["schemas"]["Conversation"] | string;
             /**
              * Headers
@@ -9189,30 +8928,6 @@ export interface components {
              */
             truncated: boolean;
         } | {
-            data?: components["schemas"]["DomainForwardPlatformStatsResponse"] | string;
-            /**
-             * Headers
-             * @description Selected response headers
-             */
-            headers?: {
-                [key: string]: string;
-            };
-            /**
-             * Httpstatus
-             * @description HTTP status returned by the underlying API
-             */
-            httpStatus?: number | null;
-            /** @constant */
-            operationId: "platform_stats_v1_domain_forwards_metrics_platform_get";
-            /** @constant */
-            status: "ok";
-            /**
-             * Truncated
-             * @description True when the gateway capped an oversized payload
-             * @default false
-             */
-            truncated: boolean;
-        } | {
             data?: components["schemas"]["PreviewMailRes"] | string;
             /**
              * Headers
@@ -9300,30 +9015,6 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "recheck_whitelabel_branding_v1_whitelabel_branding_recheck_post";
-            /** @constant */
-            status: "ok";
-            /**
-             * Truncated
-             * @description True when the gateway capped an oversized payload
-             * @default false
-             */
-            truncated: boolean;
-        } | {
-            data?: components["schemas"]["DomainForwardReferrerStatsResponse"] | string;
-            /**
-             * Headers
-             * @description Selected response headers
-             */
-            headers?: {
-                [key: string]: string;
-            };
-            /**
-             * Httpstatus
-             * @description HTTP status returned by the underlying API
-             */
-            httpStatus?: number | null;
-            /** @constant */
-            operationId: "referrer_stats_v1_domain_forwards_metrics_referrer_get";
             /** @constant */
             status: "ok";
             /**
@@ -10005,30 +9696,6 @@ export interface components {
              */
             truncated: boolean;
         } | {
-            data?: components["schemas"]["DomainForwardStatusCodeStatsResponse"] | string;
-            /**
-             * Headers
-             * @description Selected response headers
-             */
-            headers?: {
-                [key: string]: string;
-            };
-            /**
-             * Httpstatus
-             * @description HTTP status returned by the underlying API
-             */
-            httpStatus?: number | null;
-            /** @constant */
-            operationId: "status_code_stats_v1_domain_forwards_metrics_status_code_get";
-            /** @constant */
-            status: "ok";
-            /**
-             * Truncated
-             * @description True when the gateway capped an oversized payload
-             * @default false
-             */
-            truncated: boolean;
-        } | {
             data?: string;
             /**
              * Headers
@@ -10140,30 +9807,6 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "sync_credential_v1_connect_registrars__registrar_credential_id__sync_post";
-            /** @constant */
-            status: "ok";
-            /**
-             * Truncated
-             * @description True when the gateway capped an oversized payload
-             * @default false
-             */
-            truncated: boolean;
-        } | {
-            data?: components["schemas"]["DomainForwardMetricsTimeSeriesResponse"] | string;
-            /**
-             * Headers
-             * @description Selected response headers
-             */
-            headers?: {
-                [key: string]: string;
-            };
-            /**
-             * Httpstatus
-             * @description HTTP status returned by the underlying API
-             */
-            httpStatus?: number | null;
-            /** @constant */
-            operationId: "time_series_v1_domain_forwards_metrics_time_series_get";
             /** @constant */
             status: "ok";
             /**
@@ -10716,54 +10359,6 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "upload_whitelabel_asset_v1_whitelabel_branding_assets_post";
-            /** @constant */
-            status: "ok";
-            /**
-             * Truncated
-             * @description True when the gateway capped an oversized payload
-             * @default false
-             */
-            truncated: boolean;
-        } | {
-            data?: components["schemas"]["DomainForwardUserAgentStatsResponse"] | string;
-            /**
-             * Headers
-             * @description Selected response headers
-             */
-            headers?: {
-                [key: string]: string;
-            };
-            /**
-             * Httpstatus
-             * @description HTTP status returned by the underlying API
-             */
-            httpStatus?: number | null;
-            /** @constant */
-            operationId: "user_agent_stats_v1_domain_forwards_metrics_user_agent_get";
-            /** @constant */
-            status: "ok";
-            /**
-             * Truncated
-             * @description True when the gateway capped an oversized payload
-             * @default false
-             */
-            truncated: boolean;
-        } | {
-            data?: components["schemas"]["DomainForwardVisitsByKeyResponse"] | string;
-            /**
-             * Headers
-             * @description Selected response headers
-             */
-            headers?: {
-                [key: string]: string;
-            };
-            /**
-             * Httpstatus
-             * @description HTTP status returned by the underlying API
-             */
-            httpStatus?: number | null;
-            /** @constant */
-            operationId: "visits_by_key_v1_domain_forwards_metrics_visits_by_key_get";
             /** @constant */
             status: "ok";
             /**
@@ -14127,11 +13722,6 @@ export interface components {
              */
             updated_on: Date;
         };
-        /** DomainForwardBrowserStatsResponse */
-        DomainForwardBrowserStatsResponse: {
-            /** Results */
-            results: components["schemas"]["BrowserStatsBucket"][];
-        };
         /** DomainForwardCreateBulkCommand */
         DomainForwardCreateBulkCommand: {
             /**
@@ -14322,27 +13912,6 @@ export interface components {
              */
             instances: components["schemas"]["DomainForwardEnableBulkInstance"][];
         };
-        /** DomainForwardGeoStatsResponse */
-        DomainForwardGeoStatsResponse: {
-            /** Results */
-            results: components["schemas"]["GeoStatsBucket"][];
-        };
-        /** DomainForwardMetricsResponse */
-        DomainForwardMetricsResponse: {
-            /** Configured Forwards */
-            configured_forwards: number;
-            /** Invoked Forwards */
-            invoked_forwards: number;
-            /** Total Visits */
-            total_visits: number;
-            /** Unique Visits */
-            unique_visits: number;
-        };
-        /** DomainForwardMetricsTimeSeriesResponse */
-        DomainForwardMetricsTimeSeriesResponse: {
-            /** Results */
-            results: components["schemas"]["TimeSeriesBucket"][];
-        };
         /**
          * DomainForwardMoverDirection
          * @description `drop`: the domains that lost the most redirects against the previous period; `rise`: those that gained
@@ -14453,11 +14022,6 @@ export interface components {
             /** Ops */
             ops: components["schemas"]["DomainForwardPatchOp"][];
         };
-        /** DomainForwardPlatformStatsResponse */
-        DomainForwardPlatformStatsResponse: {
-            /** Results */
-            results: components["schemas"]["PlatformStatsBucket"][];
-        };
         /** DomainForwardProtocolSetRequest */
         DomainForwardProtocolSetRequest: {
             /** Redirects */
@@ -14477,11 +14041,6 @@ export interface components {
              * Format: date-time
              */
             updated_on: Date;
-        };
-        /** DomainForwardReferrerStatsResponse */
-        DomainForwardReferrerStatsResponse: {
-            /** Results */
-            results: components["schemas"]["ReferrerStatsBucket"][];
         };
         /** DomainForwardSetCreateRequest */
         DomainForwardSetCreateRequest: {
@@ -14677,11 +14236,6 @@ export interface components {
              */
             unique_visits: number | null;
         };
-        /** DomainForwardStatusCodeStatsResponse */
-        DomainForwardStatusCodeStatsResponse: {
-            /** Results */
-            results: components["schemas"]["StatusCodeStatsBucket"][];
-        };
         /** DomainForwardUpdateBulkCommand */
         DomainForwardUpdateBulkCommand: {
             /**
@@ -14741,16 +14295,6 @@ export interface components {
             http?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
             /** @description HTTPS redirect definitions */
             https?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
-        };
-        /** DomainForwardUserAgentStatsResponse */
-        DomainForwardUserAgentStatsResponse: {
-            /** Results */
-            results: components["schemas"]["UserAgentStatsBucket"][];
-        };
-        /** DomainForwardVisitsByKeyResponse */
-        DomainForwardVisitsByKeyResponse: {
-            /** Results */
-            results: components["schemas"]["VisitsByKeyBucket"][];
         };
         /** DomainForwardZone */
         DomainForwardZone: {
@@ -17610,13 +17154,6 @@ export interface components {
              */
             start_date: Date;
         };
-        /** GeoStatsBucket */
-        GeoStatsBucket: {
-            /** Key */
-            key: string;
-            /** Total */
-            total: number;
-        };
         /** GetPricesResponse */
         GetPricesResponse: {
             /**
@@ -18958,11 +18495,6 @@ export interface components {
          * @enum {string}
          */
         MessageRole: "user" | "assistant" | "system" | "tool";
-        /**
-         * MetricsGrouping
-         * @enum {string}
-         */
-        MetricsGrouping: "url" | "fqdn" | "domain" | "forward" | "rule";
         /** MonikerCredentialCreate */
         MonikerCredentialCreate: {
             /** @description Login details for the account; the fields depend on `registrar` */
@@ -20822,15 +20354,6 @@ export interface components {
          * @enum {string}
          */
         PeriodUnit: "y" | "m" | "d";
-        /** PlatformStatsBucket */
-        PlatformStatsBucket: {
-            /** Key */
-            key: string;
-            /** Total */
-            total: number;
-            /** Unique */
-            unique: number;
-        };
         /**
          * PostTransferRequirements
          * @enum {string}
@@ -21007,11 +20530,6 @@ export interface components {
              */
             subscription_id: TypeId<"subscription">;
         };
-        /**
-         * Protocol
-         * @enum {string}
-         */
-        Protocol: "http" | "https";
         /** PublicAuthRequestForm */
         PublicAuthRequestForm: {
             /**
@@ -21201,15 +20719,6 @@ export interface components {
          * @enum {integer}
          */
         RedirectCode: 301 | 302 | 307 | 308;
-        /** ReferrerStatsBucket */
-        ReferrerStatsBucket: {
-            /** Key */
-            key: string;
-            /** Total */
-            total: number;
-            /** Unique */
-            unique: number;
-        };
         /**
          * RegistrantChangeConfirmationMethod
          * @enum {string}
@@ -21835,13 +21344,6 @@ export interface components {
              */
             remove?: components["schemas"]["DomainClientStatus"][];
         };
-        /** StatusCodeStatsBucket */
-        StatusCodeStatsBucket: {
-            /** Key */
-            key: string;
-            /** Total */
-            total: number;
-        };
         /** StatusTagResponse */
         StatusTagResponse: {
             /** @description The color of the tag */
@@ -22268,21 +21770,6 @@ export interface components {
             light?: components["schemas"]["Palette"] | null;
             /** Radius */
             radius?: string | null;
-        };
-        /**
-         * TimeRange
-         * @enum {string}
-         */
-        TimeRange: "1h" | "1d" | "7d" | "30d" | "1y";
-        /** TimeSeriesBucket */
-        TimeSeriesBucket: {
-            /**
-             * Timestamp
-             * Format: date-time
-             */
-            timestamp: Date;
-            /** Total */
-            total: number;
         };
         /** TldBase */
         TldBase: {
@@ -22806,15 +22293,6 @@ export interface components {
              * @description The user's unique username
              */
             username: string;
-        };
-        /** UserAgentStatsBucket */
-        UserAgentStatsBucket: {
-            /** Key */
-            key: string;
-            /** Total */
-            total: number;
-            /** Unique */
-            unique: number;
         };
         /** UserAgreementAcceptance */
         UserAgreementAcceptance: {
@@ -23649,15 +23127,6 @@ export interface components {
          * @enum {string}
          */
         VerificationType: "api" | "email";
-        /** VisitsByKeyBucket */
-        VisitsByKeyBucket: {
-            /** Key */
-            key: string;
-            /** Total */
-            total: number;
-            /** Unique */
-            unique: number;
-        };
         /**
          * WaitlistApplyRequest
          * @description What you say when applying for a product.
@@ -30805,953 +30274,6 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    metrics_v1_domain_forwards_metrics_get: {
-        parameters: {
-            query?: {
-                hostname?: string | null;
-                domain?: string | null;
-                /** @description Filter by protocol: http or https */
-                protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
-                time_range?: components["schemas"]["TimeRange"];
-                /** @description Exclude platform values: Unknown, Bot */
-                exclude_bots?: boolean;
-            };
-            header?: {
-                /**
-                 * @deprecated
-                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
-                 * @example rfc3339
-                 */
-                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Domain forward metrics retrieved successfully */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainForwardMetricsResponse"];
-                };
-            };
-            /** @description Invalid query parameters */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
-                     *     } */
-                    "application/json": unknown;
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_PERMISSION_DENIED",
-                     *       "detail": "Insufficient permissions to perform this action",
-                     *       "status": 403,
-                     *       "title": "Permission Denied",
-                     *       "type": "permission-denied"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-            /** @description Service Unavailable */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
-                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
-                     *       "status": 503,
-                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
-                     *       "type": "domain-forward-metrics-temporarily-unavailable"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-        };
-    };
-    browser_stats_v1_domain_forwards_metrics_browser_get: {
-        parameters: {
-            query?: {
-                hostname?: string | null;
-                domain?: string | null;
-                /** @description Filter by protocol: http or https */
-                protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
-                time_range?: components["schemas"]["TimeRange"];
-                /** @description Exclude platform values: Unknown, Bot */
-                exclude_bots?: boolean;
-            };
-            header?: {
-                /**
-                 * @deprecated
-                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
-                 * @example rfc3339
-                 */
-                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Browser statistics retrieved successfully */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainForwardBrowserStatsResponse"];
-                };
-            };
-            /** @description Invalid query parameters */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
-                     *     } */
-                    "application/json": unknown;
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_PERMISSION_DENIED",
-                     *       "detail": "Insufficient permissions to perform this action",
-                     *       "status": 403,
-                     *       "title": "Permission Denied",
-                     *       "type": "permission-denied"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-            /** @description Service Unavailable */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
-                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
-                     *       "status": 503,
-                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
-                     *       "type": "domain-forward-metrics-temporarily-unavailable"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-        };
-    };
-    geo_stats_v1_domain_forwards_metrics_geo_get: {
-        parameters: {
-            query?: {
-                hostname?: string | null;
-                domain?: string | null;
-                /** @description Filter by protocol: http or https */
-                protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
-                time_range?: components["schemas"]["TimeRange"];
-                /** @description Exclude platform values: Unknown, Bot */
-                exclude_bots?: boolean;
-            };
-            header?: {
-                /**
-                 * @deprecated
-                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
-                 * @example rfc3339
-                 */
-                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Geographic statistics retrieved successfully */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainForwardGeoStatsResponse"];
-                };
-            };
-            /** @description Invalid query parameters */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
-                     *     } */
-                    "application/json": unknown;
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_PERMISSION_DENIED",
-                     *       "detail": "Insufficient permissions to perform this action",
-                     *       "status": 403,
-                     *       "title": "Permission Denied",
-                     *       "type": "permission-denied"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-            /** @description Service Unavailable */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
-                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
-                     *       "status": 503,
-                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
-                     *       "type": "domain-forward-metrics-temporarily-unavailable"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-        };
-    };
-    platform_stats_v1_domain_forwards_metrics_platform_get: {
-        parameters: {
-            query?: {
-                hostname?: string | null;
-                domain?: string | null;
-                /** @description Filter by protocol: http or https */
-                protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
-                time_range?: components["schemas"]["TimeRange"];
-                /** @description Exclude platform values: Unknown, Bot */
-                exclude_bots?: boolean;
-            };
-            header?: {
-                /**
-                 * @deprecated
-                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
-                 * @example rfc3339
-                 */
-                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Platform statistics retrieved successfully */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainForwardPlatformStatsResponse"];
-                };
-            };
-            /** @description Invalid query parameters */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
-                     *     } */
-                    "application/json": unknown;
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_PERMISSION_DENIED",
-                     *       "detail": "Insufficient permissions to perform this action",
-                     *       "status": 403,
-                     *       "title": "Permission Denied",
-                     *       "type": "permission-denied"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-            /** @description Service Unavailable */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
-                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
-                     *       "status": 503,
-                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
-                     *       "type": "domain-forward-metrics-temporarily-unavailable"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-        };
-    };
-    referrer_stats_v1_domain_forwards_metrics_referrer_get: {
-        parameters: {
-            query?: {
-                hostname?: string | null;
-                domain?: string | null;
-                /** @description Filter by protocol: http or https */
-                protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
-                time_range?: components["schemas"]["TimeRange"];
-                /** @description Exclude platform values: Unknown, Bot */
-                exclude_bots?: boolean;
-            };
-            header?: {
-                /**
-                 * @deprecated
-                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
-                 * @example rfc3339
-                 */
-                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Referrer statistics retrieved successfully */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainForwardReferrerStatsResponse"];
-                };
-            };
-            /** @description Invalid query parameters */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
-                     *     } */
-                    "application/json": unknown;
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_PERMISSION_DENIED",
-                     *       "detail": "Insufficient permissions to perform this action",
-                     *       "status": 403,
-                     *       "title": "Permission Denied",
-                     *       "type": "permission-denied"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-            /** @description Service Unavailable */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
-                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
-                     *       "status": 503,
-                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
-                     *       "type": "domain-forward-metrics-temporarily-unavailable"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-        };
-    };
-    status_code_stats_v1_domain_forwards_metrics_status_code_get: {
-        parameters: {
-            query?: {
-                hostname?: string | null;
-                domain?: string | null;
-                /** @description Filter by protocol: http or https */
-                protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
-                time_range?: components["schemas"]["TimeRange"];
-                /** @description Exclude platform values: Unknown, Bot */
-                exclude_bots?: boolean;
-            };
-            header?: {
-                /**
-                 * @deprecated
-                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
-                 * @example rfc3339
-                 */
-                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Status code statistics retrieved successfully */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainForwardStatusCodeStatsResponse"];
-                };
-            };
-            /** @description Invalid query parameters */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
-                     *     } */
-                    "application/json": unknown;
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_PERMISSION_DENIED",
-                     *       "detail": "Insufficient permissions to perform this action",
-                     *       "status": 403,
-                     *       "title": "Permission Denied",
-                     *       "type": "permission-denied"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-            /** @description Service Unavailable */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
-                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
-                     *       "status": 503,
-                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
-                     *       "type": "domain-forward-metrics-temporarily-unavailable"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-        };
-    };
-    time_series_v1_domain_forwards_metrics_time_series_get: {
-        parameters: {
-            query?: {
-                hostname?: string | null;
-                domain?: string | null;
-                /** @description Filter by protocol: http or https */
-                protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
-                time_range?: components["schemas"]["TimeRange"];
-                /** @description Exclude platform values: Unknown, Bot */
-                exclude_bots?: boolean;
-            };
-            header?: {
-                /**
-                 * @deprecated
-                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
-                 * @example rfc3339
-                 */
-                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Time series metrics retrieved successfully */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainForwardMetricsTimeSeriesResponse"];
-                };
-            };
-            /** @description Invalid query parameters */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
-                     *     } */
-                    "application/json": unknown;
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_PERMISSION_DENIED",
-                     *       "detail": "Insufficient permissions to perform this action",
-                     *       "status": 403,
-                     *       "title": "Permission Denied",
-                     *       "type": "permission-denied"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-            /** @description Service Unavailable */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
-                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
-                     *       "status": 503,
-                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
-                     *       "type": "domain-forward-metrics-temporarily-unavailable"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-        };
-    };
-    user_agent_stats_v1_domain_forwards_metrics_user_agent_get: {
-        parameters: {
-            query?: {
-                hostname?: string | null;
-                domain?: string | null;
-                /** @description Filter by protocol: http or https */
-                protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
-                time_range?: components["schemas"]["TimeRange"];
-                /** @description Exclude platform values: Unknown, Bot */
-                exclude_bots?: boolean;
-            };
-            header?: {
-                /**
-                 * @deprecated
-                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
-                 * @example rfc3339
-                 */
-                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description User agent statistics retrieved successfully */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainForwardUserAgentStatsResponse"];
-                };
-            };
-            /** @description Invalid query parameters */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
-                     *     } */
-                    "application/json": unknown;
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_PERMISSION_DENIED",
-                     *       "detail": "Insufficient permissions to perform this action",
-                     *       "status": 403,
-                     *       "title": "Permission Denied",
-                     *       "type": "permission-denied"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-            /** @description Service Unavailable */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
-                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
-                     *       "status": 503,
-                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
-                     *       "type": "domain-forward-metrics-temporarily-unavailable"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-        };
-    };
-    visits_by_key_v1_domain_forwards_metrics_visits_by_key_get: {
-        parameters: {
-            query?: {
-                /** @description Grouping key: url, fqdn, domain, forward, or rule */
-                grouping?: components["schemas"]["MetricsGrouping"];
-                hostname?: string | null;
-                domain?: string | null;
-                /** @description Filter by protocol: http or https */
-                protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
-                time_range?: components["schemas"]["TimeRange"];
-                /** @description Exclude platform values: Unknown, Bot */
-                exclude_bots?: boolean;
-            };
-            header?: {
-                /**
-                 * @deprecated
-                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
-                 * @example rfc3339
-                 */
-                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Visits by key statistics retrieved successfully */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainForwardVisitsByKeyResponse"];
-                };
-            };
-            /** @description Invalid query parameters */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
-                     *     } */
-                    "application/json": unknown;
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_PERMISSION_DENIED",
-                     *       "detail": "Insufficient permissions to perform this action",
-                     *       "status": 403,
-                     *       "title": "Permission Denied",
-                     *       "type": "permission-denied"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-            /** @description Service Unavailable */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
-                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
-                     *       "status": 503,
-                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
-                     *       "type": "domain-forward-metrics-temporarily-unavailable"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
