@@ -11,7 +11,8 @@ Two sets of routes serve this data:
   [`GET /v1/domain-forwards/statistics/movers`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics/movers)
   lists the domains whose redirects dropped or rose most.
 - The [`/v1/domain-forwards/metrics` routes](#metrics-routes) return one view per call.
-  They will be deprecated in favor of the statistics route.
+  They are deprecated in favor of the statistics route and will be removed;
+  the [changelog](/changelog) will announce the date.
 
 ## Statistics
 
@@ -510,7 +511,9 @@ Errors:
 ## Metrics routes
 
 These routes return one view per call.
-They will be deprecated: use the [statistics route](#statistics) for new integrations.
+They are deprecated and will be removed: use the [statistics route](#statistics)
+instead. "Migrating from /v1/domain-forwards/metrics" at the end of that section
+maps each route to it.
 
 ## Overview metrics
 

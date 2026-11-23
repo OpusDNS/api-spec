@@ -4,6 +4,18 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 23 November 2026
+
+- Deprecated **the `/v1/domain-forwards/metrics` routes** in favor of
+  [`GET /v1/domain-forwards/statistics`](/api-reference#tag/domain-forward/GET/v1/domain-forwards/statistics).
+  All nine routes keep working until they are removed; the removal date will
+  be announced here. Each route maps to one call of the statistics route: the
+  totals are in `totals`, the time series in `buckets`, and each breakdown is a
+  `breakdown` value. Use `forward` in place of their `hostname`, and
+  `start_date` and `end_date` in place of `time_range`.
+  See [Statistics](/products/dns/domain-forwarding/metrics#statistics),
+  including how to migrate from the metrics routes.
+
 ### 18 November 2026
 
 - Changed **domain lookups to find an internationalized domain name (IDN) in
