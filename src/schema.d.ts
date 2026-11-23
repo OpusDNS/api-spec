@@ -31344,7 +31344,7 @@ export interface operations {
                 search?: string | null;
                 /** @description Filter by top-level domain (e.g., 'com', 'org'). Can be specified multiple times (union of all provided values). */
                 tld?: string[] | null;
-                /** @description Filter by second-level domain */
+                /** @description Filter by second-level domain, in Unicode or punycode: either stored form matches. */
                 sld?: string | null;
                 /** @description Filter domains whose nameserver hostnames contain this text, e.g. `cloudflare` or `ns1.example.com`. Matches the nameservers the domain currently delegates to. The text is matched literally, so `%` and `_` are not wildcards; a trailing dot on a single label anchors at a label boundary, so `ns1.` matches `ns1.example.com` but not `ns10.example.com`. Unlike the other filters this one reads the nameservers of every domain in scope, so expect a slower response, the more so the larger the portfolio. */
                 nameserver?: string | null;
