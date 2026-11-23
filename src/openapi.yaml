@@ -13346,6 +13346,9 @@ components:
       - punktum_dk_terms_acceptance
       - punktum_dk_tracking_no
       - internet_ee_registrant_agreement
+      - https_support_confirmation
+      - no_false_affiliation_confirmation
+      - registry_rights_acknowledgement
       - promotion
       - promotion_eligibility
       - domain_contact_attributes
@@ -13731,7 +13734,9 @@ components:
             \ before that rule applied is ignored at renewal.\n- `music_registrant_attestation`:\
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
-            \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
+            \ `true`. `.travel` registration.\n- `https_support_confirmation`, `no_false_affiliation_confirmation`,\
+            \ `registry_rights_acknowledgement`: `true`.\n  Registration on TLDs whose\
+            \ specification requires them, e.g. `.web`.\n- `internet_ee_registrant_agreement`:\
             \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
             \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
@@ -13750,10 +13755,12 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
-            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
-            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
-            \ change but cannot be removed with an empty value.\n"
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
+            \ `https_support_confirmation`, `no_false_affiliation_confirmation`,\n\
+            `registry_rights_acknowledgement` and the three `nor_id_applicant_*` keys.\
+            \ `punktum_dk_terms_acceptance` and\n`internet_ee_registrant_agreement`\
+            \ stay settable for a registrant change but cannot be removed with an\
+            \ empty value.\n"
           examples:
           - auto_renew_period: monthly
           title: Attributes
@@ -13868,7 +13875,9 @@ components:
             \ update; a `monthly` stored before that rule applied is ignored at renewal.\n\
             - `music_registrant_attestation`: `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
-            \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
+            \ `true`. `.travel` registration.\n- `https_support_confirmation`, `no_false_affiliation_confirmation`,\
+            \ `registry_rights_acknowledgement`: `true`.\n  Registration on TLDs whose\
+            \ specification requires them, e.g. `.web`.\n- `internet_ee_registrant_agreement`:\
             \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
             \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
@@ -13887,10 +13896,12 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
-            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
-            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
-            \ change but cannot be removed with an empty value.\n"
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
+            \ `https_support_confirmation`, `no_false_affiliation_confirmation`,\n\
+            `registry_rights_acknowledgement` and the three `nor_id_applicant_*` keys.\
+            \ `punktum_dk_terms_acceptance` and\n`internet_ee_registrant_agreement`\
+            \ stay settable for a registrant change but cannot be removed with an\
+            \ empty value.\n"
           title: Attributes
         auth_code:
           anyOf:
@@ -13987,7 +13998,9 @@ components:
             \ before that rule applied is ignored at renewal.\n- `music_registrant_attestation`:\
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
-            \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
+            \ `true`. `.travel` registration.\n- `https_support_confirmation`, `no_false_affiliation_confirmation`,\
+            \ `registry_rights_acknowledgement`: `true`.\n  Registration on TLDs whose\
+            \ specification requires them, e.g. `.web`.\n- `internet_ee_registrant_agreement`:\
             \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
             \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
@@ -14006,10 +14019,12 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
-            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
-            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
-            \ change but cannot be removed with an empty value.\n"
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
+            \ `https_support_confirmation`, `no_false_affiliation_confirmation`,\n\
+            `registry_rights_acknowledgement` and the three `nor_id_applicant_*` keys.\
+            \ `punktum_dk_terms_acceptance` and\n`internet_ee_registrant_agreement`\
+            \ stay settable for a registrant change but cannot be removed with an\
+            \ empty value.\n"
           title: Attributes
         auth_code:
           anyOf:
@@ -14096,7 +14111,9 @@ components:
             \ before that rule applied is ignored at renewal.\n- `music_registrant_attestation`:\
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
-            \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
+            \ `true`. `.travel` registration.\n- `https_support_confirmation`, `no_false_affiliation_confirmation`,\
+            \ `registry_rights_acknowledgement`: `true`.\n  Registration on TLDs whose\
+            \ specification requires them, e.g. `.web`.\n- `internet_ee_registrant_agreement`:\
             \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
             \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
@@ -14115,10 +14132,12 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
-            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
-            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
-            \ change but cannot be removed with an empty value.\n"
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
+            \ `https_support_confirmation`, `no_false_affiliation_confirmation`,\n\
+            `registry_rights_acknowledgement` and the three `nor_id_applicant_*` keys.\
+            \ `punktum_dk_terms_acceptance` and\n`internet_ee_registrant_agreement`\
+            \ stay settable for a registrant change but cannot be removed with an\
+            \ empty value.\n"
           examples:
           - auto_renew_period: monthly
           title: Attributes
@@ -17001,7 +17020,9 @@ components:
             \ update; a `monthly` stored before that rule applied is ignored at renewal.\n\
             - `music_registrant_attestation`: `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
-            \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
+            \ `true`. `.travel` registration.\n- `https_support_confirmation`, `no_false_affiliation_confirmation`,\
+            \ `registry_rights_acknowledgement`: `true`.\n  Registration on TLDs whose\
+            \ specification requires them, e.g. `.web`.\n- `internet_ee_registrant_agreement`:\
             \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
             \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
@@ -17020,10 +17041,12 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
-            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
-            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
-            \ change but cannot be removed with an empty value.\n"
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
+            \ `https_support_confirmation`, `no_false_affiliation_confirmation`,\n\
+            `registry_rights_acknowledgement` and the three `nor_id_applicant_*` keys.\
+            \ `punktum_dk_terms_acceptance` and\n`internet_ee_registrant_agreement`\
+            \ stay settable for a registrant change but cannot be removed with an\
+            \ empty value.\n"
           title: Attributes
         auth_code:
           anyOf:
@@ -17123,7 +17146,9 @@ components:
             \ before that rule applied is ignored at renewal.\n- `music_registrant_attestation`:\
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
-            \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
+            \ `true`. `.travel` registration.\n- `https_support_confirmation`, `no_false_affiliation_confirmation`,\
+            \ `registry_rights_acknowledgement`: `true`.\n  Registration on TLDs whose\
+            \ specification requires them, e.g. `.web`.\n- `internet_ee_registrant_agreement`:\
             \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
             \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
@@ -17142,10 +17167,12 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
-            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
-            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
-            \ change but cannot be removed with an empty value.\n"
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
+            \ `https_support_confirmation`, `no_false_affiliation_confirmation`,\n\
+            `registry_rights_acknowledgement` and the three `nor_id_applicant_*` keys.\
+            \ `punktum_dk_terms_acceptance` and\n`internet_ee_registrant_agreement`\
+            \ stay settable for a registrant change but cannot be removed with an\
+            \ empty value.\n"
           title: Attributes
         contacts:
           $ref: '#/components/schemas/DomainContactHandles'
@@ -17226,7 +17253,9 @@ components:
             \ before that rule applied is ignored at renewal.\n- `music_registrant_attestation`:\
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
-            \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
+            \ `true`. `.travel` registration.\n- `https_support_confirmation`, `no_false_affiliation_confirmation`,\
+            \ `registry_rights_acknowledgement`: `true`.\n  Registration on TLDs whose\
+            \ specification requires them, e.g. `.web`.\n- `internet_ee_registrant_agreement`:\
             \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
             \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
@@ -17245,10 +17274,12 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
-            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
-            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
-            \ change but cannot be removed with an empty value.\n"
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
+            \ `https_support_confirmation`, `no_false_affiliation_confirmation`,\n\
+            `registry_rights_acknowledgement` and the three `nor_id_applicant_*` keys.\
+            \ `punktum_dk_terms_acceptance` and\n`internet_ee_registrant_agreement`\
+            \ stay settable for a registrant change but cannot be removed with an\
+            \ empty value.\n"
           examples:
           - auto_renew_period: monthly
           title: Attributes
@@ -17334,7 +17365,9 @@ components:
             \ before that rule applied is ignored at renewal.\n- `music_registrant_attestation`:\
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
-            \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
+            \ `true`. `.travel` registration.\n- `https_support_confirmation`, `no_false_affiliation_confirmation`,\
+            \ `registry_rights_acknowledgement`: `true`.\n  Registration on TLDs whose\
+            \ specification requires them, e.g. `.web`.\n- `internet_ee_registrant_agreement`:\
             \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
             \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
@@ -17353,10 +17386,12 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
-            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
-            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
-            \ change but cannot be removed with an empty value.\n"
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
+            \ `https_support_confirmation`, `no_false_affiliation_confirmation`,\n\
+            `registry_rights_acknowledgement` and the three `nor_id_applicant_*` keys.\
+            \ `punktum_dk_terms_acceptance` and\n`internet_ee_registrant_agreement`\
+            \ stay settable for a registrant change but cannot be removed with an\
+            \ empty value.\n"
           examples:
           - auto_renew_period: monthly
           title: Attributes
@@ -17487,7 +17522,9 @@ components:
             \ before that rule applied is ignored at renewal.\n- `music_registrant_attestation`:\
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
-            \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
+            \ `true`. `.travel` registration.\n- `https_support_confirmation`, `no_false_affiliation_confirmation`,\
+            \ `registry_rights_acknowledgement`: `true`.\n  Registration on TLDs whose\
+            \ specification requires them, e.g. `.web`.\n- `internet_ee_registrant_agreement`:\
             \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
             \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
@@ -17506,10 +17543,12 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
-            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
-            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
-            \ change but cannot be removed with an empty value.\n"
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
+            \ `https_support_confirmation`, `no_false_affiliation_confirmation`,\n\
+            `registry_rights_acknowledgement` and the three `nor_id_applicant_*` keys.\
+            \ `punktum_dk_terms_acceptance` and\n`internet_ee_registrant_agreement`\
+            \ stay settable for a registrant change but cannot be removed with an\
+            \ empty value.\n"
           examples:
           - auto_renew_period: monthly
           title: Attributes
@@ -17611,7 +17650,9 @@ components:
             \ update; a `monthly` stored before that rule applied is ignored at renewal.\n\
             - `music_registrant_attestation`: `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
-            \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
+            \ `true`. `.travel` registration.\n- `https_support_confirmation`, `no_false_affiliation_confirmation`,\
+            \ `registry_rights_acknowledgement`: `true`.\n  Registration on TLDs whose\
+            \ specification requires them, e.g. `.web`.\n- `internet_ee_registrant_agreement`:\
             \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
             \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
@@ -17630,10 +17671,12 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
-            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
-            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
-            \ change but cannot be removed with an empty value.\n"
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
+            \ `https_support_confirmation`, `no_false_affiliation_confirmation`,\n\
+            `registry_rights_acknowledgement` and the three `nor_id_applicant_*` keys.\
+            \ `punktum_dk_terms_acceptance` and\n`internet_ee_registrant_agreement`\
+            \ stay settable for a registrant change but cannot be removed with an\
+            \ empty value.\n"
           title: Attributes
         auth_code:
           anyOf:
@@ -17731,7 +17774,9 @@ components:
             \ before that rule applied is ignored at renewal.\n- `music_registrant_attestation`:\
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
-            \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
+            \ `true`. `.travel` registration.\n- `https_support_confirmation`, `no_false_affiliation_confirmation`,\
+            \ `registry_rights_acknowledgement`: `true`.\n  Registration on TLDs whose\
+            \ specification requires them, e.g. `.web`.\n- `internet_ee_registrant_agreement`:\
             \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
             \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
@@ -17750,10 +17795,12 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
-            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
-            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
-            \ change but cannot be removed with an empty value.\n"
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
+            \ `https_support_confirmation`, `no_false_affiliation_confirmation`,\n\
+            `registry_rights_acknowledgement` and the three `nor_id_applicant_*` keys.\
+            \ `punktum_dk_terms_acceptance` and\n`internet_ee_registrant_agreement`\
+            \ stay settable for a registrant change but cannot be removed with an\
+            \ empty value.\n"
           title: Attributes
         contacts:
           anyOf:
@@ -17838,7 +17885,9 @@ components:
             \ before that rule applied is ignored at renewal.\n- `music_registrant_attestation`:\
             \ `true`. `.music` registration.\n- `nic_it_compliance_confirmation`:\
             \ `true`. `.it` registration and transfer.\n- `travel_industry_acknowledgement`:\
-            \ `true`. `.travel` registration.\n- `internet_ee_registrant_agreement`:\
+            \ `true`. `.travel` registration.\n- `https_support_confirmation`, `no_false_affiliation_confirmation`,\
+            \ `registry_rights_acknowledgement`: `true`.\n  Registration on TLDs whose\
+            \ specification requires them, e.g. `.web`.\n- `internet_ee_registrant_agreement`:\
             \ `true`. `.ee` registration and registrant change.\n- `punktum_dk_terms_acceptance`:\
             \ `true`. `.dk` registration and registrant change.\n- `de_general_request_contact`,\
             \ `de_abuse_contact`: id of a contact whose `.de` attribute set has `DE_CONTACT_TYPE`\
@@ -17857,10 +17906,12 @@ components:
             \ and `yearly`. `.dk` also reads\n`punktum_dk_terms_acceptance` to confirm\
             \ a registrant change. An update cannot change what the registrant accepted\
             \ at\nregistration, so these are rejected on update: `music_registrant_attestation`,\
-            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`\
-            \ and the three `nor_id_applicant_*` keys. `punktum_dk_terms_acceptance`\
-            \ and\n`internet_ee_registrant_agreement` stay settable for a registrant\
-            \ change but cannot be removed with an empty value.\n"
+            \ `nic_it_compliance_confirmation`,\n`travel_industry_acknowledgement`,\
+            \ `https_support_confirmation`, `no_false_affiliation_confirmation`,\n\
+            `registry_rights_acknowledgement` and the three `nor_id_applicant_*` keys.\
+            \ `punktum_dk_terms_acceptance` and\n`internet_ee_registrant_agreement`\
+            \ stay settable for a registrant change but cannot be removed with an\
+            \ empty value.\n"
           examples:
           - auto_renew_period: monthly
           title: Attributes
@@ -20811,6 +20862,13 @@ components:
           - type: 'null'
           description: Start date of the phase
           title: Start Date
+        submit_mode:
+          anyOf:
+          - $ref: '#/components/schemas/LaunchPhaseSubmitMode'
+          - type: 'null'
+          description: 'How pre-registrations are submitted: `at_open` at the phase
+            start in first-come, first-served order, `on_demand` as soon as each one
+            is complete and the phase is open'
         supported:
           description: Whether this phase is supported
           title: Supported
@@ -20823,11 +20881,18 @@ components:
       - supported
       title: LaunchPhaseBase
       type: object
+    LaunchPhaseSubmitMode:
+      enum:
+      - at_open
+      - on_demand
+      title: LaunchPhaseSubmitMode
+      type: string
     LaunchPhaseType:
       enum:
       - sunrise
       - landrush
       - eap
+      - limited_registration
       title: LaunchPhaseType
       type: string
     LaunchPhasesBase:
@@ -30108,7 +30173,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-20-210944
+  version: 2026-11-23-115559
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

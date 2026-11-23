@@ -82,6 +82,7 @@ import type {
   InvoiceResponseStatus,
   InvoiceResponseType,
   JobStatus,
+  LaunchPhaseSubmitMode,
   LaunchPhaseType,
   LegalRequirementOperationType,
   LegalRequirementType,
@@ -899,6 +900,9 @@ export const DOMAIN_ATTRIBUTE_KEY = {
   PUNKTUM_DK_TERMS_ACCEPTANCE: "punktum_dk_terms_acceptance",
   PUNKTUM_DK_TRACKING_NO: "punktum_dk_tracking_no",
   INTERNET_EE_REGISTRANT_AGREEMENT: "internet_ee_registrant_agreement",
+  HTTPS_SUPPORT_CONFIRMATION: "https_support_confirmation",
+  NO_FALSE_AFFILIATION_CONFIRMATION: "no_false_affiliation_confirmation",
+  REGISTRY_RIGHTS_ACKNOWLEDGEMENT: "registry_rights_acknowledgement",
   PROMOTION: "promotion",
   PROMOTION_ELIGIBILITY: "promotion_eligibility",
   DOMAIN_CONTACT_ATTRIBUTES: "domain_contact_attributes",
@@ -921,6 +925,9 @@ export const DOMAIN_ATTRIBUTE_KEY_VALUES = [
   'punktum_dk_terms_acceptance',
   'punktum_dk_tracking_no',
   'internet_ee_registrant_agreement',
+  'https_support_confirmation',
+  'no_false_affiliation_confirmation',
+  'registry_rights_acknowledgement',
   'promotion',
   'promotion_eligibility',
   'domain_contact_attributes',
@@ -1599,16 +1606,28 @@ export const JOB_STATUS_VALUES = [
   'dead_letter',
 ] as const satisfies ReadonlyArray<JobStatus>;
 
+export const LAUNCH_PHASE_SUBMIT_MODE = {
+  AT_OPEN: "at_open",
+  ON_DEMAND: "on_demand",
+} as const satisfies Record<string, LaunchPhaseSubmitMode>;
+
+export const LAUNCH_PHASE_SUBMIT_MODE_VALUES = [
+  'at_open',
+  'on_demand',
+] as const satisfies ReadonlyArray<LaunchPhaseSubmitMode>;
+
 export const LAUNCH_PHASE_TYPE = {
   SUNRISE: "sunrise",
   LANDRUSH: "landrush",
   EAP: "eap",
+  LIMITED_REGISTRATION: "limited_registration",
 } as const satisfies Record<string, LaunchPhaseType>;
 
 export const LAUNCH_PHASE_TYPE_VALUES = [
   'sunrise',
   'landrush',
   'eap',
+  'limited_registration',
 ] as const satisfies ReadonlyArray<LaunchPhaseType>;
 
 export const LEGAL_REQUIREMENT_OPERATION_TYPE = {

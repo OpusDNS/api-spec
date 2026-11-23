@@ -5066,6 +5066,7 @@ export const KEY_LAUNCH_PHASE_BASE_ALLOCATION = 'allocation' satisfies keyof Lau
 export const KEY_LAUNCH_PHASE_BASE_END_DATE = 'end_date' satisfies keyof LaunchPhaseBase;
 export const KEY_LAUNCH_PHASE_BASE_SMD_REQUIRED = 'smd_required' satisfies keyof LaunchPhaseBase;
 export const KEY_LAUNCH_PHASE_BASE_START_DATE = 'start_date' satisfies keyof LaunchPhaseBase;
+export const KEY_LAUNCH_PHASE_BASE_SUBMIT_MODE = 'submit_mode' satisfies keyof LaunchPhaseBase;
 export const KEY_LAUNCH_PHASE_BASE_SUPPORTED = 'supported' satisfies keyof LaunchPhaseBase;
 export const KEY_LAUNCH_PHASE_BASE_TYPE = 'type' satisfies keyof LaunchPhaseBase;
 
@@ -5074,6 +5075,7 @@ export const KEYS_LAUNCH_PHASE_BASE = [
   KEY_LAUNCH_PHASE_BASE_END_DATE,
   KEY_LAUNCH_PHASE_BASE_SMD_REQUIRED,
   KEY_LAUNCH_PHASE_BASE_START_DATE,
+  KEY_LAUNCH_PHASE_BASE_SUBMIT_MODE,
   KEY_LAUNCH_PHASE_BASE_SUPPORTED,
   KEY_LAUNCH_PHASE_BASE_TYPE,
 ] as const satisfies (keyof LaunchPhaseBase)[];

@@ -435,6 +435,7 @@ export type Job = components['schemas']['JobResponse'];
 export type JobStatus = components['schemas']['JobStatus'];
 export type JsonValue = components['schemas']['JsonValue'];
 export type LaunchPhaseBase = components['schemas']['LaunchPhaseBase'];
+export type LaunchPhaseSubmitMode = components['schemas']['LaunchPhaseSubmitMode'];
 export type LaunchPhaseType = components['schemas']['LaunchPhaseType'];
 export type LaunchPhasesBase = components['schemas']['LaunchPhasesBase'];
 export type Legal = components['schemas']['Legal'];
