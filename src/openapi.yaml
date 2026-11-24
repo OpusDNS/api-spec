@@ -21653,6 +21653,7 @@ components:
       - CREATED
       - UPDATED
       - DELETED
+      - CANCELED
       - IMPORTED
       - SYNCED_AFTER_IMPORT
       - SYNCED
@@ -29869,7 +29870,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-24-120845
+  version: 2026-11-24-121851
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -53033,9 +53034,10 @@ tags:
     \ | Temporary failure; retry after the `Retry-After` seconds, with the same `idempotency_key`\
     \ |\n\n### History\n\nChanges to an order are recorded in the archive. Query `GET\
     \ /v1/archive/object-logs` with `object_type=Order` (and `object_id` set to the\
-    \ order ID) to see them. Reading the history needs the view-audit-logs permission\
-    \ (`VIEW_AUDIT_LOGS`), which is separate from the permission to read orders: a\
-    \ caller who can read an order may still be refused its history.\n"
+    \ order ID) to see them: action `CREATED` when it is created, `CANCELED` when\
+    \ you cancel it, `UPDATED` for every other change. Reading the history needs the\
+    \ view-audit-logs permission (`VIEW_AUDIT_LOGS`), which is separate from the permission\
+    \ to read orders: a caller who can read an order may still be refused its history.\n"
   name: orders
   x-displayName: Orders
 - description: 'Endpoints for creating and managing organizations.
