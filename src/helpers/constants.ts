@@ -92,7 +92,6 @@ import type {
   LevelOfAssurance,
   LocalPresenceRequirementType,
   MailTemplateCategory,
-  MarketplaceDomainPurchasePublicReason,
   MarketplaceDomainPurchasePublicStage,
   MarketplaceName,
   MemoryFactKind,
@@ -105,6 +104,7 @@ import type {
   ObjectEventType,
   ObjectLogSortField,
   OrderErrorCodes,
+  OrderItemReason,
   OrderItemType,
   OrderSortField,
   OrderStatus,
@@ -1740,22 +1740,6 @@ export const MAIL_TEMPLATE_CATEGORY_VALUES = [
   'unknown',
 ] as const satisfies ReadonlyArray<MailTemplateCategory>;
 
-export const MARKETPLACE_DOMAIN_PURCHASE_PUBLIC_REASON = {
-  PRICE_CHANGED: "price_changed",
-  UNAVAILABLE: "unavailable",
-  CANCELED_BY_MARKETPLACE: "canceled_by_marketplace",
-  FAILED: "failed",
-  DELAYED: "delayed",
-} as const satisfies Record<string, MarketplaceDomainPurchasePublicReason>;
-
-export const MARKETPLACE_DOMAIN_PURCHASE_PUBLIC_REASON_VALUES = [
-  'price_changed',
-  'unavailable',
-  'canceled_by_marketplace',
-  'failed',
-  'delayed',
-] as const satisfies ReadonlyArray<MarketplaceDomainPurchasePublicReason>;
-
 export const MARKETPLACE_DOMAIN_PURCHASE_PUBLIC_STAGE = {
   PROCESSING: "processing",
   PURCHASING: "purchasing",
@@ -2004,6 +1988,8 @@ export const ORDER_ERROR_CODES = {
   ERROR_ORDER_PREMIUM_PRICE_REQUIRED: "ERROR_ORDER_PREMIUM_PRICE_REQUIRED",
   ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED: "ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED",
   ERROR_ORDER_CONFIRMATIONS_REQUIRED: "ERROR_ORDER_CONFIRMATIONS_REQUIRED",
+  ERROR_ORDER_ITEM_BUSY: "ERROR_ORDER_ITEM_BUSY",
+  ERROR_ORDER_NOT_CANCELABLE: "ERROR_ORDER_NOT_CANCELABLE",
 } as const satisfies Record<string, OrderErrorCodes>;
 
 export const ORDER_ERROR_CODES_VALUES = [
@@ -2026,7 +2012,27 @@ export const ORDER_ERROR_CODES_VALUES = [
   'ERROR_ORDER_PREMIUM_PRICE_REQUIRED',
   'ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED',
   'ERROR_ORDER_CONFIRMATIONS_REQUIRED',
+  'ERROR_ORDER_ITEM_BUSY',
+  'ERROR_ORDER_NOT_CANCELABLE',
 ] as const satisfies ReadonlyArray<OrderErrorCodes>;
+
+export const ORDER_ITEM_REASON = {
+  PRICE_CHANGED: "price_changed",
+  UNAVAILABLE: "unavailable",
+  CANCELED_BY_MARKETPLACE: "canceled_by_marketplace",
+  CANCELED_BY_CUSTOMER: "canceled_by_customer",
+  FAILED: "failed",
+  DELAYED: "delayed",
+} as const satisfies Record<string, OrderItemReason>;
+
+export const ORDER_ITEM_REASON_VALUES = [
+  'price_changed',
+  'unavailable',
+  'canceled_by_marketplace',
+  'canceled_by_customer',
+  'failed',
+  'delayed',
+] as const satisfies ReadonlyArray<OrderItemReason>;
 
 export const ORDER_ITEM_TYPE = {
   MARKETPLACE_DOMAIN_PURCHASE: "marketplace_domain_purchase",

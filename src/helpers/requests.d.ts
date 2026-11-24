@@ -923,6 +923,11 @@ export type POST_Orders_Request = {
 };
 export type POST_Orders_Request_Body = POST_Orders_Request['requestBody'];
 
+export type DELETE_OrdersByOrderId_Request = {
+  parameters: operations['cancel_order_v1_orders__order_id__delete']['parameters'];
+};
+export type DELETE_OrdersByOrderId_Request_Path = DELETE_OrdersByOrderId_Request['parameters']['path'];
+
 export type GET_OrdersByOrderId_Request = {
   parameters: operations['get_order_v1_orders__order_id__get']['parameters'];
 };

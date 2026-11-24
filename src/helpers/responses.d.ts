@@ -247,6 +247,13 @@ export type DELETE_JobsByBatchId_Response = DELETE_JobsByBatchId_Response_404 | 
 export type DELETE_JobsByBatchId_Response_404 = Problem;
 export type DELETE_JobsByBatchId_Response_422 = HTTPValidationError;
 
+export type DELETE_OrdersByOrderId_Response = DELETE_OrdersByOrderId_Response_403 | DELETE_OrdersByOrderId_Response_404 | DELETE_OrdersByOrderId_Response_409 | DELETE_OrdersByOrderId_Response_422;
+
+export type DELETE_OrdersByOrderId_Response_403 = Problem;
+export type DELETE_OrdersByOrderId_Response_404 = Problem;
+export type DELETE_OrdersByOrderId_Response_409 = Problem;
+export type DELETE_OrdersByOrderId_Response_422 = HTTPValidationError;
+
 export type DELETE_OrganizationsByOrganizationId_Response = DELETE_OrganizationsByOrganizationId_Response_401 | DELETE_OrganizationsByOrganizationId_Response_403 | DELETE_OrganizationsByOrganizationId_Response_422;
 
 export type DELETE_OrganizationsByOrganizationId_Response_401 = Problem;

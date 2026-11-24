@@ -2428,7 +2428,13 @@ export interface paths {
         get: operations["get_order_v1_orders__order_id__get"];
         put?: never;
         post?: never;
-        delete?: never;
+        /**
+         * Cancel an order
+         * @description Cancels a `domain_pre_registration` order while its item is `requested` (including `needs_action`): nothing is held for it yet, so it is canceled at once. The order stays readable with status `canceled` and reason `canceled_by_customer`, and the domain can be pre-registered again. Repeating the call on an order canceled this way is a success.
+         *
+         *     Other order types and items past `requested` cannot be canceled (409 `ERROR_ORDER_NOT_CANCELABLE`). 409 `ERROR_ORDER_ITEM_BUSY` means the item is being processed at that moment: retry after `Retry-After`.
+         */
+        delete: operations["cancel_order_v1_orders__order_id__delete"];
         options?: never;
         head?: never;
         patch?: never;
@@ -4643,6 +4649,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "cancel_domain_transfer_v1_domains__domain_reference__transfer_delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "cancel_order_v1_orders__order_id__delete";
             /** @constant */
             status: "ok";
             /**
@@ -14569,7 +14599,7 @@ export interface components {
         /**
          * DomainPreRegistrationItemCreate
          * @description Pre-register a domain in an upcoming TLD launch. Free until the funds are held shortly before submission;
-         *     incomplete items (a missing SMD file, unticked confirmations) are accepted and listed under `needs_action`.
+         *     an item without its SMD file is accepted and lists it under `needs_action`.
          */
         DomainPreRegistrationItemCreate: {
             /**
@@ -18479,12 +18509,6 @@ export interface components {
             type: "marketplace_domain_purchase";
         };
         /**
-         * MarketplaceDomainPurchasePublicReason
-         * @description What an API caller sees of why an item is not going as planned; the meanings are in docs/api/orders.md.
-         * @enum {string}
-         */
-        MarketplaceDomainPurchasePublicReason: "price_changed" | "unavailable" | "canceled_by_marketplace" | "failed" | "delayed";
-        /**
          * MarketplaceDomainPurchasePublicStage
          * @description What an API caller sees of an item's progress.
          * @enum {string}
@@ -19107,7 +19131,7 @@ export interface components {
          * OrderErrorCodes
          * @enum {string}
          */
-        OrderErrorCodes: "ERROR_ORDERS_FEATURE_DISABLED" | "ERROR_ORDER_CURRENCY_NOT_SUPPORTED" | "ERROR_ORDER_NOT_FOUND" | "ERROR_ORDER_IDEMPOTENCY_KEY_REUSED" | "ERROR_ORDER_SUBJECT_IN_PROGRESS" | "ERROR_ORDER_PRICE_CHANGED" | "ERROR_ORDER_ITEM_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_DELIVERABLE" | "ERROR_ORDER_OPEN_LIMIT_REACHED" | "ERROR_ORDER_SERVICE_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_FOUND" | "ERROR_ORDER_DELIVERY_NOT_AVAILABLE" | "ERROR_ORDER_DELIVERY_UNREADABLE" | "ERROR_ORDER_UNREADABLE" | "ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED" | "ERROR_ORDER_PHASE_NOT_AVAILABLE" | "ERROR_ORDER_PREMIUM_PRICE_REQUIRED" | "ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED" | "ERROR_ORDER_CONFIRMATIONS_REQUIRED";
+        OrderErrorCodes: "ERROR_ORDERS_FEATURE_DISABLED" | "ERROR_ORDER_CURRENCY_NOT_SUPPORTED" | "ERROR_ORDER_NOT_FOUND" | "ERROR_ORDER_IDEMPOTENCY_KEY_REUSED" | "ERROR_ORDER_SUBJECT_IN_PROGRESS" | "ERROR_ORDER_PRICE_CHANGED" | "ERROR_ORDER_ITEM_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_DELIVERABLE" | "ERROR_ORDER_OPEN_LIMIT_REACHED" | "ERROR_ORDER_SERVICE_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_FOUND" | "ERROR_ORDER_DELIVERY_NOT_AVAILABLE" | "ERROR_ORDER_DELIVERY_UNREADABLE" | "ERROR_ORDER_UNREADABLE" | "ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED" | "ERROR_ORDER_PHASE_NOT_AVAILABLE" | "ERROR_ORDER_PREMIUM_PRICE_REQUIRED" | "ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED" | "ERROR_ORDER_CONFIRMATIONS_REQUIRED" | "ERROR_ORDER_ITEM_BUSY" | "ERROR_ORDER_NOT_CANCELABLE";
         /**
          * OrderItemDeliveryResponse
          * @description What an order item delivers: `type` plus one object named after it. Only ever the body of the delivery
@@ -19119,6 +19143,12 @@ export interface components {
             /** @description Item type. More can be added. */
             type: components["schemas"]["OrderItemType"];
         };
+        /**
+         * OrderItemReason
+         * @description What an API caller sees of why an item is not going as planned; the meanings are in docs/api/orders.md.
+         * @enum {string}
+         */
+        OrderItemReason: "price_changed" | "unavailable" | "canceled_by_marketplace" | "canceled_by_customer" | "failed" | "delayed";
         /**
          * OrderItemResponse
          * @description The fields every item type has, plus one optional object named after `type`. A new type adds one field.
@@ -19143,8 +19173,8 @@ export interface components {
             marketplace_domain_purchase?: components["schemas"]["MarketplaceDomainPurchaseDetail"] | null;
             /** @description Price of the item, a decimal string with two decimals */
             price: components["schemas"]["StrictMoneyDecimal"];
-            /** @description Why the item was canceled or failed, or that an open item is slow. Null while the item is on track, or when no problem is known. Treat a value you do not know as `failed` on a final item and as `delayed` on an open one: reasons can be added. */
-            reason?: components["schemas"]["MarketplaceDomainPurchasePublicReason"] | null;
+            /** @description Why the item was canceled or failed (`canceled_by_customer` after `DELETE /v1/orders/{order_id}`), or that an open item is slow. Null while the item is on track, or when no problem is known. Treat a value you do not know as `failed` on a final item and as `delayed` on an open one: reasons can be added. */
+            reason?: components["schemas"]["OrderItemReason"] | null;
             /** @description `pending` and `in_progress` are open, the others are final. Treat a value you do not know as open: statuses can be added. */
             status: components["schemas"]["OrderStatus"];
             /** @description Item type. More can be added. */
@@ -36711,6 +36741,79 @@ export interface operations {
                      *       "type": "order-unreadable"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    cancel_order_v1_orders__order_id__delete: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                order_id: TypeId<"order">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_NOT_FOUND",
+                     *       "detail": "Order not found",
+                     *       "order_id": "order_01h45ytscbebyvny4gc8cr8ma2",
+                     *       "status": 404,
+                     *       "title": "Order Not Found",
+                     *       "type": "order-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    /** @description Seconds to wait before retrying */
+                    "Retry-After"?: number;
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

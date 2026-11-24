@@ -1630,6 +1630,36 @@ components:
             description: HTTP status returned by the underlying API
             title: Httpstatus
           operationId:
+            const: cancel_order_v1_orders__order_id__delete
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: cancel_order_v1_orders__order_id__delete
+        type: object
+      - properties:
+          data:
+            anyOf:
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
             const: cancel_sync_v1_connect_registrars__registrar_credential_id__sync_delete
           status:
             const: ok
@@ -15433,8 +15463,7 @@ components:
       description: 'Pre-register a domain in an upcoming TLD launch. Free until the
         funds are held shortly before submission;
 
-        incomplete items (a missing SMD file, unticked confirmations) are accepted
-        and listed under `needs_action`.'
+        an item without its SMD file is accepted and lists it under `needs_action`.'
       properties:
         domain:
           description: Domain name to pre-register (Unicode or ASCII form)
@@ -21047,17 +21076,6 @@ components:
       - expected_price
       title: MarketplaceDomainPurchaseItemCreate
       type: object
-    MarketplaceDomainPurchasePublicReason:
-      description: What an API caller sees of why an item is not going as planned;
-        the meanings are in docs/api/orders.md.
-      enum:
-      - price_changed
-      - unavailable
-      - canceled_by_marketplace
-      - failed
-      - delayed
-      title: MarketplaceDomainPurchasePublicReason
-      type: string
     MarketplaceDomainPurchasePublicStage:
       description: What an API caller sees of an item's progress.
       enum:
@@ -22011,6 +22029,8 @@ components:
       - ERROR_ORDER_PREMIUM_PRICE_REQUIRED
       - ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED
       - ERROR_ORDER_CONFIRMATIONS_REQUIRED
+      - ERROR_ORDER_ITEM_BUSY
+      - ERROR_ORDER_NOT_CANCELABLE
       title: OrderErrorCodes
       type: string
     OrderItemDeliveryResponse:
@@ -22031,6 +22051,18 @@ components:
       - type
       title: OrderItemDeliveryResponse
       type: object
+    OrderItemReason:
+      description: What an API caller sees of why an item is not going as planned;
+        the meanings are in docs/api/orders.md.
+      enum:
+      - price_changed
+      - unavailable
+      - canceled_by_marketplace
+      - canceled_by_customer
+      - failed
+      - delayed
+      title: OrderItemReason
+      type: string
     OrderItemResponse:
       description: The fields every item type has, plus one optional object named
         after `type`. A new type adds one field.
@@ -22066,12 +22098,13 @@ components:
           description: Price of the item, a decimal string with two decimals
         reason:
           anyOf:
-          - $ref: '#/components/schemas/MarketplaceDomainPurchasePublicReason'
+          - $ref: '#/components/schemas/OrderItemReason'
           - type: 'null'
-          description: 'Why the item was canceled or failed, or that an open item
-            is slow. Null while the item is on track, or when no problem is known.
-            Treat a value you do not know as `failed` on a final item and as `delayed`
-            on an open one: reasons can be added.'
+          description: 'Why the item was canceled or failed (`canceled_by_customer`
+            after `DELETE /v1/orders/{order_id}`), or that an open item is slow. Null
+            while the item is on track, or when no problem is known. Treat a value
+            you do not know as `failed` on a final item and as `delayed` on an open
+            one: reasons can be added.'
         status:
           $ref: '#/components/schemas/OrderStatus'
           description: '`pending` and `in_progress` are open, the others are final.
@@ -29836,7 +29869,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-24-115726
+  version: 2026-11-24-120845
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -46938,6 +46971,110 @@ paths:
       x-required-permissions:
       - domains:manage
   /v1/orders/{order_id}:
+    delete:
+      description: 'Cancels a `domain_pre_registration` order while its item is `requested`
+        (including `needs_action`): nothing is held for it yet, so it is canceled
+        at once. The order stays readable with status `canceled` and reason `canceled_by_customer`,
+        and the domain can be pre-registered again. Repeating the call on an order
+        canceled this way is a success.
+
+
+        Other order types and items past `requested` cannot be canceled (409 `ERROR_ORDER_NOT_CANCELABLE`).
+        409 `ERROR_ORDER_ITEM_BUSY` means the item is being processed at that moment:
+        retry after `Retry-After`.'
+      operationId: cancel_order_v1_orders__order_id__delete
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          examples:
+          - order_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^order_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Order Id
+          type: string
+          x-typeid-prefix: order
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '204':
+          description: Successful Response
+        '403':
+          content:
+            application/problem+json:
+              examples:
+                Orders Feature Disabled:
+                  value:
+                    code: ERROR_ORDERS_FEATURE_DISABLED
+                    detail: Orders are not enabled in this environment
+                    status: 403
+                    title: Orders Feature Disabled
+                    type: orders-feature-disabled
+                Permission Denied:
+                  value:
+                    code: ERROR_PERMISSION_DENIED
+                    detail: Insufficient permissions to perform this action
+                    status: 403
+                    title: Permission Denied
+                    type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ORDER_NOT_FOUND
+                detail: Order not found
+                order_id: order_01h45ytscbebyvny4gc8cr8ma2
+                status: 404
+                title: Order Not Found
+                type: order-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              examples:
+                Order Item Busy:
+                  value:
+                    code: ERROR_ORDER_ITEM_BUSY
+                    detail: The order item is being processed, please retry shortly
+                    status: 409
+                    title: Order Item Busy
+                    type: order-item-busy
+                Order Not Cancelable:
+                  value:
+                    code: ERROR_ORDER_NOT_CANCELABLE
+                    detail: Order order_01h45ytscbebyvny4gc8cr8ma2 cannot be canceled
+                      now
+                    order_id: order_01h45ytscbebyvny4gc8cr8ma2
+                    status: 409
+                    title: Order Not Cancelable
+                    type: order-not-cancelable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+          headers:
+            Retry-After:
+              description: Seconds to wait before retrying
+              schema:
+                type: integer
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Cancel an order
+      tags:
+      - orders
+      x-required-permissions:
+      - domains:manage
     get:
       operationId: get_order_v1_orders__order_id__get
       parameters:
@@ -52749,36 +52886,44 @@ tags:
     \nEach organization may hold one open pre-registration per domain; several organizations\
     \ may pre-register the same domain, and the first created is submitted first,\
     \ whether or not it was complete when created. An organization may hold up to\
-    \ 10000 open pre-registrations.\n\n### Idempotency\n\nRepeat a request with the\
-    \ same `idempotency_key` and the same body and you get `200 OK` with the original\
-    \ order, so retrying after a timeout is safe. The same key with a different body\
-    \ answers `409` (`ERROR_ORDER_IDEMPOTENCY_KEY_REUSED`). Domain names are compared\
-    \ in normalized form, so `Example.COM` and `example.com` count as the same body.\
-    \ The `idempotency_key` itself is compared case-insensitively, so `Checkout-1`\
-    \ and `checkout-1` are the same key.\n\n### Reading orders\n\n`GET /v1/orders/{order_id}`\
-    \ returns one order. `GET /v1/orders` lists your orders, filtered by `status`,\
-    \ `type`, `domain`, `search`, `created_after` and `created_before`. Both time\
-    \ bounds are inclusive: an order created at exactly `created_after` or `created_before`\
-    \ is returned, so consecutive windows share their boundary instant. `domain` matches\
-    \ one domain name exactly; `search` matches orders whose domain name contains\
-    \ the text (`%` and `_` count as themselves, it never matches an order ID, and\
-    \ with `domain` both must match). A Unicode name also matches its punycode form,\
-    \ but a partial Unicode label finds nothing, because orders store the ASCII form:\
-    \ search `b\xFCcher.de`, not `b\xFCch`.\n\nThe list is sorted by `sort_by` (`created_on`,\
-    \ the default, or `updated_on`) in the direction of `sort_order` (`desc`, the\
-    \ default, or `asc`); orders with the same time are ordered by their ID in the\
-    \ same direction, so paging is stable.\n\nAn order has `total_price` and `currency`\
-    \ (both `null` for an order that cannot be shown, see below); each item has `price`\
-    \ and `currency`. Prices are decimal strings with two decimals (`\"12.10\"`).\
-    \ Each item also has a `type` and an object named after that type with its own\
-    \ fields. For `marketplace_domain_purchase` that is `marketplace_domain_purchase`\
-    \ with `domain`, `marketplace` and `stage`. Every item also has `delivery_available`\
-    \ (see Delivery). Create requests send `expected_price` the same way.\n\nOne order\
-    \ that cannot be shown (its stored data is invalid) never fails the list. The\
-    \ list returns it as a stub: `order_id`, `status`, `created_on` and `updated_on`\
-    \ are set, `items` is an empty list, and `total_price` and `currency` are `null`.\
-    \ The entries on a page always match the pagination counts, so `total_items` and\
-    \ `has_next_page` can be trusted. If an order has an empty `items` or a `null`\
+    \ 10000 open pre-registrations.\n\n### Canceling a pre-registration\n\nCancel\
+    \ it with `DELETE /v1/orders/{order_id}` (`204 No Content`) while its item is\
+    \ `requested`, which includes an item that `needs_action`. Nothing is held for\
+    \ it yet, so it is canceled at once. The order stays readable with status `canceled`\
+    \ and reason `canceled_by_customer`, and your organization can pre-register the\
+    \ domain again (a new order, at the back of the queue). Repeating the call is\
+    \ a success.\n\nA marketplace order, or an item past `requested`, is refused with\
+    \ `409` `ERROR_ORDER_NOT_CANCELABLE`. `409` `ERROR_ORDER_ITEM_BUSY` with `Retry-After`\
+    \ means the item is being processed at that moment.\n\n### Idempotency\n\nRepeat\
+    \ a request with the same `idempotency_key` and the same body and you get `200\
+    \ OK` with the original order, so retrying after a timeout is safe. The same key\
+    \ with a different body answers `409` (`ERROR_ORDER_IDEMPOTENCY_KEY_REUSED`).\
+    \ Domain names are compared in normalized form, so `Example.COM` and `example.com`\
+    \ count as the same body. The `idempotency_key` itself is compared case-insensitively,\
+    \ so `Checkout-1` and `checkout-1` are the same key.\n\n### Reading orders\n\n\
+    `GET /v1/orders/{order_id}` returns one order. `GET /v1/orders` lists your orders,\
+    \ filtered by `status`, `type`, `domain`, `search`, `created_after` and `created_before`.\
+    \ Both time bounds are inclusive: an order created at exactly `created_after`\
+    \ or `created_before` is returned, so consecutive windows share their boundary\
+    \ instant. `domain` matches one domain name exactly; `search` matches orders whose\
+    \ domain name contains the text (`%` and `_` count as themselves, it never matches\
+    \ an order ID, and with `domain` both must match). A Unicode name also matches\
+    \ its punycode form, but a partial Unicode label finds nothing, because orders\
+    \ store the ASCII form: search `b\xFCcher.de`, not `b\xFCch`.\n\nThe list is sorted\
+    \ by `sort_by` (`created_on`, the default, or `updated_on`) in the direction of\
+    \ `sort_order` (`desc`, the default, or `asc`); orders with the same time are\
+    \ ordered by their ID in the same direction, so paging is stable.\n\nAn order\
+    \ has `total_price` and `currency` (both `null` for an order that cannot be shown,\
+    \ see below); each item has `price` and `currency`. Prices are decimal strings\
+    \ with two decimals (`\"12.10\"`). Each item also has a `type` and an object named\
+    \ after that type with its own fields. For `marketplace_domain_purchase` that\
+    \ is `marketplace_domain_purchase` with `domain`, `marketplace` and `stage`. Every\
+    \ item also has `delivery_available` (see Delivery). Create requests send `expected_price`\
+    \ the same way.\n\nOne order that cannot be shown (its stored data is invalid)\
+    \ never fails the list. The list returns it as a stub: `order_id`, `status`, `created_on`\
+    \ and `updated_on` are set, `items` is an empty list, and `total_price` and `currency`\
+    \ are `null`. The entries on a page always match the pagination counts, so `total_items`\
+    \ and `has_next_page` can be trusted. If an order has an empty `items` or a `null`\
     \ `total_price`, show it as \"can't be displayed, contact support with the order\
     \ ID\". Fetching that order directly answers `500` `ERROR_ORDER_UNREADABLE` with\
     \ a generic message; contact support with the order ID.\n\n### Statuses and stages\n\
@@ -52803,7 +52948,8 @@ tags:
     \ | On | Meaning |\n| --- | --- | --- |\n| `price_changed` | `canceled` | The\
     \ marketplace price changed, so the domain was not bought |\n| `unavailable` |\
     \ `canceled` | The domain is no longer available |\n| `canceled_by_marketplace`\
-    \ | `canceled` | The marketplace canceled the purchase |\n| `failed` | `canceled`,\
+    \ | `canceled` | The marketplace canceled the purchase |\n| `canceled_by_customer`\
+    \ | `canceled` | You canceled the pre-registration |\n| `failed` | `canceled`,\
     \ `failed` | Any other failure. Nothing was taken from your account; any amount\
     \ set aside for the order is released |\n| `delayed` | `in_progress` | The item\
     \ is taking longer than usual. No action is needed from you; if it stays `delayed`,\
@@ -52870,6 +53016,9 @@ tags:
     \ |\n| 409 | `ERROR_ORDER_ITEM_NOT_DELIVERABLE` | The domain cannot be delivered\
     \ to you (for example, its TLD cannot be handed over by auth code) |\n| 409 |\
     \ `ERROR_ORDER_OPEN_LIMIT_REACHED` | Too many open orders; wait for some to finish\
+    \ |\n| 409 | `ERROR_ORDER_NOT_CANCELABLE` | The order cannot be canceled: a marketplace\
+    \ order, or an item past `requested` |\n| 409 | `ERROR_ORDER_ITEM_BUSY` | The\
+    \ item is being processed at that moment; retry after the `Retry-After` seconds\
     \ |\n| 409 | `ERROR_ORDER_DELIVERY_NOT_AVAILABLE` | Nothing is delivered yet,\
     \ or the item is not at a stage where it can be read; read the order and check\
     \ the item's `delivery_available` |\n| 422 | `ERROR_ORDER_PHASE_NOT_AVAILABLE`\
