@@ -1553,7 +1553,7 @@ export type POST_Orders_Response_200 = Order;
 export type POST_Orders_Response_202 = Order;
 export type POST_Orders_Response_403 = Problem;
 export type POST_Orders_Response_409 = Problem;
-export type POST_Orders_Response_422 = HTTPValidationError;
+export type POST_Orders_Response_422 = Problem;
 export type POST_Orders_Response_500 = Problem;
 export type POST_Orders_Response_503 = Problem;
 

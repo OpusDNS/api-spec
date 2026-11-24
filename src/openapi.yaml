@@ -15373,6 +15373,193 @@ components:
       - unit
       title: DomainPeriod
       type: object
+    DomainPreRegistrationDetail:
+      description: The `domain_pre_registration` part of an item.
+      properties:
+        domain:
+          description: Domain name (ASCII form)
+          title: Domain
+          type: string
+        hold_on:
+          description: When the funds are held at the then current price; what `needs_action`
+            lists must be provided by then
+          format: date-time
+          title: Hold On
+          type: string
+        missing_confirmations:
+          description: The keys of the TLD's `legal_requirements` confirmations not
+            yet given (with `confirmation_required`), e.g. `HTTPS_SUPPORT_CONFIRMATION`
+          items:
+            type: string
+          title: Missing Confirmations
+          type: array
+        needs_action:
+          description: 'What the customer must still provide. Treat a value you do
+            not know as an open action: codes can be added.'
+          items:
+            $ref: '#/components/schemas/DomainPreRegistrationNeedsAction'
+          title: Needs Action
+          type: array
+        phase:
+          $ref: '#/components/schemas/DomainPreRegistrationPhase'
+          description: 'The launch phase the item is submitted in. Treat a value you
+            do not know as a phase: phases can be added.'
+        phase_starts_on:
+          description: When the phase opens
+          format: date-time
+          title: Phase Starts On
+          type: string
+        premium:
+          description: Whether the domain is premium; `price` is then the registry's
+            premium price
+          title: Premium
+          type: boolean
+        stage:
+          $ref: '#/components/schemas/DomainPreRegistrationPublicStage'
+          description: 'Where the pre-registration stands. Treat a value you do not
+            know as `requested`: stages can be added.'
+      required:
+      - domain
+      - phase
+      - phase_starts_on
+      - premium
+      - hold_on
+      - stage
+      - needs_action
+      - missing_confirmations
+      title: DomainPreRegistrationDetail
+      type: object
+    DomainPreRegistrationItemCreate:
+      description: 'Pre-register a domain in an upcoming TLD launch. Free until the
+        funds are held shortly before submission;
+
+        incomplete items (a missing SMD file, unticked confirmations) are accepted
+        and listed under `needs_action`.'
+      properties:
+        domain:
+          description: Domain name to pre-register (Unicode or ASCII form)
+          examples:
+          - example.web
+          title: Domain
+          type: string
+        expected_price:
+          anyOf:
+          - $ref: '#/components/schemas/StrictMoneyDecimal'
+            gt: 0
+          - type: 'null'
+          description: 'The price you expect to pay for the registration period, a
+            decimal string with two decimals, as on `POST /v1/domains`: the price
+            `GET /v1/domains/check` shows. Required for a premium name, optional otherwise;
+            a price that differs from the current one is refused with `ERROR_ORDER_PRICE_CHANGED`.
+            The item is only submitted at this price: if the registry changes it before
+            the funds are held, the item waits for you to confirm the new one.'
+        phase:
+          $ref: '#/components/schemas/DomainPreRegistrationPhase'
+          description: 'The launch phase to submit in: one of the TLD''s `launch_phases.phases[].type`
+            or `general_availability`. A phase may already be open (it is then submitted
+            once complete); general availability only until it begins.'
+          examples:
+          - sunrise
+        registration:
+          $ref: '#/components/schemas/DomainPreRegistrationRegistration'
+          description: The registration submitted in the phase
+        signed_mark:
+          anyOf:
+          - maxLength: 65536
+            type: string
+          - type: 'null'
+          description: The SMD file from the Trademark Clearinghouse (the whole file
+            or its base64 block). Required before a phase with `smd_required` is submitted.
+          title: Signed Mark
+        type:
+          const: domain_pre_registration
+          description: Item type
+          title: Type
+          type: string
+      required:
+      - type
+      - domain
+      - phase
+      - registration
+      title: DomainPreRegistrationItemCreate
+      type: object
+    DomainPreRegistrationNeedsAction:
+      enum:
+      - signed_mark_required
+      - confirmation_required
+      title: DomainPreRegistrationNeedsAction
+      type: string
+    DomainPreRegistrationPhase:
+      description: A spec's launch phase types, plus general availability, which a
+        spec keeps as its own block.
+      enum:
+      - sunrise
+      - landrush
+      - eap
+      - limited_registration
+      - general_availability
+      title: DomainPreRegistrationPhase
+      type: string
+    DomainPreRegistrationPublicStage:
+      enum:
+      - requested
+      - needs_action
+      - held
+      - submitting
+      - registered
+      - failed
+      - canceled
+      title: DomainPreRegistrationPublicStage
+      type: string
+    DomainPreRegistrationRegistration:
+      description: 'The `POST /v1/domains` fields a pre-registration submits. The
+        auth code is generated, the price is confirmed
+
+        through `expected_price`, and a claims notice is accepted later.'
+      properties:
+        attributes:
+          anyOf:
+          - additionalProperties:
+              type: string
+            propertyNames:
+              $ref: '#/components/schemas/DomainAttributeKey'
+            type: object
+          - type: 'null'
+          description: Additional attributes of the domain, as on `POST /v1/domains`.
+            Carries the confirmations the TLD's `legal_requirements` ask for, e.g.
+            `https_support_confirmation` = `true` for `.web`.
+          title: Attributes
+        contacts:
+          anyOf:
+          - $ref: '#/components/schemas/DomainContactHandles'
+          - $ref: '#/components/schemas/ContactIdList'
+          description: The contacts of the domain
+          title: Contacts
+        create_zone:
+          default: false
+          description: Create a zone for the domain on OpusDNS nameserver infrastructure
+          title: Create Zone
+          type: boolean
+        nameservers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Nameserver'
+            type: array
+          - type: 'null'
+          description: The name servers for the domain
+          title: Nameservers
+        period:
+          $ref: '#/components/schemas/DomainPeriod'
+          description: The registration period of the domain
+        renewal_mode:
+          $ref: '#/components/schemas/RenewalMode'
+          description: The renewal mode of the domain
+      required:
+      - contacts
+      - period
+      - renewal_mode
+      title: DomainPreRegistrationRegistration
+      type: object
     DomainRecommendationsContext:
       properties:
         context_id:
@@ -21791,7 +21978,9 @@ components:
         items:
           description: Items to order (one for now)
           items:
-            $ref: '#/components/schemas/MarketplaceDomainPurchaseItemCreate'
+            oneOf:
+            - $ref: '#/components/schemas/MarketplaceDomainPurchaseItemCreate'
+            - $ref: '#/components/schemas/DomainPreRegistrationItemCreate'
           maxItems: 1
           minItems: 1
           title: Items
@@ -21817,6 +22006,10 @@ components:
       - ERROR_ORDER_DELIVERY_NOT_AVAILABLE
       - ERROR_ORDER_DELIVERY_UNREADABLE
       - ERROR_ORDER_UNREADABLE
+      - ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED
+      - ERROR_ORDER_PHASE_NOT_AVAILABLE
+      - ERROR_ORDER_PREMIUM_PRICE_REQUIRED
+      - ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED
       title: OrderErrorCodes
       type: string
     OrderItemDeliveryResponse:
@@ -21849,6 +22042,11 @@ components:
             returns what the item delivers now
           title: Delivery Available
           type: boolean
+        domain_pre_registration:
+          anyOf:
+          - $ref: '#/components/schemas/DomainPreRegistrationDetail'
+          - type: 'null'
+          description: Set when `type` is `domain_pre_registration`
         item_id:
           examples:
           - order_item_01h45ytscbebyvny4gc8cr8ma2
@@ -21892,6 +22090,7 @@ components:
     OrderItemType:
       enum:
       - marketplace_domain_purchase
+      - domain_pre_registration
       title: OrderItemType
       type: string
     OrderResponse:
@@ -29636,7 +29835,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-23-152819
+  version: 2026-11-24-091932
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -46515,21 +46714,24 @@ paths:
       x-required-permissions:
       - domains:read
     post:
-      description: 'Orders a domain listed on a marketplace. The order is accepted
-        (202) once the price and availability are confirmed; it then progresses on
-        its own, follow it with `GET /v1/orders/{order_id}`.
+      description: 'Orders a domain listed on a marketplace (`marketplace_domain_purchase`),
+        or pre-registers a domain in an upcoming TLD launch (`domain_pre_registration`).
+        The order is accepted (202) once it is checked; it then progresses on its
+        own, follow it with `GET /v1/orders/{order_id}`.
 
 
         Repeating a request with the same `idempotency_key` and body returns the original
         order with 200. The same key with a different body is refused with 409.
 
 
-        Only organizations billed in EUR can order; others are refused with 403 `ERROR_ORDER_CURRENCY_NOT_SUPPORTED`.
+        Only organizations billed in EUR can order from a marketplace; others are
+        refused with 403 `ERROR_ORDER_CURRENCY_NOT_SUPPORTED`.
 
 
-        The order''s price is reserved on the organization''s account before the order
-        is created; billing''s refusal (403 insufficient funds, 429 daily create limit)
-        creates no order.'
+        A marketplace order''s price is reserved on the organization''s account before
+        the order is created; billing''s refusal (403 insufficient funds, 429 daily
+        create limit) creates no order. A pre-registration reserves nothing when created:
+        its funds are held shortly before its launch phase opens.'
       operationId: create_order_v1_orders_post
       parameters:
       - $ref: '#/components/parameters/DatetimeFormatHeader'
@@ -46585,6 +46787,13 @@ paths:
                     status: 403
                     title: Permission Denied
                     type: permission-denied
+                Pre-Registrations Feature Disabled:
+                  value:
+                    code: ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED
+                    detail: Domain pre-registrations are not enabled in this environment
+                    status: 403
+                    title: Pre-Registrations Feature Disabled
+                    type: pre-registrations-feature-disabled
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Forbidden
@@ -46624,6 +46833,15 @@ paths:
                     status: 409
                     title: Order Open Limit Reached
                     type: order-open-limit-reached
+                Order Premium Price Required:
+                  value:
+                    code: ERROR_ORDER_PREMIUM_PRICE_REQUIRED
+                    currency: USD
+                    detail: 'The domain is premium: confirm its price with expected_price'
+                    price: '500.00'
+                    status: 409
+                    title: Order Premium Price Required
+                    type: order-premium-price-required
                 Order Price Changed:
                   value:
                     actual_price: '12.50'
@@ -46647,9 +46865,28 @@ paths:
         '422':
           content:
             application/problem+json:
+              examples:
+                Order Phase Not Available:
+                  value:
+                    code: ERROR_ORDER_PHASE_NOT_AVAILABLE
+                    detail: 'example.web cannot be pre-registered for this phase:
+                      not offered by this TLD'
+                    domain: example.web
+                    status: 422
+                    title: Order Phase Not Available
+                    type: order-phase-not-available
+                Order Premium Period Not Supported:
+                  value:
+                    code: ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED
+                    detail: 'example.web is premium: pre-register it for one year
+                      and renew it after registration'
+                    domain: example.web
+                    status: 422
+                    title: Order Premium Period Not Supported
+                    type: order-premium-period-not-supported
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
         '500':
           content:
             application/problem+json:
@@ -52412,7 +52649,8 @@ tags:
 - description: "Endpoints for ordering things on your organization's behalf, starting\
     \ with domains listed on a marketplace.\n\n### What an order is\n\nAn order is\
     \ a request to buy something, tracked until it is delivered or fails. Today an\
-    \ order has exactly one item, a domain bought on a marketplace (`marketplace_domain_purchase`).\
+    \ order has exactly one item: a domain bought on a marketplace (`marketplace_domain_purchase`)\
+    \ or a domain pre-registered in an upcoming TLD launch (`domain_pre_registration`).\
     \ Creating an order answers quickly; the purchase continues in the background,\
     \ so read the order to follow it.\n\n### Creating an order\n\n`POST /v1/orders`\n\
     \n```json\n{\n  \"idempotency_key\": \"checkout-2024-0001\",\n  \"items\": [\n\
@@ -52443,8 +52681,60 @@ tags:
     : false,\n      \"marketplace_domain_purchase\": {\n        \"domain\": \"example.com\"\
     ,\n        \"marketplace\": \"fruits\",\n        \"stage\": \"purchasing\"\n \
     \     }\n    }\n  ],\n  \"created_on\": \"2024-01-01T12:00:00Z\",\n  \"updated_on\"\
-    : \"2024-01-01T12:00:00Z\"\n}\n```\n\n### Idempotency\n\nRepeat a request with\
-    \ the same `idempotency_key` and the same body and you get `200 OK` with the original\
+    : \"2024-01-01T12:00:00Z\"\n}\n```\n\n### Pre-registering a domain\n\nA `domain_pre_registration`\
+    \ item reserves a name in an upcoming TLD launch (for example `.web`) and submits\
+    \ its registration the moment its launch phase opens. It is only available where\
+    \ pre-registrations are enabled (`403` `ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED`\
+    \ otherwise).\n\n```json\n{\n  \"idempotency_key\": \"prereg-acme-web\",\n  \"\
+    items\": [\n    {\n      \"type\": \"domain_pre_registration\",\n      \"domain\"\
+    : \"acme.web\",\n      \"phase\": \"sunrise\",\n      \"registration\": {\n  \
+    \      \"contacts\": {\"registrant\": \"contact_01h455vb4pex5vsknk084sn02q\"},\n\
+    \        \"period\": {\"unit\": \"y\", \"value\": 1},\n        \"renewal_mode\"\
+    : \"renew\",\n        \"attributes\": {\n          \"https_support_confirmation\"\
+    : \"true\",\n          \"no_false_affiliation_confirmation\": \"true\",\n    \
+    \      \"registry_rights_acknowledgement\": \"true\"\n        }\n      },\n  \
+    \    \"signed_mark\": \"Marks: Acme\\n...-----BEGIN ENCODED SMD-----\\n...\\n-----END\
+    \ ENCODED SMD-----\",\n      \"expected_price\": null\n    }\n  ]\n}\n```\n\n\
+    - `type` is required for this item type.\n- `phase` is the launch phase to submit\
+    \ in: one of the TLD's `launch_phases.phases[].type` (`GET /v1/tlds/{tld}`) or\
+    \ `general_availability`. A phase that is already open may still be chosen (the\
+    \ item is submitted once complete); general availability only until it begins.\
+    \ A phase the TLD does not offer, one not open for pre-registration yet, or one\
+    \ that is too late is refused with `422` `ERROR_ORDER_PHASE_NOT_AVAILABLE`. An\
+    \ item that fails in its phase ends there; pre-register again for a later phase.\n\
+    - `registration` carries the `POST /v1/domains` fields: contacts, period, renewal\
+    \ mode, nameservers, zone and attributes. The confirmations the TLD's `legal_requirements`\
+    \ ask for go into `attributes`.\n- `signed_mark` is the SMD file from the Trademark\
+    \ Clearinghouse, needed for a phase with `smd_required` (Sunrise).\n- `expected_price`\
+    \ is the price for the registration period, as on `POST /v1/domains`: the price\
+    \ `GET /v1/domains/check` shows (the registry's premium price, or your list price).\
+    \ It is required for a premium name (`409` `ERROR_ORDER_PREMIUM_PRICE_REQUIRED`\
+    \ carries the price) and optional otherwise; a premium name is pre-registered\
+    \ for one year only (`422` `ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED`), renew\
+    \ it after registration for longer; a different price is refused with `409` `ERROR_ORDER_PRICE_CHANGED`.\
+    \ The price is locked when the item is created; if the registry changes it before\
+    \ the funds are held, the item waits for you to confirm the new price.\n\nThe\
+    \ item may be incomplete: a missing SMD file or unticked confirmations are listed\
+    \ in the item's `domain_pre_registration.needs_action` (`signed_mark_required`,\
+    \ `confirmation_required`; the missing confirmation keys in `missing_confirmations`)\
+    \ and must be provided by `hold_on`. Creating the item checks the domain with\
+    \ the registry: a name it reports taken or reserved is refused with `409` `ERROR_ORDER_ITEM_UNAVAILABLE`.\
+    \ Nothing is reserved when the item is created: `price` shows the locked `expected_price`,\
+    \ and the funds are held at `hold_on` (24 hours before the phase opens).\n\nA\
+    \ pre-registration item reads:\n\n```json\n{\n  \"type\": \"domain_pre_registration\"\
+    ,\n  \"status\": \"pending\",\n  \"price\": \"20.00\",\n  \"currency\": \"USD\"\
+    ,\n  \"delivery_available\": false,\n  \"domain_pre_registration\": {\n    \"\
+    domain\": \"acme.web\",\n    \"phase\": \"sunrise\",\n    \"phase_starts_on\"\
+    : \"2026-12-10T00:00:00Z\",\n    \"premium\": false,\n    \"hold_on\": \"2026-12-09T00:00:00Z\"\
+    ,\n    \"stage\": \"needs_action\",\n    \"needs_action\": [\"signed_mark_required\"\
+    ],\n    \"missing_confirmations\": []\n  }\n}\n```\n\n`stage` is `requested` (the\
+    \ request is recorded, not yet executed) or `needs_action` until the funds are\
+    \ held, then `held`, `submitting` and finally `registered`, `failed` or `canceled`.\n\
+    \nEach organization may hold one open pre-registration per domain; several organizations\
+    \ may pre-register the same domain, and the first created is submitted first,\
+    \ whether or not it was complete when created. An organization may hold up to\
+    \ 10000 open pre-registrations.\n\n### Idempotency\n\nRepeat a request with the\
+    \ same `idempotency_key` and the same body and you get `200 OK` with the original\
     \ order, so retrying after a timeout is safe. The same key with a different body\
     \ answers `409` (`ERROR_ORDER_IDEMPOTENCY_KEY_REUSED`). Domain names are compared\
     \ in normalized form, so `Example.COM` and `example.com` count as the same body.\
@@ -52549,20 +52839,27 @@ tags:
     \ | Code | Meaning |\n| --- | --- | --- |\n| 403 | `ERROR_ORDERS_FEATURE_DISABLED`\
     \ | Orders are not enabled in this environment |\n| 403 | `ERROR_ORDER_CURRENCY_NOT_SUPPORTED`\
     \ | Marketplace orders are available to organizations billed in EUR |\n| 403 |\
-    \ `ERROR_BILLING_INSUFFICIENT_FUNDS` | Your organization's account cannot cover\
-    \ the order |\n| 404 | `ERROR_ORDER_NOT_FOUND` | No such order for your organization\
-    \ |\n| 404 | `ERROR_ORDER_ITEM_NOT_FOUND` | The order has no such item |\n| 409\
-    \ | `ERROR_ORDER_IDEMPOTENCY_KEY_REUSED` | The key was already used with a different\
-    \ body |\n| 409 | `ERROR_ORDER_SUBJECT_IN_PROGRESS` | Another order for this domain\
-    \ is already in progress |\n| 409 | `ERROR_ORDER_PRICE_CHANGED` | The price changed;\
-    \ the response carries `expected_price`, `actual_price` and their `currency` |\n\
-    | 409 | `ERROR_ORDER_ITEM_UNAVAILABLE` | The domain is not available for purchase\
+    \ `ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED` | Domain pre-registrations are not\
+    \ enabled in this environment |\n| 403 | `ERROR_BILLING_INSUFFICIENT_FUNDS` |\
+    \ Your organization's account cannot cover the order |\n| 404 | `ERROR_ORDER_NOT_FOUND`\
+    \ | No such order for your organization |\n| 404 | `ERROR_ORDER_ITEM_NOT_FOUND`\
+    \ | The order has no such item |\n| 409 | `ERROR_ORDER_IDEMPOTENCY_KEY_REUSED`\
+    \ | The key was already used with a different body |\n| 409 | `ERROR_ORDER_SUBJECT_IN_PROGRESS`\
+    \ | Another order for this domain is already in progress (for a pre-registration:\
+    \ your organization already has one for it) |\n| 409 | `ERROR_ORDER_PRICE_CHANGED`\
+    \ | The price changed; the response carries `expected_price`, `actual_price` and\
+    \ their `currency` |\n| 409 | `ERROR_ORDER_PREMIUM_PRICE_REQUIRED` | The domain\
+    \ is premium; send `expected_price` set to the `price` in the response |\n| 409\
+    \ | `ERROR_ORDER_ITEM_UNAVAILABLE` | The domain is not available for purchase\
     \ |\n| 409 | `ERROR_ORDER_ITEM_NOT_DELIVERABLE` | The domain cannot be delivered\
     \ to you (for example, its TLD cannot be handed over by auth code) |\n| 409 |\
     \ `ERROR_ORDER_OPEN_LIMIT_REACHED` | Too many open orders; wait for some to finish\
     \ |\n| 409 | `ERROR_ORDER_DELIVERY_NOT_AVAILABLE` | Nothing is delivered yet,\
     \ or the item is not at a stage where it can be read; read the order and check\
-    \ the item's `delivery_available` |\n| 500 | `ERROR_ORDER_DELIVERY_UNREADABLE`\
+    \ the item's `delivery_available` |\n| 422 | `ERROR_ORDER_PHASE_NOT_AVAILABLE`\
+    \ | The requested launch phase cannot be pre-registered; `detail` says why |\n\
+    | 422 | `ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED` | The domain is premium: pre-register\
+    \ it for one year and renew it after registration |\n| 500 | `ERROR_ORDER_DELIVERY_UNREADABLE`\
     \ | The stored delivery could not be read; contact support |\n| 500 | `ERROR_ORDER_UNREADABLE`\
     \ | The order's stored data cannot be shown; contact support |\n| 503 | `ERROR_AUTHORIZATION_UNAVAILABLE`\
     \ | The permission check could not be completed; retry later |\n| 503 | `ERROR_ORDER_SERVICE_UNAVAILABLE`\

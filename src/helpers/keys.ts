@@ -215,6 +215,9 @@ import type {
   DomainModificationPart,
   DomainNameParts,
   DomainPeriod,
+  DomainPreRegistrationDetail,
+  DomainPreRegistrationItemCreate,
+  DomainPreRegistrationRegistration,
   DomainRecommendationsContext,
   DomainRecommendationsContextCreate,
   DomainRegistrantChange,
@@ -3327,6 +3330,58 @@ export const KEYS_DOMAIN_PERIOD = [
   KEY_DOMAIN_PERIOD_VALUE,
 ] as const satisfies (keyof DomainPeriod)[];
 
+export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_DOMAIN = 'domain' satisfies keyof DomainPreRegistrationDetail;
+export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_HOLD_ON = 'hold_on' satisfies keyof DomainPreRegistrationDetail;
+export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_MISSING_CONFIRMATIONS = 'missing_confirmations' satisfies keyof DomainPreRegistrationDetail;
+export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_NEEDS_ACTION = 'needs_action' satisfies keyof DomainPreRegistrationDetail;
+export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PHASE = 'phase' satisfies keyof DomainPreRegistrationDetail;
+export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PHASE_STARTS_ON = 'phase_starts_on' satisfies keyof DomainPreRegistrationDetail;
+export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PREMIUM = 'premium' satisfies keyof DomainPreRegistrationDetail;
+export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_STAGE = 'stage' satisfies keyof DomainPreRegistrationDetail;
+
+export const KEYS_DOMAIN_PRE_REGISTRATION_DETAIL = [
+  KEY_DOMAIN_PRE_REGISTRATION_DETAIL_DOMAIN,
+  KEY_DOMAIN_PRE_REGISTRATION_DETAIL_HOLD_ON,
+  KEY_DOMAIN_PRE_REGISTRATION_DETAIL_MISSING_CONFIRMATIONS,
+  KEY_DOMAIN_PRE_REGISTRATION_DETAIL_NEEDS_ACTION,
+  KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PHASE,
+  KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PHASE_STARTS_ON,
+  KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PREMIUM,
+  KEY_DOMAIN_PRE_REGISTRATION_DETAIL_STAGE,
+] as const satisfies (keyof DomainPreRegistrationDetail)[];
+
+export const KEY_DOMAIN_PRE_REGISTRATION_ITEM_CREATE_DOMAIN = 'domain' satisfies keyof DomainPreRegistrationItemCreate;
+export const KEY_DOMAIN_PRE_REGISTRATION_ITEM_CREATE_EXPECTED_PRICE = 'expected_price' satisfies keyof DomainPreRegistrationItemCreate;
+export const KEY_DOMAIN_PRE_REGISTRATION_ITEM_CREATE_PHASE = 'phase' satisfies keyof DomainPreRegistrationItemCreate;
+export const KEY_DOMAIN_PRE_REGISTRATION_ITEM_CREATE_REGISTRATION = 'registration' satisfies keyof DomainPreRegistrationItemCreate;
+export const KEY_DOMAIN_PRE_REGISTRATION_ITEM_CREATE_SIGNED_MARK = 'signed_mark' satisfies keyof DomainPreRegistrationItemCreate;
+export const KEY_DOMAIN_PRE_REGISTRATION_ITEM_CREATE_TYPE = 'type' satisfies keyof DomainPreRegistrationItemCreate;
+
+export const KEYS_DOMAIN_PRE_REGISTRATION_ITEM_CREATE = [
+  KEY_DOMAIN_PRE_REGISTRATION_ITEM_CREATE_DOMAIN,
+  KEY_DOMAIN_PRE_REGISTRATION_ITEM_CREATE_EXPECTED_PRICE,
+  KEY_DOMAIN_PRE_REGISTRATION_ITEM_CREATE_PHASE,
+  KEY_DOMAIN_PRE_REGISTRATION_ITEM_CREATE_REGISTRATION,
+  KEY_DOMAIN_PRE_REGISTRATION_ITEM_CREATE_SIGNED_MARK,
+  KEY_DOMAIN_PRE_REGISTRATION_ITEM_CREATE_TYPE,
+] as const satisfies (keyof DomainPreRegistrationItemCreate)[];
+
+export const KEY_DOMAIN_PRE_REGISTRATION_REGISTRATION_ATTRIBUTES = 'attributes' satisfies keyof DomainPreRegistrationRegistration;
+export const KEY_DOMAIN_PRE_REGISTRATION_REGISTRATION_CONTACTS = 'contacts' satisfies keyof DomainPreRegistrationRegistration;
+export const KEY_DOMAIN_PRE_REGISTRATION_REGISTRATION_CREATE_ZONE = 'create_zone' satisfies keyof DomainPreRegistrationRegistration;
+export const KEY_DOMAIN_PRE_REGISTRATION_REGISTRATION_NAMESERVERS = 'nameservers' satisfies keyof DomainPreRegistrationRegistration;
+export const KEY_DOMAIN_PRE_REGISTRATION_REGISTRATION_PERIOD = 'period' satisfies keyof DomainPreRegistrationRegistration;
+export const KEY_DOMAIN_PRE_REGISTRATION_REGISTRATION_RENEWAL_MODE = 'renewal_mode' satisfies keyof DomainPreRegistrationRegistration;
+
+export const KEYS_DOMAIN_PRE_REGISTRATION_REGISTRATION = [
+  KEY_DOMAIN_PRE_REGISTRATION_REGISTRATION_ATTRIBUTES,
+  KEY_DOMAIN_PRE_REGISTRATION_REGISTRATION_CONTACTS,
+  KEY_DOMAIN_PRE_REGISTRATION_REGISTRATION_CREATE_ZONE,
+  KEY_DOMAIN_PRE_REGISTRATION_REGISTRATION_NAMESERVERS,
+  KEY_DOMAIN_PRE_REGISTRATION_REGISTRATION_PERIOD,
+  KEY_DOMAIN_PRE_REGISTRATION_REGISTRATION_RENEWAL_MODE,
+] as const satisfies (keyof DomainPreRegistrationRegistration)[];
+
 export const KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_CONTEXT_ID = 'context_id' satisfies keyof DomainRecommendationsContext;
 export const KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_CONVERSATION_ID = 'conversation_id' satisfies keyof DomainRecommendationsContext;
 export const KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_CREATED_AT = 'created_at' satisfies keyof DomainRecommendationsContext;
@@ -5497,6 +5552,7 @@ export const KEYS_ORDER_ITEM_DELIVERY = [
 
 export const KEY_ORDER_ITEM_CURRENCY = 'currency' satisfies keyof OrderItem;
 export const KEY_ORDER_ITEM_DELIVERY_AVAILABLE = 'delivery_available' satisfies keyof OrderItem;
+export const KEY_ORDER_ITEM_DOMAIN_PRE_REGISTRATION = 'domain_pre_registration' satisfies keyof OrderItem;
 export const KEY_ORDER_ITEM_ITEM_ID = 'item_id' satisfies keyof OrderItem;
 export const KEY_ORDER_ITEM_MARKETPLACE_DOMAIN_PURCHASE = 'marketplace_domain_purchase' satisfies keyof OrderItem;
 export const KEY_ORDER_ITEM_PRICE = 'price' satisfies keyof OrderItem;
@@ -5507,6 +5563,7 @@ export const KEY_ORDER_ITEM_TYPE = 'type' satisfies keyof OrderItem;
 export const KEYS_ORDER_ITEM = [
   KEY_ORDER_ITEM_CURRENCY,
   KEY_ORDER_ITEM_DELIVERY_AVAILABLE,
+  KEY_ORDER_ITEM_DOMAIN_PRE_REGISTRATION,
   KEY_ORDER_ITEM_ITEM_ID,
   KEY_ORDER_ITEM_MARKETPLACE_DOMAIN_PURCHASE,
   KEY_ORDER_ITEM_PRICE,

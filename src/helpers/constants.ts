@@ -54,6 +54,9 @@ import type {
   DomainIncludeField,
   DomainListIncludeField,
   DomainModificationPartStatus,
+  DomainPreRegistrationNeedsAction,
+  DomainPreRegistrationPhase,
+  DomainPreRegistrationPublicStage,
   DomainSortField,
   DomainStatisticsBreakdown,
   DomainStatus,
@@ -1107,6 +1110,52 @@ export const DOMAIN_MODIFICATION_PART_STATUS_VALUES = [
   'unconfirmed',
 ] as const satisfies ReadonlyArray<DomainModificationPartStatus>;
 
+export const DOMAIN_PRE_REGISTRATION_NEEDS_ACTION = {
+  SIGNED_MARK_REQUIRED: "signed_mark_required",
+  CONFIRMATION_REQUIRED: "confirmation_required",
+} as const satisfies Record<string, DomainPreRegistrationNeedsAction>;
+
+export const DOMAIN_PRE_REGISTRATION_NEEDS_ACTION_VALUES = [
+  'signed_mark_required',
+  'confirmation_required',
+] as const satisfies ReadonlyArray<DomainPreRegistrationNeedsAction>;
+
+export const DOMAIN_PRE_REGISTRATION_PHASE = {
+  SUNRISE: "sunrise",
+  LANDRUSH: "landrush",
+  EAP: "eap",
+  LIMITED_REGISTRATION: "limited_registration",
+  GENERAL_AVAILABILITY: "general_availability",
+} as const satisfies Record<string, DomainPreRegistrationPhase>;
+
+export const DOMAIN_PRE_REGISTRATION_PHASE_VALUES = [
+  'sunrise',
+  'landrush',
+  'eap',
+  'limited_registration',
+  'general_availability',
+] as const satisfies ReadonlyArray<DomainPreRegistrationPhase>;
+
+export const DOMAIN_PRE_REGISTRATION_PUBLIC_STAGE = {
+  REQUESTED: "requested",
+  NEEDS_ACTION: "needs_action",
+  HELD: "held",
+  SUBMITTING: "submitting",
+  REGISTERED: "registered",
+  FAILED: "failed",
+  CANCELED: "canceled",
+} as const satisfies Record<string, DomainPreRegistrationPublicStage>;
+
+export const DOMAIN_PRE_REGISTRATION_PUBLIC_STAGE_VALUES = [
+  'requested',
+  'needs_action',
+  'held',
+  'submitting',
+  'registered',
+  'failed',
+  'canceled',
+] as const satisfies ReadonlyArray<DomainPreRegistrationPublicStage>;
+
 export const DOMAIN_SORT_FIELD = {
   NAME: "name",
   CREATED_ON: "created_on",
@@ -1950,6 +1999,10 @@ export const ORDER_ERROR_CODES = {
   ERROR_ORDER_DELIVERY_NOT_AVAILABLE: "ERROR_ORDER_DELIVERY_NOT_AVAILABLE",
   ERROR_ORDER_DELIVERY_UNREADABLE: "ERROR_ORDER_DELIVERY_UNREADABLE",
   ERROR_ORDER_UNREADABLE: "ERROR_ORDER_UNREADABLE",
+  ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED: "ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED",
+  ERROR_ORDER_PHASE_NOT_AVAILABLE: "ERROR_ORDER_PHASE_NOT_AVAILABLE",
+  ERROR_ORDER_PREMIUM_PRICE_REQUIRED: "ERROR_ORDER_PREMIUM_PRICE_REQUIRED",
+  ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED: "ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED",
 } as const satisfies Record<string, OrderErrorCodes>;
 
 export const ORDER_ERROR_CODES_VALUES = [
@@ -1967,14 +2020,20 @@ export const ORDER_ERROR_CODES_VALUES = [
   'ERROR_ORDER_DELIVERY_NOT_AVAILABLE',
   'ERROR_ORDER_DELIVERY_UNREADABLE',
   'ERROR_ORDER_UNREADABLE',
+  'ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED',
+  'ERROR_ORDER_PHASE_NOT_AVAILABLE',
+  'ERROR_ORDER_PREMIUM_PRICE_REQUIRED',
+  'ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED',
 ] as const satisfies ReadonlyArray<OrderErrorCodes>;
 
 export const ORDER_ITEM_TYPE = {
   MARKETPLACE_DOMAIN_PURCHASE: "marketplace_domain_purchase",
+  DOMAIN_PRE_REGISTRATION: "domain_pre_registration",
 } as const satisfies Record<string, OrderItemType>;
 
 export const ORDER_ITEM_TYPE_VALUES = [
   'marketplace_domain_purchase',
+  'domain_pre_registration',
 ] as const satisfies ReadonlyArray<OrderItemType>;
 
 export const ORDER_SORT_FIELD = {

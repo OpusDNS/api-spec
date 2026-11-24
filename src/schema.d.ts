@@ -2402,13 +2402,13 @@ export interface paths {
         put?: never;
         /**
          * Create an order
-         * @description Orders a domain listed on a marketplace. The order is accepted (202) once the price and availability are confirmed; it then progresses on its own, follow it with `GET /v1/orders/{order_id}`.
+         * @description Orders a domain listed on a marketplace (`marketplace_domain_purchase`), or pre-registers a domain in an upcoming TLD launch (`domain_pre_registration`). The order is accepted (202) once it is checked; it then progresses on its own, follow it with `GET /v1/orders/{order_id}`.
          *
          *     Repeating a request with the same `idempotency_key` and body returns the original order with 200. The same key with a different body is refused with 409.
          *
-         *     Only organizations billed in EUR can order; others are refused with 403 `ERROR_ORDER_CURRENCY_NOT_SUPPORTED`.
+         *     Only organizations billed in EUR can order from a marketplace; others are refused with 403 `ERROR_ORDER_CURRENCY_NOT_SUPPORTED`.
          *
-         *     The order's price is reserved on the organization's account before the order is created; billing's refusal (403 insufficient funds, 429 daily create limit) creates no order.
+         *     A marketplace order's price is reserved on the organization's account before the order is created; billing's refusal (403 insufficient funds, 429 daily create limit) creates no order. A pre-registration reserves nothing when created: its funds are held shortly before its launch phase opens.
          */
         post: operations["create_order_v1_orders_post"];
         delete?: never;
@@ -14524,6 +14524,131 @@ export interface components {
              */
             value: number;
         };
+        /**
+         * DomainPreRegistrationDetail
+         * @description The `domain_pre_registration` part of an item.
+         */
+        DomainPreRegistrationDetail: {
+            /**
+             * Domain
+             * @description Domain name (ASCII form)
+             */
+            domain: string;
+            /**
+             * Hold On
+             * Format: date-time
+             * @description When the funds are held at the then current price; what `needs_action` lists must be provided by then
+             */
+            hold_on: Date;
+            /**
+             * Missing Confirmations
+             * @description The keys of the TLD's `legal_requirements` confirmations not yet given (with `confirmation_required`), e.g. `HTTPS_SUPPORT_CONFIRMATION`
+             */
+            missing_confirmations: string[];
+            /**
+             * Needs Action
+             * @description What the customer must still provide. Treat a value you do not know as an open action: codes can be added.
+             */
+            needs_action: components["schemas"]["DomainPreRegistrationNeedsAction"][];
+            /** @description The launch phase the item is submitted in. Treat a value you do not know as a phase: phases can be added. */
+            phase: components["schemas"]["DomainPreRegistrationPhase"];
+            /**
+             * Phase Starts On
+             * Format: date-time
+             * @description When the phase opens
+             */
+            phase_starts_on: Date;
+            /**
+             * Premium
+             * @description Whether the domain is premium; `price` is then the registry's premium price
+             */
+            premium: boolean;
+            /** @description Where the pre-registration stands. Treat a value you do not know as `requested`: stages can be added. */
+            stage: components["schemas"]["DomainPreRegistrationPublicStage"];
+        };
+        /**
+         * DomainPreRegistrationItemCreate
+         * @description Pre-register a domain in an upcoming TLD launch. Free until the funds are held shortly before submission;
+         *     incomplete items (a missing SMD file, unticked confirmations) are accepted and listed under `needs_action`.
+         */
+        DomainPreRegistrationItemCreate: {
+            /**
+             * Domain
+             * @description Domain name to pre-register (Unicode or ASCII form)
+             * @example example.web
+             */
+            domain: string;
+            /** @description The price you expect to pay for the registration period, a decimal string with two decimals, as on `POST /v1/domains`: the price `GET /v1/domains/check` shows. Required for a premium name, optional otherwise; a price that differs from the current one is refused with `ERROR_ORDER_PRICE_CHANGED`. The item is only submitted at this price: if the registry changes it before the funds are held, the item waits for you to confirm the new one. */
+            expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
+            /**
+             * @description The launch phase to submit in: one of the TLD's `launch_phases.phases[].type` or `general_availability`. A phase may already be open (it is then submitted once complete); general availability only until it begins.
+             * @example sunrise
+             */
+            phase: components["schemas"]["DomainPreRegistrationPhase"];
+            /** @description The registration submitted in the phase */
+            registration: components["schemas"]["DomainPreRegistrationRegistration"];
+            /**
+             * Signed Mark
+             * @description The SMD file from the Trademark Clearinghouse (the whole file or its base64 block). Required before a phase with `smd_required` is submitted.
+             */
+            signed_mark?: string | null;
+            /**
+             * Type
+             * @description Item type
+             * @constant
+             */
+            type: "domain_pre_registration";
+        };
+        /**
+         * DomainPreRegistrationNeedsAction
+         * @enum {string}
+         */
+        DomainPreRegistrationNeedsAction: "signed_mark_required" | "confirmation_required";
+        /**
+         * DomainPreRegistrationPhase
+         * @description A spec's launch phase types, plus general availability, which a spec keeps as its own block.
+         * @enum {string}
+         */
+        DomainPreRegistrationPhase: "sunrise" | "landrush" | "eap" | "limited_registration" | "general_availability";
+        /**
+         * DomainPreRegistrationPublicStage
+         * @enum {string}
+         */
+        DomainPreRegistrationPublicStage: "requested" | "needs_action" | "held" | "submitting" | "registered" | "failed" | "canceled";
+        /**
+         * DomainPreRegistrationRegistration
+         * @description The `POST /v1/domains` fields a pre-registration submits. The auth code is generated, the price is confirmed
+         *     through `expected_price`, and a claims notice is accepted later.
+         */
+        DomainPreRegistrationRegistration: {
+            /**
+             * Attributes
+             * @description Additional attributes of the domain, as on `POST /v1/domains`. Carries the confirmations the TLD's `legal_requirements` ask for, e.g. `https_support_confirmation` = `true` for `.web`.
+             */
+            attributes?: {
+                [key: string]: string;
+            } | null;
+            /**
+             * Contacts
+             * @description The contacts of the domain
+             */
+            contacts: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"];
+            /**
+             * Create Zone
+             * @description Create a zone for the domain on OpusDNS nameserver infrastructure
+             * @default false
+             */
+            create_zone: boolean;
+            /**
+             * Nameservers
+             * @description The name servers for the domain
+             */
+            nameservers?: components["schemas"]["Nameserver"][] | null;
+            /** @description The registration period of the domain */
+            period: components["schemas"]["DomainPeriod"];
+            /** @description The renewal mode of the domain */
+            renewal_mode: components["schemas"]["RenewalMode"];
+        };
         /** DomainRecommendationsContext */
         DomainRecommendationsContext: {
             /**
@@ -18976,13 +19101,13 @@ export interface components {
              * Items
              * @description Items to order (one for now)
              */
-            items: components["schemas"]["MarketplaceDomainPurchaseItemCreate"][];
+            items: (components["schemas"]["MarketplaceDomainPurchaseItemCreate"] | components["schemas"]["DomainPreRegistrationItemCreate"])[];
         };
         /**
          * OrderErrorCodes
          * @enum {string}
          */
-        OrderErrorCodes: "ERROR_ORDERS_FEATURE_DISABLED" | "ERROR_ORDER_CURRENCY_NOT_SUPPORTED" | "ERROR_ORDER_NOT_FOUND" | "ERROR_ORDER_IDEMPOTENCY_KEY_REUSED" | "ERROR_ORDER_SUBJECT_IN_PROGRESS" | "ERROR_ORDER_PRICE_CHANGED" | "ERROR_ORDER_ITEM_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_DELIVERABLE" | "ERROR_ORDER_OPEN_LIMIT_REACHED" | "ERROR_ORDER_SERVICE_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_FOUND" | "ERROR_ORDER_DELIVERY_NOT_AVAILABLE" | "ERROR_ORDER_DELIVERY_UNREADABLE" | "ERROR_ORDER_UNREADABLE";
+        OrderErrorCodes: "ERROR_ORDERS_FEATURE_DISABLED" | "ERROR_ORDER_CURRENCY_NOT_SUPPORTED" | "ERROR_ORDER_NOT_FOUND" | "ERROR_ORDER_IDEMPOTENCY_KEY_REUSED" | "ERROR_ORDER_SUBJECT_IN_PROGRESS" | "ERROR_ORDER_PRICE_CHANGED" | "ERROR_ORDER_ITEM_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_DELIVERABLE" | "ERROR_ORDER_OPEN_LIMIT_REACHED" | "ERROR_ORDER_SERVICE_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_FOUND" | "ERROR_ORDER_DELIVERY_NOT_AVAILABLE" | "ERROR_ORDER_DELIVERY_UNREADABLE" | "ERROR_ORDER_UNREADABLE" | "ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED" | "ERROR_ORDER_PHASE_NOT_AVAILABLE" | "ERROR_ORDER_PREMIUM_PRICE_REQUIRED" | "ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED";
         /**
          * OrderItemDeliveryResponse
          * @description What an order item delivers: `type` plus one object named after it. Only ever the body of the delivery
@@ -19006,6 +19131,8 @@ export interface components {
              * @description Whether `GET /v1/orders/{order_id}/items/{item_id}/delivery` returns what the item delivers now
              */
             delivery_available: boolean;
+            /** @description Set when `type` is `domain_pre_registration` */
+            domain_pre_registration?: components["schemas"]["DomainPreRegistrationDetail"] | null;
             /**
              * Item Id
              * Format: typeid
@@ -19027,7 +19154,7 @@ export interface components {
          * OrderItemType
          * @enum {string}
          */
-        OrderItemType: "marketplace_domain_purchase";
+        OrderItemType: "marketplace_domain_purchase" | "domain_pre_registration";
         /** OrderResponse */
         OrderResponse: {
             /**
@@ -36463,13 +36590,13 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Internal Server Error */
