@@ -22010,6 +22010,7 @@ components:
       - ERROR_ORDER_PHASE_NOT_AVAILABLE
       - ERROR_ORDER_PREMIUM_PRICE_REQUIRED
       - ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED
+      - ERROR_ORDER_CONFIRMATIONS_REQUIRED
       title: OrderErrorCodes
       type: string
     OrderItemDeliveryResponse:
@@ -29835,7 +29836,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-24-091932
+  version: 2026-11-24-115726
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -46866,6 +46867,18 @@ paths:
           content:
             application/problem+json:
               examples:
+                Order Confirmations Required:
+                  value:
+                    code: ERROR_ORDER_CONFIRMATIONS_REQUIRED
+                    detail: The 'HTTPS_SUPPORT_CONFIRMATION' attestation is required
+                      to register .web domains. Set attributes['https_support_confirmation']
+                      to 'true' to confirm.
+                    domain: example.web
+                    missing_confirmations:
+                    - HTTPS_SUPPORT_CONFIRMATION
+                    status: 422
+                    title: Order Confirmations Required
+                    type: order-confirmations-required
                 Order Phase Not Available:
                   value:
                     code: ERROR_ORDER_PHASE_NOT_AVAILABLE
@@ -52704,21 +52717,24 @@ tags:
     \ item that fails in its phase ends there; pre-register again for a later phase.\n\
     - `registration` carries the `POST /v1/domains` fields: contacts, period, renewal\
     \ mode, nameservers, zone and attributes. The confirmations the TLD's `legal_requirements`\
-    \ ask for go into `attributes`.\n- `signed_mark` is the SMD file from the Trademark\
-    \ Clearinghouse, needed for a phase with `smd_required` (Sunrise).\n- `expected_price`\
-    \ is the price for the registration period, as on `POST /v1/domains`: the price\
-    \ `GET /v1/domains/check` shows (the registry's premium price, or your list price).\
-    \ It is required for a premium name (`409` `ERROR_ORDER_PREMIUM_PRICE_REQUIRED`\
-    \ carries the price) and optional otherwise; a premium name is pre-registered\
-    \ for one year only (`422` `ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED`), renew\
-    \ it after registration for longer; a different price is refused with `409` `ERROR_ORDER_PRICE_CHANGED`.\
-    \ The price is locked when the item is created; if the registry changes it before\
-    \ the funds are held, the item waits for you to confirm the new price.\n\nThe\
-    \ item may be incomplete: a missing SMD file or unticked confirmations are listed\
-    \ in the item's `domain_pre_registration.needs_action` (`signed_mark_required`,\
-    \ `confirmation_required`; the missing confirmation keys in `missing_confirmations`)\
-    \ and must be provided by `hold_on`. Creating the item checks the domain with\
-    \ the registry: a name it reports taken or reserved is refused with `409` `ERROR_ORDER_ITEM_UNAVAILABLE`.\
+    \ ask for go into `attributes` and are required when the item is created, as on\
+    \ `POST /v1/domains`: a missing one is refused with `422` `ERROR_ORDER_CONFIRMATIONS_REQUIRED`,\
+    \ which lists the keys in `missing_confirmations`.\n- `signed_mark` is the SMD\
+    \ file from the Trademark Clearinghouse, needed for a phase with `smd_required`\
+    \ (Sunrise).\n- `expected_price` is the price for the registration period, as\
+    \ on `POST /v1/domains`: the price `GET /v1/domains/check` shows (the registry's\
+    \ premium price, or your list price). It is required for a premium name (`409`\
+    \ `ERROR_ORDER_PREMIUM_PRICE_REQUIRED` carries the price) and optional otherwise;\
+    \ a premium name is pre-registered for one year only (`422` `ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED`),\
+    \ renew it after registration for longer; a different price is refused with `409`\
+    \ `ERROR_ORDER_PRICE_CHANGED`. The price is locked when the item is created; if\
+    \ the registry changes it before the funds are held, the item waits for you to\
+    \ confirm the new price.\n\nThe item may be incomplete: a missing SMD file is\
+    \ listed in the item's `domain_pre_registration.needs_action` (`signed_mark_required`)\
+    \ and must be provided by `hold_on`. `confirmation_required` (with the keys in\
+    \ `missing_confirmations`) only appears if the TLD adds a confirmation after the\
+    \ item was created. Creating the item checks the domain with the registry: a name\
+    \ it reports taken or reserved is refused with `409` `ERROR_ORDER_ITEM_UNAVAILABLE`.\
     \ Nothing is reserved when the item is created: `price` shows the locked `expected_price`,\
     \ and the funds are held at `hold_on` (24 hours before the phase opens).\n\nA\
     \ pre-registration item reads:\n\n```json\n{\n  \"type\": \"domain_pre_registration\"\
@@ -52859,7 +52875,9 @@ tags:
     \ the item's `delivery_available` |\n| 422 | `ERROR_ORDER_PHASE_NOT_AVAILABLE`\
     \ | The requested launch phase cannot be pre-registered; `detail` says why |\n\
     | 422 | `ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED` | The domain is premium: pre-register\
-    \ it for one year and renew it after registration |\n| 500 | `ERROR_ORDER_DELIVERY_UNREADABLE`\
+    \ it for one year and renew it after registration |\n| 422 | `ERROR_ORDER_CONFIRMATIONS_REQUIRED`\
+    \ | A confirmation the TLD requires is missing; `missing_confirmations` lists\
+    \ the keys to set to `\"true\"` in `registration.attributes` |\n| 500 | `ERROR_ORDER_DELIVERY_UNREADABLE`\
     \ | The stored delivery could not be read; contact support |\n| 500 | `ERROR_ORDER_UNREADABLE`\
     \ | The order's stored data cannot be shown; contact support |\n| 503 | `ERROR_AUTHORIZATION_UNAVAILABLE`\
     \ | The permission check could not be completed; retry later |\n| 503 | `ERROR_ORDER_SERVICE_UNAVAILABLE`\
