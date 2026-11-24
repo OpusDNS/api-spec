@@ -13167,6 +13167,13 @@ components:
           description: 'Why the domain could not be checked: a `validation_error`
             (the name is invalid; status `unavailable`) or a `check_error` (status
             `error`). Null otherwise; a status `error` may also come without one.'
+        is_premium:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: True if the name, registered or not, is on its registry's premium
+            list; null when not known.
+          title: Is Premium
         marketplace:
           anyOf:
           - $ref: '#/components/schemas/Marketplace'
@@ -29870,7 +29877,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-24-121851
+  version: 2026-11-24-150856
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -32172,7 +32179,7 @@ paths:
                 Data:
                   description: One event per domain, in the order the results arrive
                   summary: Availability data
-                  value: 'data: {"domain":"opusdns.com","domain_ace":"opusdns.com","domain_unicode":"opusdns.com","status":"unavailable","error":null,"marketplace":null}'
+                  value: 'data: {"domain":"opusdns.com","domain_ace":"opusdns.com","domain_unicode":"opusdns.com","status":"unavailable","error":null,"marketplace":null,"is_premium":null}'
                 Event:
                   description: Sent last, after every domain's result
                   summary: Event
@@ -32183,7 +32190,8 @@ paths:
                   summary: Internationalized domain
                   value: "data: {\"domain\":\"d\xF6m\xE4in.example\",\"domain_ace\"\
                     :\"xn--dmin-moa0i.example\",\"domain_unicode\":\"d\xF6m\xE4in.example\"\
-                    ,\"status\":\"available\",\"error\":null,\"marketplace\":null}"
+                    ,\"status\":\"available\",\"error\":null,\"marketplace\":null,\"\
+                    is_premium\":null}"
                 Invalid:
                   description: An invalid domain is reported as unavailable, with
                     the problems in `error`
@@ -32203,7 +32211,7 @@ paths:
                     m\xE4in\u0436\\\" by the .com registry.\",\"label\":\"d\u03C9\
                     m\xE4in\u0436\",\"character\":\"\u0436\",\"codepoint\":\"U+0436\"\
                     ,\"position\":6}],\"title\":\"Domain Management Error\",\"status\"\
-                    :400},\"marketplace\":null}"
+                    :400},\"marketplace\":null,\"is_premium\":null}"
               schema:
                 type: string
           description: Successful Response
@@ -32258,7 +32266,7 @@ paths:
                 Data:
                   description: One event per domain, in the order the results arrive
                   summary: Availability data
-                  value: 'data: {"domain":"opusdns.com","domain_ace":"opusdns.com","domain_unicode":"opusdns.com","status":"unavailable","error":null,"marketplace":null}'
+                  value: 'data: {"domain":"opusdns.com","domain_ace":"opusdns.com","domain_unicode":"opusdns.com","status":"unavailable","error":null,"marketplace":null,"is_premium":null}'
                 Event:
                   description: Sent last, after every domain's result
                   summary: Event
@@ -32269,7 +32277,8 @@ paths:
                   summary: Internationalized domain
                   value: "data: {\"domain\":\"d\xF6m\xE4in.example\",\"domain_ace\"\
                     :\"xn--dmin-moa0i.example\",\"domain_unicode\":\"d\xF6m\xE4in.example\"\
-                    ,\"status\":\"available\",\"error\":null,\"marketplace\":null}"
+                    ,\"status\":\"available\",\"error\":null,\"marketplace\":null,\"\
+                    is_premium\":null}"
                 Invalid:
                   description: An invalid domain is reported as unavailable, with
                     the problems in `error`
@@ -32289,7 +32298,7 @@ paths:
                     m\xE4in\u0436\\\" by the .com registry.\",\"label\":\"d\u03C9\
                     m\xE4in\u0436\",\"character\":\"\u0436\",\"codepoint\":\"U+0436\"\
                     ,\"position\":6}],\"title\":\"Domain Management Error\",\"status\"\
-                    :400},\"marketplace\":null}"
+                    :400},\"marketplace\":null,\"is_premium\":null}"
               schema:
                 type: string
           description: Successful Response

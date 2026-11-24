@@ -2574,6 +2574,7 @@ export const KEY_DOMAIN_AVAILABILITY_DOMAIN = 'domain' satisfies keyof DomainAva
 export const KEY_DOMAIN_AVAILABILITY_DOMAIN_ACE = 'domain_ace' satisfies keyof DomainAvailability;
 export const KEY_DOMAIN_AVAILABILITY_DOMAIN_UNICODE = 'domain_unicode' satisfies keyof DomainAvailability;
 export const KEY_DOMAIN_AVAILABILITY_ERROR = 'error' satisfies keyof DomainAvailability;
+export const KEY_DOMAIN_AVAILABILITY_IS_PREMIUM = 'is_premium' satisfies keyof DomainAvailability;
 export const KEY_DOMAIN_AVAILABILITY_MARKETPLACE = 'marketplace' satisfies keyof DomainAvailability;
 export const KEY_DOMAIN_AVAILABILITY_STATUS = 'status' satisfies keyof DomainAvailability;
 
@@ -2582,6 +2583,7 @@ export const KEYS_DOMAIN_AVAILABILITY = [
   KEY_DOMAIN_AVAILABILITY_DOMAIN_ACE,
   KEY_DOMAIN_AVAILABILITY_DOMAIN_UNICODE,
   KEY_DOMAIN_AVAILABILITY_ERROR,
+  KEY_DOMAIN_AVAILABILITY_IS_PREMIUM,
   KEY_DOMAIN_AVAILABILITY_MARKETPLACE,
   KEY_DOMAIN_AVAILABILITY_STATUS,
 ] as const satisfies (keyof DomainAvailability)[];

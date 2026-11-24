@@ -13044,6 +13044,11 @@ export interface components {
             domain_unicode: string;
             /** @description Why the domain could not be checked: a `validation_error` (the name is invalid; status `unavailable`) or a `check_error` (status `error`). Null otherwise; a status `error` may also come without one. */
             error?: components["schemas"]["DomainAvailabilityError"] | null;
+            /**
+             * Is Premium
+             * @description True if the name, registered or not, is on its registry's premium list; null when not known.
+             */
+            is_premium?: boolean | null;
             /** @description The marketplace a taken domain can be bought on; set on `market_available` results of `POST /v1/availability/stream` with `marketplaces`; null otherwise, or when the marketplace is not known yet. */
             marketplace?: components["schemas"]["Marketplace"] | null;
             /** @description `unavailable` also covers reserved and invalid names (see `error`). Retry `error` and `unknown` later. `tmch_claim` is not returned at present. */
