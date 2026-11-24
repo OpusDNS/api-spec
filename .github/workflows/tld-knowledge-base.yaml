@@ -33,7 +33,7 @@ concurrency:
 
 jobs:
   regenerate:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout api-spec
         uses: actions/checkout@v7
