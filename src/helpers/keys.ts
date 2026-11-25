@@ -388,7 +388,9 @@ import type {
   OpusDnsCredentials,
   OrderCreate,
   OrderItemDelivery,
+  OrderItemRefusal,
   OrderItem,
+  OrderProblem,
   Order,
   Organization,
   OrganizationAttribute,
@@ -5574,6 +5576,18 @@ export const KEYS_ORDER_ITEM_DELIVERY = [
   KEY_ORDER_ITEM_DELIVERY_TYPE,
 ] as const satisfies (keyof OrderItemDelivery)[];
 
+export const KEY_ORDER_ITEM_REFUSAL_DOMAIN = 'domain' satisfies keyof OrderItemRefusal;
+export const KEY_ORDER_ITEM_REFUSAL_ERROR = 'error' satisfies keyof OrderItemRefusal;
+export const KEY_ORDER_ITEM_REFUSAL_INDEX = 'index' satisfies keyof OrderItemRefusal;
+export const KEY_ORDER_ITEM_REFUSAL_TYPE = 'type' satisfies keyof OrderItemRefusal;
+
+export const KEYS_ORDER_ITEM_REFUSAL = [
+  KEY_ORDER_ITEM_REFUSAL_DOMAIN,
+  KEY_ORDER_ITEM_REFUSAL_ERROR,
+  KEY_ORDER_ITEM_REFUSAL_INDEX,
+  KEY_ORDER_ITEM_REFUSAL_TYPE,
+] as const satisfies (keyof OrderItemRefusal)[];
+
 export const KEY_ORDER_ITEM_CURRENCY = 'currency' satisfies keyof OrderItem;
 export const KEY_ORDER_ITEM_DELIVERY_AVAILABLE = 'delivery_available' satisfies keyof OrderItem;
 export const KEY_ORDER_ITEM_DOMAIN_PRE_REGISTRATION = 'domain_pre_registration' satisfies keyof OrderItem;
@@ -5596,10 +5610,23 @@ export const KEYS_ORDER_ITEM = [
   KEY_ORDER_ITEM_TYPE,
 ] as const satisfies (keyof OrderItem)[];
 
+export const KEY_ORDER_PROBLEM_CODE = 'code' satisfies keyof OrderProblem;
+export const KEY_ORDER_PROBLEM_DETAIL = 'detail' satisfies keyof OrderProblem;
+export const KEY_ORDER_PROBLEM_STATUS = 'status' satisfies keyof OrderProblem;
+export const KEY_ORDER_PROBLEM_TITLE = 'title' satisfies keyof OrderProblem;
+
+export const KEYS_ORDER_PROBLEM = [
+  KEY_ORDER_PROBLEM_CODE,
+  KEY_ORDER_PROBLEM_DETAIL,
+  KEY_ORDER_PROBLEM_STATUS,
+  KEY_ORDER_PROBLEM_TITLE,
+] as const satisfies (keyof OrderProblem)[];
+
 export const KEY_ORDER_CREATED_ON = 'created_on' satisfies keyof Order;
 export const KEY_ORDER_CURRENCY = 'currency' satisfies keyof Order;
 export const KEY_ORDER_ITEMS = 'items' satisfies keyof Order;
 export const KEY_ORDER_ORDER_ID = 'order_id' satisfies keyof Order;
+export const KEY_ORDER_REFUSED = 'refused' satisfies keyof Order;
 export const KEY_ORDER_STATUS = 'status' satisfies keyof Order;
 export const KEY_ORDER_TOTAL_PRICE = 'total_price' satisfies keyof Order;
 export const KEY_ORDER_UPDATED_ON = 'updated_on' satisfies keyof Order;
@@ -5609,6 +5636,7 @@ export const KEYS_ORDER = [
   KEY_ORDER_CURRENCY,
   KEY_ORDER_ITEMS,
   KEY_ORDER_ORDER_ID,
+  KEY_ORDER_REFUSED,
   KEY_ORDER_STATUS,
   KEY_ORDER_TOTAL_PRICE,
   KEY_ORDER_UPDATED_ON,

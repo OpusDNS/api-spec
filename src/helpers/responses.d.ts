@@ -255,6 +255,13 @@ export type DELETE_OrdersByOrderId_Response_404 = Problem;
 export type DELETE_OrdersByOrderId_Response_409 = Problem;
 export type DELETE_OrdersByOrderId_Response_422 = HTTPValidationError;
 
+export type DELETE_OrdersByOrderIdItemsByItemId_Response = DELETE_OrdersByOrderIdItemsByItemId_Response_403 | DELETE_OrdersByOrderIdItemsByItemId_Response_404 | DELETE_OrdersByOrderIdItemsByItemId_Response_409 | DELETE_OrdersByOrderIdItemsByItemId_Response_422;
+
+export type DELETE_OrdersByOrderIdItemsByItemId_Response_403 = Problem;
+export type DELETE_OrdersByOrderIdItemsByItemId_Response_404 = Problem;
+export type DELETE_OrdersByOrderIdItemsByItemId_Response_409 = Problem;
+export type DELETE_OrdersByOrderIdItemsByItemId_Response_422 = HTTPValidationError;
+
 export type DELETE_OrganizationsByOrganizationId_Response = DELETE_OrganizationsByOrganizationId_Response_401 | DELETE_OrganizationsByOrganizationId_Response_403 | DELETE_OrganizationsByOrganizationId_Response_422;
 
 export type DELETE_OrganizationsByOrganizationId_Response_401 = Problem;
@@ -1581,6 +1588,15 @@ export type POST_Orders_Response_409 = Problem;
 export type POST_Orders_Response_422 = Problem;
 export type POST_Orders_Response_500 = Problem;
 export type POST_Orders_Response_503 = Problem;
+
+export type POST_OrdersByOrderIdItemsByItemIdRecheck_Response = POST_OrdersByOrderIdItemsByItemIdRecheck_Response_200 | POST_OrdersByOrderIdItemsByItemIdRecheck_Response_403 | POST_OrdersByOrderIdItemsByItemIdRecheck_Response_404 | POST_OrdersByOrderIdItemsByItemIdRecheck_Response_409 | POST_OrdersByOrderIdItemsByItemIdRecheck_Response_422 | POST_OrdersByOrderIdItemsByItemIdRecheck_Response_503;
+
+export type POST_OrdersByOrderIdItemsByItemIdRecheck_Response_200 = Order;
+export type POST_OrdersByOrderIdItemsByItemIdRecheck_Response_403 = Problem;
+export type POST_OrdersByOrderIdItemsByItemIdRecheck_Response_404 = Problem;
+export type POST_OrdersByOrderIdItemsByItemIdRecheck_Response_409 = Problem;
+export type POST_OrdersByOrderIdItemsByItemIdRecheck_Response_422 = HTTPValidationError;
+export type POST_OrdersByOrderIdItemsByItemIdRecheck_Response_503 = Problem;
 
 export type POST_OrdersByOrderIdRecheck_Response = POST_OrdersByOrderIdRecheck_Response_200 | POST_OrdersByOrderIdRecheck_Response_403 | POST_OrdersByOrderIdRecheck_Response_404 | POST_OrdersByOrderIdRecheck_Response_409 | POST_OrdersByOrderIdRecheck_Response_422 | POST_OrdersByOrderIdRecheck_Response_503;
 

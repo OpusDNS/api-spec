@@ -934,6 +934,11 @@ export type GET_OrdersByOrderId_Request = {
 };
 export type GET_OrdersByOrderId_Request_Path = GET_OrdersByOrderId_Request['parameters']['path'];
 
+export type DELETE_OrdersByOrderIdItemsByItemId_Request = {
+  parameters: operations['cancel_order_item_v1_orders__order_id__items__item_id__delete']['parameters'];
+};
+export type DELETE_OrdersByOrderIdItemsByItemId_Request_Path = DELETE_OrdersByOrderIdItemsByItemId_Request['parameters']['path'];
+
 export type PATCH_OrdersByOrderIdItemsByItemId_Request = {
   parameters: operations['update_order_item_v1_orders__order_id__items__item_id__patch']['parameters'];
   requestBody: DomainPreRegistrationItemUpdate;
@@ -945,6 +950,11 @@ export type GET_OrdersByOrderIdItemsByItemIdDelivery_Request = {
   parameters: operations['get_order_item_delivery_v1_orders__order_id__items__item_id__delivery_get']['parameters'];
 };
 export type GET_OrdersByOrderIdItemsByItemIdDelivery_Request_Path = GET_OrdersByOrderIdItemsByItemIdDelivery_Request['parameters']['path'];
+
+export type POST_OrdersByOrderIdItemsByItemIdRecheck_Request = {
+  parameters: operations['recheck_order_item_v1_orders__order_id__items__item_id__recheck_post']['parameters'];
+};
+export type POST_OrdersByOrderIdItemsByItemIdRecheck_Request_Path = POST_OrdersByOrderIdItemsByItemIdRecheck_Request['parameters']['path'];
 
 export type POST_OrdersByOrderIdRecheck_Request = {
   parameters: operations['recheck_order_v1_orders__order_id__recheck_post']['parameters'];

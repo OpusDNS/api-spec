@@ -115,6 +115,7 @@ export const ORDERS_PRE_REGISTRATIONS_PRIORITY_ACCESS_ENDPOINT = '/v1/orders/pre
 export const ORDERS_BY_ORDER_ID_ENDPOINT = '/v1/orders/{order_id}';
 export const ORDERS_BY_ORDER_ID_ITEMS_BY_ITEM_ID_ENDPOINT = '/v1/orders/{order_id}/items/{item_id}';
 export const ORDERS_BY_ORDER_ID_ITEMS_BY_ITEM_ID_DELIVERY_ENDPOINT = '/v1/orders/{order_id}/items/{item_id}/delivery';
+export const ORDERS_BY_ORDER_ID_ITEMS_BY_ITEM_ID_RECHECK_ENDPOINT = '/v1/orders/{order_id}/items/{item_id}/recheck';
 export const ORDERS_BY_ORDER_ID_RECHECK_ENDPOINT = '/v1/orders/{order_id}/recheck';
 export const ORGANIZATIONS_ENDPOINT = '/v1/organizations';
 export const ORGANIZATIONS_ATTRIBUTES_ENDPOINT = '/v1/organizations/attributes';
@@ -292,6 +293,7 @@ export type Endpoint =
   | typeof ORDERS_BY_ORDER_ID_ENDPOINT
   | typeof ORDERS_BY_ORDER_ID_ITEMS_BY_ITEM_ID_ENDPOINT
   | typeof ORDERS_BY_ORDER_ID_ITEMS_BY_ITEM_ID_DELIVERY_ENDPOINT
+  | typeof ORDERS_BY_ORDER_ID_ITEMS_BY_ITEM_ID_RECHECK_ENDPOINT
   | typeof ORDERS_BY_ORDER_ID_RECHECK_ENDPOINT
   | typeof ORGANIZATIONS_ENDPOINT
   | typeof ORGANIZATIONS_ATTRIBUTES_ENDPOINT

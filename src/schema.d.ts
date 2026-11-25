@@ -2409,6 +2409,8 @@ export interface paths {
          *     Only organizations billed in EUR can order from a marketplace; others are refused with 403 `ERROR_ORDER_CURRENCY_NOT_SUPPORTED`.
          *
          *     A marketplace order's price is reserved on the organization's account before the order is created; billing's refusal (403 insufficient funds, 429 daily create limit) creates no order. A pre-registration reserves nothing when created: its funds are held shortly before its launch phase opens.
+         *
+         *     An order holds one marketplace item, or up to 100 pre-registrations, each domain once. Every item is checked as if ordered alone: the order holds those that pass and lists the others in `refused`, with the error each gets alone. When none passes, a one-item request gets its item's error, a longer one 422 `ERROR_ORDER_ITEMS_REFUSED` with the same `refused` list. Key on `code`: request validation errors are 422 too.
          */
         post: operations["create_order_v1_orders_post"];
         delete?: never;
@@ -2450,9 +2452,9 @@ export interface paths {
         post?: never;
         /**
          * Cancel an order
-         * @description Cancels a `domain_pre_registration` order while its item is `requested` (including `needs_action`): nothing is held for it yet, so it is canceled at once. The order stays readable with status `canceled` and reason `canceled_by_customer`, and the domain can be pre-registered again. Repeating the call on an order canceled this way is a success.
+         * @description Cancels every open item of a `domain_pre_registration` order, all or none, while they are `requested` (including `needs_action`): nothing is held for them yet, so they are canceled at once. The items stay readable with status `canceled` and reason `canceled_by_customer`, and their domains can be pre-registered again. Repeating the call on an order canceled this way is a success. Cancel one domain with `DELETE /v1/orders/{order_id}/items/{item_id}`.
          *
-         *     Other order types and items past `requested` cannot be canceled (409 `ERROR_ORDER_NOT_CANCELABLE`). 409 `ERROR_ORDER_ITEM_BUSY` means the item is being processed at that moment: retry after `Retry-After`.
+         *     Other order types, and an order with an open item past `requested`, cannot be canceled (409 `ERROR_ORDER_NOT_CANCELABLE`). 409 `ERROR_ORDER_ITEM_BUSY` means an item is being processed at that moment: retry after `Retry-After`.
          */
         delete: operations["cancel_order_v1_orders__order_id__delete"];
         options?: never;
@@ -2470,7 +2472,13 @@ export interface paths {
         get?: never;
         put?: never;
         post?: never;
-        delete?: never;
+        /**
+         * Cancel an order item
+         * @description Cancels one `domain_pre_registration` item while it is `requested` (including `needs_action`), with the same rules as canceling the order; the order's other items are not touched. Repeating the call on an item canceled this way is a success.
+         *
+         *     Other item types and items past `requested` cannot be canceled (409 `ERROR_ORDER_NOT_CANCELABLE`). 409 `ERROR_ORDER_ITEM_BUSY` means the item is being processed at that moment: retry after `Retry-After`.
+         */
+        delete: operations["cancel_order_item_v1_orders__order_id__items__item_id__delete"];
         options?: never;
         head?: never;
         /**
@@ -2502,6 +2510,28 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/orders/{order_id}/items/{item_id}/recheck": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Check an order item again
+         * @description Checks one `requested` `domain_pre_registration` item (including `needs_action`) again, like checking the order, and returns the order.
+         *
+         *     Other item types, items past `requested` and items whose phase is over cannot be checked again (409 `ERROR_ORDER_NOT_RECHECKABLE`). 409 `ERROR_ORDER_ITEM_BUSY` means the item is being processed at that moment: retry after `Retry-After`.
+         */
+        post: operations["recheck_order_item_v1_orders__order_id__items__item_id__recheck_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/orders/{order_id}/recheck": {
         parameters: {
             query?: never;
@@ -2513,9 +2543,9 @@ export interface paths {
         put?: never;
         /**
          * Check an order again
-         * @description Checks a `domain_pre_registration` order again while its item is `requested` (including `needs_action`), as OpusDNS does by itself every hour and when a reason clears at `eligible_from`: what the item lacks for its phase, and for Priority Access the matching `.com`. Call it e.g. right after the `.com` was registered or transferred to OpusDNS. Returns the order with the updated `needs_action`.
+         * @description Checks every `requested` item (including `needs_action`) of a `domain_pre_registration` order again, as OpusDNS does by itself every hour and when a reason clears at `eligible_from`: what each item lacks for its phase, and for Priority Access the matching `.com`. Call it e.g. right after a `.com` was registered or transferred to OpusDNS. Returns the order with the updated `needs_action`. An item being processed at that moment is skipped (it is being checked). Check one domain with `POST /v1/orders/{order_id}/items/{item_id}/recheck`.
          *
-         *     Other order types, items past `requested` and items whose phase is over cannot be checked again (409 `ERROR_ORDER_NOT_RECHECKABLE`). 409 `ERROR_ORDER_ITEM_BUSY` means the item is being processed at that moment: retry after `Retry-After`.
+         *     Other order types, and an order with no requested item whose phase is still ahead, cannot be checked again (409 `ERROR_ORDER_NOT_RECHECKABLE`). 409 `ERROR_ORDER_ITEM_BUSY` means every requested item is being processed at that moment: retry after `Retry-After`.
          */
         post: operations["recheck_order_v1_orders__order_id__recheck_post"];
         delete?: never;
@@ -4713,6 +4743,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "cancel_domain_transfer_v1_domains__domain_reference__transfer_delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "cancel_order_item_v1_orders__order_id__items__item_id__delete";
             /** @constant */
             status: "ok";
             /**
@@ -9109,6 +9163,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "put_whitelabel_document_v1_whitelabel_branding_document_put";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["OrderResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "recheck_order_item_v1_orders__order_id__items__item_id__recheck_post";
             /** @constant */
             status: "ok";
             /**
@@ -19303,7 +19381,7 @@ export interface components {
             idempotency_key: string;
             /**
              * Items
-             * @description Items to order (one for now)
+             * @description Items to order, all of one type: up to 100 `domain_pre_registration` items, each domain once, or one `marketplace_domain_purchase` item
              */
             items: (components["schemas"]["MarketplaceDomainPurchaseItemCreate"] | components["schemas"]["DomainPreRegistrationItemCreate"])[];
         };
@@ -19311,7 +19389,7 @@ export interface components {
          * OrderErrorCodes
          * @enum {string}
          */
-        OrderErrorCodes: "ERROR_ORDERS_FEATURE_DISABLED" | "ERROR_ORDER_CURRENCY_NOT_SUPPORTED" | "ERROR_ORDER_NOT_FOUND" | "ERROR_ORDER_IDEMPOTENCY_KEY_REUSED" | "ERROR_ORDER_SUBJECT_IN_PROGRESS" | "ERROR_ORDER_PRICE_CHANGED" | "ERROR_ORDER_ITEM_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_DELIVERABLE" | "ERROR_ORDER_OPEN_LIMIT_REACHED" | "ERROR_ORDER_SERVICE_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_FOUND" | "ERROR_ORDER_DELIVERY_NOT_AVAILABLE" | "ERROR_ORDER_DELIVERY_UNREADABLE" | "ERROR_ORDER_UNREADABLE" | "ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED" | "ERROR_ORDER_TLD_NOT_AVAILABLE" | "ERROR_ORDER_PHASE_NOT_OFFERED" | "ERROR_ORDER_PHASE_NOT_ORDERABLE_YET" | "ERROR_ORDER_PHASE_TOO_LATE" | "ERROR_ORDER_PREMIUM_PRICE_REQUIRED" | "ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED" | "ERROR_ORDER_CONFIRMATIONS_REQUIRED" | "ERROR_ORDER_MATCHING_DOMAIN_TOO_NEW" | "ERROR_ORDER_REGISTRANT_NOT_ALLOWED" | "ERROR_ORDER_ITEM_BUSY" | "ERROR_ORDER_ITEM_NOT_EDITABLE" | "ERROR_ORDER_NOT_CANCELABLE" | "ERROR_ORDER_NOT_RECHECKABLE";
+        OrderErrorCodes: "ERROR_ORDERS_FEATURE_DISABLED" | "ERROR_ORDER_CURRENCY_NOT_SUPPORTED" | "ERROR_ORDER_NOT_FOUND" | "ERROR_ORDER_IDEMPOTENCY_KEY_REUSED" | "ERROR_ORDER_SUBJECT_IN_PROGRESS" | "ERROR_ORDER_PRICE_CHANGED" | "ERROR_ORDER_ITEM_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_DELIVERABLE" | "ERROR_ORDER_OPEN_LIMIT_REACHED" | "ERROR_ORDER_SERVICE_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_FOUND" | "ERROR_ORDER_DELIVERY_NOT_AVAILABLE" | "ERROR_ORDER_DELIVERY_UNREADABLE" | "ERROR_ORDER_UNREADABLE" | "ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED" | "ERROR_ORDER_TLD_NOT_AVAILABLE" | "ERROR_ORDER_PHASE_NOT_OFFERED" | "ERROR_ORDER_PHASE_NOT_ORDERABLE_YET" | "ERROR_ORDER_PHASE_TOO_LATE" | "ERROR_ORDER_PREMIUM_PRICE_REQUIRED" | "ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED" | "ERROR_ORDER_CONFIRMATIONS_REQUIRED" | "ERROR_ORDER_MATCHING_DOMAIN_TOO_NEW" | "ERROR_ORDER_REGISTRANT_NOT_ALLOWED" | "ERROR_ORDER_ITEM_BUSY" | "ERROR_ORDER_ITEM_NOT_EDITABLE" | "ERROR_ORDER_NOT_CANCELABLE" | "ERROR_ORDER_NOT_RECHECKABLE" | "ERROR_ORDER_ITEMS_REFUSED" | "ERROR_ORDER_PRICE_UNAVAILABLE";
         /**
          * OrderItemDeliveryResponse
          * @description What an order item delivers: `type` plus one object named after it. Only ever the body of the delivery
@@ -19329,6 +19407,26 @@ export interface components {
          * @enum {string}
          */
         OrderItemReason: "price_changed" | "unavailable" | "canceled_by_marketplace" | "canceled_by_customer" | "failed" | "delayed";
+        /**
+         * OrderItemRefusal
+         * @description A requested item the order could not take. Stored with the order: a field added later must be optional.
+         */
+        OrderItemRefusal: {
+            /**
+             * Domain
+             * @description Domain name (ASCII form)
+             */
+            domain: string;
+            /** @description The error the item gets when ordered alone, with the code's own fields (e.g. `actual_price` for `ERROR_ORDER_PRICE_CHANGED`) */
+            error: components["schemas"]["OrderProblem"];
+            /**
+             * Index
+             * @description The item's position in the request's `items`, from 0
+             */
+            index: number;
+            /** @description Item type */
+            type: components["schemas"]["OrderItemType"];
+        };
         /**
          * OrderItemResponse
          * @description The fields every item type has, plus one optional object named after `type`. A new type adds one field.
@@ -19355,7 +19453,7 @@ export interface components {
             price: components["schemas"]["StrictMoneyDecimal"];
             /** @description Why the item was canceled or failed (`canceled_by_customer` after `DELETE /v1/orders/{order_id}`), or that an open item is slow. Null while the item is on track, or when no problem is known. Treat a value you do not know as `failed` on a final item and as `delayed` on an open one: reasons can be added. */
             reason?: components["schemas"]["OrderItemReason"] | null;
-            /** @description `pending` and `in_progress` are open, the others are final. Treat a value you do not know as open: statuses can be added. */
+            /** @description `pending` and `in_progress` are open, the others are final. Treat a value you do not know as open: statuses can be added. An order with several items is open while any item is open; once all are final it is `completed` if any item completed, else `failed` if any failed, else `canceled`: read each item for its outcome. */
             status: components["schemas"]["OrderStatus"];
             /** @description Item type. More can be added. */
             type: components["schemas"]["OrderItemType"];
@@ -19365,6 +19463,28 @@ export interface components {
          * @enum {string}
          */
         OrderItemType: "marketplace_domain_purchase" | "domain_pre_registration";
+        /**
+         * OrderProblem
+         * @description An RFC 9457 problem as the API answers it, with the error code's own fields.
+         */
+        OrderProblem: {
+            /**
+             * Code
+             * @description The error code, e.g. `ERROR_ORDER_ITEM_UNAVAILABLE`
+             */
+            code: string;
+            /** Detail */
+            detail?: string | null;
+            /**
+             * Status
+             * @description The HTTP status the item got, as if ordered alone, when the order was created
+             */
+            status: number;
+            /** Title */
+            title: string;
+        } & {
+            [key: string]: unknown;
+        };
         /** OrderResponse */
         OrderResponse: {
             /**
@@ -19385,7 +19505,12 @@ export interface components {
              * @example order_01h45ytscbebyvny4gc8cr8ma2
              */
             order_id: TypeId<"order">;
-            /** @description `pending` and `in_progress` are open, the others are final. Treat a value you do not know as open: statuses can be added. */
+            /**
+             * Refused
+             * @description The requested items the order could not take, each with the error it gets alone; empty when all were taken. Fix them and order them again.
+             */
+            refused?: components["schemas"]["OrderItemRefusal"][];
+            /** @description `pending` and `in_progress` are open, the others are final. Treat a value you do not know as open: statuses can be added. An order with several items is open while any item is open; once all are final it is `completed` if any item completed, else `failed` if any failed, else `canceled`: read each item for its outcome. */
             status: components["schemas"]["OrderStatus"];
             /** @description Sum of the item prices, a decimal string with two decimals. Null only in a `GET /v1/orders` list entry for an order that cannot be shown: contact support with the order ID. */
             total_price: components["schemas"]["StrictMoneyDecimal"] | null;
@@ -37120,6 +37245,72 @@ export interface operations {
             };
         };
     };
+    cancel_order_item_v1_orders__order_id__items__item_id__delete: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                order_id: TypeId<"order">;
+                item_id: TypeId<"order_item">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    /** @description Seconds to wait before retrying */
+                    "Retry-After"?: number;
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     update_order_item_v1_orders__order_id__items__item_id__patch: {
         parameters: {
             query?: never;
@@ -37325,6 +37516,92 @@ export interface operations {
                      *       "status": 503,
                      *       "title": "Authorization service unavailable.",
                      *       "type": "authorization-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    recheck_order_item_v1_orders__order_id__items__item_id__recheck_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                order_id: TypeId<"order">;
+                item_id: TypeId<"order_item">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrderResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    /** @description Seconds to wait before retrying */
+                    "Retry-After"?: number;
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    /** @description Seconds to wait before retrying */
+                    "Retry-After"?: number;
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_SERVICE_UNAVAILABLE",
+                     *       "detail": "Orders are temporarily unavailable, please retry shortly",
+                     *       "status": 503,
+                     *       "title": "Order Service Unavailable",
+                     *       "type": "order-service-unavailable"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
