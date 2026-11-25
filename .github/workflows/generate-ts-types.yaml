@@ -10,12 +10,13 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  id-token: write
-  contents: write
+  contents: read
 
 jobs:
   generate_types:
     runs-on: self-hosted
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
@@ -100,9 +101,34 @@ jobs:
           event-type: openapi_spec_update
           client-payload: '{"ref": "${{ steps.commit.outputs.sha }}"}'
 
-      # Runs on every run, not only when the spec changed: a publish that failed
-      # after the push (npm or the Sigstore transparency log erroring) left the
-      # version on main but not on npm, and a rerun finds no spec change.
+  publish:
+    # GitHub-hosted on purpose: npm only accepts provenance from GitHub-hosted runners
+    # ("Unsupported GitHub Actions runner environment: \"self-hosted\""), and the package
+    # is published with provenance through trusted publishing (OIDC), which npm binds
+    # to this workflow file. So this job stays in this file.
+    #
+    # Runs on every run, not only when the spec changed: a publish that failed
+    # after the push (npm or the Sigstore transparency log erroring) left the
+    # version on main but not on npm, and a rerun finds no spec change.
+    needs: generate_types
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      # main, not github.sha: on repository_dispatch that is the commit before
+      # generate_types pushed the new version. The workflow-level concurrency
+      # group keeps the next run from pushing in between.
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: 'https://registry.npmjs.org/'
+
       - name: Publish to npm
         run: |
           version=$(node -p "require('./package.json').version")
