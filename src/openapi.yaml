@@ -6487,6 +6487,37 @@ components:
       - properties:
           data:
             anyOf:
+            - $ref: '#/components/schemas/Pagination_PriorityAccessDomainResponse_'
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
+            const: list_priority_access_domains_v1_orders_pre_registrations_priority_access_get
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: list_priority_access_domains_v1_orders_pre_registrations_priority_access_get
+        type: object
+      - properties:
+          data:
+            anyOf:
             - $ref: '#/components/schemas/WaitlistProductListResponse'
             - type: string
           headers:
@@ -7318,6 +7349,37 @@ components:
         - status
         - operationId
         title: put_whitelabel_document_v1_whitelabel_branding_document_put
+        type: object
+      - properties:
+          data:
+            anyOf:
+            - $ref: '#/components/schemas/OrderResponse'
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
+            const: recheck_order_v1_orders__order_id__recheck_post
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: recheck_order_v1_orders__order_id__recheck_post
         type: object
       - properties:
           data:
@@ -8718,6 +8780,37 @@ components:
         - status
         - operationId
         title: update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch
+        type: object
+      - properties:
+          data:
+            anyOf:
+            - $ref: '#/components/schemas/OrderResponse'
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
+            const: update_order_item_v1_orders__order_id__items__item_id__patch
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: update_order_item_v1_orders__order_id__items__item_id__patch
         type: object
       - properties:
           data:
@@ -15549,6 +15642,48 @@ components:
       - registration
       title: DomainPreRegistrationItemCreate
       type: object
+    DomainPreRegistrationItemUpdate:
+      additionalProperties: false
+      description: 'Changes to a requested `domain_pre_registration` item; a field
+        left out keeps its value. The changed item is
+
+        checked again as on creation.'
+      properties:
+        expected_price:
+          anyOf:
+          - $ref: '#/components/schemas/StrictMoneyDecimal'
+            gt: 0
+          - type: 'null'
+          description: 'Confirms a new price: the item is priced again and the price
+            must match, as on creation. Left out, the item keeps the price it locked,
+            unless another `phase` or `registration.period` is priced again.'
+        phase:
+          anyOf:
+          - $ref: '#/components/schemas/DomainPreRegistrationPhase'
+          - type: 'null'
+          description: Another launch phase to submit in
+        registration:
+          anyOf:
+          - $ref: '#/components/schemas/DomainPreRegistrationRegistration'
+          - type: 'null'
+          description: Replaces the stored registration as a whole
+        signed_mark:
+          anyOf:
+          - maxLength: 65536
+            type: string
+          - type: 'null'
+          description: The SMD file from the Trademark Clearinghouse; `null` removes
+            the stored one
+          title: Signed Mark
+        type:
+          const: domain_pre_registration
+          description: Item type
+          title: Type
+          type: string
+      required:
+      - type
+      title: DomainPreRegistrationItemUpdate
+      type: object
     DomainPreRegistrationNeedsAction:
       enum:
       - signed_mark_required
@@ -22077,7 +22212,9 @@ components:
       - ERROR_ORDER_MATCHING_DOMAIN_TOO_NEW
       - ERROR_ORDER_REGISTRANT_NOT_ALLOWED
       - ERROR_ORDER_ITEM_BUSY
+      - ERROR_ORDER_ITEM_NOT_EDITABLE
       - ERROR_ORDER_NOT_CANCELABLE
+      - ERROR_ORDER_NOT_RECHECKABLE
       title: OrderErrorCodes
       type: string
     OrderItemDeliveryResponse:
@@ -23474,6 +23611,20 @@ components:
       - pagination
       title: Pagination[Organization]
       type: object
+    Pagination_PriorityAccessDomainResponse_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/PriorityAccessDomainResponse'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: Pagination[PriorityAccessDomainResponse]
+      type: object
     Pagination_RegistrarCredential_:
       properties:
         pagination:
@@ -24526,6 +24677,78 @@ components:
       - unit
       title: PricingPeriod
       type: object
+    PriorityAccessDomainResponse:
+      description: One of your domains that opens Priority Access to the same name
+        in the TLD, and whether it does now.
+      properties:
+        domain:
+          description: The name to pre-register, e.g. `acme.web`
+          examples:
+          - acme.web
+          title: Domain
+          type: string
+        eligible:
+          description: Whether the matching domain qualifies its registrant now
+          title: Eligible
+          type: boolean
+        eligible_from:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: When it can, for `matching_domain_recently_transferred` and
+            `matching_domain_in_add_period`
+          title: Eligible From
+        matching_domain:
+          description: Your domain that opens Priority Access to it
+          examples:
+          - acme.com
+          title: Matching Domain
+          type: string
+        matching_domain_id:
+          description: The id of the matching domain
+          examples:
+          - domain_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Matching Domain Id
+          type: string
+          x-typeid-prefix: domain
+        pre_registration_order_id:
+          anyOf:
+          - examples:
+            - order_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^order_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: order
+          - type: 'null'
+          description: Your open pre-registration of `domain`, if there is one
+          title: Pre Registration Order Id
+        reason:
+          anyOf:
+          - $ref: '#/components/schemas/DomainPreRegistrationNeedsAction'
+          - type: 'null'
+          description: 'Why it does not qualify now: one of the `matching_domain_*`
+            codes, which a pre-registration of `domain` shows in its `needs_action`.
+            Only `matching_domain_too_new` refuses the order.'
+      required:
+      - domain
+      - matching_domain
+      - matching_domain_id
+      - eligible
+      - reason
+      - eligible_from
+      - pre_registration_order_id
+      title: PriorityAccessDomainResponse
+      type: object
+    PriorityAccessTld:
+      description: The TLDs whose limited registration phase is Priority Access for
+        the registrants of a matching domain.
+      enum:
+      - web
+      title: PriorityAccessTld
+      type: string
     Problem:
       properties:
         detail:
@@ -29916,7 +30139,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-25-085104
+  version: 2026-11-25-085756
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -47067,6 +47290,142 @@ paths:
       - orders
       x-required-permissions:
       - domains:manage
+  /v1/orders/pre-registrations/priority-access:
+    get:
+      description: 'Your organization''s own domains that open Priority Access to
+        the same name in `tld` (for `.web`: your `.com` domains held through OpusDNS),
+        by name, with whether each name can be pre-registered for `limited_registration`
+        now. Checked as `POST /v1/orders` checks it, except that whether the name
+        is still free is only checked when it is ordered.'
+      operationId: list_priority_access_domains_v1_orders_pre_registrations_priority_access_get
+      parameters:
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - description: The TLD whose Priority Access to list
+        in: query
+        name: tld
+        required: true
+        schema:
+          $ref: '#/components/schemas/PriorityAccessTld'
+          description: The TLD whose Priority Access to list
+      - description: Only matching domains whose name contains this text (Unicode
+          or ASCII form). `%` and `_` match themselves.
+        in: query
+        name: search
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Only matching domains whose name contains this text (Unicode
+            or ASCII form). `%` and `_` match themselves.
+          title: Search
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_PriorityAccessDomainResponse_'
+          description: Successful Response
+        '403':
+          content:
+            application/problem+json:
+              examples:
+                Orders Feature Disabled:
+                  value:
+                    code: ERROR_ORDERS_FEATURE_DISABLED
+                    detail: Orders are not enabled in this environment
+                    status: 403
+                    title: Orders Feature Disabled
+                    type: orders-feature-disabled
+                Permission Denied:
+                  value:
+                    code: ERROR_PERMISSION_DENIED
+                    detail: Insufficient permissions to perform this action
+                    status: 403
+                    title: Permission Denied
+                    type: permission-denied
+                Pre-Registrations Feature Disabled:
+                  value:
+                    code: ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED
+                    detail: Domain pre-registrations are not enabled in this environment
+                    status: 403
+                    title: Pre-Registrations Feature Disabled
+                    type: pre-registrations-feature-disabled
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              examples:
+                Order Phase Not Offered:
+                  value:
+                    code: ERROR_ORDER_PHASE_NOT_OFFERED
+                    detail: '.web cannot be pre-registered for this phase: the TLD
+                      has no such phase, or OpusDNS does not take pre-registrations
+                      for it'
+                    domain: .web
+                    status: 422
+                    title: Order Phase Not Offered
+                    type: order-phase-not-offered
+                Order Phase Not Orderable Yet:
+                  value:
+                    code: ERROR_ORDER_PHASE_NOT_ORDERABLE_YET
+                    detail: '.web cannot be pre-registered for this phase: OpusDNS
+                      does not take pre-registrations for it yet'
+                    domain: .web
+                    status: 422
+                    title: Order Phase Not Orderable Yet
+                    type: order-phase-not-orderable-yet
+                Order Phase Too Late:
+                  value:
+                    code: ERROR_ORDER_PHASE_TOO_LATE
+                    detail: '.web cannot be pre-registered for this phase: it is too
+                      late to pre-register for it'
+                    domain: .web
+                    status: 422
+                    title: Order Phase Too Late
+                    type: order-phase-too-late
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ORDER_SERVICE_UNAVAILABLE
+                detail: Orders are temporarily unavailable, please retry shortly
+                status: 503
+                title: Order Service Unavailable
+                type: order-service-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List domains for Priority Access
+      tags:
+      - orders
+      x-required-permissions:
+      - domains:read
   /v1/orders/{order_id}:
     delete:
       description: 'Cancels a `domain_pre_registration` order while its item is `requested`
@@ -47254,6 +47613,290 @@ paths:
       - orders
       x-required-permissions:
       - domains:read
+  /v1/orders/{order_id}/items/{item_id}:
+    patch:
+      description: 'Changes a `domain_pre_registration` item while it is `requested`
+        (including `needs_action`): another launch `phase`, a new `registration` (replaced
+        as a whole), the SMD file (`signed_mark`, `null` removes it) or the `expected_price`.
+        Fields left out keep their value. The changed item is checked again as on
+        creation, with the same errors, and gets a new `needs_action` and `hold_on`;
+        a refused change leaves the item as it was. The item keeps the price it locked;
+        another `phase` or `registration.period`, or an `expected_price`, is priced
+        again, and a different price is refused with 409 `ERROR_ORDER_PRICE_CHANGED`
+        carrying the new one, to confirm with `expected_price`.
+
+
+        Other item types and items past `requested` cannot be changed (409 `ERROR_ORDER_ITEM_NOT_EDITABLE`).
+        409 `ERROR_ORDER_ITEM_BUSY` means the item is being processed at that moment:
+        retry after `Retry-After`.'
+      operationId: update_order_item_v1_orders__order_id__items__item_id__patch
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          examples:
+          - order_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^order_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Order Id
+          type: string
+          x-typeid-prefix: order
+      - in: path
+        name: item_id
+        required: true
+        schema:
+          examples:
+          - order_item_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^order_item_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Item Id
+          type: string
+          x-typeid-prefix: order_item
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainPreRegistrationItemUpdate'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+          description: Successful Response
+        '403':
+          content:
+            application/problem+json:
+              examples:
+                Orders Feature Disabled:
+                  value:
+                    code: ERROR_ORDERS_FEATURE_DISABLED
+                    detail: Orders are not enabled in this environment
+                    status: 403
+                    title: Orders Feature Disabled
+                    type: orders-feature-disabled
+                Permission Denied:
+                  value:
+                    code: ERROR_PERMISSION_DENIED
+                    detail: Insufficient permissions to perform this action
+                    status: 403
+                    title: Permission Denied
+                    type: permission-denied
+                Pre-Registrations Feature Disabled:
+                  value:
+                    code: ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED
+                    detail: Domain pre-registrations are not enabled in this environment
+                    status: 403
+                    title: Pre-Registrations Feature Disabled
+                    type: pre-registrations-feature-disabled
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              examples:
+                Order Item Not Found:
+                  value:
+                    code: ERROR_ORDER_ITEM_NOT_FOUND
+                    detail: Order item not found
+                    item_id: order_item_01h45ytscbebyvny4gc8cr8ma2
+                    order_id: order_01h45ytscbebyvny4gc8cr8ma2
+                    status: 404
+                    title: Order Item Not Found
+                    type: order-item-not-found
+                Order Not Found:
+                  value:
+                    code: ERROR_ORDER_NOT_FOUND
+                    detail: Order not found
+                    order_id: order_01h45ytscbebyvny4gc8cr8ma2
+                    status: 404
+                    title: Order Not Found
+                    type: order-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              examples:
+                Order Item Busy:
+                  value:
+                    code: ERROR_ORDER_ITEM_BUSY
+                    detail: The order item is being processed, please retry shortly
+                    status: 409
+                    title: Order Item Busy
+                    type: order-item-busy
+                Order Item Not Editable:
+                  value:
+                    code: ERROR_ORDER_ITEM_NOT_EDITABLE
+                    detail: Order item order_item_01h45ytscbebyvny4gc8cr8ma2 cannot
+                      be changed now
+                    item_id: order_item_01h45ytscbebyvny4gc8cr8ma2
+                    order_id: order_01h45ytscbebyvny4gc8cr8ma2
+                    status: 409
+                    title: Order Item Not Editable
+                    type: order-item-not-editable
+                Order Item Unavailable:
+                  value:
+                    code: ERROR_ORDER_ITEM_UNAVAILABLE
+                    detail: example.web is not available for purchase
+                    domain: example.web
+                    status: 409
+                    title: Order Item Unavailable
+                    type: order-item-unavailable
+                Order Premium Price Required:
+                  value:
+                    code: ERROR_ORDER_PREMIUM_PRICE_REQUIRED
+                    currency: USD
+                    detail: 'The domain is premium: confirm its price with expected_price'
+                    price: '500.00'
+                    status: 409
+                    title: Order Premium Price Required
+                    type: order-premium-price-required
+                Order Price Changed:
+                  value:
+                    actual_price: '25.00'
+                    code: ERROR_ORDER_PRICE_CHANGED
+                    currency: USD
+                    detail: The price changed since it was quoted
+                    expected_price: '20.00'
+                    status: 409
+                    title: Order Price Changed
+                    type: order-price-changed
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+          headers:
+            Retry-After:
+              description: Seconds to wait before retrying
+              schema:
+                type: integer
+        '422':
+          content:
+            application/problem+json:
+              examples:
+                Order Confirmations Required:
+                  value:
+                    code: ERROR_ORDER_CONFIRMATIONS_REQUIRED
+                    detail: The 'HTTPS_SUPPORT_CONFIRMATION' attestation is required
+                      to register .web domains. Set attributes['https_support_confirmation']
+                      to 'true' to confirm.
+                    domain: example.web
+                    missing_confirmations:
+                    - HTTPS_SUPPORT_CONFIRMATION
+                    status: 422
+                    title: Order Confirmations Required
+                    type: order-confirmations-required
+                Order Matching Domain Too New:
+                  value:
+                    code: ERROR_ORDER_MATCHING_DOMAIN_TOO_NEW
+                    detail: example.web can only be pre-registered by the registrant
+                      of example.com, registered before the phase started
+                    domain: example.web
+                    matching_domain: example.com
+                    status: 422
+                    title: Order Matching Domain Too New
+                    type: order-matching-domain-too-new
+                Order Phase Not Offered:
+                  value:
+                    code: ERROR_ORDER_PHASE_NOT_OFFERED
+                    detail: 'example.web cannot be pre-registered for this phase:
+                      the TLD has no such phase, or OpusDNS does not take pre-registrations
+                      for it'
+                    domain: example.web
+                    status: 422
+                    title: Order Phase Not Offered
+                    type: order-phase-not-offered
+                Order Phase Not Orderable Yet:
+                  value:
+                    code: ERROR_ORDER_PHASE_NOT_ORDERABLE_YET
+                    detail: 'example.web cannot be pre-registered for this phase:
+                      OpusDNS does not take pre-registrations for it yet'
+                    domain: example.web
+                    status: 422
+                    title: Order Phase Not Orderable Yet
+                    type: order-phase-not-orderable-yet
+                Order Phase Too Late:
+                  value:
+                    code: ERROR_ORDER_PHASE_TOO_LATE
+                    detail: 'example.web cannot be pre-registered for this phase:
+                      it is too late to pre-register for it'
+                    domain: example.web
+                    status: 422
+                    title: Order Phase Too Late
+                    type: order-phase-too-late
+                Order Premium Period Not Supported:
+                  value:
+                    code: ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED
+                    detail: 'example.web is premium: pre-register it for one year
+                      and renew it after registration'
+                    domain: example.web
+                    status: 422
+                    title: Order Premium Period Not Supported
+                    type: order-premium-period-not-supported
+                Order Registrant Not Allowed:
+                  value:
+                    code: ERROR_ORDER_REGISTRANT_NOT_ALLOWED
+                    detail: 'example.web is registered for the registrant of example.com:
+                      leave the registrant out of registration.contacts'
+                    domain: example.web
+                    matching_domain: example.com
+                    status: 422
+                    title: Order Registrant Not Allowed
+                    type: order-registrant-not-allowed
+                Order TLD Not Available:
+                  value:
+                    code: ERROR_ORDER_TLD_NOT_AVAILABLE
+                    detail: 'example.invalid cannot be pre-registered for this phase:
+                      the TLD is not offered'
+                    domain: example.invalid
+                    status: 422
+                    title: Order TLD Not Available
+                    type: order-tld-not-available
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
+        '500':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ORDER_UNREADABLE
+                detail: The order could not be read
+                status: 500
+                title: Order Unreadable
+                type: order-unreadable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Internal Server Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ORDER_SERVICE_UNAVAILABLE
+                detail: Orders are temporarily unavailable, please retry shortly
+                status: 503
+                title: Order Service Unavailable
+                type: order-service-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
+          headers:
+            Retry-After:
+              description: Seconds to wait before retrying
+              schema:
+                type: integer
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Change an order item
+      tags:
+      - orders
+      x-required-permissions:
+      - domains:manage
   /v1/orders/{order_id}/items/{item_id}/delivery:
     get:
       description: 'Returns what an item delivers, in one object named after the item''s
@@ -47390,6 +48033,133 @@ paths:
       - orders
       x-required-permissions:
       - domain_auth_codes:read
+      - domains:manage
+  /v1/orders/{order_id}/recheck:
+    post:
+      description: 'Checks a `domain_pre_registration` order again while its item
+        is `requested` (including `needs_action`), as OpusDNS does by itself every
+        hour and when a reason clears at `eligible_from`: what the item lacks for
+        its phase, and for Priority Access the matching `.com`. Call it e.g. right
+        after the `.com` was registered or transferred to OpusDNS. Returns the order
+        with the updated `needs_action`.
+
+
+        Other order types, items past `requested` and items whose phase is over cannot
+        be checked again (409 `ERROR_ORDER_NOT_RECHECKABLE`). 409 `ERROR_ORDER_ITEM_BUSY`
+        means the item is being processed at that moment: retry after `Retry-After`.'
+      operationId: recheck_order_v1_orders__order_id__recheck_post
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          examples:
+          - order_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^order_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Order Id
+          type: string
+          x-typeid-prefix: order
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+          description: Successful Response
+        '403':
+          content:
+            application/problem+json:
+              examples:
+                Orders Feature Disabled:
+                  value:
+                    code: ERROR_ORDERS_FEATURE_DISABLED
+                    detail: Orders are not enabled in this environment
+                    status: 403
+                    title: Orders Feature Disabled
+                    type: orders-feature-disabled
+                Permission Denied:
+                  value:
+                    code: ERROR_PERMISSION_DENIED
+                    detail: Insufficient permissions to perform this action
+                    status: 403
+                    title: Permission Denied
+                    type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ORDER_NOT_FOUND
+                detail: Order not found
+                order_id: order_01h45ytscbebyvny4gc8cr8ma2
+                status: 404
+                title: Order Not Found
+                type: order-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              examples:
+                Order Item Busy:
+                  value:
+                    code: ERROR_ORDER_ITEM_BUSY
+                    detail: The order item is being processed, please retry shortly
+                    status: 409
+                    title: Order Item Busy
+                    type: order-item-busy
+                Order Not Recheckable:
+                  value:
+                    code: ERROR_ORDER_NOT_RECHECKABLE
+                    detail: Order order_01h45ytscbebyvny4gc8cr8ma2 cannot be checked
+                      again now
+                    order_id: order_01h45ytscbebyvny4gc8cr8ma2
+                    status: 409
+                    title: Order Not Recheckable
+                    type: order-not-recheckable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+          headers:
+            Retry-After:
+              description: Seconds to wait before retrying
+              schema:
+                type: integer
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ORDER_SERVICE_UNAVAILABLE
+                detail: Orders are temporarily unavailable, please retry shortly
+                status: 503
+                title: Order Service Unavailable
+                type: order-service-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
+          headers:
+            Retry-After:
+              description: Seconds to wait before retrying
+              schema:
+                type: integer
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Check an order again
+      tags:
+      - orders
+      x-required-permissions:
       - domains:manage
   /v1/organizations:
     get:
@@ -53007,18 +53777,59 @@ tags:
     \ it never qualifies |\n\nA `.com` registered after the phase started refuses\
     \ the item at creation with `422` `ERROR_ORDER_MATCHING_DOMAIN_TOO_NEW`.\nOnce\
     \ the `.com` qualifies, `domain_pre_registration.registrant` names its registrant\
-    \ contact, the one the `.web` is registered for.\n\n### Canceling a pre-registration\n\
-    \nCancel it with `DELETE /v1/orders/{order_id}` (`204 No Content`) while its item\
-    \ is `requested`, which includes an item that `needs_action`. Nothing is held\
-    \ for it yet, so it is canceled at once. The order stays readable with status\
-    \ `canceled` and reason `canceled_by_customer`, and your organization can pre-register\
-    \ the domain again (a new order, at the back of the queue). Repeating the call\
-    \ is a success.\n\nA marketplace order, or an item past `requested`, is refused\
-    \ with `409` `ERROR_ORDER_NOT_CANCELABLE`. `409` `ERROR_ORDER_ITEM_BUSY` with\
-    \ `Retry-After` means the item is being processed at that moment.\n\n### Idempotency\n\
-    \nRepeat a request with the same `idempotency_key` and the same body and you get\
-    \ `200 OK` with the original order, so retrying after a timeout is safe. The same\
-    \ key with a different body answers `409` (`ERROR_ORDER_IDEMPOTENCY_KEY_REUSED`).\
+    \ contact, the one the `.web` is registered for.\n\nTo see which of your `.com`\
+    \ domains open Priority Access, list them with `GET /v1/orders/pre-registrations/priority-access?tld=web`\
+    \ (paginated with `page` and `page_size`, by name; `search` narrows it like the\
+    \ domain list):\n\n```json\n{\n  \"results\": [\n    {\n      \"domain\": \"acme.web\"\
+    ,\n      \"matching_domain\": \"acme.com\",\n      \"matching_domain_id\": \"\
+    domain_01h45ytscbebyvny4gc8cr8ma2\",\n      \"eligible\": false,\n      \"reason\"\
+    : \"matching_domain_in_add_period\",\n      \"eligible_from\": \"2027-01-14T09:30:00Z\"\
+    ,\n      \"pre_registration_order_id\": null\n    }\n  ],\n  \"pagination\": {\"\
+    total_pages\": 1, \"total_items\": 1, \"current_page\": 1, \"page_size\": 10,\
+    \ \"has_next_page\": false, \"has_previous_page\": false}\n}\n```\n\n`eligible`\
+    \ says whether the `.com` qualifies now.\nIf not, `reason` is the `matching_domain_*`\
+    \ code a pre-registration of the name shows in its `needs_action`, with `eligible_from`\
+    \ when it clears by itself.\nEvery name can be pre-registered now except one with\
+    \ `matching_domain_too_new`.\n`pre_registration_order_id` is your open pre-registration\
+    \ of the name.\nWhether the `.web` is still free is only checked when you order\
+    \ it.\n\n### Changing a pre-registration\n\nWhile the item is `requested`, which\
+    \ includes an item that `needs_action`, change it with `PATCH /v1/orders/{order_id}/items/{item_id}`,\
+    \ e.g. to add the SMD file:\n\n```json\n{\n  \"type\": \"domain_pre_registration\"\
+    ,\n  \"signed_mark\": \"Marks: Acme\\n...-----BEGIN ENCODED SMD-----\\n...\\n-----END\
+    \ ENCODED SMD-----\"\n}\n```\n\n- Send only what changes: `phase`, `registration`\
+    \ (replaced as a whole), `signed_mark` (`null` removes it) or `expected_price`.\
+    \ The domain cannot be changed: cancel the order and pre-register the other domain.\n\
+    - The changed item is checked again as on creation, with the same errors, and\
+    \ returned with its new `needs_action`, `hold_on` and, for Priority Access, `registrant`.\
+    \ A refused change leaves the item as it was.\n- The item keeps the price it locked,\
+    \ and a change that leaves the price alone checks neither price nor availability\
+    \ again.\n- Another `phase` or `registration.period` is priced again as on creation:\
+    \ a different price is refused with `409` `ERROR_ORDER_PRICE_CHANGED` carrying\
+    \ the new one, which you confirm by sending it as `expected_price`. Sending `expected_price`\
+    \ alone confirms a new price the same way.\n- The item keeps its place in the\
+    \ queue.\n- An item past `requested` or a marketplace order cannot be changed\
+    \ (`409` `ERROR_ORDER_ITEM_NOT_EDITABLE`). `409` `ERROR_ORDER_ITEM_BUSY` with\
+    \ `Retry-After` means the item is being processed at that moment.\n\n### Checking\
+    \ a pre-registration again\n\nOpusDNS checks every `requested` item again every\
+    \ hour, and at `eligible_from` when a code clears by itself: `needs_action`, `eligible_from`\
+    \ and `registrant` follow the `.com`, so a `.com` transferred away or deleted\
+    \ since no longer counts.\nAn item with `matching_domain_too_new`, which never\
+    \ clears, is not checked again: cancel it.\nTo check at once, e.g. right after\
+    \ the `.com` was registered or transferred to OpusDNS, call `POST /v1/orders/{order_id}/recheck`:\
+    \ it returns the order with the item checked again.\nAn item past `requested`\
+    \ or whose phase is over, and a marketplace order, cannot be checked again (`409`\
+    \ `ERROR_ORDER_NOT_RECHECKABLE`).\n\n### Canceling a pre-registration\n\nCancel\
+    \ it with `DELETE /v1/orders/{order_id}` (`204 No Content`) while its item is\
+    \ `requested`, which includes an item that `needs_action`. Nothing is held for\
+    \ it yet, so it is canceled at once. The order stays readable with status `canceled`\
+    \ and reason `canceled_by_customer`, and your organization can pre-register the\
+    \ domain again (a new order, at the back of the queue). Repeating the call is\
+    \ a success.\n\nA marketplace order, or an item past `requested`, is refused with\
+    \ `409` `ERROR_ORDER_NOT_CANCELABLE`. `409` `ERROR_ORDER_ITEM_BUSY` with `Retry-After`\
+    \ means the item is being processed at that moment.\n\n### Idempotency\n\nRepeat\
+    \ a request with the same `idempotency_key` and the same body and you get `200\
+    \ OK` with the original order, so retrying after a timeout is safe. The same key\
+    \ with a different body answers `409` (`ERROR_ORDER_IDEMPOTENCY_KEY_REUSED`).\
     \ Domain names are compared in normalized form, so `Example.COM` and `example.com`\
     \ count as the same body. The `idempotency_key` itself is compared case-insensitively,\
     \ so `Checkout-1` and `checkout-1` are the same key.\n\n### Reading orders\n\n\
@@ -53138,13 +53949,16 @@ tags:
     \ to you (for example, its TLD cannot be handed over by auth code) |\n| 409 |\
     \ `ERROR_ORDER_OPEN_LIMIT_REACHED` | Too many open orders; wait for some to finish\
     \ |\n| 409 | `ERROR_ORDER_NOT_CANCELABLE` | The order cannot be canceled: a marketplace\
-    \ order, or an item past `requested` |\n| 409 | `ERROR_ORDER_ITEM_BUSY` | The\
-    \ item is being processed at that moment; retry after the `Retry-After` seconds\
-    \ |\n| 409 | `ERROR_ORDER_DELIVERY_NOT_AVAILABLE` | Nothing is delivered yet,\
-    \ or the item is not at a stage where it can be read; read the order and check\
-    \ the item's `delivery_available` |\n| 422 | `ERROR_ORDER_TLD_NOT_AVAILABLE` |\
-    \ The domain's TLD is not offered |\n| 422 | `ERROR_ORDER_PHASE_NOT_OFFERED` |\
-    \ The TLD has no such launch phase, or OpusDNS does not take pre-registrations\
+    \ order, or an item past `requested` |\n| 409 | `ERROR_ORDER_ITEM_NOT_EDITABLE`\
+    \ | The item cannot be changed: a marketplace order, or an item past `requested`\
+    \ |\n| 409 | `ERROR_ORDER_NOT_RECHECKABLE` | The order cannot be checked again:\
+    \ a marketplace order, an item past `requested`, or its phase is over |\n| 409\
+    \ | `ERROR_ORDER_ITEM_BUSY` | The item is being processed at that moment; retry\
+    \ after the `Retry-After` seconds |\n| 409 | `ERROR_ORDER_DELIVERY_NOT_AVAILABLE`\
+    \ | Nothing is delivered yet, or the item is not at a stage where it can be read;\
+    \ read the order and check the item's `delivery_available` |\n| 422 | `ERROR_ORDER_TLD_NOT_AVAILABLE`\
+    \ | The domain's TLD is not offered |\n| 422 | `ERROR_ORDER_PHASE_NOT_OFFERED`\
+    \ | The TLD has no such launch phase, or OpusDNS does not take pre-registrations\
     \ for it |\n| 422 | `ERROR_ORDER_PHASE_NOT_ORDERABLE_YET` | OpusDNS does not take\
     \ pre-registrations for this phase yet |\n| 422 | `ERROR_ORDER_PHASE_TOO_LATE`\
     \ | Too late to pre-register: the phase has ended, or general availability has\

@@ -22,6 +22,7 @@ import type {
   DomainForwardPatchOps,
   DomainForwardSetCreateRequest,
   DomainForwardSetRequest,
+  DomainPreRegistrationItemUpdate,
   DomainRenewRequest,
   DomainRestoreRequest,
   DomainTransferIn,
@@ -933,10 +934,27 @@ export type GET_OrdersByOrderId_Request = {
 };
 export type GET_OrdersByOrderId_Request_Path = GET_OrdersByOrderId_Request['parameters']['path'];
 
+export type PATCH_OrdersByOrderIdItemsByItemId_Request = {
+  parameters: operations['update_order_item_v1_orders__order_id__items__item_id__patch']['parameters'];
+  requestBody: DomainPreRegistrationItemUpdate;
+};
+export type PATCH_OrdersByOrderIdItemsByItemId_Request_Path = PATCH_OrdersByOrderIdItemsByItemId_Request['parameters']['path'];
+export type PATCH_OrdersByOrderIdItemsByItemId_Request_Body = PATCH_OrdersByOrderIdItemsByItemId_Request['requestBody'];
+
 export type GET_OrdersByOrderIdItemsByItemIdDelivery_Request = {
   parameters: operations['get_order_item_delivery_v1_orders__order_id__items__item_id__delivery_get']['parameters'];
 };
 export type GET_OrdersByOrderIdItemsByItemIdDelivery_Request_Path = GET_OrdersByOrderIdItemsByItemIdDelivery_Request['parameters']['path'];
+
+export type POST_OrdersByOrderIdRecheck_Request = {
+  parameters: operations['recheck_order_v1_orders__order_id__recheck_post']['parameters'];
+};
+export type POST_OrdersByOrderIdRecheck_Request_Path = POST_OrdersByOrderIdRecheck_Request['parameters']['path'];
+
+export type GET_OrdersPreRegistrationsPriorityAccess_Request = {
+  parameters: operations['list_priority_access_domains_v1_orders_pre_registrations_priority_access_get']['parameters'];
+};
+export type GET_OrdersPreRegistrationsPriorityAccess_Request_Query = GET_OrdersPreRegistrationsPriorityAccess_Request['parameters']['query'];
 
 export type GET_Organizations_Request = {
   parameters: operations['list_organizations_v1_organizations_get']['parameters'];

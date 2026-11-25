@@ -2417,6 +2417,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/orders/pre-registrations/priority-access": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List domains for Priority Access
+         * @description Your organization's own domains that open Priority Access to the same name in `tld` (for `.web`: your `.com` domains held through OpusDNS), by name, with whether each name can be pre-registered for `limited_registration` now. Checked as `POST /v1/orders` checks it, except that whether the name is still free is only checked when it is ordered.
+         */
+        get: operations["list_priority_access_domains_v1_orders_pre_registrations_priority_access_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/orders/{order_id}": {
         parameters: {
             query?: never;
@@ -2440,6 +2460,28 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/orders/{order_id}/items/{item_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Change an order item
+         * @description Changes a `domain_pre_registration` item while it is `requested` (including `needs_action`): another launch `phase`, a new `registration` (replaced as a whole), the SMD file (`signed_mark`, `null` removes it) or the `expected_price`. Fields left out keep their value. The changed item is checked again as on creation, with the same errors, and gets a new `needs_action` and `hold_on`; a refused change leaves the item as it was. The item keeps the price it locked; another `phase` or `registration.period`, or an `expected_price`, is priced again, and a different price is refused with 409 `ERROR_ORDER_PRICE_CHANGED` carrying the new one, to confirm with `expected_price`.
+         *
+         *     Other item types and items past `requested` cannot be changed (409 `ERROR_ORDER_ITEM_NOT_EDITABLE`). 409 `ERROR_ORDER_ITEM_BUSY` means the item is being processed at that moment: retry after `Retry-After`.
+         */
+        patch: operations["update_order_item_v1_orders__order_id__items__item_id__patch"];
+        trace?: never;
+    };
     "/v1/orders/{order_id}/items/{item_id}/delivery": {
         parameters: {
             query?: never;
@@ -2454,6 +2496,28 @@ export interface paths {
         get: operations["get_order_item_delivery_v1_orders__order_id__items__item_id__delivery_get"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/orders/{order_id}/recheck": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Check an order again
+         * @description Checks a `domain_pre_registration` order again while its item is `requested` (including `needs_action`), as OpusDNS does by itself every hour and when a reason clears at `eligible_from`: what the item lacks for its phase, and for Priority Access the matching `.com`. Call it e.g. right after the `.com` was registered or transferred to OpusDNS. Returns the order with the updated `needs_action`.
+         *
+         *     Other order types, items past `requested` and items whose phase is over cannot be checked again (409 `ERROR_ORDER_NOT_RECHECKABLE`). 409 `ERROR_ORDER_ITEM_BUSY` means the item is being processed at that moment: retry after `Retry-After`.
+         */
+        post: operations["recheck_order_v1_orders__order_id__recheck_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -8382,6 +8446,30 @@ export interface components {
              */
             truncated: boolean;
         } | {
+            data?: components["schemas"]["Pagination_PriorityAccessDomainResponse_"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "list_priority_access_domains_v1_orders_pre_registrations_priority_access_get";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
             data?: components["schemas"]["WaitlistProductListResponse"] | string;
             /**
              * Headers
@@ -9021,6 +9109,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "put_whitelabel_document_v1_whitelabel_branding_document_put";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["OrderResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "recheck_order_v1_orders__order_id__recheck_post";
             /** @constant */
             status: "ok";
             /**
@@ -10101,6 +10213,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["OrderResponse"] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "update_order_item_v1_orders__order_id__items__item_id__patch";
             /** @constant */
             status: "ok";
             /**
@@ -14650,6 +14786,30 @@ export interface components {
             type: "domain_pre_registration";
         };
         /**
+         * DomainPreRegistrationItemUpdate
+         * @description Changes to a requested `domain_pre_registration` item; a field left out keeps its value. The changed item is
+         *     checked again as on creation.
+         */
+        DomainPreRegistrationItemUpdate: {
+            /** @description Confirms a new price: the item is priced again and the price must match, as on creation. Left out, the item keeps the price it locked, unless another `phase` or `registration.period` is priced again. */
+            expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
+            /** @description Another launch phase to submit in */
+            phase?: components["schemas"]["DomainPreRegistrationPhase"] | null;
+            /** @description Replaces the stored registration as a whole */
+            registration?: components["schemas"]["DomainPreRegistrationRegistration"] | null;
+            /**
+             * Signed Mark
+             * @description The SMD file from the Trademark Clearinghouse; `null` removes the stored one
+             */
+            signed_mark?: string | null;
+            /**
+             * Type
+             * @description Item type
+             * @constant
+             */
+            type: "domain_pre_registration";
+        };
+        /**
          * DomainPreRegistrationNeedsAction
          * @enum {string}
          */
@@ -19151,7 +19311,7 @@ export interface components {
          * OrderErrorCodes
          * @enum {string}
          */
-        OrderErrorCodes: "ERROR_ORDERS_FEATURE_DISABLED" | "ERROR_ORDER_CURRENCY_NOT_SUPPORTED" | "ERROR_ORDER_NOT_FOUND" | "ERROR_ORDER_IDEMPOTENCY_KEY_REUSED" | "ERROR_ORDER_SUBJECT_IN_PROGRESS" | "ERROR_ORDER_PRICE_CHANGED" | "ERROR_ORDER_ITEM_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_DELIVERABLE" | "ERROR_ORDER_OPEN_LIMIT_REACHED" | "ERROR_ORDER_SERVICE_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_FOUND" | "ERROR_ORDER_DELIVERY_NOT_AVAILABLE" | "ERROR_ORDER_DELIVERY_UNREADABLE" | "ERROR_ORDER_UNREADABLE" | "ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED" | "ERROR_ORDER_TLD_NOT_AVAILABLE" | "ERROR_ORDER_PHASE_NOT_OFFERED" | "ERROR_ORDER_PHASE_NOT_ORDERABLE_YET" | "ERROR_ORDER_PHASE_TOO_LATE" | "ERROR_ORDER_PREMIUM_PRICE_REQUIRED" | "ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED" | "ERROR_ORDER_CONFIRMATIONS_REQUIRED" | "ERROR_ORDER_MATCHING_DOMAIN_TOO_NEW" | "ERROR_ORDER_REGISTRANT_NOT_ALLOWED" | "ERROR_ORDER_ITEM_BUSY" | "ERROR_ORDER_NOT_CANCELABLE";
+        OrderErrorCodes: "ERROR_ORDERS_FEATURE_DISABLED" | "ERROR_ORDER_CURRENCY_NOT_SUPPORTED" | "ERROR_ORDER_NOT_FOUND" | "ERROR_ORDER_IDEMPOTENCY_KEY_REUSED" | "ERROR_ORDER_SUBJECT_IN_PROGRESS" | "ERROR_ORDER_PRICE_CHANGED" | "ERROR_ORDER_ITEM_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_DELIVERABLE" | "ERROR_ORDER_OPEN_LIMIT_REACHED" | "ERROR_ORDER_SERVICE_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_FOUND" | "ERROR_ORDER_DELIVERY_NOT_AVAILABLE" | "ERROR_ORDER_DELIVERY_UNREADABLE" | "ERROR_ORDER_UNREADABLE" | "ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED" | "ERROR_ORDER_TLD_NOT_AVAILABLE" | "ERROR_ORDER_PHASE_NOT_OFFERED" | "ERROR_ORDER_PHASE_NOT_ORDERABLE_YET" | "ERROR_ORDER_PHASE_TOO_LATE" | "ERROR_ORDER_PREMIUM_PRICE_REQUIRED" | "ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED" | "ERROR_ORDER_CONFIRMATIONS_REQUIRED" | "ERROR_ORDER_MATCHING_DOMAIN_TOO_NEW" | "ERROR_ORDER_REGISTRANT_NOT_ALLOWED" | "ERROR_ORDER_ITEM_BUSY" | "ERROR_ORDER_ITEM_NOT_EDITABLE" | "ERROR_ORDER_NOT_CANCELABLE" | "ERROR_ORDER_NOT_RECHECKABLE";
         /**
          * OrderItemDeliveryResponse
          * @description What an order item delivers: `type` plus one object named after it. Only ever the body of the delivery
@@ -20017,6 +20177,12 @@ export interface components {
             /** Results */
             results: components["schemas"]["Organization"][];
         };
+        /** Pagination[PriorityAccessDomainResponse] */
+        Pagination_PriorityAccessDomainResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["PriorityAccessDomainResponse"][];
+        };
         /** Pagination[RegistrarCredential] */
         Pagination_RegistrarCredential_: {
             pagination: components["schemas"]["PaginationMetadata"];
@@ -20676,6 +20842,54 @@ export interface components {
              */
             value: number;
         };
+        /**
+         * PriorityAccessDomainResponse
+         * @description One of your domains that opens Priority Access to the same name in the TLD, and whether it does now.
+         */
+        PriorityAccessDomainResponse: {
+            /**
+             * Domain
+             * @description The name to pre-register, e.g. `acme.web`
+             * @example acme.web
+             */
+            domain: string;
+            /**
+             * Eligible
+             * @description Whether the matching domain qualifies its registrant now
+             */
+            eligible: boolean;
+            /**
+             * Eligible From
+             * @description When it can, for `matching_domain_recently_transferred` and `matching_domain_in_add_period`
+             */
+            eligible_from: Date | null;
+            /**
+             * Matching Domain
+             * @description Your domain that opens Priority Access to it
+             * @example acme.com
+             */
+            matching_domain: string;
+            /**
+             * Matching Domain Id
+             * Format: typeid
+             * @description The id of the matching domain
+             * @example domain_01h45ytscbebyvny4gc8cr8ma2
+             */
+            matching_domain_id: TypeId<"domain">;
+            /**
+             * Pre Registration Order Id
+             * @description Your open pre-registration of `domain`, if there is one
+             */
+            pre_registration_order_id: TypeId<"order"> | null;
+            /** @description Why it does not qualify now: one of the `matching_domain_*` codes, which a pre-registration of `domain` shows in its `needs_action`. Only `matching_domain_too_new` refuses the order. */
+            reason: components["schemas"]["DomainPreRegistrationNeedsAction"] | null;
+        };
+        /**
+         * PriorityAccessTld
+         * @description The TLDs whose limited registration phase is Priority Access for the registrants of a matching domain.
+         * @enum {string}
+         */
+        PriorityAccessTld: "web";
         /** Problem */
         Problem: {
             /** Problem detail */
@@ -36685,6 +36899,74 @@ export interface operations {
             };
         };
     };
+    list_priority_access_domains_v1_orders_pre_registrations_priority_access_get: {
+        parameters: {
+            query: {
+                page?: number;
+                page_size?: number;
+                /** @description The TLD whose Priority Access to list */
+                tld: components["schemas"]["PriorityAccessTld"];
+                /** @description Only matching domains whose name contains this text (Unicode or ASCII form). `%` and `_` match themselves. */
+                search?: string | null;
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_PriorityAccessDomainResponse_"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_SERVICE_UNAVAILABLE",
+                     *       "detail": "Orders are temporarily unavailable, please retry shortly",
+                     *       "status": 503,
+                     *       "title": "Order Service Unavailable",
+                     *       "type": "order-service-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
     get_order_v1_orders__order_id__get: {
         parameters: {
             query?: never;
@@ -36838,6 +37120,112 @@ export interface operations {
             };
         };
     };
+    update_order_item_v1_orders__order_id__items__item_id__patch: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                order_id: TypeId<"order">;
+                item_id: TypeId<"order_item">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainPreRegistrationItemUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrderResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    /** @description Seconds to wait before retrying */
+                    "Retry-After"?: number;
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_UNREADABLE",
+                     *       "detail": "The order could not be read",
+                     *       "status": 500,
+                     *       "title": "Order Unreadable",
+                     *       "type": "order-unreadable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    /** @description Seconds to wait before retrying */
+                    "Retry-After"?: number;
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_SERVICE_UNAVAILABLE",
+                     *       "detail": "Orders are temporarily unavailable, please retry shortly",
+                     *       "status": 503,
+                     *       "title": "Order Service Unavailable",
+                     *       "type": "order-service-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
     get_order_item_delivery_v1_orders__order_id__items__item_id__delivery_get: {
         parameters: {
             query?: never;
@@ -36937,6 +37325,99 @@ export interface operations {
                      *       "status": 503,
                      *       "title": "Authorization service unavailable.",
                      *       "type": "authorization-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    recheck_order_v1_orders__order_id__recheck_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                order_id: TypeId<"order">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrderResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_NOT_FOUND",
+                     *       "detail": "Order not found",
+                     *       "order_id": "order_01h45ytscbebyvny4gc8cr8ma2",
+                     *       "status": 404,
+                     *       "title": "Order Not Found",
+                     *       "type": "order-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    /** @description Seconds to wait before retrying */
+                    "Retry-After"?: number;
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    /** @description Seconds to wait before retrying */
+                    "Retry-After"?: number;
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_SERVICE_UNAVAILABLE",
+                     *       "detail": "Orders are temporarily unavailable, please retry shortly",
+                     *       "status": 503,
+                     *       "title": "Order Service Unavailable",
+                     *       "type": "order-service-unavailable"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };

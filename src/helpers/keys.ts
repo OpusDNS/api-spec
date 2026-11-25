@@ -217,6 +217,7 @@ import type {
   DomainPeriod,
   DomainPreRegistrationDetail,
   DomainPreRegistrationItemCreate,
+  DomainPreRegistrationItemUpdate,
   DomainPreRegistrationRegistration,
   DomainRecommendationsContext,
   DomainRecommendationsContextCreate,
@@ -448,6 +449,7 @@ import type {
   PreviewMailRes,
   PriceInfo,
   PricingPeriod,
+  PriorityAccessDomain,
   Problem,
   ProductCreateRes,
   PublicAuthRequestForm,
@@ -3373,6 +3375,20 @@ export const KEYS_DOMAIN_PRE_REGISTRATION_ITEM_CREATE = [
   KEY_DOMAIN_PRE_REGISTRATION_ITEM_CREATE_SIGNED_MARK,
   KEY_DOMAIN_PRE_REGISTRATION_ITEM_CREATE_TYPE,
 ] as const satisfies (keyof DomainPreRegistrationItemCreate)[];
+
+export const KEY_DOMAIN_PRE_REGISTRATION_ITEM_UPDATE_EXPECTED_PRICE = 'expected_price' satisfies keyof DomainPreRegistrationItemUpdate;
+export const KEY_DOMAIN_PRE_REGISTRATION_ITEM_UPDATE_PHASE = 'phase' satisfies keyof DomainPreRegistrationItemUpdate;
+export const KEY_DOMAIN_PRE_REGISTRATION_ITEM_UPDATE_REGISTRATION = 'registration' satisfies keyof DomainPreRegistrationItemUpdate;
+export const KEY_DOMAIN_PRE_REGISTRATION_ITEM_UPDATE_SIGNED_MARK = 'signed_mark' satisfies keyof DomainPreRegistrationItemUpdate;
+export const KEY_DOMAIN_PRE_REGISTRATION_ITEM_UPDATE_TYPE = 'type' satisfies keyof DomainPreRegistrationItemUpdate;
+
+export const KEYS_DOMAIN_PRE_REGISTRATION_ITEM_UPDATE = [
+  KEY_DOMAIN_PRE_REGISTRATION_ITEM_UPDATE_EXPECTED_PRICE,
+  KEY_DOMAIN_PRE_REGISTRATION_ITEM_UPDATE_PHASE,
+  KEY_DOMAIN_PRE_REGISTRATION_ITEM_UPDATE_REGISTRATION,
+  KEY_DOMAIN_PRE_REGISTRATION_ITEM_UPDATE_SIGNED_MARK,
+  KEY_DOMAIN_PRE_REGISTRATION_ITEM_UPDATE_TYPE,
+] as const satisfies (keyof DomainPreRegistrationItemUpdate)[];
 
 export const KEY_DOMAIN_PRE_REGISTRATION_REGISTRATION_ATTRIBUTES = 'attributes' satisfies keyof DomainPreRegistrationRegistration;
 export const KEY_DOMAIN_PRE_REGISTRATION_REGISTRATION_CONTACTS = 'contacts' satisfies keyof DomainPreRegistrationRegistration;
@@ -6371,6 +6387,24 @@ export const KEYS_PRICING_PERIOD = [
   KEY_PRICING_PERIOD_UNIT,
   KEY_PRICING_PERIOD_VALUE,
 ] as const satisfies (keyof PricingPeriod)[];
+
+export const KEY_PRIORITY_ACCESS_DOMAIN_DOMAIN = 'domain' satisfies keyof PriorityAccessDomain;
+export const KEY_PRIORITY_ACCESS_DOMAIN_ELIGIBLE = 'eligible' satisfies keyof PriorityAccessDomain;
+export const KEY_PRIORITY_ACCESS_DOMAIN_ELIGIBLE_FROM = 'eligible_from' satisfies keyof PriorityAccessDomain;
+export const KEY_PRIORITY_ACCESS_DOMAIN_MATCHING_DOMAIN = 'matching_domain' satisfies keyof PriorityAccessDomain;
+export const KEY_PRIORITY_ACCESS_DOMAIN_MATCHING_DOMAIN_ID = 'matching_domain_id' satisfies keyof PriorityAccessDomain;
+export const KEY_PRIORITY_ACCESS_DOMAIN_PRE_REGISTRATION_ORDER_ID = 'pre_registration_order_id' satisfies keyof PriorityAccessDomain;
+export const KEY_PRIORITY_ACCESS_DOMAIN_REASON = 'reason' satisfies keyof PriorityAccessDomain;
+
+export const KEYS_PRIORITY_ACCESS_DOMAIN = [
+  KEY_PRIORITY_ACCESS_DOMAIN_DOMAIN,
+  KEY_PRIORITY_ACCESS_DOMAIN_ELIGIBLE,
+  KEY_PRIORITY_ACCESS_DOMAIN_ELIGIBLE_FROM,
+  KEY_PRIORITY_ACCESS_DOMAIN_MATCHING_DOMAIN,
+  KEY_PRIORITY_ACCESS_DOMAIN_MATCHING_DOMAIN_ID,
+  KEY_PRIORITY_ACCESS_DOMAIN_PRE_REGISTRATION_ORDER_ID,
+  KEY_PRIORITY_ACCESS_DOMAIN_REASON,
+] as const satisfies (keyof PriorityAccessDomain)[];
 
 export const KEY_PROBLEM_DETAIL = 'detail' satisfies keyof Problem;
 export const KEY_PROBLEM_STATUS = 'status' satisfies keyof Problem;

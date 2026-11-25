@@ -119,6 +119,7 @@ import type {
   PostalAddressType,
   PremiumAffectsType,
   PremiumSourceType,
+  PriorityAccessTld,
   PublicResource,
   PublicRole,
   PublicScope,
@@ -2004,7 +2005,9 @@ export const ORDER_ERROR_CODES = {
   ERROR_ORDER_MATCHING_DOMAIN_TOO_NEW: "ERROR_ORDER_MATCHING_DOMAIN_TOO_NEW",
   ERROR_ORDER_REGISTRANT_NOT_ALLOWED: "ERROR_ORDER_REGISTRANT_NOT_ALLOWED",
   ERROR_ORDER_ITEM_BUSY: "ERROR_ORDER_ITEM_BUSY",
+  ERROR_ORDER_ITEM_NOT_EDITABLE: "ERROR_ORDER_ITEM_NOT_EDITABLE",
   ERROR_ORDER_NOT_CANCELABLE: "ERROR_ORDER_NOT_CANCELABLE",
+  ERROR_ORDER_NOT_RECHECKABLE: "ERROR_ORDER_NOT_RECHECKABLE",
 } as const satisfies Record<string, OrderErrorCodes>;
 
 export const ORDER_ERROR_CODES_VALUES = [
@@ -2033,7 +2036,9 @@ export const ORDER_ERROR_CODES_VALUES = [
   'ERROR_ORDER_MATCHING_DOMAIN_TOO_NEW',
   'ERROR_ORDER_REGISTRANT_NOT_ALLOWED',
   'ERROR_ORDER_ITEM_BUSY',
+  'ERROR_ORDER_ITEM_NOT_EDITABLE',
   'ERROR_ORDER_NOT_CANCELABLE',
+  'ERROR_ORDER_NOT_RECHECKABLE',
 ] as const satisfies ReadonlyArray<OrderErrorCodes>;
 
 export const ORDER_ITEM_REASON = {
@@ -2221,6 +2226,14 @@ export const PREMIUM_SOURCE_TYPE_VALUES = [
   'CSV',
   'manual',
 ] as const satisfies ReadonlyArray<PremiumSourceType>;
+
+export const PRIORITY_ACCESS_TLD = {
+  WEB: "web",
+} as const satisfies Record<string, PriorityAccessTld>;
+
+export const PRIORITY_ACCESS_TLD_VALUES = [
+  'web',
+] as const satisfies ReadonlyArray<PriorityAccessTld>;
 
 export const PUBLIC_RESOURCE = {
   ORGANIZATION: "organization",

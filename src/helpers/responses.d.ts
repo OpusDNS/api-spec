@@ -94,6 +94,7 @@ import type {
   Pagination_Invoice,
   Pagination_Order,
   Pagination_Organization,
+  Pagination_PriorityAccessDomain,
   Pagination_RegistrarCredential,
   Pagination_SyncFailure,
   Pagination_Tag,
@@ -776,6 +777,13 @@ export type GET_OrdersByOrderIdItemsByItemIdDelivery_Response_422 = HTTPValidati
 export type GET_OrdersByOrderIdItemsByItemIdDelivery_Response_500 = Problem;
 export type GET_OrdersByOrderIdItemsByItemIdDelivery_Response_503 = Problem;
 
+export type GET_OrdersPreRegistrationsPriorityAccess_Response = GET_OrdersPreRegistrationsPriorityAccess_Response_200 | GET_OrdersPreRegistrationsPriorityAccess_Response_403 | GET_OrdersPreRegistrationsPriorityAccess_Response_422 | GET_OrdersPreRegistrationsPriorityAccess_Response_503;
+
+export type GET_OrdersPreRegistrationsPriorityAccess_Response_200 = Pagination_PriorityAccessDomain;
+export type GET_OrdersPreRegistrationsPriorityAccess_Response_403 = Problem;
+export type GET_OrdersPreRegistrationsPriorityAccess_Response_422 = Problem;
+export type GET_OrdersPreRegistrationsPriorityAccess_Response_503 = Problem;
+
 export type GET_Organizations_Response = GET_Organizations_Response_200 | GET_Organizations_Response_401 | GET_Organizations_Response_403 | GET_Organizations_Response_422;
 
 export type GET_Organizations_Response_200 = Pagination_Organization;
@@ -1122,6 +1130,16 @@ export type PATCH_EventsByEventId_Response = PATCH_EventsByEventId_Response_401 
 export type PATCH_EventsByEventId_Response_401 = Problem;
 export type PATCH_EventsByEventId_Response_404 = Problem;
 export type PATCH_EventsByEventId_Response_422 = HTTPValidationError;
+
+export type PATCH_OrdersByOrderIdItemsByItemId_Response = PATCH_OrdersByOrderIdItemsByItemId_Response_200 | PATCH_OrdersByOrderIdItemsByItemId_Response_403 | PATCH_OrdersByOrderIdItemsByItemId_Response_404 | PATCH_OrdersByOrderIdItemsByItemId_Response_409 | PATCH_OrdersByOrderIdItemsByItemId_Response_422 | PATCH_OrdersByOrderIdItemsByItemId_Response_500 | PATCH_OrdersByOrderIdItemsByItemId_Response_503;
+
+export type PATCH_OrdersByOrderIdItemsByItemId_Response_200 = Order;
+export type PATCH_OrdersByOrderIdItemsByItemId_Response_403 = Problem;
+export type PATCH_OrdersByOrderIdItemsByItemId_Response_404 = Problem;
+export type PATCH_OrdersByOrderIdItemsByItemId_Response_409 = Problem;
+export type PATCH_OrdersByOrderIdItemsByItemId_Response_422 = Problem;
+export type PATCH_OrdersByOrderIdItemsByItemId_Response_500 = Problem;
+export type PATCH_OrdersByOrderIdItemsByItemId_Response_503 = Problem;
 
 export type PATCH_OrganizationsAttributes_Response = PATCH_OrganizationsAttributes_Response_200 | PATCH_OrganizationsAttributes_Response_401 | PATCH_OrganizationsAttributes_Response_403 | PATCH_OrganizationsAttributes_Response_422;
 
@@ -1563,6 +1581,15 @@ export type POST_Orders_Response_409 = Problem;
 export type POST_Orders_Response_422 = Problem;
 export type POST_Orders_Response_500 = Problem;
 export type POST_Orders_Response_503 = Problem;
+
+export type POST_OrdersByOrderIdRecheck_Response = POST_OrdersByOrderIdRecheck_Response_200 | POST_OrdersByOrderIdRecheck_Response_403 | POST_OrdersByOrderIdRecheck_Response_404 | POST_OrdersByOrderIdRecheck_Response_409 | POST_OrdersByOrderIdRecheck_Response_422 | POST_OrdersByOrderIdRecheck_Response_503;
+
+export type POST_OrdersByOrderIdRecheck_Response_200 = Order;
+export type POST_OrdersByOrderIdRecheck_Response_403 = Problem;
+export type POST_OrdersByOrderIdRecheck_Response_404 = Problem;
+export type POST_OrdersByOrderIdRecheck_Response_409 = Problem;
+export type POST_OrdersByOrderIdRecheck_Response_422 = HTTPValidationError;
+export type POST_OrdersByOrderIdRecheck_Response_503 = Problem;
 
 export type POST_Organizations_Response = POST_Organizations_Response_200 | POST_Organizations_Response_401 | POST_Organizations_Response_403 | POST_Organizations_Response_422;
 
