@@ -966,6 +966,11 @@ export type GET_OrdersPreRegistrationsPriorityAccess_Request = {
 };
 export type GET_OrdersPreRegistrationsPriorityAccess_Request_Query = GET_OrdersPreRegistrationsPriorityAccess_Request['parameters']['query'];
 
+export type GET_OrdersPreRegistrationsPriorityAccessEligibility_Request = {
+  parameters: operations['check_priority_access_eligibility_v1_orders_pre_registrations_priority_access_eligibility_get']['parameters'];
+};
+export type GET_OrdersPreRegistrationsPriorityAccessEligibility_Request_Query = GET_OrdersPreRegistrationsPriorityAccessEligibility_Request['parameters']['query'];
+
 export type GET_Organizations_Request = {
   parameters: operations['list_organizations_v1_organizations_get']['parameters'];
 };

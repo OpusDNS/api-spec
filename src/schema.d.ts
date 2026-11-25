@@ -2439,6 +2439,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/orders/pre-registrations/priority-access/eligibility": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Check names for Priority Access
+         * @description Whether each name in `domain` can be pre-registered for `limited_registration` in `tld` now, as the list checks it: one entry per distinct name, in request order. A name whose matching domain (for `.web`: the `.com`) is not in your portfolio gets `matching_domain_not_found`.
+         */
+        get: operations["check_priority_access_eligibility_v1_orders_pre_registrations_priority_access_eligibility_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/orders/{order_id}": {
         parameters: {
             query?: never;
@@ -4839,6 +4859,30 @@ export interface components {
             httpStatus?: number | null;
             /** @constant */
             operationId: "cancel_verification_v1_contacts__contact_id__verification_delete";
+            /** @constant */
+            status: "ok";
+            /**
+             * Truncated
+             * @description True when the gateway capped an oversized payload
+             * @default false
+             */
+            truncated: boolean;
+        } | {
+            data?: components["schemas"]["PriorityAccessDomainResponse"][] | string;
+            /**
+             * Headers
+             * @description Selected response headers
+             */
+            headers?: {
+                [key: string]: string;
+            };
+            /**
+             * Httpstatus
+             * @description HTTP status returned by the underlying API
+             */
+            httpStatus?: number | null;
+            /** @constant */
+            operationId: "check_priority_access_eligibility_v1_orders_pre_registrations_priority_access_eligibility_get";
             /** @constant */
             status: "ok";
             /**
@@ -20969,7 +21013,7 @@ export interface components {
         };
         /**
          * PriorityAccessDomainResponse
-         * @description One of your domains that opens Priority Access to the same name in the TLD, and whether it does now.
+         * @description A name in the TLD, the domain that opens Priority Access to it, and whether it does now.
          */
         PriorityAccessDomainResponse: {
             /**
@@ -20990,17 +21034,15 @@ export interface components {
             eligible_from: Date | null;
             /**
              * Matching Domain
-             * @description Your domain that opens Priority Access to it
+             * @description The domain that opens Priority Access to it: yours, unless `reason` is `matching_domain_not_found`
              * @example acme.com
              */
             matching_domain: string;
             /**
              * Matching Domain Id
-             * Format: typeid
-             * @description The id of the matching domain
-             * @example domain_01h45ytscbebyvny4gc8cr8ma2
+             * @description The id of the matching domain; null only for `matching_domain_not_found`, which only the eligibility lookup returns
              */
-            matching_domain_id: TypeId<"domain">;
+            matching_domain_id: TypeId<"domain"> | null;
             /**
              * Pre Registration Order Id
              * @description Your open pre-registration of `domain`, if there is one
@@ -36876,6 +36918,8 @@ export interface operations {
                 created_after?: Date | null;
                 /** @description Only orders created at or before this time */
                 created_before?: Date | null;
+                /** @description Only orders with an open item that needs your action (`true`), or without one (`false`): a pre-registration whose `needs_action` lists something */
+                needs_action?: boolean | null;
                 /** @description Field to sort by */
                 sort_by?: components["schemas"]["OrderSortField"];
                 /** @description Sort order direction */
@@ -37033,6 +37077,8 @@ export interface operations {
                 tld: components["schemas"]["PriorityAccessTld"];
                 /** @description Only matching domains whose name contains this text (Unicode or ASCII form). `%` and `_` match themselves. */
                 search?: string | null;
+                /** @description Only names you have an open pre-registration of (`true`), or have not (`false`) */
+                pre_registered?: boolean | null;
             };
             header?: {
                 /**
@@ -37054,6 +37100,72 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Pagination_PriorityAccessDomainResponse_"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ORDER_SERVICE_UNAVAILABLE",
+                     *       "detail": "Orders are temporarily unavailable, please retry shortly",
+                     *       "status": 503,
+                     *       "title": "Order Service Unavailable",
+                     *       "type": "order-service-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    check_priority_access_eligibility_v1_orders_pre_registrations_priority_access_eligibility_get: {
+        parameters: {
+            query: {
+                /** @description The TLD whose Priority Access to check */
+                tld: components["schemas"]["PriorityAccessTld"];
+                /** @description The names in the TLD to check (Unicode or ASCII form), 1 to 100: repeat the parameter for each */
+                domain: string[];
+            };
+            header?: {
+                /**
+                 * @deprecated
+                 * @description Deprecated: has no effect and will be removed from this specification on 2026-11-12; the API keeps ignoring it if sent. Response datetimes are always normalized to UTC and serialized as RFC 3339 with a `Z` suffix.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PriorityAccessDomainResponse"][];
                 };
             };
             /** @description Forbidden */

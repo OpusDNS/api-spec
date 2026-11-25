@@ -104,6 +104,7 @@ import type {
   ParkingSignupStatus,
   ParkingTotalMetrics,
   PreviewMailRes,
+  PriorityAccessDomain,
   Problem,
   ProductCreateRes,
   PublicPermissionSet,
@@ -790,6 +791,13 @@ export type GET_OrdersPreRegistrationsPriorityAccess_Response_200 = Pagination_P
 export type GET_OrdersPreRegistrationsPriorityAccess_Response_403 = Problem;
 export type GET_OrdersPreRegistrationsPriorityAccess_Response_422 = Problem;
 export type GET_OrdersPreRegistrationsPriorityAccess_Response_503 = Problem;
+
+export type GET_OrdersPreRegistrationsPriorityAccessEligibility_Response = GET_OrdersPreRegistrationsPriorityAccessEligibility_Response_200 | GET_OrdersPreRegistrationsPriorityAccessEligibility_Response_403 | GET_OrdersPreRegistrationsPriorityAccessEligibility_Response_422 | GET_OrdersPreRegistrationsPriorityAccessEligibility_Response_503;
+
+export type GET_OrdersPreRegistrationsPriorityAccessEligibility_Response_200 = PriorityAccessDomain[];
+export type GET_OrdersPreRegistrationsPriorityAccessEligibility_Response_403 = Problem;
+export type GET_OrdersPreRegistrationsPriorityAccessEligibility_Response_422 = Problem;
+export type GET_OrdersPreRegistrationsPriorityAccessEligibility_Response_503 = Problem;
 
 export type GET_Organizations_Response = GET_Organizations_Response_200 | GET_Organizations_Response_401 | GET_Organizations_Response_403 | GET_Organizations_Response_422;
 

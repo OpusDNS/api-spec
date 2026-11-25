@@ -112,6 +112,7 @@ export const JOBS_BY_BATCH_ID_RESUME_ENDPOINT = '/v1/jobs/{batch_id}/resume';
 export const JOBS_BY_BATCH_ID_RETRY_ENDPOINT = '/v1/jobs/{batch_id}/retry';
 export const ORDERS_ENDPOINT = '/v1/orders';
 export const ORDERS_PRE_REGISTRATIONS_PRIORITY_ACCESS_ENDPOINT = '/v1/orders/pre-registrations/priority-access';
+export const ORDERS_PRE_REGISTRATIONS_PRIORITY_ACCESS_ELIGIBILITY_ENDPOINT = '/v1/orders/pre-registrations/priority-access/eligibility';
 export const ORDERS_BY_ORDER_ID_ENDPOINT = '/v1/orders/{order_id}';
 export const ORDERS_BY_ORDER_ID_ITEMS_BY_ITEM_ID_ENDPOINT = '/v1/orders/{order_id}/items/{item_id}';
 export const ORDERS_BY_ORDER_ID_ITEMS_BY_ITEM_ID_DELIVERY_ENDPOINT = '/v1/orders/{order_id}/items/{item_id}/delivery';
@@ -290,6 +291,7 @@ export type Endpoint =
   | typeof JOBS_BY_BATCH_ID_RETRY_ENDPOINT
   | typeof ORDERS_ENDPOINT
   | typeof ORDERS_PRE_REGISTRATIONS_PRIORITY_ACCESS_ENDPOINT
+  | typeof ORDERS_PRE_REGISTRATIONS_PRIORITY_ACCESS_ELIGIBILITY_ENDPOINT
   | typeof ORDERS_BY_ORDER_ID_ENDPOINT
   | typeof ORDERS_BY_ORDER_ID_ITEMS_BY_ITEM_ID_ENDPOINT
   | typeof ORDERS_BY_ORDER_ID_ITEMS_BY_ITEM_ID_DELIVERY_ENDPOINT

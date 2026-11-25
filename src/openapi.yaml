@@ -1736,6 +1736,41 @@ components:
       - properties:
           data:
             anyOf:
+            - items:
+                $ref: '#/components/schemas/PriorityAccessDomainResponse'
+              title: Response Check Priority Access Eligibility V1 Orders Pre Registrations
+                Priority Access Eligibility Get
+              type: array
+            - type: string
+          headers:
+            additionalProperties:
+              type: string
+            description: Selected response headers
+            title: Headers
+            type: object
+          httpStatus:
+            anyOf:
+            - type: integer
+            - type: 'null'
+            description: HTTP status returned by the underlying API
+            title: Httpstatus
+          operationId:
+            const: check_priority_access_eligibility_v1_orders_pre_registrations_priority_access_eligibility_get
+          status:
+            const: ok
+          truncated:
+            default: false
+            description: True when the gateway capped an oversized payload
+            title: Truncated
+            type: boolean
+        required:
+        - status
+        - operationId
+        title: check_priority_access_eligibility_v1_orders_pre_registrations_priority_access_eligibility_get
+        type: object
+      - properties:
+          data:
+            anyOf:
             - $ref: '#/components/schemas/VanityNsCheckRes'
             - type: string
           headers:
@@ -24810,8 +24845,8 @@ components:
       title: PricingPeriod
       type: object
     PriorityAccessDomainResponse:
-      description: One of your domains that opens Priority Access to the same name
-        in the TLD, and whether it does now.
+      description: A name in the TLD, the domain that opens Priority Access to it,
+        and whether it does now.
       properties:
         domain:
           description: The name to pre-register, e.g. `acme.web`
@@ -24832,20 +24867,24 @@ components:
             `matching_domain_in_add_period`
           title: Eligible From
         matching_domain:
-          description: Your domain that opens Priority Access to it
+          description: 'The domain that opens Priority Access to it: yours, unless
+            `reason` is `matching_domain_not_found`'
           examples:
           - acme.com
           title: Matching Domain
           type: string
         matching_domain_id:
-          description: The id of the matching domain
-          examples:
-          - domain_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          anyOf:
+          - examples:
+            - domain_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: domain
+          - type: 'null'
+          description: The id of the matching domain; null only for `matching_domain_not_found`,
+            which only the eligibility lookup returns
           title: Matching Domain Id
-          type: string
-          x-typeid-prefix: domain
         pre_registration_order_id:
           anyOf:
           - examples:
@@ -30271,7 +30310,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-25-103450
+  version: 2026-11-25-125751
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -47092,6 +47131,20 @@ paths:
           - type: 'null'
           description: Only orders created at or before this time
           title: Created Before
+      - description: 'Only orders with an open item that needs your action (`true`),
+          or without one (`false`): a pre-registration whose `needs_action` lists
+          something'
+        in: query
+        name: needs_action
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: 'Only orders with an open item that needs your action (`true`),
+            or without one (`false`): a pre-registration whose `needs_action` lists
+            something'
+          title: Needs Action
       - description: Field to sort by
         in: query
         name: sort_by
@@ -47493,6 +47546,18 @@ paths:
           description: Only matching domains whose name contains this text (Unicode
             or ASCII form). `%` and `_` match themselves.
           title: Search
+      - description: Only names you have an open pre-registration of (`true`), or
+          have not (`false`)
+        in: query
+        name: pre_registered
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Only names you have an open pre-registration of (`true`), or
+            have not (`false`)
+          title: Pre Registered
       - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
@@ -47580,6 +47645,130 @@ paths:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
       summary: List domains for Priority Access
+      tags:
+      - orders
+      x-required-permissions:
+      - domains:read
+  /v1/orders/pre-registrations/priority-access/eligibility:
+    get:
+      description: 'Whether each name in `domain` can be pre-registered for `limited_registration`
+        in `tld` now, as the list checks it: one entry per distinct name, in request
+        order. A name whose matching domain (for `.web`: the `.com`) is not in your
+        portfolio gets `matching_domain_not_found`.'
+      operationId: check_priority_access_eligibility_v1_orders_pre_registrations_priority_access_eligibility_get
+      parameters:
+      - description: The TLD whose Priority Access to check
+        in: query
+        name: tld
+        required: true
+        schema:
+          $ref: '#/components/schemas/PriorityAccessTld'
+          description: The TLD whose Priority Access to check
+      - description: 'The names in the TLD to check (Unicode or ASCII form), 1 to
+          100: repeat the parameter for each'
+        in: query
+        name: domain
+        required: true
+        schema:
+          description: 'The names in the TLD to check (Unicode or ASCII form), 1 to
+            100: repeat the parameter for each'
+          items:
+            type: string
+          maxItems: 100
+          minItems: 1
+          title: Domain
+          type: array
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PriorityAccessDomainResponse'
+                title: Response Check Priority Access Eligibility V1 Orders Pre Registrations
+                  Priority Access Eligibility Get
+                type: array
+          description: Successful Response
+        '403':
+          content:
+            application/problem+json:
+              examples:
+                Orders Feature Disabled:
+                  value:
+                    code: ERROR_ORDERS_FEATURE_DISABLED
+                    detail: Orders are not enabled in this environment
+                    status: 403
+                    title: Orders Feature Disabled
+                    type: orders-feature-disabled
+                Permission Denied:
+                  value:
+                    code: ERROR_PERMISSION_DENIED
+                    detail: Insufficient permissions to perform this action
+                    status: 403
+                    title: Permission Denied
+                    type: permission-denied
+                Pre-Registrations Feature Disabled:
+                  value:
+                    code: ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED
+                    detail: Domain pre-registrations are not enabled in this environment
+                    status: 403
+                    title: Pre-Registrations Feature Disabled
+                    type: pre-registrations-feature-disabled
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              examples:
+                Order Phase Not Offered:
+                  value:
+                    code: ERROR_ORDER_PHASE_NOT_OFFERED
+                    detail: '.web cannot be pre-registered for this phase: the TLD
+                      has no such phase, or OpusDNS does not take pre-registrations
+                      for it'
+                    domain: .web
+                    status: 422
+                    title: Order Phase Not Offered
+                    type: order-phase-not-offered
+                Order Phase Not Orderable Yet:
+                  value:
+                    code: ERROR_ORDER_PHASE_NOT_ORDERABLE_YET
+                    detail: '.web cannot be pre-registered for this phase: OpusDNS
+                      does not take pre-registrations for it yet'
+                    domain: .web
+                    status: 422
+                    title: Order Phase Not Orderable Yet
+                    type: order-phase-not-orderable-yet
+                Order Phase Too Late:
+                  value:
+                    code: ERROR_ORDER_PHASE_TOO_LATE
+                    detail: '.web cannot be pre-registered for this phase: it is too
+                      late to pre-register for it'
+                    domain: .web
+                    status: 422
+                    title: Order Phase Too Late
+                    type: order-phase-too-late
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ORDER_SERVICE_UNAVAILABLE
+                detail: Orders are temporarily unavailable, please retry shortly
+                status: 503
+                title: Order Service Unavailable
+                type: order-service-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Check names for Priority Access
       tags:
       - orders
       x-required-permissions:
@@ -54243,16 +54432,34 @@ tags:
     \ when it clears by itself.\nEvery name can be pre-registered now except one with\
     \ `matching_domain_too_new`.\n`pre_registration_order_id` is your open pre-registration\
     \ of the name.\nWhether the `.web` is still free is only checked when you order\
-    \ it.\n\n### Changing a pre-registration\n\nWhile the item is `requested`, which\
-    \ includes an item that `needs_action`, change it with `PATCH /v1/orders/{order_id}/items/{item_id}`,\
-    \ e.g. to add the SMD file:\n\n```json\n{\n  \"type\": \"domain_pre_registration\"\
-    ,\n  \"signed_mark\": \"Marks: Acme\\n...-----BEGIN ENCODED SMD-----\\n...\\n-----END\
-    \ ENCODED SMD-----\"\n}\n```\n\n- Send only what changes: `phase`, `registration`\
-    \ (replaced as a whole), `signed_mark` (`null` removes it) or `expected_price`.\
-    \ The domain cannot be changed: cancel the order and pre-register the other domain.\n\
-    - The changed item is checked again as on creation, with the same errors, and\
-    \ returned with its new `needs_action`, `hold_on` and, for Priority Access, `registrant`.\
-    \ A refused change leaves the item as it was.\n- The item keeps the price it locked,\
+    \ it.\n\n`pre_registered=true` keeps the names you have an open pre-registration\
+    \ of, and `pre_registered=false` the others.\nIt narrows the list before it is\
+    \ paged, so `pagination` counts only the rows that match; with `search`, both\
+    \ must match.\n\nTo check given names, e.g. the ones typed into an order form,\
+    \ use `GET /v1/orders/pre-registrations/priority-access/eligibility?tld=web&domain=acme.web&domain=example.web`.\n\
+    It takes 1 to 100 `.web` names (Unicode or ASCII form), repeating `domain` for\
+    \ each.\nIt returns a plain list, not paginated, with one entry per distinct name\
+    \ in request order:\n\n```json\n[\n  {\n    \"domain\": \"acme.web\",\n    \"\
+    matching_domain\": \"acme.com\",\n    \"matching_domain_id\": \"domain_01h45ytscbebyvny4gc8cr8ma2\"\
+    ,\n    \"eligible\": true,\n    \"reason\": null,\n    \"eligible_from\": null,\n\
+    \    \"pre_registration_order_id\": \"order_01h2xcejqtf2nbrexx3vqjhp41\"\n  },\n\
+    \  {\n    \"domain\": \"example.web\",\n    \"matching_domain\": \"example.com\"\
+    ,\n    \"matching_domain_id\": null,\n    \"eligible\": false,\n    \"reason\"\
+    : \"matching_domain_not_found\",\n    \"eligible_from\": null,\n    \"pre_registration_order_id\"\
+    : null\n  }\n]\n```\n\nThe entries read as in the list.\nA name whose `.com` is\
+    \ not in your portfolio gets `matching_domain_not_found`, with `matching_domain`\
+    \ naming the `.com` it needs and `matching_domain_id` null.\nNo names, more than\
+    \ 100 or a name outside the TLD are refused with `422`.\n\n### Changing a pre-registration\n\
+    \nWhile the item is `requested`, which includes an item that `needs_action`, change\
+    \ it with `PATCH /v1/orders/{order_id}/items/{item_id}`, e.g. to add the SMD file:\n\
+    \n```json\n{\n  \"type\": \"domain_pre_registration\",\n  \"signed_mark\": \"\
+    Marks: Acme\\n...-----BEGIN ENCODED SMD-----\\n...\\n-----END ENCODED SMD-----\"\
+    \n}\n```\n\n- Send only what changes: `phase`, `registration` (replaced as a whole),\
+    \ `signed_mark` (`null` removes it) or `expected_price`. The domain cannot be\
+    \ changed: cancel the order and pre-register the other domain.\n- The changed\
+    \ item is checked again as on creation, with the same errors, and returned with\
+    \ its new `needs_action`, `hold_on` and, for Priority Access, `registrant`. A\
+    \ refused change leaves the item as it was.\n- The item keeps the price it locked,\
     \ and a change that leaves the price alone checks neither price nor availability\
     \ again.\n- Another `phase` or `registration.period` is priced again as on creation:\
     \ a different price is refused with `409` `ERROR_ORDER_PRICE_CHANGED` carrying\
@@ -54289,28 +54496,31 @@ tags:
     \ count as the same body. The `idempotency_key` itself is compared case-insensitively,\
     \ so `Checkout-1` and `checkout-1` are the same key.\n\n### Reading orders\n\n\
     `GET /v1/orders/{order_id}` returns one order. `GET /v1/orders` lists your orders,\
-    \ filtered by `status`, `type`, `domain`, `search`, `created_after` and `created_before`.\
-    \ Both time bounds are inclusive: an order created at exactly `created_after`\
-    \ or `created_before` is returned, so consecutive windows share their boundary\
-    \ instant. `domain` matches one domain name exactly; `search` matches orders whose\
-    \ domain name contains the text (`%` and `_` count as themselves, it never matches\
-    \ an order ID, and with `domain` both must match). A Unicode name also matches\
-    \ its punycode form, but a partial Unicode label finds nothing, because orders\
-    \ store the ASCII form: search `b\xFCcher.de`, not `b\xFCch`.\n\nThe list is sorted\
-    \ by `sort_by` (`created_on`, the default, or `updated_on`) in the direction of\
-    \ `sort_order` (`desc`, the default, or `asc`); orders with the same time are\
-    \ ordered by their ID in the same direction, so paging is stable.\n\nAn order\
-    \ has `total_price` and `currency` (both `null` for an order that cannot be shown,\
-    \ see below); each item has `price` and `currency`. Prices are decimal strings\
-    \ with two decimals (`\"12.10\"`). Each item also has a `type` and an object named\
-    \ after that type with its own fields. For `marketplace_domain_purchase` that\
-    \ is `marketplace_domain_purchase` with `domain`, `marketplace` and `stage`. Every\
-    \ item also has `delivery_available` (see Delivery). Create requests send `expected_price`\
-    \ the same way.\n\nOne order that cannot be shown (its stored data is invalid)\
-    \ never fails the list. The list returns it as a stub: `order_id`, `status`, `created_on`\
-    \ and `updated_on` are set, `items` is an empty list, and `total_price` and `currency`\
-    \ are `null`. The entries on a page always match the pagination counts, so `total_items`\
-    \ and `has_next_page` can be trusted. If an order has an empty `items` or a `null`\
+    \ filtered by `status`, `type`, `domain`, `search`, `created_after`, `created_before`\
+    \ and `needs_action`. Both time bounds are inclusive: an order created at exactly\
+    \ `created_after` or `created_before` is returned, so consecutive windows share\
+    \ their boundary instant. `domain` matches one domain name exactly; `search` matches\
+    \ orders whose domain name contains the text (`%` and `_` count as themselves,\
+    \ it never matches an order ID, and with `domain` both must match). A Unicode\
+    \ name also matches its punycode form, but a partial Unicode label finds nothing,\
+    \ because orders store the ASCII form: search `b\xFCcher.de`, not `b\xFCch`.\n\
+    `needs_action=true` returns the orders with an open item that needs your action,\
+    \ a pre-registration whose `needs_action` lists something (its `stage` is `needs_action`),\
+    \ and `needs_action=false` the others.\n\nThe list is sorted by `sort_by` (`created_on`,\
+    \ the default, or `updated_on`) in the direction of `sort_order` (`desc`, the\
+    \ default, or `asc`); orders with the same time are ordered by their ID in the\
+    \ same direction, so paging is stable.\n\nAn order has `total_price` and `currency`\
+    \ (both `null` for an order that cannot be shown, see below); each item has `price`\
+    \ and `currency`. Prices are decimal strings with two decimals (`\"12.10\"`).\
+    \ Each item also has a `type` and an object named after that type with its own\
+    \ fields. For `marketplace_domain_purchase` that is `marketplace_domain_purchase`\
+    \ with `domain`, `marketplace` and `stage`. Every item also has `delivery_available`\
+    \ (see Delivery). Create requests send `expected_price` the same way.\n\nOne order\
+    \ that cannot be shown (its stored data is invalid) never fails the list. The\
+    \ list returns it as a stub: `order_id`, `status`, `created_on` and `updated_on`\
+    \ are set, `items` is an empty list, and `total_price` and `currency` are `null`.\
+    \ The entries on a page always match the pagination counts, so `total_items` and\
+    \ `has_next_page` can be trusted. If an order has an empty `items` or a `null`\
     \ `total_price`, show it as \"can't be displayed, contact support with the order\
     \ ID\". Fetching that order directly answers `500` `ERROR_ORDER_UNREADABLE` with\
     \ a generic message; contact support with the order ID.\n\n### Statuses and stages\n\
