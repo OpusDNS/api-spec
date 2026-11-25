@@ -3723,6 +3723,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/watches.md",
                 "showInSidebar": true
               },
+              "/web": {
+                "type": "page",
+                "title": "🌐 .web",
+                "filepath": "content/tld-knowledge-base/gtlds/web.md",
+                "showInSidebar": true
+              },
               "/website": {
                 "type": "page",
                 "title": "🌐 .website",
