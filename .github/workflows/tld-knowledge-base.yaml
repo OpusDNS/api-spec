@@ -102,6 +102,29 @@ jobs:
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
+      # The Validate Scalar docs check does not run by itself on the PR this
+      # workflow opens: the PR is opened with GITHUB_TOKEN, and GitHub holds
+      # those runs for approval (action_required). Merging is what publishes
+      # developers.opusdns.com, so validate here and open no PR on a broken config.
+      - name: Set up Node
+        if: steps.diff.outputs.changed == 'true'
+        uses: actions/setup-node@v6
+        with:
+          # .nvmrc is "v24.*", which node-version-file does not resolve.
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: scalar/package-lock.json
+
+      - name: Validate the Scalar config
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          npm ci --prefix scalar --no-audit --no-fund
+          npm --prefix scalar run check
+
+      - name: Every page referenced by the nav exists
+        if: steps.diff.outputs.changed == 'true'
+        run: python3 scripts/check_scalar_nav.py
+
       - name: Open pull request
         if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v8
@@ -119,6 +142,9 @@ jobs:
               github.event.inputs.tld_specifications_ref
                 || github.event.client_payload.ref
                 || 'main' }}`
+
+            `scalar project check-config` and the nav file check passed before
+            this PR was opened.
 
             Merging this PR will publish the updated knowledge base via Scalar.
           labels: |
