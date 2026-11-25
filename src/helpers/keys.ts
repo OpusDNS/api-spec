@@ -3333,22 +3333,28 @@ export const KEYS_DOMAIN_PERIOD = [
 ] as const satisfies (keyof DomainPeriod)[];
 
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_DOMAIN = 'domain' satisfies keyof DomainPreRegistrationDetail;
+export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_ELIGIBLE_FROM = 'eligible_from' satisfies keyof DomainPreRegistrationDetail;
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_HOLD_ON = 'hold_on' satisfies keyof DomainPreRegistrationDetail;
+export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_MATCHING_DOMAIN = 'matching_domain' satisfies keyof DomainPreRegistrationDetail;
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_MISSING_CONFIRMATIONS = 'missing_confirmations' satisfies keyof DomainPreRegistrationDetail;
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_NEEDS_ACTION = 'needs_action' satisfies keyof DomainPreRegistrationDetail;
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PHASE = 'phase' satisfies keyof DomainPreRegistrationDetail;
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PHASE_STARTS_ON = 'phase_starts_on' satisfies keyof DomainPreRegistrationDetail;
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PREMIUM = 'premium' satisfies keyof DomainPreRegistrationDetail;
+export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_REGISTRANT = 'registrant' satisfies keyof DomainPreRegistrationDetail;
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_STAGE = 'stage' satisfies keyof DomainPreRegistrationDetail;
 
 export const KEYS_DOMAIN_PRE_REGISTRATION_DETAIL = [
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_DOMAIN,
+  KEY_DOMAIN_PRE_REGISTRATION_DETAIL_ELIGIBLE_FROM,
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_HOLD_ON,
+  KEY_DOMAIN_PRE_REGISTRATION_DETAIL_MATCHING_DOMAIN,
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_MISSING_CONFIRMATIONS,
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_NEEDS_ACTION,
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PHASE,
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PHASE_STARTS_ON,
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PREMIUM,
+  KEY_DOMAIN_PRE_REGISTRATION_DETAIL_REGISTRANT,
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_STAGE,
 ] as const satisfies (keyof DomainPreRegistrationDetail)[];
 

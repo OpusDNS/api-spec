@@ -14570,11 +14570,21 @@ export interface components {
              */
             domain: string;
             /**
+             * Eligible From
+             * @description Priority Access: when the `matching_domain_*` code in `needs_action` clears
+             */
+            eligible_from?: Date | null;
+            /**
              * Hold On
              * Format: date-time
              * @description When the funds are held at the then current price; what `needs_action` lists must be provided by then
              */
             hold_on: Date;
+            /**
+             * Matching Domain
+             * @description Priority Access (`limited_registration`): your domain whose registrant may pre-register this one, e.g. `acme.com` for `acme.web`
+             */
+            matching_domain?: string | null;
             /**
              * Missing Confirmations
              * @description The keys of the TLD's `legal_requirements` confirmations not yet given (with `confirmation_required`), e.g. `HTTPS_SUPPORT_CONFIRMATION`
@@ -14582,7 +14592,7 @@ export interface components {
             missing_confirmations: string[];
             /**
              * Needs Action
-             * @description What the customer must still provide. Treat a value you do not know as an open action: codes can be added.
+             * @description What keeps the item from being submitted. The customer provides `signed_mark_required` and `confirmation_required`; the `matching_domain_*` codes are checked again while the item is `requested`, and `matching_domain_recently_transferred` and `matching_domain_in_add_period` clear by themselves at `eligible_from`. Treat a value you do not know as an open action: codes can be added.
              */
             needs_action: components["schemas"]["DomainPreRegistrationNeedsAction"][];
             /** @description The launch phase the item is submitted in. Treat a value you do not know as a phase: phases can be added. */
@@ -14598,6 +14608,11 @@ export interface components {
              * @description Whether the domain is premium; `price` is then the registry's premium price
              */
             premium: boolean;
+            /**
+             * Registrant
+             * @description Priority Access: the contact the domain is registered for, the matching domain's registrant, taken once the matching domain qualifies
+             */
+            registrant?: TypeId<"contact"> | null;
             /** @description Where the pre-registration stands. Treat a value you do not know as `requested`: stages can be added. */
             stage: components["schemas"]["DomainPreRegistrationPublicStage"];
         };
@@ -14638,7 +14653,7 @@ export interface components {
          * DomainPreRegistrationNeedsAction
          * @enum {string}
          */
-        DomainPreRegistrationNeedsAction: "signed_mark_required" | "confirmation_required";
+        DomainPreRegistrationNeedsAction: "signed_mark_required" | "confirmation_required" | "matching_domain_not_found" | "matching_domain_recently_transferred" | "matching_domain_too_new" | "matching_domain_in_add_period";
         /**
          * DomainPreRegistrationPhase
          * @description A spec's launch phase types, plus general availability, which a spec keeps as its own block.
@@ -19136,7 +19151,7 @@ export interface components {
          * OrderErrorCodes
          * @enum {string}
          */
-        OrderErrorCodes: "ERROR_ORDERS_FEATURE_DISABLED" | "ERROR_ORDER_CURRENCY_NOT_SUPPORTED" | "ERROR_ORDER_NOT_FOUND" | "ERROR_ORDER_IDEMPOTENCY_KEY_REUSED" | "ERROR_ORDER_SUBJECT_IN_PROGRESS" | "ERROR_ORDER_PRICE_CHANGED" | "ERROR_ORDER_ITEM_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_DELIVERABLE" | "ERROR_ORDER_OPEN_LIMIT_REACHED" | "ERROR_ORDER_SERVICE_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_FOUND" | "ERROR_ORDER_DELIVERY_NOT_AVAILABLE" | "ERROR_ORDER_DELIVERY_UNREADABLE" | "ERROR_ORDER_UNREADABLE" | "ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED" | "ERROR_ORDER_PHASE_NOT_AVAILABLE" | "ERROR_ORDER_PREMIUM_PRICE_REQUIRED" | "ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED" | "ERROR_ORDER_CONFIRMATIONS_REQUIRED" | "ERROR_ORDER_ITEM_BUSY" | "ERROR_ORDER_NOT_CANCELABLE";
+        OrderErrorCodes: "ERROR_ORDERS_FEATURE_DISABLED" | "ERROR_ORDER_CURRENCY_NOT_SUPPORTED" | "ERROR_ORDER_NOT_FOUND" | "ERROR_ORDER_IDEMPOTENCY_KEY_REUSED" | "ERROR_ORDER_SUBJECT_IN_PROGRESS" | "ERROR_ORDER_PRICE_CHANGED" | "ERROR_ORDER_ITEM_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_DELIVERABLE" | "ERROR_ORDER_OPEN_LIMIT_REACHED" | "ERROR_ORDER_SERVICE_UNAVAILABLE" | "ERROR_ORDER_ITEM_NOT_FOUND" | "ERROR_ORDER_DELIVERY_NOT_AVAILABLE" | "ERROR_ORDER_DELIVERY_UNREADABLE" | "ERROR_ORDER_UNREADABLE" | "ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED" | "ERROR_ORDER_TLD_NOT_AVAILABLE" | "ERROR_ORDER_PHASE_NOT_OFFERED" | "ERROR_ORDER_PHASE_NOT_ORDERABLE_YET" | "ERROR_ORDER_PHASE_TOO_LATE" | "ERROR_ORDER_PREMIUM_PRICE_REQUIRED" | "ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED" | "ERROR_ORDER_CONFIRMATIONS_REQUIRED" | "ERROR_ORDER_MATCHING_DOMAIN_TOO_NEW" | "ERROR_ORDER_REGISTRANT_NOT_ALLOWED" | "ERROR_ORDER_ITEM_BUSY" | "ERROR_ORDER_NOT_CANCELABLE";
         /**
          * OrderItemDeliveryResponse
          * @description What an order item delivers: `type` plus one object named after it. Only ever the body of the delivery

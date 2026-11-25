@@ -15417,12 +15417,27 @@ components:
           description: Domain name (ASCII form)
           title: Domain
           type: string
+        eligible_from:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: 'Priority Access: when the `matching_domain_*` code in `needs_action`
+            clears'
+          title: Eligible From
         hold_on:
           description: When the funds are held at the then current price; what `needs_action`
             lists must be provided by then
           format: date-time
           title: Hold On
           type: string
+        matching_domain:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: 'Priority Access (`limited_registration`): your domain whose
+            registrant may pre-register this one, e.g. `acme.com` for `acme.web`'
+          title: Matching Domain
         missing_confirmations:
           description: The keys of the TLD's `legal_requirements` confirmations not
             yet given (with `confirmation_required`), e.g. `HTTPS_SUPPORT_CONFIRMATION`
@@ -15431,8 +15446,11 @@ components:
           title: Missing Confirmations
           type: array
         needs_action:
-          description: 'What the customer must still provide. Treat a value you do
-            not know as an open action: codes can be added.'
+          description: 'What keeps the item from being submitted. The customer provides
+            `signed_mark_required` and `confirmation_required`; the `matching_domain_*`
+            codes are checked again while the item is `requested`, and `matching_domain_recently_transferred`
+            and `matching_domain_in_add_period` clear by themselves at `eligible_from`.
+            Treat a value you do not know as an open action: codes can be added.'
           items:
             $ref: '#/components/schemas/DomainPreRegistrationNeedsAction'
           title: Needs Action
@@ -15451,6 +15469,18 @@ components:
             premium price
           title: Premium
           type: boolean
+        registrant:
+          anyOf:
+          - examples:
+            - contact_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: contact
+          - type: 'null'
+          description: 'Priority Access: the contact the domain is registered for,
+            the matching domain''s registrant, taken once the matching domain qualifies'
+          title: Registrant
         stage:
           $ref: '#/components/schemas/DomainPreRegistrationPublicStage'
           description: 'Where the pre-registration stands. Treat a value you do not
@@ -15523,6 +15553,10 @@ components:
       enum:
       - signed_mark_required
       - confirmation_required
+      - matching_domain_not_found
+      - matching_domain_recently_transferred
+      - matching_domain_too_new
+      - matching_domain_in_add_period
       title: DomainPreRegistrationNeedsAction
       type: string
     DomainPreRegistrationPhase:
@@ -22033,10 +22067,15 @@ components:
       - ERROR_ORDER_DELIVERY_UNREADABLE
       - ERROR_ORDER_UNREADABLE
       - ERROR_PRE_REGISTRATIONS_FEATURE_DISABLED
-      - ERROR_ORDER_PHASE_NOT_AVAILABLE
+      - ERROR_ORDER_TLD_NOT_AVAILABLE
+      - ERROR_ORDER_PHASE_NOT_OFFERED
+      - ERROR_ORDER_PHASE_NOT_ORDERABLE_YET
+      - ERROR_ORDER_PHASE_TOO_LATE
       - ERROR_ORDER_PREMIUM_PRICE_REQUIRED
       - ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED
       - ERROR_ORDER_CONFIRMATIONS_REQUIRED
+      - ERROR_ORDER_MATCHING_DOMAIN_TOO_NEW
+      - ERROR_ORDER_REGISTRANT_NOT_ALLOWED
       - ERROR_ORDER_ITEM_BUSY
       - ERROR_ORDER_NOT_CANCELABLE
       title: OrderErrorCodes
@@ -29877,7 +29916,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-24-150856
+  version: 2026-11-25-085104
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -46922,15 +46961,44 @@ paths:
                     status: 422
                     title: Order Confirmations Required
                     type: order-confirmations-required
-                Order Phase Not Available:
+                Order Matching Domain Too New:
                   value:
-                    code: ERROR_ORDER_PHASE_NOT_AVAILABLE
+                    code: ERROR_ORDER_MATCHING_DOMAIN_TOO_NEW
+                    detail: example.web can only be pre-registered by the registrant
+                      of example.com, registered before the phase started
+                    domain: example.web
+                    matching_domain: example.com
+                    status: 422
+                    title: Order Matching Domain Too New
+                    type: order-matching-domain-too-new
+                Order Phase Not Offered:
+                  value:
+                    code: ERROR_ORDER_PHASE_NOT_OFFERED
                     detail: 'example.web cannot be pre-registered for this phase:
-                      not offered by this TLD'
+                      the TLD has no such phase, or OpusDNS does not take pre-registrations
+                      for it'
                     domain: example.web
                     status: 422
-                    title: Order Phase Not Available
-                    type: order-phase-not-available
+                    title: Order Phase Not Offered
+                    type: order-phase-not-offered
+                Order Phase Not Orderable Yet:
+                  value:
+                    code: ERROR_ORDER_PHASE_NOT_ORDERABLE_YET
+                    detail: 'example.web cannot be pre-registered for this phase:
+                      OpusDNS does not take pre-registrations for it yet'
+                    domain: example.web
+                    status: 422
+                    title: Order Phase Not Orderable Yet
+                    type: order-phase-not-orderable-yet
+                Order Phase Too Late:
+                  value:
+                    code: ERROR_ORDER_PHASE_TOO_LATE
+                    detail: 'example.web cannot be pre-registered for this phase:
+                      it is too late to pre-register for it'
+                    domain: example.web
+                    status: 422
+                    title: Order Phase Too Late
+                    type: order-phase-too-late
                 Order Premium Period Not Supported:
                   value:
                     code: ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED
@@ -46940,6 +47008,25 @@ paths:
                     status: 422
                     title: Order Premium Period Not Supported
                     type: order-premium-period-not-supported
+                Order Registrant Not Allowed:
+                  value:
+                    code: ERROR_ORDER_REGISTRANT_NOT_ALLOWED
+                    detail: 'example.web is registered for the registrant of example.com:
+                      leave the registrant out of registration.contacts'
+                    domain: example.web
+                    matching_domain: example.com
+                    status: 422
+                    title: Order Registrant Not Allowed
+                    type: order-registrant-not-allowed
+                Order TLD Not Available:
+                  value:
+                    code: ERROR_ORDER_TLD_NOT_AVAILABLE
+                    detail: 'example.invalid cannot be pre-registered for this phase:
+                      the TLD is not offered'
+                    domain: example.invalid
+                    status: 422
+                    title: Order TLD Not Available
+                    type: order-tld-not-available
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Unprocessable Content
@@ -52859,13 +52946,15 @@ tags:
     \ in: one of the TLD's `launch_phases.phases[].type` (`GET /v1/tlds/{tld}`) or\
     \ `general_availability`. A phase that is already open may still be chosen (the\
     \ item is submitted once complete); general availability only until it begins.\
-    \ A phase the TLD does not offer, one not open for pre-registration yet, or one\
-    \ that is too late is refused with `422` `ERROR_ORDER_PHASE_NOT_AVAILABLE`. An\
-    \ item that fails in its phase ends there; pre-register again for a later phase.\n\
-    - `registration` carries the `POST /v1/domains` fields: contacts, period, renewal\
-    \ mode, nameservers, zone and attributes. The confirmations the TLD's `legal_requirements`\
-    \ ask for go into `attributes` and are required when the item is created, as on\
-    \ `POST /v1/domains`: a missing one is refused with `422` `ERROR_ORDER_CONFIRMATIONS_REQUIRED`,\
+    \ A TLD that is not offered is refused with `422` `ERROR_ORDER_TLD_NOT_AVAILABLE`;\
+    \ a phase the TLD does not offer with `ERROR_ORDER_PHASE_NOT_OFFERED`, one OpusDNS\
+    \ does not take pre-registrations for yet with `ERROR_ORDER_PHASE_NOT_ORDERABLE_YET`,\
+    \ and one that is too late with `ERROR_ORDER_PHASE_TOO_LATE`. An item that fails\
+    \ in its phase ends there; pre-register again for a later phase.\n- `registration`\
+    \ carries the `POST /v1/domains` fields: contacts, period, renewal mode, nameservers,\
+    \ zone and attributes. The confirmations the TLD's `legal_requirements` ask for\
+    \ go into `attributes` and are required when the item is created, as on `POST\
+    \ /v1/domains`: a missing one is refused with `422` `ERROR_ORDER_CONFIRMATIONS_REQUIRED`,\
     \ which lists the keys in `missing_confirmations`.\n- `signed_mark` is the SMD\
     \ file from the Trademark Clearinghouse, needed for a phase with `smd_required`\
     \ (Sunrise).\n- `expected_price` is the price for the registration period, as\
@@ -52896,18 +52985,40 @@ tags:
     \nEach organization may hold one open pre-registration per domain; several organizations\
     \ may pre-register the same domain, and the first created is submitted first,\
     \ whether or not it was complete when created. An organization may hold up to\
-    \ 10000 open pre-registrations.\n\n### Canceling a pre-registration\n\nCancel\
-    \ it with `DELETE /v1/orders/{order_id}` (`204 No Content`) while its item is\
-    \ `requested`, which includes an item that `needs_action`. Nothing is held for\
-    \ it yet, so it is canceled at once. The order stays readable with status `canceled`\
-    \ and reason `canceled_by_customer`, and your organization can pre-register the\
-    \ domain again (a new order, at the back of the queue). Repeating the call is\
-    \ a success.\n\nA marketplace order, or an item past `requested`, is refused with\
-    \ `409` `ERROR_ORDER_NOT_CANCELABLE`. `409` `ERROR_ORDER_ITEM_BUSY` with `Retry-After`\
-    \ means the item is being processed at that moment.\n\n### Idempotency\n\nRepeat\
-    \ a request with the same `idempotency_key` and the same body and you get `200\
-    \ OK` with the original order, so retrying after a timeout is safe. The same key\
-    \ with a different body answers `409` (`ERROR_ORDER_IDEMPOTENCY_KEY_REUSED`).\
+    \ 10000 open pre-registrations.\n\n### Priority Access (`limited_registration`)\n\
+    \nDuring `.web`'s Priority Access phase (`limited_registration` in the TLD's `launch_phases`,\
+    \ `GET /v1/tlds/web`) only the registrant of the exact-match `.com` may register\
+    \ the `.web` name, through the `.com`'s registrar. Pre-register it with `\"phase\"\
+    : \"limited_registration\"`; the item is checked against the matching `.com` in\
+    \ your organization's own portfolio (`acme.com` for `acme.web`; not a parent or\
+    \ sub-organization).\nThe registrant is always the `.com`'s registrant contact:\
+    \ leave it out of `registration.contacts`, or the item is refused with `422` `ERROR_ORDER_REGISTRANT_NOT_ALLOWED`.\n\
+    \nThe item is accepted even when the `.com` does not qualify yet, e.g. while you\
+    \ register it or transfer it to OpusDNS.\n`domain_pre_registration.matching_domain`\
+    \ names the `.com`, and `needs_action` says what keeps it from qualifying:\n\n\
+    | `needs_action` | The `.com` |\n| --- | --- |\n| `matching_domain_not_found`\
+    \ | Is not registered through OpusDNS in your organization, or is deleted. A `.com`\
+    \ held at another registrar (a connected registrar's copy) does not count: transfer\
+    \ it to OpusDNS |\n| `matching_domain_recently_transferred` | Was transferred\
+    \ to OpusDNS less than 48 hours ago (the registry needs that long to see the transfer);\
+    \ clears at `eligible_from` |\n| `matching_domain_in_add_period` | Is still in\
+    \ its add grace period (registered in the last days); clears at `eligible_from`\
+    \ |\n| `matching_domain_too_new` | Was registered after the phase started, so\
+    \ it never qualifies |\n\nA `.com` registered after the phase started refuses\
+    \ the item at creation with `422` `ERROR_ORDER_MATCHING_DOMAIN_TOO_NEW`.\nOnce\
+    \ the `.com` qualifies, `domain_pre_registration.registrant` names its registrant\
+    \ contact, the one the `.web` is registered for.\n\n### Canceling a pre-registration\n\
+    \nCancel it with `DELETE /v1/orders/{order_id}` (`204 No Content`) while its item\
+    \ is `requested`, which includes an item that `needs_action`. Nothing is held\
+    \ for it yet, so it is canceled at once. The order stays readable with status\
+    \ `canceled` and reason `canceled_by_customer`, and your organization can pre-register\
+    \ the domain again (a new order, at the back of the queue). Repeating the call\
+    \ is a success.\n\nA marketplace order, or an item past `requested`, is refused\
+    \ with `409` `ERROR_ORDER_NOT_CANCELABLE`. `409` `ERROR_ORDER_ITEM_BUSY` with\
+    \ `Retry-After` means the item is being processed at that moment.\n\n### Idempotency\n\
+    \nRepeat a request with the same `idempotency_key` and the same body and you get\
+    \ `200 OK` with the original order, so retrying after a timeout is safe. The same\
+    \ key with a different body answers `409` (`ERROR_ORDER_IDEMPOTENCY_KEY_REUSED`).\
     \ Domain names are compared in normalized form, so `Example.COM` and `example.com`\
     \ count as the same body. The `idempotency_key` itself is compared case-insensitively,\
     \ so `Checkout-1` and `checkout-1` are the same key.\n\n### Reading orders\n\n\
@@ -53031,13 +53142,21 @@ tags:
     \ item is being processed at that moment; retry after the `Retry-After` seconds\
     \ |\n| 409 | `ERROR_ORDER_DELIVERY_NOT_AVAILABLE` | Nothing is delivered yet,\
     \ or the item is not at a stage where it can be read; read the order and check\
-    \ the item's `delivery_available` |\n| 422 | `ERROR_ORDER_PHASE_NOT_AVAILABLE`\
-    \ | The requested launch phase cannot be pre-registered; `detail` says why |\n\
-    | 422 | `ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED` | The domain is premium: pre-register\
-    \ it for one year and renew it after registration |\n| 422 | `ERROR_ORDER_CONFIRMATIONS_REQUIRED`\
-    \ | A confirmation the TLD requires is missing; `missing_confirmations` lists\
-    \ the keys to set to `\"true\"` in `registration.attributes` |\n| 500 | `ERROR_ORDER_DELIVERY_UNREADABLE`\
-    \ | The stored delivery could not be read; contact support |\n| 500 | `ERROR_ORDER_UNREADABLE`\
+    \ the item's `delivery_available` |\n| 422 | `ERROR_ORDER_TLD_NOT_AVAILABLE` |\
+    \ The domain's TLD is not offered |\n| 422 | `ERROR_ORDER_PHASE_NOT_OFFERED` |\
+    \ The TLD has no such launch phase, or OpusDNS does not take pre-registrations\
+    \ for it |\n| 422 | `ERROR_ORDER_PHASE_NOT_ORDERABLE_YET` | OpusDNS does not take\
+    \ pre-registrations for this phase yet |\n| 422 | `ERROR_ORDER_PHASE_TOO_LATE`\
+    \ | Too late to pre-register: the phase has ended, or general availability has\
+    \ begun (register the domain directly) |\n| 422 | `ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED`\
+    \ | The domain is premium: pre-register it for one year and renew it after registration\
+    \ |\n| 422 | `ERROR_ORDER_CONFIRMATIONS_REQUIRED` | A confirmation the TLD requires\
+    \ is missing; `missing_confirmations` lists the keys to set to `\"true\"` in `registration.attributes`\
+    \ |\n| 422 | `ERROR_ORDER_MATCHING_DOMAIN_TOO_NEW` | Priority Access: the matching\
+    \ `.com` was registered after the phase started |\n| 422 | `ERROR_ORDER_REGISTRANT_NOT_ALLOWED`\
+    \ | Priority Access: the registrant is the matching `.com`'s; leave it out of\
+    \ `registration.contacts` |\n| 500 | `ERROR_ORDER_DELIVERY_UNREADABLE` | The stored\
+    \ delivery could not be read; contact support |\n| 500 | `ERROR_ORDER_UNREADABLE`\
     \ | The order's stored data cannot be shown; contact support |\n| 503 | `ERROR_AUTHORIZATION_UNAVAILABLE`\
     \ | The permission check could not be completed; retry later |\n| 503 | `ERROR_ORDER_SERVICE_UNAVAILABLE`\
     \ | Temporary failure; retry after the `Retry-After` seconds, with the same `idempotency_key`\
