@@ -5,11 +5,12 @@ name: Validate Scalar docs
 # rendered preview on each PR, but that is a human-review aid: it reports a
 # successful build, not whether a nav entry points at a file that exists.
 #
-# Note this does NOT run on the bots' PRs: GitHub suppresses workflow runs for
-# pull requests opened with a token rather than by a person. Both bots — Generate
-# TLD Knowledge Base here, and Publish MCP docs to api-spec over in
-# OpusDNS/opusdns-mcp — therefore run `scalar project check-config` inline before
-# opening their PR.
+# On the PRs of Generate TLD Knowledge Base (here) this check does not run by
+# itself: that bot opens them with GITHUB_TOKEN, and GitHub holds those runs for
+# approval (action_required). So the bot runs `npm --prefix scalar run check` and
+# scripts/check_scalar_nav.py itself before it opens its PR. Publish MCP docs to
+# api-spec (OpusDNS/opusdns-mcp) opens its PRs with a PAT, so this check runs on
+# them; that bot also runs check-config before opening the PR.
 
 on:
   pull_request:
@@ -44,36 +45,7 @@ jobs:
       # An icon Scalar does not know, or a filepath pointing at a file that does
       # not exist, renders as nothing and check-config does not catch either.
       - name: Every page referenced by the nav exists
-        run: |
-          python3 - <<'EOF'
-          import json, sys
-          from pathlib import Path
-
-          root = Path("scalar")
-          config = json.loads((root / "scalar.config.json").read_text(encoding="utf-8"))
-
-          def walk(value):
-              if isinstance(value, dict):
-                  yield value
-                  for child in value.values():
-                      yield from walk(child)
-              elif isinstance(value, list):
-                  for child in value:
-                      yield from walk(child)
-
-          missing = sorted(
-              node["filepath"]
-              for node in walk(config)
-              if isinstance(node.get("filepath"), str)
-              and not (root / node["filepath"]).is_file()
-          )
-          if missing:
-              print("nav entries point at files that do not exist:")
-              for path in missing:
-                  print(f"  {path}")
-              sys.exit(1)
-          print(f"all nav filepaths resolve")
-          EOF
+        run: python3 scripts/check_scalar_nav.py
 
   generators:
     name: Generator tests
