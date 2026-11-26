@@ -25754,6 +25754,7 @@ components:
       - DE_ABUSE_URI_TEMPLATE
       - dnsbe:type
       - eurid:type
+      - EURID_COUNTRY_OF_CITIZENSHIP
       - AFNIC_CONTACT_TYPE
       - AFNIC_PP_FIRST_NAME
       - AFNIC_PM_LEGAL_STATUS
@@ -30312,7 +30313,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-26-104358
+  version: 2026-11-26-161419
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
