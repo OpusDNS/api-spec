@@ -25108,6 +25108,7 @@ components:
       - whitelabel_branding
       - ai_concierge
       - ai_concierge_waitlist
+      - sso_scim
       title: PublicResource
       type: string
     PublicRole:
@@ -28949,6 +28950,7 @@ components:
         migration.'
       enum:
       - ai_concierge
+      - sso_scim
       title: WaitlistProduct
       type: string
     WaitlistProductListResponse:
@@ -30310,7 +30312,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-25-125751
+  version: 2026-11-26-104358
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -54667,8 +54669,11 @@ tags:
     A waitlisted product is invitation-only: OpusDNS invites an organization, its
     members apply, and OpusDNS decides on each application. Until your organization
     is invited, the product does not exist as far as this API is concerned - it is
-    left out of the listing, and applying for it answers `404`. Once you have applied,
-    the product stays in your listing whatever happens to the invite afterwards.
+    left out of the listing, and applying for it answers `404`. A product that is
+    open to everybody, such as `sso_scim` (single sign-on and SCIM provisioning),
+    needs no invite: every organization sees it in the listing and any member may
+    apply right away, and OpusDNS still decides on each application. Once you have
+    applied, the product stays in your listing whatever happens to the invite afterwards.
 
 
     ### Endpoints
@@ -54726,8 +54731,9 @@ tags:
 
 
     `POST /v1/organizations/product-waitlist/{product}/apply` records your application
-    as `pending`. Any member of an invited organization may apply. It requires a user
-    token: an API-key token has no user to record.
+    as `pending`. Any member of an invited organization may apply, and for a product
+    open to everybody any member of any organization. It requires a user token: an
+    API-key token has no user to record.
 
 
     The body is optional. Send `{"note": "..."}` to say what you would use the product

@@ -2262,6 +2262,7 @@ export const PUBLIC_RESOURCE = {
   WHITELABEL_BRANDING: "whitelabel_branding",
   AI_CONCIERGE: "ai_concierge",
   AI_CONCIERGE_WAITLIST: "ai_concierge_waitlist",
+  SSO_SCIM: "sso_scim",
 } as const satisfies Record<string, PublicResource>;
 
 export const PUBLIC_RESOURCE_VALUES = [
@@ -2287,6 +2288,7 @@ export const PUBLIC_RESOURCE_VALUES = [
   'whitelabel_branding',
   'ai_concierge',
   'ai_concierge_waitlist',
+  'sso_scim',
 ] as const satisfies ReadonlyArray<PublicResource>;
 
 export const PUBLIC_ROLE = {
@@ -3164,10 +3166,12 @@ export const WAITLIST_ENTRY_STATUS_VALUES = [
 
 export const WAITLIST_PRODUCT = {
   AI_CONCIERGE: "ai_concierge",
+  SSO_SCIM: "sso_scim",
 } as const satisfies Record<string, WaitlistProduct>;
 
 export const WAITLIST_PRODUCT_VALUES = [
   'ai_concierge',
+  'sso_scim',
 ] as const satisfies ReadonlyArray<WaitlistProduct>;
 
 export const WHITELABEL_BRANDING_TIER = {

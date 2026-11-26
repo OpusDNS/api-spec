@@ -21165,7 +21165,7 @@ export interface components {
          * PublicResource
          * @enum {string}
          */
-        PublicResource: "organization" | "domains" | "domain_auth_codes" | "contacts" | "dns" | "hosts" | "email_forwards" | "domain_forwards" | "parking" | "events" | "jobs" | "billing" | "users" | "api_keys" | "registrar_credentials" | "tags" | "custom_fields" | "audit_logs" | "vanity_ns" | "whitelabel_branding" | "ai_concierge" | "ai_concierge_waitlist";
+        PublicResource: "organization" | "domains" | "domain_auth_codes" | "contacts" | "dns" | "hosts" | "email_forwards" | "domain_forwards" | "parking" | "events" | "jobs" | "billing" | "users" | "api_keys" | "registrar_credentials" | "tags" | "custom_fields" | "audit_logs" | "vanity_ns" | "whitelabel_branding" | "ai_concierge" | "ai_concierge_waitlist" | "sso_scim";
         /**
          * PublicRole
          * @enum {string}
@@ -23731,7 +23731,7 @@ export interface components {
          *     member NAME (StringEnum binds `value.name`), so renaming a member is a data migration.
          * @enum {string}
          */
-        WaitlistProduct: "ai_concierge";
+        WaitlistProduct: "ai_concierge" | "sso_scim";
         /**
          * WaitlistProductListResponse
          * @description The waitlisted products you may see.
