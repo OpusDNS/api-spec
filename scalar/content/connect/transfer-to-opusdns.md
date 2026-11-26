@@ -55,13 +55,15 @@ the transfer goes to the registry, OpusDNS:
    `409 ERROR_DOMAIN_TRANSFER_NOT_ALLOWED`, and `prohibiting_statuses` lists
    them. Nothing has changed at the registrar at that point.
 2. **Removes the transfer lock, where it sees one.** If the registrar doesn't
-   show the lock, OpusDNS leaves it as it is. Remove it at the registrar
-   yourself, because a registry refuses to transfer a locked domain.
+   report whether the domain is locked, OpusDNS changes nothing. If it is
+   locked, remove the lock at the registrar yourself, because a registry
+   refuses to transfer a locked domain.
 3. **Fetches the auth code, where the TLD needs one.** If you send `auth_code`
    anyway, OpusDNS uses yours and only removes the lock.
 
-If the transfer then fails and the registry is known to hold no transfer of
-the domain, OpusDNS sets the transfer lock it removed again.
+If the transfer request fails and the registry is known to hold no transfer of
+the domain, OpusDNS sets the transfer lock it removed again. A transfer that is
+rejected or cancelled later leaves the lock off: set it again at the registrar.
 
 ### Approval
 
@@ -82,9 +84,10 @@ yourself. See [.uk operations](/products/tld-operations/uk).
 
 | Response | Meaning | What to do |
 | --- | --- | --- |
-| `409 ERROR_DOMAIN_TRANSFER_NOT_ALLOWED` | A status prevents the transfer (`prohibiting_statuses`), or the registrar refused to report the domain, remove the lock or hand out the auth code (`detail` says which, `registrar` names the registrar). | Resolve it at the registrar, or send the auth code yourself. |
+| `409 ERROR_DOMAIN_TRANSFER_NOT_ALLOWED` with `prohibiting_statuses` | A status prevents the transfer. | Resolve it at the registrar, then try again. |
+| `409 ERROR_DOMAIN_TRANSFER_NOT_ALLOWED` with `reason` | The registrar refused to report the domain, remove the lock or hand out the auth code. `reason` says which, `registrar` names the registrar. | Resolve it at the registrar. If it refused to hand out the auth code, send `auth_code` yourself. |
 | `409 ERROR_REGISTRAR_BLOCKED` | A setting on the domain at the registrar refuses the change. `blocker` names it, for example `whois_privacy`. | Change the setting at the registrar (for `whois_privacy`, turn WHOIS privacy off), then try again. |
-| `422 ERROR_REGISTRAR_CREDENTIAL_REJECTED` | The registrar rejected the connected account's login details. | [Update the login details](/api-reference#tag/connect/PUT/v1/connect/registrars/{registrar_credential_id}), then try again. |
+| `422 ERROR_REGISTRAR_CREDENTIAL_REJECTED` | The registrar rejected the connected account's login details or refused access, for example because OpusDNS's IP address isn't allowed. | [Update the login details](/api-reference#tag/connect/PUT/v1/connect/registrars/{registrar_credential_id}), then try again. |
 | `503 ERROR_DOMAIN_REGISTRAR_UNAVAILABLE` | The registrar couldn't be reached. | Try again after the time in `Retry-After`. |
 
 ## Related API Reference

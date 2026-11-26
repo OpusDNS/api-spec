@@ -18,8 +18,9 @@ never returns them.
 - Connect's endpoints require the **AI Concierge** in addition to the
   `registrar_credentials` permissions of the user's role. An API key can call
   them only after OpusDNS has enabled the AI Concierge for that key.
-- OpusDNS has to enable `NIC_DIRECT` for your organization first. Until then,
-  connecting returns `403 ERROR_REGISTRAR_NOT_ENABLED`.
+- To connect a `NIC_DIRECT` account, OpusDNS has to enable it for your
+  organization first. Until then, connecting one returns
+  `403 ERROR_REGISTRAR_NOT_ENABLED`.
 - The sandbox supports only registrars with a test system: `INTERNETX`,
   `CENTRALNIC`, `NICMANAGER`, `OPUSDNS` and `ENOM`. Other registrars return
   `403 ERROR_REGISTRAR_NOT_SUPPORTED_IN_ENVIRONMENT`.
