@@ -4,6 +4,24 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 26 November 2026
+
+- Added **the `EURID_COUNTRY_OF_CITIZENSHIP` contact attribute on
+  [`.eu`](/tld-knowledge-base/cctlds/eu)**. `.eu` is open to citizens of a
+  country of the European Economic Area (EEA) wherever they live, and a natural
+  person registrant who lives outside the EEA declares that citizenship with
+  this attribute. It is required for such a registrant, optional for a natural
+  person who lives in the EEA, and refused for an organization. A registration
+  with [`POST /v1/domains`](/api-reference#tag/domain/POST/v1/domains), a
+  transfer with
+  [`POST /v1/domains/transfer`](/api-reference#tag/domain/POST/v1/domains/transfer)
+  or a change of registrant with
+  [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference})
+  that does not follow these rules is refused with `422`. The registrant's
+  `country` remains the country of residence. See
+  [Registrant eligibility](/tld-knowledge-base/cctlds/eu#registrant-eligibility)
+  on the `.eu` TLD Knowledge Base page.
+
 ### 23 November 2026
 
 - Removed **the `/v1/domain-forwards/metrics` routes**: `/metrics`,
