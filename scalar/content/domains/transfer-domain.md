@@ -39,6 +39,9 @@ code proves you have the right to transfer the domain.
 - Some TLDs use alternative transfer mechanisms — see
   [.uk operations](/products/tld-operations/uk) for `.uk` releases
   and [.eu operations](/products/tld-operations/eu) / [.be operations](/products/tld-operations/be) for auth code requests.
+- If your organization holds the domain through a connected registrar account,
+  you can leave the auth code out: see
+  [Move a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns).
 
 ## 2. Prepare contacts
 

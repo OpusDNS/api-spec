@@ -4,6 +4,15 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 26 November 2026
+
+- Added **[Connected registrars](/products/connected-registrars/connect)** to
+  the guides: how to connect an account at another registrar, follow its sync
+  and check the domains that didn't sync, and how to
+  [move a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns)
+  with [`POST /v1/domains/transfer`](/api-reference#tag/domain/POST/v1/domains/transfer)
+  without its auth code.
+
 ### 23 November 2026
 
 - Removed **the `/v1/domain-forwards/metrics` routes**: `/metrics`,

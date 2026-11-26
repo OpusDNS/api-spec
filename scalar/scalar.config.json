@@ -360,6 +360,27 @@
                   }
                 }
               },
+              "/connected-registrars": {
+                "type": "group",
+                "title": "Connected registrars",
+                "icon": "phosphor/regular/plugs",
+                "children": {
+                  "/connect": {
+                    "type": "page",
+                    "title": "Connect a registrar",
+                    "icon": "line/interface-login-key",
+                    "filepath": "content/connect/overview.md",
+                    "showInSidebar": true
+                  },
+                  "/transfer-to-opusdns": {
+                    "type": "page",
+                    "title": "Move a connected domain to OpusDNS",
+                    "icon": "line/arrow-right",
+                    "filepath": "content/connect/transfer-to-opusdns.md",
+                    "showInSidebar": true
+                  }
+                }
+              },
               "/contacts": {
                 "type": "group",
                 "title": "Contacts",
