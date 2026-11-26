@@ -18,7 +18,9 @@ Track notable updates to the OpusDNS API and developer documentation here.
   or a change of registrant with
   [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference})
   that does not follow these rules is refused with `422`. The registrant's
-  `country` remains the country of residence. See
+  `country` remains the country of residence and must be in the EEA unless the
+  attribute is sent, which `.eu` now declares as its local presence
+  requirement. See
   [Registrant eligibility](/tld-knowledge-base/cctlds/eu#registrant-eligibility)
   on the `.eu` TLD Knowledge Base page.
 

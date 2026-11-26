@@ -22,7 +22,10 @@ Whether the attribute is required depends on the registrant:
 | Natural person (no `org`) whose `country` is in the EEA | Optional |
 | Organization (`org` set) | Refused |
 
-A registration with [`POST /v1/domains`](/api-reference#tag/domain/POST/v1/domains), a transfer with [`POST /v1/domains/transfer`](/api-reference#tag/domain/POST/v1/domains/transfer) or a change of registrant with [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference}) is refused with `422` when the registrant does not follow these rules, and the error points at `EURID_COUNTRY_OF_CITIZENSHIP`.
+A registration with [`POST /v1/domains`](/api-reference#tag/domain/POST/v1/domains), a transfer with [`POST /v1/domains/transfer`](/api-reference#tag/domain/POST/v1/domains/transfer) or a change of registrant with [`PATCH /v1/domains/{domain_reference}`](/api-reference#tag/domain/PATCH/v1/domains/{domain_reference}) is refused with `422` when the registrant does not follow these rules:
+
+- a registrant whose `country` is outside the EEA and that sends no `EURID_COUNTRY_OF_CITIZENSHIP` is refused because the contact country is not eligible for `.eu`;
+- an organization that sends `EURID_COUNTRY_OF_CITIZENSHIP` is refused, and the error points at the attribute.
 
 ### Sending the attribute
 
@@ -41,4 +44,4 @@ Send the attribute in one of two ways:
 
 - **Stored on the contact**, in a contact attribute set for the TLD `eu`, created with [`POST /v1/contacts/attribute-sets`](/api-reference#tag/contact/POST/v1/contacts/attribute-sets) and linked to the contact with [`PATCH /v1/contacts/{contact_id}/link/{contact_attribute_set_id}`](/api-reference#tag/contact/PATCH/v1/contacts/{contact_id}/link/{contact_attribute_set_id}). The value is then applied whenever the contact is the registrant of a `.eu` domain. See [Registry-specific attributes](/products/domains/registry-attributes).
 
-The attribute is listed in the `possible_attributes` returned by [`GET /v1/tlds/eu`](/api-reference#tag/tld/GET/v1/tlds/{tld}), with its `values` and `contact_roles`. Its `required` field is `false`, because whether the attribute is required depends on the `org` and `country` of the registrant, as described above.
+The attribute is listed in the `possible_attributes` returned by [`GET /v1/tlds/eu`](/api-reference#tag/tld/GET/v1/tlds/{tld}), with its `values` and `contact_roles`. Its `required` field is `false`, because whether the attribute is required depends on the `org` and `country` of the registrant, as described above. The country rule is the `.eu` local presence requirement in the same response: `local_presence.eligible_countries` lists the EEA countries, and `local_presence.exemptions` names `EURID_COUNTRY_OF_CITIZENSHIP`, which exempts the registrant from it.
