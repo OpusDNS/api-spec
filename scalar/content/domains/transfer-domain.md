@@ -110,7 +110,7 @@ curl "$OPUSDNS_API_BASE/v1/domains/transfer" \
 | Field | Required | Description |
 | --- | --- | --- |
 | `name` | Yes | The fully qualified domain name to transfer (e.g., `example.com`). |
-| `auth_code` | Yes | The authorization code from the current registrar. |
+| `auth_code` | Conditional | The authorization code from the current registrar. Not needed for `.uk` or for a domain held through a [connected registrar account](/products/connected-registrars/transfer-to-opusdns). |
 | `contacts` | Conditional | Contact IDs keyed by role. Required for most TLDs (a `registrant` is the minimum). Optional for TLDs where every supported contact role has a minimum of `0` (e.g. `.ca`, `.ch`). |
 | `renewal_mode` | Yes | `"renew"` for automatic renewal or `"expire"` to let the domain expire. |
 | `period` | No | Additional registration period added on transfer completion. If omitted, the registry default policy applies. |

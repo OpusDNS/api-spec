@@ -12,7 +12,8 @@ OpusDNS prepares the domain at the connected registrar when:
 
 - your organization holds the domain through **exactly one** connected account,
   and
-- the domain isn't in your OpusDNS account yet.
+- OpusDNS isn't the domain's registrar yet: no transfer of it to OpusDNS is
+  under way or done.
 
 Otherwise the request is an ordinary [transfer](/products/domains/transfer): a
 TLD that needs an auth code refuses a request without one with
@@ -46,6 +47,12 @@ Contacts, period, nameservers and monitoring work as described in
 
 ## What OpusDNS does at the connected registrar
 
+![Swimlane: you send the transfer request; OpusDNS checks the statuses, removes the transfer lock and fetches the auth code at your current registrar, requests the transfer at the registry and approves it at your current registrar; the registry moves the domain into your OpusDNS account.](/images/connected-domain-transfer.svg)
+
+The usual order for a TLD that uses auth codes, such as `.com`. Which steps
+apply depends on the registrar and the TLD: see
+[What depends on the registrar and the TLD](#what-depends-on-the-registrar-and-the-tld).
+
 Once the request has passed every check and the price is reserved, and before
 the transfer goes to the registry, OpusDNS:
 
@@ -64,6 +71,15 @@ the transfer goes to the registry, OpusDNS:
 If the transfer request fails and the registry is known to hold no transfer of
 the domain, OpusDNS sets the transfer lock it removed again. A transfer that is
 rejected or cancelled later leaves the lock off: set it again at the registrar.
+
+## What depends on the registrar and the TLD
+
+| Step | Depends on |
+| --- | --- |
+| Remove the transfer lock | The TLD: not every registry has a transfer lock. The registrar: OpusDNS removes only a lock the registrar reports. |
+| Fetch the auth code | The TLD: some need none, such as `.uk`. |
+| Approve the transfer | The TLD: some complete a transfer without approval. The registrar: whether it can approve through OpusDNS. |
+| Push the domain (`.uk`) | The TLD: `.uk` transfers by push instead of request and approval. The registrar: whether it can push through OpusDNS. |
 
 ### Approval
 
@@ -85,7 +101,7 @@ yourself. See [.uk operations](/products/tld-operations/uk).
 | Response | Meaning | What to do |
 | --- | --- | --- |
 | `409 ERROR_DOMAIN_TRANSFER_NOT_ALLOWED` with `prohibiting_statuses` | A status prevents the transfer. | Resolve it at the registrar, then try again. |
-| `409 ERROR_DOMAIN_TRANSFER_NOT_ALLOWED` with `reason` | The registrar refused to report the domain, remove the lock or hand out the auth code. `reason` says which, `registrar` names the registrar. | Resolve it at the registrar. If it refused to hand out the auth code, send `auth_code` yourself. |
+| `409 ERROR_DOMAIN_TRANSFER_NOT_ALLOWED` with `registrar` | The registrar refused to report the domain, remove the lock or hand out the auth code. `reason` says which, `registrar` names the registrar. | Resolve it at the registrar. If it refused to hand out the auth code, send `auth_code` yourself. |
 | `409 ERROR_REGISTRAR_BLOCKED` | A setting on the domain at the registrar refuses the change. `blocker` names it, for example `whois_privacy`. | Change the setting at the registrar (for `whois_privacy`, turn WHOIS privacy off), then try again. |
 | `422 ERROR_REGISTRAR_CREDENTIAL_REJECTED` | The registrar rejected the connected account's login details or refused access, for example because OpusDNS's IP address isn't allowed. | [Update the login details](/api-reference#tag/connect/PUT/v1/connect/registrars/{registrar_credential_id}), then try again. |
 | `503 ERROR_DOMAIN_REGISTRAR_UNAVAILABLE` | The registrar couldn't be reached. | Try again after the time in `Retry-After`. |

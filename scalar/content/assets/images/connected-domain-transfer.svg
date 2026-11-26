@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="340" viewBox="0 0 800 340" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, &apos;Segoe UI&apos;, Helvetica, Arial, sans-serif">
+<title id="t">Moving a connected domain to OpusDNS</title>
+<desc id="d">Swimlane in three lanes: your current registrar, the registry and OpusDNS. You send the transfer request. OpusDNS then checks the statuses, removes the transfer lock and fetches the auth code at your current registrar, requests the transfer at the registry and approves it at your current registrar. The registry moves the domain, and it is in your OpusDNS account.</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8a8d99"/></marker></defs>
+<rect x="2" y="32" width="796" height="76" rx="10" fill="#8a8d99" fill-opacity="0.12"/>
+<text x="16" y="67" font-size="14" font-weight="600" fill="#8a8d99">Your</text>
+<text x="16" y="85" font-size="14" font-weight="600" fill="#8a8d99">registrar</text>
+<rect x="2" y="114" width="796" height="76" rx="10" fill="#8a8d99" fill-opacity="0.12"/>
+<text x="16" y="157" font-size="14" font-weight="600" fill="#8a8d99">Registry</text>
+<rect x="2" y="196" width="796" height="76" rx="10" fill="#8a8d99" fill-opacity="0.12"/>
+<text x="16" y="239" font-size="14" font-weight="600" fill="#8a8d99">OpusDNS</text>
+<text x="146" y="20" text-anchor="middle" font-size="13" font-weight="600" fill="#8a8d99">1</text>
+<rect x="107.0" y="208.0" width="78" height="52" rx="8" fill="#b26b00"/>
+<text x="146" y="231" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">Your</text>
+<text x="146" y="248" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">request</text>
+<text x="232" y="20" text-anchor="middle" font-size="13" font-weight="600" fill="#8a8d99">2</text>
+<rect x="193.0" y="44.0" width="78" height="52" rx="8" fill="#2547c9"/>
+<text x="232" y="67" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">Check</text>
+<text x="232" y="84" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">statuses</text>
+<text x="318" y="20" text-anchor="middle" font-size="13" font-weight="600" fill="#8a8d99">3</text>
+<rect x="279.0" y="44.0" width="78" height="52" rx="8" fill="#2547c9"/>
+<text x="318" y="67" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">Remove</text>
+<text x="318" y="84" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">the lock</text>
+<text x="404" y="20" text-anchor="middle" font-size="13" font-weight="600" fill="#8a8d99">4</text>
+<rect x="365.0" y="44.0" width="78" height="52" rx="8" fill="#2547c9"/>
+<text x="404" y="67" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">Fetch the</text>
+<text x="404" y="84" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">auth code</text>
+<text x="490" y="20" text-anchor="middle" font-size="13" font-weight="600" fill="#8a8d99">5</text>
+<rect x="451.0" y="126.0" width="78" height="52" rx="8" fill="#2547c9"/>
+<text x="490" y="149" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">Request</text>
+<text x="490" y="166" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">transfer</text>
+<text x="576" y="20" text-anchor="middle" font-size="13" font-weight="600" fill="#8a8d99">6</text>
+<rect x="537.0" y="44.0" width="78" height="52" rx="8" fill="#2547c9"/>
+<text x="576" y="67" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">Approve</text>
+<text x="576" y="84" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">transfer</text>
+<text x="662" y="20" text-anchor="middle" font-size="13" font-weight="600" fill="#8a8d99">7</text>
+<rect x="623.0" y="126.0" width="78" height="52" rx="8" fill="#0e7c78"/>
+<text x="662" y="149" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">Move the</text>
+<text x="662" y="166" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">domain</text>
+<text x="748" y="20" text-anchor="middle" font-size="13" font-weight="600" fill="#8a8d99">8</text>
+<rect x="709.0" y="208.0" width="78" height="52" rx="8" fill="#2547c9"/>
+<text x="748" y="231" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">In your</text>
+<text x="748" y="248" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">account</text>
+<path d="M146,208.0 C146,153.5 232,153.5 232,99.0" fill="none" stroke="#8a8d99" stroke-width="1.8" marker-end="url(#a)"/>
+<line x1="271.0" y1="70" x2="277.0" y2="70" stroke="#8a8d99" stroke-width="1.8" marker-end="url(#a)"/>
+<line x1="357.0" y1="70" x2="363.0" y2="70" stroke="#8a8d99" stroke-width="1.8" marker-end="url(#a)"/>
+<path d="M404,96.0 C404,109.5 490,109.5 490,123.0" fill="none" stroke="#8a8d99" stroke-width="1.8" marker-end="url(#a)"/>
+<path d="M490,126.0 C490,112.5 576,112.5 576,99.0" fill="none" stroke="#8a8d99" stroke-width="1.8" marker-end="url(#a)"/>
+<path d="M576,96.0 C576,109.5 662,109.5 662,123.0" fill="none" stroke="#8a8d99" stroke-width="1.8" marker-end="url(#a)"/>
+<path d="M662,178.0 C662,191.5 748,191.5 748,205.0" fill="none" stroke="#8a8d99" stroke-width="1.8" marker-end="url(#a)"/>
+<rect x="16" y="287" width="15" height="15" rx="3" fill="#2547c9"/>
+<text x="38" y="299" font-size="13" fill="#8a8d99">OpusDNS</text>
+<rect x="117.19999999999999" y="287" width="15" height="15" rx="3" fill="#b26b00"/>
+<text x="139.2" y="299" font-size="13" fill="#8a8d99">You</text>
+<rect x="188.0" y="287" width="15" height="15" rx="3" fill="#0e7c78"/>
+<text x="210.0" y="299" font-size="13" fill="#8a8d99">The registry</text>
+<text x="16" y="326" font-size="13" fill="#8a8d99">Where OpusDNS can’t take a step at your registrar, you take it there yourself.</text>
+</svg>
