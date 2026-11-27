@@ -388,7 +388,7 @@
                   "/registrars": {
                     "type": "page",
                     "title": "What OpusDNS can do per registrar",
-                    "icon": "line/interface-setting-cog",
+                    "icon": "phosphor/regular/buildings",
                     "filepath": "content/connect/registrars.md",
                     "showInSidebar": true
                   }
