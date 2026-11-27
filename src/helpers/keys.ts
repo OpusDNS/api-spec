@@ -6434,12 +6434,14 @@ export const KEYS_PRIORITY_ACCESS_DOMAIN = [
   KEY_PRIORITY_ACCESS_DOMAIN_REASON,
 ] as const satisfies (keyof PriorityAccessDomain)[];
 
+export const KEY_PROBLEM_CODE = 'code' satisfies keyof Problem;
 export const KEY_PROBLEM_DETAIL = 'detail' satisfies keyof Problem;
 export const KEY_PROBLEM_STATUS = 'status' satisfies keyof Problem;
 export const KEY_PROBLEM_TITLE = 'title' satisfies keyof Problem;
 export const KEY_PROBLEM_TYPE = 'type' satisfies keyof Problem;
 
 export const KEYS_PROBLEM = [
+  KEY_PROBLEM_CODE,
   KEY_PROBLEM_DETAIL,
   KEY_PROBLEM_STATUS,
   KEY_PROBLEM_TITLE,
