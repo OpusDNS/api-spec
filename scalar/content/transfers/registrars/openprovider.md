@@ -1,12 +1,12 @@
 # Transfer from Openprovider
 
-[Connect](/products/connected-registrars/connect) your Openprovider account and [request the transfer](/products/connected-registrars/transfer-to-opusdns). Which steps OpusDNS then takes at Openprovider depends on your TLD. The table below shows them for every TLD. Send the auth code as `auth_code` only where it shows ↗️ under Get the auth code. In the API, Openprovider is `OPENPROVIDER`.
-
-✅ OpusDNS does it for you · ↗️ you do it at your registrar · 👤 the domain's holder approves by email · ➖ the TLD doesn't have it
+To transfer a domain from Openprovider, [connect](/products/connected-registrars/connect) your Openprovider account and [request the transfer](/products/connected-registrars/transfer-to-opusdns). In the API, Openprovider is `OPENPROVIDER`.
 
 ## By transfer pattern
 
-Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have. Openprovider sets which of the other steps OpusDNS can take for you. Search this page for your TLD. If it isn't listed exactly, it is in the first row.
+Your TLD's transfer pattern sets which steps a transfer has. Openprovider sets which of them OpusDNS can take for you. ➖ marks a step your TLD doesn't have. Where the table shows ↗️ under Get the auth code, send the code as `auth_code` in your request.
+
+Search this page for your TLD. If it isn't listed exactly, it is in the first row.
 
 | Transfer pattern | TLDs | Remove the lock | Get the auth code | Approve |
 | --- | --- | :---: | :---: | :---: |

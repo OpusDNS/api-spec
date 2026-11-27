@@ -1,12 +1,12 @@
 # Transfer from NICManager
 
-[Connect](/products/connected-registrars/connect) your NICManager account and [request the transfer](/products/connected-registrars/transfer-to-opusdns). Which steps OpusDNS then takes at NICManager depends on your TLD. The table below shows them for every TLD. Send the auth code as `auth_code` only where it shows ↗️ under Get the auth code. In the API, NICManager is `NICMANAGER`.
-
-✅ OpusDNS does it for you · ↗️ you do it at your registrar · 👤 the domain's holder approves by email · ➖ the TLD doesn't have it
+To transfer a domain from NICManager, [connect](/products/connected-registrars/connect) your NICManager account and [request the transfer](/products/connected-registrars/transfer-to-opusdns). In the API, NICManager is `NICMANAGER`.
 
 ## By transfer pattern
 
-Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have. NICManager sets which of the other steps OpusDNS can take for you. Search this page for your TLD. If it isn't listed exactly, it is in the first row.
+Your TLD's transfer pattern sets which steps a transfer has. NICManager sets which of them OpusDNS can take for you. ➖ marks a step your TLD doesn't have. Where the table shows ↗️ under Get the auth code, send the code as `auth_code` in your request.
+
+Search this page for your TLD. If it isn't listed exactly, it is in the first row.
 
 | Transfer pattern | TLDs | Remove the lock | Get the auth code | Approve |
 | --- | --- | :---: | :---: | :---: |

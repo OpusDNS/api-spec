@@ -111,7 +111,7 @@ def test_every_tld_is_on_the_registrar_page():
                  row("se", se_steps(), lock=False)])
     assert "At most" not in text and "## The steps at most TLDs" not in text
     matrix = section(text, *MATRIX)
-    assert "Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have." in matrix
+    assert "Your TLD's transfer pattern sets which steps a transfer has. OpenSRS sets which of them OpusDNS can take for you." in matrix
     assert "Search this page for your TLD. If it isn't listed exactly, it is in the first row." in matrix
     # The largest pattern stands for every TLD the other rows don't list.
     assert ("| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | Every other TLD, such as .com, "
@@ -127,12 +127,14 @@ def test_a_registrar_with_one_pattern_lists_its_tlds():
     assert "Every other TLD" not in text
 
 
-def test_the_intro_points_to_the_table_for_every_tld():
-    intro = page([row("com", usual_steps("com")), row("net", usual_steps("net"))]).split("\n")[2]
-    assert intro == ("[Connect](/products/connected-registrars/connect) your OpenSRS account and "
-                     "[request the transfer](/products/connected-registrars/transfer-to-opusdns). Which steps OpusDNS then takes "
-                     "at OpenSRS depends on your TLD. The table below shows them for every TLD. Send the auth code as "
-                     "`auth_code` only where it shows ↗️ under Get the auth code. In the API, OpenSRS is `OPENSRS`.")
+def test_the_intro_is_short_and_the_table_explains_itself():
+    text = page([row("com", usual_steps("com")), row("net", usual_steps("net"))])
+    intro = text.split("\n")[2]
+    assert intro == ("To transfer a domain from OpenSRS, [connect](/products/connected-registrars/connect) your OpenSRS account "
+                     "and [request the transfer](/products/connected-registrars/transfer-to-opusdns). In the API, OpenSRS is `OPENSRS`.")
+    assert " · " not in text.split("## By transfer pattern")[0]  # no symbol legend: the cells say who acts
+    assert ("Where the table shows ↗️ under Get the auth code, send the code as `auth_code` in your request." in
+            section(text, *MATRIX))
 
 
 def test_approval_is_optional_at_gtlds_only():

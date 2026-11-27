@@ -607,18 +607,17 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
     lines = [
         f"# Transfer from {reg.name}",
         "",
-        f"[Connect](/products/connected-registrars/connect) your {reg.name} account and "
-        "[request the transfer](/products/connected-registrars/transfer-to-opusdns). Which steps OpusDNS then "
-        f"takes at {reg.name} depends on your TLD. The table below shows them for every TLD. Send the auth code "
-        f"as `auth_code` only where it shows ↗️ under Get the auth code. In the API, {reg.name} is `{reg.api_value}`.",
-        "",
-        legend({cell.split(" ", 1)[0] for found in cells.values() for cell in found} | {"↗️"}),
+        f"To transfer a domain from {reg.name}, [connect](/products/connected-registrars/connect) your {reg.name} "
+        "account and [request the transfer](/products/connected-registrars/transfer-to-opusdns). In the API, "
+        f"{reg.name} is `{reg.api_value}`.",
         "",
         "## By transfer pattern",
         "",
-        f"Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have. "
-        f"{reg.name} sets which of the other steps OpusDNS can take for you. Search this page for your TLD. "
-        "If it isn't listed exactly, it is in the first row.",
+        f"Your TLD's transfer pattern sets which steps a transfer has. {reg.name} sets which of them OpusDNS can "
+        "take for you. ➖ marks a step your TLD doesn't have. Where the table shows ↗️ under Get the auth code, "
+        "send the code as `auth_code` in your request.",
+        "",
+        "Search this page for your TLD. If it isn't listed exactly, it is in the first row.",
         "",
         "| Transfer pattern | TLDs | " + " | ".join(label for label, _ in MATRIX_COLUMNS) + " |",
         "| --- | --- | " + " | ".join(":---:" for _ in MATRIX_COLUMNS) + " |",
