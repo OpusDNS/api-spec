@@ -84,7 +84,7 @@ def section(text, start, end=None):
     return part.split(end, 1)[0] if end else part
 
 
-MATRIX = ("## Who takes which step", "## The steps at most TLDs")
+MATRIX = ("## By transfer pattern", "## The steps at most TLDs")
 STEPS = ("## The steps at most TLDs", "## Managing")
 
 
@@ -92,10 +92,12 @@ def test_the_usual_steps_and_the_tlds_that_differ():
     text = page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("se", se_steps(), lock=False)])
     assert "| 1 | ✅ Remove the transfer lock | OpusDNS removes the transfer lock at OpenSRS. |" in section(text, *STEPS)
     matrix = section(text, *MATRIX)
-    assert "| Most TLDs | ✅ OpusDNS | ✅ OpusDNS | ↗️ You, optional |" in matrix
-    assert "| ➖ | ↗️ You, at OpenSRS (a new one) | ➖ |" in matrix
-    assert ".com" not in matrix and ".net" not in matrix
-    assert "WHOIS privacy" not in matrix
+    assert "Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have." in matrix
+    assert ("| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | [.com](/transfers/patterns/gtlds/com), "
+            "[.net](/transfers/patterns/gtlds/net) | ✅ OpusDNS | ✅ OpusDNS | ↗️ You, optional |") in matrix
+    assert ("| [Auth code and approval](/transfers/patterns/auth-code-approval) | [.se](/transfers/patterns/auth-code-approval/se) "
+            "| ➖ | ↗️ You, at OpenSRS (a new one) | ➖ |") in matrix
+    assert "These TLDs differ" not in matrix and "WHOIS privacy" not in matrix
 
 
 def test_the_customers_auth_code_is_sent_with_the_request():
@@ -111,8 +113,8 @@ def test_the_customers_auth_code_is_sent_with_the_request():
 def test_approval_is_optional_at_gtlds_only():
     text = page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("fr", usual_steps("fr"))])
     assert "| ↗️ Approve the transfer (optional) | Optional: approve it at OpenSRS to finish sooner." in section(text, *STEPS)
-    fr = next(line for line in section(text, *MATRIX).splitlines() if ".fr" in line)
-    assert fr.endswith("| ✅ OpusDNS | ✅ OpusDNS | ↗️ You, at OpenSRS |")
+    differing = section(text, "These TLDs differ from their pattern's row:", "## The steps at most TLDs")
+    assert "| [.fr](/transfers/patterns/gtlds/fr) | ✅ OpusDNS | ✅ OpusDNS | ↗️ You, at OpenSRS |" in differing
 
 
 def test_the_privacy_step_lists_no_tld_and_is_said_under_the_matrix():
@@ -124,7 +126,8 @@ def test_the_privacy_step_lists_no_tld_and_is_said_under_the_matrix():
         row("org", usual_steps("org"), privacy=False),
     ]
     matrix = section(page(rows), *MATRIX)
-    assert ".org" not in matrix and note in matrix
+    # .org has no privacy service, so no privacy step: it is no exception to its pattern.
+    assert "These TLDs differ" not in matrix and note in matrix
     # Only a listed TLD has the step: the note still says so.
     rows = [row("com", usual_steps("com")), row("net", usual_steps("net")), row("se", [se_steps()[0], privacy] + se_steps()[1:], lock=False)]
     assert note in section(page(rows), *MATRIX)
@@ -150,7 +153,8 @@ def test_a_pushed_tld_and_a_tld_without_transfers():
     matrix = section(page(rows), *MATRIX)
     assert "| [.uk](/transfers/patterns/push/uk) | ✅ OpusDNS | ➖ | ✅ OpusDNS (push) |" in matrix
     assert "the domain is pushed to OpusDNS's tag instead of approved." in matrix
-    assert "No transfers at [.xx](/transfers/patterns/xx)." in matrix and "| .xx |" not in matrix
+    assert "[.xx](/transfers/patterns/xx) has no transfer at its registry. Its page explains what to do instead." in matrix
+    assert "| .xx |" not in matrix
 
 
 def test_a_step_outside_the_matrix_columns_fails_the_run():
@@ -230,7 +234,7 @@ def test_the_overview_explains_gtlds_cctlds_and_the_connected_account():
     assert "> [!WARNING]" in text and "[page for your registrar](#your-registrar)" in text and "## Your registrar" in text
     assert "- [eNom](/transfers/registrars/enom)" in text and "- [OpenSRS](/transfers/registrars/opensrs)" in text
     assert "## Transfer patterns" in text and "- [gTLDs and most ccTLDs](/transfers/patterns/gtlds): 1 TLD\n" in text
-    assert "No transfers at [.xx](/transfers/patterns/xx)." in text
+    assert "[.xx](/transfers/patterns/xx) has no transfer at its registry. Its page explains what to do instead." in text
     assert ";" not in text
 
 
@@ -507,3 +511,20 @@ def test_an_announced_registry_change_shows_until_the_export_has_it():
     assert "> [.uk](/transfers/patterns/push/uk): From 9 February 2027" in pattern_page
     with pytest.raises(SystemExit, match="remove it from UPCOMING"):
         gen.registry_facts(export(uk_push_rows(push=False)))
+
+
+def test_a_pattern_with_many_tlds_names_a_few_on_the_registrar_page():
+    tlds = [f"g{i}" for i in range(7)]
+    rows = [row(t, usual_steps(t)) for t in tlds]
+    text = gen.render_registrar("opensrs", rows, {**TYPES, **{t: "gTLD" for t in tlds}})
+    assert ("| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | 7, such as [.g0](/transfers/patterns/gtlds/g0), "
+            "[.g1](/transfers/patterns/gtlds/g1) and [.g2](/transfers/patterns/gtlds/g2) |") in text
+
+
+@pytest.mark.parametrize(("reason", "count", "expected"), [
+    ("no transfers", 1, "[.a] has no transfer at its registry. Its page explains what to do instead."),
+    ("no transfers", 2, "[.a] have no transfer at their registries. Their pages explain what to do instead."),
+    ("only on paper", 1, "Only on paper at [.a]."),
+])
+def test_a_tld_without_transfers_says_so_in_plain_words(reason, count, expected):
+    assert gen.no_transfer_line(reason, "[.a]", count) == expected

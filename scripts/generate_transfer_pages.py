@@ -533,6 +533,14 @@ def at_most_tlds(per_tld: dict[str, dict[str, Cell]], action: str, usual: Cell, 
     return symbol, note
 
 
+def no_transfer_line(reason: str, named: str, count: int) -> str:
+    if reason != "no transfers":
+        return f"{sentence_case(reason)} at {named}."
+    if count == 1:
+        return f"{named} has no transfer at its registry. Its page explains what to do instead."
+    return f"{named} have no transfer at their registries. Their pages explain what to do instead."
+
+
 def sentence_case(text: str) -> str:
     return text[:1].upper() + text[1:]
 
@@ -610,8 +618,11 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
 
     paths = {row["tld"]: tld_path(row["tld"], pattern_key(row)) for row in rows}
 
+    def link(tld: str) -> str:
+        return f"[.{tld}]({paths[tld]})"
+
     def tlds_of(tlds: list[str]) -> str:
-        return ", ".join(f"[.{t}]({paths[t]})" for t in tlds)
+        return ", ".join(map(link, tlds))
 
     flows = {row["tld"]: flow_of(row, reg, tld_types) for row in rows}
     for flow in flows.values():
@@ -634,10 +645,18 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
         same = outside_matrix(flow) == outside_matrix(usual)
         if not (same if cells[tld] == usual_cells else outside_matrix(flow) <= outside_matrix(usual)):
             raise SystemExit(f"{reg.name}: .{tld} takes a step the matrix doesn't show: add a column to MATRIX_COLUMNS")
-    groups: dict[tuple[str, ...], list[str]] = defaultdict(list)
-    for tld in sorted(with_steps):
-        if cells[tld] != usual_cells:
-            groups[cells[tld]].append(tld)
+    by_pattern: dict[object, list[str]] = defaultdict(list)
+    for row in sorted(rows, key=lambda r: r["tld"]):
+        if row["tld"] in with_steps:
+            by_pattern[pattern_key(row)].append(row["tld"])
+    table, differing = [], defaultdict(list)
+    for key, tlds in by_size(by_pattern):
+        pattern, row_cells = PATTERNS[key], most_common(cells[t] for t in tlds)
+        shown = tlds_of(tlds) if len(tlds) <= 6 else f"{len(tlds)}, such as {examples(tlds, link)}"
+        table.append(f"| [{pattern.title}]({PATTERN_ROUTE}/{pattern.slug}) | {shown} | " + " | ".join(row_cells) + " |")
+        for tld in tlds:
+            if cells[tld] != row_cells:
+                differing[cells[tld]].append(tld)
     no_transfers: dict[str, list[str]] = defaultdict(list)
     for tld in sorted(flows):
         if not flows[tld].steps:
@@ -650,20 +669,25 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
         "",
         legend({WHO[s.entity][0] for f in flows.values() for s in f.steps} | {WHO[c.entity][0] for cells in per_tld.values() for c in cells.values()} | {"↗️"}),
         "",
-        "## Who takes which step",
+        "## By transfer pattern",
         "",
-        "Search this page for a TLD, such as `.se`. A TLD that isn't listed takes the steps in the first row.",
+        f"Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have. "
+        f"{reg.name} sets which of the other steps OpusDNS can take for you. Each TLD's page names its pattern.",
         "",
-        "| TLDs | " + " | ".join(label for label, _ in MATRIX_COLUMNS) + " |",
-        "| --- | " + " | ".join(":---:" for _ in MATRIX_COLUMNS) + " |",
-        "| Most TLDs | " + " | ".join(usual_cells) + " |",
-        *(f"| {tlds_of(tlds)} | " + " | ".join(cells) + " |" for cells, tlds in by_size(groups)),
+        "| Transfer pattern | TLDs | " + " | ".join(label for label, _ in MATRIX_COLUMNS) + " |",
+        "| --- | --- | " + " | ".join(":---:" for _ in MATRIX_COLUMNS) + " |",
+        *table,
     ]
+    if differing:
+        lines += ["", "These TLDs differ from their pattern's row:", "",
+                  "| TLDs | " + " | ".join(label for label, _ in MATRIX_COLUMNS) + " |",
+                  "| --- | " + " | ".join(":---:" for _ in MATRIX_COLUMNS) + " |",
+                  *(f"| {tlds_of(tlds)} | " + " | ".join(found) + " |" for found, tlds in by_size(differing))]
     for detail, tlds in by_size(no_transfers):
         reason = say(detail, reg, short=True)
         if not reason:
             raise SystemExit(f"{detail!r}: a flow without steps needs a short reason in SENTENCES")
-        lines += ["", f"{sentence_case(reason)} at {tlds_of(tlds)}."]
+        lines += ["", no_transfer_line(reason, tlds_of(tlds), len(tlds))]
     pushed = sorted(tld for tld, flow in with_steps.items() if any(s.action == "push_transfer_out" for s in flow.steps))
     if pushed:
         lines += ["", f"At {tlds_of(pushed)}, the domain is pushed to OpusDNS's tag instead of approved."]
@@ -838,7 +862,7 @@ def render_overview(data: dict, facts: dict[str, RegistrySide]) -> str:
         "TLDs with the same steps share a transfer pattern:",
         "",
         *[f"- [{pattern.title}]({PATTERN_ROUTE}/{pattern.slug}): {len(tlds)} TLD{'' if len(tlds) == 1 else 's'}" for pattern, tlds in ordered_patterns(facts)],
-        *(["", "No transfers at " + ", ".join(f"[.{t}]({tld_path(t, None)})" for t in without) + "."] if without else []),
+        *(["", no_transfer_line("no transfers", ", ".join(f"[.{t}]({tld_path(t, None)})" for t in without), len(without))] if without else []),
         "",
         "## With a connected account",
         "",

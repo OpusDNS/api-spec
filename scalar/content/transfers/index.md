@@ -39,7 +39,7 @@ TLDs with the same steps share a transfer pattern:
 - [Unlock and auth code set by the registry](/transfers/patterns/unlock-registry-auth-code): 1 TLD
 - [Push to a tag](/transfers/patterns/push): 1 TLD
 
-No transfers at [.is](/transfers/patterns/is).
+[.is](/transfers/patterns/is) has no transfer at its registry. Its page explains what to do instead.
 
 ## With a connected account
 
