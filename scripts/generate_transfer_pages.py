@@ -74,16 +74,39 @@ LEGEND_WORDS = {
     "➖": "the TLD doesn't have it",
 }
 
-GTLD_NOTE = (
-    "For gTLDs, such as `.com`, these steps follow ICANN's Transfer Policy, which every registrar "
-    "accredited by ICANN and every gTLD registry must follow. The current registrar removes the lock "
-    "and hands out the auth code on request, within five days at the latest. The new registrar "
-    "requests the transfer with the code, and the registry checks it. The current registrar can "
-    "approve the transfer at once or deny it, but only for the reasons the policy lists, such as "
-    "fraud or a registration or transfer in the last 60 days. If it doesn't deny it within five "
-    "days, the registry completes the transfer. ccTLD registries set their own rules, so their "
-    "steps often differ."
+# ICANN Transfer Policy, version of 21 February 2024 (I.A.5.2, I.A.2.2, I.A.6.1,
+# I.A.3.7, I.A.3.5, I.A.6.2). The revised policy from the Transfer Policy Review
+# renames the code (TAC) and sets a 30 day restriction: revisit when it takes effect.
+ICANN_POLICY = "https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en"
+ICANN_TEXT = (
+    f"gTLD transfers, such as for `.com`, follow ICANN's [Transfer Policy]({ICANN_POLICY}), which "
+    "every registrar accredited by ICANN and every gTLD registry must follow. The current registrar "
+    "removes the lock and hands out the auth code on request, within five calendar days at the "
+    "latest. The new registrar requests the transfer with the code, and the registry checks it. The "
+    "current registrar can deny the transfer, but only for the reasons the policy lists, such as "
+    "fraud or a recent registration or transfer. If it doesn't deny it within five calendar days, "
+    "the registry completes the transfer. It can also approve it earlier."
 )
+
+CCTLD_TEXT = (
+    "ccTLD registries don't follow ICANN's Transfer Policy. Each sets its own rules, so the steps "
+    "often differ from the ones above. Some registries have no transfer lock, such as `.de` and "
+    "`.ch`, and some complete a transfer at once without an approval, such as `.de` and `.se`. At "
+    "`.lu` the domain's holder approves the transfer by email. At `.se` and `.nu` the registry issues "
+    "the auth codes. A `.uk` domain is pushed to the new registrar's tag instead of requested. The "
+    "[TLD Knowledge Base](/tld-knowledge-base) describes each TLD's rules."
+)
+
+REGISTRAR_PAGE_NOTE = (
+    f"For gTLDs, these steps follow ICANN's [Transfer Policy]({ICANN_POLICY}). ccTLDs often differ. "
+    "See [Transfer to OpusDNS](/transfers/overview) for both."
+)
+
+CORE_STEPS = [
+    ("update_transfer_lock", "Remove the lock"),
+    ("read_auth_code", "Get the auth code"),
+    ("approve_transfer_out", "Approve"),
+]
 
 STEP_LABELS = {
     "update_privacy": "Turn WHOIS privacy off",
@@ -182,7 +205,8 @@ SENTENCES = {
 }
 
 # At a gTLD the registry completes the transfer after five days without an
-# approval (ICANN Transfer Policy), so the customer's approval is optional.
+# approval (ICANN Transfer Policy I.A.3.5, I.A.6.2), so the customer's
+# approval is optional.
 OPTIONAL_APPROVAL = "Optional: approve it at {r} to finish sooner. Otherwise the registry completes the transfer after five days."
 
 
@@ -305,6 +329,15 @@ def most_common(values):
     return Counter(values).most_common(1)[0][0]
 
 
+def glance(flow: Flow, action: str, reg: Registrar) -> str:
+    step = next((s for s in flow.steps if s.action == action), None)
+    if step is None:
+        return "➖"
+    symbol, words = WHO[step.entity]
+    words = "You, optional" if step.optional() else words.replace("{r}", reg.name)
+    return f"{symbol} {words}"
+
+
 def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> str:
     reg = REGISTRARS[key]
     flows = {row["tld"]: flow_of(row, reg, tld_types) for row in rows}
@@ -312,6 +345,7 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
         for step in flow.steps:
             step.note(reg)
         say(flow.detail, reg)
+    per_tld = {row["tld"]: manage_cells(row, reg) for row in rows}
     usual_key = most_common(f.without_privacy(reg) for f in flows.values())
     usual_tlds = sorted(t for t, f in flows.items() if f.without_privacy(reg) == usual_key)
     usual = most_common(flows[t] for t in usual_tlds)
@@ -329,7 +363,15 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
         f"(`{reg.api_value}` in the API) and [requested the transfer](/products/connected-registrars/transfer-to-opusdns). "
         "Leave out the auth code where OpusDNS gets it for you.",
         "",
-        legend({WHO[s.entity][0] for f in flows.values() for s in f.steps}),
+        legend({WHO[s.entity][0] for f in flows.values() for s in f.steps} | {WHO[c.entity][0] for cells in per_tld.values() for c in cells.values()} | {"↗️"}),
+        "",
+        "At most TLDs, the steps that depend on the registrar:",
+        "",
+        "| " + " | ".join(label for _, label in CORE_STEPS) + " |",
+        "| " + " | ".join(":---:" for _ in CORE_STEPS) + " |",
+        "| " + " | ".join(glance(usual, action, reg) for action, _ in CORE_STEPS) + " |",
+        *(["", f"While WHOIS privacy is on, turn it off at {reg.name} first: {reg.name} refuses to remove the lock under it."]
+          if any(s.action == "update_privacy" for s in usual.steps) else []),
         "",
         "## At most TLDs",
         "",
@@ -345,7 +387,7 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
         lines += ["", "Step 1 applies only while WHOIS privacy is on, and only at TLDs that have a WHOIS privacy service."]
     lines += [
         "",
-        GTLD_NOTE,
+        REGISTRAR_PAGE_NOTE,
         "",
         "## TLDs with other steps",
         "",
@@ -359,7 +401,6 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
     if not groups:
         lines.append("| All | Every TLD takes the steps above. |")
 
-    per_tld = {row["tld"]: manage_cells(row, reg) for row in rows}
     usual_cells = {a: most_common(c[a] for c in per_tld.values()) for _, a, _ in MANAGE_ACTIONS}
     lines += [
         "",
@@ -393,17 +434,6 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
 
 def render_overview(data: dict) -> str:
     keys = sorted(data["registrars"], key=registrar_order)
-    columns = [
-        ("update_transfer_lock", "Remove the lock"),
-        ("read_auth_code", "Get the auth code"),
-        ("approve_transfer_out", "Approve"),
-    ]
-    rows = []
-    for key in keys:
-        reg = REGISTRARS[key]
-        flows = {row["tld"]: flow_of(row, reg, data["tld_types"]) for row in data["registrars"][key]}
-        usual = {s.action: s.entity for s in most_common(f for t, f in flows.items() if data["tld_types"].get(t) == "gTLD").steps}
-        rows.append((key, [WHO[usual[a]][0] if a in usual else "➖" for a, _ in columns]))
     lines = [
         "# Transfer to OpusDNS",
         "",
@@ -417,31 +447,42 @@ def render_overview(data: dict) -> str:
         "current registrar approves or denies it within five days. The registry transfers the domain "
         "into your OpusDNS account.](/images/gtld-transfer.svg)",
         "",
-        GTLD_NOTE,
+        ICANN_TEXT,
         "",
-        "With a [connected](/products/connected-registrars/connect) account, OpusDNS takes steps 1 "
-        "and 2 for you. At most registrars it also approves step 5, so the transfer doesn't wait five "
-        "days. See [Transfer a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns).",
+        "## ccTLDs",
         "",
-        "## At your registrar",
+        CCTLD_TEXT,
         "",
-        "Who takes these steps with a connected account, for gTLDs:",
+        "## With a connected account",
         "",
-        legend({cell for _, cells in rows for cell in cells}),
+        "If you have [connected](/products/connected-registrars/connect) your account at the current "
+        "registrar, you can usually request the transfer without the auth code. OpusDNS then takes the steps "
+        "at your current registrar that the registrar's API allows. Before it changes anything there, "
+        "it checks the domain's statuses and stops if one blocks the transfer. Then it removes the "
+        "transfer lock where the registrar shows it, gets the auth code where the registrar hands it "
+        "out, and approves the pending transfer where the registrar lets it. If the request fails "
+        "before the registry has it, OpusDNS sets the lock again.",
         "",
-        "| Registrar | " + " | ".join(label for _, label in columns) + " |",
-        "| --- | " + " | ".join(":---:" for _ in columns) + " |",
-    ]
-    for key, cells in rows:
-        reg = REGISTRARS[key]
-        lines.append(f"| [{reg.name}]({ROUTE}/{reg.slug}) | " + " | ".join(cells) + " |")
-    lines += [
+        "> [!WARNING]",
+        "> **Some steps stay with you.** Check your registrar's page before you start a transfer:",
+        ">",
+        "> - A lock OpusDNS can't see, or can't remove through the registrar's API.",
+        "> - A setting at the registrar that blocks the change, such as WHOIS privacy at InterNetX.",
+        "> - An auth code the registrar's API doesn't hand out, or one only the registry can issue, as "
+        "at `.se` and `.nu`. Send it as `auth_code` in the request.",
+        "> - An approval that the registrar's API can't give, or that someone else gives, such as the "
+        "domain's holder answering the registrar's email.",
         "",
-        "At gTLDs, approving only speeds the transfer up. Without an answer, the registry completes it "
-        "after five days.",
+        "This works when your organization holds the domain through exactly one connected account. "
+        "See [Transfer a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns) "
+        "for the request and the errors.",
         "",
-        "Each registrar's page lists every step, the TLDs whose steps differ, and what OpusDNS can do "
-        "with a domain you hold there until you transfer it.",
+        "## Your registrar",
+        "",
+        "Each registrar's page lists which steps OpusDNS takes there, the TLDs whose steps differ, and "
+        "what OpusDNS can do with a domain you hold there until you transfer it.",
+        "",
+        *[f"- [{REGISTRARS[k].name}]({ROUTE}/{REGISTRARS[k].slug})" for k in keys],
         "",
     ]
     return "\n".join(lines)

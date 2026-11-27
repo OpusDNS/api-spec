@@ -141,11 +141,29 @@ def test_an_action_opusdns_does_at_no_tld_is_the_customers_where_the_tld_allows_
 
 
 def test_knowledge_base_links_only_where_the_page_exists(tmp_path, monkeypatch):
-    (tmp_path / "cctlds").mkdir()
-    (tmp_path / "cctlds" / "se.md").write_text("# .se\n", encoding="utf-8")
+    for folder, tld in (("cctlds", "se"), ("gtlds", "com")):
+        (tmp_path / folder).mkdir()
+        (tmp_path / folder / f"{tld}.md").write_text(f"# .{tld}\n", encoding="utf-8")
     monkeypatch.setattr(gen, "KNOWLEDGE_BASE", tmp_path)
     assert gen.kb_link("se", TYPES) == "[.se](/tld-knowledge-base/cctlds/se)"
+    assert gen.kb_link("com", TYPES) == "[.com](/tld-knowledge-base/gtlds/com)"
     assert gen.kb_link("xx", TYPES) == ".xx"
+
+
+def test_the_overview_explains_gtlds_cctlds_and_the_connected_account():
+    text = gen.render_overview({"tld_types": TYPES, "registrars": {"opensrs": [row("com", usual_steps("com"))], "enom": [row("com", usual_steps("com"))]}})
+    assert "(/images/gtld-transfer.svg)" in text
+    assert "## ccTLDs" in text and "## With a connected account" in text
+    assert "Send it as `auth_code`" in text
+    assert "- [eNom](/transfers/enom)" in text and "- [OpenSRS](/transfers/opensrs)" in text
+    assert ";" not in text
+
+
+def test_a_registrar_whose_usual_steps_need_privacy_off_says_so_up_front():
+    rows = [row("com", usual_steps("com", privacy_step=True)), row("net", usual_steps("net", privacy_step=True))]
+    glance = page(rows).split("## At most TLDs")[0]
+    assert "While WHOIS privacy is on, turn it off at OpenSRS first" in glance
+    assert "WHOIS privacy" not in page([row("com", usual_steps("com")), row("net", usual_steps("net"))]).split("## At most TLDs")[0]
 
 
 @pytest.mark.parametrize(

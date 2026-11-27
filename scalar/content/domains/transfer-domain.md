@@ -40,7 +40,8 @@ code proves you have the right to transfer the domain.
   [.uk operations](/products/tld-operations/uk) for `.uk` releases
   and [.eu operations](/products/tld-operations/eu) / [.be operations](/products/tld-operations/be) for auth code requests.
 - If your organization holds the domain through a connected registrar account,
-  you can leave the auth code out: see
+  OpusDNS gets the auth code there at most registrars, and you can leave it
+  out: see
   [Transfer a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns).
 
 ## 2. Prepare contacts
@@ -110,7 +111,7 @@ curl "$OPUSDNS_API_BASE/v1/domains/transfer" \
 | Field | Required | Description |
 | --- | --- | --- |
 | `name` | Yes | The fully qualified domain name to transfer (e.g., `example.com`). |
-| `auth_code` | Conditional | The authorization code from the current registrar. Not needed for `.uk` or for a domain held through a [connected registrar account](/products/connected-registrars/transfer-to-opusdns). |
+| `auth_code` | Conditional | The authorization code from the current registrar. Not needed for `.uk`, or where OpusDNS gets it at your [connected registrar account](/products/connected-registrars/transfer-to-opusdns) (see [Transfers](/transfers/overview)). |
 | `contacts` | Conditional | Contact IDs keyed by role. Required for most TLDs (a `registrant` is the minimum). Optional for TLDs where every supported contact role has a minimum of `0` (e.g. `.ca`, `.ch`). |
 | `renewal_mode` | Yes | `"renew"` for automatic renewal or `"expire"` to let the domain expire. |
 | `period` | No | Additional registration period added on transfer completion. If omitted, the registry default policy applies. |

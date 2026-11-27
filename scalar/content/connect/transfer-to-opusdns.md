@@ -1,10 +1,11 @@
 # Transfer a connected domain to OpusDNS
 
 If your organization holds a domain through a
-[connected registrar account](/products/connected-registrars/connect), you can
-transfer it to OpusDNS without asking that registrar for the auth code. Leave
-`auth_code` out of the transfer request: when the transfer runs, OpusDNS
-prepares the domain at the connected registrar itself.
+[connected registrar account](/products/connected-registrars/connect), OpusDNS
+prepares the domain at that registrar itself when the transfer runs. At most
+registrars it also gets the auth code there, so you can leave `auth_code` out
+of the transfer request. Where it can't, send the code yourself:
+[Transfers](/transfers/overview) lists where that is.
 
 ## When this applies
 
@@ -50,8 +51,8 @@ Contacts, period, nameservers and monitoring work as described in
 ![Swimlane: you send the transfer request. OpusDNS checks the statuses, removes the transfer lock and fetches the auth code at your current registrar, requests the transfer at the registry and approves it at your current registrar. The registry transfers the domain into your OpusDNS account.](/images/connected-domain-transfer.svg)
 
 The usual order for a gTLD, such as `.com`. gTLD transfers follow ICANN's
-Transfer Policy, which every registrar accredited by ICANN and every gTLD
-registry must follow, so these steps are the same at every gTLD registry. ccTLD
+[Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en),
+which every registrar accredited by ICANN and every gTLD registry must follow, so these steps are the same at every gTLD registry. ccTLD
 registries set their own rules, and their steps often differ. Which steps apply also depends on your
 registrar: [Transfers](/transfers/overview) lists them for every registrar and
 TLD.
@@ -68,8 +69,11 @@ the transfer goes to the registry, OpusDNS:
    report whether the domain is locked, OpusDNS changes nothing. If it is
    locked, remove the lock at the registrar yourself, because a registry
    refuses to transfer a locked domain.
-3. **Fetches the auth code, where the TLD needs one.** If you send `auth_code`
-   anyway, OpusDNS uses yours and only removes the lock.
+3. **Fetches the auth code, where the TLD needs one.** If you send `auth_code`,
+   OpusDNS uses yours and doesn't fetch one. Where the registrar doesn't hand
+   the code out, or only the registry issues it, as at `.se` and `.nu`, send it
+   yourself. Otherwise the transfer stops with
+   `409 ERROR_DOMAIN_TRANSFER_NOT_ALLOWED`.
 
 If the transfer request fails and the registry is known to hold no transfer of
 the domain, OpusDNS sets the transfer lock it removed again. A transfer that is
@@ -80,7 +84,7 @@ rejected or cancelled later leaves the lock off: set it again at the registrar.
 | Step | Depends on |
 | --- | --- |
 | Remove the transfer lock | The TLD: not every registry has a transfer lock. The registrar: OpusDNS removes only a lock the registrar reports. |
-| Fetch the auth code | The TLD: some need none, such as `.uk`. |
+| Fetch the auth code | The TLD: some need none, such as `.uk`, and at `.se` and `.nu` only the registry issues codes. The registrar: whether OpusDNS can read the code there. |
 | Approve the transfer | The TLD: some complete a transfer without approval. The registrar: whether it can approve through OpusDNS. |
 | Push the domain (`.uk`) | The TLD: `.uk` transfers by push instead of request and approval. The registrar: whether it can push through OpusDNS. |
 

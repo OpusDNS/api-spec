@@ -2,7 +2,13 @@
 
 Transferring a domain from OpenSRS to OpusDNS takes a few steps. This page shows, for each TLD, which steps OpusDNS takes for you and which you take at OpenSRS. OpusDNS takes its steps once you have [connected](/products/connected-registrars/connect) your OpenSRS account (`OPENSRS` in the API) and [requested the transfer](/products/connected-registrars/transfer-to-opusdns). Leave out the auth code where OpusDNS gets it for you.
 
-✅ OpusDNS does it for you · ↗️ you do it at your registrar · ✉️ the domain's holder approves by email · ⚙️ the registry does it on its own
+✅ OpusDNS does it for you · ↗️ you do it at your registrar · ✉️ the domain's holder approves by email · ⚙️ the registry does it on its own · ➖ the TLD doesn't have it
+
+At most TLDs, the steps that depend on the registrar:
+
+| Remove the lock | Get the auth code | Approve |
+| :---: | :---: | :---: |
+| ✅ OpusDNS | ✅ OpusDNS | ✉️ The holder, by email |
 
 ## At most TLDs
 
@@ -16,7 +22,7 @@ Transferring a domain from OpenSRS to OpusDNS takes a few steps. This page shows
 | 6 | The registry transfers the domain | ⚙️ The registry | The registry transfers the domain to OpusDNS. |
 | 7 | Finish the transfer | ✅ OpusDNS | OpusDNS books the transfer, sets the transfer lock and stops syncing the domain from OpenSRS. |
 
-For gTLDs, such as `.com`, these steps follow ICANN's Transfer Policy, which every registrar accredited by ICANN and every gTLD registry must follow. The current registrar removes the lock and hands out the auth code on request, within five days at the latest. The new registrar requests the transfer with the code, and the registry checks it. The current registrar can approve the transfer at once or deny it, but only for the reasons the policy lists, such as fraud or a registration or transfer in the last 60 days. If it doesn't deny it within five days, the registry completes the transfer. ccTLD registries set their own rules, so their steps often differ.
+For gTLDs, these steps follow ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en). ccTLDs often differ. See [Transfer to OpusDNS](/transfers/overview) for both.
 
 ## TLDs with other steps
 
