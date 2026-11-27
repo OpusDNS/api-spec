@@ -477,22 +477,23 @@ def render_overview(data: dict) -> str:
         "",
         "If the request fails before the registry has it, OpusDNS sets the lock again.",
         "",
+        "OpusDNS takes steps 1 to 4 only when exactly one of your connected accounts holds the domain. "
+        "Otherwise, the request is an ordinary transfer. You then take every step at your registrar "
+        "yourself. See [Transfer a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns) "
+        "for the request and the errors.",
+        "",
         "> [!WARNING]",
         "> **Some steps stay with you.** The [page for your registrar](#your-registrar) in these docs "
         "lists them. Read it before you start a transfer. Typical cases are:",
         ">",
         "> - A lock that OpusDNS can't see or can't remove through the registrar's API.",
-        "> - A setting at the registrar that blocks the change. An example is WHOIS privacy at InterNetX.",
+        "> - A setting at the registrar that blocks the transfer. An example is WHOIS privacy at InterNetX.",
         "> - An auth code that the registrar's API doesn't hand out. At `.se` and `.nu`, only the "
         "registry issues the code. Send it as `auth_code` in the request.",
         "> - An approval that the registrar's API can't give. Sometimes someone else approves. For "
         "example, the domain's holder answers an email from the registrar.",
         ">",
         "> Your registrar's own documentation explains how to take these steps there.",
-        "",
-        "OpusDNS takes these steps only when exactly one of your connected accounts holds the domain. "
-        "Otherwise, send the auth code yourself. See [Transfer a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns) "
-        "for the request and the errors.",
         "",
         "## Your registrar",
         "",
