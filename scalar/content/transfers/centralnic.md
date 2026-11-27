@@ -32,7 +32,7 @@ At [.uk](/tld-knowledge-base/cctlds/uk), the domain is pushed to OpusDNS's tag i
 | 4 | ⚙️ The registry notifies CentralNic Reseller | The registry tells CentralNic Reseller about the transfer. |
 | 5 | ✅ Approve the transfer | OpusDNS approves the transfer at CentralNic Reseller. |
 | 6 | ⚙️ The registry transfers the domain | The registry transfers the domain to OpusDNS. |
-| 7 | ✅ Finish the transfer | OpusDNS adds the domain to your account, sets the transfer lock and stops syncing it from CentralNic Reseller. |
+| 7 | ✅ Finish the transfer | OpusDNS completes the transfer in your account, sets the transfer lock and stops syncing the domain from CentralNic Reseller. |
 
 For gTLDs, these steps follow ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en). ccTLDs often differ. See [Transfer to OpusDNS](/transfers/overview) for both.
 

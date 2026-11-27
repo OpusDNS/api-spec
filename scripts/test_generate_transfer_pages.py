@@ -147,11 +147,17 @@ def test_a_pushed_tld_and_a_tld_without_transfers():
     assert "No transfers at .xx." in matrix and "| .xx |" not in matrix
 
 
-def test_a_difference_outside_the_matrix_columns_fails_the_run():
-    rows = [row("com", usual_steps("com")), row("net", usual_steps("net"))]
-    rows[1]["flows"]["transfer_to_opusdns"]["steps"][2] = step("request_transfer", "customer", "OpusDNS sends the transfer to the .net registry.")
+def test_a_step_outside_the_matrix_columns_fails_the_run():
+    # .se is alone in its row, so only a comparison with the usual steps catches it.
+    se = se_steps()
+    se[1] = step("request_transfer", "customer", "OpusDNS sends the transfer to the .se registry.")
     with pytest.raises(SystemExit, match="add a column"):
-        page(rows)
+        page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("se", se, lock=False)])
+
+
+def test_a_flow_without_steps_needs_a_short_reason():
+    with pytest.raises(SystemExit, match="short reason"):
+        page([row("com", usual_steps("com")), row("xx", [])])
 
 
 def test_managing_follows_the_capability_groups():
@@ -169,11 +175,21 @@ def test_a_managing_difference_is_listed_only_where_opusdns_part_changes():
     assert "| ➖ No transfer lock |" in managing and "See the transfer lock" not in managing.split("TLDs where this differs")[1]
 
 
-def test_a_reason_only_some_of_a_groups_actions_have_is_said_per_action():
-    rows = [row("com", usual_steps("com")), row("net", usual_steps("net")), row("xx", usual_steps("xx"))]
-    rows[2]["actions"]["dns"]["update_nameservers"] = action("customer", "OpusDNS cannot change the nameservers at OpenSRS. Change them at OpenSRS.")
-    nameservers = section(page(rows), "### Nameservers", "### Contacts")
-    assert "| .xx | ↗️ Change the nameservers |" in nameservers
+def test_a_reason_is_said_once_only_where_the_whole_group_shares_it():
+    def no_lock(tld, entity=None):
+        return action(entity, f".{tld} has no transfer lock.")
+
+    customer = action("customer", "OpusDNS cannot change the nameservers at OpenSRS. Change them at OpenSRS.")
+    rows = [row("com", usual_steps("com")), row("net", usual_steps("net")), row("org", usual_steps("org"))]
+    rows += [row(tld, usual_steps(tld)) for tld in ("xa", "xb", "xc")]
+    rows[3]["actions"]["status"]["update_transfer_lock"] = no_lock("xa")  # one of two actions
+    rows[4]["actions"]["dns"] = {"read_nameservers": customer, "update_nameservers": customer}  # no reason
+    rows[5]["actions"]["status"] = {"read_transfer_lock": no_lock("xc"), "update_transfer_lock": no_lock("xc", "registry")}  # two entities
+    text = page(rows)
+    lock, nameservers = section(text, "### Transfer lock", "### Nameservers"), section(text, "### Nameservers", "### Contacts")
+    assert "| .xa | ➖ Set or remove the transfer lock: no transfer lock |" in lock
+    assert "| .xb | ↗️ See the nameservers<br>↗️ Change the nameservers |" in nameservers
+    assert "| .xc | ➖ See the transfer lock: no transfer lock<br>⚙️ Set or remove the transfer lock: no transfer lock |" in lock
 
 
 def test_an_action_opusdns_does_at_no_tld_is_the_customers_where_the_tld_allows_it():

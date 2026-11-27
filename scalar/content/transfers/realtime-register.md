@@ -35,7 +35,7 @@ At [.uk](/tld-knowledge-base/cctlds/uk), the domain is pushed to OpusDNS's tag i
 | 4 | ⚙️ The registry notifies Realtime Register | The registry tells Realtime Register about the transfer. |
 | 5 | ↗️ Approve the transfer (optional) | Optional: approve it at Realtime Register to finish sooner. Otherwise the registry completes the transfer after five days. |
 | 6 | ⚙️ The registry transfers the domain | The registry transfers the domain to OpusDNS. |
-| 7 | ✅ Finish the transfer | OpusDNS adds the domain to your account, sets the transfer lock and stops syncing it from Realtime Register. |
+| 7 | ✅ Finish the transfer | OpusDNS completes the transfer in your account, sets the transfer lock and stops syncing the domain from Realtime Register. |
 
 For gTLDs, these steps follow ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en). ccTLDs often differ. See [Transfer to OpusDNS](/transfers/overview) for both.
 
@@ -47,7 +47,7 @@ Until you transfer a domain, OpusDNS can take some actions on it at Realtime Reg
 
 | Action | Note |
 | --- | --- |
-| ↗️ See the transfer lock | OpusDNS can't show the transfer lock at Realtime Register. Check it at Realtime Register. |
+| ↗️ See the transfer lock | Check the transfer lock at Realtime Register. |
 | ↗️ Set or remove the transfer lock | OpusDNS can't change the transfer lock at Realtime Register. Change it at Realtime Register. |
 
 ### Nameservers

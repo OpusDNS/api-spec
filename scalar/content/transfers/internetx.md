@@ -37,9 +37,7 @@ At TLDs with a WHOIS privacy service, InterNetX refuses to remove the lock while
 | 5 | ⚙️ The registry notifies InterNetX | The registry tells InterNetX about the transfer. |
 | 6 | ✅ Approve the transfer | OpusDNS approves the transfer at InterNetX. |
 | 7 | ⚙️ The registry transfers the domain | The registry transfers the domain to OpusDNS. |
-| 8 | ✅ Finish the transfer | OpusDNS adds the domain to your account, sets the transfer lock and stops syncing it from InterNetX. |
-
-Step 1 applies only while WHOIS privacy is on, and only at TLDs that have a WHOIS privacy service.
+| 8 | ✅ Finish the transfer | OpusDNS completes the transfer in your account, sets the transfer lock and stops syncing the domain from InterNetX. |
 
 For gTLDs, these steps follow ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en). ccTLDs often differ. See [Transfer to OpusDNS](/transfers/overview) for both.
 

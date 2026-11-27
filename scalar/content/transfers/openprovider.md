@@ -35,7 +35,7 @@ At [.uk](/tld-knowledge-base/cctlds/uk), the domain is pushed to OpusDNS's tag i
 | 4 | ⚙️ The registry notifies Openprovider | The registry tells Openprovider about the transfer. |
 | 5 | ↗️ Approve the transfer (optional) | Optional: approve it at Openprovider to finish sooner. Otherwise the registry completes the transfer after five days. |
 | 6 | ⚙️ The registry transfers the domain | The registry transfers the domain to OpusDNS. |
-| 7 | ✅ Finish the transfer | OpusDNS adds the domain to your account, sets the transfer lock and stops syncing it from Openprovider. |
+| 7 | ✅ Finish the transfer | OpusDNS completes the transfer in your account, sets the transfer lock and stops syncing the domain from Openprovider. |
 
 For gTLDs, these steps follow ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en). ccTLDs often differ. See [Transfer to OpusDNS](/transfers/overview) for both.
 

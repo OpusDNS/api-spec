@@ -63,7 +63,7 @@ WHO = {
     "customer": ("↗️", "You, at {r}"),
     "registrant": ("👤", "The holder, by email"),
     "registry": ("⚙️", "The registry"),
-    None: ("➖", "Not at this TLD"),
+    None: ("➖", ""),
 }
 
 LEGEND_WORDS = {
@@ -112,13 +112,15 @@ REGISTRAR_PAGE_NOTE = (
     "See [Transfer to OpusDNS](/transfers/overview) for both."
 )
 
-# The steps that differ between registrars and TLDs. Every other step is the
-# same at every TLD with transfers, so the matrix shows only these.
+# The steps that differ between registrars and TLDs. A TLD's other steps are
+# the usual ones or fewer, such as no notification where nothing is approved,
+# so the matrix shows only these. The run fails where that stops holding.
 MATRIX_COLUMNS = [
     ("Remove the lock", {"update_transfer_lock"}),
     ("Get the auth code", {"read_auth_code", "reset_auth_code"}),
     ("Approve", {"approve_transfer_out", "push_transfer_out"}),
 ]
+MATRIX_ACTIONS = set().union(*(actions for _, actions in MATRIX_COLUMNS))
 
 STEP_LABELS = {
     "update_privacy": "Turn WHOIS privacy off",
@@ -182,14 +184,14 @@ SENTENCES = {
     "The {tld} registry moves the domain to OpusDNS.": ("The registry transfers the domain to OpusDNS.", ""),
     "The {tld} registry moves the domain to OpusDNS's tag.": ("The registry transfers the domain to OpusDNS's tag.", ""),
     "OpusDNS books the transfer and stops mirroring the domain from {r}.": (
-        "OpusDNS adds the domain to your account and stops syncing it from {r}.", ""),
+        "OpusDNS completes the transfer in your account and stops syncing the domain from {r}.", ""),
     "OpusDNS books the transfer, sets the transfer lock and stops mirroring the domain from {r}.": (
-        "OpusDNS adds the domain to your account, sets the transfer lock and stops syncing it from {r}.", ""),
+        "OpusDNS completes the transfer in your account, sets the transfer lock and stops syncing the domain from {r}.", ""),
     # managing a connected domain
     "OpusDNS reads the transfer lock at {r}.": ("OpusDNS reads the transfer lock at {r}.", ""),
     "OpusDNS does not read the lock at {r}. Check it at {r}.": ("OpusDNS doesn't read the lock at {r}. Check it at {r}.", ""),
     "Reading the transfer lock through OpusDNS isn't verified at {r} yet. Check it at {r}.": (
-        "OpusDNS can't show the transfer lock at {r}. Check it at {r}.", ""),
+        "Check the transfer lock at {r}.", ""),
     "OpusDNS changes the lock through the {r} API.": ("OpusDNS sets and removes the lock through the {r} API.", ""),
     "OpusDNS cannot change the transfer lock at {r}. Change it at {r}.": (
         "OpusDNS can't change the transfer lock at {r}. Change it at {r}.", ""),
@@ -203,7 +205,7 @@ SENTENCES = {
     "OpusDNS cannot change the registrant on connected domains yet. Change it at {r}.": (
         "OpusDNS can't change the registrant of a connected domain. Change it at {r}.", ""),
     "Changing the registrant through OpusDNS isn't verified at {r} yet. Change it at {r}.": (
-        "OpusDNS can't change the registrant at {r}. Change it at {r}.", ""),
+        "Change the registrant at {r}.", ""),
     "OpusDNS cannot change the other contacts at {r}. Change them at {r}.": (
         "OpusDNS can't change the other contacts at {r}. Change them at {r}.", ""),
     "OpusDNS cannot change the other contacts on connected domains yet. Change them at {r}.": (
@@ -266,8 +268,6 @@ class Step:
         return self.action == "approve_transfer_out" and self.entity == "customer" and self.gtld
 
     def label(self, reg: Registrar) -> str:
-        if self.action == "request_transfer" and "books the domain" in self.template:
-            return "Start the transfer at OpusDNS"
         label = STEP_LABELS[self.action].replace("{r}", reg.name)
         return label + " (optional)" if self.optional() else label
 
@@ -401,17 +401,20 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
     with_steps = {tld: flow for tld, flow in flows.items() if flow.steps}
     if not with_steps:
         raise SystemExit(f"{reg.name}: no TLD has transfer steps")
-    taken: dict[tuple[str, ...], set[tuple[str, ...]]] = defaultdict(set)
-    for flow in with_steps.values():
-        taken[flow.cells(reg)].add(tuple(s.shown(reg) for s in flow.steps if s.action != "update_privacy"))
-    if any(len(steps) > 1 for steps in taken.values()):
-        raise SystemExit(f"{reg.name}: TLDs in one matrix row take different steps: add a column to MATRIX_COLUMNS")
-    usual_cells = most_common(flow.cells(reg) for flow in with_steps.values())
-    usual = most_common(flow for flow in with_steps.values() if flow.cells(reg) == usual_cells)
+    cells = {tld: flow.cells(reg) for tld, flow in with_steps.items()}
+    usual_cells = most_common(cells.values())
+    usual = most_common(flow for tld, flow in with_steps.items() if cells[tld] == usual_cells)
+
+    def outside_matrix(flow: Flow) -> set[tuple[str, str]]:
+        return {(s.action, s.entity) for s in flow.steps if s.action not in MATRIX_ACTIONS | {"update_privacy"}}
+
+    for tld, flow in sorted(with_steps.items()):
+        if not outside_matrix(flow) <= outside_matrix(usual):
+            raise SystemExit(f"{reg.name}: .{tld} takes a step the matrix doesn't show: add a column to MATRIX_COLUMNS")
     groups: dict[tuple[str, ...], list[str]] = defaultdict(list)
     for tld in sorted(with_steps):
-        if with_steps[tld].cells(reg) != usual_cells:
-            groups[with_steps[tld].cells(reg)].append(tld)
+        if cells[tld] != usual_cells:
+            groups[cells[tld]].append(tld)
     no_transfers: dict[str, list[str]] = defaultdict(list)
     for tld in sorted(flows):
         if not flows[tld].steps:
@@ -439,7 +442,9 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
     ]
     for detail, tlds in by_size(no_transfers):
         reason = say(detail, reg, short=True)
-        lines += ["", f"{sentence_case(reason)} at {tlds_of(tlds)}." if reason else f"{tlds_of(tlds)}: {say(detail, reg)}"]
+        if not reason:
+            raise SystemExit(f"{detail!r}: a flow without steps needs a short reason in SENTENCES")
+        lines += ["", f"{sentence_case(reason)} at {tlds_of(tlds)}."]
     pushed = sorted(tld for tld, flow in with_steps.items() if any(s.action == "push_transfer_out" for s in flow.steps))
     if pushed:
         lines += ["", f"At {tlds_of(pushed)}, the domain is pushed to OpusDNS's tag instead of approved."]
@@ -450,8 +455,6 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
     lines += ["", "## The steps at most TLDs", "", "| # | Step | What happens |", "| --- | --- | --- |"]
     for i, step in enumerate(usual.steps, 1):
         lines.append(f"| {i} | {step.shown(reg)} | {step.note(reg)} |")
-    if any(s.action == "update_privacy" for s in usual.steps):
-        lines += ["", "Step 1 applies only while WHOIS privacy is on, and only at TLDs that have a WHOIS privacy service."]
     lines += ["", REGISTRAR_PAGE_NOTE]
 
     usual_manage = {a: most_common(c[a] for c in per_tld.values()) for _, a, _ in MANAGE_ACTIONS}
