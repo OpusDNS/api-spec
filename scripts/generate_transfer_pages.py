@@ -409,7 +409,9 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
         return {(s.action, s.entity) for s in flow.steps if s.action not in MATRIX_ACTIONS | {"update_privacy"}}
 
     for tld, flow in sorted(with_steps.items()):
-        if not outside_matrix(flow) <= outside_matrix(usual):
+        # A TLD of the first row takes exactly the steps of the steps table.
+        same = outside_matrix(flow) == outside_matrix(usual)
+        if not (same if cells[tld] == usual_cells else outside_matrix(flow) <= outside_matrix(usual)):
             raise SystemExit(f"{reg.name}: .{tld} takes a step the matrix doesn't show: add a column to MATRIX_COLUMNS")
     groups: dict[tuple[str, ...], list[str]] = defaultdict(list)
     for tld in sorted(with_steps):

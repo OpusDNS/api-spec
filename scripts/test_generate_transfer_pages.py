@@ -155,6 +155,12 @@ def test_a_step_outside_the_matrix_columns_fails_the_run():
         page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("se", se, lock=False)])
 
 
+def test_a_first_row_tld_without_a_step_of_the_steps_table_fails_the_run():
+    org = [s for s in usual_steps("org") if s["action"] != "complete_transfer"]
+    with pytest.raises(SystemExit, match="add a column"):
+        page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("org", org)])
+
+
 def test_a_flow_without_steps_needs_a_short_reason():
     with pytest.raises(SystemExit, match="short reason"):
         page([row("com", usual_steps("com")), row("xx", [])])
