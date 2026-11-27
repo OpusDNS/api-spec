@@ -481,12 +481,12 @@ def render_overview(data: dict) -> str:
         "> **Some steps stay with you.** The [page for your registrar](#your-registrar) in these docs "
         "lists them. Read it before you start a transfer. Typical cases are:",
         ">",
-        "> - A lock OpusDNS can't see, or can't remove through the registrar's API.",
-        "> - A setting at the registrar that blocks the change, such as WHOIS privacy at InterNetX.",
-        "> - An auth code the registrar's API doesn't hand out, or one only the registry can issue, as "
-        "at `.se` and `.nu`. Send it as `auth_code` in the request.",
-        "> - An approval that the registrar's API can't give, or that someone else gives, such as the "
-        "domain's holder answering the registrar's email.",
+        "> - A lock that OpusDNS can't see or can't remove through the registrar's API.",
+        "> - A setting at the registrar that blocks the change. An example is WHOIS privacy at InterNetX.",
+        "> - An auth code that the registrar's API doesn't hand out. At `.se` and `.nu`, only the "
+        "registry issues the code. Send it as `auth_code` in the request.",
+        "> - An approval that the registrar's API can't give. Sometimes someone else approves. For "
+        "example, the domain's holder answers an email from the registrar.",
         ">",
         "> Your registrar's own documentation explains how to take these steps there.",
         "",
