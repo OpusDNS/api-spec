@@ -35,7 +35,7 @@ TLDs with the same steps share a transfer pattern:
 - [Unlock and auth code](/transfers/patterns/unlock-auth-code): 6 TLDs
 - [No auth code, with approval](/transfers/patterns/no-auth-code): 5 TLDs
 - [Auth code and approval](/transfers/patterns/auth-code-approval): 3 TLDs
-- [Unlock, auth code set by the registry, and approval](/transfers/patterns/registry-auth-code-approval): 2 TLDs
+- [Unlock, auth code set by the registry, and approval](/transfers/patterns/unlock-registry-auth-code-approval): 2 TLDs
 - [Unlock and auth code set by the registry](/transfers/patterns/unlock-registry-auth-code): 1 TLD
 - [Push to a tag](/transfers/patterns/push): 1 TLD
 

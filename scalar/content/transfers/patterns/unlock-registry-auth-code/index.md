@@ -17,6 +17,6 @@ Each TLD's page shows which of these steps OpusDNS takes at your registrar.
 
 ## Registries
 
-These registries handle transfers this way:
+The registries of these TLDs:
 
 - [DNS Belgium](https://www.dnsbelgium.be): [.be](/transfers/patterns/unlock-registry-auth-code/be)

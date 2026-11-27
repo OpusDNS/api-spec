@@ -16,7 +16,7 @@ Each TLD's page shows which of these steps OpusDNS takes at your registrar.
 
 ## Registries
 
-These registries handle transfers this way:
+The registries of these TLDs:
 
 - [Istituto di Informatica e Telematica (IIT-CNR)](https://www.nic.it): [.it](/transfers/patterns/auth-code-approval/it)
 - [nic.at GmbH](https://www.nic.at/): [.at](/transfers/patterns/auth-code-approval/at)

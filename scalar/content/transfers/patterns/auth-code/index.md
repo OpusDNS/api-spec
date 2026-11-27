@@ -16,7 +16,7 @@ Each TLD's page shows which of these steps OpusDNS takes at your registrar.
 
 ## Registries
 
-These registries handle transfers this way:
+The registries of these TLDs:
 
 - [Switch](https://www.switch.ch/de): [.ch](/transfers/patterns/auth-code/ch), [.li](/transfers/patterns/auth-code/li)
 - [Academic and Research Network of Slovenia (Arnes)](https://www.register.si): [.si](/transfers/patterns/auth-code/si)

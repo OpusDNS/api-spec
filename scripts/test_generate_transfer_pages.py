@@ -75,6 +75,20 @@ def se_steps(tld="se"):
 TYPES = {"com": "gTLD", "net": "gTLD", "org": "gTLD", "se": "ccTLD", "nu": "ccTLD", "xx": "ccTLD", "fr": "ccTLD"}
 
 
+@pytest.fixture(autouse=True)
+def knowledge_base(tmp_path, monkeypatch):
+    root = tmp_path / "kb"
+    root.mkdir()
+    monkeypatch.setattr(gen, "KNOWLEDGE_BASE", root)
+    return root
+
+
+def kb_page(root, tld, registry, site, folder="cctlds"):
+    (root / folder).mkdir(exist_ok=True)
+    rows = (f"| Registry | {registry} |\n" if registry else "") + (f"| Registry Website | [{site}]({site}) |\n" if site else "")
+    (root / folder / f"{tld}.md").write_text(f"# .{tld}\n\n| Property | Value |\n| --- | --- |\n{rows}", encoding="utf-8")
+
+
 def page(rows):
     return gen.render_registrar("opensrs", rows, TYPES)
 
@@ -330,14 +344,8 @@ def test_only_an_approval_by_the_losing_side_counts_as_approval(ack, nack, appro
     assert gen.pattern_key(row("xx", usual_steps("xx"), policies=policies)) == ("registrar", approval, True)
 
 
-def pattern_page(rows):
-    data = export(rows, rows)
-    facts = gen.registry_facts(data)
-    pattern, tlds = gen.ordered_patterns(facts)[0]
-    return gen.render_pattern(pattern, tlds, data, facts)
-
-
-def test_the_lock_splits_patterns_and_a_pattern_page_shows_the_registrys_side_only():
+def test_the_lock_splits_patterns_and_a_pattern_page_shows_the_registrys_side_only(knowledge_base):
+    kb_page(knowledge_base, "fr", "AFNIC", "https://www.afnic.fr")
     rows = [row("com", usual_steps("com")), row("fr", usual_steps("fr")[1:], lock=False), row("xx", usual_steps("xx")[1:], lock=False)]
     data = export(rows, rows)
     facts = gen.registry_facts(data)
@@ -347,36 +355,30 @@ def test_the_lock_splits_patterns_and_a_pattern_page_shows_the_registrys_side_on
     assert "Your current registrar can then approve or deny the transfer. The registry has no transfer lock." in text
     assert "Remove the transfer lock" not in text and "| Registrar |" not in text
     assert "Each TLD's page shows which of these steps OpusDNS takes at your registrar." in text
+    assert "At gTLDs" not in text  # only ccTLDs here
     # .fr has a Knowledge Base page with its registry, .xx has none.
     registries = section(text, "## Registries")
     assert "[.fr](/transfers/patterns/auth-code-approval/fr)" in registries and ".xx" not in registries
 
 
-def kb_page(root, tld, registry, site):
-    (root / "cctlds").mkdir(exist_ok=True)
-    rows = (f"| Registry | {registry} |\n" if registry else "") + (f"| Registry Website | [{site}]({site}) |\n" if site else "")
-    (root / "cctlds" / f"{tld}.md").write_text(f"# .{tld}\n\n| Property | Value |\n| --- | --- |\n{rows}", encoding="utf-8")
-
-
-def test_a_registry_shows_once_with_the_website_most_of_its_tlds_name(tmp_path, monkeypatch):
-    monkeypatch.setattr(gen, "KNOWLEDGE_BASE", tmp_path)
-    types = {"aa": "ccTLD", "bb": "ccTLD", "cc": "ccTLD", "dd": "ccTLD"}
-    for tld, registry, site in (("aa", "Alpha", "https://a.example"), ("bb", "Alpha", "https://a.example"),
-                                ("cc", "Alpha", "https://other.example"), ("dd", "beta", None)):
-        kb_page(tmp_path, tld, registry, site)
-    rows = [row(t, usual_steps(t)) for t in types]
-    data = {"tld_types": types, "registrars": {"opensrs": rows}}
+def test_registries_show_once_each_by_size_then_name_with_their_usual_website(knowledge_base):
+    pages = [("aa", "Alpha", "https://other.example"), ("ab", "Alpha", "https://a.example"), ("ac", "Alpha", "https://a.example"),
+             ("dd", "beta", None), ("ee", "Delta", None), *[(f"g{i}", "Gamma", "https://g.example") for i in range(6)]]
+    for tld, registry, site in pages:
+        kb_page(knowledge_base, tld, registry, site)
+    types = {tld: "ccTLD" for tld, _, _ in pages}
+    data = {"tld_types": types, "registrars": {"opensrs": [row(t, usual_steps(t)) for t in types]}}
     facts = gen.registry_facts(data)
     pattern, tlds = gen.ordered_patterns(facts)[0]
-    registries = section(gen.render_pattern(pattern, tlds, data, facts), "## Registries")
-    assert registries.count("Alpha") == 1 and "- [Alpha](https://a.example): [.aa]" in registries
-    assert "- beta: [.dd](/transfers/patterns/gtlds/dd)" in registries
-    assert "Its registry is [Alpha](https://other.example)." in gen.render_tld("cc", data, facts["cc"])
+    registries = [line for line in section(gen.render_pattern(pattern, tlds, data, facts), "## Registries").splitlines() if line.startswith("- ")]
+    assert [line.split("]")[0].split(":")[0] for line in registries] == ["- [Gamma", "- [Alpha", "- beta", "- Delta"]
+    assert registries[0].endswith("[.g4](/transfers/patterns/gtlds/g4) and 1 more")
+    assert registries[1].startswith("- [Alpha](https://a.example): [.aa]")
+    assert "Its registry is [Alpha](https://other.example)." in gen.render_tld("aa", data, facts["aa"])
 
 
-def test_a_knowledge_base_page_without_its_registry_fails_the_run(tmp_path, monkeypatch):
-    monkeypatch.setattr(gen, "KNOWLEDGE_BASE", tmp_path)
-    kb_page(tmp_path, "aa", None, None)
+def test_a_knowledge_base_page_without_its_registry_fails_the_run(knowledge_base):
+    kb_page(knowledge_base, "aa", None, None)
     with pytest.raises(SystemExit, match="names no registry"):
         gen.registry_of("aa", {"aa": "ccTLD"})
 
@@ -393,7 +395,8 @@ def test_a_pattern_page_where_every_tld_has_a_lock_names_many_gtlds_by_example()
     assert "24 gTLDs, such as [.com](/transfers/patterns/gtlds/com), [.net](/transfers/patterns/gtlds/net) and [.org](/transfers/patterns/gtlds/org)." in text
 
 
-def test_a_tld_page_shows_the_tlds_facts_and_each_registrars_steps():
+def test_a_tld_page_shows_the_tlds_facts_and_each_registrars_steps(knowledge_base):
+    kb_page(knowledge_base, "com", "VeriSign, Inc.", "https://www.verisign.com", folder="gtlds")
     rows = [row("com", usual_steps("com"), policies={"transfer_renews_domain": True, "transfer_time": "5D"}),
             row("net", usual_steps("net"), policies={"transfer_renews_domain": True, "transfer_time": "5D"})]
     data = export(rows, rows)
@@ -528,3 +531,24 @@ def test_a_pattern_with_many_tlds_names_a_few_on_the_registrar_page():
 ])
 def test_a_tld_without_transfers_says_so_in_plain_words(reason, count, expected):
     assert gen.no_transfer_line(reason, "[.a]", count) == expected
+
+
+def test_the_holder_approves_where_the_registry_says_so():
+    lu = row("lu", [step("request_transfer", "opusdns", "OpusDNS sends the transfer to the .lu registry."),
+                    step("approve_transfer_out", "registrant", "The holder of the .lu domain approves the transfer."),
+                    step("complete_transfer", "registry", "The .lu registry moves the domain to OpusDNS.")],
+             lock=False, policies={"authinfo_required": False, "transfer_ack": "registrant"})
+    xx = row("xx", [step("request_transfer", "opusdns", "OpusDNS sends the transfer to the .xx registry."),
+                    step("approve_transfer_out", "customer", "Approve the transfer at OpenSRS."),
+                    step("complete_transfer", "registry", "The .xx registry moves the domain to OpusDNS.")],
+             lock=False, policies={"authinfo_required": False})
+    data = export([lu, xx])
+    facts = gen.registry_facts(data)
+    assert "2. The domain's holder approves or denies the transfer by email." in gen.render_tld("lu", data, facts["lu"])
+    assert "2. Your current registrar approves or denies the transfer. Some registrars" in gen.render_tld("xx", data, facts["xx"])
+    pattern, tlds = gen.ordered_patterns(facts)[0]
+    page_text = gen.render_pattern(pattern, tlds, data, facts)
+    assert "Your current registrar or the domain's holder then approves or denies the transfer, depending on the TLD." in page_text
+    only_lu = export([lu])
+    lu_facts = gen.registry_facts(only_lu)
+    assert "The domain's holder then approves or denies the transfer by email." in gen.render_pattern(*gen.ordered_patterns(lu_facts)[0], only_lu, lu_facts)

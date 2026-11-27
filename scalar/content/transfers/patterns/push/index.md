@@ -20,6 +20,6 @@ Each TLD's page shows which of these steps OpusDNS takes at your registrar.
 
 ## Registries
 
-These registries handle transfers this way:
+The registries of these TLDs:
 
 - [Nominet UK](https://www.nominet.uk): [.uk](/transfers/patterns/push/uk)

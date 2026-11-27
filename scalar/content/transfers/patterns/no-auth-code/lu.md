@@ -5,7 +5,7 @@
 ## Steps
 
 1. OpusDNS requests the transfer at the registry.
-2. Your current registrar approves or denies the transfer. Some registrars ask the domain's holder by email.
+2. The domain's holder approves or denies the transfer by email.
 
 ## At your registrar
 

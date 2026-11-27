@@ -258,7 +258,7 @@ PATTERNS = {
     ("registrar", False, False): Pattern("auth-code", "Auth code only"),
     ("registry", False, False): Pattern("registry-auth-code", "Auth code set by the registry"),
     ("registry", False, True): Pattern("unlock-registry-auth-code", "Unlock and auth code set by the registry"),
-    ("registry", True, True): Pattern("registry-auth-code-approval", "Unlock, auth code set by the registry, and approval"),
+    ("registry", True, True): Pattern("unlock-registry-auth-code-approval", "Unlock, auth code set by the registry, and approval"),
     ("none", True, False): Pattern("no-auth-code", "No auth code, with approval"),
     "push": Pattern("push", "Push to a tag"),
 }
@@ -293,7 +293,7 @@ def pattern_key(row: dict) -> object:
         code = "none"
     else:
         code = "registrar" if policies.get("authinfo_set_by_registrar") else "registry"
-    lock = bool(policies.get("transfer_lock_policy", {}).get("supported_by_registry"))
+    lock = bool((policies.get("transfer_lock_policy") or {}).get("supported_by_registry"))
     return code, policies.get("transfer_ack") not in (None, "none"), lock
 
 
@@ -303,15 +303,18 @@ class RegistrySide:
     lock: bool
     renews: bool
     deny: bool  # the losing side can deny a transfer, also where nobody approves it
+    holder: bool  # the domain's holder approves, not the registrar (TLD spec: transfer_ack registrant)
     days: int | None  # the transfer time, None where the spec gives it in other units
 
 
 def registry_side(row: dict) -> RegistrySide:
     policies = row["specification"]["transfer_policies"]
-    lock = bool(policies.get("transfer_lock_policy", {}).get("supported_by_registry"))
+    lock = bool((policies.get("transfer_lock_policy") or {}).get("supported_by_registry"))
     days = re.fullmatch(r"(\d+)D", str(policies.get("transfer_time") or ""))
     deny = policies.get("transfer_nack") not in (None, "none")
-    return RegistrySide(pattern_key(row), lock, bool(policies.get("transfer_renews_domain")), deny, int(days[1]) if days else None)
+    holder = policies.get("transfer_ack") == "registrant"
+    return RegistrySide(pattern_key(row), lock, bool(policies.get("transfer_renews_domain")), deny, holder,
+                        int(days[1]) if days else None)
 
 
 def registry_facts(data: dict) -> dict[str, RegistrySide]:
@@ -347,7 +350,22 @@ def tld_path(tld: str, key: object) -> str:
     return f"{PATTERN_ROUTE}/{PATTERNS[key].slug}/{tld}" if key is not None else f"{PATTERN_ROUTE}/{tld}"
 
 
-def pattern_intro(key: object, pattern: Pattern) -> str:
+# Who approves, by whether the TLDs' holders do: none, all, or some of them.
+APPROVERS = {
+    "registrar": ("Your current registrar can then approve or deny the transfer.",
+                  "Your current registrar approves or denies the transfer. Some registrars ask the domain's holder by email."),
+    "holder": ("The domain's holder then approves or denies the transfer by email.",
+               "The domain's holder approves or denies the transfer by email."),
+    "either": ("Your current registrar or the domain's holder then approves or denies the transfer, depending on the TLD.",
+               "Your current registrar or the domain's holder approves or denies the transfer, depending on the TLD."),
+}
+
+
+def approver(holders: list[bool]) -> str:
+    return "holder" if all(holders) else "either" if any(holders) else "registrar"
+
+
+def pattern_intro(key: object, pattern: Pattern, who: str) -> str:
     if key == "push":
         return "Your current registrar pushes the domain to OpusDNS's registrar tag. There is no auth code and no approval."
     code, approval, lock = key
@@ -356,8 +374,7 @@ def pattern_intro(key: object, pattern: Pattern) -> str:
         "registry": "The registry generates the auth code. Your current registrar can't choose it. OpusDNS requests the transfer with it.",
         "none": "These TLDs need no auth code. OpusDNS requests the transfer.",
     }[code]]
-    sentences.append("Your current registrar can then approve or deny the transfer." if approval
-                     else "The registry completes the transfer without an approval.")
+    sentences.append(APPROVERS[who][0] if approval else "The registry completes the transfer without an approval.")
     if not lock:
         sentences.append("The registry has no transfer lock.")
     if pattern.note:
@@ -365,7 +382,7 @@ def pattern_intro(key: object, pattern: Pattern) -> str:
     return " ".join(sentences)
 
 
-def pattern_steps(key: object, lock: bool, gtld: bool) -> list[str]:
+def pattern_steps(key: object, lock: bool, gtld: bool, who: str) -> list[str]:
     steps = ["Remove the transfer lock at your current registrar."] if lock else []
     if key == "push":
         return steps + ["OpusDNS records the transfer.",
@@ -379,7 +396,7 @@ def pattern_steps(key: object, lock: bool, gtld: bool) -> list[str]:
     steps.append("OpusDNS requests the transfer at the registry" + (" with the auth code." if code != "none" else "."))
     if not approval:
         return steps + ["The registry completes the transfer without an approval."]
-    approve = "Your current registrar approves or denies the transfer. Some registrars ask the domain's holder by email."
+    approve = APPROVERS[who][1]
     if gtld:
         approve += (" At gTLDs, the registry completes it after five days without an answer. "
                     "See [How a gTLD transfer works](/transfers/overview#how-a-gtld-transfer-works).")
@@ -721,19 +738,14 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
     return "\n".join(lines)
 
 
-def registrar_table(data: dict, tlds: list[str]) -> list[str]:
-    """Each registrar's cells for these TLDs: per column the most common one,
-    counted where a TLD has the step at all."""
-    wanted, rows, symbols = set(tlds), [], {"↗️"}
+def registrar_table(data: dict, tld: str) -> list[str]:
+    rows, symbols = [], {"↗️"}
     for key in sorted(data["registrars"], key=registrar_order):
         reg = REGISTRARS[key]
-        flows = [flow_of(row, reg, data["tld_types"]) for row in data["registrars"][key] if row["tld"] in wanted]
-        if not flows:
+        found = next((row for row in data["registrars"][key] if row["tld"] == tld), None)
+        if found is None:
             continue
-        cells = []
-        for _, actions in MATRIX_COLUMNS:
-            taken = [cell for cell in (flow.cell(actions, reg) for flow in flows) if cell != "➖"]
-            cells.append(most_common(taken) if taken else "➖")
+        cells = flow_of(found, reg, data["tld_types"]).cells(reg)
         symbols |= {cell.split(" ", 1)[0] for cell in cells}
         rows.append(f"| [{reg.name}]({REGISTRAR_ROUTE}/{reg.slug}) | " + " | ".join(cells) + " |")
     return [
@@ -761,10 +773,11 @@ def render_pattern(pattern: Pattern, tlds: list[str], data: dict, facts: dict[st
     named = [f"{len(gtlds)} gTLDs, such as {examples(gtlds, link)}" if len(gtlds) > 20 else ", ".join(map(link, gtlds))] if gtlds else []
     if cctlds:
         named.append(("these ccTLDs: " if gtlds else "") + ", ".join(map(link, cctlds)))
-    lines = [f"# {pattern.title}", "", pattern_intro(key, pattern)]
+    who = approver([facts[t].holder for t in tlds])
+    lines = [f"# {pattern.title}", "", pattern_intro(key, pattern, who)]
     for tld in (t for t in tlds if t in UPCOMING):
         lines += ["", "> [!NOTE]", f"> {link(tld)}: {UPCOMING[tld][1]}"]
-    steps = pattern_steps(key, any(facts[t].lock for t in tlds), bool(gtlds))
+    steps = pattern_steps(key, any(facts[t].lock for t in tlds), bool(gtlds), who)
     lines += ["", "## Steps", "", *[f"{i}. {step}" for i, step in enumerate(steps, 1)]]
     lines += ["", "Each TLD's page shows which of these steps OpusDNS takes at your registrar."]
     lines += ["", "## TLDs", "", sentence_case(", and ".join(named)) + "."]
@@ -777,7 +790,7 @@ def render_pattern(pattern: Pattern, tlds: list[str], data: dict, facts: dict[st
             if registry[1]:
                 sites[registry[0]].append(registry[1])
     if by_registry:
-        lines += ["", "## Registries", "", "These registries handle transfers this way:", ""]
+        lines += ["", "## Registries", "", "The registries of these TLDs:", ""]
         for name, found in sorted(by_registry.items(), key=lambda item: (-len(item[1]), item[0].lower())):
             shown = ", ".join(map(link, found[:5])) + (f" and {len(found) - 5} more" if len(found) > 5 else "")
             # One registry can name a website per TLD: the one most of them name.
@@ -817,9 +830,9 @@ def render_tld(tld: str, data: dict, side: RegistrySide) -> str:
         lines += ["", "> [!NOTE]", f"> {UPCOMING[tld][1]}"]
     lines += ["", "## Steps", ""]
     gtld = data["tld_types"].get(tld) == "gTLD"
-    steps = [step.replace(", depending on the TLD", "") for step in pattern_steps(side.key, side.lock, gtld)]
+    steps = [step.replace(", depending on the TLD", "") for step in pattern_steps(side.key, side.lock, gtld, approver([side.holder]))]
     lines += [f"{i}. {step}" for i, step in enumerate(steps, 1)]
-    lines += ["", *registrar_table(data, [tld])]
+    lines += ["", *registrar_table(data, tld)]
     privacy = [
         REGISTRARS[key].name
         for key in sorted(data["registrars"], key=registrar_order)

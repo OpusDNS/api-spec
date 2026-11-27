@@ -13,10 +13,10 @@ Each TLD's page shows which of these steps OpusDNS takes at your registrar.
 
 ## TLDs
 
-[.cymru](/transfers/patterns/registry-auth-code-approval/cymru), [.wales](/transfers/patterns/registry-auth-code-approval/wales).
+[.cymru](/transfers/patterns/unlock-registry-auth-code-approval/cymru), [.wales](/transfers/patterns/unlock-registry-auth-code-approval/wales).
 
 ## Registries
 
-These registries handle transfers this way:
+The registries of these TLDs:
 
-- [Nominet UK](https://www.nominet.uk): [.cymru](/transfers/patterns/registry-auth-code-approval/cymru), [.wales](/transfers/patterns/registry-auth-code-approval/wales)
+- [Nominet UK](https://www.nominet.uk): [.cymru](/transfers/patterns/unlock-registry-auth-code-approval/cymru), [.wales](/transfers/patterns/unlock-registry-auth-code-approval/wales)

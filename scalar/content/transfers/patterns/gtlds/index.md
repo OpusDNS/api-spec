@@ -17,7 +17,7 @@ Each TLD's page shows which of these steps OpusDNS takes at your registrar.
 
 ## Registries
 
-These registries handle transfers this way:
+The registries of these TLDs:
 
 - [Identity Digital Inc.](https://www.identity.digital): [.academy](/transfers/patterns/gtlds/academy), [.accountants](/transfers/patterns/gtlds/accountants), [.actor](/transfers/patterns/gtlds/actor), [.ag](/transfers/patterns/gtlds/ag), [.agency](/transfers/patterns/gtlds/agency) and 271 more
 - [CentralNic Group PLC](https://www.centralnic.com): [.ae.org](/transfers/patterns/gtlds/ae.org), [.art](/transfers/patterns/gtlds/art), [.audio](/transfers/patterns/gtlds/audio), [.auto](/transfers/patterns/gtlds/auto), [.autos](/transfers/patterns/gtlds/autos) and 78 more

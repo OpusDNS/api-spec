@@ -1,6 +1,6 @@
-# Transferring a .wales domain
+# Transferring a .cymru domain
 
-`.wales` follows the [Unlock, auth code set by the registry, and approval](/transfers/patterns/registry-auth-code-approval) pattern. Its registry is [Nominet UK](https://www.nominet.uk). The registry has a transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once. As a gTLD, it follows ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en).
+`.cymru` follows the [Unlock, auth code set by the registry, and approval](/transfers/patterns/unlock-registry-auth-code-approval) pattern. Its registry is [Nominet UK](https://www.nominet.uk). The registry has a transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once. As a gTLD, it follows ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en).
 
 ## Steps
 
@@ -28,4 +28,4 @@ With a connected account, OpusDNS takes some of these steps for you. Which ones 
 | [PartnerGate](/transfers/registrars/domain-bestellsystem) | ↗️ You, at PartnerGate | ✅ OpusDNS | ✅ OpusDNS |
 | [Realtime Register](/transfers/registrars/realtime-register) | ↗️ You, at Realtime Register | ✅ OpusDNS | ↗️ You, optional |
 
-The [TLD Knowledge Base](/tld-knowledge-base/gtlds/wales) has more on `.wales`.
+The [TLD Knowledge Base](/tld-knowledge-base/gtlds/cymru) has more on `.cymru`.

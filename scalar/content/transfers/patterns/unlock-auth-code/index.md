@@ -17,7 +17,7 @@ Each TLD's page shows which of these steps OpusDNS takes at your registrar.
 
 ## Registries
 
-These registries handle transfers this way:
+The registries of these TLDs:
 
 - [Canadian Internet Registration Authority (CIRA)](https://www.cira.ca): [.ca](/transfers/patterns/unlock-auth-code/ca)
 - [Island Networks (Jersey) Ltd.](https://www.channelisles.net): [.je](/transfers/patterns/unlock-auth-code/je)

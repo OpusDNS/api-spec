@@ -16,7 +16,7 @@ Each TLD's page shows which of these steps OpusDNS takes at your registrar.
 
 ## Registries
 
-These registries handle transfers this way:
+The registries of these TLDs:
 
 - [Internetstiftelsen (The Swedish Internet Foundation)](https://internetstiftelsen.se): [.nu](/transfers/patterns/registry-auth-code/nu), [.se](/transfers/patterns/registry-auth-code/se)
 - [CZ.NIC, z. s. p. o.](https://www.nic.cz): [.cz](/transfers/patterns/registry-auth-code/cz)
