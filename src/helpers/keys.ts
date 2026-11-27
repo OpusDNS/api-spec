@@ -3342,6 +3342,7 @@ export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_HOLD_ON = 'hold_on' satisfies ke
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_MATCHING_DOMAIN = 'matching_domain' satisfies keyof DomainPreRegistrationDetail;
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_MISSING_CONFIRMATIONS = 'missing_confirmations' satisfies keyof DomainPreRegistrationDetail;
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_NEEDS_ACTION = 'needs_action' satisfies keyof DomainPreRegistrationDetail;
+export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_NEW_PRICE = 'new_price' satisfies keyof DomainPreRegistrationDetail;
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PHASE = 'phase' satisfies keyof DomainPreRegistrationDetail;
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PHASE_STARTS_ON = 'phase_starts_on' satisfies keyof DomainPreRegistrationDetail;
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PREMIUM = 'premium' satisfies keyof DomainPreRegistrationDetail;
@@ -3356,6 +3357,7 @@ export const KEYS_DOMAIN_PRE_REGISTRATION_DETAIL = [
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_MATCHING_DOMAIN,
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_MISSING_CONFIRMATIONS,
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_NEEDS_ACTION,
+  KEY_DOMAIN_PRE_REGISTRATION_DETAIL_NEW_PRICE,
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PHASE,
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PHASE_STARTS_ON,
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PREMIUM,

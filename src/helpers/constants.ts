@@ -1123,6 +1123,9 @@ export const DOMAIN_PRE_REGISTRATION_NEEDS_ACTION = {
   MATCHING_DOMAIN_RECENTLY_TRANSFERRED: "matching_domain_recently_transferred",
   MATCHING_DOMAIN_TOO_NEW: "matching_domain_too_new",
   MATCHING_DOMAIN_IN_ADD_PERIOD: "matching_domain_in_add_period",
+  PRICE_CHANGED: "price_changed",
+  INSUFFICIENT_FUNDS: "insufficient_funds",
+  REGISTRATION_INVALID: "registration_invalid",
 } as const satisfies Record<string, DomainPreRegistrationNeedsAction>;
 
 export const DOMAIN_PRE_REGISTRATION_NEEDS_ACTION_VALUES = [
@@ -1133,6 +1136,9 @@ export const DOMAIN_PRE_REGISTRATION_NEEDS_ACTION_VALUES = [
   'matching_domain_recently_transferred',
   'matching_domain_too_new',
   'matching_domain_in_add_period',
+  'price_changed',
+  'insufficient_funds',
+  'registration_invalid',
 ] as const satisfies ReadonlyArray<DomainPreRegistrationNeedsAction>;
 
 export const DOMAIN_PRE_REGISTRATION_PHASE = {

@@ -15669,6 +15669,13 @@ components:
             $ref: '#/components/schemas/DomainPreRegistrationNeedsAction'
           title: Needs Action
           type: array
+        new_price:
+          anyOf:
+          - $ref: '#/components/schemas/StrictMoneyDecimal'
+          - type: 'null'
+          description: 'With `price_changed` in `needs_action`: the price the funds
+            would be held at now. Send it as `expected_price` in a change of the item
+            to confirm it.'
         phase:
           $ref: '#/components/schemas/DomainPreRegistrationPhase'
           description: 'The launch phase the item is submitted in. Treat a value you
@@ -15829,6 +15836,9 @@ components:
       - matching_domain_recently_transferred
       - matching_domain_too_new
       - matching_domain_in_add_period
+      - price_changed
+      - insufficient_funds
+      - registration_invalid
       title: DomainPreRegistrationNeedsAction
       type: string
     DomainPreRegistrationPhase:
@@ -31455,7 +31465,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-27-152951
+  version: 2026-11-27-155512
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -55632,15 +55642,26 @@ tags:
     \ its place in the queue.\n- An item past `requested` or a marketplace order cannot\
     \ be changed (`409` `ERROR_ORDER_ITEM_NOT_EDITABLE`). `409` `ERROR_ORDER_ITEM_BUSY`\
     \ with `Retry-After` means the item is being processed at that moment.\n\n###\
-    \ Checking a pre-registration again\n\nOpusDNS checks every `requested` item again\
-    \ every hour, and at `eligible_from` when a code clears by itself: `needs_action`,\
-    \ `eligible_from` and `registrant` follow the `.com`, so a `.com` transferred\
-    \ away or deleted since no longer counts.\nThe SMD file is validated again each\
-    \ time, so a file revoked or expired since gets `signed_mark_invalid`.\nAn item\
-    \ with `matching_domain_too_new`, which never clears, is not checked again: cancel\
-    \ it.\nTo check at once, e.g. right after the `.com` was registered or transferred\
-    \ to OpusDNS, call `POST /v1/orders/{order_id}/recheck` (every requested item\
-    \ of the order; one being processed at that moment is skipped) or `POST /v1/orders/{order_id}/items/{item_id}/recheck`\
+    \ Checking a pre-registration again\n\nFrom `hold_on` on OpusDNS holds the funds\
+    \ of an item that lacks nothing, and the item becomes `held`: it can no longer\
+    \ be changed or canceled.\nIf the funds cannot be held, the item stays `requested`\
+    \ and `needs_action` says why:\n\n| `needs_action` | What to do |\n|---|---|\n\
+    | `price_changed` | The price is no longer the one you confirmed. `new_price`\
+    \ is the current one: send it as `expected_price` in a change of the item to confirm\
+    \ it. |\n| `insufficient_funds` | Top up your account. OpusDNS tries again every\
+    \ hour, until one day after the phase opened, and at once when you check the order\
+    \ again. |\n| `registration_invalid` | The registration was refused as it is,\
+    \ e.g. a contact that no longer exists: change the item. |\n\nA change of the\
+    \ item, and for `insufficient_funds` a recheck, makes OpusDNS hold the funds again\
+    \ right away.\n\nOpusDNS checks every `requested` item again every hour, and at\
+    \ `eligible_from` when a code clears by itself: `needs_action`, `eligible_from`\
+    \ and `registrant` follow the `.com`, so a `.com` transferred away or deleted\
+    \ since no longer counts.\nThe SMD file is validated again each time, so a file\
+    \ revoked or expired since gets `signed_mark_invalid`.\nAn item with `matching_domain_too_new`,\
+    \ which never clears, is not checked again: cancel it.\nTo check at once, e.g.\
+    \ right after the `.com` was registered or transferred to OpusDNS, call `POST\
+    \ /v1/orders/{order_id}/recheck` (every requested item of the order; one being\
+    \ processed at that moment is skipped) or `POST /v1/orders/{order_id}/items/{item_id}/recheck`\
     \ (one item): both return the order with the items checked again.\nAn item past\
     \ `requested` or whose phase is over, and a marketplace order, cannot be checked\
     \ again (`409` `ERROR_ORDER_NOT_RECHECKABLE`).\n\n### Canceling a pre-registration\n\

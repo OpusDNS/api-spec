@@ -14853,6 +14853,8 @@ export interface components {
              * @description What keeps the item from being submitted. The customer provides `signed_mark_required` and `confirmation_required`, and replaces the SMD file for `signed_mark_invalid` (`signed_mark_status` says why); the `matching_domain_*` codes are checked again while the item is `requested`, and `matching_domain_recently_transferred` and `matching_domain_in_add_period` clear by themselves at `eligible_from`. Treat a value you do not know as an open action: codes can be added.
              */
             needs_action: components["schemas"]["DomainPreRegistrationNeedsAction"][];
+            /** @description With `price_changed` in `needs_action`: the price the funds would be held at now. Send it as `expected_price` in a change of the item to confirm it. */
+            new_price?: components["schemas"]["StrictMoneyDecimal"] | null;
             /** @description The launch phase the item is submitted in. Treat a value you do not know as a phase: phases can be added. */
             phase: components["schemas"]["DomainPreRegistrationPhase"];
             /**
@@ -14937,7 +14939,7 @@ export interface components {
          * DomainPreRegistrationNeedsAction
          * @enum {string}
          */
-        DomainPreRegistrationNeedsAction: "signed_mark_required" | "signed_mark_invalid" | "confirmation_required" | "matching_domain_not_found" | "matching_domain_recently_transferred" | "matching_domain_too_new" | "matching_domain_in_add_period";
+        DomainPreRegistrationNeedsAction: "signed_mark_required" | "signed_mark_invalid" | "confirmation_required" | "matching_domain_not_found" | "matching_domain_recently_transferred" | "matching_domain_too_new" | "matching_domain_in_add_period" | "price_changed" | "insufficient_funds" | "registration_invalid";
         /**
          * DomainPreRegistrationPhase
          * @description A spec's launch phase types, plus general availability, which a spec keeps as its own block.
