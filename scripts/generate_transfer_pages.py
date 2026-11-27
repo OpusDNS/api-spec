@@ -61,7 +61,7 @@ EXCLUDED = {"opusdns"}
 WHO = {
     "opusdns": ("✅", "OpusDNS"),
     "customer": ("↗️", "You, at {r}"),
-    "registrant": ("✉️", "The holder, by email"),
+    "registrant": ("👤", "The holder, by email"),
     "registry": ("⚙️", "The registry"),
     None: ("➖", "Not at this TLD"),
 }
@@ -69,7 +69,7 @@ WHO = {
 LEGEND_WORDS = {
     "✅": "OpusDNS does it for you",
     "↗️": "you do it at your registrar",
-    "✉️": "the domain's holder approves by email",
+    "👤": "the domain's holder approves by email",
     "⚙️": "the registry does it on its own",
     "➖": "the TLD doesn't have it",
 }
@@ -112,10 +112,12 @@ REGISTRAR_PAGE_NOTE = (
     "See [Transfer to OpusDNS](/transfers/overview) for both."
 )
 
-CORE_STEPS = [
-    ("update_transfer_lock", "Remove the lock"),
-    ("read_auth_code", "Get the auth code"),
-    ("approve_transfer_out", "Approve"),
+# The steps that differ between registrars and TLDs. Every other step is the
+# same at every TLD with transfers, so the matrix shows only these.
+MATRIX_COLUMNS = [
+    ("Remove the lock", {"update_transfer_lock"}),
+    ("Get the auth code", {"read_auth_code", "reset_auth_code"}),
+    ("Approve", {"approve_transfer_out", "push_transfer_out"}),
 ]
 
 STEP_LABELS = {
@@ -130,6 +132,9 @@ STEP_LABELS = {
     "complete_transfer": "The registry transfers the domain",
     "finalize_transfer": "Finish the transfer",
 }
+
+# The groups of the capabilities response, in its order, without its transfer group.
+MANAGE_GROUPS = {"status": "Transfer lock", "dns": "Nameservers", "contacts": "Contacts", "privacy": "WHOIS privacy"}
 
 MANAGE_ACTIONS = [
     ("status", "read_transfer_lock", "See the transfer lock"),
@@ -158,59 +163,60 @@ SENTENCES = {
     "OpusDNS removes the transfer lock at {r}.": ("OpusDNS removes the transfer lock at {r}.", ""),
     "Remove the transfer lock at {r}.": ("Remove the transfer lock at {r}.", ""),
     "OpusDNS cannot see the lock at {r}, so it leaves it. Remove it at {r}.": (
-        "OpusDNS cannot see the lock at {r}, so it leaves it. Remove it at {r}.", ""),
+        "OpusDNS can't see the lock at {r}, so it leaves it. Remove it at {r}.", ""),
     "OpusDNS reads the auth code at {r}.": ("OpusDNS reads the auth code at {r}.", ""),
     "Get the auth code at {r}.": ("Get the auth code at {r} and send it as `auth_code`.", ""),
     "Get a new auth code at {r}.": ("Get a new auth code at {r} and send it as `auth_code`.", ""),
     "OpusDNS sends the transfer to the {tld} registry.": ("OpusDNS sends the transfer to the registry.", ""),
     "OpusDNS books the domain and has it pushed. The {tld} registry gets no transfer request.": (
-        "OpusDNS books the domain and has it pushed to its tag. The registry gets no transfer request.", ""),
+        "OpusDNS records the transfer and has the domain pushed to its tag. The registry gets no transfer request.", ""),
     "The {tld} registry tells {r} about the transfer.": ("The registry tells {r} about the transfer.", ""),
     "OpusDNS approves the transfer at {r}.": ("OpusDNS approves the transfer at {r}.", ""),
     "Approve the transfer at {r}.": ("Approve the transfer at {r}.", ""),
     "The holder of the {tld} domain approves the transfer.": ("The holder of the domain approves the transfer by email.", ""),
     "{r} emails the domain's owner contact, who approves or declines the transfer. Without an answer, the registry completes it after the transfer time.": (
-        "{r} emails the domain's owner contact, who approves or declines the transfer. Without an answer, the registry completes it after the transfer time.", ""),
+        "{r} emails the domain's holder, who approves or declines the transfer. Without an answer, the registry "
+        "completes it after the pending period. At gTLDs, that is five days.", ""),
     "OpusDNS pushes the domain to its tag at {r}.": ("OpusDNS pushes the domain to its tag at {r}.", ""),
     "Push the domain to OpusDNS's tag at {r}.": ("Push the domain to OpusDNS's tag at {r}.", ""),
     "The {tld} registry moves the domain to OpusDNS.": ("The registry transfers the domain to OpusDNS.", ""),
     "The {tld} registry moves the domain to OpusDNS's tag.": ("The registry transfers the domain to OpusDNS's tag.", ""),
     "OpusDNS books the transfer and stops mirroring the domain from {r}.": (
-        "OpusDNS books the transfer and stops syncing the domain from {r}.", ""),
+        "OpusDNS adds the domain to your account and stops syncing it from {r}.", ""),
     "OpusDNS books the transfer, sets the transfer lock and stops mirroring the domain from {r}.": (
-        "OpusDNS books the transfer, sets the transfer lock and stops syncing the domain from {r}.", ""),
+        "OpusDNS adds the domain to your account, sets the transfer lock and stops syncing it from {r}.", ""),
     # managing a connected domain
     "OpusDNS reads the transfer lock at {r}.": ("OpusDNS reads the transfer lock at {r}.", ""),
-    "OpusDNS does not read the lock at {r}. Check it at {r}.": ("OpusDNS does not read the lock at {r}. Check it at {r}.", ""),
+    "OpusDNS does not read the lock at {r}. Check it at {r}.": ("OpusDNS doesn't read the lock at {r}. Check it at {r}.", ""),
     "Reading the transfer lock through OpusDNS isn't verified at {r} yet. Check it at {r}.": (
-        "OpusDNS can't show the transfer lock at {r} yet. Check it at {r}.", ""),
+        "OpusDNS can't show the transfer lock at {r}. Check it at {r}.", ""),
     "OpusDNS changes the lock through the {r} API.": ("OpusDNS sets and removes the lock through the {r} API.", ""),
     "OpusDNS cannot change the transfer lock at {r}. Change it at {r}.": (
-        "OpusDNS cannot change the transfer lock at {r}. Change it at {r}.", ""),
+        "OpusDNS can't change the transfer lock at {r}. Change it at {r}.", ""),
     "{tld} has no transfer lock.": ("The TLD has no transfer lock.", "no transfer lock"),
     "OpusDNS reads the nameservers in each sync.": ("OpusDNS reads the nameservers in each sync.", ""),
     "OpusDNS changes the nameservers through the {r} API.": ("OpusDNS changes the nameservers through the {r} API.", ""),
     "OpusDNS cannot change the nameservers at {r}. Change them at {r}.": (
-        "OpusDNS cannot change the nameservers at {r}. Change them at {r}.", ""),
+        "OpusDNS can't change the nameservers at {r}. Change them at {r}.", ""),
     "OpusDNS reads the contacts in each sync.": ("OpusDNS reads the contacts in each sync.", ""),
-    "OpusDNS cannot change the registrant at {r}. Change it at {r}.": ("OpusDNS cannot change the registrant at {r}. Change it at {r}.", ""),
+    "OpusDNS cannot change the registrant at {r}. Change it at {r}.": ("OpusDNS can't change the registrant at {r}. Change it at {r}.", ""),
     "OpusDNS cannot change the registrant on connected domains yet. Change it at {r}.": (
-        "OpusDNS cannot change the registrant on connected domains yet. Change it at {r}.", ""),
+        "OpusDNS can't change the registrant of a connected domain. Change it at {r}.", ""),
     "Changing the registrant through OpusDNS isn't verified at {r} yet. Change it at {r}.": (
-        "OpusDNS can't change the registrant at {r} yet. Change it at {r}.", ""),
+        "OpusDNS can't change the registrant at {r}. Change it at {r}.", ""),
     "OpusDNS cannot change the other contacts at {r}. Change them at {r}.": (
-        "OpusDNS cannot change the other contacts at {r}. Change them at {r}.", ""),
+        "OpusDNS can't change the other contacts at {r}. Change them at {r}.", ""),
     "OpusDNS cannot change the other contacts on connected domains yet. Change them at {r}.": (
-        "OpusDNS cannot change the other contacts on connected domains yet. Change them at {r}.", ""),
+        "OpusDNS can't change the other contacts of a connected domain. Change them at {r}.", ""),
     "{tld} has only the registrant. Change it with update_registrant.": ("The TLD has only the registrant.", "only the registrant"),
     "OpusDNS cannot remove a contact from a connected domain. Remove it at {r}.": (
-        "OpusDNS cannot remove a contact from a connected domain. Remove it at {r}.", ""),
+        "OpusDNS can't remove a contact from a connected domain. Remove it at {r}.", ""),
     "{tld} requires every contact it has.": ("The TLD requires every contact it has.", "every contact is required"),
     "{tld} has only the registrant, and it is required.": ("The TLD has only the registrant, and it is required.", "only the registrant, which is required"),
     "OpusDNS has no access to WHOIS privacy at {r} yet. Check it at {r}.": (
-        "OpusDNS has no access to WHOIS privacy at {r} yet. Check it at {r}.", ""),
+        "OpusDNS has no access to WHOIS privacy at {r}. Check it at {r}.", ""),
     "OpusDNS has no access to WHOIS privacy at {r} yet. Change it at {r}.": (
-        "OpusDNS has no access to WHOIS privacy at {r} yet. Change it at {r}.", ""),
+        "OpusDNS has no access to WHOIS privacy at {r}. Change it at {r}.", ""),
     "{tld} has no privacy service.": ("The TLD has no WHOIS privacy service.", "no WHOIS privacy service"),
 }
 
@@ -261,7 +267,7 @@ class Step:
 
     def label(self, reg: Registrar) -> str:
         if self.action == "request_transfer" and "books the domain" in self.template:
-            return "Book the domain at OpusDNS"
+            return "Start the transfer at OpusDNS"
         label = STEP_LABELS[self.action].replace("{r}", reg.name)
         return label + " (optional)" if self.optional() else label
 
@@ -280,15 +286,25 @@ class Flow:
     steps: tuple[Step, ...]
     detail: str
 
-    def chain(self, reg: Registrar) -> str:
-        if not self.steps:
-            return say(self.detail, reg)
-        return " → ".join(step.shown(reg) for step in self.steps)
+    def cell(self, actions: set[str], reg: Registrar) -> str:
+        step = next((s for s in self.steps if s.action in actions), None)
+        if step is None:
+            return "➖"
+        symbol, words = WHO[step.entity]
+        if step.optional():
+            return f"{symbol} You, optional"
+        words = words.replace("{r}", reg.name)
+        if step.action == "reset_auth_code":
+            return f"{symbol} {words} (a new one)"
+        if step.action == "push_transfer_out":
+            return f"{symbol} {words} (push)"
+        return f"{symbol} {words}"
 
-    def without_privacy(self, reg: Registrar) -> str:
-        """The privacy step applies only while privacy is on, and only at TLDs
-        with a privacy service, so whether a TLD is listed ignores it."""
-        return Flow(tuple(s for s in self.steps if s.action != "update_privacy"), self.detail).chain(reg)
+    def cells(self, reg: Registrar) -> tuple[str, ...]:
+        """The privacy step has no column: it applies only while privacy is on,
+        and only at TLDs with a privacy service, so whether a TLD is listed
+        ignores it."""
+        return tuple(self.cell(actions, reg) for _, actions in MATRIX_COLUMNS)
 
 
 def flow_of(row: dict, reg: Registrar, tld_types: dict[str, str]) -> Flow:
@@ -321,15 +337,42 @@ def matters(cell: Cell, usual: Cell) -> bool:
     return cell != usual and not ({cell.entity, usual.entity} <= {"customer", None})
 
 
-def at_most_tlds(per_tld: dict[str, dict[str, Cell]], action: str, usual: Cell, reg: Registrar) -> tuple[str, str, str]:
-    symbol, words = WHO[usual.entity]
+def at_most_tlds(per_tld: dict[str, dict[str, Cell]], action: str, usual: Cell, reg: Registrar) -> tuple[str, str]:
+    symbol = WHO[usual.entity][0]
     note = say(usual.template, reg)
     if usual.entity is None and {c[action].entity for c in per_tld.values()} == {"customer", None}:
         # OpusDNS does it at no TLD: where the TLD has it, at the registrar.
         at_registrar = next(c[action] for c in per_tld.values() if c[action].entity == "customer")
-        symbol, words = WHO["customer"]
-        note = say(at_registrar.template, reg) + " Not every TLD allows it: see the TLD Knowledge Base."
-    return symbol, words.replace("{r}", reg.name), note
+        symbol = WHO["customer"][0]
+        note = say(at_registrar.template, reg) + " Not every TLD allows it. See the [TLD Knowledge Base](/tld-knowledge-base)."
+    return symbol, note
+
+
+def sentence_case(text: str) -> str:
+    return text[:1].upper() + text[1:]
+
+
+def differences(per_tld: dict[str, dict[str, Cell]], actions: list[tuple[str, str]], usual: dict[str, Cell], reg: Registrar) -> dict[str, list[str]]:
+    """What differs from the usual cells within one group, mapped to its TLDs.
+    A reason all of the group's actions share, such as no transfer lock, is
+    said once."""
+    found: dict[str, list[str]] = defaultdict(list)
+    for tld in sorted(per_tld):
+        diffs = [(label, per_tld[tld][action]) for action, label in actions if matters(per_tld[tld][action], usual[action])]
+        if not diffs:
+            continue
+        reasons = {say(cell.template, reg, short=True) for _, cell in diffs}
+        entities = {cell.entity for _, cell in diffs}
+        if len(diffs) == len(actions) and len(reasons) == 1 and "" not in reasons and len(entities) == 1:
+            text = f"{WHO[entities.pop()][0]} {sentence_case(reasons.pop())}"
+        else:
+            parts = []
+            for label, cell in diffs:
+                reason = say(cell.template, reg, short=True)
+                parts.append(f"{WHO[cell.entity][0]} {label}" + (f": {reason}" if reason else ""))
+            text = "<br>".join(parts)
+        found[text].append(tld)
+    return found
 
 
 # --- pages -------------------------------------------------------------------
@@ -339,105 +382,95 @@ def most_common(values):
     return Counter(values).most_common(1)[0][0]
 
 
-def glance(flow: Flow, action: str, reg: Registrar) -> str:
-    step = next((s for s in flow.steps if s.action == action), None)
-    if step is None:
-        return "➖"
-    symbol, words = WHO[step.entity]
-    words = "You, optional" if step.optional() else words.replace("{r}", reg.name)
-    return f"{symbol} {words}"
+def by_size(groups: dict) -> list:
+    return sorted(groups.items(), key=lambda item: (-len(item[1]), item[1][0]))
 
 
 def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> str:
     reg = REGISTRARS[key]
+
+    def tlds_of(tlds: list[str]) -> str:
+        return ", ".join(kb_link(t, tld_types) for t in tlds)
+
     flows = {row["tld"]: flow_of(row, reg, tld_types) for row in rows}
     for flow in flows.values():
         for step in flow.steps:
             step.note(reg)
         say(flow.detail, reg)
     per_tld = {row["tld"]: manage_cells(row, reg) for row in rows}
-    usual_key = most_common(f.without_privacy(reg) for f in flows.values())
-    usual_tlds = sorted(t for t, f in flows.items() if f.without_privacy(reg) == usual_key)
-    usual = most_common(flows[t] for t in usual_tlds)
-    groups: dict[str, list[str]] = defaultdict(list)
+    with_steps = {tld: flow for tld, flow in flows.items() if flow.steps}
+    if not with_steps:
+        raise SystemExit(f"{reg.name}: no TLD has transfer steps")
+    taken: dict[tuple[str, ...], set[tuple[str, ...]]] = defaultdict(set)
+    for flow in with_steps.values():
+        taken[flow.cells(reg)].add(tuple(s.shown(reg) for s in flow.steps if s.action != "update_privacy"))
+    if any(len(steps) > 1 for steps in taken.values()):
+        raise SystemExit(f"{reg.name}: TLDs in one matrix row take different steps: add a column to MATRIX_COLUMNS")
+    usual_cells = most_common(flow.cells(reg) for flow in with_steps.values())
+    usual = most_common(flow for flow in with_steps.values() if flow.cells(reg) == usual_cells)
+    groups: dict[tuple[str, ...], list[str]] = defaultdict(list)
+    for tld in sorted(with_steps):
+        if with_steps[tld].cells(reg) != usual_cells:
+            groups[with_steps[tld].cells(reg)].append(tld)
+    no_transfers: dict[str, list[str]] = defaultdict(list)
     for tld in sorted(flows):
-        if flows[tld].without_privacy(reg) != usual_key:
-            groups[flows[tld].chain(reg)].append(tld)
+        if not flows[tld].steps:
+            no_transfers[flows[tld].detail].append(tld)
 
     lines = [
         f"# Transfer from {reg.name}",
         "",
-        f"Transferring a domain from {reg.name} to OpusDNS takes a few steps. This page shows, for each "
-        f"TLD, which steps OpusDNS takes for you and which you take at {reg.name}. OpusDNS takes its steps "
-        f"once you have [connected](/products/connected-registrars/connect) your {reg.name} account "
-        f"(`{reg.api_value}` in the API) and [requested the transfer](/products/connected-registrars/transfer-to-opusdns). "
-        "Leave out the auth code where OpusDNS gets it for you.",
+        f"Transferring a domain from {reg.name} to OpusDNS takes a few steps. This page shows which steps "
+        "OpusDNS takes for you at each TLD and which stay with you. OpusDNS takes its steps once you have "
+        f"[connected](/products/connected-registrars/connect) your {reg.name} account and "
+        "[requested the transfer](/products/connected-registrars/transfer-to-opusdns). "
+        f"In the API, {reg.name} is `{reg.api_value}`. Leave out the auth code where OpusDNS gets it for you.",
         "",
         legend({WHO[s.entity][0] for f in flows.values() for s in f.steps} | {WHO[c.entity][0] for cells in per_tld.values() for c in cells.values()} | {"↗️"}),
         "",
-        "At most TLDs, the steps that depend on the registrar:",
+        "## Who takes which step",
         "",
-        "| " + " | ".join(label for _, label in CORE_STEPS) + " |",
-        "| " + " | ".join(":---:" for _ in CORE_STEPS) + " |",
-        "| " + " | ".join(glance(usual, action, reg) for action, _ in CORE_STEPS) + " |",
-        *(["", f"While WHOIS privacy is on, turn it off at {reg.name} first: {reg.name} refuses to remove the lock under it."]
-          if any(s.action == "update_privacy" for s in usual.steps) else []),
+        "Search this page for a TLD, such as `.se`. A TLD that isn't listed takes the steps in the first row.",
         "",
-        "## At most TLDs",
-        "",
-        "| # | Step | Who | What happens |",
-        "| --- | --- | --- | --- |",
+        "| TLDs | " + " | ".join(label for label, _ in MATRIX_COLUMNS) + " |",
+        "| --- | " + " | ".join(":---:" for _ in MATRIX_COLUMNS) + " |",
+        "| Most TLDs | " + " | ".join(usual_cells) + " |",
+        *(f"| {tlds_of(tlds)} | " + " | ".join(cells) + " |" for cells, tlds in by_size(groups)),
     ]
+    for detail, tlds in by_size(no_transfers):
+        reason = say(detail, reg, short=True)
+        lines += ["", f"{sentence_case(reason)} at {tlds_of(tlds)}." if reason else f"{tlds_of(tlds)}: {say(detail, reg)}"]
+    pushed = sorted(tld for tld, flow in with_steps.items() if any(s.action == "push_transfer_out" for s in flow.steps))
+    if pushed:
+        lines += ["", f"At {tlds_of(pushed)}, the domain is pushed to OpusDNS's tag instead of approved."]
+    if any(s.action == "update_privacy" for flow in flows.values() for s in flow.steps):
+        lines += ["", f"At TLDs with a WHOIS privacy service, {reg.name} refuses to remove the lock while privacy "
+                  f"is on. Turn it off at {reg.name} first."]
+
+    lines += ["", "## The steps at most TLDs", "", "| # | Step | What happens |", "| --- | --- | --- |"]
     for i, step in enumerate(usual.steps, 1):
-        symbol, words = WHO[step.entity]
-        lines.append(f"| {i} | {step.label(reg)} | {symbol} {words.replace('{r}', reg.name)} | {step.note(reg)} |")
-    if not usual.steps:
-        lines.append(f"| | | | {say(usual.detail, reg)} |")
+        lines.append(f"| {i} | {step.shown(reg)} | {step.note(reg)} |")
     if any(s.action == "update_privacy" for s in usual.steps):
         lines += ["", "Step 1 applies only while WHOIS privacy is on, and only at TLDs that have a WHOIS privacy service."]
-    lines += [
-        "",
-        REGISTRAR_PAGE_NOTE,
-        "",
-        "## TLDs with other steps",
-        "",
-        "Search this page for a TLD, such as `.se`. A TLD that isn't listed takes the steps above.",
-        "",
-        "| TLDs | Steps |",
-        "| --- | --- |",
-    ]
-    for chain, tlds in sorted(groups.items(), key=lambda item: (-len(item[1]), item[1][0])):
-        lines.append(f"| {', '.join(kb_link(t, tld_types) for t in tlds)} | {chain} |")
-    if not groups:
-        lines.append("| All | Every TLD takes the steps above. |")
+    lines += ["", REGISTRAR_PAGE_NOTE]
 
-    usual_cells = {a: most_common(c[a] for c in per_tld.values()) for _, a, _ in MANAGE_ACTIONS}
+    usual_manage = {a: most_common(c[a] for c in per_tld.values()) for _, a, _ in MANAGE_ACTIONS}
     lines += [
         "",
         "## Managing a connected domain",
         "",
-        f"What OpusDNS can do with a domain you hold at {reg.name} until you transfer it:",
-        "",
-        "| Action | Who | Note |",
-        "| --- | --- | --- |",
+        f"Until you transfer a domain, OpusDNS can take some actions on it at {reg.name}. The others stay with you.",
     ]
-    for _, action, label in MANAGE_ACTIONS:
-        symbol, words, note = at_most_tlds(per_tld, action, usual_cells[action], reg)
-        lines.append(f"| {label} | {symbol} {words} | {note} |")
-    differing: dict[str, list[str]] = defaultdict(list)
-    for tld in sorted(per_tld):
-        diffs = []
-        for _, action, label in MANAGE_ACTIONS:
-            cell = per_tld[tld][action]
-            if matters(cell, usual_cells[action]):
-                reason = say(cell.template, reg, short=True)
-                diffs.append(f"{WHO[cell.entity][0]} {label}" + (f": {reason}" if reason else ""))
-        if diffs:
-            differing["<br>".join(diffs)].append(tld)
-    if differing:
-        lines += ["", "TLDs where this differs:", "", "| TLDs | What differs |", "| --- | --- |"]
-        for diff, tlds in sorted(differing.items(), key=lambda item: (-len(item[1]), item[1][0])):
-            lines.append(f"| {', '.join(kb_link(t, tld_types) for t in tlds)} | {diff} |")
+    for group, title in MANAGE_GROUPS.items():
+        actions = [(action, label) for g, action, label in MANAGE_ACTIONS if g == group]
+        lines += ["", f"### {title}", "", "| Action | Note |", "| --- | --- |"]
+        for action, label in actions:
+            symbol, note = at_most_tlds(per_tld, action, usual_manage[action], reg)
+            lines.append(f"| {symbol} {label} | {note} |")
+        found = differences(per_tld, actions, usual_manage, reg)
+        if found:
+            lines += ["", "TLDs where this differs:", "", "| TLDs | What differs |", "| --- | --- |"]
+            lines += [f"| {tlds_of(tlds)} | {text} |" for text, tlds in by_size(found)]
     lines.append("")
     return "\n".join(lines)
 

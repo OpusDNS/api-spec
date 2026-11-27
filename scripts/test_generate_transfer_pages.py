@@ -80,13 +80,18 @@ def section(text, start, end=None):
     return part.split(end, 1)[0] if end else part
 
 
+MATRIX = ("## Who takes which step", "## The steps at most TLDs")
+STEPS = ("## The steps at most TLDs", "## Managing")
+
+
 def test_the_usual_steps_and_the_tlds_that_differ():
     text = page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("se", se_steps(), lock=False)])
-    usual = section(text, "## At most TLDs", "## TLDs with other steps")
-    assert "| 1 | Remove the transfer lock | ✅ OpusDNS | OpusDNS removes the transfer lock at OpenSRS. |" in usual
-    others = section(text, "## TLDs with other steps", "## Managing")
-    assert ".se" in others and ".com" not in others and ".net" not in others
-    assert "↗️ Get a new auth code → ✅ Request the transfer → ⚙️ The registry transfers the domain" in others
+    assert "| 1 | ✅ Remove the transfer lock | OpusDNS removes the transfer lock at OpenSRS. |" in section(text, *STEPS)
+    matrix = section(text, *MATRIX)
+    assert "| Most TLDs | ✅ OpusDNS | ✅ OpusDNS | ↗️ You, optional |" in matrix
+    assert "| ➖ | ↗️ You, at OpenSRS (a new one) | ➖ |" in matrix
+    assert ".com" not in matrix and ".net" not in matrix
+    assert "WHOIS privacy" not in matrix
 
 
 def test_the_customers_auth_code_is_sent_with_the_request():
@@ -100,44 +105,82 @@ def test_the_customers_auth_code_is_sent_with_the_request():
 
 def test_approval_is_optional_at_gtlds_only():
     text = page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("fr", usual_steps("fr"))])
-    usual = section(text, "## At most TLDs", "## TLDs with other steps")
-    assert "| Approve the transfer (optional) | ↗️ You, at OpenSRS | Optional: approve it at OpenSRS to finish sooner." in usual
-    others = section(text, "## TLDs with other steps", "## Managing")
-    assert ".fr" in others and "↗️ Approve the transfer →" in others and "(optional)" not in others
+    assert "| ↗️ Approve the transfer (optional) | Optional: approve it at OpenSRS to finish sooner." in section(text, *STEPS)
+    fr = next(line for line in section(text, *MATRIX).splitlines() if ".fr" in line)
+    assert fr.endswith("| ✅ OpusDNS | ✅ OpusDNS | ↗️ You, at OpenSRS |")
 
 
-def test_the_privacy_step_neither_lists_a_tld_nor_disappears_from_a_listed_one():
+def test_the_privacy_step_lists_no_tld_and_is_said_under_the_matrix():
+    note = "At TLDs with a WHOIS privacy service, OpenSRS refuses to remove the lock while privacy is on."
+    privacy = step("update_privacy", "customer", "OpenSRS refuses to remove the lock while WHOIS privacy is on. Turn it off at OpenSRS first.")
     rows = [
         row("com", usual_steps("com", privacy_step=True)),
         row("net", usual_steps("net", privacy_step=True)),
         row("org", usual_steps("org"), privacy=False),
-        row("se", [se_steps()[0]] + [step("update_privacy", "customer", "OpenSRS refuses to remove the lock while WHOIS privacy is on. Turn it off at OpenSRS first.")] + se_steps()[1:], lock=False),
     ]
-    others = section(page(rows), "## TLDs with other steps", "## Managing")
-    assert ".org" not in others
-    assert "↗️ Turn WHOIS privacy off" in others
+    matrix = section(page(rows), *MATRIX)
+    assert ".org" not in matrix and note in matrix
+    # Only a listed TLD has the step: the note still says so.
+    rows = [row("com", usual_steps("com")), row("net", usual_steps("net")), row("se", [se_steps()[0], privacy] + se_steps()[1:], lock=False)]
+    assert note in section(page(rows), *MATRIX)
 
 
-def test_tlds_with_the_same_shown_steps_share_a_row():
+def test_tlds_with_the_same_cells_share_a_row():
     rows = [row("com", usual_steps("com")), row("net", usual_steps("net")), row("org", usual_steps("org")), row("se", se_steps(), lock=False), row("nu", se_steps("nu"), lock=False)]
-    others = section(page(rows), "## TLDs with other steps", "## Managing")
-    assert ".nu" in others and ".se" in others
-    assert others.count("↗️ Get a new auth code") == 1
+    matrix = section(page(rows), *MATRIX)
+    assert matrix.count("(a new one)") == 1
+    shared = next(line for line in matrix.splitlines() if "(a new one)" in line)
+    assert ".nu" in shared and ".se" in shared
+
+
+def test_a_pushed_tld_and_a_tld_without_transfers():
+    push = [
+        step("update_transfer_lock", "opusdns", "OpusDNS removes the transfer lock at OpenSRS."),
+        step("request_transfer", "opusdns", "OpusDNS books the domain and has it pushed. The .uk registry gets no transfer request."),
+        step("push_transfer_out", "opusdns", "OpusDNS pushes the domain to its tag at OpenSRS."),
+        step("complete_transfer", "registry", "The .uk registry moves the domain to OpusDNS's tag."),
+    ]
+    rows = [row("com", usual_steps("com")), row("net", usual_steps("net")), row("uk", push), row("xx", [], flow_detail=".xx has no transfers.")]
+    matrix = section(page(rows), *MATRIX)
+    assert "| ✅ OpusDNS | ➖ | ✅ OpusDNS (push) |" in matrix
+    assert "the domain is pushed to OpusDNS's tag instead of approved." in matrix
+    assert "No transfers at .xx." in matrix and "| .xx |" not in matrix
+
+
+def test_a_difference_outside_the_matrix_columns_fails_the_run():
+    rows = [row("com", usual_steps("com")), row("net", usual_steps("net"))]
+    rows[1]["flows"]["transfer_to_opusdns"]["steps"][2] = step("request_transfer", "customer", "OpusDNS sends the transfer to the .net registry.")
+    with pytest.raises(SystemExit, match="add a column"):
+        page(rows)
+
+
+def test_managing_follows_the_capability_groups():
+    managing = section(page([row("com", usual_steps("com")), row("net", usual_steps("net"))]), "## Managing a connected domain")
+    headings = [line for line in managing.splitlines() if line.startswith("### ")]
+    assert headings == ["### Transfer lock", "### Nameservers", "### Contacts", "### WHOIS privacy"]
 
 
 def test_a_managing_difference_is_listed_only_where_opusdns_part_changes():
     rows = [row("com", usual_steps("com")), row("net", usual_steps("net")), row("org", usual_steps("org"), contacts="customer"), row("se", se_steps(), lock=False)]
     managing = section(page(rows), "## Managing a connected domain")
     # .org lets the customer remove a contact where the others require all: OpusDNS does it at neither.
-    assert ".org" not in managing.split("TLDs where this differs")[1]
-    # .se has no lock, which OpusDNS handles elsewhere: listed.
-    assert "➖ See the transfer lock: no transfer lock" in managing
+    assert all(".org" not in part for part in managing.split("TLDs where this differs")[1:])
+    # .se has no lock, which OpusDNS handles elsewhere: listed, the shared reason said once.
+    assert "| ➖ No transfer lock |" in managing and "See the transfer lock" not in managing.split("TLDs where this differs")[1]
+
+
+def test_a_reason_only_some_of_a_groups_actions_have_is_said_per_action():
+    rows = [row("com", usual_steps("com")), row("net", usual_steps("net")), row("xx", usual_steps("xx"))]
+    rows[2]["actions"]["dns"]["update_nameservers"] = action("customer", "OpusDNS cannot change the nameservers at OpenSRS. Change them at OpenSRS.")
+    nameservers = section(page(rows), "### Nameservers", "### Contacts")
+    assert "| .xx | ↗️ Change the nameservers |" in nameservers
 
 
 def test_an_action_opusdns_does_at_no_tld_is_the_customers_where_the_tld_allows_it():
     rows = [row("com", usual_steps("com")), row("net", usual_steps("net")), row("org", usual_steps("org"), contacts="customer")]
     managing = section(page(rows), "## Managing a connected domain")
-    assert "| Remove a contact role | ↗️ You, at OpenSRS | OpusDNS cannot remove a contact from a connected domain. Remove it at OpenSRS. Not every TLD allows it" in managing
+    assert ("| ↗️ Remove a contact role | OpusDNS can't remove a contact from a connected domain. Remove it at OpenSRS. "
+            "Not every TLD allows it. See the [TLD Knowledge Base](/tld-knowledge-base). |") in managing
 
 
 def test_knowledge_base_links_only_where_the_page_exists(tmp_path, monkeypatch):
@@ -157,13 +200,6 @@ def test_the_overview_explains_gtlds_cctlds_and_the_connected_account():
     assert "> [!WARNING]" in text and "[page for your registrar](#your-registrar)" in text and "## Your registrar" in text
     assert "- [eNom](/transfers/enom)" in text and "- [OpenSRS](/transfers/opensrs)" in text
     assert ";" not in text
-
-
-def test_a_registrar_whose_usual_steps_need_privacy_off_says_so_up_front():
-    rows = [row("com", usual_steps("com", privacy_step=True)), row("net", usual_steps("net", privacy_step=True))]
-    glance = page(rows).split("## At most TLDs")[0]
-    assert "While WHOIS privacy is on, turn it off at OpenSRS first" in glance
-    assert "WHOIS privacy" not in page([row("com", usual_steps("com")), row("net", usual_steps("net"))]).split("## At most TLDs")[0]
 
 
 @pytest.mark.parametrize(
