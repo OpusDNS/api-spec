@@ -1,6 +1,6 @@
 # Transferring a .lt domain
 
-`.lt` follows the [Auth code set by the registry](/transfers/patterns/registry-auth-code) pattern. Its registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
+`.lt` follows the [Auth code set by the registry](/transfers/patterns/registry-auth-code) pattern. Its registry is [DOMREG (Kaunas University of Technology)](https://www.domreg.lt). The registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
 
 ## Steps
 

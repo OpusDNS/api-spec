@@ -1,6 +1,6 @@
-# Transferring a .je domain
+# Transferring a .gg domain
 
-`.je` follows the [Auth code, no approval](/transfers/patterns/auth-code) pattern. Its registry has a transfer lock. A transfer extends the registration. The registry completes a transfer at once.
+`.gg` follows the [Unlock and auth code](/transfers/patterns/unlock-auth-code) pattern. Its registry is [Island Networks Ltd.](https://www.channelisles.net). The registry has a transfer lock. A transfer extends the registration. The registry completes a transfer at once.
 
 ## Steps
 
@@ -28,4 +28,4 @@ With a connected account, OpusDNS takes some of these steps for you. Which ones 
 | [PartnerGate](/transfers/registrars/domain-bestellsystem) | ↗️ You, at PartnerGate | ✅ OpusDNS | ➖ |
 | [Realtime Register](/transfers/registrars/realtime-register) | ↗️ You, at Realtime Register | ✅ OpusDNS | ➖ |
 
-The [TLD Knowledge Base](/tld-knowledge-base/cctlds/je) has more on `.je`.
+The [TLD Knowledge Base](/tld-knowledge-base/cctlds/gg) has more on `.gg`.

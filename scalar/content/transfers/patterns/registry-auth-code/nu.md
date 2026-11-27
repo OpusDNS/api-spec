@@ -1,6 +1,6 @@
 # Transferring a .nu domain
 
-`.nu` follows the [Auth code set by the registry](/transfers/patterns/registry-auth-code) pattern. Its registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
+`.nu` follows the [Auth code set by the registry](/transfers/patterns/registry-auth-code) pattern. Its registry is [Internetstiftelsen (The Swedish Internet Foundation)](https://internetstiftelsen.se). The registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
 
 ## Steps
 

@@ -56,8 +56,8 @@
     "path": "/transfers/patterns/gtlds/associates"
   },
   "at": {
-    "title": "gTLDs and most ccTLDs",
-    "path": "/transfers/patterns/gtlds/at"
+    "title": "Auth code and approval",
+    "path": "/transfers/patterns/auth-code-approval/at"
   },
   "attorney": {
     "title": "gTLDs and most ccTLDs",
@@ -100,8 +100,8 @@
     "path": "/transfers/patterns/gtlds/bayern"
   },
   "be": {
-    "title": "Auth code set by the registry",
-    "path": "/transfers/patterns/registry-auth-code/be"
+    "title": "Unlock and auth code set by the registry",
+    "path": "/transfers/patterns/unlock-registry-auth-code/be"
   },
   "beer": {
     "title": "gTLDs and most ccTLDs",
@@ -208,8 +208,8 @@
     "path": "/transfers/patterns/gtlds/bz"
   },
   "ca": {
-    "title": "Auth code, no approval",
-    "path": "/transfers/patterns/auth-code/ca"
+    "title": "Unlock and auth code",
+    "path": "/transfers/patterns/unlock-auth-code/ca"
   },
   "cab": {
     "title": "gTLDs and most ccTLDs",
@@ -296,7 +296,7 @@
     "path": "/transfers/patterns/gtlds/cfd"
   },
   "ch": {
-    "title": "Auth code, no approval",
+    "title": "Auth code only",
     "path": "/transfers/patterns/auth-code/ch"
   },
   "channel": {
@@ -328,8 +328,8 @@
     "path": "/transfers/patterns/gtlds/city"
   },
   "cl": {
-    "title": "Auth code, no approval",
-    "path": "/transfers/patterns/auth-code/cl"
+    "title": "Unlock and auth code",
+    "path": "/transfers/patterns/unlock-auth-code/cl"
   },
   "claims": {
     "title": "gTLDs and most ccTLDs",
@@ -488,7 +488,7 @@
     "path": "/transfers/patterns/gtlds/cruises"
   },
   "cymru": {
-    "title": "Auth code set by the registry, with approval",
+    "title": "Unlock, auth code set by the registry, and approval",
     "path": "/transfers/patterns/registry-auth-code-approval/cymru"
   },
   "cyou": {
@@ -516,7 +516,7 @@
     "path": "/transfers/patterns/gtlds/day"
   },
   "de": {
-    "title": "Auth code, no approval",
+    "title": "Auth code only",
     "path": "/transfers/patterns/auth-code/de"
   },
   "de.com": {
@@ -616,8 +616,8 @@
     "path": "/transfers/patterns/gtlds/education"
   },
   "ee": {
-    "title": "Auth code, no approval",
-    "path": "/transfers/patterns/auth-code/ee"
+    "title": "Unlock and auth code",
+    "path": "/transfers/patterns/unlock-auth-code/ee"
   },
   "email": {
     "title": "gTLDs and most ccTLDs",
@@ -832,8 +832,8 @@
     "path": "/transfers/patterns/gtlds/gd"
   },
   "gg": {
-    "title": "Auth code, no approval",
-    "path": "/transfers/patterns/auth-code/gg"
+    "title": "Unlock and auth code",
+    "path": "/transfers/patterns/unlock-auth-code/gg"
   },
   "gifts": {
     "title": "gTLDs and most ccTLDs",
@@ -1048,12 +1048,12 @@
     "path": "/transfers/patterns/is"
   },
   "it": {
-    "title": "gTLDs and most ccTLDs",
-    "path": "/transfers/patterns/gtlds/it"
+    "title": "Auth code and approval",
+    "path": "/transfers/patterns/auth-code-approval/it"
   },
   "je": {
-    "title": "Auth code, no approval",
-    "path": "/transfers/patterns/auth-code/je"
+    "title": "Unlock and auth code",
+    "path": "/transfers/patterns/unlock-auth-code/je"
   },
   "jetzt": {
     "title": "gTLDs and most ccTLDs",
@@ -1132,7 +1132,7 @@
     "path": "/transfers/patterns/gtlds/lgbt"
   },
   "li": {
-    "title": "Auth code, no approval",
+    "title": "Auth code only",
     "path": "/transfers/patterns/auth-code/li"
   },
   "life": {
@@ -1320,8 +1320,8 @@
     "path": "/transfers/patterns/gtlds/music"
   },
   "mx": {
-    "title": "gTLDs and most ccTLDs",
-    "path": "/transfers/patterns/gtlds/mx"
+    "title": "Auth code and approval",
+    "path": "/transfers/patterns/auth-code-approval/mx"
   },
   "name": {
     "title": "gTLDs and most ccTLDs",
@@ -1376,7 +1376,7 @@
     "path": "/transfers/patterns/registry-auth-code/nl"
   },
   "no": {
-    "title": "Auth code, no approval",
+    "title": "Auth code only",
     "path": "/transfers/patterns/auth-code/no"
   },
   "nrw": {
@@ -1468,7 +1468,7 @@
     "path": "/transfers/patterns/gtlds/pizza"
   },
   "pl": {
-    "title": "Auth code, no approval",
+    "title": "Auth code only",
     "path": "/transfers/patterns/auth-code/pl"
   },
   "place": {
@@ -1524,7 +1524,7 @@
     "path": "/transfers/patterns/gtlds/protection"
   },
   "pt": {
-    "title": "Auth code, no approval",
+    "title": "Auth code only",
     "path": "/transfers/patterns/auth-code/pt"
   },
   "pub": {
@@ -1716,7 +1716,7 @@
     "path": "/transfers/patterns/gtlds/show"
   },
   "si": {
-    "title": "Auth code, no approval",
+    "title": "Auth code only",
     "path": "/transfers/patterns/auth-code/si"
   },
   "singles": {
@@ -1728,8 +1728,8 @@
     "path": "/transfers/patterns/gtlds/site"
   },
   "sk": {
-    "title": "Auth code, no approval",
-    "path": "/transfers/patterns/auth-code/sk"
+    "title": "Unlock and auth code",
+    "path": "/transfers/patterns/unlock-auth-code/sk"
   },
   "ski": {
     "title": "gTLDs and most ccTLDs",
@@ -2024,7 +2024,7 @@
     "path": "/transfers/patterns/gtlds/vu"
   },
   "wales": {
-    "title": "Auth code set by the registry, with approval",
+    "title": "Unlock, auth code set by the registry, and approval",
     "path": "/transfers/patterns/registry-auth-code-approval/wales"
   },
   "watch": {

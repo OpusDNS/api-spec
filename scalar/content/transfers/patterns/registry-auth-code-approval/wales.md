@@ -1,13 +1,13 @@
 # Transferring a .wales domain
 
-`.wales` follows the [Auth code set by the registry, with approval](/transfers/patterns/registry-auth-code-approval) pattern. Its registry has a transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once. As a gTLD, it follows ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en).
+`.wales` follows the [Unlock, auth code set by the registry, and approval](/transfers/patterns/registry-auth-code-approval) pattern. Its registry is [Nominet UK](https://www.nominet.uk). The registry has a transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once. As a gTLD, it follows ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en).
 
 ## Steps
 
 1. Remove the transfer lock at your current registrar.
 2. Get the auth code from your current registrar or the registry.
 3. OpusDNS requests the transfer at the registry with the auth code.
-4. Your current registrar approves or denies the transfer.
+4. Your current registrar approves or denies the transfer. Some registrars ask the domain's holder by email. At gTLDs, the registry completes it after five days without an answer. See [How a gTLD transfer works](/transfers/overview#how-a-gtld-transfer-works).
 
 ## At your registrar
 

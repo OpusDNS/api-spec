@@ -243,62 +243,24 @@ OPTIONAL_APPROVAL = "Optional: approve it at {r} to finish sooner. Otherwise the
 class Pattern:
     slug: str
     title: str
-    intro: str
-    steps: tuple[str, ...]  # after the transfer lock, which only some TLDs have
+    note: str = ""  # said after the intro the key gives
 
 
-# Keyed by whether the registrar sets the auth code (TLD spec: authinfo_set_by_registrar)
-# and whether the transfer waits for the losing side's approval, the registry's side of a transfer.
-# A key without wording fails the run.
+# Keyed by the registry's side of a transfer: whether the registrar sets the auth code
+# (TLD spec: authinfo_set_by_registrar), whether the transfer waits for the losing
+# side's approval, and whether the registry has a transfer lock. The intro and the steps
+# follow from the key. A key without a name fails the run.
 PATTERNS = {
-    ("registrar", True): Pattern(
-        "gtlds", "gTLDs and most ccTLDs",
-        "Your current registrar gives you the auth code. OpusDNS requests the transfer with it. Your current "
-        "registrar can then approve or deny the transfer. Some registrars ask the domain's holder by email. gTLDs "
-        "follow ICANN's rules for this, and most ccTLDs work the same way.",
-        ("Get the auth code from your current registrar.",
-         "OpusDNS requests the transfer at the registry with the auth code.",
-         "Your current registrar approves or denies the transfer. At gTLDs, the registry completes it after "
-         "five days without an answer. See [How a gTLD transfer works](/transfers/overview#how-a-gtld-transfer-works)."),
-    ),
-    ("registrar", False): Pattern(
-        "auth-code", "Auth code, no approval",
-        "Your current registrar gives you the auth code. OpusDNS requests the transfer with it. The registry "
-        "completes the transfer without an approval.",
-        ("Get the auth code from your current registrar.",
-         "OpusDNS requests the transfer at the registry with the auth code.",
-         "The registry completes the transfer without an approval."),
-    ),
-    ("registry", False): Pattern(
-        "registry-auth-code", "Auth code set by the registry",
-        "The registry generates the auth code. Your current registrar can't choose it. OpusDNS requests the "
-        "transfer with it. The registry completes the transfer without an approval.",
-        ("Get the auth code from your current registrar or the registry, depending on the TLD.",
-         "OpusDNS requests the transfer at the registry with the auth code.",
-         "The registry completes the transfer without an approval."),
-    ),
-    ("registry", True): Pattern(
-        "registry-auth-code-approval", "Auth code set by the registry, with approval",
-        "The registry generates the auth code. Your current registrar can't choose it. OpusDNS requests the "
-        "transfer with it. Your current registrar can then approve or deny the transfer.",
-        ("Get the auth code from your current registrar or the registry, depending on the TLD.",
-         "OpusDNS requests the transfer at the registry with the auth code.",
-         "Your current registrar approves or denies the transfer."),
-    ),
-    ("none", True): Pattern(
-        "no-auth-code", "No auth code, with approval",
-        "These TLDs need no auth code. OpusDNS requests the transfer. Your current registrar or the domain's "
-        "holder then approves it, depending on the TLD.",
-        ("OpusDNS requests the transfer at the registry.",
-         "Your current registrar or the domain's holder approves or denies the transfer."),
-    ),
-    "push": Pattern(
-        "push", "Push to a tag",
-        "Your current registrar pushes the domain to OpusDNS's registrar tag. There is no auth code and no approval.",
-        ("OpusDNS records the transfer.",
-         "Your current registrar pushes the domain to OpusDNS's registrar tag, `OPUSDNS`.",
-         "The registry moves the domain to OpusDNS."),
-    ),
+    ("registrar", True, True): Pattern("gtlds", "gTLDs and most ccTLDs",
+                                       "gTLDs follow ICANN's rules for this, and most ccTLDs work the same way."),
+    ("registrar", True, False): Pattern("auth-code-approval", "Auth code and approval"),
+    ("registrar", False, True): Pattern("unlock-auth-code", "Unlock and auth code"),
+    ("registrar", False, False): Pattern("auth-code", "Auth code only"),
+    ("registry", False, False): Pattern("registry-auth-code", "Auth code set by the registry"),
+    ("registry", False, True): Pattern("unlock-registry-auth-code", "Unlock and auth code set by the registry"),
+    ("registry", True, True): Pattern("registry-auth-code-approval", "Unlock, auth code set by the registry, and approval"),
+    ("none", True, False): Pattern("no-auth-code", "No auth code, with approval"),
+    "push": Pattern("push", "Push to a tag"),
 }
 
 # What a TLD without transfers does instead, until the TLD specs carry a reference for it.
@@ -331,7 +293,8 @@ def pattern_key(row: dict) -> object:
         code = "none"
     else:
         code = "registrar" if policies.get("authinfo_set_by_registrar") else "registry"
-    return code, policies.get("transfer_ack") not in (None, "none")
+    lock = bool(policies.get("transfer_lock_policy", {}).get("supported_by_registry"))
+    return code, policies.get("transfer_ack") not in (None, "none"), lock
 
 
 @dataclass(frozen=True)
@@ -384,11 +347,43 @@ def tld_path(tld: str, key: object) -> str:
     return f"{PATTERN_ROUTE}/{PATTERNS[key].slug}/{tld}" if key is not None else f"{PATTERN_ROUTE}/{tld}"
 
 
-def pattern_steps(pattern: Pattern, locks: list[bool]) -> list[str]:
-    steps = list(pattern.steps)
-    if any(locks):
-        steps.insert(0, "Remove the transfer lock at your current registrar" + (", where the TLD has one." if not all(locks) else "."))
-    return steps
+def pattern_intro(key: object, pattern: Pattern) -> str:
+    if key == "push":
+        return "Your current registrar pushes the domain to OpusDNS's registrar tag. There is no auth code and no approval."
+    code, approval, lock = key
+    sentences = [{
+        "registrar": "Your current registrar gives you the auth code. OpusDNS requests the transfer with it.",
+        "registry": "The registry generates the auth code. Your current registrar can't choose it. OpusDNS requests the transfer with it.",
+        "none": "These TLDs need no auth code. OpusDNS requests the transfer.",
+    }[code]]
+    sentences.append("Your current registrar can then approve or deny the transfer." if approval
+                     else "The registry completes the transfer without an approval.")
+    if not lock:
+        sentences.append("The registry has no transfer lock.")
+    if pattern.note:
+        sentences.append(pattern.note)
+    return " ".join(sentences)
+
+
+def pattern_steps(key: object, lock: bool, gtld: bool) -> list[str]:
+    steps = ["Remove the transfer lock at your current registrar."] if lock else []
+    if key == "push":
+        return steps + ["OpusDNS records the transfer.",
+                        "Your current registrar pushes the domain to OpusDNS's registrar tag, `OPUSDNS`.",
+                        "The registry moves the domain to OpusDNS."]
+    code, approval, _ = key
+    if code == "registrar":
+        steps.append("Get the auth code from your current registrar.")
+    elif code == "registry":
+        steps.append("Get the auth code from your current registrar or the registry, depending on the TLD.")
+    steps.append("OpusDNS requests the transfer at the registry" + (" with the auth code." if code != "none" else "."))
+    if not approval:
+        return steps + ["The registry completes the transfer without an approval."]
+    approve = "Your current registrar approves or denies the transfer. Some registrars ask the domain's holder by email."
+    if gtld:
+        approve += (" At gTLDs, the registry completes it after five days without an answer. "
+                    "See [How a gTLD transfer works](/transfers/overview#how-a-gtld-transfer-works).")
+    return steps + [approve]
 
 
 def and_join(items: list[str]) -> str:
@@ -408,6 +403,20 @@ def registrar_order(key: str) -> str:
 def kb_path(tld: str, tld_types: dict[str, str]) -> str | None:
     folder = "cctlds" if tld_types.get(tld) == "ccTLD" else "gtlds"
     return f"/tld-knowledge-base/{folder}/{tld}" if (KNOWLEDGE_BASE / folder / f"{tld}.md").exists() else None
+
+
+def registry_of(tld: str, tld_types: dict[str, str]) -> tuple[str, str | None] | None:
+    """The TLD's registry and its website, from its Knowledge Base page, which the
+    TLD specs generate. None where the TLD has no page there."""
+    path = kb_path(tld, tld_types)
+    if path is None:
+        return None
+    page = (KNOWLEDGE_BASE / f"{path.removeprefix('/tld-knowledge-base/')}.md").read_text(encoding="utf-8")
+    name = re.search(r"(?m)^\| Registry \| (.+?) \|$", page)
+    if name is None:
+        raise SystemExit(f"the Knowledge Base page of .{tld} names no registry")
+    site = re.search(r"(?m)^\| Registry Website \| \[[^\]]*\]\(([^)]+)\) \|$", page)
+    return name[1], site[1] if site else None
 
 
 def kb_link(tld: str, tld_types: dict[str, str]) -> str:
@@ -718,6 +727,7 @@ def registrar_table(data: dict, tlds: list[str]) -> list[str]:
 
 def render_pattern(pattern: Pattern, tlds: list[str], data: dict, facts: dict[str, RegistrySide]) -> str:
     tld_types = data["tld_types"]
+    key = facts[tlds[0]].key
 
     def link(tld: str) -> str:
         return f"[.{tld}]({tld_path(tld, facts[tld].key)})"
@@ -727,18 +737,28 @@ def render_pattern(pattern: Pattern, tlds: list[str], data: dict, facts: dict[st
     named = [f"{len(gtlds)} gTLDs, such as {examples(gtlds, link)}" if len(gtlds) > 20 else ", ".join(map(link, gtlds))] if gtlds else []
     if cctlds:
         named.append(("these ccTLDs: " if gtlds else "") + ", ".join(map(link, cctlds)))
-    locked = [t for t in tlds if facts[t].lock]
-    lines = [f"# {pattern.title}", "", pattern.intro]
+    lines = [f"# {pattern.title}", "", pattern_intro(key, pattern)]
     for tld in (t for t in tlds if t in UPCOMING):
         lines += ["", "> [!NOTE]", f"> {link(tld)}: {UPCOMING[tld][1]}"]
-    lines += ["", "## Steps", ""]
-    lines += [f"{i}. {step}" for i, step in enumerate(pattern_steps(pattern, [facts[t].lock for t in tlds]), 1)]
+    steps = pattern_steps(key, any(facts[t].lock for t in tlds), bool(gtlds))
+    lines += ["", "## Steps", "", *[f"{i}. {step}" for i, step in enumerate(steps, 1)]]
+    lines += ["", "Each TLD's page shows which of these steps OpusDNS takes at your registrar."]
     lines += ["", "## TLDs", "", sentence_case(", and ".join(named)) + "."]
-    if locked and len(locked) < len(tlds):
-        unlocked = [t for t in tlds if not facts[t].lock]
-        lines += ["", f"No transfer lock at {', '.join(map(link, unlocked))}." if len(unlocked) <= len(locked)
-                  else f"A transfer lock only at {', '.join(map(link, locked))}."]
-    lines += ["", *registrar_table(data, tlds), "", "Some TLDs differ at some registrars. Each TLD's page shows its own.", ""]
+    by_registry: dict[str, list[str]] = defaultdict(list)
+    sites: dict[str, list[str]] = defaultdict(list)
+    for tld in tlds:
+        registry = registry_of(tld, tld_types)
+        if registry:
+            by_registry[registry[0]].append(tld)
+            if registry[1]:
+                sites[registry[0]].append(registry[1])
+    if by_registry:
+        lines += ["", "## Registries", "", "These registries handle transfers this way:", ""]
+        for name, found in sorted(by_registry.items(), key=lambda item: (-len(item[1]), item[0].lower())):
+            shown = ", ".join(map(link, found[:5])) + (f" and {len(found) - 5} more" if len(found) > 5 else "")
+            # One registry can name a website per TLD: the one most of them name.
+            lines.append(f"- {f'[{name}]({most_common(sites[name])})' if sites[name] else name}: {shown}")
+    lines.append("")
     return "\n".join(lines)
 
 
@@ -752,9 +772,12 @@ def render_tld(tld: str, data: dict, side: RegistrySide) -> str:
         lines += ["", f"To move a {name} domain to OpusDNS, contact [OpusDNS support]({SUPPORT_URL}).", ""]
         return "\n".join(lines)
     pattern = PATTERNS[side.key]
-    facts = [
-        f"{name} follows the [{pattern.title}]({PATTERN_ROUTE}/{pattern.slug}) pattern.",
-        "Its registry has a transfer lock." if side.lock else "Its registry has no transfer lock.",
+    registry = registry_of(tld, data["tld_types"])
+    facts = [f"{name} follows the [{pattern.title}]({PATTERN_ROUTE}/{pattern.slug}) pattern."]
+    if registry:
+        facts.append(f"Its registry is {f'[{registry[0]}]({registry[1]})' if registry[1] else registry[0]}.")
+    facts += [
+        "The registry has a transfer lock." if side.lock else "The registry has no transfer lock.",
         "A transfer extends the registration." if side.renews else "A transfer doesn't extend the registration.",
     ]
     if side.deny and isinstance(side.key, tuple) and not side.key[1]:
@@ -769,7 +792,8 @@ def render_tld(tld: str, data: dict, side: RegistrySide) -> str:
     if tld in UPCOMING:
         lines += ["", "> [!NOTE]", f"> {UPCOMING[tld][1]}"]
     lines += ["", "## Steps", ""]
-    steps = [step.replace(", depending on the TLD", "") for step in pattern_steps(pattern, [side.lock])]
+    gtld = data["tld_types"].get(tld) == "gTLD"
+    steps = [step.replace(", depending on the TLD", "") for step in pattern_steps(side.key, side.lock, gtld)]
     lines += [f"{i}. {step}" for i, step in enumerate(steps, 1)]
     lines += ["", *registrar_table(data, [tld])]
     privacy = [

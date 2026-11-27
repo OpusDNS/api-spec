@@ -1,11 +1,11 @@
 # Transferring a .org.za domain
 
-`.org.za` follows the [No auth code, with approval](/transfers/patterns/no-auth-code) pattern. Its registry has no transfer lock. A transfer doesn't extend the registration. A transfer takes up to 5 days.
+`.org.za` follows the [No auth code, with approval](/transfers/patterns/no-auth-code) pattern. Its registry is [ZARC](https://zarc.web.za). The registry has no transfer lock. A transfer doesn't extend the registration. A transfer takes up to 5 days.
 
 ## Steps
 
 1. OpusDNS requests the transfer at the registry.
-2. Your current registrar or the domain's holder approves or denies the transfer.
+2. Your current registrar approves or denies the transfer. Some registrars ask the domain's holder by email.
 
 ## At your registrar
 

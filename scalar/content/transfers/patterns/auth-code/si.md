@@ -1,6 +1,6 @@
 # Transferring a .si domain
 
-`.si` follows the [Auth code, no approval](/transfers/patterns/auth-code) pattern. Its registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
+`.si` follows the [Auth code only](/transfers/patterns/auth-code) pattern. Its registry is [Academic and Research Network of Slovenia (Arnes)](https://www.register.si). The registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
 
 ## Steps
 

@@ -1,12 +1,12 @@
-# Transferring a .mx domain
+# Transferring a .at domain
 
-`.mx` follows the [gTLDs and most ccTLDs](/transfers/patterns/gtlds) pattern. Its registry has no transfer lock. A transfer extends the registration. A transfer takes up to 10 days.
+`.at` follows the [Auth code and approval](/transfers/patterns/auth-code-approval) pattern. Its registry is [nic.at GmbH](https://www.nic.at/). The registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
 
 ## Steps
 
 1. Get the auth code from your current registrar.
 2. OpusDNS requests the transfer at the registry with the auth code.
-3. Your current registrar approves or denies the transfer. At gTLDs, the registry completes it after five days without an answer. See [How a gTLD transfer works](/transfers/overview#how-a-gtld-transfer-works).
+3. Your current registrar approves or denies the transfer. Some registrars ask the domain's holder by email.
 
 ## At your registrar
 
@@ -27,4 +27,4 @@ With a connected account, OpusDNS takes some of these steps for you. Which ones 
 | [PartnerGate](/transfers/registrars/domain-bestellsystem) | ➖ | ✅ OpusDNS | ✅ OpusDNS |
 | [Realtime Register](/transfers/registrars/realtime-register) | ➖ | ✅ OpusDNS | ↗️ You, at Realtime Register |
 
-The [TLD Knowledge Base](/tld-knowledge-base/cctlds/mx) has more on `.mx`.
+The [TLD Knowledge Base](/tld-knowledge-base/cctlds/at) has more on `.at`.

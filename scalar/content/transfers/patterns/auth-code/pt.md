@@ -1,6 +1,6 @@
 # Transferring a .pt domain
 
-`.pt` follows the [Auth code, no approval](/transfers/patterns/auth-code) pattern. Its registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
+`.pt` follows the [Auth code only](/transfers/patterns/auth-code) pattern. Its registry is [Associação DNS.PT](https://www.pt.pt). The registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
 
 ## Steps
 

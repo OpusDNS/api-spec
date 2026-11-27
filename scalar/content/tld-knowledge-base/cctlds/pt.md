@@ -86,7 +86,7 @@
 | Transfer Extends Domain | ❌ No |
 | Transfer via AuthInfo | ✅ Yes |
 | Confirmation Required | ❌ No |
-| Transfer to OpusDNS | [Auth code, no approval](/transfers/patterns/auth-code/pt) |
+| Transfer to OpusDNS | [Auth code only](/transfers/patterns/auth-code/pt) |
 
 ## WHOIS & RDAP
 

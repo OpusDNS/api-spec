@@ -1,6 +1,6 @@
 # Transferring a .ro domain
 
-`.ro` follows the [Auth code set by the registry](/transfers/patterns/registry-auth-code) pattern. Its registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
+`.ro` follows the [Auth code set by the registry](/transfers/patterns/registry-auth-code) pattern. Its registry is [National Institute for R&D in Informatics (ROTLD)](https://www.rotld.ro/). The registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
 
 ## Steps
 

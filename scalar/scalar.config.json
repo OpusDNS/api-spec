@@ -4152,12 +4152,6 @@
                     "filepath": "content/transfers/patterns/gtlds/associates.md",
                     "showInSidebar": true
                   },
-                  "/at": {
-                    "type": "page",
-                    "title": ".at",
-                    "filepath": "content/transfers/patterns/gtlds/at.md",
-                    "showInSidebar": true
-                  },
                   "/attorney": {
                     "type": "page",
                     "title": ".attorney",
@@ -5556,12 +5550,6 @@
                     "filepath": "content/transfers/patterns/gtlds/irish.md",
                     "showInSidebar": true
                   },
-                  "/it": {
-                    "type": "page",
-                    "title": ".it",
-                    "filepath": "content/transfers/patterns/gtlds/it.md",
-                    "showInSidebar": true
-                  },
                   "/jetzt": {
                     "type": "page",
                     "title": ".jetzt",
@@ -5938,12 +5926,6 @@
                     "type": "page",
                     "title": ".music",
                     "filepath": "content/transfers/patterns/gtlds/music.md",
-                    "showInSidebar": true
-                  },
-                  "/mx": {
-                    "type": "page",
-                    "title": ".mx",
-                    "filepath": "content/transfers/patterns/gtlds/mx.md",
                     "showInSidebar": true
                   },
                   "/name": {
@@ -7082,96 +7064,6 @@
                   }
                 }
               },
-              "/auth-code": {
-                "type": "group",
-                "title": "Auth code, no approval",
-                "children": {
-                  "/": {
-                    "type": "page",
-                    "title": "Overview",
-                    "filepath": "content/transfers/patterns/auth-code/index.md",
-                    "showInSidebar": true
-                  },
-                  "/ca": {
-                    "type": "page",
-                    "title": ".ca",
-                    "filepath": "content/transfers/patterns/auth-code/ca.md",
-                    "showInSidebar": true
-                  },
-                  "/ch": {
-                    "type": "page",
-                    "title": ".ch",
-                    "filepath": "content/transfers/patterns/auth-code/ch.md",
-                    "showInSidebar": true
-                  },
-                  "/cl": {
-                    "type": "page",
-                    "title": ".cl",
-                    "filepath": "content/transfers/patterns/auth-code/cl.md",
-                    "showInSidebar": true
-                  },
-                  "/de": {
-                    "type": "page",
-                    "title": ".de",
-                    "filepath": "content/transfers/patterns/auth-code/de.md",
-                    "showInSidebar": true
-                  },
-                  "/ee": {
-                    "type": "page",
-                    "title": ".ee",
-                    "filepath": "content/transfers/patterns/auth-code/ee.md",
-                    "showInSidebar": true
-                  },
-                  "/gg": {
-                    "type": "page",
-                    "title": ".gg",
-                    "filepath": "content/transfers/patterns/auth-code/gg.md",
-                    "showInSidebar": true
-                  },
-                  "/je": {
-                    "type": "page",
-                    "title": ".je",
-                    "filepath": "content/transfers/patterns/auth-code/je.md",
-                    "showInSidebar": true
-                  },
-                  "/li": {
-                    "type": "page",
-                    "title": ".li",
-                    "filepath": "content/transfers/patterns/auth-code/li.md",
-                    "showInSidebar": true
-                  },
-                  "/no": {
-                    "type": "page",
-                    "title": ".no",
-                    "filepath": "content/transfers/patterns/auth-code/no.md",
-                    "showInSidebar": true
-                  },
-                  "/pl": {
-                    "type": "page",
-                    "title": ".pl",
-                    "filepath": "content/transfers/patterns/auth-code/pl.md",
-                    "showInSidebar": true
-                  },
-                  "/pt": {
-                    "type": "page",
-                    "title": ".pt",
-                    "filepath": "content/transfers/patterns/auth-code/pt.md",
-                    "showInSidebar": true
-                  },
-                  "/si": {
-                    "type": "page",
-                    "title": ".si",
-                    "filepath": "content/transfers/patterns/auth-code/si.md",
-                    "showInSidebar": true
-                  },
-                  "/sk": {
-                    "type": "page",
-                    "title": ".sk",
-                    "filepath": "content/transfers/patterns/auth-code/sk.md",
-                    "showInSidebar": true
-                  }
-                }
-              },
               "/registry-auth-code": {
                 "type": "group",
                 "title": "Auth code set by the registry",
@@ -7180,12 +7072,6 @@
                     "type": "page",
                     "title": "Overview",
                     "filepath": "content/transfers/patterns/registry-auth-code/index.md",
-                    "showInSidebar": true
-                  },
-                  "/be": {
-                    "type": "page",
-                    "title": ".be",
-                    "filepath": "content/transfers/patterns/registry-auth-code/be.md",
                     "showInSidebar": true
                   },
                   "/cz": {
@@ -7244,6 +7130,108 @@
                   }
                 }
               },
+              "/auth-code": {
+                "type": "group",
+                "title": "Auth code only",
+                "children": {
+                  "/": {
+                    "type": "page",
+                    "title": "Overview",
+                    "filepath": "content/transfers/patterns/auth-code/index.md",
+                    "showInSidebar": true
+                  },
+                  "/ch": {
+                    "type": "page",
+                    "title": ".ch",
+                    "filepath": "content/transfers/patterns/auth-code/ch.md",
+                    "showInSidebar": true
+                  },
+                  "/de": {
+                    "type": "page",
+                    "title": ".de",
+                    "filepath": "content/transfers/patterns/auth-code/de.md",
+                    "showInSidebar": true
+                  },
+                  "/li": {
+                    "type": "page",
+                    "title": ".li",
+                    "filepath": "content/transfers/patterns/auth-code/li.md",
+                    "showInSidebar": true
+                  },
+                  "/no": {
+                    "type": "page",
+                    "title": ".no",
+                    "filepath": "content/transfers/patterns/auth-code/no.md",
+                    "showInSidebar": true
+                  },
+                  "/pl": {
+                    "type": "page",
+                    "title": ".pl",
+                    "filepath": "content/transfers/patterns/auth-code/pl.md",
+                    "showInSidebar": true
+                  },
+                  "/pt": {
+                    "type": "page",
+                    "title": ".pt",
+                    "filepath": "content/transfers/patterns/auth-code/pt.md",
+                    "showInSidebar": true
+                  },
+                  "/si": {
+                    "type": "page",
+                    "title": ".si",
+                    "filepath": "content/transfers/patterns/auth-code/si.md",
+                    "showInSidebar": true
+                  }
+                }
+              },
+              "/unlock-auth-code": {
+                "type": "group",
+                "title": "Unlock and auth code",
+                "children": {
+                  "/": {
+                    "type": "page",
+                    "title": "Overview",
+                    "filepath": "content/transfers/patterns/unlock-auth-code/index.md",
+                    "showInSidebar": true
+                  },
+                  "/ca": {
+                    "type": "page",
+                    "title": ".ca",
+                    "filepath": "content/transfers/patterns/unlock-auth-code/ca.md",
+                    "showInSidebar": true
+                  },
+                  "/cl": {
+                    "type": "page",
+                    "title": ".cl",
+                    "filepath": "content/transfers/patterns/unlock-auth-code/cl.md",
+                    "showInSidebar": true
+                  },
+                  "/ee": {
+                    "type": "page",
+                    "title": ".ee",
+                    "filepath": "content/transfers/patterns/unlock-auth-code/ee.md",
+                    "showInSidebar": true
+                  },
+                  "/gg": {
+                    "type": "page",
+                    "title": ".gg",
+                    "filepath": "content/transfers/patterns/unlock-auth-code/gg.md",
+                    "showInSidebar": true
+                  },
+                  "/je": {
+                    "type": "page",
+                    "title": ".je",
+                    "filepath": "content/transfers/patterns/unlock-auth-code/je.md",
+                    "showInSidebar": true
+                  },
+                  "/sk": {
+                    "type": "page",
+                    "title": ".sk",
+                    "filepath": "content/transfers/patterns/unlock-auth-code/sk.md",
+                    "showInSidebar": true
+                  }
+                }
+              },
               "/no-auth-code": {
                 "type": "group",
                 "title": "No auth code, with approval",
@@ -7286,9 +7274,39 @@
                   }
                 }
               },
+              "/auth-code-approval": {
+                "type": "group",
+                "title": "Auth code and approval",
+                "children": {
+                  "/": {
+                    "type": "page",
+                    "title": "Overview",
+                    "filepath": "content/transfers/patterns/auth-code-approval/index.md",
+                    "showInSidebar": true
+                  },
+                  "/at": {
+                    "type": "page",
+                    "title": ".at",
+                    "filepath": "content/transfers/patterns/auth-code-approval/at.md",
+                    "showInSidebar": true
+                  },
+                  "/it": {
+                    "type": "page",
+                    "title": ".it",
+                    "filepath": "content/transfers/patterns/auth-code-approval/it.md",
+                    "showInSidebar": true
+                  },
+                  "/mx": {
+                    "type": "page",
+                    "title": ".mx",
+                    "filepath": "content/transfers/patterns/auth-code-approval/mx.md",
+                    "showInSidebar": true
+                  }
+                }
+              },
               "/registry-auth-code-approval": {
                 "type": "group",
-                "title": "Auth code set by the registry, with approval",
+                "title": "Unlock, auth code set by the registry, and approval",
                 "children": {
                   "/": {
                     "type": "page",
@@ -7306,6 +7324,24 @@
                     "type": "page",
                     "title": ".wales",
                     "filepath": "content/transfers/patterns/registry-auth-code-approval/wales.md",
+                    "showInSidebar": true
+                  }
+                }
+              },
+              "/unlock-registry-auth-code": {
+                "type": "group",
+                "title": "Unlock and auth code set by the registry",
+                "children": {
+                  "/": {
+                    "type": "page",
+                    "title": "Overview",
+                    "filepath": "content/transfers/patterns/unlock-registry-auth-code/index.md",
+                    "showInSidebar": true
+                  },
+                  "/be": {
+                    "type": "page",
+                    "title": ".be",
+                    "filepath": "content/transfers/patterns/unlock-registry-auth-code/be.md",
                     "showInSidebar": true
                   }
                 }

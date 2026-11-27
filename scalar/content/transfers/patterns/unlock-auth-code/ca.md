@@ -1,6 +1,6 @@
-# Transferring a .ee domain
+# Transferring a .ca domain
 
-`.ee` follows the [Auth code, no approval](/transfers/patterns/auth-code) pattern. Its registry has a transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
+`.ca` follows the [Unlock and auth code](/transfers/patterns/unlock-auth-code) pattern. Its registry is [Canadian Internet Registration Authority (CIRA)](https://www.cira.ca). The registry has a transfer lock. A transfer extends the registration. The registry completes a transfer at once.
 
 ## Steps
 
@@ -27,3 +27,7 @@ With a connected account, OpusDNS takes some of these steps for you. Which ones 
 | [OpenSRS](/transfers/registrars/opensrs) | ✅ OpusDNS | ✅ OpusDNS | ➖ |
 | [PartnerGate](/transfers/registrars/domain-bestellsystem) | ↗️ You, at PartnerGate | ✅ OpusDNS | ➖ |
 | [Realtime Register](/transfers/registrars/realtime-register) | ↗️ You, at Realtime Register | ✅ OpusDNS | ➖ |
+
+InterNetX refuses to remove the lock while WHOIS privacy is on. Turn it off there first.
+
+The [TLD Knowledge Base](/tld-knowledge-base/cctlds/ca) has more on `.ca`.

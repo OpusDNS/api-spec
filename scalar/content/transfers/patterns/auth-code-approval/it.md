@@ -1,12 +1,12 @@
 # Transferring a .it domain
 
-`.it` follows the [gTLDs and most ccTLDs](/transfers/patterns/gtlds) pattern. Its registry has no transfer lock. A transfer doesn't extend the registration. A transfer takes up to 1 day.
+`.it` follows the [Auth code and approval](/transfers/patterns/auth-code-approval) pattern. Its registry is [Istituto di Informatica e Telematica (IIT-CNR)](https://www.nic.it). The registry has no transfer lock. A transfer doesn't extend the registration. A transfer takes up to 1 day.
 
 ## Steps
 
 1. Get the auth code from your current registrar.
 2. OpusDNS requests the transfer at the registry with the auth code.
-3. Your current registrar approves or denies the transfer. At gTLDs, the registry completes it after five days without an answer. See [How a gTLD transfer works](/transfers/overview#how-a-gtld-transfer-works).
+3. Your current registrar approves or denies the transfer. Some registrars ask the domain's holder by email.
 
 ## At your registrar
 

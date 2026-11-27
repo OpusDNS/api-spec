@@ -1,6 +1,6 @@
 # Transferring a .ch domain
 
-`.ch` follows the [Auth code, no approval](/transfers/patterns/auth-code) pattern. Its registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
+`.ch` follows the [Auth code only](/transfers/patterns/auth-code) pattern. Its registry is [Switch](https://www.switch.ch/de). The registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
 
 ## Steps
 

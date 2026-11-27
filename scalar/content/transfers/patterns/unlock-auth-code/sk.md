@@ -1,11 +1,11 @@
-# Transferring a .be domain
+# Transferring a .sk domain
 
-`.be` follows the [Auth code set by the registry](/transfers/patterns/registry-auth-code) pattern. Its registry has a transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
+`.sk` follows the [Unlock and auth code](/transfers/patterns/unlock-auth-code) pattern. Its registry is [SK-NIC, a.s.](https://www.sk-nic.sk). The registry has a transfer lock. A transfer extends the registration. The registry completes a transfer at once.
 
 ## Steps
 
 1. Remove the transfer lock at your current registrar.
-2. Get the auth code from your current registrar or the registry.
+2. Get the auth code from your current registrar.
 3. OpusDNS requests the transfer at the registry with the auth code.
 4. The registry completes the transfer without an approval.
 
@@ -28,4 +28,4 @@ With a connected account, OpusDNS takes some of these steps for you. Which ones 
 | [PartnerGate](/transfers/registrars/domain-bestellsystem) | ↗️ You, at PartnerGate | ✅ OpusDNS | ➖ |
 | [Realtime Register](/transfers/registrars/realtime-register) | ↗️ You, at Realtime Register | ✅ OpusDNS | ➖ |
 
-The [TLD Knowledge Base](/tld-knowledge-base/cctlds/be) has more on `.be`.
+The [TLD Knowledge Base](/tld-knowledge-base/cctlds/sk) has more on `.sk`.

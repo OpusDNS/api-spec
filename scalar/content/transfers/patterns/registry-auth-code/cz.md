@@ -1,6 +1,6 @@
 # Transferring a .cz domain
 
-`.cz` follows the [Auth code set by the registry](/transfers/patterns/registry-auth-code) pattern. Its registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
+`.cz` follows the [Auth code set by the registry](/transfers/patterns/registry-auth-code) pattern. Its registry is [CZ.NIC, z. s. p. o.](https://www.nic.cz). The registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
 
 ## Steps
 

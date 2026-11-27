@@ -1,6 +1,6 @@
 # Transferring a .cl domain
 
-`.cl` follows the [Auth code, no approval](/transfers/patterns/auth-code) pattern. Its registry has a transfer lock. A transfer extends the registration. Your current registrar can still deny a transfer. A transfer takes up to 5 days.
+`.cl` follows the [Unlock and auth code](/transfers/patterns/unlock-auth-code) pattern. The registry has a transfer lock. A transfer extends the registration. Your current registrar can still deny a transfer. A transfer takes up to 5 days.
 
 ## Steps
 

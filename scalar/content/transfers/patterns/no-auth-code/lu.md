@@ -1,11 +1,11 @@
 # Transferring a .lu domain
 
-`.lu` follows the [No auth code, with approval](/transfers/patterns/no-auth-code) pattern. Its registry has no transfer lock. A transfer doesn't extend the registration. A transfer takes up to 12 days.
+`.lu` follows the [No auth code, with approval](/transfers/patterns/no-auth-code) pattern. Its registry is [Fondation RESTENA (DNS-LU)](https://www.dns.lu). The registry has no transfer lock. A transfer doesn't extend the registration. A transfer takes up to 12 days.
 
 ## Steps
 
 1. OpusDNS requests the transfer at the registry.
-2. Your current registrar or the domain's holder approves or denies the transfer.
+2. Your current registrar approves or denies the transfer. Some registrars ask the domain's holder by email.
 
 ## At your registrar
 

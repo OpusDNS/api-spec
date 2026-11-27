@@ -1,6 +1,6 @@
 # Transferring a .gr domain
 
-`.gr` follows the [Auth code set by the registry](/transfers/patterns/registry-auth-code) pattern. Its registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
+`.gr` follows the [Auth code set by the registry](/transfers/patterns/registry-auth-code) pattern. Its registry is [Registry of .gr and .ελ Domain Names (ICS-FORTH)](https://www.gr). The registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
 
 ## Steps
 

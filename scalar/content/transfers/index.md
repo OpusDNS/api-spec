@@ -29,11 +29,14 @@ The [TLD Knowledge Base](/tld-knowledge-base) describes each TLD's rules, and ea
 
 TLDs with the same steps share a transfer pattern:
 
-- [gTLDs and most ccTLDs](/transfers/patterns/gtlds): 502 TLDs
-- [Auth code, no approval](/transfers/patterns/auth-code): 13 TLDs
-- [Auth code set by the registry](/transfers/patterns/registry-auth-code): 10 TLDs
+- [gTLDs and most ccTLDs](/transfers/patterns/gtlds): 499 TLDs
+- [Auth code set by the registry](/transfers/patterns/registry-auth-code): 9 TLDs
+- [Auth code only](/transfers/patterns/auth-code): 7 TLDs
+- [Unlock and auth code](/transfers/patterns/unlock-auth-code): 6 TLDs
 - [No auth code, with approval](/transfers/patterns/no-auth-code): 5 TLDs
-- [Auth code set by the registry, with approval](/transfers/patterns/registry-auth-code-approval): 2 TLDs
+- [Auth code and approval](/transfers/patterns/auth-code-approval): 3 TLDs
+- [Unlock, auth code set by the registry, and approval](/transfers/patterns/registry-auth-code-approval): 2 TLDs
+- [Unlock and auth code set by the registry](/transfers/patterns/unlock-registry-auth-code): 1 TLD
 - [Push to a tag](/transfers/patterns/push): 1 TLD
 
 No transfers at [.is](/transfers/patterns/is).

@@ -86,7 +86,7 @@
 | Transfer Extends Domain | ❌ No |
 | Transfer via AuthInfo | ✅ Yes |
 | Confirmation Required | ✅ Yes (Both parties) |
-| Transfer to OpusDNS | [gTLDs and most ccTLDs](/transfers/patterns/gtlds/it) |
+| Transfer to OpusDNS | [Auth code and approval](/transfers/patterns/auth-code-approval/it) |
 
 ## WHOIS & RDAP
 

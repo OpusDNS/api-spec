@@ -1,13 +1,13 @@
 # Transferring a .pm domain
 
-`.pm` follows the [gTLDs and most ccTLDs](/transfers/patterns/gtlds) pattern. Its registry has a transfer lock. A transfer extends the registration. A transfer takes up to 8 days.
+`.pm` follows the [gTLDs and most ccTLDs](/transfers/patterns/gtlds) pattern. Its registry is [AFNIC (Association Française pour le Nommage Internet en Coopération)](https://www.afnic.fr). The registry has a transfer lock. A transfer extends the registration. A transfer takes up to 8 days.
 
 ## Steps
 
 1. Remove the transfer lock at your current registrar.
 2. Get the auth code from your current registrar.
 3. OpusDNS requests the transfer at the registry with the auth code.
-4. Your current registrar approves or denies the transfer. At gTLDs, the registry completes it after five days without an answer. See [How a gTLD transfer works](/transfers/overview#how-a-gtld-transfer-works).
+4. Your current registrar approves or denies the transfer. Some registrars ask the domain's holder by email.
 
 ## At your registrar
 

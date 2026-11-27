@@ -1,11 +1,11 @@
-# Transferring a .ca domain
+# Transferring a .be domain
 
-`.ca` follows the [Auth code, no approval](/transfers/patterns/auth-code) pattern. Its registry has a transfer lock. A transfer extends the registration. The registry completes a transfer at once.
+`.be` follows the [Unlock and auth code set by the registry](/transfers/patterns/unlock-registry-auth-code) pattern. Its registry is [DNS Belgium](https://www.dnsbelgium.be). The registry has a transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
 
 ## Steps
 
 1. Remove the transfer lock at your current registrar.
-2. Get the auth code from your current registrar.
+2. Get the auth code from your current registrar or the registry.
 3. OpusDNS requests the transfer at the registry with the auth code.
 4. The registry completes the transfer without an approval.
 
@@ -28,6 +28,4 @@ With a connected account, OpusDNS takes some of these steps for you. Which ones 
 | [PartnerGate](/transfers/registrars/domain-bestellsystem) | ↗️ You, at PartnerGate | ✅ OpusDNS | ➖ |
 | [Realtime Register](/transfers/registrars/realtime-register) | ↗️ You, at Realtime Register | ✅ OpusDNS | ➖ |
 
-InterNetX refuses to remove the lock while WHOIS privacy is on. Turn it off there first.
-
-The [TLD Knowledge Base](/tld-knowledge-base/cctlds/ca) has more on `.ca`.
+The [TLD Knowledge Base](/tld-knowledge-base/cctlds/be) has more on `.be`.

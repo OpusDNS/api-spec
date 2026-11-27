@@ -277,7 +277,7 @@ def test_config_gets_the_tab_after_tld_info_and_is_idempotent(tmp_path):
     }
     path = tmp_path / "scalar.config.json"
     path.write_text(json.dumps(config, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    patterns = [(gen.PATTERNS[("registrar", True)], ["com", "net"]), (gen.PATTERNS["push"], ["uk"])]
+    patterns = [(gen.PATTERNS[("registrar", True, True)], ["com", "net"]), (gen.PATTERNS["push"], ["uk"])]
     assert gen.update_config(path, ["opensrs", "enom"], patterns, ["is"]) is True
     written = json.loads(path.read_text(encoding="utf-8"))
     assert [tab["title"] for tab in written["navigation"]["tabs"]] == ["Guides", "TLD Info", "Transfers", "Changelog"]
@@ -323,7 +323,7 @@ def test_patterns_come_most_common_first_and_push_wins_over_the_auth_code():
 @pytest.mark.parametrize(("ack", "nack", "approval"), [("none", "none", False), (None, None, False), ("none", "registrar", False), ("registrar", "none", True)])
 def test_only_an_approval_by_the_losing_side_counts_as_approval(ack, nack, approval):
     policies = {"transfer_ack": ack, "transfer_nack": nack}
-    assert gen.pattern_key(row("xx", usual_steps("xx"), policies=policies)) == ("registrar", approval)
+    assert gen.pattern_key(row("xx", usual_steps("xx"), policies=policies)) == ("registrar", approval, True)
 
 
 def pattern_page(rows):
@@ -333,13 +333,48 @@ def pattern_page(rows):
     return gen.render_pattern(pattern, tlds, data, facts)
 
 
-def test_a_pattern_page_says_where_the_lock_is_and_what_each_registrar_does():
-    # Two of three TLDs have no lock: the lock cell still shows what happens where there is one.
+def test_the_lock_splits_patterns_and_a_pattern_page_shows_the_registrys_side_only():
     rows = [row("com", usual_steps("com")), row("fr", usual_steps("fr")[1:], lock=False), row("xx", usual_steps("xx")[1:], lock=False)]
-    text = pattern_page(rows)
-    assert "1. Remove the transfer lock at your current registrar, where the TLD has one." in text
-    assert "A transfer lock only at [.com](/transfers/patterns/gtlds/com)." in text
-    assert "| [OpenSRS](/transfers/registrars/opensrs) | ✅ OpusDNS | ✅ OpusDNS | ↗️ You, at OpenSRS |" in text
+    data = export(rows, rows)
+    facts = gen.registry_facts(data)
+    assert [(p.slug, tlds) for p, tlds in gen.ordered_patterns(facts)] == [("auth-code-approval", ["fr", "xx"]), ("gtlds", ["com"])]
+    pattern, tlds = gen.ordered_patterns(facts)[0]
+    text = gen.render_pattern(pattern, tlds, data, facts)
+    assert "Your current registrar can then approve or deny the transfer. The registry has no transfer lock." in text
+    assert "Remove the transfer lock" not in text and "| Registrar |" not in text
+    assert "Each TLD's page shows which of these steps OpusDNS takes at your registrar." in text
+    # .fr has a Knowledge Base page with its registry, .xx has none.
+    registries = section(text, "## Registries")
+    assert "[.fr](/transfers/patterns/auth-code-approval/fr)" in registries and ".xx" not in registries
+
+
+def kb_page(root, tld, registry, site):
+    (root / "cctlds").mkdir(exist_ok=True)
+    rows = (f"| Registry | {registry} |\n" if registry else "") + (f"| Registry Website | [{site}]({site}) |\n" if site else "")
+    (root / "cctlds" / f"{tld}.md").write_text(f"# .{tld}\n\n| Property | Value |\n| --- | --- |\n{rows}", encoding="utf-8")
+
+
+def test_a_registry_shows_once_with_the_website_most_of_its_tlds_name(tmp_path, monkeypatch):
+    monkeypatch.setattr(gen, "KNOWLEDGE_BASE", tmp_path)
+    types = {"aa": "ccTLD", "bb": "ccTLD", "cc": "ccTLD", "dd": "ccTLD"}
+    for tld, registry, site in (("aa", "Alpha", "https://a.example"), ("bb", "Alpha", "https://a.example"),
+                                ("cc", "Alpha", "https://other.example"), ("dd", "beta", None)):
+        kb_page(tmp_path, tld, registry, site)
+    rows = [row(t, usual_steps(t)) for t in types]
+    data = {"tld_types": types, "registrars": {"opensrs": rows}}
+    facts = gen.registry_facts(data)
+    pattern, tlds = gen.ordered_patterns(facts)[0]
+    registries = section(gen.render_pattern(pattern, tlds, data, facts), "## Registries")
+    assert registries.count("Alpha") == 1 and "- [Alpha](https://a.example): [.aa]" in registries
+    assert "- beta: [.dd](/transfers/patterns/gtlds/dd)" in registries
+    assert "Its registry is [Alpha](https://other.example)." in gen.render_tld("cc", data, facts["cc"])
+
+
+def test_a_knowledge_base_page_without_its_registry_fails_the_run(tmp_path, monkeypatch):
+    monkeypatch.setattr(gen, "KNOWLEDGE_BASE", tmp_path)
+    kb_page(tmp_path, "aa", None, None)
+    with pytest.raises(SystemExit, match="names no registry"):
+        gen.registry_of("aa", {"aa": "ccTLD"})
 
 
 def test_a_pattern_page_where_every_tld_has_a_lock_names_many_gtlds_by_example():
@@ -361,7 +396,8 @@ def test_a_tld_page_shows_the_tlds_facts_and_each_registrars_steps():
     facts = gen.registry_facts(data)
     text = gen.render_tld("com", data, facts["com"])
     assert text.startswith("# Transferring a .com domain\n")
-    assert ("`.com` follows the [gTLDs and most ccTLDs](/transfers/patterns/gtlds) pattern. Its registry has a transfer lock. "
+    assert ("`.com` follows the [gTLDs and most ccTLDs](/transfers/patterns/gtlds) pattern. Its registry is "
+            "[VeriSign, Inc.](https://www.verisign.com). The registry has a transfer lock. "
             "A transfer extends the registration. A transfer takes up to 5 days. As a gTLD") in text
     assert "| [eNom](/transfers/registrars/enom) | ✅ OpusDNS | ✅ OpusDNS | ↗️ You, optional |" in text
 
@@ -419,7 +455,7 @@ def test_a_cctld_page_without_approval_says_what_differs():
     data = {"tld_types": TYPES, "registrars": {"opensrs": [row("com", usual_steps("com")), xx], "enom": [row("com", usual_steps("com"))]}}
     facts = gen.registry_facts(data)
     text = gen.render_tld("xx", data, facts["xx"])
-    assert "[Auth code, no approval](/transfers/patterns/auth-code) pattern." in text
+    assert "[Unlock and auth code](/transfers/patterns/unlock-auth-code) pattern." in text
     assert "Your current registrar can still deny a transfer. The registry completes a transfer at once." in text
     assert "As a gTLD" not in text and "TLD Knowledge Base" not in text
     assert "OpenSRS refuses to remove the lock while WHOIS privacy is on. Turn it off there first." in text

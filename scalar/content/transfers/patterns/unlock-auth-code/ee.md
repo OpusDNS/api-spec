@@ -1,6 +1,6 @@
-# Transferring a .sk domain
+# Transferring a .ee domain
 
-`.sk` follows the [Auth code, no approval](/transfers/patterns/auth-code) pattern. Its registry has a transfer lock. A transfer extends the registration. The registry completes a transfer at once.
+`.ee` follows the [Unlock and auth code](/transfers/patterns/unlock-auth-code) pattern. The registry has a transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
 
 ## Steps
 
@@ -27,5 +27,3 @@ With a connected account, OpusDNS takes some of these steps for you. Which ones 
 | [OpenSRS](/transfers/registrars/opensrs) | ✅ OpusDNS | ✅ OpusDNS | ➖ |
 | [PartnerGate](/transfers/registrars/domain-bestellsystem) | ↗️ You, at PartnerGate | ✅ OpusDNS | ➖ |
 | [Realtime Register](/transfers/registrars/realtime-register) | ↗️ You, at Realtime Register | ✅ OpusDNS | ➖ |
-
-The [TLD Knowledge Base](/tld-knowledge-base/cctlds/sk) has more on `.sk`.

@@ -1,6 +1,6 @@
 # Transferring a .nl domain
 
-`.nl` follows the [Auth code set by the registry](/transfers/patterns/registry-auth-code) pattern. Its registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
+`.nl` follows the [Auth code set by the registry](/transfers/patterns/registry-auth-code) pattern. Its registry is [SIDN](https://www.sidn.nl). The registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
 
 ## Steps
 

@@ -1,6 +1,6 @@
 # Transferring a .pl domain
 
-`.pl` follows the [Auth code, no approval](/transfers/patterns/auth-code) pattern. Its registry has no transfer lock. A transfer doesn't extend the registration. A transfer takes up to 5 days.
+`.pl` follows the [Auth code only](/transfers/patterns/auth-code) pattern. Its registry is [NASK - Naukowa i Akademicka Siec Komputerowa](https://www.dns.pl). The registry has no transfer lock. A transfer doesn't extend the registration. A transfer takes up to 5 days.
 
 ## Steps
 

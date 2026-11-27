@@ -1,6 +1,6 @@
 # Transferring a .de domain
 
-`.de` follows the [Auth code, no approval](/transfers/patterns/auth-code) pattern. Its registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
+`.de` follows the [Auth code only](/transfers/patterns/auth-code) pattern. Its registry is [DENIC eG](https://www.denic.de/). The registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
 
 ## Steps
 

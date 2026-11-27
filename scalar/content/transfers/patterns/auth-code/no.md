@@ -1,6 +1,6 @@
 # Transferring a .no domain
 
-`.no` follows the [Auth code, no approval](/transfers/patterns/auth-code) pattern. Its registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
+`.no` follows the [Auth code only](/transfers/patterns/auth-code) pattern. Its registry is [Norid AS](https://www.norid.no). The registry has no transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
 
 ## Steps
 
