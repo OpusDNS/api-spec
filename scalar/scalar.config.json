@@ -4113,12 +4113,6 @@
             "title": "From Realtime Register",
             "filepath": "content/transfers/realtime-register.md",
             "showInSidebar": true
-          },
-          "/opusdns": {
-            "type": "page",
-            "title": "From another OpusDNS account",
-            "filepath": "content/transfers/opusdns.md",
-            "showInSidebar": true
           }
         }
       }

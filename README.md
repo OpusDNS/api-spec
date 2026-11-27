@@ -93,6 +93,7 @@ both bots validate the config inline before opening theirs.
 | `scalar/content/` | Guide Markdown |
 | `scalar/content/tld-knowledge-base/` | **Generated** from `OpusDNS/tld-specifications` by `scripts/generate_tld_knowledge_base.py` |
 | `scalar/content/mcp-server/` | **Generated** in `OpusDNS/opusdns-mcp`, which opens a PR here carrying the diff. `scripts/sync_mcp_docs.py` lives here but is run from there — see [`scripts/mcp_docs/`](./scripts/mcp_docs/) |
+| `scalar/content/transfers/` | **Generated** by `scripts/generate_transfer_pages.py` from OpusDNS's registrar capability export, run by hand. It also writes the `/transfers` route and tab in `scalar.config.json` |
 | `src/openapi.yaml` | The spec. The API Reference tab is fetched by Scalar from the raw GitHub URL at build time, so it is eventually consistent rather than bundled |
 
 Two bots write `scalar.config.json`: **Generate TLD Knowledge Base**, a workflow
@@ -101,6 +102,8 @@ in this repo, and **Publish MCP docs to api-spec**, a workflow in
 owns and both serialise identically (`json.dumps(..., indent=2,
 ensure_ascii=False)` plus a trailing newline), so hand edits should match that
 style — otherwise the next bot PR reformats your lines.
+`scripts/generate_transfer_pages.py` writes the `/transfers` subtree the same
+way when it is run.
 
 ### Local preview
 
