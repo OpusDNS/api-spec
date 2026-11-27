@@ -89,6 +89,11 @@ def kb_page(root, tld, registry, site, folder="cctlds"):
     (root / folder / f"{tld}.md").write_text(f"# .{tld}\n\n| Property | Value |\n| --- | --- |\n{rows}", encoding="utf-8")
 
 
+def renamed(found, name):
+    """A row with another registrar's name in its sentences."""
+    return json.loads(json.dumps(found).replace("OpenSRS", name))
+
+
 def page(rows):
     return gen.render_registrar("opensrs", rows, TYPES)
 
@@ -107,7 +112,7 @@ def test_every_tld_is_on_the_registrar_page():
     assert "At most" not in text and "## The steps at most TLDs" not in text
     matrix = section(text, *MATRIX)
     assert "Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have." in matrix
-    assert "Search this page for your TLD. If it isn't listed, it is in the first row." in matrix
+    assert "Search this page for your TLD. If it isn't listed exactly, it is in the first row." in matrix
     # The largest pattern stands for every TLD the other rows don't list.
     assert ("| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | Every other TLD, such as [.com](/transfers/patterns/gtlds/com), "
             "[.net](/transfers/patterns/gtlds/net) and [.org](/transfers/patterns/gtlds/org) | ✅ OpusDNS | ✅ OpusDNS | ↗️ You, optional |") in matrix
@@ -126,14 +131,15 @@ def test_the_intro_points_to_the_table_for_every_tld():
     intro = page([row("com", usual_steps("com")), row("net", usual_steps("net"))]).split("\n")[2]
     assert intro == ("[Connect](/products/connected-registrars/connect) your OpenSRS account and "
                      "[request the transfer](/products/connected-registrars/transfer-to-opusdns). Which steps OpusDNS then takes "
-                     "at OpenSRS depends on your TLD's transfer pattern. The table below shows them for every TLD. Leave out "
-                     "`auth_code` where it shows ✅ under Get the auth code. In the API, OpenSRS is `OPENSRS`.")
+                     "at OpenSRS depends on your TLD. The table below shows them for every TLD. Send the auth code as "
+                     "`auth_code` only where it shows ↗️ under Get the auth code. In the API, OpenSRS is `OPENSRS`.")
 
 
 def test_approval_is_optional_at_gtlds_only():
     text = page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("fr", usual_steps("fr"))])
     differing = section(text, "These TLDs differ from their pattern's row:", "## Managing a connected domain")
-    assert "| [.fr](/transfers/patterns/gtlds/fr) | ✅ OpusDNS | ✅ OpusDNS | ↗️ You, at OpenSRS |" in differing
+    assert ("| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | [.fr](/transfers/patterns/gtlds/fr) "
+            "| ✅ OpusDNS | ✅ OpusDNS | ↗️ You, at OpenSRS |") in differing
 
 
 def test_the_privacy_step_lists_no_tld_and_is_said_under_the_matrix():
@@ -184,10 +190,28 @@ def test_a_step_outside_the_matrix_columns_fails_the_run():
         page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("se", se, lock=False)])
 
 
-def test_a_first_row_tld_without_a_step_of_the_steps_table_fails_the_run():
+def test_a_missing_registry_step_is_no_error():
     org = [s for s in usual_steps("org") if s["action"] != "complete_transfer"]
-    with pytest.raises(SystemExit, match="add a column"):
-        page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("org", org)])
+    assert "[.org]" in page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("org", org)])
+
+
+def test_every_tld_of_a_row_after_the_first_is_listed():
+    many = [f"x{i}" for i in range(8)]
+    no_approval = {"transfer_ack": "none", "transfer_nack": "none"}
+    rows = [row(t, usual_steps(t)) for t in [f"g{i}" for i in range(9)]] + [row(t, se_steps(t), lock=False, policies=no_approval) for t in many]
+    matrix = section(gen.render_registrar("opensrs", rows, {**TYPES, **{t: "ccTLD" for t in many}}), *MATRIX)
+    assert all(f"[.{t}](/transfers/patterns/auth-code/{t})" in matrix for t in many)
+    assert "Every other TLD, such as" in matrix
+
+
+def test_a_registrar_without_an_answer_for_a_tld_fails_the_run(tmp_path):
+    export_file = tmp_path / "export.json"
+    export_file.write_text(json.dumps({"tld_types": TYPES, "registrars": {
+        "opensrs": [row("com", usual_steps("com")), row("net", usual_steps("net"))],
+        "enom": [renamed(row("com", usual_steps("com")), "eNom")]}}), encoding="utf-8")
+    with pytest.raises(SystemExit, match="eNom: the export has no answer for \\['net'\\]"):
+        gen.main(["--input", str(export_file), "--output", str(tmp_path / "out"), "--config", str(tmp_path / "c.json"),
+                  "--tld-pages-file", str(tmp_path / "p.json"), "--managing-page", str(tmp_path / "m.md")])
 
 
 def test_a_flow_without_steps_needs_a_short_reason():
@@ -195,19 +219,23 @@ def test_a_flow_without_steps_needs_a_short_reason():
         page([row("com", usual_steps("com")), row("xx", [])])
 
 
+def managing(rows, more=None):
+    return gen.render_managing({"tld_types": TYPES, "registrars": {"opensrs": rows, **(more or {})}})
+
+
 def test_managing_follows_the_capability_groups():
-    managing = section(page([row("com", usual_steps("com")), row("net", usual_steps("net"))]), "## Managing a connected domain")
-    headings = [line for line in managing.splitlines() if line.startswith("### ")]
-    assert headings == ["### Transfer lock", "### Nameservers", "### Contacts", "### WHOIS privacy"]
+    text = section(managing([row("com", usual_steps("com")), row("net", usual_steps("net"))]), "## OpenSRS")
+    assert [line for line in text.splitlines() if line.startswith("**")] == ["**Transfer lock**", "**Nameservers**", "**Contacts**", "**WHOIS privacy**"]
+    assert "To transfer a domain from OpenSRS, see [Transfer from OpenSRS](/transfers/registrars/opensrs)." in text
 
 
 def test_a_managing_difference_is_listed_only_where_opusdns_part_changes():
     rows = [row("com", usual_steps("com")), row("net", usual_steps("net")), row("org", usual_steps("org"), contacts="customer"), row("se", se_steps(), lock=False)]
-    managing = section(page(rows), "## Managing a connected domain")
+    text = section(managing(rows), "## OpenSRS")
     # .org lets the customer remove a contact where the others require all: OpusDNS does it at neither.
-    assert all(".org" not in part for part in managing.split("TLDs where this differs")[1:])
+    assert all(".org" not in part for part in text.split("TLDs where this differs")[1:])
     # .se has no lock, which OpusDNS handles elsewhere: listed, the shared reason said once.
-    assert "| ➖ No transfer lock |" in managing and "See the transfer lock" not in managing.split("TLDs where this differs")[1]
+    assert "| ➖ No transfer lock |" in text and "See the transfer lock" not in text.split("TLDs where this differs")[1]
 
 
 def test_a_reason_is_said_once_only_where_the_whole_group_shares_it():
@@ -220,8 +248,8 @@ def test_a_reason_is_said_once_only_where_the_whole_group_shares_it():
     rows[3]["actions"]["status"]["update_transfer_lock"] = no_lock("xa")  # one of two actions
     rows[4]["actions"]["dns"] = {"read_nameservers": customer, "update_nameservers": customer}  # no reason
     rows[5]["actions"]["status"] = {"read_transfer_lock": no_lock("xc"), "update_transfer_lock": no_lock("xc", "registry")}  # two entities
-    text = page(rows)
-    lock, nameservers = section(text, "### Transfer lock", "### Nameservers"), section(text, "### Nameservers", "### Contacts")
+    text = managing(rows)
+    lock, nameservers = section(text, "**Transfer lock**", "**Nameservers**"), section(text, "**Nameservers**", "**Contacts**")
     assert "| .xa | ➖ Set or remove the transfer lock: no transfer lock |" in lock
     assert "| .xb | ↗️ See the nameservers<br>↗️ Change the nameservers |" in nameservers
     assert "| .xc | ➖ See the transfer lock: no transfer lock<br>⚙️ Set or remove the transfer lock: no transfer lock |" in lock
@@ -229,9 +257,28 @@ def test_a_reason_is_said_once_only_where_the_whole_group_shares_it():
 
 def test_an_action_opusdns_does_at_no_tld_is_the_customers_where_the_tld_allows_it():
     rows = [row("com", usual_steps("com")), row("net", usual_steps("net")), row("org", usual_steps("org"), contacts="customer")]
-    managing = section(page(rows), "## Managing a connected domain")
     assert ("| ↗️ Remove a contact role | OpusDNS can't remove a contact from a connected domain. Remove it at OpenSRS. "
-            "Not every TLD allows it. See the [TLD Knowledge Base](/tld-knowledge-base). |") in managing
+            "Not every TLD allows it. See the [TLD Knowledge Base](/tld-knowledge-base). |") in managing(rows)
+
+
+def test_the_managing_page_lists_what_is_the_same_everywhere_and_a_matrix_of_the_rest():
+    enom = [renamed(row(t, usual_steps(t)), "eNom") for t in ("com", "net")]
+    for r in enom:
+        r["actions"]["dns"]["update_nameservers"] = action("customer", "OpusDNS cannot change the nameservers at eNom. Change them at eNom.")
+    text = managing([row("com", usual_steps("com")), row("net", usual_steps("net"))], {"enom": enom})
+    same = section(text, "## At every registrar", "## Depends on the registrar")
+    assert "- ✅ See the nameservers" in same and "- ↗️ Change the registrant" in same and "Change the nameservers" not in same
+    matrix = section(text, "## Depends on the registrar", "## eNom")
+    assert "| Registrar | Change the nameservers |" in matrix
+    assert "| [eNom](#enom) | ↗️ |" in matrix and "| [OpenSRS](#opensrs) | ✅ |" in matrix
+    assert text.index("## eNom") < text.index("## OpenSRS")
+
+
+def test_the_registrar_page_links_its_section_on_the_managing_page():
+    text = gen.render_registrar("realtimeregister", [renamed(row("com", usual_steps("com")), "Realtime Register")], TYPES)
+    assert "## Managing a connected domain" not in text
+    assert ("See [What OpusDNS can do at Realtime Register](/products/connected-registrars/registrars#realtime-register).") in text
+    assert gen.anchor("CentralNic Reseller") == "centralnic-reseller" and gen.anchor("NIC Direct") == "nic-direct"
 
 
 def test_knowledge_base_links_only_where_the_page_exists(tmp_path, monkeypatch):
@@ -270,7 +317,7 @@ def test_a_sentence_without_published_wording_fails_the_run(where):
     else:
         rows[0]["flows"]["transfer_to_opusdns"]["detail"] = "A new flow sentence."
     with pytest.raises(SystemExit, match="add it to SENTENCES"):
-        page(rows)
+        managing(rows) if where == "action" else page(rows)
 
 
 def test_main_skips_excluded_registrars_and_reports_stale_pages(tmp_path):

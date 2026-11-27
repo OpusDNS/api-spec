@@ -1,12 +1,12 @@
 # Transfer from OpenSRS
 
-[Connect](/products/connected-registrars/connect) your OpenSRS account and [request the transfer](/products/connected-registrars/transfer-to-opusdns). Which steps OpusDNS then takes at OpenSRS depends on your TLD's transfer pattern. The table below shows them for every TLD. Leave out `auth_code` where it shows ✅ under Get the auth code. In the API, OpenSRS is `OPENSRS`.
+[Connect](/products/connected-registrars/connect) your OpenSRS account and [request the transfer](/products/connected-registrars/transfer-to-opusdns). Which steps OpusDNS then takes at OpenSRS depends on your TLD. The table below shows them for every TLD. Send the auth code as `auth_code` only where it shows ↗️ under Get the auth code. In the API, OpenSRS is `OPENSRS`.
 
-✅ OpusDNS does it for you · ↗️ you do it at your registrar · 👤 the domain's holder approves by email · ⚙️ the registry does it on its own · ➖ the TLD doesn't have it
+✅ OpusDNS does it for you · ↗️ you do it at your registrar · 👤 the domain's holder approves by email · ➖ the TLD doesn't have it
 
 ## By transfer pattern
 
-Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have. OpenSRS sets which of the other steps OpusDNS can take for you. Search this page for your TLD. If it isn't listed, it is in the first row.
+Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have. OpenSRS sets which of the other steps OpusDNS can take for you. Search this page for your TLD. If it isn't listed exactly, it is in the first row.
 
 | Transfer pattern | TLDs | Remove the lock | Get the auth code | Approve |
 | --- | --- | :---: | :---: | :---: |
@@ -22,57 +22,13 @@ Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step th
 
 These TLDs differ from their pattern's row:
 
-| TLDs | Remove the lock | Get the auth code | Approve |
-| --- | :---: | :---: | :---: |
-| [.nu](/transfers/patterns/registry-auth-code/nu), [.se](/transfers/patterns/registry-auth-code/se) | ➖ | ↗️ You, at OpenSRS (a new one) | ➖ |
-| [.com.se](/transfers/patterns/gtlds/com.se) | ✅ OpusDNS | ↗️ You, at OpenSRS (a new one) | 👤 The holder, by email |
+| Transfer pattern | TLDs | Remove the lock | Get the auth code | Approve |
+| --- | --- | :---: | :---: | :---: |
+| [Auth code set by the registry](/transfers/patterns/registry-auth-code) | [.nu](/transfers/patterns/registry-auth-code/nu), [.se](/transfers/patterns/registry-auth-code/se) | ➖ | ↗️ You, at OpenSRS (a new one) | ➖ |
+| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | [.com.se](/transfers/patterns/gtlds/com.se) | ✅ OpusDNS | ↗️ You, at OpenSRS (a new one) | 👤 The holder, by email |
 
 [.is](/transfers/patterns/is) has no transfer at its registry. Its page explains what to do instead.
 
 At [.uk](/transfers/patterns/push/uk), the domain is pushed to OpusDNS's tag instead of approved.
 
-## Managing a connected domain
-
-Until you transfer a domain, OpusDNS can take some actions on it at OpenSRS. The others stay with you.
-
-### Transfer lock
-
-| Action | Note |
-| --- | --- |
-| ✅ See the transfer lock | OpusDNS reads the transfer lock at OpenSRS. |
-| ✅ Set or remove the transfer lock | OpusDNS sets and removes the lock through the OpenSRS API. |
-
-TLDs where this differs:
-
-| TLDs | What differs |
-| --- | --- |
-| [.at](/tld-knowledge-base/cctlds/at), [.ch](/tld-knowledge-base/cctlds/ch), [.co.za](/tld-knowledge-base/cctlds/co.za), [.cz](/tld-knowledge-base/cctlds/cz), [.de](/tld-knowledge-base/cctlds/de), [.dk](/tld-knowledge-base/cctlds/dk), [.eu](/tld-knowledge-base/cctlds/eu), [.gr](/tld-knowledge-base/cctlds/gr), .is, [.it](/tld-knowledge-base/cctlds/it), [.li](/tld-knowledge-base/cctlds/li), [.lt](/tld-knowledge-base/cctlds/lt), [.lu](/tld-knowledge-base/cctlds/lu), [.mx](/tld-knowledge-base/cctlds/mx), [.net.za](/tld-knowledge-base/cctlds/net.za), [.nl](/tld-knowledge-base/cctlds/nl), [.no](/tld-knowledge-base/cctlds/no), [.nu](/tld-knowledge-base/cctlds/nu), [.org.za](/tld-knowledge-base/cctlds/org.za), [.pl](/tld-knowledge-base/cctlds/pl), [.pt](/tld-knowledge-base/cctlds/pt), [.ro](/tld-knowledge-base/cctlds/ro), [.se](/tld-knowledge-base/cctlds/se), [.si](/tld-knowledge-base/cctlds/si), [.web.za](/tld-knowledge-base/cctlds/web.za) | ➖ No transfer lock |
-
-### Nameservers
-
-| Action | Note |
-| --- | --- |
-| ✅ See the nameservers | OpusDNS reads the nameservers in each sync. |
-| ✅ Change the nameservers | OpusDNS changes the nameservers through the OpenSRS API. |
-
-TLDs where this differs:
-
-| TLDs | What differs |
-| --- | --- |
-| [.dk](/tld-knowledge-base/cctlds/dk) | ↗️ Change the nameservers |
-
-### Contacts
-
-| Action | Note |
-| --- | --- |
-| ✅ See the contacts | OpusDNS reads the contacts in each sync. |
-| ↗️ Change the registrant | OpusDNS can't change the registrant of a connected domain. Change it at OpenSRS. |
-| ↗️ Change the other contacts | OpusDNS can't change the other contacts at OpenSRS. Change them at OpenSRS. |
-| ↗️ Remove a contact role | OpusDNS can't remove a contact from a connected domain. Remove it at OpenSRS. Not every TLD allows it. See the [TLD Knowledge Base](/tld-knowledge-base). |
-
-### WHOIS privacy
-
-| Action | Note |
-| --- | --- |
-| ↗️ See WHOIS privacy | OpusDNS has no access to WHOIS privacy at OpenSRS. Check it at OpenSRS. |
-| ↗️ Turn WHOIS privacy on or off | OpusDNS has no access to WHOIS privacy at OpenSRS. Change it at OpenSRS. |
+Until you transfer a domain, OpusDNS can make some changes to it at OpenSRS. See [What OpusDNS can do at OpenSRS](/products/connected-registrars/registrars#opensrs).

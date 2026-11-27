@@ -12,8 +12,9 @@ refreshes the ``/transfers`` route and its tab in ``scalar/scalar.config.json``
 and writes ``scripts/tld_knowledge_base/transfer_pages.json``, from which the
 TLD Knowledge Base links each TLD to its transfer page.
 
-Every sentence of the export must have its published wording in SENTENCES, so
-a new one fails the run instead of reaching the public docs unreviewed.
+Every sentence of the export must be in SENTENCES, so a new one fails the run:
+shown, it would reach the public docs unreviewed, and hidden, it can mean a step
+or a limit the pages don't show yet.
 
     python scripts/generate_transfer_pages.py --input capabilities.json
 """
@@ -34,6 +35,10 @@ KNOWLEDGE_BASE = REPO_ROOT / "scalar" / "content" / "tld-knowledge-base"
 ROUTE = "/transfers"
 REGISTRAR_ROUTE = f"{ROUTE}/registrars"
 PATTERN_ROUTE = f"{ROUTE}/patterns"
+# What OpusDNS can do with a connected domain per registrar, in the Guides' Connected
+# registrars group. Its nav entry is static: this script writes only the page.
+MANAGING_PAGE = REPO_ROOT / "scalar" / "content" / "connect" / "registrars.md"
+MANAGING_ROUTE = "/products/connected-registrars/registrars"
 SUPPORT_URL = "https://support.opusdns.com/"
 # The Knowledge Base generator links each TLD to its transfer page from this file.
 TRANSFER_PAGES_FILE = REPO_ROOT / "scripts" / "tld_knowledge_base" / "transfer_pages.json"
@@ -115,9 +120,9 @@ CCTLD_TEXT = "\n".join([
     "page lists the TLDs whose steps differ.",
 ])
 
-# The steps that differ between registrars and TLDs. A TLD's other steps are
-# the usual ones or fewer, such as no notification where nothing is approved,
-# so the matrix shows only these. The run fails where that stops holding.
+# The steps that differ between registrars and TLDs. The others are OpusDNS's or
+# the registry's, which the pattern pages describe, so the matrix shows only these.
+# A step of the customer's or the holder's outside them fails the run.
 MATRIX_COLUMNS = [
     ("Remove the lock", {"update_transfer_lock"}),
     ("Get the auth code", {"read_auth_code", "reset_auth_code"}),
@@ -125,6 +130,7 @@ MATRIX_COLUMNS = [
 ]
 MATRIX_ACTIONS = set().union(*(actions for _, actions in MATRIX_COLUMNS))
 
+# The groups of the capabilities response, in its order, without its transfer group.
 MANAGE_GROUPS = {"status": "Transfer lock", "dns": "Nameservers", "contacts": "Contacts", "privacy": "WHOIS privacy"}
 
 MANAGE_ACTIONS = [
@@ -444,6 +450,7 @@ class Step:
     def optional(self) -> bool:
         return self.action == "approve_transfer_out" and self.entity == "customer" and self.gtld
 
+
 @dataclass(frozen=True)
 class Flow:
     steps: tuple[Step, ...]
@@ -571,25 +578,17 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
     flows = {row["tld"]: flow_of(row, reg, tld_types) for row in rows}
     for flow in flows.values():
         for step in flow.steps:
-            say(step.template, reg)  # every sentence needs its wording, also where no page shows it
+            say(step.template, reg)
         say(flow.detail, reg)
-    per_tld = {row["tld"]: manage_cells(row, reg) for row in rows}
     with_steps = {tld: flow for tld, flow in flows.items() if flow.steps}
     if not with_steps:
         raise SystemExit(f"{reg.name}: no TLD has transfer steps")
     cells = {tld: flow.cells(reg) for tld, flow in with_steps.items()}
-    usual_cells = most_common(cells.values())
-    usual = most_common(flow for tld, flow in with_steps.items() if cells[tld] == usual_cells)
-
-    def outside_matrix(flow: Flow) -> set[tuple[str, str]]:
-        return {(s.action, s.entity) for s in flow.steps if s.action not in MATRIX_ACTIONS | {"update_privacy"}}
-
     for tld, flow in sorted(with_steps.items()):
-        # The matrix shows three steps, the pattern pages the rest. A TLD with the usual
-        # cells takes exactly the usual steps, any other no step outside them.
-        same = outside_matrix(flow) == outside_matrix(usual)
-        if not (same if cells[tld] == usual_cells else outside_matrix(flow) <= outside_matrix(usual)):
-            raise SystemExit(f"{reg.name}: .{tld} takes a step the matrix doesn't show: add a column to MATRIX_COLUMNS")
+        hidden = [s for s in flow.steps if s.action not in MATRIX_ACTIONS | {"update_privacy"} and s.entity in ("customer", "registrant")]
+        if hidden:
+            raise SystemExit(f"{reg.name}: .{tld} leaves {hidden[0].action} to someone, which the matrix doesn't show: "
+                             "add a column to MATRIX_COLUMNS")
     by_pattern: dict[object, list[str]] = defaultdict(list)
     for row in sorted(rows, key=lambda r: r["tld"]):
         if row["tld"] in with_steps:
@@ -602,7 +601,7 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
         table.append(f"| [{pattern.title}]({PATTERN_ROUTE}/{pattern.slug}) | {shown} | " + " | ".join(row_cells) + " |")
         for tld in tlds:
             if cells[tld] != row_cells:
-                differing[cells[tld]].append(tld)
+                differing[(key, cells[tld])].append(tld)
     no_transfers: dict[str, list[str]] = defaultdict(list)
     for tld in sorted(flows):
         if not flows[tld].steps:
@@ -613,16 +612,16 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
         "",
         f"[Connect](/products/connected-registrars/connect) your {reg.name} account and "
         "[request the transfer](/products/connected-registrars/transfer-to-opusdns). Which steps OpusDNS then "
-        f"takes at {reg.name} depends on your TLD's transfer pattern. The table below shows them for every TLD. "
-        f"Leave out `auth_code` where it shows ✅ under Get the auth code. In the API, {reg.name} is `{reg.api_value}`.",
+        f"takes at {reg.name} depends on your TLD. The table below shows them for every TLD. Send the auth code "
+        f"as `auth_code` only where it shows ↗️ under Get the auth code. In the API, {reg.name} is `{reg.api_value}`.",
         "",
-        legend({WHO[s.entity][0] for f in flows.values() for s in f.steps} | {WHO[c.entity][0] for cells in per_tld.values() for c in cells.values()} | {"↗️"}),
+        legend({cell.split(" ", 1)[0] for found in cells.values() for cell in found} | {"↗️"}),
         "",
         "## By transfer pattern",
         "",
         f"Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have. "
         f"{reg.name} sets which of the other steps OpusDNS can take for you. Search this page for your TLD. "
-        "If it isn't listed, it is in the first row.",
+        "If it isn't listed exactly, it is in the first row.",
         "",
         "| Transfer pattern | TLDs | " + " | ".join(label for label, _ in MATRIX_COLUMNS) + " |",
         "| --- | --- | " + " | ".join(":---:" for _ in MATRIX_COLUMNS) + " |",
@@ -630,9 +629,10 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
     ]
     if differing:
         lines += ["", "These TLDs differ from their pattern's row:", "",
-                  "| TLDs | " + " | ".join(label for label, _ in MATRIX_COLUMNS) + " |",
-                  "| --- | " + " | ".join(":---:" for _ in MATRIX_COLUMNS) + " |",
-                  *(f"| {tlds_of(tlds)} | " + " | ".join(found) + " |" for found, tlds in by_size(differing))]
+                  "| Transfer pattern | TLDs | " + " | ".join(label for label, _ in MATRIX_COLUMNS) + " |",
+                  "| --- | --- | " + " | ".join(":---:" for _ in MATRIX_COLUMNS) + " |",
+                  *(f"| [{PATTERNS[key].title}]({PATTERN_ROUTE}/{PATTERNS[key].slug}) | {tlds_of(tlds)} | " + " | ".join(found) + " |"
+                    for (key, found), tlds in by_size(differing))]
     for detail, tlds in by_size(no_transfers):
         reason = say(detail, reg, short=True)
         if not reason:
@@ -645,23 +645,8 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
         lines += ["", f"At TLDs with a WHOIS privacy service, {reg.name} refuses to remove the lock while privacy "
                   f"is on. Turn it off at {reg.name} first."]
 
-    usual_manage = {a: most_common(c[a] for c in per_tld.values()) for _, a, _ in MANAGE_ACTIONS}
-    lines += [
-        "",
-        "## Managing a connected domain",
-        "",
-        f"Until you transfer a domain, OpusDNS can take some actions on it at {reg.name}. The others stay with you.",
-    ]
-    for group, title in MANAGE_GROUPS.items():
-        actions = [(action, label) for g, action, label in MANAGE_ACTIONS if g == group]
-        lines += ["", f"### {title}", "", "| Action | Note |", "| --- | --- |"]
-        for action, label in actions:
-            symbol, note = at_most_tlds(per_tld, action, usual_manage[action], reg)
-            lines.append(f"| {symbol} {label} | {note} |")
-        found = differences(per_tld, actions, usual_manage, reg)
-        if found:
-            lines += ["", "TLDs where this differs:", "", "| TLDs | What differs |", "| --- | --- |"]
-            lines += [f"| {', '.join(kb_link(t, tld_types) for t in tlds)} | {text} |" for text, tlds in by_size(found)]
+    lines += ["", f"Until you transfer a domain, OpusDNS can make some changes to it at {reg.name}. See "
+              f"[What OpusDNS can do at {reg.name}]({MANAGING_ROUTE}#{anchor(reg.name)})."]
     lines.append("")
     return "\n".join(lines)
 
@@ -772,6 +757,51 @@ def render_tld(tld: str, data: dict, side: RegistrySide) -> str:
     kb = kb_path(tld, data["tld_types"])
     if kb:
         lines += ["", f"The [TLD Knowledge Base]({kb}) has more on {name}."]
+    lines.append("")
+    return "\n".join(lines)
+
+
+def anchor(heading: str) -> str:
+    """The id Scalar gives a heading."""
+    return re.sub(r"[^a-z0-9]+", "-", heading.lower()).strip("-")
+
+
+def render_managing(data: dict) -> str:
+    tld_types = data["tld_types"]
+    keys = sorted(data["registrars"], key=registrar_order)
+    per = {k: {row["tld"]: manage_cells(row, REGISTRARS[k]) for row in data["registrars"][k]} for k in keys}
+    usual = {k: {a: most_common(c[a] for c in per[k].values()) for _, a, _ in MANAGE_ACTIONS} for k in keys}
+    shown = {k: {a: at_most_tlds(per[k], a, usual[k][a], REGISTRARS[k]) for _, a, _ in MANAGE_ACTIONS} for k in keys}
+    same = [(a, label) for _, a, label in MANAGE_ACTIONS if len({shown[k][a][0] for k in keys}) == 1]
+    varying = [(a, label) for _, a, label in MANAGE_ACTIONS if (a, label) not in same]
+    lines = [
+        "# What OpusDNS can do per registrar",
+        "",
+        "Until you transfer a domain to OpusDNS, it stays at your current registrar. OpusDNS syncs it from there "
+        "and makes some changes there for you. This page shows which ones, for each registrar.",
+        "",
+        legend({shown[k][a][0] for k in keys for _, a, _ in MANAGE_ACTIONS} | {"↗️"}),
+    ]
+    if same:
+        lines += ["", "## At every registrar", "", *[f"- {shown[keys[0]][a][0]} {label}" for a, label in same]]
+    if varying:
+        lines += ["", "## Depends on the registrar", "",
+                  "| Registrar | " + " | ".join(label for _, label in varying) + " |",
+                  "| --- | " + " | ".join(":---:" for _ in varying) + " |",
+                  *[f"| [{REGISTRARS[k].name}](#{anchor(REGISTRARS[k].name)}) | " + " | ".join(shown[k][a][0] for a, _ in varying) + " |"
+                    for k in keys]]
+    for k in keys:
+        reg = REGISTRARS[k]
+        lines += ["", f"## {reg.name}", "",
+                  f"To transfer a domain from {reg.name}, see [Transfer from {reg.name}]({REGISTRAR_ROUTE}/{reg.slug})."]
+        for group, title in MANAGE_GROUPS.items():
+            actions = [(action, label) for g, action, label in MANAGE_ACTIONS if g == group]
+            lines += ["", f"**{title}**", "", "| Action | Note |", "| --- | --- |"]
+            lines += [f"| {shown[k][action][0]} {label} | {shown[k][action][1]} |" for action, label in actions]
+            found = differences(per[k], actions, usual[k], reg)
+            if found:
+                lines += ["", "TLDs where this differs:", "", "| TLDs | What differs |", "| --- | --- |"]
+                lines += [f"| {', '.join(kb_link(t, tld_types) for t in tlds)} | {text} |" for text, tlds in by_size(found)]
     lines.append("")
     return "\n".join(lines)
 
@@ -902,12 +932,18 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     parser.add_argument("--tld-pages-file", type=Path, default=TRANSFER_PAGES_FILE)
+    parser.add_argument("--managing-page", type=Path, default=MANAGING_PAGE)
     args = parser.parse_args(argv)
     data = json.loads(args.input.read_text(encoding="utf-8"))
     data["registrars"] = {k: v for k, v in data["registrars"].items() if k not in EXCLUDED}
     unknown = set(data["registrars"]) - set(REGISTRARS)
     if unknown:
         raise SystemExit(f"unknown registrars {sorted(unknown)}: add them to REGISTRARS")
+    every = set().union(*({row["tld"] for row in rows} for rows in data["registrars"].values()))
+    for key, rows in data["registrars"].items():
+        missing = sorted(every - {row["tld"] for row in rows})
+        if missing:
+            raise SystemExit(f"{REGISTRARS[key].name}: the export has no answer for {missing}, so its page can't say \"every other TLD\"")
     facts = registry_facts(data)
     patterns = ordered_patterns(facts)
     without = sorted(tld for tld, side in facts.items() if side.key is None)
@@ -925,6 +961,7 @@ def main(argv: list[str] | None = None) -> None:
         tld: {"title": PATTERNS[side.key].title if side.key is not None else "No transfers", "path": tld_path(tld, side.key)}
         for tld, side in sorted(facts.items())
     }
+    args.managing_page.write_text(render_managing(data), encoding="utf-8")
     args.tld_pages_file.write_text(json.dumps(links, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     update_config(args.config, list(data["registrars"]), patterns, without)
     stale = sorted(str(p.relative_to(args.output)) for p in args.output.rglob("*.md") if str(p.relative_to(args.output)) not in pages)

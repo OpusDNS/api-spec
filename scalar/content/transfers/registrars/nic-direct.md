@@ -1,12 +1,12 @@
 # Transfer from NIC Direct
 
-[Connect](/products/connected-registrars/connect) your NIC Direct account and [request the transfer](/products/connected-registrars/transfer-to-opusdns). Which steps OpusDNS then takes at NIC Direct depends on your TLD's transfer pattern. The table below shows them for every TLD. Leave out `auth_code` where it shows ✅ under Get the auth code. In the API, NIC Direct is `NIC_DIRECT`.
+[Connect](/products/connected-registrars/connect) your NIC Direct account and [request the transfer](/products/connected-registrars/transfer-to-opusdns). Which steps OpusDNS then takes at NIC Direct depends on your TLD. The table below shows them for every TLD. Send the auth code as `auth_code` only where it shows ↗️ under Get the auth code. In the API, NIC Direct is `NIC_DIRECT`.
 
-✅ OpusDNS does it for you · ↗️ you do it at your registrar · 👤 the domain's holder approves by email · ⚙️ the registry does it on its own · ➖ the TLD doesn't have it
+✅ OpusDNS does it for you · ↗️ you do it at your registrar · 👤 the domain's holder approves by email · ➖ the TLD doesn't have it
 
 ## By transfer pattern
 
-Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have. NIC Direct sets which of the other steps OpusDNS can take for you. Search this page for your TLD. If it isn't listed, it is in the first row.
+Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have. NIC Direct sets which of the other steps OpusDNS can take for you. Search this page for your TLD. If it isn't listed exactly, it is in the first row.
 
 | Transfer pattern | TLDs | Remove the lock | Get the auth code | Approve |
 | --- | --- | :---: | :---: | :---: |
@@ -22,46 +22,14 @@ Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step th
 
 These TLDs differ from their pattern's row:
 
-| TLDs | Remove the lock | Get the auth code | Approve |
-| --- | :---: | :---: | :---: |
-| [.nu](/transfers/patterns/registry-auth-code/nu), [.se](/transfers/patterns/registry-auth-code/se) | ➖ | ↗️ You, at NIC Direct (a new one) | ➖ |
-| [.com.se](/transfers/patterns/gtlds/com.se) | ↗️ You, at NIC Direct | ↗️ You, at NIC Direct (a new one) | ✅ OpusDNS |
-| [.lu](/transfers/patterns/no-auth-code/lu) | ➖ | ➖ | 👤 The holder, by email |
+| Transfer pattern | TLDs | Remove the lock | Get the auth code | Approve |
+| --- | --- | :---: | :---: | :---: |
+| [Auth code set by the registry](/transfers/patterns/registry-auth-code) | [.nu](/transfers/patterns/registry-auth-code/nu), [.se](/transfers/patterns/registry-auth-code/se) | ➖ | ↗️ You, at NIC Direct (a new one) | ➖ |
+| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | [.com.se](/transfers/patterns/gtlds/com.se) | ↗️ You, at NIC Direct | ↗️ You, at NIC Direct (a new one) | ✅ OpusDNS |
+| [No auth code, with approval](/transfers/patterns/no-auth-code) | [.lu](/transfers/patterns/no-auth-code/lu) | ➖ | ➖ | 👤 The holder, by email |
 
 [.is](/transfers/patterns/is) has no transfer at its registry. Its page explains what to do instead.
 
 At [.uk](/transfers/patterns/push/uk), the domain is pushed to OpusDNS's tag instead of approved.
 
-## Managing a connected domain
-
-Until you transfer a domain, OpusDNS can take some actions on it at NIC Direct. The others stay with you.
-
-### Transfer lock
-
-| Action | Note |
-| --- | --- |
-| ↗️ See the transfer lock | Check the transfer lock at NIC Direct. |
-| ↗️ Set or remove the transfer lock | OpusDNS can't change the transfer lock at NIC Direct. Change it at NIC Direct. |
-
-### Nameservers
-
-| Action | Note |
-| --- | --- |
-| ✅ See the nameservers | OpusDNS reads the nameservers in each sync. |
-| ↗️ Change the nameservers | OpusDNS can't change the nameservers at NIC Direct. Change them at NIC Direct. |
-
-### Contacts
-
-| Action | Note |
-| --- | --- |
-| ✅ See the contacts | OpusDNS reads the contacts in each sync. |
-| ↗️ Change the registrant | OpusDNS can't change the registrant at NIC Direct. Change it at NIC Direct. |
-| ↗️ Change the other contacts | OpusDNS can't change the other contacts at NIC Direct. Change them at NIC Direct. |
-| ↗️ Remove a contact role | OpusDNS can't remove a contact from a connected domain. Remove it at NIC Direct. Not every TLD allows it. See the [TLD Knowledge Base](/tld-knowledge-base). |
-
-### WHOIS privacy
-
-| Action | Note |
-| --- | --- |
-| ↗️ See WHOIS privacy | OpusDNS has no access to WHOIS privacy at NIC Direct. Check it at NIC Direct. |
-| ↗️ Turn WHOIS privacy on or off | OpusDNS has no access to WHOIS privacy at NIC Direct. Change it at NIC Direct. |
+Until you transfer a domain, OpusDNS can make some changes to it at NIC Direct. See [What OpusDNS can do at NIC Direct](/products/connected-registrars/registrars#nic-direct).

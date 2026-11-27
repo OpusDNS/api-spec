@@ -75,6 +75,10 @@ the transfer goes to the registry, OpusDNS:
    yourself. Otherwise the transfer stops with
    `409 ERROR_DOMAIN_TRANSFER_NOT_ALLOWED`.
 
+Once the registry has transferred the domain, OpusDNS completes the transfer in
+your account, sets the transfer lock where the TLD has one, and stops syncing the
+domain from the connected registrar.
+
 If the transfer request fails and the registry is known to hold no transfer of
 the domain, OpusDNS sets the transfer lock it removed again. A transfer that is
 rejected or cancelled later leaves the lock off: set it again at the registrar.

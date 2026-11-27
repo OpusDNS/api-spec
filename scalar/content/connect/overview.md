@@ -140,6 +140,7 @@ the request in that organization's context (`X-Organization-Context`).
 
 - [Transfer a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns): transfer a domain without asking the registrar for its auth code.
 - [Transfers](/transfers/overview): the steps of a transfer at each registrar and TLD.
+- [What OpusDNS can do per registrar](/products/connected-registrars/registrars): the changes OpusDNS makes at each registrar until you transfer a domain.
 
 ## Related API Reference
 

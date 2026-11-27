@@ -1,12 +1,12 @@
 # Transfer from Realtime Register
 
-[Connect](/products/connected-registrars/connect) your Realtime Register account and [request the transfer](/products/connected-registrars/transfer-to-opusdns). Which steps OpusDNS then takes at Realtime Register depends on your TLD's transfer pattern. The table below shows them for every TLD. Leave out `auth_code` where it shows ✅ under Get the auth code. In the API, Realtime Register is `REALTIMEREGISTER`.
+[Connect](/products/connected-registrars/connect) your Realtime Register account and [request the transfer](/products/connected-registrars/transfer-to-opusdns). Which steps OpusDNS then takes at Realtime Register depends on your TLD. The table below shows them for every TLD. Send the auth code as `auth_code` only where it shows ↗️ under Get the auth code. In the API, Realtime Register is `REALTIMEREGISTER`.
 
-✅ OpusDNS does it for you · ↗️ you do it at your registrar · 👤 the domain's holder approves by email · ⚙️ the registry does it on its own · ➖ the TLD doesn't have it
+✅ OpusDNS does it for you · ↗️ you do it at your registrar · 👤 the domain's holder approves by email · ➖ the TLD doesn't have it
 
 ## By transfer pattern
 
-Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have. Realtime Register sets which of the other steps OpusDNS can take for you. Search this page for your TLD. If it isn't listed, it is in the first row.
+Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have. Realtime Register sets which of the other steps OpusDNS can take for you. Search this page for your TLD. If it isn't listed exactly, it is in the first row.
 
 | Transfer pattern | TLDs | Remove the lock | Get the auth code | Approve |
 | --- | --- | :---: | :---: | :---: |
@@ -22,47 +22,15 @@ Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step th
 
 These TLDs differ from their pattern's row:
 
-| TLDs | Remove the lock | Get the auth code | Approve |
-| --- | :---: | :---: | :---: |
-| [.ag](/transfers/patterns/gtlds/ag), [.ai](/transfers/patterns/gtlds/ai), [.bh](/transfers/patterns/gtlds/bh), [.biz.bh](/transfers/patterns/gtlds/biz.bh), [.bz](/transfers/patterns/gtlds/bz), [.cc](/transfers/patterns/gtlds/cc), [.cc.bh](/transfers/patterns/gtlds/cc.bh), [.co](/transfers/patterns/gtlds/co), [.co.nl](/transfers/patterns/gtlds/co.nl), [.co.no](/transfers/patterns/gtlds/co.no), [.com.bh](/transfers/patterns/gtlds/com.bh), [.com.de](/transfers/patterns/gtlds/com.de), [.edu.bh](/transfers/patterns/gtlds/edu.bh), [.fm](/transfers/patterns/gtlds/fm), [.fo](/transfers/patterns/gtlds/fo), [.fr](/transfers/patterns/gtlds/fr), [.gd](/transfers/patterns/gtlds/gd), [.gl](/transfers/patterns/gtlds/gl), [.info.bh](/transfers/patterns/gtlds/info.bh), [.io](/transfers/patterns/gtlds/io), [.lc](/transfers/patterns/gtlds/lc), [.lv](/transfers/patterns/gtlds/lv), [.me](/transfers/patterns/gtlds/me), [.me.bh](/transfers/patterns/gtlds/me.bh), [.mn](/transfers/patterns/gtlds/mn), [.name.bh](/transfers/patterns/gtlds/name.bh), [.net.bh](/transfers/patterns/gtlds/net.bh), [.org.bh](/transfers/patterns/gtlds/org.bh), [.pm](/transfers/patterns/gtlds/pm), [.pr](/transfers/patterns/gtlds/pr), [.radio.am](/transfers/patterns/gtlds/radio.am), [.radio.fm](/transfers/patterns/gtlds/radio.fm), [.re](/transfers/patterns/gtlds/re), [.sc](/transfers/patterns/gtlds/sc), [.tf](/transfers/patterns/gtlds/tf), [.to](/transfers/patterns/gtlds/to), [.tv](/transfers/patterns/gtlds/tv), [.us](/transfers/patterns/gtlds/us), [.vc](/transfers/patterns/gtlds/vc), [.vg](/transfers/patterns/gtlds/vg), [.vu](/transfers/patterns/gtlds/vu), [.wf](/transfers/patterns/gtlds/wf), [.ws](/transfers/patterns/gtlds/ws), [.yt](/transfers/patterns/gtlds/yt) | ↗️ You, at Realtime Register | ✅ OpusDNS | ↗️ You, at Realtime Register |
-| [.nu](/transfers/patterns/registry-auth-code/nu), [.se](/transfers/patterns/registry-auth-code/se) | ➖ | ↗️ You, at Realtime Register (a new one) | ➖ |
-| [.com.se](/transfers/patterns/gtlds/com.se) | ↗️ You, at Realtime Register | ↗️ You, at Realtime Register (a new one) | ↗️ You, at Realtime Register |
-| [.lu](/transfers/patterns/no-auth-code/lu) | ➖ | ➖ | 👤 The holder, by email |
+| Transfer pattern | TLDs | Remove the lock | Get the auth code | Approve |
+| --- | --- | :---: | :---: | :---: |
+| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | [.ag](/transfers/patterns/gtlds/ag), [.ai](/transfers/patterns/gtlds/ai), [.bh](/transfers/patterns/gtlds/bh), [.biz.bh](/transfers/patterns/gtlds/biz.bh), [.bz](/transfers/patterns/gtlds/bz), [.cc](/transfers/patterns/gtlds/cc), [.cc.bh](/transfers/patterns/gtlds/cc.bh), [.co](/transfers/patterns/gtlds/co), [.co.nl](/transfers/patterns/gtlds/co.nl), [.co.no](/transfers/patterns/gtlds/co.no), [.com.bh](/transfers/patterns/gtlds/com.bh), [.com.de](/transfers/patterns/gtlds/com.de), [.edu.bh](/transfers/patterns/gtlds/edu.bh), [.fm](/transfers/patterns/gtlds/fm), [.fo](/transfers/patterns/gtlds/fo), [.fr](/transfers/patterns/gtlds/fr), [.gd](/transfers/patterns/gtlds/gd), [.gl](/transfers/patterns/gtlds/gl), [.info.bh](/transfers/patterns/gtlds/info.bh), [.io](/transfers/patterns/gtlds/io), [.lc](/transfers/patterns/gtlds/lc), [.lv](/transfers/patterns/gtlds/lv), [.me](/transfers/patterns/gtlds/me), [.me.bh](/transfers/patterns/gtlds/me.bh), [.mn](/transfers/patterns/gtlds/mn), [.name.bh](/transfers/patterns/gtlds/name.bh), [.net.bh](/transfers/patterns/gtlds/net.bh), [.org.bh](/transfers/patterns/gtlds/org.bh), [.pm](/transfers/patterns/gtlds/pm), [.pr](/transfers/patterns/gtlds/pr), [.radio.am](/transfers/patterns/gtlds/radio.am), [.radio.fm](/transfers/patterns/gtlds/radio.fm), [.re](/transfers/patterns/gtlds/re), [.sc](/transfers/patterns/gtlds/sc), [.tf](/transfers/patterns/gtlds/tf), [.to](/transfers/patterns/gtlds/to), [.tv](/transfers/patterns/gtlds/tv), [.us](/transfers/patterns/gtlds/us), [.vc](/transfers/patterns/gtlds/vc), [.vg](/transfers/patterns/gtlds/vg), [.vu](/transfers/patterns/gtlds/vu), [.wf](/transfers/patterns/gtlds/wf), [.ws](/transfers/patterns/gtlds/ws), [.yt](/transfers/patterns/gtlds/yt) | ↗️ You, at Realtime Register | ✅ OpusDNS | ↗️ You, at Realtime Register |
+| [Auth code set by the registry](/transfers/patterns/registry-auth-code) | [.nu](/transfers/patterns/registry-auth-code/nu), [.se](/transfers/patterns/registry-auth-code/se) | ➖ | ↗️ You, at Realtime Register (a new one) | ➖ |
+| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | [.com.se](/transfers/patterns/gtlds/com.se) | ↗️ You, at Realtime Register | ↗️ You, at Realtime Register (a new one) | ↗️ You, at Realtime Register |
+| [No auth code, with approval](/transfers/patterns/no-auth-code) | [.lu](/transfers/patterns/no-auth-code/lu) | ➖ | ➖ | 👤 The holder, by email |
 
 [.is](/transfers/patterns/is) has no transfer at its registry. Its page explains what to do instead.
 
 At [.uk](/transfers/patterns/push/uk), the domain is pushed to OpusDNS's tag instead of approved.
 
-## Managing a connected domain
-
-Until you transfer a domain, OpusDNS can take some actions on it at Realtime Register. The others stay with you.
-
-### Transfer lock
-
-| Action | Note |
-| --- | --- |
-| ↗️ See the transfer lock | Check the transfer lock at Realtime Register. |
-| ↗️ Set or remove the transfer lock | OpusDNS can't change the transfer lock at Realtime Register. Change it at Realtime Register. |
-
-### Nameservers
-
-| Action | Note |
-| --- | --- |
-| ✅ See the nameservers | OpusDNS reads the nameservers in each sync. |
-| ✅ Change the nameservers | OpusDNS changes the nameservers through the Realtime Register API. |
-
-### Contacts
-
-| Action | Note |
-| --- | --- |
-| ✅ See the contacts | OpusDNS reads the contacts in each sync. |
-| ↗️ Change the registrant | OpusDNS can't change the registrant at Realtime Register. Change it at Realtime Register. |
-| ↗️ Change the other contacts | OpusDNS can't change the other contacts at Realtime Register. Change them at Realtime Register. |
-| ↗️ Remove a contact role | OpusDNS can't remove a contact from a connected domain. Remove it at Realtime Register. Not every TLD allows it. See the [TLD Knowledge Base](/tld-knowledge-base). |
-
-### WHOIS privacy
-
-| Action | Note |
-| --- | --- |
-| ↗️ See WHOIS privacy | OpusDNS has no access to WHOIS privacy at Realtime Register. Check it at Realtime Register. |
-| ↗️ Turn WHOIS privacy on or off | OpusDNS has no access to WHOIS privacy at Realtime Register. Change it at Realtime Register. |
+Until you transfer a domain, OpusDNS can make some changes to it at Realtime Register. See [What OpusDNS can do at Realtime Register](/products/connected-registrars/registrars#realtime-register).
