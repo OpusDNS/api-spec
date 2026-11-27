@@ -93,14 +93,19 @@ ICANN_TEXT = "\n".join([
     "completes it. Your current registrar can also approve it earlier.",
 ])
 
-CCTLD_TEXT = (
+CCTLD_TEXT = "\n".join([
     "ccTLD registries don't follow ICANN's Transfer Policy. Each sets its own rules, so the steps "
-    "often differ from the ones above. Some registries have no transfer lock, such as `.de` and "
-    "`.ch`, and some complete a transfer at once without an approval, such as `.de` and `.se`. At "
-    "`.lu` the domain's holder approves the transfer by email. At `.se` and `.nu` the registry issues "
-    "the auth codes. A `.uk` domain is pushed to the new registrar's tag instead of requested. The "
-    "[TLD Knowledge Base](/tld-knowledge-base) describes each TLD's rules."
-)
+    "often differ from the ones above. For example:",
+    "",
+    "- `.de` and `.ch` have no transfer lock.",
+    "- `.de` and `.se` complete a transfer at once, without an approval.",
+    "- At `.lu`, the domain's holder approves the transfer by email.",
+    "- At `.se` and `.nu`, only the registry issues auth codes.",
+    "- A `.uk` domain is pushed to the new registrar's tag instead of requested.",
+    "",
+    "The [TLD Knowledge Base](/tld-knowledge-base) describes each TLD's rules, and each registrar's "
+    "page lists the TLDs whose steps differ.",
+])
 
 REGISTRAR_PAGE_NOTE = (
     f"For gTLDs, these steps follow ICANN's [Transfer Policy]({ICANN_POLICY}). ccTLDs often differ. "

@@ -15,7 +15,15 @@ For gTLDs such as `.com`, ICANN's [Transfer Policy](https://www.icann.org/resour
 
 ## ccTLDs
 
-ccTLD registries don't follow ICANN's Transfer Policy. Each sets its own rules, so the steps often differ from the ones above. Some registries have no transfer lock, such as `.de` and `.ch`, and some complete a transfer at once without an approval, such as `.de` and `.se`. At `.lu` the domain's holder approves the transfer by email. At `.se` and `.nu` the registry issues the auth codes. A `.uk` domain is pushed to the new registrar's tag instead of requested. The [TLD Knowledge Base](/tld-knowledge-base) describes each TLD's rules.
+ccTLD registries don't follow ICANN's Transfer Policy. Each sets its own rules, so the steps often differ from the ones above. For example:
+
+- `.de` and `.ch` have no transfer lock.
+- `.de` and `.se` complete a transfer at once, without an approval.
+- At `.lu`, the domain's holder approves the transfer by email.
+- At `.se` and `.nu`, only the registry issues auth codes.
+- A `.uk` domain is pushed to the new registrar's tag instead of requested.
+
+The [TLD Knowledge Base](/tld-knowledge-base) describes each TLD's rules, and each registrar's page lists the TLDs whose steps differ.
 
 ## With a connected account
 
