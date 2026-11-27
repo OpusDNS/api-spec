@@ -552,3 +552,25 @@ def test_the_holder_approves_where_the_registry_says_so():
     only_lu = export([lu])
     lu_facts = gen.registry_facts(only_lu)
     assert "The domain's holder then approves or denies the transfer by email." in gen.render_pattern(*gen.ordered_patterns(lu_facts)[0], only_lu, lu_facts)
+
+
+def test_a_pattern_row_takes_the_cells_most_of_its_tlds_have():
+    # .aa sorts first but is the exception: the row must not take its cells.
+    aa = usual_steps("aa")
+    aa[3] = step("approve_transfer_out", "opusdns", "OpusDNS approves the transfer at OpenSRS.")
+    text = page([row("aa", aa), row("com", usual_steps("com")), row("net", usual_steps("net"))])
+    assert "| ✅ OpusDNS | ✅ OpusDNS | ↗️ You, optional |" in section(text, *MATRIX).split("These TLDs differ")[0]
+    assert "| [.aa](/transfers/patterns/gtlds/aa) | ✅ OpusDNS | ✅ OpusDNS | ✅ OpusDNS |" in section(text, *MATRIX)
+
+
+def test_a_gtld_says_the_registry_completes_after_five_days():
+    data = export([row("com", usual_steps("com")), row("net", usual_steps("net"))])
+    facts = gen.registry_facts(data)
+    assert "At gTLDs, the registry completes it after five days without an answer." in gen.render_tld("com", data, facts["com"])
+
+
+def test_a_null_lock_policy_reads_as_no_lock():
+    xx = row("xx", usual_steps("xx"))
+    xx["specification"]["transfer_policies"]["transfer_lock_policy"] = None
+    assert gen.pattern_key(xx) == ("registrar", True, False)
+    assert gen.registry_side(xx).lock is False
