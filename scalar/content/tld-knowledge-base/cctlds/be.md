@@ -86,7 +86,7 @@
 | Transfer Extends Domain | ❌ No |
 | Transfer via AuthInfo | ✅ Yes |
 | Confirmation Required | ❌ No |
-| Transfer to OpusDNS | [Auth code from the registry](/transfers/registry-auth-code) |
+| Transfer to OpusDNS | [Auth code set by the registry](/transfers/patterns/registry-auth-code/be) |
 
 ## WHOIS & RDAP
 

@@ -85,7 +85,7 @@
 | Transfer Extends Domain | ❌ No |
 | Transfer via AuthInfo | ❌ No |
 | Confirmation Required | ✅ Yes (Both parties) |
-| Transfer to OpusDNS | [No auth code, with approval](/transfers/no-auth-code) |
+| Transfer to OpusDNS | [No auth code, with approval](/transfers/patterns/no-auth-code/org.za) |
 
 ## Dispute Resolution
 

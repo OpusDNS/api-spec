@@ -68,7 +68,7 @@ import {
 ### How publishing works
 
 **Merging to `main` publishes.** Scalar's GitHub integration builds `main`; there
-is no deploy workflow in this repo and no Scalar token. The custom domain is
+is no deploy pattern in this repo and no Scalar token. The custom domain is
 declared in the config itself
 ([`scalar/scalar.config.json`](./scalar/scalar.config.json), `siteConfig.customDomain`),
 not in CI. Nothing in the repository shows this connection, so it is written down
@@ -82,7 +82,7 @@ or an icon name Scalar does not know renders as nothing rather than failing, and
 merging is what makes that public.
 
 The preview does not, however, cover the bots' own PRs: GitHub suppresses
-workflow runs for pull requests opened with a token rather than by a person, so
+pattern runs for pull requests opened with a token rather than by a person, so
 both bots validate the config inline before opening theirs.
 
 ### Layout
@@ -93,11 +93,11 @@ both bots validate the config inline before opening theirs.
 | `scalar/content/` | Guide Markdown |
 | `scalar/content/tld-knowledge-base/` | **Generated** from `OpusDNS/tld-specifications` by `scripts/generate_tld_knowledge_base.py` |
 | `scalar/content/mcp-server/` | **Generated** in `OpusDNS/opusdns-mcp`, which opens a PR here carrying the diff. `scripts/sync_mcp_docs.py` lives here but is run from there — see [`scripts/mcp_docs/`](./scripts/mcp_docs/) |
-| `scalar/content/transfers/` | **Generated** by `scripts/generate_transfer_pages.py` from OpusDNS's registrar capability export, run by hand: the overview, one page per transfer workflow and `registrars/` with one page per registrar. It also writes the `/transfers` route and tab in `scalar.config.json`, and `scripts/tld_knowledge_base/transfer_workflows.json`, from which the TLD Knowledge Base links each TLD to its workflow |
+| `scalar/content/transfers/` | **Generated** by `scripts/generate_transfer_pages.py` from OpusDNS's registrar capability export, run by hand: the overview, `patterns/` with a page per transfer pattern and per TLD, and `registrars/` with a page per registrar. It also writes the `/transfers` route and tab in `scalar.config.json`, and `scripts/tld_knowledge_base/transfer_pages.json`, from which the TLD Knowledge Base links each TLD to its transfer page |
 | `src/openapi.yaml` | The spec. The API Reference tab is fetched by Scalar from the raw GitHub URL at build time, so it is eventually consistent rather than bundled |
 
-Two bots write `scalar.config.json`: **Generate TLD Knowledge Base**, a workflow
-in this repo, and **Publish MCP docs to api-spec**, a workflow in
+Two bots write `scalar.config.json`: **Generate TLD Knowledge Base**, a pattern
+in this repo, and **Publish MCP docs to api-spec**, a pattern in
 `OpusDNS/opusdns-mcp` that opens its PR here. Each rebuilds only the subtree it
 owns and both serialise identically (`json.dumps(..., indent=2,
 ensure_ascii=False)` plus a trailing newline), so hand edits should match that

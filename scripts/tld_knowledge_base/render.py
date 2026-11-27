@@ -297,19 +297,19 @@ def _nameservers_and_dns(config: dict[str, Any]) -> list[str]:
 
 # Written by scripts/generate_transfer_pages.py from the registrar capabilities,
 # which know what the TLD specs don't (a push TLD, for one).
-TRANSFER_WORKFLOWS = Path(__file__).with_name("transfer_workflows.json")
+TRANSFER_PAGES = Path(__file__).with_name("transfer_pages.json")
 
 
 @cache
-def _transfer_workflows() -> dict[str, dict[str, str]]:
-    if not TRANSFER_WORKFLOWS.exists():
+def _transfer_pages() -> dict[str, dict[str, str]]:
+    if not TRANSFER_PAGES.exists():
         return {}
-    return json.loads(TRANSFER_WORKFLOWS.read_text(encoding="utf-8"))
+    return json.loads(TRANSFER_PAGES.read_text(encoding="utf-8"))
 
 
-def _transfer_workflow(tld: str) -> str:
-    workflow = _transfer_workflows().get(tld)
-    return f"[{workflow['title']}]({workflow['path']})" if workflow else ""
+def _transfer_page(tld: str) -> str:
+    pattern = _transfer_pages().get(tld)
+    return f"[{pattern['title']}]({pattern['path']})" if pattern else ""
 
 
 def _transfer_policy(config: dict[str, Any], tld: str) -> list[str]:
@@ -346,7 +346,7 @@ def _transfer_policy(config: dict[str, Any], tld: str) -> list[str]:
             "Confirmation Required",
             _confirmation_label(transfer.get("transfer_ack"), transfer.get("transfer_nack")),
         ),
-        ("Transfer to OpusDNS", _transfer_workflow(tld)),
+        ("Transfer to OpusDNS", _transfer_page(tld)),
     ]
     return _section("Transfer Policy", rows)
 

@@ -25,14 +25,18 @@ ccTLD registries don't follow ICANN's Transfer Policy. Each sets its own rules, 
 
 The [TLD Knowledge Base](/tld-knowledge-base) describes each TLD's rules, and each registrar's page lists the TLDs whose steps differ.
 
-TLDs with the same steps share a workflow:
+## Transfer patterns
 
-- [gTLDs and most ccTLDs](/transfers/gtlds): 502 TLDs
-- [Auth code, completes at once](/transfers/auth-code): 13 TLDs
-- [Auth code from the registry](/transfers/registry-auth-code): 10 TLDs
-- [No auth code, with approval](/transfers/no-auth-code): 5 TLDs
-- [Auth code from the registry, with approval](/transfers/registry-auth-code-approval): 2 TLDs
-- [Push to a tag](/transfers/push): 1 TLD
+TLDs with the same steps share a transfer pattern:
+
+- [gTLDs and most ccTLDs](/transfers/patterns/gtlds): 503 TLDs
+- [Auth code, no approval](/transfers/patterns/auth-code): 12 TLDs
+- [Auth code set by the registry](/transfers/patterns/registry-auth-code): 10 TLDs
+- [No auth code, with approval](/transfers/patterns/no-auth-code): 5 TLDs
+- [Auth code set by the registry, with approval](/transfers/patterns/registry-auth-code-approval): 2 TLDs
+- [Push to a tag](/transfers/patterns/push): 1 TLD
+
+No transfers at [.is](/transfers/patterns/is).
 
 ## With a connected account
 

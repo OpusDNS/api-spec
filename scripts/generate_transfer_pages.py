@@ -5,9 +5,12 @@ The export is a JSON file: ``tld_types`` maps each TLD to ``ccTLD`` or
 ``gTLD``, and ``registrars`` maps each registrar a customer can connect to its
 per-TLD answers: ``tld``, ``flows.transfer_to_opusdns`` (the steps of
 transferring a domain from that registrar to OpusDNS) and ``actions`` (what
-OpusDNS can do with a connected domain there). This script writes an overview
-and one page per registrar into ``scalar/content/transfers/`` and refreshes the
-``/transfers`` route and its tab in ``scalar/scalar.config.json``.
+OpusDNS can do with a connected domain there). This script writes into
+``scalar/content/transfers/`` an overview, ``patterns/`` with a page per
+transfer pattern and per TLD, and ``registrars/`` with a page per registrar. It
+refreshes the ``/transfers`` route and its tab in ``scalar/scalar.config.json``
+and writes ``scripts/tld_knowledge_base/transfer_pages.json``, from which the
+TLD Knowledge Base links each TLD to its transfer page.
 
 Every sentence of the export must have its published wording in SENTENCES, so
 a new one fails the run instead of reaching the public docs unreviewed.
@@ -30,8 +33,10 @@ DEFAULT_CONFIG = REPO_ROOT / "scalar" / "scalar.config.json"
 KNOWLEDGE_BASE = REPO_ROOT / "scalar" / "content" / "tld-knowledge-base"
 ROUTE = "/transfers"
 REGISTRAR_ROUTE = f"{ROUTE}/registrars"
-# The Knowledge Base generator links each TLD to its workflow from this file.
-WORKFLOWS_FILE = REPO_ROOT / "scripts" / "tld_knowledge_base" / "transfer_workflows.json"
+PATTERN_ROUTE = f"{ROUTE}/patterns"
+SUPPORT_URL = "https://support.opusdns.com/"
+# The Knowledge Base generator links each TLD to its pattern from this file.
+TRANSFER_PAGES_FILE = REPO_ROOT / "scripts" / "tld_knowledge_base" / "transfer_pages.json"
 TAB = {"title": "Transfers", "icon": "line/arrow-right", "to": ROUTE, "newTab": False}
 
 
@@ -112,7 +117,7 @@ CCTLD_TEXT = "\n".join([
 
 REGISTRAR_PAGE_NOTE = (
     f"For gTLDs, these steps follow ICANN's [Transfer Policy]({ICANN_POLICY}). Every TLD follows one of the "
-    f"[transfer workflows]({ROUTE}/overview#transfer-workflows)."
+    f"[transfer patterns]({ROUTE}/overview#transfer-patterns)."
 )
 
 # The steps that differ between registrars and TLDs. A TLD's other steps are
@@ -231,67 +236,64 @@ SENTENCES = {
 OPTIONAL_APPROVAL = "Optional: approve it at {r} to finish sooner. Otherwise the registry completes the transfer after five days."
 
 
-# --- transfer workflows -------------------------------------------------------
+# --- transfer patterns -------------------------------------------------------
 
 
 @dataclass(frozen=True)
-class Workflow:
+class Pattern:
     slug: str
     title: str
-    auth_code: str  # the overview's cell
-    approval: str  # the overview's cell
     intro: str
     steps: tuple[str, ...]  # after the transfer lock, which only some TLDs have
 
 
-# Keyed by who issues the auth code and whether the transfer waits for an
-# approval, the registry's side of a transfer. A key without wording fails the run.
-WORKFLOWS = {
-    ("registrar", True): Workflow(
-        "gtlds", "gTLDs and most ccTLDs", "From your current registrar", "Yes",
+# Keyed by whether the registrar sets the auth code (TLD spec: authinfo_set_by_registrar)
+# and whether the losing side can approve or deny, the registry's side of a transfer.
+# A key without wording fails the run.
+PATTERNS = {
+    ("registrar", True): Pattern(
+        "gtlds", "gTLDs and most ccTLDs",
         "Your current registrar gives you the auth code. OpusDNS requests the transfer with it. Your current "
-        "registrar can then approve or deny the transfer. gTLDs follow ICANN's rules for this, and most "
-        "ccTLDs work the same way.",
+        "registrar can then approve or deny the transfer. Some registrars ask the domain's holder by email. gTLDs "
+        "follow ICANN's rules for this, and most ccTLDs work the same way.",
         ("Get the auth code from your current registrar.",
          "OpusDNS requests the transfer at the registry with the auth code.",
          "Your current registrar approves or denies the transfer. At gTLDs, the registry completes it after "
          "five days without an answer. See [How a gTLD transfer works](/transfers/overview#how-a-gtld-transfer-works)."),
     ),
-    ("registrar", False): Workflow(
-        "auth-code", "Auth code, completes at once", "From your current registrar", "No, completes at once",
+    ("registrar", False): Pattern(
+        "auth-code", "Auth code, no approval",
         "Your current registrar gives you the auth code. OpusDNS requests the transfer with it. The registry "
-        "completes the transfer at once, without an approval.",
+        "completes the transfer without an approval.",
         ("Get the auth code from your current registrar.",
          "OpusDNS requests the transfer at the registry with the auth code.",
-         "The registry completes the transfer at once."),
+         "The registry completes the transfer without an approval."),
     ),
-    ("registry", False): Workflow(
-        "registry-auth-code", "Auth code from the registry", "From the registry", "No, completes at once",
-        "The registry issues the auth code, not your current registrar. OpusDNS requests the transfer with it. "
-        "The registry completes the transfer at once, without an approval.",
-        ("Get the auth code. How you get it depends on the TLD. The TLD's page in the "
-         "[TLD Knowledge Base](/tld-knowledge-base) explains it.",
+    ("registry", False): Pattern(
+        "registry-auth-code", "Auth code set by the registry",
+        "The registry generates the auth code. Your current registrar can't choose it. OpusDNS requests the "
+        "transfer with it. The registry completes the transfer without an approval.",
+        ("Get the auth code from your current registrar or the registry, depending on the TLD.",
          "OpusDNS requests the transfer at the registry with the auth code.",
-         "The registry completes the transfer at once."),
+         "The registry completes the transfer without an approval."),
     ),
-    ("registry", True): Workflow(
-        "registry-auth-code-approval", "Auth code from the registry, with approval", "From the registry", "Yes",
-        "The registry issues the auth code, not your current registrar. OpusDNS requests the transfer with it. "
-        "Your current registrar can then approve or deny the transfer.",
-        ("Get the auth code. How you get it depends on the TLD. The TLD's page in the "
-         "[TLD Knowledge Base](/tld-knowledge-base) explains it.",
+    ("registry", True): Pattern(
+        "registry-auth-code-approval", "Auth code set by the registry, with approval",
+        "The registry generates the auth code. Your current registrar can't choose it. OpusDNS requests the "
+        "transfer with it. Your current registrar can then approve or deny the transfer.",
+        ("Get the auth code from your current registrar or the registry, depending on the TLD.",
          "OpusDNS requests the transfer at the registry with the auth code.",
          "Your current registrar approves or denies the transfer."),
     ),
-    ("none", True): Workflow(
-        "no-auth-code", "No auth code, with approval", "Not needed", "Yes",
+    ("none", True): Pattern(
+        "no-auth-code", "No auth code, with approval",
         "These TLDs need no auth code. OpusDNS requests the transfer. Your current registrar or the domain's "
         "holder then approves it, depending on the TLD.",
         ("OpusDNS requests the transfer at the registry.",
          "Your current registrar or the domain's holder approves or denies the transfer."),
     ),
-    "push": Workflow(
-        "push", "Push to a tag", "Not needed", "Push instead",
+    "push": Pattern(
+        "push", "Push to a tag",
         "Your current registrar pushes the domain to OpusDNS's registrar tag. There is no auth code and no approval.",
         ("OpusDNS records the transfer.",
          "Your current registrar pushes the domain to OpusDNS's registrar tag, `OPUSDNS`.",
@@ -299,11 +301,17 @@ WORKFLOWS = {
     ),
 }
 
-# Well-known TLDs come first where a page names a few as examples.
-EXAMPLE_TLDS = ("com", "net", "org", "info", "de", "uk", "eu", "fr", "nl", "ch", "at", "se", "be", "dk", "it", "ca", "lu", "co.za")
+# What a TLD without transfers does instead, until the TLD specs carry a reference for it.
+TLD_NOTES = {
+    "is": "ISNIC works without registrars. A `.is` domain changes provider when its admin contact changes at "
+          "ISNIC. See [ISNIC's FAQ](https://www.isnic.is/en/faq).",
+}
+
+# Named first where a page names a few gTLDs as examples.
+EXAMPLE_TLDS = ("com", "net", "org")
 
 
-def workflow_key(row: dict) -> object:
+def pattern_key(row: dict) -> object:
     """The registry's side of a transfer, from the capabilities' specification:
     None where the TLD has no transfers."""
     policies = row["specification"]["transfer_policies"]
@@ -315,57 +323,83 @@ def workflow_key(row: dict) -> object:
         code = "none"
     else:
         code = "registrar" if policies.get("authinfo_set_by_registrar") else "registry"
-    return code, policies.get("transfer_ack") not in (None, "none")
+    return code, any(policies.get(field) not in (None, "none") for field in ("transfer_ack", "transfer_nack"))
 
 
-def has_lock(row: dict) -> bool:
-    return bool(row["specification"]["transfer_policies"].get("transfer_lock_policy", {}).get("supported_by_registry"))
+@dataclass(frozen=True)
+class RegistrySide:
+    key: object  # into PATTERNS, None where the TLD has no transfers
+    lock: bool
+    renews: bool
+    days: int | None  # the transfer time, None where the spec gives it in other units
 
 
-def registry_facts(data: dict) -> dict[str, tuple[object, bool]]:
-    """Each TLD's workflow key and lock. They are the registry's, so every registrar must report the same."""
-    facts: dict[str, set[tuple[object, bool]]] = defaultdict(set)
+def registry_side(row: dict) -> RegistrySide:
+    policies = row["specification"]["transfer_policies"]
+    lock = bool(policies.get("transfer_lock_policy", {}).get("supported_by_registry"))
+    days = re.fullmatch(r"(\d+)D", str(policies.get("transfer_time") or ""))
+    return RegistrySide(pattern_key(row), lock, bool(policies.get("transfer_renews_domain")), int(days[1]) if days else None)
+
+
+def registry_facts(data: dict) -> dict[str, RegistrySide]:
+    """Each TLD's registry side. It is the registry's, so every registrar must report the same."""
+    found: dict[str, set[RegistrySide]] = defaultdict(set)
     for rows in data["registrars"].values():
         for row in rows:
-            facts[row["tld"]].add((workflow_key(row), has_lock(row)))
-    split = sorted(tld for tld, found in facts.items() if len(found) > 1)
+            found[row["tld"]].add(registry_side(row))
+    split = sorted(tld for tld, sides in found.items() if len(sides) > 1)
     if split:
         raise SystemExit(f"registrars disagree on the registry's side of {split}")
-    single = {tld: next(iter(found)) for tld, found in facts.items()}
-    unknown = {key for key, _ in single.values() if key is not None and key not in WORKFLOWS}
+    facts = {tld: next(iter(sides)) for tld, sides in found.items()}
+    unknown = {side.key for side in facts.values() if side.key is not None and side.key not in PATTERNS}
     if unknown:
-        raise SystemExit(f"no workflow wording for {sorted(map(str, unknown))}: add it to WORKFLOWS")
-    return single
+        raise SystemExit(f"no pattern wording for {sorted(map(str, unknown))}: add it to PATTERNS")
+    return facts
 
 
-def ordered_workflows(facts: dict[str, tuple[object, bool]]) -> list[tuple[Workflow, list[str]]]:
-    """The workflows the export uses, the most common first, each with its TLDs."""
+def ordered_patterns(facts: dict[str, RegistrySide]) -> list[tuple[Pattern, list[str]]]:
+    """The patterns the export uses, the most common first, each with its TLDs."""
     tlds: dict[object, list[str]] = defaultdict(list)
     for tld in sorted(facts):
-        if facts[tld][0] is not None:
-            tlds[facts[tld][0]].append(tld)
-    return [(WORKFLOWS[key], found) for key, found in sorted(tlds.items(), key=lambda item: (-len(item[1]), item[1][0]))]
+        if facts[tld].key is not None:
+            tlds[facts[tld].key].append(tld)
+    return [(PATTERNS[key], found) for key, found in by_size(tlds)]
+
+
+def tld_path(tld: str, key: object) -> str:
+    """The TLD's transfer page: below its pattern, or on its own where it has no transfers."""
+    return f"{PATTERN_ROUTE}/{PATTERNS[key].slug}/{tld}" if key is not None else f"{PATTERN_ROUTE}/{tld}"
+
+
+def pattern_steps(pattern: Pattern, locks: list[bool]) -> list[str]:
+    steps = list(pattern.steps)
+    if any(locks):
+        steps.insert(0, "Remove the transfer lock at your current registrar" + (", where the TLD has one." if not all(locks) else "."))
+    return steps
 
 
 def and_join(items: list[str]) -> str:
     return items[0] if len(items) == 1 else ", ".join(items[:-1]) + " and " + items[-1]
 
 
-def examples(tlds: list[str], tld_types: dict[str, str], count: int = 3) -> str:
+def examples(tlds: list[str], link, count: int = 3) -> str:
     known = [t for t in EXAMPLE_TLDS if t in tlds]
     picked = (known + [t for t in sorted(tlds) if t not in known])[:count]
-    return and_join([kb_link(t, tld_types) for t in picked])
+    return and_join([link(t) for t in picked])
 
 
 def registrar_order(key: str) -> str:
     return REGISTRARS[key].name.lower()
 
 
-def kb_link(tld: str, tld_types: dict[str, str]) -> str:
+def kb_path(tld: str, tld_types: dict[str, str]) -> str | None:
     folder = "cctlds" if tld_types.get(tld) == "ccTLD" else "gtlds"
-    if (KNOWLEDGE_BASE / folder / f"{tld}.md").exists():
-        return f"[.{tld}](/tld-knowledge-base/{folder}/{tld})"
-    return f".{tld}"
+    return f"/tld-knowledge-base/{folder}/{tld}" if (KNOWLEDGE_BASE / folder / f"{tld}.md").exists() else None
+
+
+def kb_link(tld: str, tld_types: dict[str, str]) -> str:
+    path = kb_path(tld, tld_types)
+    return f"[.{tld}]({path})" if path else f".{tld}"
 
 
 def template(sentence: str, tld: str, reg: Registrar) -> str:
@@ -524,13 +558,17 @@ def registrar_intro(usual: Flow, reg: Registrar) -> str:
     elif lock and lock.entity == "opusdns":
         by_opusdns.append("removes the transfer lock")
     if code and code.entity == "customer":
-        first.append(f"get the auth code at {reg.name} and send it as `auth_code`")
+        first.append(f"get the auth code at {reg.name}")
     elif code and code.entity == "opusdns":
         by_opusdns.append("gets the auth code")
     if approve and approve.entity == "opusdns":
         by_opusdns.append("pushes the domain to its tag" if approve.action == "push_transfer_out" else "approves the transfer")
     sentences = [f"At most TLDs, first {and_join(first)}."] if first else []
-    sentences.append(f"{'Then c' if first else 'C'}onnect your {reg.name} account and request the transfer.")
+    request = "[request the transfer](/products/connected-registrars/transfer-to-opusdns)"
+    if code and code.entity == "customer":
+        request += " with the code as `auth_code`"
+    connect = "[{}onnect](/products/connected-registrars/connect)"
+    sentences.append(f"{'Then ' + connect.format('c') if first else connect.format('C')} your {reg.name} account and {request}.")
     if by_opusdns:
         sentences.append(f"{'OpusDNS' if first else 'At most TLDs, OpusDNS then'} {and_join(by_opusdns)} at {reg.name}.")
     if code and code.entity == "opusdns":
@@ -538,7 +576,7 @@ def registrar_intro(usual: Flow, reg: Registrar) -> str:
     if approve and approve.entity == "registrant":
         sentences.append(f"{reg.name} emails the domain's holder, who approves the transfer.")
     elif approve and approve.optional():
-        sentences.append(f"You can approve the transfer at {reg.name} to finish sooner.")
+        sentences.append(f"At gTLDs, you can approve the transfer at {reg.name} to finish sooner.")
     elif approve and approve.entity == "customer":
         sentences.append(f"Approve the transfer at {reg.name}.")
     sentences.append(f"In the API, {reg.name} is `{reg.api_value}`.")
@@ -548,8 +586,10 @@ def registrar_intro(usual: Flow, reg: Registrar) -> str:
 def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> str:
     reg = REGISTRARS[key]
 
+    paths = {row["tld"]: tld_path(row["tld"], pattern_key(row)) for row in rows}
+
     def tlds_of(tlds: list[str]) -> str:
-        return ", ".join(kb_link(t, tld_types) for t in tlds)
+        return ", ".join(f"[.{t}]({paths[t]})" for t in tlds)
 
     flows = {row["tld"]: flow_of(row, reg, tld_types) for row in rows}
     for flow in flows.values():
@@ -630,46 +670,27 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
         found = differences(per_tld, actions, usual_manage, reg)
         if found:
             lines += ["", "TLDs where this differs:", "", "| TLDs | What differs |", "| --- | --- |"]
-            lines += [f"| {tlds_of(tlds)} | {text} |" for text, tlds in by_size(found)]
+            lines += [f"| {', '.join(kb_link(t, tld_types) for t in tlds)} | {text} |" for text, tlds in by_size(found)]
     lines.append("")
     return "\n".join(lines)
 
 
-def render_workflow(workflow: Workflow, tlds: list[str], data: dict, locks: dict[str, bool]) -> str:
-    tld_types = data["tld_types"]
-
-    def tlds_of(names: list[str]) -> str:
-        return ", ".join(kb_link(t, tld_types) for t in names)
-
-    locked = [t for t in tlds if locks[t]]
-    steps = list(workflow.steps)
-    if locked:
-        steps.insert(0, "Remove the transfer lock at your current registrar" + (", where the TLD has one." if len(locked) < len(tlds) else "."))
-    gtlds = [t for t in tlds if tld_types.get(t) == "gTLD"]
-    cctlds = [t for t in tlds if t not in gtlds]
-    named = [f"{len(gtlds)} gTLDs, such as {examples(gtlds, tld_types)}" if len(gtlds) > 20 else tlds_of(gtlds)] if gtlds else []
-    if cctlds:
-        named.append(("these ccTLDs: " if gtlds else "") + tlds_of(cctlds))
-    lines = [f"# {workflow.title}", "", workflow.intro, "", "## Steps", ""]
-    lines += [f"{i}. {step}" for i, step in enumerate(steps, 1)]
-    lines += ["", "## TLDs", "", sentence_case(", and ".join(named)) + "."]
-    if locked and len(locked) < len(tlds):
-        unlocked = [t for t in tlds if not locks[t]]
-        lines += ["", f"No transfer lock at {tlds_of(unlocked)}." if len(unlocked) <= len(locked) else f"A transfer lock only at {tlds_of(locked)}."]
-
-    table, symbols = [], {"↗️"}
+def registrar_table(data: dict, tlds: list[str]) -> list[str]:
+    """Each registrar's cells for these TLDs: per column the most common one,
+    counted where a TLD has the step at all."""
+    wanted, rows, symbols = set(tlds), [], {"↗️"}
     for key in sorted(data["registrars"], key=registrar_order):
         reg = REGISTRARS[key]
-        flows = [flow_of(row, reg, tld_types) for row in data["registrars"][key] if row["tld"] in set(tlds)]
+        flows = [flow_of(row, reg, data["tld_types"]) for row in data["registrars"][key] if row["tld"] in wanted]
+        if not flows:
+            continue
         cells = []
         for _, actions in MATRIX_COLUMNS:
-            found = [flow.cell(actions, reg) for flow in flows]
-            taken = [c for c in found if c != "➖"]  # where the TLD has the step at all
+            taken = [cell for cell in (flow.cell(actions, reg) for flow in flows) if cell != "➖"]
             cells.append(most_common(taken) if taken else "➖")
-        symbols |= {c.split(" ", 1)[0] for c in cells}
-        table.append(f"| [{reg.name}]({REGISTRAR_ROUTE}/{reg.slug}) | " + " | ".join(cells) + " |")
-    lines += [
-        "",
+        symbols |= {cell.split(" ", 1)[0] for cell in cells}
+        rows.append(f"| [{reg.name}]({REGISTRAR_ROUTE}/{reg.slug}) | " + " | ".join(cells) + " |")
+    return [
         "## At your registrar",
         "",
         "With a connected account, OpusDNS takes some of these steps for you. Which ones depends on your registrar:",
@@ -678,16 +699,75 @@ def render_workflow(workflow: Workflow, tlds: list[str], data: dict, locks: dict
         "",
         "| Registrar | " + " | ".join(label for label, _ in MATRIX_COLUMNS) + " |",
         "| --- | " + " | ".join(":---:" for _ in MATRIX_COLUMNS) + " |",
-        *table,
-        "",
-        "Some TLDs differ at some registrars. Each registrar's page lists them.",
-        "",
+        *rows,
     ]
+
+
+def render_pattern(pattern: Pattern, tlds: list[str], data: dict, facts: dict[str, RegistrySide]) -> str:
+    tld_types = data["tld_types"]
+
+    def link(tld: str) -> str:
+        return f"[.{tld}]({tld_path(tld, facts[tld].key)})"
+
+    gtlds = [t for t in tlds if tld_types.get(t) == "gTLD"]
+    cctlds = [t for t in tlds if t not in gtlds]
+    named = [f"{len(gtlds)} gTLDs, such as {examples(gtlds, link)}" if len(gtlds) > 20 else ", ".join(map(link, gtlds))] if gtlds else []
+    if cctlds:
+        named.append(("these ccTLDs: " if gtlds else "") + ", ".join(map(link, cctlds)))
+    locked = [t for t in tlds if facts[t].lock]
+    lines = [f"# {pattern.title}", "", pattern.intro, "", "## Steps", ""]
+    lines += [f"{i}. {step}" for i, step in enumerate(pattern_steps(pattern, [facts[t].lock for t in tlds]), 1)]
+    lines += ["", "## TLDs", "", sentence_case(", and ".join(named)) + "."]
+    if locked and len(locked) < len(tlds):
+        unlocked = [t for t in tlds if not facts[t].lock]
+        lines += ["", f"No transfer lock at {', '.join(map(link, unlocked))}." if len(unlocked) <= len(locked)
+                  else f"A transfer lock only at {', '.join(map(link, locked))}."]
+    lines += ["", *registrar_table(data, tlds), "", "Some TLDs differ at some registrars. Each TLD's page shows its own.", ""]
     return "\n".join(lines)
 
 
-def render_overview(data: dict, facts: dict[str, tuple[object, bool]]) -> str:
+def render_tld(tld: str, data: dict, side: RegistrySide) -> str:
+    name = f"`.{tld}`"
+    lines = [f"# Transferring a .{tld} domain", ""]
+    if side.key is None:
+        lines.append(f"{name} has no transfer at its registry. OpusDNS can't request one.")
+        if tld in TLD_NOTES:
+            lines += ["", TLD_NOTES[tld]]
+        lines += ["", f"To move a {name} domain to OpusDNS, contact [OpusDNS support]({SUPPORT_URL}).", ""]
+        return "\n".join(lines)
+    pattern = PATTERNS[side.key]
+    facts = [
+        f"{name} follows the [{pattern.title}]({PATTERN_ROUTE}/{pattern.slug}) pattern.",
+        "Its registry has a transfer lock." if side.lock else "Its registry has no transfer lock.",
+        "A transfer extends the registration." if side.renews else "A transfer doesn't extend the registration.",
+    ]
+    if side.days == 0:
+        facts.append("The registry completes a transfer at once.")
+    elif side.days:
+        facts.append(f"A transfer takes up to {side.days} day{'' if side.days == 1 else 's'}.")
+    if data["tld_types"].get(tld) == "gTLD":
+        facts.append(f"As a gTLD, it follows ICANN's [Transfer Policy]({ICANN_POLICY}).")
+    lines += [" ".join(facts), "", "## Steps", ""]
+    lines += [f"{i}. {step}" for i, step in enumerate(pattern_steps(pattern, [side.lock]), 1)]
+    lines += ["", *registrar_table(data, [tld])]
+    privacy = [
+        REGISTRARS[key].name
+        for key in sorted(data["registrars"], key=registrar_order)
+        if any(s["action"] == "update_privacy" for row in data["registrars"][key] if row["tld"] == tld for s in row["flows"]["transfer_to_opusdns"]["steps"])
+    ]
+    if privacy:
+        lines += ["", f"{and_join(privacy)} {'refuses' if len(privacy) == 1 else 'refuse'} to remove the lock while WHOIS "
+                  "privacy is on. Turn it off there first."]
+    kb = kb_path(tld, data["tld_types"])
+    if kb:
+        lines += ["", f"The [TLD Knowledge Base]({kb}) has more on {name}."]
+    lines.append("")
+    return "\n".join(lines)
+
+
+def render_overview(data: dict, facts: dict[str, RegistrySide]) -> str:
     keys = sorted(data["registrars"], key=registrar_order)
+    without = sorted(tld for tld, side in facts.items() if side.key is None)
     lines = [
         "# Transfer to OpusDNS",
         "",
@@ -707,9 +787,12 @@ def render_overview(data: dict, facts: dict[str, tuple[object, bool]]) -> str:
         "",
         CCTLD_TEXT,
         "",
-        "TLDs with the same steps share a workflow:",
+        "## Transfer patterns",
         "",
-        *[f"- [{workflow.title}]({ROUTE}/{workflow.slug}): {len(tlds)} TLD{'' if len(tlds) == 1 else 's'}" for workflow, tlds in ordered_workflows(facts)],
+        "TLDs with the same steps share a transfer pattern:",
+        "",
+        *[f"- [{pattern.title}]({PATTERN_ROUTE}/{pattern.slug}): {len(tlds)} TLD{'' if len(tlds) == 1 else 's'}" for pattern, tlds in ordered_patterns(facts)],
+        *(["", "No transfers at " + ", ".join(f"[.{t}]({tld_path(t, None)})" for t in without) + "."] if without else []),
         "",
         "## With a connected account",
         "",
@@ -752,11 +835,11 @@ def render_overview(data: dict, facts: dict[str, tuple[object, bool]]) -> str:
     return "\n".join(lines)
 
 
-def page(title: str, filepath: str, **extra) -> dict:
-    return {"type": "page", "title": title, **extra, "filepath": filepath, "showInSidebar": True}
+def nav_page(title: str, filepath: str, *, sidebar: bool = True, **extra) -> dict:
+    return {"type": "page", "title": title, **extra, "filepath": filepath, "showInSidebar": sidebar}
 
 
-def update_config(config_path: Path, keys: list[str], workflows: list[Workflow]) -> bool:
+def update_config(config_path: Path, keys: list[str], patterns: list[tuple[Pattern, list[str]]], without: list[str]) -> bool:
     raw = config_path.read_text(encoding="utf-8")
     config = json.loads(raw)
     navigation = config["navigation"]
@@ -764,18 +847,37 @@ def update_config(config_path: Path, keys: list[str], workflows: list[Workflow])
     if not any(tab.get("to") == ROUTE for tab in tabs):
         after = next(i for i, tab in enumerate(tabs) if tab.get("to") == "/tld-knowledge-base")
         tabs.insert(after + 1, dict(TAB))
-    children = {"/overview": page("Transfer to OpusDNS", "content/transfers/index.md", icon=TAB["icon"])}
-    for workflow in workflows:
-        children[f"/{workflow.slug}"] = page(workflow.title, f"content/transfers/{workflow.slug}.md")
-    children[REGISTRAR_ROUTE.removeprefix(ROUTE)] = {
+    folder = PATTERN_ROUTE.removeprefix("/")
+    by_pattern = {
+        f"/{pattern.slug}": {
+            "type": "group",
+            "title": pattern.title,
+            "children": {
+                "/": nav_page("Overview", f"content/{folder}/{pattern.slug}/index.md"),
+                **{f"/{tld}": nav_page(f".{tld}", f"content/{folder}/{pattern.slug}/{tld}.md") for tld in tlds},
+            },
+        }
+        for pattern, tlds in patterns
+    }
+    # Only the overview links a TLD without transfers, so its page stays out of the sidebar.
+    by_pattern |= {f"/{tld}": nav_page(f".{tld}", f"content/{folder}/{tld}.md", sidebar=False) for tld in without}
+    navigation["routes"][ROUTE] = {
         "type": "group",
-        "title": "Registrars",
+        "title": TAB["title"],
+        "icon": TAB["icon"],
         "children": {
-            f"/{REGISTRARS[key].slug}": page(REGISTRARS[key].name, f"content/transfers/registrars/{REGISTRARS[key].slug}.md")
-            for key in sorted(keys, key=registrar_order)
+            "/overview": nav_page("Transfer to OpusDNS", "content/transfers/index.md", icon=TAB["icon"]),
+            PATTERN_ROUTE.removeprefix(ROUTE): {"type": "group", "title": "Transfer patterns", "children": by_pattern},
+            REGISTRAR_ROUTE.removeprefix(ROUTE): {
+                "type": "group",
+                "title": "Registrars",
+                "children": {
+                    f"/{REGISTRARS[key].slug}": nav_page(REGISTRARS[key].name, f"content/transfers/registrars/{REGISTRARS[key].slug}.md")
+                    for key in sorted(keys, key=registrar_order)
+                },
+            },
         },
     }
-    navigation["routes"][ROUTE] = {"type": "group", "title": TAB["title"], "icon": TAB["icon"], "children": children}
     new_raw = json.dumps(config, indent=2, ensure_ascii=False) + "\n"
     if new_raw == raw:
         return False
@@ -788,7 +890,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--input", type=Path, required=True, help="The registrar capability export (JSON)")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
-    parser.add_argument("--workflows-file", type=Path, default=WORKFLOWS_FILE)
+    parser.add_argument("--tld-pages-file", type=Path, default=TRANSFER_PAGES_FILE)
     args = parser.parse_args(argv)
     data = json.loads(args.input.read_text(encoding="utf-8"))
     data["registrars"] = {k: v for k, v in data["registrars"].items() if k not in EXCLUDED}
@@ -796,18 +898,24 @@ def main(argv: list[str] | None = None) -> None:
     if unknown:
         raise SystemExit(f"unknown registrars {sorted(unknown)}: add them to REGISTRARS")
     facts = registry_facts(data)
-    workflows = ordered_workflows(facts)
+    patterns = ordered_patterns(facts)
+    without = sorted(tld for tld, side in facts.items() if side.key is None)
     pages = {"index.md": render_overview(data, facts)}
-    for workflow, tlds in workflows:
-        pages[f"{workflow.slug}.md"] = render_workflow(workflow, tlds, data, {t: lock for t, (_, lock) in facts.items()})
+    for pattern, tlds in patterns:
+        pages[f"patterns/{pattern.slug}/index.md"] = render_pattern(pattern, tlds, data, facts)
+        pages |= {f"patterns/{pattern.slug}/{tld}.md": render_tld(tld, data, facts[tld]) for tld in tlds}
+    pages |= {f"patterns/{tld}.md": render_tld(tld, data, facts[tld]) for tld in without}
     for key, rows in data["registrars"].items():
         pages[f"registrars/{REGISTRARS[key].slug}.md"] = render_registrar(key, rows, data["tld_types"])
     for name, text in pages.items():
         (args.output / name).parent.mkdir(parents=True, exist_ok=True)
         (args.output / name).write_text(text, encoding="utf-8")
-    links = {tld: {"title": workflow.title, "path": f"{ROUTE}/{workflow.slug}"} for workflow, tlds in workflows for tld in tlds}
-    args.workflows_file.write_text(json.dumps(dict(sorted(links.items())), indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    update_config(args.config, list(data["registrars"]), [workflow for workflow, _ in workflows])
+    links = {
+        tld: {"title": PATTERNS[side.key].title if side.key is not None else "No transfers", "path": tld_path(tld, side.key)}
+        for tld, side in sorted(facts.items())
+    }
+    args.tld_pages_file.write_text(json.dumps(links, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    update_config(args.config, list(data["registrars"]), patterns, without)
     stale = sorted(str(p.relative_to(args.output)) for p in args.output.rglob("*.md") if str(p.relative_to(args.output)) not in pages)
     if stale:
         raise SystemExit(f"pages no longer generated, remove them: {stale}")

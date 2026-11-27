@@ -86,7 +86,7 @@
 | Transfer Extends Domain | ❌ No |
 | Transfer via AuthInfo | ❌ No |
 | Confirmation Required | ✅ Yes (registrar) |
-| Transfer to OpusDNS | [Auth code from the registry, with approval](/transfers/registry-auth-code-approval) |
+| Transfer to OpusDNS | [Auth code set by the registry, with approval](/transfers/patterns/registry-auth-code-approval/cymru) |
 
 ## WHOIS & RDAP
 
