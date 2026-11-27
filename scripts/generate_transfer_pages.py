@@ -115,11 +115,6 @@ CCTLD_TEXT = "\n".join([
     "page lists the TLDs whose steps differ.",
 ])
 
-REGISTRAR_PAGE_NOTE = (
-    f"For gTLDs, these steps follow ICANN's [Transfer Policy]({ICANN_POLICY}). Each TLD with transfers follows one of the "
-    f"[transfer patterns]({ROUTE}/overview#transfer-patterns)."
-)
-
 # The steps that differ between registrars and TLDs. A TLD's other steps are
 # the usual ones or fewer, such as no notification where nothing is approved,
 # so the matrix shows only these. The run fails where that stops holding.
@@ -130,20 +125,6 @@ MATRIX_COLUMNS = [
 ]
 MATRIX_ACTIONS = set().union(*(actions for _, actions in MATRIX_COLUMNS))
 
-STEP_LABELS = {
-    "update_privacy": "Turn WHOIS privacy off",
-    "update_transfer_lock": "Remove the transfer lock",
-    "read_auth_code": "Get the auth code",
-    "reset_auth_code": "Get a new auth code",
-    "request_transfer": "Request the transfer",
-    "notify_transfer_out": "The registry notifies {r}",
-    "approve_transfer_out": "Approve the transfer",
-    "push_transfer_out": "Push the domain to OpusDNS's tag",
-    "complete_transfer": "The registry transfers the domain",
-    "finalize_transfer": "Finish the transfer",
-}
-
-# The groups of the capabilities response, in its order, without its transfer group.
 MANAGE_GROUPS = {"status": "Transfer lock", "dns": "Nameservers", "contacts": "Contacts", "privacy": "WHOIS privacy"}
 
 MANAGE_ACTIONS = [
@@ -229,12 +210,6 @@ SENTENCES = {
         "OpusDNS has no access to WHOIS privacy at {r}. Change it at {r}.", ""),
     "{tld} has no privacy service.": ("The TLD has no WHOIS privacy service.", "no WHOIS privacy service"),
 }
-
-# At a gTLD the registry completes the transfer after five days without an
-# approval (ICANN Transfer Policy I.A.3.5, I.A.6.2), so the customer's
-# approval is optional.
-OPTIONAL_APPROVAL = "Optional: approve it at {r} to finish sooner. Otherwise the registry completes the transfer after five days."
-
 
 # --- transfer patterns -------------------------------------------------------
 
@@ -469,20 +444,6 @@ class Step:
     def optional(self) -> bool:
         return self.action == "approve_transfer_out" and self.entity == "customer" and self.gtld
 
-    def label(self, reg: Registrar) -> str:
-        label = STEP_LABELS[self.action].replace("{r}", reg.name)
-        return label + " (optional)" if self.optional() else label
-
-    def note(self, reg: Registrar) -> str:
-        say(self.template, reg)  # every sentence needs its wording, also where it is replaced
-        if self.optional():
-            return OPTIONAL_APPROVAL.replace("{r}", reg.name)
-        return say(self.template, reg)
-
-    def shown(self, reg: Registrar) -> str:
-        return f"{WHO[self.entity][0]} {self.label(reg)}"
-
-
 @dataclass(frozen=True)
 class Flow:
     steps: tuple[Step, ...]
@@ -596,40 +557,6 @@ def by_size(groups: dict) -> list:
     return sorted(groups.items(), key=lambda item: (-len(item[1]), item[1][0]))
 
 
-def registrar_intro(usual: Flow, reg: Registrar) -> str:
-    """What the registrar's usual steps leave to the customer, before and after the request."""
-    lock, code, approve = (next((s for s in usual.steps if s.action in actions), None) for _, actions in MATRIX_COLUMNS)
-    first, by_opusdns = [], []
-    if lock and lock.entity == "customer":
-        first.append(f"remove the transfer lock at {reg.name}")
-    elif lock and lock.entity == "opusdns":
-        by_opusdns.append("removes the transfer lock")
-    if code and code.entity == "customer":
-        first.append(f"get the auth code at {reg.name}")
-    elif code and code.entity == "opusdns":
-        by_opusdns.append("gets the auth code")
-    if approve and approve.entity == "opusdns":
-        by_opusdns.append("pushes the domain to its tag" if approve.action == "push_transfer_out" else "approves the transfer")
-    sentences = [f"At most TLDs, first {and_join(first)}."] if first else []
-    request = "[request the transfer](/products/connected-registrars/transfer-to-opusdns)"
-    if code and code.entity == "customer":
-        request += " with the code as `auth_code`"
-    connect = "[{}onnect](/products/connected-registrars/connect)"
-    sentences.append(f"{'Then ' + connect.format('c') if first else connect.format('C')} your {reg.name} account and {request}.")
-    if by_opusdns:
-        sentences.append(f"{'OpusDNS' if first else 'At most TLDs, OpusDNS then'} {and_join(by_opusdns)} at {reg.name}.")
-    if code and code.entity == "opusdns":
-        sentences.append("Leave out `auth_code` in the request.")
-    if approve and approve.entity == "registrant":
-        sentences.append(f"{reg.name} emails the domain's holder, who approves the transfer.")
-    elif approve and approve.optional():
-        sentences.append(f"At gTLDs, you can approve the transfer at {reg.name} to finish sooner.")
-    elif approve and approve.entity == "customer":
-        sentences.append(f"Approve the transfer at {reg.name}.")
-    sentences.append(f"In the API, {reg.name} is `{reg.api_value}`.")
-    return " ".join(sentences)
-
-
 def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> str:
     reg = REGISTRARS[key]
 
@@ -644,7 +571,7 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
     flows = {row["tld"]: flow_of(row, reg, tld_types) for row in rows}
     for flow in flows.values():
         for step in flow.steps:
-            step.note(reg)
+            say(step.template, reg)  # every sentence needs its wording, also where no page shows it
         say(flow.detail, reg)
     per_tld = {row["tld"]: manage_cells(row, reg) for row in rows}
     with_steps = {tld: flow for tld, flow in flows.items() if flow.steps}
@@ -658,7 +585,8 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
         return {(s.action, s.entity) for s in flow.steps if s.action not in MATRIX_ACTIONS | {"update_privacy"}}
 
     for tld, flow in sorted(with_steps.items()):
-        # A TLD with the usual cells takes exactly the steps of the steps table.
+        # The matrix shows three steps, the pattern pages the rest. A TLD with the usual
+        # cells takes exactly the usual steps, any other no step outside them.
         same = outside_matrix(flow) == outside_matrix(usual)
         if not (same if cells[tld] == usual_cells else outside_matrix(flow) <= outside_matrix(usual)):
             raise SystemExit(f"{reg.name}: .{tld} takes a step the matrix doesn't show: add a column to MATRIX_COLUMNS")
@@ -667,9 +595,10 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
         if row["tld"] in with_steps:
             by_pattern[pattern_key(row)].append(row["tld"])
     table, differing = [], defaultdict(list)
-    for key, tlds in by_size(by_pattern):
+    for i, (key, tlds) in enumerate(by_size(by_pattern)):
         pattern, row_cells = PATTERNS[key], most_common(cells[t] for t in tlds)
-        shown = tlds_of(tlds) if len(tlds) <= 6 else f"{len(tlds)}, such as {examples(tlds, link)}"
+        # Every other row lists its TLDs, so the first can stand for the rest.
+        shown = f"Every other TLD, such as {examples(tlds, link)}" if i == 0 and len(by_pattern) > 1 else tlds_of(tlds)
         table.append(f"| [{pattern.title}]({PATTERN_ROUTE}/{pattern.slug}) | {shown} | " + " | ".join(row_cells) + " |")
         for tld in tlds:
             if cells[tld] != row_cells:
@@ -682,14 +611,18 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
     lines = [
         f"# Transfer from {reg.name}",
         "",
-        registrar_intro(usual, reg),
+        f"[Connect](/products/connected-registrars/connect) your {reg.name} account and "
+        "[request the transfer](/products/connected-registrars/transfer-to-opusdns). Which steps OpusDNS then "
+        f"takes at {reg.name} depends on your TLD's transfer pattern. The table below shows them for every TLD. "
+        f"Leave out `auth_code` where it shows ✅ under Get the auth code. In the API, {reg.name} is `{reg.api_value}`.",
         "",
         legend({WHO[s.entity][0] for f in flows.values() for s in f.steps} | {WHO[c.entity][0] for cells in per_tld.values() for c in cells.values()} | {"↗️"}),
         "",
         "## By transfer pattern",
         "",
         f"Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have. "
-        f"{reg.name} sets which of the other steps OpusDNS can take for you. Each TLD's page names its pattern.",
+        f"{reg.name} sets which of the other steps OpusDNS can take for you. Search this page for your TLD. "
+        "If it isn't listed, it is in the first row.",
         "",
         "| Transfer pattern | TLDs | " + " | ".join(label for label, _ in MATRIX_COLUMNS) + " |",
         "| --- | --- | " + " | ".join(":---:" for _ in MATRIX_COLUMNS) + " |",
@@ -711,11 +644,6 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
     if any(s.action == "update_privacy" for flow in flows.values() for s in flow.steps):
         lines += ["", f"At TLDs with a WHOIS privacy service, {reg.name} refuses to remove the lock while privacy "
                   f"is on. Turn it off at {reg.name} first."]
-
-    lines += ["", "## The steps at most TLDs", "", "| # | Step | What happens |", "| --- | --- | --- |"]
-    for i, step in enumerate(usual.steps, 1):
-        lines.append(f"| {i} | {step.shown(reg)} | {step.note(reg)} |")
-    lines += ["", REGISTRAR_PAGE_NOTE]
 
     usual_manage = {a: most_common(c[a] for c in per_tld.values()) for _, a, _ in MANAGE_ACTIONS}
     lines += [

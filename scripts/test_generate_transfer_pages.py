@@ -98,36 +98,41 @@ def section(text, start, end=None):
     return part.split(end, 1)[0] if end else part
 
 
-MATRIX = ("## By transfer pattern", "## The steps at most TLDs")
-STEPS = ("## The steps at most TLDs", "## Managing")
+MATRIX = ("## By transfer pattern", "## Managing a connected domain")
 
 
-def test_the_usual_steps_and_the_tlds_that_differ():
-    text = page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("se", se_steps(), lock=False)])
-    assert "| 1 | ✅ Remove the transfer lock | OpusDNS removes the transfer lock at OpenSRS. |" in section(text, *STEPS)
+def test_every_tld_is_on_the_registrar_page():
+    text = page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("org", usual_steps("org")),
+                 row("se", se_steps(), lock=False)])
+    assert "At most" not in text and "## The steps at most TLDs" not in text
     matrix = section(text, *MATRIX)
     assert "Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have." in matrix
-    assert ("| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | [.com](/transfers/patterns/gtlds/com), "
-            "[.net](/transfers/patterns/gtlds/net) | ✅ OpusDNS | ✅ OpusDNS | ↗️ You, optional |") in matrix
+    assert "Search this page for your TLD. If it isn't listed, it is in the first row." in matrix
+    # The largest pattern stands for every TLD the other rows don't list.
+    assert ("| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | Every other TLD, such as [.com](/transfers/patterns/gtlds/com), "
+            "[.net](/transfers/patterns/gtlds/net) and [.org](/transfers/patterns/gtlds/org) | ✅ OpusDNS | ✅ OpusDNS | ↗️ You, optional |") in matrix
     assert ("| [Auth code and approval](/transfers/patterns/auth-code-approval) | [.se](/transfers/patterns/auth-code-approval/se) "
             "| ➖ | ↗️ You, at OpenSRS (a new one) | ➖ |") in matrix
     assert "These TLDs differ" not in matrix and "WHOIS privacy" not in matrix
 
 
-def test_the_customers_auth_code_is_sent_with_the_request():
-    text = page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("se", se_steps(), lock=False)])
-    rows = [row("com", usual_steps("com")), row("net", usual_steps("net"))]
-    rows[0]["flows"]["transfer_to_opusdns"]["steps"][1] = step("read_auth_code", "customer", "Get the auth code at OpenSRS.")
-    rows[1]["flows"]["transfer_to_opusdns"]["steps"][1] = step("read_auth_code", "customer", "Get the auth code at OpenSRS.")
-    assert "Get the auth code at OpenSRS and send it as `auth_code`." in page(rows)
-    assert "At most TLDs, OpusDNS then removes the transfer lock and gets the auth code at OpenSRS." in text
-    assert "Leave out `auth_code` in the request." in text
+def test_a_registrar_with_one_pattern_lists_its_tlds():
+    text = page([row("com", usual_steps("com")), row("net", usual_steps("net"))])
+    assert "| [.com](/transfers/patterns/gtlds/com), [.net](/transfers/patterns/gtlds/net) |" in section(text, *MATRIX)
+    assert "Every other TLD" not in text
+
+
+def test_the_intro_points_to_the_table_for_every_tld():
+    intro = page([row("com", usual_steps("com")), row("net", usual_steps("net"))]).split("\n")[2]
+    assert intro == ("[Connect](/products/connected-registrars/connect) your OpenSRS account and "
+                     "[request the transfer](/products/connected-registrars/transfer-to-opusdns). Which steps OpusDNS then takes "
+                     "at OpenSRS depends on your TLD's transfer pattern. The table below shows them for every TLD. Leave out "
+                     "`auth_code` where it shows ✅ under Get the auth code. In the API, OpenSRS is `OPENSRS`.")
 
 
 def test_approval_is_optional_at_gtlds_only():
     text = page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("fr", usual_steps("fr"))])
-    assert "| ↗️ Approve the transfer (optional) | Optional: approve it at OpenSRS to finish sooner." in section(text, *STEPS)
-    differing = section(text, "These TLDs differ from their pattern's row:", "## The steps at most TLDs")
+    differing = section(text, "These TLDs differ from their pattern's row:", "## Managing a connected domain")
     assert "| [.fr](/transfers/patterns/gtlds/fr) | ✅ OpusDNS | ✅ OpusDNS | ↗️ You, at OpenSRS |" in differing
 
 
@@ -417,43 +422,6 @@ def test_a_tld_without_transfers_points_to_support():
     assert "https://www.isnic.is/en/faq" in text and "contact [OpusDNS support](https://support.opusdns.com/)" in text
 
 
-def intro_of(steps):
-    return page([row("com", steps("com")), row("net", steps("net"))]).split("\n")[2]
-
-
-def test_the_intro_says_what_stays_with_the_customer_before_and_after_the_request():
-    def steps(tld):
-        found = usual_steps(tld)
-        found[0] = step("update_transfer_lock", "customer", "Remove the transfer lock at OpenSRS.")
-        found[1] = step("read_auth_code", "customer", "Get the auth code at OpenSRS.")
-        found[3] = step("approve_transfer_out", "registrant", f"The holder of the .{tld} domain approves the transfer.")
-        return found
-
-    intro = intro_of(steps)
-    assert intro.startswith("At most TLDs, first remove the transfer lock at OpenSRS and get the auth code at OpenSRS. "
-                            "Then [connect](/products/connected-registrars/connect) your OpenSRS account and "
-                            "[request the transfer](/products/connected-registrars/transfer-to-opusdns) with the code as `auth_code`.")
-    assert "OpenSRS emails the domain's holder, who approves the transfer." in intro
-    assert intro.endswith("In the API, OpenSRS is `OPENSRS`.")
-
-
-def test_the_intro_says_what_opusdns_does_and_an_optional_approval():
-    intro = intro_of(usual_steps)
-    assert intro.startswith("[Connect](/products/connected-registrars/connect) your OpenSRS account")
-    assert "At most TLDs, OpusDNS then removes the transfer lock and gets the auth code at OpenSRS. Leave out `auth_code` in the request." in intro
-    assert "At gTLDs, you can approve the transfer at OpenSRS to finish sooner." in intro
-
-
-def test_the_intro_names_a_push_as_opusdns_step():
-    def steps(tld):
-        return [step("update_transfer_lock", "opusdns", "OpusDNS removes the transfer lock at OpenSRS."),
-                step("request_transfer", "opusdns", f"OpusDNS books the domain and has it pushed. The .{tld} registry gets no transfer request."),
-                step("push_transfer_out", "opusdns", "OpusDNS pushes the domain to its tag at OpenSRS."),
-                step("complete_transfer", "registry", f"The .{tld} registry moves the domain to OpusDNS's tag.")]
-
-    assert "OpusDNS then removes the transfer lock and pushes the domain to its tag at OpenSRS." in intro_of(steps)
-
-
 def test_a_cctld_page_without_approval_says_what_differs():
     # A ccTLD at 0 days whose losing registrar can deny it, with a privacy step at OpenSRS, no
     # Knowledge Base page, and a second registrar that doesn't offer it.
@@ -514,14 +482,6 @@ def test_an_announced_registry_change_shows_until_the_export_has_it():
     assert "> [.uk](/transfers/patterns/push/uk): From 9 February 2027" in pattern_page
     with pytest.raises(SystemExit, match="remove it from UPCOMING"):
         gen.registry_facts(export(uk_push_rows(push=False)))
-
-
-def test_a_pattern_with_many_tlds_names_a_few_on_the_registrar_page():
-    tlds = [f"g{i}" for i in range(7)]
-    rows = [row(t, usual_steps(t)) for t in tlds]
-    text = gen.render_registrar("opensrs", rows, {**TYPES, **{t: "gTLD" for t in tlds}})
-    assert ("| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | 7, such as [.g0](/transfers/patterns/gtlds/g0), "
-            "[.g1](/transfers/patterns/gtlds/g1) and [.g2](/transfers/patterns/gtlds/g2) |") in text
 
 
 @pytest.mark.parametrize(("reason", "count", "expected"), [

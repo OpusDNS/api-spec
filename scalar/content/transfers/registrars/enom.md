@@ -1,18 +1,18 @@
 # Transfer from eNom
 
-[Connect](/products/connected-registrars/connect) your eNom account and [request the transfer](/products/connected-registrars/transfer-to-opusdns). At most TLDs, OpusDNS then removes the transfer lock and gets the auth code at eNom. Leave out `auth_code` in the request. At gTLDs, you can approve the transfer at eNom to finish sooner. In the API, eNom is `ENOM`.
+[Connect](/products/connected-registrars/connect) your eNom account and [request the transfer](/products/connected-registrars/transfer-to-opusdns). Which steps OpusDNS then takes at eNom depends on your TLD's transfer pattern. The table below shows them for every TLD. Leave out `auth_code` where it shows ✅ under Get the auth code. In the API, eNom is `ENOM`.
 
 ✅ OpusDNS does it for you · ↗️ you do it at your registrar · 👤 the domain's holder approves by email · ⚙️ the registry does it on its own · ➖ the TLD doesn't have it
 
 ## By transfer pattern
 
-Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have. eNom sets which of the other steps OpusDNS can take for you. Each TLD's page names its pattern.
+Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have. eNom sets which of the other steps OpusDNS can take for you. Search this page for your TLD. If it isn't listed, it is in the first row.
 
 | Transfer pattern | TLDs | Remove the lock | Get the auth code | Approve |
 | --- | --- | :---: | :---: | :---: |
-| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | 499, such as [.com](/transfers/patterns/gtlds/com), [.net](/transfers/patterns/gtlds/net) and [.org](/transfers/patterns/gtlds/org) | ✅ OpusDNS | ✅ OpusDNS | ↗️ You, optional |
-| [Auth code set by the registry](/transfers/patterns/registry-auth-code) | 9, such as [.cz](/transfers/patterns/registry-auth-code/cz), [.dk](/transfers/patterns/registry-auth-code/dk) and [.eu](/transfers/patterns/registry-auth-code/eu) | ➖ | ✅ OpusDNS | ➖ |
-| [Auth code only](/transfers/patterns/auth-code) | 7, such as [.ch](/transfers/patterns/auth-code/ch), [.de](/transfers/patterns/auth-code/de) and [.li](/transfers/patterns/auth-code/li) | ➖ | ✅ OpusDNS | ➖ |
+| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | Every other TLD, such as [.com](/transfers/patterns/gtlds/com), [.net](/transfers/patterns/gtlds/net) and [.org](/transfers/patterns/gtlds/org) | ✅ OpusDNS | ✅ OpusDNS | ↗️ You, optional |
+| [Auth code set by the registry](/transfers/patterns/registry-auth-code) | [.cz](/transfers/patterns/registry-auth-code/cz), [.dk](/transfers/patterns/registry-auth-code/dk), [.eu](/transfers/patterns/registry-auth-code/eu), [.gr](/transfers/patterns/registry-auth-code/gr), [.lt](/transfers/patterns/registry-auth-code/lt), [.nl](/transfers/patterns/registry-auth-code/nl), [.nu](/transfers/patterns/registry-auth-code/nu), [.ro](/transfers/patterns/registry-auth-code/ro), [.se](/transfers/patterns/registry-auth-code/se) | ➖ | ✅ OpusDNS | ➖ |
+| [Auth code only](/transfers/patterns/auth-code) | [.ch](/transfers/patterns/auth-code/ch), [.de](/transfers/patterns/auth-code/de), [.li](/transfers/patterns/auth-code/li), [.no](/transfers/patterns/auth-code/no), [.pl](/transfers/patterns/auth-code/pl), [.pt](/transfers/patterns/auth-code/pt), [.si](/transfers/patterns/auth-code/si) | ➖ | ✅ OpusDNS | ➖ |
 | [Unlock and auth code](/transfers/patterns/unlock-auth-code) | [.ca](/transfers/patterns/unlock-auth-code/ca), [.cl](/transfers/patterns/unlock-auth-code/cl), [.ee](/transfers/patterns/unlock-auth-code/ee), [.gg](/transfers/patterns/unlock-auth-code/gg), [.je](/transfers/patterns/unlock-auth-code/je), [.sk](/transfers/patterns/unlock-auth-code/sk) | ✅ OpusDNS | ✅ OpusDNS | ➖ |
 | [No auth code, with approval](/transfers/patterns/no-auth-code) | [.co.za](/transfers/patterns/no-auth-code/co.za), [.lu](/transfers/patterns/no-auth-code/lu), [.net.za](/transfers/patterns/no-auth-code/net.za), [.org.za](/transfers/patterns/no-auth-code/org.za), [.web.za](/transfers/patterns/no-auth-code/web.za) | ➖ | ➖ | ↗️ You, at eNom |
 | [Auth code and approval](/transfers/patterns/auth-code-approval) | [.at](/transfers/patterns/auth-code-approval/at), [.it](/transfers/patterns/auth-code-approval/it), [.mx](/transfers/patterns/auth-code-approval/mx) | ➖ | ✅ OpusDNS | ↗️ You, at eNom |
@@ -32,20 +32,6 @@ These TLDs differ from their pattern's row:
 [.is](/transfers/patterns/is) has no transfer at its registry. Its page explains what to do instead.
 
 At [.uk](/transfers/patterns/push/uk), the domain is pushed to OpusDNS's tag instead of approved.
-
-## The steps at most TLDs
-
-| # | Step | What happens |
-| --- | --- | --- |
-| 1 | ✅ Remove the transfer lock | OpusDNS removes the transfer lock at eNom. |
-| 2 | ✅ Get the auth code | OpusDNS reads the auth code at eNom. |
-| 3 | ✅ Request the transfer | OpusDNS sends the transfer to the registry. |
-| 4 | ⚙️ The registry notifies eNom | The registry tells eNom about the transfer. |
-| 5 | ↗️ Approve the transfer (optional) | Optional: approve it at eNom to finish sooner. Otherwise the registry completes the transfer after five days. |
-| 6 | ⚙️ The registry transfers the domain | The registry transfers the domain to OpusDNS. |
-| 7 | ✅ Finish the transfer | OpusDNS completes the transfer in your account, sets the transfer lock and stops syncing the domain from eNom. |
-
-For gTLDs, these steps follow ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en). Each TLD with transfers follows one of the [transfer patterns](/transfers/overview#transfer-patterns).
 
 ## Managing a connected domain
 
