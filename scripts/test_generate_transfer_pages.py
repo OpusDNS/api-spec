@@ -590,3 +590,19 @@ def test_a_pattern_page_shows_its_swimlane():
     facts = gen.registry_facts(data)
     text = gen.render_pattern(*gen.ordered_patterns(facts)[0], data, facts)
     assert "](/images/transfer-patterns/gtlds.svg)" in text and "![Swimlane in three lanes" in text
+
+
+def test_a_written_tld_links_its_knowledge_base_page_where_it_has_one(knowledge_base):
+    kb_page(knowledge_base, "de", "DENIC eG", "https://www.denic.de/")
+    text = gen.link_tlds("- `.de` and `.xx` have no transfer lock. Use `auth_code`.", {"de": "ccTLD", "xx": "ccTLD"})
+    assert text == "- [.de](/tld-knowledge-base/cctlds/de) and `.xx` have no transfer lock. Use `auth_code`."
+
+
+def test_the_overviews_written_tlds_link_their_knowledge_base_pages(knowledge_base):
+    for tld in ("com", "de", "uk"):
+        kb_page(knowledge_base, tld, "Some registry", None, folder="gtlds" if tld == "com" else "cctlds")
+    data = {"tld_types": {**TYPES, "de": "ccTLD", "uk": "ccTLD"}, "registrars": {"opensrs": [row("com", usual_steps("com"))]}}
+    text = gen.render_overview(data, gen.registry_facts(data))
+    assert "For gTLDs such as [.com](/tld-knowledge-base/gtlds/com)," in text
+    assert "- [.de](/tld-knowledge-base/cctlds/de) and `.ch` have no transfer lock." in text
+    assert "a [.uk](/tld-knowledge-base/cctlds/uk) domain is pushed" in text

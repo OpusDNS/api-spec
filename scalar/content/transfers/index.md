@@ -6,7 +6,7 @@ Transferring a domain from another registrar to OpusDNS takes a few steps at tha
 
 ![Swimlane: you unlock the domain and get the auth code at your current registrar. OpusDNS requests the transfer at the registry with the auth code, and the transfer is pending. Your current registrar approves or denies it within five days. The registry transfers the domain into your OpusDNS account.](/images/gtld-transfer.svg)
 
-For gTLDs such as `.com`, ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en) sets the rules. All registrars accredited by ICANN and all gTLD registries must follow it.
+For gTLDs such as [.com](/tld-knowledge-base/gtlds/com), ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en) sets the rules. All registrars accredited by ICANN and all gTLD registries must follow it.
 
 - Your current registrar must remove the transfer lock and give you the auth code. It has five calendar days to do so after you ask ([section I.A.5.2](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en)).
 - OpusDNS requests the transfer at the registry with the auth code. The registry checks the code.
@@ -17,11 +17,11 @@ For gTLDs such as `.com`, ICANN's [Transfer Policy](https://www.icann.org/resour
 
 ccTLD registries don't follow ICANN's Transfer Policy. Each sets its own rules, so the steps often differ from the ones above. For example:
 
-- `.de` and `.ch` have no transfer lock.
-- `.de` and `.se` complete a transfer at once, without an approval.
-- At `.lu`, the domain's holder approves the transfer by email.
-- At `.se` and `.nu`, only the registry issues auth codes.
-- Until 9 February 2027, a `.uk` domain is pushed to the new registrar's tag instead of requested.
+- [.de](/tld-knowledge-base/cctlds/de) and [.ch](/tld-knowledge-base/cctlds/ch) have no transfer lock.
+- [.de](/tld-knowledge-base/cctlds/de) and [.se](/tld-knowledge-base/cctlds/se) complete a transfer at once, without an approval.
+- At [.lu](/tld-knowledge-base/cctlds/lu), the domain's holder approves the transfer by email.
+- At [.se](/tld-knowledge-base/cctlds/se) and [.nu](/tld-knowledge-base/cctlds/nu), only the registry issues auth codes.
+- Until 9 February 2027, a [.uk](/tld-knowledge-base/cctlds/uk) domain is pushed to the new registrar's tag instead of requested.
 
 The [TLD Knowledge Base](/tld-knowledge-base) describes each TLD's rules, and each registrar's page lists the TLDs whose steps differ.
 

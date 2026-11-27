@@ -410,6 +410,11 @@ def registry_of(tld: str, tld_types: dict[str, str]) -> tuple[str, str | None] |
     return name[1], site[1] if site else None
 
 
+def link_tlds(text: str, tld_types: dict[str, str]) -> str:
+    """Each `.tld` of a written text as a link to its Knowledge Base page, where it has one."""
+    return re.sub(r"`\.([a-z0-9][a-z0-9.-]*)`", lambda m: kb_link(m[1], tld_types) if kb_path(m[1], tld_types) else m[0], text)
+
+
 def kb_link(tld: str, tld_types: dict[str, str]) -> str:
     path = kb_path(tld, tld_types)
     return f"[.{tld}]({path})" if path else f".{tld}"
@@ -798,11 +803,11 @@ def render_overview(data: dict, facts: dict[str, RegistrySide]) -> str:
         "current registrar approves or denies it within five days. The registry transfers the domain "
         "into your OpusDNS account.](/images/gtld-transfer.svg)",
         "",
-        ICANN_TEXT,
+        link_tlds(ICANN_TEXT, tld_types),
         "",
         "## ccTLDs",
         "",
-        CCTLD_TEXT,
+        link_tlds(CCTLD_TEXT, tld_types),
         "",
         "## Transfer patterns",
         "",

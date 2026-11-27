@@ -50,7 +50,7 @@ Contacts, period, nameservers and monitoring work as described in
 
 ![Swimlane: you send the transfer request. OpusDNS checks the statuses, removes the transfer lock and fetches the auth code at your current registrar, requests the transfer at the registry and approves it at your current registrar. The registry transfers the domain into your OpusDNS account.](/images/connected-domain-transfer.svg)
 
-The usual order for a gTLD, such as `.com`. gTLD transfers follow ICANN's
+The usual order for a gTLD, such as [.com](/tld-knowledge-base/gtlds/com). gTLD transfers follow ICANN's
 [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en),
 which every registrar accredited by ICANN and every gTLD registry must follow, so these steps are the same at every gTLD registry. ccTLD
 registries set their own rules, and their steps often differ. Which steps apply also depends on your
@@ -71,7 +71,7 @@ the transfer goes to the registry, OpusDNS:
    refuses to transfer a locked domain.
 3. **Fetches the auth code, where the TLD needs one.** If you send `auth_code`,
    OpusDNS uses yours and doesn't fetch one. Where the registrar doesn't hand
-   the code out, or only the registry issues it, as at `.se` and `.nu`, send it
+   the code out, or only the registry issues it, as at [.se](/tld-knowledge-base/cctlds/se) and [.nu](/tld-knowledge-base/cctlds/nu), send it
    yourself. Otherwise the transfer stops with
    `409 ERROR_DOMAIN_TRANSFER_NOT_ALLOWED`.
 
@@ -88,9 +88,9 @@ rejected or cancelled later leaves the lock off: set it again at the registrar.
 | Step | Depends on |
 | --- | --- |
 | Remove the transfer lock | The TLD: not every registry has a transfer lock. The registrar: OpusDNS removes only a lock the registrar reports. |
-| Fetch the auth code | The TLD: some need none, such as `.uk`, and at `.se` and `.nu` only the registry issues codes. The registrar: whether OpusDNS can read the code there. |
+| Fetch the auth code | The TLD: some need none, such as [.uk](/tld-knowledge-base/cctlds/uk), and at [.se](/tld-knowledge-base/cctlds/se) and [.nu](/tld-knowledge-base/cctlds/nu) only the registry issues codes. The registrar: whether OpusDNS can read the code there. |
 | Approve the transfer | The TLD: some complete a transfer without approval. The registrar: whether it can approve through OpusDNS. |
-| Push the domain (`.uk`) | The TLD: `.uk` transfers by push instead of request and approval. The registrar: whether it can push through OpusDNS. |
+| Push the domain ([.uk](/tld-knowledge-base/cctlds/uk)) | The TLD: [.uk](/tld-knowledge-base/cctlds/uk) transfers by push instead of request and approval. The registrar: whether it can push through OpusDNS. |
 
 ### Approval
 
@@ -102,12 +102,12 @@ the transfer completes as any other: see the
 
 ### .uk domains
 
-A `.uk` transfer needs no auth code. OpusDNS records the transfer and asks the
+A [.uk](/tld-knowledge-base/cctlds/uk) transfer needs no auth code. OpusDNS records the transfer and asks the
 connected registrar to push the domain to OpusDNS's Nominet tag, `OPUSDNS`. If
 that registrar can't push it through OpusDNS, push it to `OPUSDNS` there
 yourself. See [.uk operations](/products/tld-operations/uk).
 
-From 9 February 2027, Nominet replaces the push with an auth code, and `.uk`
+From 9 February 2027, Nominet replaces the push with an auth code, and [.uk](/tld-knowledge-base/cctlds/uk)
 transfers work like those of other TLDs. See
 [Nominet's FAQ](https://registrars.nominet.uk/registry/dot-uk/faq/).
 
