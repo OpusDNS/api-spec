@@ -478,7 +478,8 @@ def render_overview(data: dict) -> str:
         "If the request fails before the registry has it, OpusDNS sets the lock again.",
         "",
         "> [!WARNING]",
-        "> **Some steps stay with you.** Check your registrar's page before you start a transfer:",
+        "> **Some steps stay with you.** The [page for your registrar](#your-registrar) in these docs "
+        "lists them. Read it before you start a transfer. Typical cases are:",
         ">",
         "> - A lock OpusDNS can't see, or can't remove through the registrar's API.",
         "> - A setting at the registrar that blocks the change, such as WHOIS privacy at InterNetX.",
@@ -486,15 +487,18 @@ def render_overview(data: dict) -> str:
         "at `.se` and `.nu`. Send it as `auth_code` in the request.",
         "> - An approval that the registrar's API can't give, or that someone else gives, such as the "
         "domain's holder answering the registrar's email.",
+        ">",
+        "> Your registrar's own documentation explains how to take these steps there.",
         "",
-        "This works when your organization holds the domain through exactly one connected account. "
-        "See [Transfer a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns) "
+        "OpusDNS takes these steps only when exactly one of your connected accounts holds the domain. "
+        "Otherwise, send the auth code yourself. See [Transfer a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns) "
         "for the request and the errors.",
         "",
         "## Your registrar",
         "",
-        "Each registrar's page lists which steps OpusDNS takes there, the TLDs whose steps differ, and "
-        "what OpusDNS can do with a domain you hold there until you transfer it.",
+        "Each registrar has its own page in these docs. It shows which steps OpusDNS takes there and at "
+        "which TLDs they differ. It also shows what OpusDNS can do with your domain there until you "
+        "transfer it.",
         "",
         *[f"- [{REGISTRARS[k].name}]({ROUTE}/{REGISTRARS[k].slug})" for k in keys],
         "",

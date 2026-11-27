@@ -230,6 +230,17 @@ h1 .opusdns-beta-badge {
 	margin-left: 8px;
 }
 
+/* Scalar tints warning callouts at 3 %, too faint for steps a customer must take. */
+.light-mode .callout.callout__warning {
+	background: #fff4c7;
+	border-color: var(--opusdns-secondary);
+}
+
+.dark-mode .callout.callout__warning {
+	background: rgba(255, 209, 58, 0.14);
+	border-color: var(--opusdns-secondary);
+}
+
 .footer {
 	background: var(--opusdns-footer-background);
 }
