@@ -477,10 +477,8 @@ def render_overview(data: dict) -> str:
         "",
         "If the request fails before the registry has it, OpusDNS sets the lock again.",
         "",
-        "OpusDNS takes steps 1 to 4 only when exactly one of your connected accounts holds the domain. "
-        "Otherwise, the request is an ordinary transfer. You then take every step at your registrar "
-        "yourself. See [Transfer a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns) "
-        "for the request and the errors.",
+        "See [Transfer a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns) "
+        "for more details.",
         "",
         "> [!WARNING]",
         "> **Some steps stay with you.** The [page for your registrar](#your-registrar) in these docs "
