@@ -2,6 +2,9 @@
 
 Your current registrar pushes the domain to OpusDNS's registrar tag. There is no auth code and no approval.
 
+> [!NOTE]
+> [.uk](/transfers/patterns/push/uk): From 9 February 2027, Nominet replaces the push with an auth code. Your current registrar then gives you a Transfer Authorisation Code, valid for 14 days. With it, the transfer completes at once. See [Nominet's FAQ](https://registrars.nominet.uk/registry/dot-uk/faq/).
+
 ## Steps
 
 1. Remove the transfer lock at your current registrar.

@@ -103,6 +103,10 @@ connected registrar to push the domain to OpusDNS's Nominet tag, `OPUSDNS`. If
 that registrar can't push it through OpusDNS, push it to `OPUSDNS` there
 yourself. See [.uk operations](/products/tld-operations/uk).
 
+From 9 February 2027, Nominet replaces the push with an auth code, and `.uk`
+transfers work like those of other TLDs. See
+[Nominet's FAQ](https://registrars.nominet.uk/registry/dot-uk/faq/).
+
 ## When the connected registrar refuses
 
 | Response | Meaning | What to do |

@@ -451,3 +451,23 @@ def test_only_a_tld_without_approval_says_its_registrar_can_deny():
     facts = gen.registry_facts(data)
     for tld in ("com", "uk"):
         assert "can still deny" not in gen.render_tld(tld, data, facts[tld])
+
+
+def uk_push_rows(push=True):
+    steps = [step("update_transfer_lock", "opusdns", "OpusDNS removes the transfer lock at OpenSRS."),
+             step("request_transfer", "opusdns", "OpusDNS books the domain and has it pushed. The .uk registry gets no transfer request."),
+             step("push_transfer_out", "opusdns", "OpusDNS pushes the domain to its tag at OpenSRS."),
+             step("complete_transfer", "registry", "The .uk registry moves the domain to OpusDNS's tag.")]
+    return [row("com", usual_steps("com")), row("uk", steps if push else usual_steps("uk"), push=push)]
+
+
+def test_an_announced_registry_change_shows_until_the_export_has_it():
+    data = export(uk_push_rows())
+    facts = gen.registry_facts(data)
+    tld_page = gen.render_tld("uk", data, facts["uk"])
+    pattern, tlds = next((p, t) for p, t in gen.ordered_patterns(facts) if p.slug == "push")
+    pattern_page = gen.render_pattern(pattern, tlds, data, facts)
+    assert "> [!NOTE]\n> From 9 February 2027, Nominet replaces the push with an auth code." in tld_page
+    assert "> [.uk](/transfers/patterns/push/uk): From 9 February 2027" in pattern_page
+    with pytest.raises(SystemExit, match="remove it from UPCOMING"):
+        gen.registry_facts(export(uk_push_rows(push=False)))

@@ -2,6 +2,9 @@
 
 `.uk` follows the [Push to a tag](/transfers/patterns/push) pattern. Its registry has a transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
 
+> [!NOTE]
+> From 9 February 2027, Nominet replaces the push with an auth code. Your current registrar then gives you a Transfer Authorisation Code, valid for 14 days. With it, the transfer completes at once. See [Nominet's FAQ](https://registrars.nominet.uk/registry/dot-uk/faq/).
+
 ## Steps
 
 1. Remove the transfer lock at your current registrar.

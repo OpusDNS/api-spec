@@ -21,7 +21,7 @@ ccTLD registries don't follow ICANN's Transfer Policy. Each sets its own rules, 
 - `.de` and `.se` complete a transfer at once, without an approval.
 - At `.lu`, the domain's holder approves the transfer by email.
 - At `.se` and `.nu`, only the registry issues auth codes.
-- A `.uk` domain is pushed to the new registrar's tag instead of requested.
+- Until 9 February 2027, a `.uk` domain is pushed to the new registrar's tag instead of requested.
 
 The [TLD Knowledge Base](/tld-knowledge-base) describes each TLD's rules, and each registrar's page lists the TLDs whose steps differ.
 

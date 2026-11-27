@@ -109,7 +109,7 @@ CCTLD_TEXT = "\n".join([
     "- `.de` and `.se` complete a transfer at once, without an approval.",
     "- At `.lu`, the domain's holder approves the transfer by email.",
     "- At `.se` and `.nu`, only the registry issues auth codes.",
-    "- A `.uk` domain is pushed to the new registrar's tag instead of requested.",
+    "- Until 9 February 2027, a `.uk` domain is pushed to the new registrar's tag instead of requested.",
     "",
     "The [TLD Knowledge Base](/tld-knowledge-base) describes each TLD's rules, and each registrar's "
     "page lists the TLDs whose steps differ.",
@@ -307,6 +307,14 @@ TLD_NOTES = {
           "ISNIC. See [ISNIC's FAQ](https://www.isnic.is/en/faq).",
 }
 
+# A registry's announced change, by TLD: the pattern it has until then, and the note its
+# pages show. Once the export shows the change, the run fails until the note goes.
+UPCOMING = {
+    "uk": ("push", "From 9 February 2027, Nominet replaces the push with an auth code. Your current registrar then "
+                   "gives you a Transfer Authorisation Code, valid for 14 days. With it, the transfer completes at once. "
+                   "See [Nominet's FAQ](https://registrars.nominet.uk/registry/dot-uk/faq/)."),
+}
+
 # Named first where a page names a few gTLDs as examples.
 EXAMPLE_TLDS = ("com", "net", "org")
 
@@ -353,6 +361,9 @@ def registry_facts(data: dict) -> dict[str, RegistrySide]:
     if split:
         raise SystemExit(f"registrars disagree on the registry's side of {split}")
     facts = {tld: next(iter(sides)) for tld, sides in found.items()}
+    done = sorted(tld for tld, (until, _) in UPCOMING.items() if tld in facts and facts[tld].key != until)
+    if done:
+        raise SystemExit(f"the export shows the announced change of {done}: remove it from UPCOMING")
     unknown = {side.key for side in facts.values() if side.key is not None and side.key not in PATTERNS}
     if unknown:
         raise SystemExit(f"no pattern wording for {sorted(map(str, unknown))}: add it to PATTERNS")
@@ -717,7 +728,10 @@ def render_pattern(pattern: Pattern, tlds: list[str], data: dict, facts: dict[st
     if cctlds:
         named.append(("these ccTLDs: " if gtlds else "") + ", ".join(map(link, cctlds)))
     locked = [t for t in tlds if facts[t].lock]
-    lines = [f"# {pattern.title}", "", pattern.intro, "", "## Steps", ""]
+    lines = [f"# {pattern.title}", "", pattern.intro]
+    for tld in (t for t in tlds if t in UPCOMING):
+        lines += ["", "> [!NOTE]", f"> {link(tld)}: {UPCOMING[tld][1]}"]
+    lines += ["", "## Steps", ""]
     lines += [f"{i}. {step}" for i, step in enumerate(pattern_steps(pattern, [facts[t].lock for t in tlds]), 1)]
     lines += ["", "## TLDs", "", sentence_case(", and ".join(named)) + "."]
     if locked and len(locked) < len(tlds):
@@ -751,7 +765,10 @@ def render_tld(tld: str, data: dict, side: RegistrySide) -> str:
         facts.append(f"A transfer takes up to {side.days} day{'' if side.days == 1 else 's'}.")
     if data["tld_types"].get(tld) == "gTLD":
         facts.append(f"As a gTLD, it follows ICANN's [Transfer Policy]({ICANN_POLICY}).")
-    lines += [" ".join(facts), "", "## Steps", ""]
+    lines.append(" ".join(facts))
+    if tld in UPCOMING:
+        lines += ["", "> [!NOTE]", f"> {UPCOMING[tld][1]}"]
+    lines += ["", "## Steps", ""]
     steps = [step.replace(", depending on the TLD", "") for step in pattern_steps(pattern, [side.lock])]
     lines += [f"{i}. {step}" for i, step in enumerate(steps, 1)]
     lines += ["", *registrar_table(data, [tld])]
