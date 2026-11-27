@@ -42,9 +42,9 @@ See [Transfer a connected domain to OpusDNS](/products/connected-registrars/tran
 > **Some steps stay with you.** The [page for your registrar](#your-registrar) in these docs lists them. Read it before you start a transfer. Typical cases are:
 >
 > - A lock that OpusDNS can't see or can't remove through the registrar's API.
-> - A setting at the registrar that blocks the transfer. An example is WHOIS privacy at InterNetX.
-> - An auth code that the registrar's API doesn't hand out. At `.se` and `.nu`, only the registry issues the code. Send it as `auth_code` in the request.
-> - An approval that the registrar's API can't give. Sometimes someone else approves. For example, the domain's holder answers an email from the registrar.
+> - A setting at the registrar that blocks the transfer.
+> - An auth code that the registrar's API doesn't hand out.
+> - An approval that the registrar's API can't give. Sometimes a third party takes part in it. For example, the domain's holder answers an email from the registrar.
 >
 > Your registrar's own documentation explains how to take these steps there.
 

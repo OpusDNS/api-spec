@@ -154,7 +154,7 @@ def test_the_overview_explains_gtlds_cctlds_and_the_connected_account():
     text = gen.render_overview({"tld_types": TYPES, "registrars": {"opensrs": [row("com", usual_steps("com"))], "enom": [row("com", usual_steps("com"))]}})
     assert "(/images/gtld-transfer.svg)" in text
     assert "## ccTLDs" in text and "## With a connected account" in text
-    assert "Send it as `auth_code`" in text
+    assert "> [!WARNING]" in text and "[page for your registrar](#your-registrar)" in text and "## Your registrar" in text
     assert "- [eNom](/transfers/enom)" in text and "- [OpenSRS](/transfers/opensrs)" in text
     assert ";" not in text
 
