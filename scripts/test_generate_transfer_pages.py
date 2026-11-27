@@ -320,8 +320,8 @@ def test_patterns_come_most_common_first_and_push_wins_over_the_auth_code():
     assert facts["fr"].key is None
 
 
-@pytest.mark.parametrize(("ack", "nack", "approval"), [("none", "none", False), (None, None, False), ("none", "registrar", True), ("registrar", "none", True)])
-def test_a_registry_that_lets_the_losing_side_approve_or_deny_counts_as_approval(ack, nack, approval):
+@pytest.mark.parametrize(("ack", "nack", "approval"), [("none", "none", False), (None, None, False), ("none", "registrar", False), ("registrar", "none", True)])
+def test_only_an_approval_by_the_losing_side_counts_as_approval(ack, nack, approval):
     policies = {"transfer_ack": ack, "transfer_nack": nack}
     assert gen.pattern_key(row("xx", usual_steps("xx"), policies=policies)) == ("registrar", approval)
 
@@ -409,3 +409,33 @@ def test_the_intro_names_a_push_as_opusdns_step():
                 step("complete_transfer", "registry", f"The .{tld} registry moves the domain to OpusDNS's tag.")]
 
     assert "OpusDNS then removes the transfer lock and pushes the domain to its tag at OpenSRS." in intro_of(steps)
+
+
+def test_a_cctld_page_without_approval_says_what_differs():
+    # A ccTLD at 0 days whose losing registrar can deny it, with a privacy step at OpenSRS, no
+    # Knowledge Base page, and a second registrar that doesn't offer it.
+    policies = {"transfer_ack": "none", "transfer_nack": "registrar", "transfer_time": "0D"}
+    xx = row("xx", usual_steps("xx", privacy_step=True)[:-2] + [step("complete_transfer", "registry", "The .xx registry moves the domain to OpusDNS.")], policies=policies)
+    data = {"tld_types": TYPES, "registrars": {"opensrs": [row("com", usual_steps("com")), xx], "enom": [row("com", usual_steps("com"))]}}
+    facts = gen.registry_facts(data)
+    text = gen.render_tld("xx", data, facts["xx"])
+    assert "[Auth code, no approval](/transfers/patterns/auth-code) pattern." in text
+    assert "Your current registrar can still deny a transfer. The registry completes a transfer at once." in text
+    assert "As a gTLD" not in text and "TLD Knowledge Base" not in text
+    assert "OpenSRS refuses to remove the lock while WHOIS privacy is on. Turn it off there first." in text
+    assert "[OpenSRS](/transfers/registrars/opensrs)" in text and "[eNom]" not in text
+
+
+def test_a_tld_page_says_the_code_source_without_the_patterns_hedge():
+    policies = {"authinfo_set_by_registrar": False, "transfer_ack": "none"}
+    rows = [row("se", se_steps(), lock=False, policies=policies)]
+    data = export(rows)
+    text = gen.render_tld("se", data, gen.registry_facts(data)["se"])
+    assert "1. Get the auth code from your current registrar or the registry.\n" in text
+
+
+def test_a_tld_without_transfers_and_without_a_note_still_points_to_support():
+    rows = [row("fr", [], flow_detail=".fr has no transfers.", policies={"supported": False})]
+    data = export(rows)
+    text = gen.render_tld("fr", data, gen.registry_facts(data)["fr"])
+    assert "ISNIC" not in text and "contact [OpusDNS support](https://support.opusdns.com/)" in text

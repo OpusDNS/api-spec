@@ -308,8 +308,8 @@ def _transfer_pages() -> dict[str, dict[str, str]]:
 
 
 def _transfer_page(tld: str) -> str:
-    pattern = _transfer_pages().get(tld)
-    return f"[{pattern['title']}]({pattern['path']})" if pattern else ""
+    entry = _transfer_pages().get(tld)
+    return f"[{entry['title']}]({entry['path']})" if entry else ""
 
 
 def _transfer_policy(config: dict[str, Any], tld: str) -> list[str]:

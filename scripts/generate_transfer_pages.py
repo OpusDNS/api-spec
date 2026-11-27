@@ -35,7 +35,7 @@ ROUTE = "/transfers"
 REGISTRAR_ROUTE = f"{ROUTE}/registrars"
 PATTERN_ROUTE = f"{ROUTE}/patterns"
 SUPPORT_URL = "https://support.opusdns.com/"
-# The Knowledge Base generator links each TLD to its pattern from this file.
+# The Knowledge Base generator links each TLD to its transfer page from this file.
 TRANSFER_PAGES_FILE = REPO_ROOT / "scripts" / "tld_knowledge_base" / "transfer_pages.json"
 TAB = {"title": "Transfers", "icon": "line/arrow-right", "to": ROUTE, "newTab": False}
 
@@ -116,7 +116,7 @@ CCTLD_TEXT = "\n".join([
 ])
 
 REGISTRAR_PAGE_NOTE = (
-    f"For gTLDs, these steps follow ICANN's [Transfer Policy]({ICANN_POLICY}). Every TLD follows one of the "
+    f"For gTLDs, these steps follow ICANN's [Transfer Policy]({ICANN_POLICY}). Each TLD with transfers follows one of the "
     f"[transfer patterns]({ROUTE}/overview#transfer-patterns)."
 )
 
@@ -248,7 +248,7 @@ class Pattern:
 
 
 # Keyed by whether the registrar sets the auth code (TLD spec: authinfo_set_by_registrar)
-# and whether the losing side can approve or deny, the registry's side of a transfer.
+# and whether the transfer waits for the losing side's approval, the registry's side of a transfer.
 # A key without wording fails the run.
 PATTERNS = {
     ("registrar", True): Pattern(
@@ -323,7 +323,7 @@ def pattern_key(row: dict) -> object:
         code = "none"
     else:
         code = "registrar" if policies.get("authinfo_set_by_registrar") else "registry"
-    return code, any(policies.get(field) not in (None, "none") for field in ("transfer_ack", "transfer_nack"))
+    return code, policies.get("transfer_ack") not in (None, "none")
 
 
 @dataclass(frozen=True)
@@ -331,6 +331,7 @@ class RegistrySide:
     key: object  # into PATTERNS, None where the TLD has no transfers
     lock: bool
     renews: bool
+    deny: bool  # the losing side can deny a transfer, also where nobody approves it
     days: int | None  # the transfer time, None where the spec gives it in other units
 
 
@@ -338,7 +339,8 @@ def registry_side(row: dict) -> RegistrySide:
     policies = row["specification"]["transfer_policies"]
     lock = bool(policies.get("transfer_lock_policy", {}).get("supported_by_registry"))
     days = re.fullmatch(r"(\d+)D", str(policies.get("transfer_time") or ""))
-    return RegistrySide(pattern_key(row), lock, bool(policies.get("transfer_renews_domain")), int(days[1]) if days else None)
+    deny = policies.get("transfer_nack") not in (None, "none")
+    return RegistrySide(pattern_key(row), lock, bool(policies.get("transfer_renews_domain")), deny, int(days[1]) if days else None)
 
 
 def registry_facts(data: dict) -> dict[str, RegistrySide]:
@@ -741,6 +743,8 @@ def render_tld(tld: str, data: dict, side: RegistrySide) -> str:
         "Its registry has a transfer lock." if side.lock else "Its registry has no transfer lock.",
         "A transfer extends the registration." if side.renews else "A transfer doesn't extend the registration.",
     ]
+    if side.deny and not (isinstance(side.key, tuple) and side.key[1]):
+        facts.append("Your current registrar can still deny a transfer.")
     if side.days == 0:
         facts.append("The registry completes a transfer at once.")
     elif side.days:
@@ -748,7 +752,9 @@ def render_tld(tld: str, data: dict, side: RegistrySide) -> str:
     if data["tld_types"].get(tld) == "gTLD":
         facts.append(f"As a gTLD, it follows ICANN's [Transfer Policy]({ICANN_POLICY}).")
     lines += [" ".join(facts), "", "## Steps", ""]
-    lines += [f"{i}. {step}" for i, step in enumerate(pattern_steps(pattern, [side.lock]), 1)]
+    # A single TLD's page drops the pattern's "depending on the TLD".
+    steps = [step.replace(", depending on the TLD", "") for step in pattern_steps(pattern, [side.lock])]
+    lines += [f"{i}. {step}" for i, step in enumerate(steps, 1)]
     lines += ["", *registrar_table(data, [tld])]
     privacy = [
         REGISTRARS[key].name
@@ -859,7 +865,7 @@ def update_config(config_path: Path, keys: list[str], patterns: list[tuple[Patte
         }
         for pattern, tlds in patterns
     }
-    # Only the overview links a TLD without transfers, so its page stays out of the sidebar.
+    # The sidebar lists TLDs by pattern. One without transfers has none, so its page stays out of the sidebar.
     by_pattern |= {f"/{tld}": nav_page(f".{tld}", f"content/{folder}/{tld}.md", sidebar=False) for tld in without}
     navigation["routes"][ROUTE] = {
         "type": "group",

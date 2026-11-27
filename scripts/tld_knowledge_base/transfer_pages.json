@@ -328,8 +328,8 @@
     "path": "/transfers/patterns/gtlds/city"
   },
   "cl": {
-    "title": "gTLDs and most ccTLDs",
-    "path": "/transfers/patterns/gtlds/cl"
+    "title": "Auth code, no approval",
+    "path": "/transfers/patterns/auth-code/cl"
   },
   "claims": {
     "title": "gTLDs and most ccTLDs",

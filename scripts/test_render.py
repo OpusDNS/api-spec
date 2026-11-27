@@ -28,9 +28,9 @@ def test_without_idn_limit_domain_length_is_unchanged() -> None:
 
 
 def test_the_transfer_policy_links_the_tlds_transfer_page(monkeypatch) -> None:
-    patterns = {"xn--q9jyb4c": {"title": "Auth code, completes at once", "path": "/transfers/auth-code"}}
-    monkeypatch.setattr(render, "_transfer_pages", lambda: patterns)
+    pages = {"xn--q9jyb4c": {"title": "gTLDs and most ccTLDs", "path": "/transfers/patterns/gtlds/xn--q9jyb4c"}}
+    monkeypatch.setattr(render, "_transfer_pages", lambda: pages)
     page = render.render(_spec({"min": 1, "max": 63}))
-    assert "| Transfer to OpusDNS | [Auth code, completes at once](/transfers/auth-code) |" in page
+    assert "| Transfer to OpusDNS | [gTLDs and most ccTLDs](/transfers/patterns/gtlds/xn--q9jyb4c) |" in page
     monkeypatch.setattr(render, "_transfer_pages", lambda: {})
     assert "Transfer to OpusDNS" not in render.render(_spec({"min": 1, "max": 63}))

@@ -4,7 +4,7 @@
 
 ## Steps
 
-1. Get the auth code from your current registrar or the registry, depending on the TLD.
+1. Get the auth code from your current registrar or the registry.
 2. OpusDNS requests the transfer at the registry with the auth code.
 3. The registry completes the transfer without an approval.
 

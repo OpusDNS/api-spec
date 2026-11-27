@@ -5,7 +5,7 @@
 ## Steps
 
 1. Remove the transfer lock at your current registrar.
-2. Get the auth code from your current registrar or the registry, depending on the TLD.
+2. Get the auth code from your current registrar or the registry.
 3. OpusDNS requests the transfer at the registry with the auth code.
 4. Your current registrar approves or denies the transfer.
 

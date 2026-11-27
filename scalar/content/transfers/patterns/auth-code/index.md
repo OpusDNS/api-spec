@@ -11,9 +11,9 @@ Your current registrar gives you the auth code. OpusDNS requests the transfer wi
 
 ## TLDs
 
-[.ca](/transfers/patterns/auth-code/ca), [.ch](/transfers/patterns/auth-code/ch), [.de](/transfers/patterns/auth-code/de), [.ee](/transfers/patterns/auth-code/ee), [.gg](/transfers/patterns/auth-code/gg), [.je](/transfers/patterns/auth-code/je), [.li](/transfers/patterns/auth-code/li), [.no](/transfers/patterns/auth-code/no), [.pl](/transfers/patterns/auth-code/pl), [.pt](/transfers/patterns/auth-code/pt), [.si](/transfers/patterns/auth-code/si), [.sk](/transfers/patterns/auth-code/sk).
+[.ca](/transfers/patterns/auth-code/ca), [.ch](/transfers/patterns/auth-code/ch), [.cl](/transfers/patterns/auth-code/cl), [.de](/transfers/patterns/auth-code/de), [.ee](/transfers/patterns/auth-code/ee), [.gg](/transfers/patterns/auth-code/gg), [.je](/transfers/patterns/auth-code/je), [.li](/transfers/patterns/auth-code/li), [.no](/transfers/patterns/auth-code/no), [.pl](/transfers/patterns/auth-code/pl), [.pt](/transfers/patterns/auth-code/pt), [.si](/transfers/patterns/auth-code/si), [.sk](/transfers/patterns/auth-code/sk).
 
-A transfer lock only at [.ca](/transfers/patterns/auth-code/ca), [.ee](/transfers/patterns/auth-code/ee), [.gg](/transfers/patterns/auth-code/gg), [.je](/transfers/patterns/auth-code/je), [.sk](/transfers/patterns/auth-code/sk).
+A transfer lock only at [.ca](/transfers/patterns/auth-code/ca), [.cl](/transfers/patterns/auth-code/cl), [.ee](/transfers/patterns/auth-code/ee), [.gg](/transfers/patterns/auth-code/gg), [.je](/transfers/patterns/auth-code/je), [.sk](/transfers/patterns/auth-code/sk).
 
 ## At your registrar
 

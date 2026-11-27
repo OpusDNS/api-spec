@@ -29,8 +29,8 @@ The [TLD Knowledge Base](/tld-knowledge-base) describes each TLD's rules, and ea
 
 TLDs with the same steps share a transfer pattern:
 
-- [gTLDs and most ccTLDs](/transfers/patterns/gtlds): 503 TLDs
-- [Auth code, no approval](/transfers/patterns/auth-code): 12 TLDs
+- [gTLDs and most ccTLDs](/transfers/patterns/gtlds): 502 TLDs
+- [Auth code, no approval](/transfers/patterns/auth-code): 13 TLDs
 - [Auth code set by the registry](/transfers/patterns/registry-auth-code): 10 TLDs
 - [No auth code, with approval](/transfers/patterns/no-auth-code): 5 TLDs
 - [Auth code set by the registry, with approval](/transfers/patterns/registry-auth-code-approval): 2 TLDs

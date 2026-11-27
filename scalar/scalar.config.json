@@ -4542,12 +4542,6 @@
                     "filepath": "content/transfers/patterns/gtlds/city.md",
                     "showInSidebar": true
                   },
-                  "/cl": {
-                    "type": "page",
-                    "title": ".cl",
-                    "filepath": "content/transfers/patterns/gtlds/cl.md",
-                    "showInSidebar": true
-                  },
                   "/claims": {
                     "type": "page",
                     "title": ".claims",
@@ -7108,6 +7102,12 @@
                     "type": "page",
                     "title": ".ch",
                     "filepath": "content/transfers/patterns/auth-code/ch.md",
+                    "showInSidebar": true
+                  },
+                  "/cl": {
+                    "type": "page",
+                    "title": ".cl",
+                    "filepath": "content/transfers/patterns/auth-code/cl.md",
                     "showInSidebar": true
                   },
                   "/de": {
