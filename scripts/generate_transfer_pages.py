@@ -466,12 +466,16 @@ def render_overview(data: dict) -> str:
         "## With a connected account",
         "",
         "If you have [connected](/products/connected-registrars/connect) your account at the current "
-        "registrar, you can usually request the transfer without the auth code. OpusDNS then takes the steps "
-        "at your current registrar that the registrar's API allows. Before it changes anything there, "
-        "it checks the domain's statuses and stops if one blocks the transfer. Then it removes the "
-        "transfer lock where the registrar shows it, gets the auth code where the registrar hands it "
-        "out, and approves the pending transfer where the registrar lets it. If the request fails "
-        "before the registry has it, OpusDNS sets the lock again.",
+        "registrar, you can usually request the transfer without the auth code. OpusDNS then takes the "
+        "steps at your current registrar that the registrar's API allows:",
+        "",
+        "1. It checks the domain's statuses. If one blocks the transfer, it stops before it changes "
+        "anything.",
+        "2. It removes the transfer lock, where the registrar shows it.",
+        "3. It gets the auth code, where the registrar hands it out.",
+        "4. It approves the pending transfer, where the registrar lets it.",
+        "",
+        "If the request fails before the registry has it, OpusDNS sets the lock again.",
         "",
         "> [!WARNING]",
         "> **Some steps stay with you.** Check your registrar's page before you start a transfer:",
