@@ -57,6 +57,7 @@ import type {
   DomainPreRegistrationNeedsAction,
   DomainPreRegistrationPhase,
   DomainPreRegistrationPublicStage,
+  DomainPreRegistrationSignedMarkStatus,
   DomainSortField,
   DomainStatisticsBreakdown,
   DomainStatus,
@@ -1116,6 +1117,7 @@ export const DOMAIN_MODIFICATION_PART_STATUS_VALUES = [
 
 export const DOMAIN_PRE_REGISTRATION_NEEDS_ACTION = {
   SIGNED_MARK_REQUIRED: "signed_mark_required",
+  SIGNED_MARK_INVALID: "signed_mark_invalid",
   CONFIRMATION_REQUIRED: "confirmation_required",
   MATCHING_DOMAIN_NOT_FOUND: "matching_domain_not_found",
   MATCHING_DOMAIN_RECENTLY_TRANSFERRED: "matching_domain_recently_transferred",
@@ -1125,6 +1127,7 @@ export const DOMAIN_PRE_REGISTRATION_NEEDS_ACTION = {
 
 export const DOMAIN_PRE_REGISTRATION_NEEDS_ACTION_VALUES = [
   'signed_mark_required',
+  'signed_mark_invalid',
   'confirmation_required',
   'matching_domain_not_found',
   'matching_domain_recently_transferred',
@@ -1167,6 +1170,32 @@ export const DOMAIN_PRE_REGISTRATION_PUBLIC_STAGE_VALUES = [
   'failed',
   'canceled',
 ] as const satisfies ReadonlyArray<DomainPreRegistrationPublicStage>;
+
+export const DOMAIN_PRE_REGISTRATION_SIGNED_MARK_STATUS = {
+  VALID: "valid",
+  NOT_VERIFIED: "not_verified",
+  MALFORMED: "malformed",
+  BAD_SIGNATURE: "bad_signature",
+  UNTRUSTED_ISSUER: "untrusted_issuer",
+  CERT_REVOKED: "cert_revoked",
+  NOT_YET_VALID: "not_yet_valid",
+  EXPIRED: "expired",
+  REVOKED: "revoked",
+  LABEL_MISMATCH: "label_mismatch",
+} as const satisfies Record<string, DomainPreRegistrationSignedMarkStatus>;
+
+export const DOMAIN_PRE_REGISTRATION_SIGNED_MARK_STATUS_VALUES = [
+  'valid',
+  'not_verified',
+  'malformed',
+  'bad_signature',
+  'untrusted_issuer',
+  'cert_revoked',
+  'not_yet_valid',
+  'expired',
+  'revoked',
+  'label_mismatch',
+] as const satisfies ReadonlyArray<DomainPreRegistrationSignedMarkStatus>;
 
 export const DOMAIN_SORT_FIELD = {
   NAME: "name",

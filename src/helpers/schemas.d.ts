@@ -283,6 +283,7 @@ export type DomainPreRegistrationNeedsAction = components['schemas']['DomainPreR
 export type DomainPreRegistrationPhase = components['schemas']['DomainPreRegistrationPhase'];
 export type DomainPreRegistrationPublicStage = components['schemas']['DomainPreRegistrationPublicStage'];
 export type DomainPreRegistrationRegistration = components['schemas']['DomainPreRegistrationRegistration'];
+export type DomainPreRegistrationSignedMarkStatus = components['schemas']['DomainPreRegistrationSignedMarkStatus'];
 export type DomainRecommendationsContext = components['schemas']['DomainRecommendationsContext'];
 export type DomainRecommendationsContextCreate = components['schemas']['DomainRecommendationsContextCreate'];
 export type DomainRegistrantChange = components['schemas']['DomainRegistrantChangeResponse'];

@@ -15660,7 +15660,8 @@ components:
           type: array
         needs_action:
           description: 'What keeps the item from being submitted. The customer provides
-            `signed_mark_required` and `confirmation_required`; the `matching_domain_*`
+            `signed_mark_required` and `confirmation_required`, and replaces the SMD
+            file for `signed_mark_invalid` (`signed_mark_status` says why); the `matching_domain_*`
             codes are checked again while the item is `requested`, and `matching_domain_recently_transferred`
             and `matching_domain_in_add_period` clear by themselves at `eligible_from`.
             Treat a value you do not know as an open action: codes can be added.'
@@ -15694,6 +15695,21 @@ components:
           description: 'Priority Access: the contact the domain is registered for,
             the matching domain''s registrant, taken once the matching domain qualifies'
           title: Registrant
+        signed_mark_status:
+          anyOf:
+          - $ref: '#/components/schemas/DomainPreRegistrationSignedMarkStatus'
+          - type: 'null'
+          description: 'The SMD file validated against the Trademark Clearinghouse,
+            for a phase with `smd_required`: `valid`, or `not_verified` while it could
+            not be validated yet (the item is not held up, and the file is validated
+            again within the hour; on the recheck, a file that did not change keeps
+            its last result). Any other value says why the file is refused, with `signed_mark_invalid`
+            in `needs_action`: `malformed`, `bad_signature`, `untrusted_issuer`, `cert_revoked`
+            (its certificate is revoked), `revoked` (the SMD is revoked), `not_yet_valid`
+            or `expired` (not valid now or when the phase opens), `label_mismatch`
+            (does not cover the domain''s name). Null without an SMD file or when
+            the phase needs none. Values can be added: `needs_action` says whether
+            the file holds the item up.'
         stage:
           $ref: '#/components/schemas/DomainPreRegistrationPublicStage'
           description: 'Where the pre-registration stands. Treat a value you do not
@@ -15807,6 +15823,7 @@ components:
     DomainPreRegistrationNeedsAction:
       enum:
       - signed_mark_required
+      - signed_mark_invalid
       - confirmation_required
       - matching_domain_not_found
       - matching_domain_recently_transferred
@@ -15885,6 +15902,20 @@ components:
       - renewal_mode
       title: DomainPreRegistrationRegistration
       type: object
+    DomainPreRegistrationSignedMarkStatus:
+      enum:
+      - valid
+      - not_verified
+      - malformed
+      - bad_signature
+      - untrusted_issuer
+      - cert_revoked
+      - not_yet_valid
+      - expired
+      - revoked
+      - label_mismatch
+      title: DomainPreRegistrationSignedMarkStatus
+      type: string
     DomainRecommendationsContext:
       properties:
         context_id:
@@ -31424,7 +31455,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-11-27-141844
+  version: 2026-11-27-152951
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -55462,8 +55493,9 @@ tags:
     \ /v1/domains`: a missing one is refused with `422` `ERROR_ORDER_CONFIRMATIONS_REQUIRED`,\
     \ which lists the keys in `missing_confirmations`.\n- `signed_mark` is the SMD\
     \ file from the Trademark Clearinghouse, needed for a phase with `smd_required`\
-    \ (Sunrise).\n- `expected_price` is the price for the registration period, as\
-    \ on `POST /v1/domains`: the price `GET /v1/domains/check` shows (the registry's\
+    \ (Sunrise). OpusDNS validates it for the domain's name, now and for the moment\
+    \ the phase opens.\n- `expected_price` is the price for the registration period,\
+    \ as on `POST /v1/domains`: the price `GET /v1/domains/check` shows (the registry's\
     \ premium price, or your list price). It is required for a premium name (`409`\
     \ `ERROR_ORDER_PREMIUM_PRICE_REQUIRED` carries the price) and optional otherwise;\
     \ a premium name is pre-registered for one year only (`422` `ERROR_ORDER_PREMIUM_PERIOD_NOT_SUPPORTED`),\
@@ -55472,10 +55504,11 @@ tags:
     \ the registry changes it before the funds are held, the item waits for you to\
     \ confirm the new price.\n\nThe item may be incomplete: a missing SMD file is\
     \ listed in the item's `domain_pre_registration.needs_action` (`signed_mark_required`)\
-    \ and must be provided by `hold_on`. `confirmation_required` (with the keys in\
-    \ `missing_confirmations`) only appears if the TLD adds a confirmation after the\
-    \ item was created. Creating the item checks the domain with the registry: a name\
-    \ it reports taken or reserved is refused with `409` `ERROR_ORDER_ITEM_UNAVAILABLE`.\
+    \ and must be provided by `hold_on`, and so must a valid file in place of one\
+    \ listed as `signed_mark_invalid` (see SMD file validation below). `confirmation_required`\
+    \ (with the keys in `missing_confirmations`) only appears if the TLD adds a confirmation\
+    \ after the item was created. Creating the item checks the domain with the registry:\
+    \ a name it reports taken or reserved is refused with `409` `ERROR_ORDER_ITEM_UNAVAILABLE`.\
     \ Nothing is reserved when the item is created: `price` shows the locked `expected_price`,\
     \ and the funds are held at `hold_on` (24 hours before the phase opens).\n\nA\
     \ pre-registration item reads:\n\n```json\n{\n  \"type\": \"domain_pre_registration\"\
@@ -55490,7 +55523,24 @@ tags:
     \nEach organization may hold one open pre-registration per domain; several organizations\
     \ may pre-register the same domain, and the first created is submitted first,\
     \ whether or not it was complete when created. An organization may hold up to\
-    \ 10000 open pre-registrations.\n\n### Pre-registering a list of domains\n\nSend\
+    \ 10000 open pre-registrations.\n\n### SMD file validation\n\nFor a phase with\
+    \ `smd_required`, `domain_pre_registration.signed_mark_status` shows how the SMD\
+    \ file validated; it is null without a file.\nA file that does not validate is\
+    \ not refused: the item is created with `signed_mark_invalid` in `needs_action`,\
+    \ and `signed_mark_status` says why.\nReplace the file with `PATCH /v1/orders/{order_id}/items/{item_id}`\
+    \ by `hold_on`.\n\n| `signed_mark_status` | The SMD file |\n| --- | --- |\n| `valid`\
+    \ | Validates for the domain, now and when the phase opens |\n| `not_verified`\
+    \ | Could not be validated yet; it is validated again within the hour, and the\
+    \ item is not held up meanwhile |\n| `malformed` | Is not an SMD file |\n| `bad_signature`\
+    \ | Its signature does not verify |\n| `untrusted_issuer` | Is not signed by the\
+    \ Trademark Clearinghouse |\n| `cert_revoked` | Is signed with a certificate the\
+    \ Trademark Clearinghouse revoked |\n| `revoked` | Was revoked by the Trademark\
+    \ Clearinghouse |\n| `not_yet_valid` | Is not valid yet |\n| `expired` | Has expired,\
+    \ or expires before the phase opens |\n| `label_mismatch` | Does not cover the\
+    \ domain's name (its leftmost label, e.g. `acme` for `acme.web`) |\n\nWhen the\
+    \ recheck cannot validate a file that was validated before and did not change,\
+    \ the file keeps that result.\nValues can be added: `needs_action` says whether\
+    \ the file holds the item up.\n\n### Pre-registering a list of domains\n\nSend\
     \ up to 100 `domain_pre_registration` items in one request, each domain once (`422`\
     \ otherwise); they may be for different phases.\nEvery item is checked as if it\
     \ were ordered alone. The order holds the items that pass, each with its own lifecycle,\
@@ -55572,31 +55622,33 @@ tags:
     \ `signed_mark` (`null` removes it) or `expected_price`. The domain cannot be\
     \ changed: cancel the order and pre-register the other domain.\n- The changed\
     \ item is checked again as on creation, with the same errors, and returned with\
-    \ its new `needs_action`, `hold_on` and, for Priority Access, `registrant`. A\
-    \ refused change leaves the item as it was.\n- The item keeps the price it locked,\
-    \ and a change that leaves the price alone checks neither price nor availability\
-    \ again.\n- Another `phase` or `registration.period` is priced again as on creation:\
-    \ a different price is refused with `409` `ERROR_ORDER_PRICE_CHANGED` carrying\
-    \ the new one, which you confirm by sending it as `expected_price`. Sending `expected_price`\
-    \ alone confirms a new price the same way.\n- The item keeps its place in the\
-    \ queue.\n- An item past `requested` or a marketplace order cannot be changed\
-    \ (`409` `ERROR_ORDER_ITEM_NOT_EDITABLE`). `409` `ERROR_ORDER_ITEM_BUSY` with\
-    \ `Retry-After` means the item is being processed at that moment.\n\n### Checking\
-    \ a pre-registration again\n\nOpusDNS checks every `requested` item again every\
-    \ hour, and at `eligible_from` when a code clears by itself: `needs_action`, `eligible_from`\
-    \ and `registrant` follow the `.com`, so a `.com` transferred away or deleted\
-    \ since no longer counts.\nAn item with `matching_domain_too_new`, which never\
-    \ clears, is not checked again: cancel it.\nTo check at once, e.g. right after\
-    \ the `.com` was registered or transferred to OpusDNS, call `POST /v1/orders/{order_id}/recheck`\
-    \ (every requested item of the order; one being processed at that moment is skipped)\
-    \ or `POST /v1/orders/{order_id}/items/{item_id}/recheck` (one item): both return\
-    \ the order with the items checked again.\nAn item past `requested` or whose phase\
-    \ is over, and a marketplace order, cannot be checked again (`409` `ERROR_ORDER_NOT_RECHECKABLE`).\n\
-    \n### Canceling a pre-registration\n\nCancel one domain with `DELETE /v1/orders/{order_id}/items/{item_id}`,\
-    \ or every open domain of the order with `DELETE /v1/orders/{order_id}` (all or\
-    \ none), both `204 No Content`, while the items are `requested`, which includes\
-    \ items that `needs_action`.\nNothing is held for them yet, so they are canceled\
-    \ at once.\nThey stay readable with status `canceled` and reason `canceled_by_customer`,\
+    \ its new `needs_action`, `hold_on`, `signed_mark_status` and, for Priority Access,\
+    \ `registrant`. A refused change leaves the item as it was.\n- The item keeps\
+    \ the price it locked, and a change that leaves the price alone checks neither\
+    \ price nor availability again.\n- Another `phase` or `registration.period` is\
+    \ priced again as on creation: a different price is refused with `409` `ERROR_ORDER_PRICE_CHANGED`\
+    \ carrying the new one, which you confirm by sending it as `expected_price`. Sending\
+    \ `expected_price` alone confirms a new price the same way.\n- The item keeps\
+    \ its place in the queue.\n- An item past `requested` or a marketplace order cannot\
+    \ be changed (`409` `ERROR_ORDER_ITEM_NOT_EDITABLE`). `409` `ERROR_ORDER_ITEM_BUSY`\
+    \ with `Retry-After` means the item is being processed at that moment.\n\n###\
+    \ Checking a pre-registration again\n\nOpusDNS checks every `requested` item again\
+    \ every hour, and at `eligible_from` when a code clears by itself: `needs_action`,\
+    \ `eligible_from` and `registrant` follow the `.com`, so a `.com` transferred\
+    \ away or deleted since no longer counts.\nThe SMD file is validated again each\
+    \ time, so a file revoked or expired since gets `signed_mark_invalid`.\nAn item\
+    \ with `matching_domain_too_new`, which never clears, is not checked again: cancel\
+    \ it.\nTo check at once, e.g. right after the `.com` was registered or transferred\
+    \ to OpusDNS, call `POST /v1/orders/{order_id}/recheck` (every requested item\
+    \ of the order; one being processed at that moment is skipped) or `POST /v1/orders/{order_id}/items/{item_id}/recheck`\
+    \ (one item): both return the order with the items checked again.\nAn item past\
+    \ `requested` or whose phase is over, and a marketplace order, cannot be checked\
+    \ again (`409` `ERROR_ORDER_NOT_RECHECKABLE`).\n\n### Canceling a pre-registration\n\
+    \nCancel one domain with `DELETE /v1/orders/{order_id}/items/{item_id}`, or every\
+    \ open domain of the order with `DELETE /v1/orders/{order_id}` (all or none),\
+    \ both `204 No Content`, while the items are `requested`, which includes items\
+    \ that `needs_action`.\nNothing is held for them yet, so they are canceled at\
+    \ once.\nThey stay readable with status `canceled` and reason `canceled_by_customer`,\
     \ and your organization can pre-register the domains again (a new order, at the\
     \ back of the queue).\nThe order stays open while any item is open, and is `canceled`\
     \ once every item is (see Statuses and stages for mixed outcomes).\nRepeating\

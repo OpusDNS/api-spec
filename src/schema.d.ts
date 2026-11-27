@@ -14850,7 +14850,7 @@ export interface components {
             missing_confirmations: string[];
             /**
              * Needs Action
-             * @description What keeps the item from being submitted. The customer provides `signed_mark_required` and `confirmation_required`; the `matching_domain_*` codes are checked again while the item is `requested`, and `matching_domain_recently_transferred` and `matching_domain_in_add_period` clear by themselves at `eligible_from`. Treat a value you do not know as an open action: codes can be added.
+             * @description What keeps the item from being submitted. The customer provides `signed_mark_required` and `confirmation_required`, and replaces the SMD file for `signed_mark_invalid` (`signed_mark_status` says why); the `matching_domain_*` codes are checked again while the item is `requested`, and `matching_domain_recently_transferred` and `matching_domain_in_add_period` clear by themselves at `eligible_from`. Treat a value you do not know as an open action: codes can be added.
              */
             needs_action: components["schemas"]["DomainPreRegistrationNeedsAction"][];
             /** @description The launch phase the item is submitted in. Treat a value you do not know as a phase: phases can be added. */
@@ -14871,6 +14871,8 @@ export interface components {
              * @description Priority Access: the contact the domain is registered for, the matching domain's registrant, taken once the matching domain qualifies
              */
             registrant?: TypeId<"contact"> | null;
+            /** @description The SMD file validated against the Trademark Clearinghouse, for a phase with `smd_required`: `valid`, or `not_verified` while it could not be validated yet (the item is not held up, and the file is validated again within the hour; on the recheck, a file that did not change keeps its last result). Any other value says why the file is refused, with `signed_mark_invalid` in `needs_action`: `malformed`, `bad_signature`, `untrusted_issuer`, `cert_revoked` (its certificate is revoked), `revoked` (the SMD is revoked), `not_yet_valid` or `expired` (not valid now or when the phase opens), `label_mismatch` (does not cover the domain's name). Null without an SMD file or when the phase needs none. Values can be added: `needs_action` says whether the file holds the item up. */
+            signed_mark_status?: components["schemas"]["DomainPreRegistrationSignedMarkStatus"] | null;
             /** @description Where the pre-registration stands. Treat a value you do not know as `requested`: stages can be added. */
             stage: components["schemas"]["DomainPreRegistrationPublicStage"];
         };
@@ -14935,7 +14937,7 @@ export interface components {
          * DomainPreRegistrationNeedsAction
          * @enum {string}
          */
-        DomainPreRegistrationNeedsAction: "signed_mark_required" | "confirmation_required" | "matching_domain_not_found" | "matching_domain_recently_transferred" | "matching_domain_too_new" | "matching_domain_in_add_period";
+        DomainPreRegistrationNeedsAction: "signed_mark_required" | "signed_mark_invalid" | "confirmation_required" | "matching_domain_not_found" | "matching_domain_recently_transferred" | "matching_domain_too_new" | "matching_domain_in_add_period";
         /**
          * DomainPreRegistrationPhase
          * @description A spec's launch phase types, plus general availability, which a spec keeps as its own block.
@@ -14981,6 +14983,11 @@ export interface components {
             /** @description The renewal mode of the domain */
             renewal_mode: components["schemas"]["RenewalMode"];
         };
+        /**
+         * DomainPreRegistrationSignedMarkStatus
+         * @enum {string}
+         */
+        DomainPreRegistrationSignedMarkStatus: "valid" | "not_verified" | "malformed" | "bad_signature" | "untrusted_issuer" | "cert_revoked" | "not_yet_valid" | "expired" | "revoked" | "label_mismatch";
         /** DomainRecommendationsContext */
         DomainRecommendationsContext: {
             /**

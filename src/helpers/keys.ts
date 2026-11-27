@@ -3346,6 +3346,7 @@ export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PHASE = 'phase' satisfies keyof 
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PHASE_STARTS_ON = 'phase_starts_on' satisfies keyof DomainPreRegistrationDetail;
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PREMIUM = 'premium' satisfies keyof DomainPreRegistrationDetail;
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_REGISTRANT = 'registrant' satisfies keyof DomainPreRegistrationDetail;
+export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_SIGNED_MARK_STATUS = 'signed_mark_status' satisfies keyof DomainPreRegistrationDetail;
 export const KEY_DOMAIN_PRE_REGISTRATION_DETAIL_STAGE = 'stage' satisfies keyof DomainPreRegistrationDetail;
 
 export const KEYS_DOMAIN_PRE_REGISTRATION_DETAIL = [
@@ -3359,6 +3360,7 @@ export const KEYS_DOMAIN_PRE_REGISTRATION_DETAIL = [
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PHASE_STARTS_ON,
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_PREMIUM,
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_REGISTRANT,
+  KEY_DOMAIN_PRE_REGISTRATION_DETAIL_SIGNED_MARK_STATUS,
   KEY_DOMAIN_PRE_REGISTRATION_DETAIL_STAGE,
 ] as const satisfies (keyof DomainPreRegistrationDetail)[];
 
