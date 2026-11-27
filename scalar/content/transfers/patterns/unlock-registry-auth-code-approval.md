@@ -2,7 +2,7 @@
 
 The registry generates the auth code. Your current registrar can't choose it. OpusDNS requests the transfer with it. Your current registrar can then approve or deny the transfer.
 
-![Swimlane in three lanes: your current registrar, the registry and OpusDNS. You unlock the domain at your current registrar. You get the auth code, which the registry sets. OpusDNS requests the transfer at the registry. Your current registrar approves or denies it. The registry transfers the domain. The domain is in your OpusDNS account.](/images/transfer-patterns/unlock-registry-auth-code-approval.svg)
+![Swimlane in three lanes: your current registrar, the registry and OpusDNS. You unlock the domain at your current registrar. You get the auth code, which the registry sets. OpusDNS requests the transfer at the registry. Your current registrar approves or denies it, within five days at gTLDs. The registry transfers the domain. The domain is in your OpusDNS account.](/images/transfer-patterns/unlock-registry-auth-code-approval.svg)
 
 ## Steps
 
@@ -17,7 +17,7 @@ Which of these steps OpusDNS takes for you depends on your registrar. Its page i
 
 [.cymru](/tld-knowledge-base/gtlds/cymru), [.wales](/tld-knowledge-base/gtlds/wales).
 
-The [TLD Knowledge Base](/tld-knowledge-base) has each TLD's transfer rules, such as its transfer lock and how long a transfer takes.
+Each TLD links its page in the TLD Knowledge Base, with its transfer rules, such as its transfer lock and how long a transfer takes.
 
 ## Registries
 

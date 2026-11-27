@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from xml.sax.saxutils import escape
 import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass
@@ -251,8 +252,8 @@ PATTERNS = {
 
 # What a TLD without transfers does instead, until the TLD specs carry a reference for it.
 TLD_NOTES = {
-    "is": "ISNIC works without registrars. A `.is` domain changes provider when its admin contact changes at "
-          "ISNIC. See [ISNIC's FAQ](https://www.isnic.is/en/faq).",
+    "is": "ISNIC works without registrars. A .is domain changes provider when its contacts change at ISNIC. "
+          "See [ISNIC's FAQ](https://www.isnic.is/en/faq).",
 }
 
 # A registry's announced change, by TLD: the pattern it has until then, and the note its
@@ -651,7 +652,11 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
 def pattern_context(tlds: list[str], data: dict, facts: dict[str, RegistrySide]) -> tuple[object, bool, bool, str]:
     """The pattern's key, and whether its TLDs have a lock, include gTLDs, and who approves."""
     gtld = any(data["tld_types"].get(t) == "gTLD" for t in tlds)
-    return facts[tlds[0]].key, any(facts[t].lock for t in tlds), gtld, approver([facts[t].holder for t in tlds])
+    locks = {facts[t].lock for t in tlds}
+    if len(locks) > 1:
+        # Only the push pattern's key leaves the lock out.
+        raise SystemExit(f"the TLDs of the {facts[tlds[0]].key} pattern disagree on the transfer lock: add the lock to its key")
+    return facts[tlds[0]].key, locks.pop(), gtld, approver([facts[t].holder for t in tlds])
 
 
 def pattern_swimlane(pattern: Pattern, key: object, lock: bool, gtld: bool, who: str) -> tuple[str, str]:
@@ -683,18 +688,24 @@ def pattern_swimlane(pattern: Pattern, key: object, lock: bool, gtld: bool, who:
                 steps.append(("reg", swim.PURPLE, ["Approve", "or deny"]))
                 said.append("Your current registrar or the domain's holder approves or denies it." if who == "either"
                             else "Your current registrar approves or denies it.")
-            if gtld or who == "either":
-                labels[len(steps) - 1] = "within 5 days at gTLDs" if gtld else "or the holder"
+            notes = (["or the holder"] if who == "either" else []) + (["within 5 days at gTLDs"] if gtld else [])
+            if notes:
+                labels[len(steps) - 1] = ", ".join(notes)
+            if gtld:
+                said[-1] = said[-1][:-1] + ", within five days at gTLDs."
         steps.append(("ry", swim.TEAL, ["Transfer", "the domain"]))
         said.append("The registry transfers the domain." if approval else "The registry transfers the domain without an approval.")
     steps.append(("op", swim.BLUE, ["In your", "account"]))
     said.append("The domain is in your OpusDNS account.")
-    names = {swim.AMBER: "You" if who != "holder" else "You or the domain's holder", swim.PURPLE: "Your current registrar",
-             swim.TEAL: "The registry", swim.BLUE: "OpusDNS"}
+    holder = any(text == ["Holder", "approves"] for _, _, text in steps)
+    you = any(colour == swim.AMBER and text != ["Holder", "approves"] for _, colour, text in steps)
+    amber = "You or the domain's holder" if holder and you else "The domain's holder" if holder else "You"
+    names = {swim.AMBER: amber, swim.PURPLE: "Your current registrar", swim.TEAL: "The registry", swim.BLUE: "OpusDNS"}
     used = {colour for _, colour, _ in steps}
     legend = [(colour, name) for colour, name in names.items() if colour in used]
     alt = "Swimlane in three lanes: your current registrar, the registry and OpusDNS. " + " ".join(said)
-    return swim.svg(f"{pattern.title}: a transfer to OpusDNS", alt, swim.LANES, steps, legend, None, labels), alt
+    labels = {i: escape(label) for i, label in labels.items()}
+    return swim.svg(escape(f"{pattern.title}: a transfer to OpusDNS"), escape(alt), swim.LANES, steps, legend, None, labels), alt
 
 
 def render_pattern(pattern: Pattern, tlds: list[str], data: dict, facts: dict[str, RegistrySide]) -> str:
@@ -719,7 +730,7 @@ def render_pattern(pattern: Pattern, tlds: list[str], data: dict, facts: dict[st
     lines += ["", "Which of these steps OpusDNS takes for you depends on your registrar. Its page in "
               "[Your registrar](/transfers/overview#your-registrar) shows them."]
     lines += ["", "## TLDs", "", sentence_case(", and ".join(named)) + ".", "",
-              "The [TLD Knowledge Base](/tld-knowledge-base) has each TLD's transfer rules, such as its transfer lock "
+              "Each TLD links its page in the TLD Knowledge Base, with its transfer rules, such as its transfer lock "
               "and how long a transfer takes."]
     by_registry: dict[str, list[str]] = defaultdict(list)
     sites: dict[str, list[str]] = defaultdict(list)
@@ -917,7 +928,6 @@ def main(argv: list[str] | None = None) -> None:
             raise SystemExit(f"{REGISTRARS[key].name}: the export has no answer for {missing}, so its page can't say \"every other TLD\"")
     facts = registry_facts(data)
     patterns = ordered_patterns(facts)
-    without = sorted(tld for tld, side in facts.items() if side.key is None)
     pages = {"index.md": render_overview(data, facts)}
     swimlanes: dict[str, str] = {}
     for pattern, tlds in patterns:

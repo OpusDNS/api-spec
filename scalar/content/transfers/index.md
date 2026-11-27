@@ -39,7 +39,7 @@ TLDs with the same steps share a transfer pattern:
 - [Unlock and auth code set by the registry](/transfers/patterns/unlock-registry-auth-code): 1 TLD
 - [Push to a tag](/transfers/patterns/push): 1 TLD
 
-.is has no transfer at its registry. ISNIC works without registrars. A `.is` domain changes provider when its admin contact changes at ISNIC. See [ISNIC's FAQ](https://www.isnic.is/en/faq). To move such a domain to OpusDNS, contact [OpusDNS support](https://support.opusdns.com/).
+.is has no transfer at its registry. ISNIC works without registrars. A .is domain changes provider when its contacts change at ISNIC. See [ISNIC's FAQ](https://www.isnic.is/en/faq). To move such a domain to OpusDNS, contact [OpusDNS support](https://support.opusdns.com/).
 
 ## With a connected account
 

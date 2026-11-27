@@ -416,7 +416,7 @@ def test_the_lock_splits_patterns_and_a_pattern_page_shows_the_registrys_side_on
     assert "Your current registrar can then approve or deny the transfer. The registry has no transfer lock." in text
     assert "Remove the transfer lock" not in text and "| Registrar |" not in text
     assert "Which of these steps OpusDNS takes for you depends on your registrar." in text
-    assert "The [TLD Knowledge Base](/tld-knowledge-base) has each TLD's transfer rules" in text
+    assert "Each TLD links its page in the TLD Knowledge Base, with its transfer rules" in text
     assert "At gTLDs" not in text  # only ccTLDs here
     # .fr has a Knowledge Base page with its registry, .xx has none.
     registries = section(text, "## Registries")
@@ -577,10 +577,12 @@ def test_a_pattern_swimlane_draws_its_steps():
     assert boxes(svg_text)[:4] == ["Get the", "auth code", "Request the", "transfer"] and ">set by the registry</text>" in svg_text
     assert "Your current registrar</text>" not in svg_text  # no purple box, so not in the legend
     svg_text, alt = swimlane(("none", True, False), lock=False, who="holder")
-    assert "Holder" in boxes(svg_text) and "You or the domain&apos;s holder" not in svg_text and "You or the domain's holder" in svg_text
+    assert "Holder" in boxes(svg_text) and ">The domain's holder</text>" in svg_text and "You or the domain" not in svg_text
     assert "The domain's holder approves or denies it by email." in alt
     svg_text, _ = swimlane(("none", True, False), lock=False, who="either")
     assert ">or the holder</text>" in svg_text and "within 5 days" not in svg_text
+    svg_text, alt = swimlane(("none", True, False), lock=False, who="either", gtld=True)
+    assert ">or the holder, within 5 days at gTLDs</text>" in svg_text and "within five days at gTLDs." in alt
     svg_text, _ = swimlane("push")
     assert boxes(svg_text) == ["Unlock the", "domain", "Record the", "transfer", "Push the", "domain", "Move the", "domain", "In your", "account"]
 
@@ -590,6 +592,10 @@ def test_a_pattern_page_shows_its_swimlane():
     facts = gen.registry_facts(data)
     text = gen.render_pattern(*gen.ordered_patterns(facts)[0], data, facts)
     assert "](/images/transfer-patterns/gtlds.svg)" in text and "![Swimlane in three lanes" in text
+    svg_text, alt = gen.pattern_swimlane(gen.PATTERNS[("registrar", True, True)], *gen.pattern_context(["com", "net"], data, facts)[:1],
+                                         True, True, "registrar")
+    assert f"![{alt}](" in text and f"<desc id=\"d\">{alt}</desc>" in svg_text
+    assert "Your current registrar approves or denies it, within five days at gTLDs." in alt
 
 
 def test_a_written_tld_links_its_knowledge_base_page_where_it_has_one(knowledge_base):
@@ -606,3 +612,23 @@ def test_the_overviews_written_tlds_link_their_knowledge_base_pages(knowledge_ba
     assert "For gTLDs such as [.com](/tld-knowledge-base/gtlds/com)," in text
     assert "- [.de](/tld-knowledge-base/cctlds/de) and `.ch` have no transfer lock." in text
     assert "a [.uk](/tld-knowledge-base/cctlds/uk) domain is pushed" in text
+
+
+def test_the_overview_says_how_a_tld_without_transfers_moves():
+    data = export([row("com", usual_steps("com")), row("is", [], flow_detail=".is has no transfers.", policies={"supported": False})])
+    text = gen.render_overview(data, gen.registry_facts(data))
+    assert ".is has no transfer at its registry. ISNIC works without registrars." in text
+    assert "[ISNIC's FAQ](https://www.isnic.is/en/faq)" in text and "contact [OpusDNS support](https://support.opusdns.com/)." in text
+
+
+def test_the_tlds_of_a_pattern_must_agree_on_the_lock():
+    data = export([row("uk", [], push=True), row("xx", [], push=True, lock=False)])
+    facts = gen.registry_facts(data)
+    with pytest.raises(SystemExit, match="disagree on the transfer lock"):
+        gen.pattern_context(["uk", "xx"], data, facts)
+
+
+def test_a_swimlane_escapes_its_text():
+    pattern = gen.Pattern("x", "A & B")
+    svg_text, _ = gen.pattern_swimlane(pattern, ("registrar", False, False), False, False, "registrar")
+    assert "<title id=\"t\">A &amp; B: a transfer to OpusDNS</title>" in svg_text

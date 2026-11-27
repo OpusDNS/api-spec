@@ -16,7 +16,7 @@ Which of these steps OpusDNS takes for you depends on your registrar. Its page i
 
 [.ch](/tld-knowledge-base/cctlds/ch), [.de](/tld-knowledge-base/cctlds/de), [.li](/tld-knowledge-base/cctlds/li), [.no](/tld-knowledge-base/cctlds/no), [.pl](/tld-knowledge-base/cctlds/pl), [.pt](/tld-knowledge-base/cctlds/pt), [.si](/tld-knowledge-base/cctlds/si).
 
-The [TLD Knowledge Base](/tld-knowledge-base) has each TLD's transfer rules, such as its transfer lock and how long a transfer takes.
+Each TLD links its page in the TLD Knowledge Base, with its transfer rules, such as its transfer lock and how long a transfer takes.
 
 ## Registries
 

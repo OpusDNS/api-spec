@@ -2,7 +2,7 @@
 
 Your current registrar gives you the auth code. OpusDNS requests the transfer with it. Your current registrar can then approve or deny the transfer. gTLDs follow ICANN's rules for this, and most ccTLDs work the same way.
 
-![Swimlane in three lanes: your current registrar, the registry and OpusDNS. You unlock the domain at your current registrar. You get the auth code. OpusDNS requests the transfer at the registry. Your current registrar approves or denies it. The registry transfers the domain. The domain is in your OpusDNS account.](/images/transfer-patterns/gtlds.svg)
+![Swimlane in three lanes: your current registrar, the registry and OpusDNS. You unlock the domain at your current registrar. You get the auth code. OpusDNS requests the transfer at the registry. Your current registrar approves or denies it, within five days at gTLDs. The registry transfers the domain. The domain is in your OpusDNS account.](/images/transfer-patterns/gtlds.svg)
 
 ## Steps
 
@@ -17,7 +17,7 @@ Which of these steps OpusDNS takes for you depends on your registrar. Its page i
 
 454 gTLDs, such as [.com](/tld-knowledge-base/gtlds/com), [.net](/tld-knowledge-base/gtlds/net) and [.org](/tld-knowledge-base/gtlds/org), and these ccTLDs: [.ag](/tld-knowledge-base/cctlds/ag), [.ai](/tld-knowledge-base/cctlds/ai), [.bh](/tld-knowledge-base/cctlds/bh), [.biz.bh](/tld-knowledge-base/cctlds/biz.bh), [.bz](/tld-knowledge-base/cctlds/bz), [.cc](/tld-knowledge-base/cctlds/cc), [.cc.bh](/tld-knowledge-base/cctlds/cc.bh), [.co](/tld-knowledge-base/cctlds/co), [.co.nl](/tld-knowledge-base/cctlds/co.nl), [.co.no](/tld-knowledge-base/cctlds/co.no), [.com.bh](/tld-knowledge-base/cctlds/com.bh), [.com.de](/tld-knowledge-base/cctlds/com.de), [.com.se](/tld-knowledge-base/cctlds/com.se), [.edu.bh](/tld-knowledge-base/cctlds/edu.bh), [.fm](/tld-knowledge-base/cctlds/fm), [.fo](/tld-knowledge-base/cctlds/fo), [.fr](/tld-knowledge-base/cctlds/fr), [.gd](/tld-knowledge-base/cctlds/gd), [.gl](/tld-knowledge-base/cctlds/gl), [.info.bh](/tld-knowledge-base/cctlds/info.bh), [.io](/tld-knowledge-base/cctlds/io), [.lc](/tld-knowledge-base/cctlds/lc), [.lv](/tld-knowledge-base/cctlds/lv), [.me](/tld-knowledge-base/cctlds/me), [.me.bh](/tld-knowledge-base/cctlds/me.bh), [.mn](/tld-knowledge-base/cctlds/mn), [.name.bh](/tld-knowledge-base/cctlds/name.bh), [.net.bh](/tld-knowledge-base/cctlds/net.bh), [.org.bh](/tld-knowledge-base/cctlds/org.bh), [.pm](/tld-knowledge-base/cctlds/pm), [.pr](/tld-knowledge-base/cctlds/pr), [.radio.am](/tld-knowledge-base/cctlds/radio.am), [.radio.fm](/tld-knowledge-base/cctlds/radio.fm), [.re](/tld-knowledge-base/cctlds/re), [.sc](/tld-knowledge-base/cctlds/sc), [.tf](/tld-knowledge-base/cctlds/tf), [.to](/tld-knowledge-base/cctlds/to), [.tv](/tld-knowledge-base/cctlds/tv), [.us](/tld-knowledge-base/cctlds/us), [.vc](/tld-knowledge-base/cctlds/vc), [.vg](/tld-knowledge-base/cctlds/vg), [.vu](/tld-knowledge-base/cctlds/vu), [.wf](/tld-knowledge-base/cctlds/wf), [.ws](/tld-knowledge-base/cctlds/ws), [.yt](/tld-knowledge-base/cctlds/yt).
 
-The [TLD Knowledge Base](/tld-knowledge-base) has each TLD's transfer rules, such as its transfer lock and how long a transfer takes.
+Each TLD links its page in the TLD Knowledge Base, with its transfer rules, such as its transfer lock and how long a transfer takes.
 
 ## Registries
 
