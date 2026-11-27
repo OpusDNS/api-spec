@@ -103,6 +103,15 @@
 | UDRP Support | ❌ No |
 | URS Support | ❌ No |
 
+## Local Presence
+
+| Property | Value |
+| --- | --- |
+| Local Presence Required | ✅ Yes |
+| Applies To Roles | Domain Owner |
+| Requirements | Physical Address, Business Entity |
+| Eligible Countries | AT, BE, BG, CY, CZ, DE, DK, EE, ES, FI, FR, GR, HR, HU, IE, IT, LT, LU, LV, MT, NL, PL, PT, RO, SE, SI, SK, AX, GF, GP, MF, MQ, RE, YT, IS, LI, NO |
+
 ## Implementation Notes
 
 - Ensure complete TLS/SSL configuration for every registry environment.
