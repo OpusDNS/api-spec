@@ -112,6 +112,12 @@
         "newTab": false
       },
       {
+        "title": "Transfers",
+        "icon": "line/arrow-right",
+        "to": "/transfers",
+        "newTab": false
+      },
+      {
         "title": "Changelog",
         "icon": "phosphor/regular/clock-counter-clockwise",
         "to": "/changelog",
@@ -4032,6 +4038,86 @@
             "title": "FAQ",
             "icon": "line/interface-content-book-open-pages",
             "filepath": "content/mcp-server/pages/faq.md",
+            "showInSidebar": true
+          }
+        }
+      },
+      "/transfers": {
+        "type": "group",
+        "title": "Transfers",
+        "icon": "line/arrow-right",
+        "children": {
+          "/overview": {
+            "type": "page",
+            "title": "Transfer to OpusDNS",
+            "icon": "line/arrow-right",
+            "filepath": "content/transfers/index.md",
+            "showInSidebar": true
+          },
+          "/centralnic": {
+            "type": "page",
+            "title": "From CentralNic Reseller",
+            "filepath": "content/transfers/centralnic.md",
+            "showInSidebar": true
+          },
+          "/enom": {
+            "type": "page",
+            "title": "From eNom",
+            "filepath": "content/transfers/enom.md",
+            "showInSidebar": true
+          },
+          "/internetx": {
+            "type": "page",
+            "title": "From InterNetX",
+            "filepath": "content/transfers/internetx.md",
+            "showInSidebar": true
+          },
+          "/moniker": {
+            "type": "page",
+            "title": "From Moniker",
+            "filepath": "content/transfers/moniker.md",
+            "showInSidebar": true
+          },
+          "/nic-direct": {
+            "type": "page",
+            "title": "From NIC Direct",
+            "filepath": "content/transfers/nic-direct.md",
+            "showInSidebar": true
+          },
+          "/nicmanager": {
+            "type": "page",
+            "title": "From NICManager",
+            "filepath": "content/transfers/nicmanager.md",
+            "showInSidebar": true
+          },
+          "/openprovider": {
+            "type": "page",
+            "title": "From Openprovider",
+            "filepath": "content/transfers/openprovider.md",
+            "showInSidebar": true
+          },
+          "/opensrs": {
+            "type": "page",
+            "title": "From OpenSRS",
+            "filepath": "content/transfers/opensrs.md",
+            "showInSidebar": true
+          },
+          "/domain-bestellsystem": {
+            "type": "page",
+            "title": "From PartnerGate",
+            "filepath": "content/transfers/domain-bestellsystem.md",
+            "showInSidebar": true
+          },
+          "/realtime-register": {
+            "type": "page",
+            "title": "From Realtime Register",
+            "filepath": "content/transfers/realtime-register.md",
+            "showInSidebar": true
+          },
+          "/opusdns": {
+            "type": "page",
+            "title": "From another OpusDNS account",
+            "filepath": "content/transfers/opusdns.md",
             "showInSidebar": true
           }
         }

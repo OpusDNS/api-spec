@@ -12,6 +12,10 @@ Track notable updates to the OpusDNS API and developer documentation here.
   [move a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns)
   with [`POST /v1/domains/transfer`](/api-reference#tag/domain/POST/v1/domains/transfer)
   without its auth code.
+- Added the **[Transfers](/transfers/overview)** tab: for each registrar you can
+  connect, which steps of a transfer to OpusDNS OpusDNS takes for you and which
+  you take at the registrar, the TLDs whose steps differ, and what OpusDNS can
+  do with a domain you hold there until it moves.
 
 ### 23 November 2026
 

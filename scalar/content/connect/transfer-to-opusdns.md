@@ -49,9 +49,12 @@ Contacts, period, nameservers and monitoring work as described in
 
 ![Swimlane: you send the transfer request; OpusDNS checks the statuses, removes the transfer lock and fetches the auth code at your current registrar, requests the transfer at the registry and approves it at your current registrar; the registry moves the domain into your OpusDNS account.](/images/connected-domain-transfer.svg)
 
-The usual order for a TLD that uses auth codes, such as `.com`. Which steps
-apply depends on the registrar and the TLD: see
-[What depends on the registrar and the TLD](#what-depends-on-the-registrar-and-the-tld).
+The usual order for a gTLD, such as `.com`. gTLD transfers follow ICANN's
+Transfer Policy, which binds every ICANN-accredited registrar and gTLD registry,
+so these steps are the same at every registry. ccTLD registries set their own
+rules, and their steps often differ. Which steps apply also depends on your
+registrar: [Transfers](/transfers/overview) lists them for every registrar and
+TLD.
 
 Once the request has passed every check and the price is reserved, and before
 the transfer goes to the registry, OpusDNS:
