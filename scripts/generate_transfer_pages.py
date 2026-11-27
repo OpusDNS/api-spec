@@ -76,17 +76,19 @@ LEGEND_WORDS = {
 
 # ICANN Transfer Policy, version of 21 February 2024 (I.A.5.2, I.A.2.2, I.A.6.1,
 # I.A.3.7, I.A.3.5, I.A.6.2). The revised policy from the Transfer Policy Review
-# renames the code (TAC) and sets a 30 day restriction: revisit when it takes effect.
+# renames the code (TAC), turns the 60 days into a mandatory 30 days and may
+# renumber the sections: revisit the text and its section links when it takes effect.
 ICANN_POLICY = "https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en"
 ICANN_TEXT = "\n".join([
     f"For gTLDs such as `.com`, ICANN's [Transfer Policy]({ICANN_POLICY}) sets the rules. All "
     "registrars accredited by ICANN and all gTLD registries must follow it.",
     "",
     "- Your current registrar must remove the transfer lock and give you the auth code. It has five "
-    "calendar days to do so after you ask.",
+    f"calendar days to do so after you ask ([section I.A.5.2]({ICANN_POLICY})).",
     "- OpusDNS requests the transfer at the registry with the auth code. The registry checks the code.",
-    "- Your current registrar can deny the transfer, but only for the reasons the policy lists. "
-    "Examples are fraud or a recent registration or transfer.",
+    "- Your current registrar can deny the transfer, but only for the reasons the policy lists "
+    f"([section I.A.3.7]({ICANN_POLICY})). Examples are fraud or a registration or transfer in the "
+    "last 60 days.",
     "- If your current registrar doesn't deny the transfer within five calendar days, the registry "
     "completes it. Your current registrar can also approve it earlier.",
 ])

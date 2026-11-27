@@ -8,9 +8,9 @@ Transferring a domain from another registrar to OpusDNS takes a few steps at tha
 
 For gTLDs such as `.com`, ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en) sets the rules. All registrars accredited by ICANN and all gTLD registries must follow it.
 
-- Your current registrar must remove the transfer lock and give you the auth code. It has five calendar days to do so after you ask.
+- Your current registrar must remove the transfer lock and give you the auth code. It has five calendar days to do so after you ask ([section I.A.5.2](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en)).
 - OpusDNS requests the transfer at the registry with the auth code. The registry checks the code.
-- Your current registrar can deny the transfer, but only for the reasons the policy lists. Examples are fraud or a recent registration or transfer.
+- Your current registrar can deny the transfer, but only for the reasons the policy lists ([section I.A.3.7](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en)). Examples are fraud or a registration or transfer in the last 60 days.
 - If your current registrar doesn't deny the transfer within five calendar days, the registry completes it. Your current registrar can also approve it earlier.
 
 ## ccTLDs
