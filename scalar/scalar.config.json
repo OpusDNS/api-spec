@@ -380,7 +380,7 @@
                   },
                   "/transfer-to-opusdns": {
                     "type": "page",
-                    "title": "Move a connected domain to OpusDNS",
+                    "title": "Transfer a connected domain to OpusDNS",
                     "icon": "line/arrow-right",
                     "filepath": "content/connect/transfer-to-opusdns.md",
                     "showInSidebar": true

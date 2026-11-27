@@ -3,8 +3,8 @@
 
 The export is a JSON file: ``tld_types`` maps each TLD to ``ccTLD`` or
 ``gTLD``, and ``registrars`` maps each registrar a customer can connect to its
-per-TLD answers: ``tld``, ``flows.transfer_to_opusdns`` (the steps of moving a
-domain from that registrar to OpusDNS) and ``actions`` (what OpusDNS can do
+per-TLD answers: ``tld``, ``flows.transfer_to_opusdns`` (the steps of transferring
+a domain from that registrar to OpusDNS) and ``actions`` (what OpusDNS can do
 with a connected domain there). This script writes an overview and one page
 per registrar into ``scalar/content/transfers/`` and refreshes the
 ``/transfers`` route and its tab in ``scalar/scalar.config.json``.
@@ -69,11 +69,11 @@ LEGEND = (
 )
 
 GTLD_NOTE = (
-    "For gTLDs, such as `.com`, these steps follow ICANN's Transfer Policy, which binds every "
-    "ICANN-accredited registrar and gTLD registry: a locked domain can't be transferred, the new "
-    "registrar requests the transfer with the auth code, and the current registrar can approve it. "
-    "If it doesn't, the registry completes the transfer after five days. ccTLD registries set their "
-    "own rules, so their steps often differ."
+    "For gTLDs, such as `.com`, these steps follow ICANN's Transfer Policy, which every registrar "
+    "accredited by ICANN and every gTLD registry must follow. A locked domain can't be transferred, "
+    "the new registrar requests the transfer with the auth code, and the current registrar can "
+    "approve it. If it doesn't, the registry completes the transfer after five days. ccTLD registries "
+    "set their own rules, so their steps often differ."
 )
 
 # The steps of a transfer, with their short labels.
@@ -86,11 +86,11 @@ STEP_LABELS = {
     "notify_transfer_out": "The registry notifies {r}",
     "approve_transfer_out": "Approve the transfer",
     "push_transfer_out": "Push the domain to OpusDNS's tag",
-    "complete_transfer": "The registry moves the domain",
+    "complete_transfer": "The registry transfers the domain",
     "finalize_transfer": "Finish the transfer",
 }
 
-# What a customer may still do with a connected domain, apart from moving it.
+# What a customer may still do with a connected domain until it is transferred.
 MANAGE_ACTIONS = [
     ("status", "read_transfer_lock", "See the transfer lock"),
     ("status", "update_transfer_lock", "Set or remove the transfer lock"),
@@ -121,8 +121,8 @@ TLD_SENTENCES = {
         "OpusDNS books the domain and has it pushed to its tag. The registry gets no transfer request.", ""),
     "The {tld} registry tells {r} about the transfer.": ("The registry tells {r} about the transfer.", ""),
     "The holder of the {tld} domain approves the transfer.": ("The holder of the domain approves the transfer by email.", ""),
-    "The {tld} registry moves the domain to OpusDNS.": ("The registry moves the domain to OpusDNS.", ""),
-    "The {tld} registry moves the domain to OpusDNS's tag.": ("The registry moves the domain to OpusDNS's tag.", ""),
+    "The {tld} registry moves the domain to OpusDNS.": ("The registry transfers the domain to OpusDNS.", ""),
+    "The {tld} registry moves the domain to OpusDNS's tag.": ("The registry transfers the domain to OpusDNS's tag.", ""),
 }
 
 
@@ -249,8 +249,8 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
     lines = [
         f"# Transfer from {reg.name}",
         "",
-        f"What moving a domain from {reg.name} to OpusDNS takes, at each TLD: which steps OpusDNS "
-        f"takes for you and which you take at {reg.name}. OpusDNS takes its steps once you have "
+        f"Transferring a domain from {reg.name} to OpusDNS takes a few steps. This page shows, for each "
+        f"TLD, which steps OpusDNS takes for you and which you take at {reg.name}. OpusDNS takes its steps once you have "
         f"[connected](/products/connected-registrars/connect) your {reg.name} account "
         f"(`{reg.api_value}` in the API) and [requested the transfer](/products/connected-registrars/transfer-to-opusdns) "
         "without an auth code.",
@@ -266,7 +266,7 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
         symbol, words = who(step.entity, reg)
         lines.append(f"| {i} | {step_label(step, reg)} | {symbol} {words} | {say(step.template, reg)} |")
     if not usual_steps:
-        lines.append(f"| — | — | — | {say(usual_detail, reg)} |")
+        lines.append(f"| | | | {say(usual_detail, reg)} |")
     if any(s.action == "update_privacy" for s in usual_steps):
         lines += ["", "Step 1 applies only while WHOIS privacy is on, and only at TLDs that have a WHOIS privacy service."]
     lines += [
@@ -283,7 +283,7 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
     for (steps, detail), tlds in sorted(groups.items(), key=lambda item: (-len(item[1]), item[1][0])):
         lines.append(f"| {', '.join(kb_link(t, tld_types) for t in tlds)} | {chain(steps, detail, reg)} |")
     if not groups:
-        lines.append("| — | Every TLD takes the steps above. |")
+        lines.append("| All | Every TLD takes the steps above. |")
 
     per_tld = {row["tld"]: manage_cells(row, reg) for row in rows}
     usual = {a: most_common(c[a] for c in per_tld.values()) for _, a, _ in MANAGE_ACTIONS}
@@ -291,7 +291,7 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
         "",
         "## Managing a connected domain",
         "",
-        f"Until it moves, what OpusDNS can do with a domain you hold at {reg.name}:",
+        f"What OpusDNS can do with a domain you hold at {reg.name} until you transfer it:",
         "",
         "| Action | Who | Note |",
         "| --- | --- | --- |",
@@ -335,9 +335,9 @@ def render_overview(data: dict) -> str:
     lines = [
         "# Transfer to OpusDNS",
         "",
-        "Moving a domain from another registrar to OpusDNS takes a few steps at that registrar, at "
-        "the registry and at OpusDNS. Once you have [connected](/products/connected-registrars/connect) "
-        "your account there, OpusDNS takes most of them for you; which ones depends on the registrar "
+        "Transferring a domain from another registrar to OpusDNS takes a few steps at that registrar, "
+        "at the registry and at OpusDNS. Once you have [connected](/products/connected-registrars/connect) "
+        "your account there, OpusDNS takes most of them for you. Which ones depends on the registrar "
         "and on the TLD.",
         "",
         GTLD_NOTE,
@@ -356,8 +356,8 @@ def render_overview(data: dict) -> str:
     lines += [
         "",
         "Each registrar's page lists the TLDs whose steps differ, and what OpusDNS can do with a "
-        "domain you hold there until it moves. See also "
-        "[Move a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns).",
+        "domain you hold there until you transfer it. See also "
+        "[Transfer a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns).",
         "",
     ]
     return "\n".join(lines)

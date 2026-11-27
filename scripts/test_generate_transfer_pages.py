@@ -79,7 +79,7 @@ def test_registrar_page_lists_the_usual_steps_and_the_tlds_that_differ():
     assert "OpusDNS sends the transfer to the registry." in usual
     others = page.split("## TLDs with other steps")[1].split("## Managing")[0]
     assert ".se" in others and ".com" not in others and ".net" not in others
-    assert "↗️ Get a new auth code → ✅ Request the transfer → ⚙️ The registry moves the domain" in others
+    assert "↗️ Get a new auth code → ✅ Request the transfer → ⚙️ The registry transfers the domain" in others
 
 
 def test_a_tld_differing_only_where_opusdns_does_nothing_is_not_listed():

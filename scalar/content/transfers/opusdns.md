@@ -1,6 +1,6 @@
 # Transfer from another OpusDNS account
 
-What moving a domain from another OpusDNS account to OpusDNS takes, at each TLD: which steps OpusDNS takes for you and which you take at another OpusDNS account. OpusDNS takes its steps once you have [connected](/products/connected-registrars/connect) your another OpusDNS account account (`OPUSDNS` in the API) and [requested the transfer](/products/connected-registrars/transfer-to-opusdns) without an auth code.
+Transferring a domain from another OpusDNS account to OpusDNS takes a few steps. This page shows, for each TLD, which steps OpusDNS takes for you and which you take at another OpusDNS account. OpusDNS takes its steps once you have [connected](/products/connected-registrars/connect) your another OpusDNS account account (`OPUSDNS` in the API) and [requested the transfer](/products/connected-registrars/transfer-to-opusdns) without an auth code.
 
 ✅ OpusDNS does it for you · ↗️ you do it at your registrar · ✉️ the domain's holder approves by email · ⚙️ the registry does it on its own · ➖ the TLD doesn't have it
 
@@ -13,10 +13,10 @@ What moving a domain from another OpusDNS account to OpusDNS takes, at each TLD:
 | 3 | Request the transfer | ✅ OpusDNS | OpusDNS sends the transfer to the registry. |
 | 4 | The registry notifies another OpusDNS account | ⚙️ The registry | The registry tells another OpusDNS account about the transfer. |
 | 5 | Approve the transfer | ✅ OpusDNS | OpusDNS approves the transfer at another OpusDNS account. |
-| 6 | The registry moves the domain | ⚙️ The registry | The registry moves the domain to OpusDNS. |
+| 6 | The registry transfers the domain | ⚙️ The registry | The registry transfers the domain to OpusDNS. |
 | 7 | Finish the transfer | ✅ OpusDNS | OpusDNS books the transfer, sets the transfer lock and stops mirroring the domain from another OpusDNS account. |
 
-For gTLDs, such as `.com`, these steps follow ICANN's Transfer Policy, which binds every ICANN-accredited registrar and gTLD registry: a locked domain can't be transferred, the new registrar requests the transfer with the auth code, and the current registrar can approve it. If it doesn't, the registry completes the transfer after five days. ccTLD registries set their own rules, so their steps often differ.
+For gTLDs, such as `.com`, these steps follow ICANN's Transfer Policy, which every registrar accredited by ICANN and every gTLD registry must follow. A locked domain can't be transferred, the new registrar requests the transfer with the auth code, and the current registrar can approve it. If it doesn't, the registry completes the transfer after five days. ccTLD registries set their own rules, so their steps often differ.
 
 ## TLDs with other steps
 
@@ -24,20 +24,20 @@ Search this page for a TLD, such as `.se`. A TLD that isn't listed takes the ste
 
 | TLDs | Steps |
 | --- | --- |
-| [.ch](/tld-knowledge-base/cctlds/ch), [.cz](/tld-knowledge-base/cctlds/cz), [.de](/tld-knowledge-base/cctlds/de), [.dk](/tld-knowledge-base/cctlds/dk), [.eu](/tld-knowledge-base/cctlds/eu), [.gr](/tld-knowledge-base/cctlds/gr), [.li](/tld-knowledge-base/cctlds/li), [.lt](/tld-knowledge-base/cctlds/lt), [.nl](/tld-knowledge-base/cctlds/nl), [.no](/tld-knowledge-base/cctlds/no), [.pl](/tld-knowledge-base/cctlds/pl), [.pt](/tld-knowledge-base/cctlds/pt), [.ro](/tld-knowledge-base/cctlds/ro), [.si](/tld-knowledge-base/cctlds/si) | ✅ Get the auth code → ✅ Request the transfer → ⚙️ The registry moves the domain → ✅ Finish the transfer |
-| [.be](/tld-knowledge-base/cctlds/be), [.ca](/tld-knowledge-base/cctlds/ca), .cl, [.gg](/tld-knowledge-base/cctlds/gg), [.je](/tld-knowledge-base/cctlds/je), [.sk](/tld-knowledge-base/cctlds/sk) | ✅ Remove the transfer lock → ✅ Get the auth code → ✅ Request the transfer → ⚙️ The registry moves the domain → ✅ Finish the transfer |
-| [.co.za](/tld-knowledge-base/cctlds/co.za), [.net.za](/tld-knowledge-base/cctlds/net.za), [.org.za](/tld-knowledge-base/cctlds/org.za), [.web.za](/tld-knowledge-base/cctlds/web.za) | ✅ Request the transfer → ⚙️ The registry notifies another OpusDNS account → ✅ Approve the transfer → ⚙️ The registry moves the domain → ✅ Finish the transfer |
-| [.at](/tld-knowledge-base/cctlds/at), [.it](/tld-knowledge-base/cctlds/it), [.mx](/tld-knowledge-base/cctlds/mx) | ✅ Get the auth code → ✅ Request the transfer → ⚙️ The registry notifies another OpusDNS account → ✅ Approve the transfer → ⚙️ The registry moves the domain → ✅ Finish the transfer |
-| [.nu](/tld-knowledge-base/cctlds/nu), [.se](/tld-knowledge-base/cctlds/se) | ↗️ Get a new auth code → ✅ Request the transfer → ⚙️ The registry moves the domain → ✅ Finish the transfer |
-| [.com.se](/tld-knowledge-base/cctlds/com.se) | ✅ Remove the transfer lock → ↗️ Get a new auth code → ✅ Request the transfer → ⚙️ The registry notifies another OpusDNS account → ✅ Approve the transfer → ⚙️ The registry moves the domain → ✅ Finish the transfer |
-| .ee | ✅ Remove the transfer lock → ✅ Get the auth code → ✅ Request the transfer → ⚙️ The registry moves the domain → ✅ Finish the transfer |
+| [.ch](/tld-knowledge-base/cctlds/ch), [.cz](/tld-knowledge-base/cctlds/cz), [.de](/tld-knowledge-base/cctlds/de), [.dk](/tld-knowledge-base/cctlds/dk), [.eu](/tld-knowledge-base/cctlds/eu), [.gr](/tld-knowledge-base/cctlds/gr), [.li](/tld-knowledge-base/cctlds/li), [.lt](/tld-knowledge-base/cctlds/lt), [.nl](/tld-knowledge-base/cctlds/nl), [.no](/tld-knowledge-base/cctlds/no), [.pl](/tld-knowledge-base/cctlds/pl), [.pt](/tld-knowledge-base/cctlds/pt), [.ro](/tld-knowledge-base/cctlds/ro), [.si](/tld-knowledge-base/cctlds/si) | ✅ Get the auth code → ✅ Request the transfer → ⚙️ The registry transfers the domain → ✅ Finish the transfer |
+| [.be](/tld-knowledge-base/cctlds/be), [.ca](/tld-knowledge-base/cctlds/ca), .cl, [.gg](/tld-knowledge-base/cctlds/gg), [.je](/tld-knowledge-base/cctlds/je), [.sk](/tld-knowledge-base/cctlds/sk) | ✅ Remove the transfer lock → ✅ Get the auth code → ✅ Request the transfer → ⚙️ The registry transfers the domain → ✅ Finish the transfer |
+| [.co.za](/tld-knowledge-base/cctlds/co.za), [.net.za](/tld-knowledge-base/cctlds/net.za), [.org.za](/tld-knowledge-base/cctlds/org.za), [.web.za](/tld-knowledge-base/cctlds/web.za) | ✅ Request the transfer → ⚙️ The registry notifies another OpusDNS account → ✅ Approve the transfer → ⚙️ The registry transfers the domain → ✅ Finish the transfer |
+| [.at](/tld-knowledge-base/cctlds/at), [.it](/tld-knowledge-base/cctlds/it), [.mx](/tld-knowledge-base/cctlds/mx) | ✅ Get the auth code → ✅ Request the transfer → ⚙️ The registry notifies another OpusDNS account → ✅ Approve the transfer → ⚙️ The registry transfers the domain → ✅ Finish the transfer |
+| [.nu](/tld-knowledge-base/cctlds/nu), [.se](/tld-knowledge-base/cctlds/se) | ↗️ Get a new auth code → ✅ Request the transfer → ⚙️ The registry transfers the domain → ✅ Finish the transfer |
+| [.com.se](/tld-knowledge-base/cctlds/com.se) | ✅ Remove the transfer lock → ↗️ Get a new auth code → ✅ Request the transfer → ⚙️ The registry notifies another OpusDNS account → ✅ Approve the transfer → ⚙️ The registry transfers the domain → ✅ Finish the transfer |
+| .ee | ✅ Remove the transfer lock → ✅ Get the auth code → ✅ Request the transfer → ⚙️ The registry transfers the domain → ✅ Finish the transfer |
 | .is | The TLD has no transfers. |
-| [.lu](/tld-knowledge-base/cctlds/lu) | ✅ Request the transfer → ⚙️ The registry notifies another OpusDNS account → ✉️ Approve the transfer → ⚙️ The registry moves the domain → ✅ Finish the transfer |
-| [.uk](/tld-knowledge-base/cctlds/uk) | ✅ Remove the transfer lock → ✅ Book the domain at OpusDNS → ↗️ Push the domain to OpusDNS's tag → ⚙️ The registry moves the domain → ✅ Finish the transfer |
+| [.lu](/tld-knowledge-base/cctlds/lu) | ✅ Request the transfer → ⚙️ The registry notifies another OpusDNS account → ✉️ Approve the transfer → ⚙️ The registry transfers the domain → ✅ Finish the transfer |
+| [.uk](/tld-knowledge-base/cctlds/uk) | ✅ Remove the transfer lock → ✅ Book the domain at OpusDNS → ↗️ Push the domain to OpusDNS's tag → ⚙️ The registry transfers the domain → ✅ Finish the transfer |
 
 ## Managing a connected domain
 
-Until it moves, what OpusDNS can do with a domain you hold at another OpusDNS account:
+What OpusDNS can do with a domain you hold at another OpusDNS account until you transfer it:
 
 | Action | Who | Note |
 | --- | --- | --- |

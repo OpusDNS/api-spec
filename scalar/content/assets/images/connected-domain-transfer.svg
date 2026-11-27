@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="340" viewBox="0 0 800 340" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, &apos;Segoe UI&apos;, Helvetica, Arial, sans-serif">
-<title id="t">Moving a connected domain to OpusDNS</title>
-<desc id="d">Swimlane in three lanes: your current registrar, the registry and OpusDNS. You send the transfer request. OpusDNS then checks the statuses, removes the transfer lock and fetches the auth code at your current registrar, requests the transfer at the registry and approves it at your current registrar. The registry moves the domain, and it is in your OpusDNS account.</desc>
+<title id="t">Transferring a connected domain to OpusDNS</title>
+<desc id="d">Swimlane in three lanes: your current registrar, the registry and OpusDNS. You send the transfer request. OpusDNS then checks the statuses, removes the transfer lock and fetches the auth code at your current registrar, requests the transfer at the registry and approves it at your current registrar. The registry transfers the domain, and it is in your OpusDNS account.</desc>
 <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8a8d99"/></marker></defs>
 <rect x="2" y="32" width="796" height="76" rx="10" fill="#8a8d99" fill-opacity="0.12"/>
 <text x="16" y="67" font-size="14" font-weight="600" fill="#8a8d99">Your</text>
@@ -35,8 +35,8 @@
 <text x="576" y="84" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">transfer</text>
 <text x="662" y="20" text-anchor="middle" font-size="13" font-weight="600" fill="#8a8d99">7</text>
 <rect x="623.0" y="126.0" width="78" height="52" rx="8" fill="#0e7c78"/>
-<text x="662" y="149" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">Move the</text>
-<text x="662" y="166" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">domain</text>
+<text x="662" y="149" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">Transfer</text>
+<text x="662" y="166" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">the domain</text>
 <text x="748" y="20" text-anchor="middle" font-size="13" font-weight="600" fill="#8a8d99">8</text>
 <rect x="709.0" y="208.0" width="78" height="52" rx="8" fill="#2547c9"/>
 <text x="748" y="231" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">In your</text>

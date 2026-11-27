@@ -2,7 +2,7 @@
 
 Connect your accounts at other registrars to see their domains, DNS zones and
 contacts in OpusDNS, alongside the domains you registered with us. OpusDNS reads
-them from the registrar in a sync and stores the login details encrypted; it
+them from the registrar in a sync. It stores the login details encrypted and
 never returns them.
 
 ## Flow overview
@@ -28,7 +28,7 @@ never returns them.
 ## 1. Connect an account
 
 Send the registrar, a name of your choice and the account's login details. Each
-registrar needs different fields in `credentials`; the request schema of
+registrar needs different fields in `credentials`. The request schema of
 [Connect a registrar account](/api-reference#tag/connect/POST/v1/connect/registrars)
 lists them. For example, an `INTERNETX` account:
 
@@ -102,7 +102,7 @@ one.
 [List sync failures](/api-reference#tag/connect/GET/v1/connect/registrars/{registrar_credential_id}/sync/failures)
 shows each domain the latest sync couldn't sync. Each entry's `error` says why
 in `code`, and `retryable` tells whether a later sync may succeed. Programs
-should branch on `code`; the codes are listed under
+should branch on `code`. The codes are listed under
 [Connect](/api-reference#tag/connect) in the API Reference.
 
 ## 4. Keep the account up to date
@@ -130,15 +130,16 @@ in OpusDNS too.
 removes the connection. Disconnecting an account changes nothing at the
 registrar.
 
-## Accounts of sub-organizations
+## Accounts of suborganizations
 
 An unknown account ID returns `403`, as does one from an organization outside
-yours. An account of one of your sub-organizations returns `404` unless you send
+yours. An account of one of your suborganizations returns `404` unless you send
 the request in that organization's context (`X-Organization-Context`).
 
 ## Next steps
 
-- [Move a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns) — transfer a domain without asking the registrar for its auth code
+- [Transfer a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns): transfer a domain without asking the registrar for its auth code.
+- [Transfers](/transfers/overview): the steps of a transfer at each registrar and TLD.
 
 ## Related API Reference
 

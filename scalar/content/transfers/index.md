@@ -1,8 +1,8 @@
 # Transfer to OpusDNS
 
-Moving a domain from another registrar to OpusDNS takes a few steps at that registrar, at the registry and at OpusDNS. Once you have [connected](/products/connected-registrars/connect) your account there, OpusDNS takes most of them for you; which ones depends on the registrar and on the TLD.
+Transferring a domain from another registrar to OpusDNS takes a few steps at that registrar, at the registry and at OpusDNS. Once you have [connected](/products/connected-registrars/connect) your account there, OpusDNS takes most of them for you. Which ones depends on the registrar and on the TLD.
 
-For gTLDs, such as `.com`, these steps follow ICANN's Transfer Policy, which binds every ICANN-accredited registrar and gTLD registry: a locked domain can't be transferred, the new registrar requests the transfer with the auth code, and the current registrar can approve it. If it doesn't, the registry completes the transfer after five days. ccTLD registries set their own rules, so their steps often differ.
+For gTLDs, such as `.com`, these steps follow ICANN's Transfer Policy, which every registrar accredited by ICANN and every gTLD registry must follow. A locked domain can't be transferred, the new registrar requests the transfer with the auth code, and the current registrar can approve it. If it doesn't, the registry completes the transfer after five days. ccTLD registries set their own rules, so their steps often differ.
 
 Who takes the steps that depend on the registrar, at most TLDs:
 
@@ -24,4 +24,4 @@ Who takes the steps that depend on the registrar, at most TLDs:
 
 ¹ Only while WHOIS privacy is on.
 
-Each registrar's page lists the TLDs whose steps differ, and what OpusDNS can do with a domain you hold there until it moves. See also [Move a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns).
+Each registrar's page lists the TLDs whose steps differ, and what OpusDNS can do with a domain you hold there until you transfer it. See also [Transfer a connected domain to OpusDNS](/products/connected-registrars/transfer-to-opusdns).

@@ -1,4 +1,4 @@
-# Move a connected domain to OpusDNS
+# Transfer a connected domain to OpusDNS
 
 If your organization holds a domain through a
 [connected registrar account](/products/connected-registrars/connect), you can
@@ -47,12 +47,12 @@ Contacts, period, nameservers and monitoring work as described in
 
 ## What OpusDNS does at the connected registrar
 
-![Swimlane: you send the transfer request; OpusDNS checks the statuses, removes the transfer lock and fetches the auth code at your current registrar, requests the transfer at the registry and approves it at your current registrar; the registry moves the domain into your OpusDNS account.](/images/connected-domain-transfer.svg)
+![Swimlane: you send the transfer request. OpusDNS checks the statuses, removes the transfer lock and fetches the auth code at your current registrar, requests the transfer at the registry and approves it at your current registrar. The registry transfers the domain into your OpusDNS account.](/images/connected-domain-transfer.svg)
 
 The usual order for a gTLD, such as `.com`. gTLD transfers follow ICANN's
-Transfer Policy, which binds every ICANN-accredited registrar and gTLD registry,
-so these steps are the same at every registry. ccTLD registries set their own
-rules, and their steps often differ. Which steps apply also depends on your
+Transfer Policy, which every registrar accredited by ICANN and every gTLD
+registry must follow, so these steps are the same at every gTLD registry. ccTLD
+registries set their own rules, and their steps often differ. Which steps apply also depends on your
 registrar: [Transfers](/transfers/overview) lists them for every registrar and
 TLD.
 
