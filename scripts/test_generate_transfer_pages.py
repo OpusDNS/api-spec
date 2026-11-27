@@ -103,7 +103,7 @@ def section(text, start, end=None):
     return part.split(end, 1)[0] if end else part
 
 
-MATRIX = ("## By transfer pattern", "## Managing a connected domain")
+MATRIX = ("## By transfer pattern", "Until you transfer a domain")
 
 
 def test_every_tld_is_on_the_registrar_page():
@@ -114,16 +114,16 @@ def test_every_tld_is_on_the_registrar_page():
     assert "Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step the TLD doesn't have." in matrix
     assert "Search this page for your TLD. If it isn't listed exactly, it is in the first row." in matrix
     # The largest pattern stands for every TLD the other rows don't list.
-    assert ("| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | Every other TLD, such as [.com](/transfers/patterns/gtlds/com), "
-            "[.net](/transfers/patterns/gtlds/net) and [.org](/transfers/patterns/gtlds/org) | ✅ OpusDNS | ✅ OpusDNS | ↗️ You, optional |") in matrix
-    assert ("| [Auth code and approval](/transfers/patterns/auth-code-approval) | [.se](/transfers/patterns/auth-code-approval/se) "
+    assert ("| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | Every other TLD, such as .com, "
+            ".net and .org | ✅ OpusDNS | ✅ OpusDNS | ↗️ You, optional |") in matrix
+    assert ("| [Auth code and approval](/transfers/patterns/auth-code-approval) | .se "
             "| ➖ | ↗️ You, at OpenSRS (a new one) | ➖ |") in matrix
     assert "These TLDs differ" not in matrix and "WHOIS privacy" not in matrix
 
 
 def test_a_registrar_with_one_pattern_lists_its_tlds():
     text = page([row("com", usual_steps("com")), row("net", usual_steps("net"))])
-    assert "| [.com](/transfers/patterns/gtlds/com), [.net](/transfers/patterns/gtlds/net) |" in section(text, *MATRIX)
+    assert "| .com, .net |" in section(text, *MATRIX)
     assert "Every other TLD" not in text
 
 
@@ -137,8 +137,8 @@ def test_the_intro_points_to_the_table_for_every_tld():
 
 def test_approval_is_optional_at_gtlds_only():
     text = page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("fr", usual_steps("fr"))])
-    differing = section(text, "These TLDs differ from their pattern's row:", "## Managing a connected domain")
-    assert ("| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | [.fr](/transfers/patterns/gtlds/fr) "
+    differing = section(text, "These TLDs differ from their pattern's row:", "Until you transfer a domain")
+    assert ("| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | .fr "
             "| ✅ OpusDNS | ✅ OpusDNS | ↗️ You, at OpenSRS |") in differing
 
 
@@ -176,9 +176,9 @@ def test_a_pushed_tld_and_a_tld_without_transfers():
     rows = [row("com", usual_steps("com")), row("net", usual_steps("net")), row("uk", push, push=True),
             row("xx", [], flow_detail=".xx has no transfers.", policies={"supported": False})]
     matrix = section(page(rows), *MATRIX)
-    assert "| [.uk](/transfers/patterns/push/uk) | ✅ OpusDNS | ➖ | ✅ OpusDNS (push) |" in matrix
+    assert "| .uk | ✅ OpusDNS | ➖ | ✅ OpusDNS (push) |" in matrix
     assert "the domain is pushed to OpusDNS's tag instead of approved." in matrix
-    assert "[.xx](/transfers/patterns/xx) has no transfer at its registry. Its page explains what to do instead." in matrix
+    assert ".xx has no transfer at its registry. See [Transfer to OpusDNS](/transfers/overview#transfer-patterns) for what to do instead." in matrix
     assert "| .xx |" not in matrix
 
 
@@ -192,7 +192,7 @@ def test_a_step_outside_the_matrix_columns_fails_the_run():
 
 def test_a_missing_registry_step_is_no_error():
     org = [s for s in usual_steps("org") if s["action"] != "complete_transfer"]
-    assert "[.org]" in page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("org", org)])
+    assert ".org" in page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("org", org)])
 
 
 def test_every_tld_of_a_row_after_the_first_is_listed():
@@ -200,7 +200,7 @@ def test_every_tld_of_a_row_after_the_first_is_listed():
     no_approval = {"transfer_ack": "none", "transfer_nack": "none"}
     rows = [row(t, usual_steps(t)) for t in [f"g{i}" for i in range(9)]] + [row(t, se_steps(t), lock=False, policies=no_approval) for t in many]
     matrix = section(gen.render_registrar("opensrs", rows, {**TYPES, **{t: "ccTLD" for t in many}}), *MATRIX)
-    assert all(f"[.{t}](/transfers/patterns/auth-code/{t})" in matrix for t in many)
+    assert all(f".{t}" in matrix for t in many)
     assert "Every other TLD, such as" in matrix
 
 
@@ -300,7 +300,8 @@ def test_the_overview_explains_gtlds_cctlds_and_the_connected_account():
     assert "> [!WARNING]" in text and "[page for your registrar](#your-registrar)" in text and "## Your registrar" in text
     assert "- [eNom](/transfers/registrars/enom)" in text and "- [OpenSRS](/transfers/registrars/opensrs)" in text
     assert "## Transfer patterns" in text and "- [gTLDs and most ccTLDs](/transfers/patterns/gtlds): 1 TLD\n" in text
-    assert "[.xx](/transfers/patterns/xx) has no transfer at its registry. Its page explains what to do instead." in text
+    assert ".xx has no transfer at its registry. To move such a domain to OpusDNS, contact [OpusDNS support](https://support.opusdns.com/)." in text
+    assert "ISNIC" not in text
     assert ";" not in text
 
 
@@ -321,18 +322,27 @@ def test_a_sentence_without_published_wording_fails_the_run(where):
 
 
 def test_main_skips_excluded_registrars_and_reports_stale_pages(tmp_path):
-    export = {"tld_types": {"com": "gTLD"}, "registrars": {"opensrs": [row("com", usual_steps("com"))], "opusdns": [row("com", usual_steps("com"))]}}
+    is_row = row("xx", [], flow_detail=".xx has no transfers.", policies={"supported": False})
+    export = {"tld_types": {"com": "gTLD", "xx": "ccTLD"},
+              "registrars": {"opensrs": [row("com", usual_steps("com")), is_row], "opusdns": [row("com", usual_steps("com"))]}}
     source = tmp_path / "export.json"
     source.write_text(json.dumps(export), encoding="utf-8")
     config = tmp_path / "scalar.config.json"
     config.write_text(json.dumps({"navigation": {"tabs": [{"to": "/tld-knowledge-base"}], "routes": {}}}, indent=2) + "\n", encoding="utf-8")
     out = tmp_path / "transfers"
     pages = tmp_path / "pages.json"
-    args = ["--input", str(source), "--output", str(out), "--config", str(config), "--tld-pages-file", str(pages)]
+    swimlanes = tmp_path / "swimlanes"
+    args = ["--input", str(source), "--output", str(out), "--config", str(config), "--tld-pages-file", str(pages),
+            "--managing-page", str(tmp_path / "managing.md"), "--swimlanes", str(swimlanes)]
     gen.main(args)
     assert sorted(str(p.relative_to(out)) for p in out.rglob("*.md")) == [
-        "index.md", "patterns/gtlds/com.md", "patterns/gtlds/index.md", "registrars/opensrs.md"]
-    assert json.loads(pages.read_text(encoding="utf-8")) == {"com": {"title": "gTLDs and most ccTLDs", "path": "/transfers/patterns/gtlds/com"}}
+        "index.md", "patterns/gtlds.md", "registrars/opensrs.md"]
+    assert json.loads(pages.read_text(encoding="utf-8")) == {"com": {"title": "gTLDs and most ccTLDs", "path": "/transfers/patterns/gtlds"}}
+    assert sorted(p.name for p in swimlanes.glob("*.svg")) == ["gtlds.svg"]
+    (swimlanes / "gone.svg").write_text("<svg/>\n", encoding="utf-8")
+    with pytest.raises(SystemExit, match="gone.svg"):
+        gen.main(args)
+    (swimlanes / "gone.svg").rename(tmp_path / "gone.svg")
     (out / "registrars" / "gone.md").write_text("old\n", encoding="utf-8")
     with pytest.raises(SystemExit, match="registrars/gone.md"):
         gen.main(args)
@@ -347,19 +357,18 @@ def test_config_gets_the_tab_after_tld_info_and_is_idempotent(tmp_path):
     }
     path = tmp_path / "scalar.config.json"
     path.write_text(json.dumps(config, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    patterns = [(gen.PATTERNS[("registrar", True, True)], ["com", "net"]), (gen.PATTERNS["push"], ["uk"])]
-    assert gen.update_config(path, ["opensrs", "enom"], patterns, ["is"]) is True
+    patterns = [gen.PATTERNS[("registrar", True, True)], gen.PATTERNS["push"]]
+    assert gen.update_config(path, ["opensrs", "enom"], patterns) is True
     written = json.loads(path.read_text(encoding="utf-8"))
     assert [tab["title"] for tab in written["navigation"]["tabs"]] == ["Guides", "TLD Info", "Transfers", "Changelog"]
     children = written["navigation"]["routes"]["/transfers"]["children"]
     assert list(children) == ["/overview", "/patterns", "/registrars"]
     by_pattern = children["/patterns"]["children"]
-    assert list(by_pattern) == ["/gtlds", "/push", "/is"]
-    assert list(by_pattern["/gtlds"]["children"]) == ["/", "/com", "/net"]
-    assert by_pattern["/gtlds"]["children"]["/com"]["filepath"] == "content/transfers/patterns/gtlds/com.md"
-    assert by_pattern["/is"]["showInSidebar"] is False and by_pattern["/gtlds"]["children"]["/"]["showInSidebar"] is True
+    assert list(by_pattern) == ["/gtlds", "/push"]
+    assert by_pattern["/gtlds"] == {"type": "page", "title": "gTLDs and most ccTLDs",
+                                    "filepath": "content/transfers/patterns/gtlds.md", "showInSidebar": True}
     assert list(children["/registrars"]["children"]) == ["/enom", "/opensrs"]
-    assert gen.update_config(path, ["opensrs", "enom"], patterns, ["is"]) is False
+    assert gen.update_config(path, ["opensrs", "enom"], patterns) is False
 
 
 # --- transfer patterns -------------------------------------------------------
@@ -406,11 +415,12 @@ def test_the_lock_splits_patterns_and_a_pattern_page_shows_the_registrys_side_on
     text = gen.render_pattern(pattern, tlds, data, facts)
     assert "Your current registrar can then approve or deny the transfer. The registry has no transfer lock." in text
     assert "Remove the transfer lock" not in text and "| Registrar |" not in text
-    assert "Each TLD's page shows which of these steps OpusDNS takes at your registrar." in text
+    assert "Which of these steps OpusDNS takes for you depends on your registrar." in text
+    assert "The [TLD Knowledge Base](/tld-knowledge-base) has each TLD's transfer rules" in text
     assert "At gTLDs" not in text  # only ccTLDs here
     # .fr has a Knowledge Base page with its registry, .xx has none.
     registries = section(text, "## Registries")
-    assert "[.fr](/transfers/patterns/auth-code-approval/fr)" in registries and ".xx" not in registries
+    assert ".fr" in registries and ".xx" not in registries
 
 
 def test_registries_show_once_each_by_size_then_name_with_their_usual_website(knowledge_base):
@@ -424,9 +434,8 @@ def test_registries_show_once_each_by_size_then_name_with_their_usual_website(kn
     pattern, tlds = gen.ordered_patterns(facts)[0]
     registries = [line for line in section(gen.render_pattern(pattern, tlds, data, facts), "## Registries").splitlines() if line.startswith("- ")]
     assert [line.split("]")[0].split(":")[0] for line in registries] == ["- [Gamma", "- [Alpha", "- beta", "- Delta"]
-    assert registries[0].endswith("[.g4](/transfers/patterns/gtlds/g4) and 1 more")
+    assert registries[0].endswith("[.g4](/tld-knowledge-base/cctlds/g4) and 1 more")
     assert registries[1].startswith("- [Alpha](https://a.example): [.aa]")
-    assert "Its registry is [Alpha](https://other.example)." in gen.render_tld("aa", data, facts["aa"])
 
 
 def test_a_knowledge_base_page_without_its_registry_fails_the_run(knowledge_base):
@@ -444,71 +453,7 @@ def test_a_pattern_page_where_every_tld_has_a_lock_names_many_gtlds_by_example()
     pattern, found = gen.ordered_patterns(facts)[0]
     text = gen.render_pattern(pattern, found, data, facts)
     assert "1. Remove the transfer lock at your current registrar.\n" in text
-    assert "24 gTLDs, such as [.com](/transfers/patterns/gtlds/com), [.net](/transfers/patterns/gtlds/net) and [.org](/transfers/patterns/gtlds/org)." in text
-
-
-def test_a_tld_page_shows_the_tlds_facts_and_each_registrars_steps(knowledge_base):
-    kb_page(knowledge_base, "com", "VeriSign, Inc.", "https://www.verisign.com", folder="gtlds")
-    rows = [row("com", usual_steps("com"), policies={"transfer_renews_domain": True, "transfer_time": "5D"}),
-            row("net", usual_steps("net"), policies={"transfer_renews_domain": True, "transfer_time": "5D"})]
-    data = export(rows, rows)
-    facts = gen.registry_facts(data)
-    text = gen.render_tld("com", data, facts["com"])
-    assert text.startswith("# Transferring a .com domain\n")
-    assert ("`.com` follows the [gTLDs and most ccTLDs](/transfers/patterns/gtlds) pattern. Its registry is "
-            "[VeriSign, Inc.](https://www.verisign.com). The registry has a transfer lock. "
-            "A transfer extends the registration. A transfer takes up to 5 days. As a gTLD") in text
-    assert "| [eNom](/transfers/registrars/enom) | ✅ OpusDNS | ✅ OpusDNS | ↗️ You, optional |" in text
-
-
-def test_a_tld_without_transfers_points_to_support():
-    rows = [row("is", [], flow_detail=".is has no transfers.", policies={"supported": False})]
-    data = export(rows)
-    text = gen.render_tld("is", data, gen.registry_facts(data)["is"])
-    assert "`.is` has no transfer at its registry. OpusDNS can't request one." in text
-    assert "https://www.isnic.is/en/faq" in text and "contact [OpusDNS support](https://support.opusdns.com/)" in text
-
-
-def test_a_cctld_page_without_approval_says_what_differs():
-    # A ccTLD at 0 days whose losing registrar can deny it, with a privacy step at OpenSRS, no
-    # Knowledge Base page, and a second registrar that doesn't offer it.
-    policies = {"transfer_ack": "none", "transfer_nack": "registrar", "transfer_time": "0D"}
-    xx = row("xx", usual_steps("xx", privacy_step=True)[:-2] + [step("complete_transfer", "registry", "The .xx registry moves the domain to OpusDNS.")], policies=policies)
-    data = {"tld_types": TYPES, "registrars": {"opensrs": [row("com", usual_steps("com")), xx], "enom": [row("com", usual_steps("com"))]}}
-    facts = gen.registry_facts(data)
-    text = gen.render_tld("xx", data, facts["xx"])
-    assert "[Unlock and auth code](/transfers/patterns/unlock-auth-code) pattern." in text
-    assert "Your current registrar can still deny a transfer. The registry completes a transfer at once." in text
-    assert "As a gTLD" not in text and "TLD Knowledge Base" not in text
-    assert "OpenSRS refuses to remove the lock while WHOIS privacy is on. Turn it off there first." in text
-    assert "[OpenSRS](/transfers/registrars/opensrs)" in text and "[eNom]" not in text
-
-
-def test_a_tld_page_says_the_code_source_without_the_patterns_hedge():
-    policies = {"authinfo_set_by_registrar": False, "transfer_ack": "none"}
-    rows = [row("se", se_steps(), lock=False, policies=policies)]
-    data = export(rows)
-    text = gen.render_tld("se", data, gen.registry_facts(data)["se"])
-    assert "1. Get the auth code from your current registrar or the registry.\n" in text
-
-
-def test_a_tld_without_transfers_and_without_a_note_still_points_to_support():
-    rows = [row("fr", [], flow_detail=".fr has no transfers.", policies={"supported": False})]
-    data = export(rows)
-    text = gen.render_tld("fr", data, gen.registry_facts(data)["fr"])
-    assert "ISNIC" not in text and "contact [OpusDNS support](https://support.opusdns.com/)" in text
-
-
-def test_only_a_tld_without_approval_says_its_registrar_can_deny():
-    nack = {"transfer_nack": "registrar"}
-    push = [step("update_transfer_lock", "opusdns", "OpusDNS removes the transfer lock at OpenSRS."),
-            step("request_transfer", "opusdns", "OpusDNS books the domain and has it pushed. The .uk registry gets no transfer request."),
-            step("push_transfer_out", "opusdns", "OpusDNS pushes the domain to its tag at OpenSRS."),
-            step("complete_transfer", "registry", "The .uk registry moves the domain to OpusDNS's tag.")]
-    data = export([row("com", usual_steps("com"), policies=nack), row("uk", push, push=True, policies=nack)])
-    facts = gen.registry_facts(data)
-    for tld in ("com", "uk"):
-        assert "can still deny" not in gen.render_tld(tld, data, facts[tld])
+    assert "24 gTLDs, such as .com, .net and .org." in text
 
 
 def uk_push_rows(push=True):
@@ -522,18 +467,16 @@ def uk_push_rows(push=True):
 def test_an_announced_registry_change_shows_until_the_export_has_it():
     data = export(uk_push_rows())
     facts = gen.registry_facts(data)
-    tld_page = gen.render_tld("uk", data, facts["uk"])
     pattern, tlds = next((p, t) for p, t in gen.ordered_patterns(facts) if p.slug == "push")
     pattern_page = gen.render_pattern(pattern, tlds, data, facts)
-    assert "> [!NOTE]\n> From 9 February 2027, Nominet replaces the push with an auth code." in tld_page
-    assert "> [.uk](/transfers/patterns/push/uk): From 9 February 2027" in pattern_page
+    assert "> [!NOTE]\n> .uk: From 9 February 2027, Nominet replaces the push with an auth code." in pattern_page
     with pytest.raises(SystemExit, match="remove it from UPCOMING"):
         gen.registry_facts(export(uk_push_rows(push=False)))
 
 
 @pytest.mark.parametrize(("reason", "count", "expected"), [
-    ("no transfers", 1, "[.a] has no transfer at its registry. Its page explains what to do instead."),
-    ("no transfers", 2, "[.a] have no transfer at their registries. Their pages explain what to do instead."),
+    ("no transfers", 1, "[.a] has no transfer at its registry."),
+    ("no transfers", 2, "[.a] have no transfer at their registries."),
     ("only on paper", 1, "Only on paper at [.a]."),
 ])
 def test_a_tld_without_transfers_says_so_in_plain_words(reason, count, expected):
@@ -551,14 +494,18 @@ def test_the_holder_approves_where_the_registry_says_so():
              lock=False, policies={"authinfo_required": False})
     data = export([lu, xx])
     facts = gen.registry_facts(data)
-    assert "2. The domain's holder approves or denies the transfer by email." in gen.render_tld("lu", data, facts["lu"])
-    assert "2. Your current registrar approves or denies the transfer. Some registrars" in gen.render_tld("xx", data, facts["xx"])
     pattern, tlds = gen.ordered_patterns(facts)[0]
     page_text = gen.render_pattern(pattern, tlds, data, facts)
     assert "Your current registrar or the domain's holder then approves or denies the transfer, depending on the TLD." in page_text
     only_lu = export([lu])
     lu_facts = gen.registry_facts(only_lu)
-    assert "The domain's holder then approves or denies the transfer by email." in gen.render_pattern(*gen.ordered_patterns(lu_facts)[0], only_lu, lu_facts)
+    lu_page = gen.render_pattern(*gen.ordered_patterns(lu_facts)[0], only_lu, lu_facts)
+    assert "The domain's holder then approves or denies the transfer by email." in lu_page
+    assert "2. The domain's holder approves or denies the transfer by email." in lu_page
+    only_xx = export([xx])
+    xx_facts = gen.registry_facts(only_xx)
+    xx_page = gen.render_pattern(*gen.ordered_patterns(xx_facts)[0], only_xx, xx_facts)
+    assert "2. Your current registrar approves or denies the transfer. Some registrars" in xx_page
 
 
 def test_a_pattern_row_takes_the_cells_most_of_its_tlds_have():
@@ -567,13 +514,13 @@ def test_a_pattern_row_takes_the_cells_most_of_its_tlds_have():
     aa[3] = step("approve_transfer_out", "opusdns", "OpusDNS approves the transfer at OpenSRS.")
     text = page([row("aa", aa), row("com", usual_steps("com")), row("net", usual_steps("net"))])
     assert "| ✅ OpusDNS | ✅ OpusDNS | ↗️ You, optional |" in section(text, *MATRIX).split("These TLDs differ")[0]
-    assert "| [.aa](/transfers/patterns/gtlds/aa) | ✅ OpusDNS | ✅ OpusDNS | ✅ OpusDNS |" in section(text, *MATRIX)
+    assert "| .aa | ✅ OpusDNS | ✅ OpusDNS | ✅ OpusDNS |" in section(text, *MATRIX)
 
 
 def test_a_gtld_says_the_registry_completes_after_five_days():
     data = export([row("com", usual_steps("com")), row("net", usual_steps("net"))])
     facts = gen.registry_facts(data)
-    assert "At gTLDs, the registry completes it after five days without an answer." in gen.render_tld("com", data, facts["com"])
+    assert "At gTLDs, the registry completes it after five days without an answer." in gen.render_pattern(*gen.ordered_patterns(facts)[0], data, facts)
 
 
 def test_a_null_lock_policy_reads_as_no_lock():
@@ -581,3 +528,65 @@ def test_a_null_lock_policy_reads_as_no_lock():
     xx["specification"]["transfer_policies"]["transfer_lock_policy"] = None
     assert gen.pattern_key(xx) == ("registrar", True, False)
     assert gen.registry_side(xx).lock is False
+
+
+def test_a_holders_step_outside_the_matrix_fails_the_run_too():
+    se = se_steps()
+    se.insert(2, step("approve_transfer_out", "registrant", "The holder of the .se domain approves the transfer.")
+              | {"action": "request_transfer"})
+    with pytest.raises(SystemExit, match="add a column"):
+        page([row("com", usual_steps("com")), row("net", usual_steps("net")), row("se", se, lock=False)])
+
+
+def test_a_differing_tld_names_its_own_pattern():
+    no_approval = {"transfer_ack": "none", "transfer_nack": "none"}
+    rows = [row("com", usual_steps("com")), row("net", usual_steps("net")),
+            row("se", se_steps(), lock=False, policies=no_approval), row("nu", se_steps("nu"), lock=False, policies=no_approval),
+            row("fr", usual_steps("fr")[1:], lock=False, policies=no_approval)]
+    rows[4]["flows"]["transfer_to_opusdns"]["steps"] = [step("read_auth_code", "opusdns", "OpusDNS reads the auth code at OpenSRS.")] + se_steps("fr")[1:]
+    differing = section(page(rows), "These TLDs differ from their pattern's row:", "Until you transfer a domain")
+    assert "| [Auth code only](/transfers/patterns/auth-code) | .fr |" in differing
+
+
+def test_the_managing_legend_and_the_same_everywhere_list_count_the_differing_tlds():
+    # Only .se's missing lock brings a ➖: every TLD lets the customer remove a contact role.
+    rows = [row("com", usual_steps("com"), contacts="customer"), row("net", usual_steps("net"), contacts="customer"),
+            row("se", se_steps(), lock=False, contacts="customer")]
+    text = managing(rows)
+    assert "➖ the TLD doesn't have it" in text.split("\n\n")[2]
+    # .se has no lock, so the lock is no "at every registrar" action.
+    assert "transfer lock" not in section(text, "## At every registrar", "## Depends on the registrar")
+
+
+def swimlane(key, lock=True, gtld=False, who="registrar"):
+    pattern = gen.PATTERNS[key]
+    return gen.pattern_swimlane(pattern, key, lock, gtld, who)
+
+
+def boxes(svg_text):
+    import re
+    return re.findall(r'fill="#ffffff">([^<]+)</text>', svg_text)
+
+
+def test_a_pattern_swimlane_draws_its_steps():
+    svg_text, alt = swimlane(("registrar", True, True), gtld=True)
+    assert boxes(svg_text) == ["Unlock the", "domain", "Get the", "auth code", "Request the", "transfer", "Transfer", "pending",
+                               "Approve", "or deny", "Transfer", "the domain", "In your", "account"]
+    assert ">within 5 days at gTLDs</text>" in svg_text and alt.startswith("Swimlane in three lanes")
+    svg_text, _ = swimlane(("registry", False, False), lock=False)
+    assert boxes(svg_text)[:4] == ["Get the", "auth code", "Request the", "transfer"] and ">set by the registry</text>" in svg_text
+    assert "Your current registrar</text>" not in svg_text  # no purple box, so not in the legend
+    svg_text, alt = swimlane(("none", True, False), lock=False, who="holder")
+    assert "Holder" in boxes(svg_text) and "You or the domain&apos;s holder" not in svg_text and "You or the domain's holder" in svg_text
+    assert "The domain's holder approves or denies it by email." in alt
+    svg_text, _ = swimlane(("none", True, False), lock=False, who="either")
+    assert ">or the holder</text>" in svg_text and "within 5 days" not in svg_text
+    svg_text, _ = swimlane("push")
+    assert boxes(svg_text) == ["Unlock the", "domain", "Record the", "transfer", "Push the", "domain", "Move the", "domain", "In your", "account"]
+
+
+def test_a_pattern_page_shows_its_swimlane():
+    data = export([row("com", usual_steps("com")), row("net", usual_steps("net"))])
+    facts = gen.registry_facts(data)
+    text = gen.render_pattern(*gen.ordered_patterns(facts)[0], data, facts)
+    assert "](/images/transfer-patterns/gtlds.svg)" in text and "![Swimlane in three lanes" in text

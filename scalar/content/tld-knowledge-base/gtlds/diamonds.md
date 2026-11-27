@@ -86,7 +86,7 @@
 | Transfer Extends Domain | ✅ Yes (+1 year) |
 | Transfer via AuthInfo | ✅ Yes |
 | Confirmation Required | ✅ Yes (Both parties) |
-| Transfer to OpusDNS | [gTLDs and most ccTLDs](/transfers/patterns/gtlds/diamonds) |
+| Transfer to OpusDNS | [gTLDs and most ccTLDs](/transfers/patterns/gtlds) |
 
 ## WHOIS & RDAP
 

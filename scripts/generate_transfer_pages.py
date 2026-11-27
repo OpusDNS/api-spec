@@ -7,10 +7,11 @@ per-TLD answers: ``tld``, ``flows.transfer_to_opusdns`` (the steps of
 transferring a domain from that registrar to OpusDNS) and ``actions`` (what
 OpusDNS can do with a connected domain there). This script writes into
 ``scalar/content/transfers/`` an overview, ``patterns/`` with a page per
-transfer pattern and per TLD, and ``registrars/`` with a page per registrar. It
-refreshes the ``/transfers`` route and its tab in ``scalar/scalar.config.json``
-and writes ``scripts/tld_knowledge_base/transfer_pages.json``, from which the
-TLD Knowledge Base links each TLD to its transfer page.
+transfer pattern, and ``registrars/`` with a page per registrar. It refreshes the
+``/transfers`` route and its tab in ``scalar/scalar.config.json``, writes
+``scripts/tld_knowledge_base/transfer_pages.json``, from which the TLD Knowledge
+Base links each TLD to its pattern, and ``scalar/content/connect/registrars.md``,
+what OpusDNS can do with a connected domain at each registrar.
 
 Every sentence of the export must be in SENTENCES, so a new one fails the run:
 shown, it would reach the public docs unreviewed, and hidden, it can mean a step
@@ -28,6 +29,8 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 
+import transfer_swimlanes as swim
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_OUTPUT = REPO_ROOT / "scalar" / "content" / "transfers"
 DEFAULT_CONFIG = REPO_ROOT / "scalar" / "scalar.config.json"
@@ -39,6 +42,8 @@ PATTERN_ROUTE = f"{ROUTE}/patterns"
 # registrars group. Its nav entry is static: this script writes only the page.
 MANAGING_PAGE = REPO_ROOT / "scalar" / "content" / "connect" / "registrars.md"
 MANAGING_ROUTE = "/products/connected-registrars/registrars"
+# A swimlane per pattern, served as /images/transfer-patterns/<slug>.svg.
+SWIMLANES = REPO_ROOT / "scalar" / "content" / "assets" / "images" / "transfer-patterns"
 SUPPORT_URL = "https://support.opusdns.com/"
 # The Knowledge Base generator links each TLD to its transfer page from this file.
 TRANSFER_PAGES_FILE = REPO_ROOT / "scripts" / "tld_knowledge_base" / "transfer_pages.json"
@@ -282,20 +287,13 @@ def pattern_key(row: dict) -> object:
 class RegistrySide:
     key: object  # into PATTERNS, None where the TLD has no transfers
     lock: bool
-    renews: bool
-    deny: bool  # the losing side can deny a transfer, also where nobody approves it
     holder: bool  # the domain's holder approves, not the registrar (TLD spec: transfer_ack registrant)
-    days: int | None  # the transfer time, None where the spec gives it in other units
 
 
 def registry_side(row: dict) -> RegistrySide:
     policies = row["specification"]["transfer_policies"]
     lock = bool((policies.get("transfer_lock_policy") or {}).get("supported_by_registry"))
-    days = re.fullmatch(r"(\d+)D", str(policies.get("transfer_time") or ""))
-    deny = policies.get("transfer_nack") not in (None, "none")
-    holder = policies.get("transfer_ack") == "registrant"
-    return RegistrySide(pattern_key(row), lock, bool(policies.get("transfer_renews_domain")), deny, holder,
-                        int(days[1]) if days else None)
+    return RegistrySide(pattern_key(row), lock, policies.get("transfer_ack") == "registrant")
 
 
 def registry_facts(data: dict) -> dict[str, RegistrySide]:
@@ -324,11 +322,6 @@ def ordered_patterns(facts: dict[str, RegistrySide]) -> list[tuple[Pattern, list
         if facts[tld].key is not None:
             tlds[facts[tld].key].append(tld)
     return [(PATTERNS[key], found) for key, found in by_size(tlds)]
-
-
-def tld_path(tld: str, key: object) -> str:
-    """The TLD's transfer page: below its pattern, or on its own where it has no transfers."""
-    return f"{PATTERN_ROUTE}/{PATTERNS[key].slug}/{tld}" if key is not None else f"{PATTERN_ROUTE}/{tld}"
 
 
 # Who approves, by whether the TLDs' holders do: none, all, or some of them.
@@ -522,8 +515,8 @@ def no_transfer_line(reason: str, named: str, count: int) -> str:
     if reason != "no transfers":
         return f"{sentence_case(reason)} at {named}."
     if count == 1:
-        return f"{named} has no transfer at its registry. Its page explains what to do instead."
-    return f"{named} have no transfer at their registries. Their pages explain what to do instead."
+        return f"{named} has no transfer at its registry."
+    return f"{named} have no transfer at their registries."
 
 
 def sentence_case(text: str) -> str:
@@ -567,10 +560,8 @@ def by_size(groups: dict) -> list:
 def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> str:
     reg = REGISTRARS[key]
 
-    paths = {row["tld"]: tld_path(row["tld"], pattern_key(row)) for row in rows}
-
     def link(tld: str) -> str:
-        return f"[.{tld}]({paths[tld]})"
+        return kb_link(tld, tld_types)
 
     def tlds_of(tlds: list[str]) -> str:
         return ", ".join(map(link, tlds))
@@ -637,7 +628,8 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
         reason = say(detail, reg, short=True)
         if not reason:
             raise SystemExit(f"{detail!r}: a flow without steps needs a short reason in SENTENCES")
-        lines += ["", no_transfer_line(reason, tlds_of(tlds), len(tlds))]
+        lines += ["", no_transfer_line(reason, tlds_of(tlds), len(tlds))
+                  + " See [Transfer to OpusDNS](/transfers/overview#transfer-patterns) for what to do instead."]
     pushed = sorted(tld for tld, flow in with_steps.items() if any(s.action == "push_transfer_out" for s in flow.steps))
     if pushed:
         lines += ["", f"At {tlds_of(pushed)}, the domain is pushed to OpusDNS's tag instead of approved."]
@@ -651,49 +643,79 @@ def render_registrar(key: str, rows: list[dict], tld_types: dict[str, str]) -> s
     return "\n".join(lines)
 
 
-def registrar_table(data: dict, tld: str) -> list[str]:
-    rows, symbols = [], {"↗️"}
-    for key in sorted(data["registrars"], key=registrar_order):
-        reg = REGISTRARS[key]
-        found = next((row for row in data["registrars"][key] if row["tld"] == tld), None)
-        if found is None:
-            continue
-        cells = flow_of(found, reg, data["tld_types"]).cells(reg)
-        symbols |= {cell.split(" ", 1)[0] for cell in cells}
-        rows.append(f"| [{reg.name}]({REGISTRAR_ROUTE}/{reg.slug}) | " + " | ".join(cells) + " |")
-    return [
-        "## At your registrar",
-        "",
-        "With a connected account, OpusDNS takes some of these steps for you. Which ones depends on your registrar:",
-        "",
-        legend(symbols),
-        "",
-        "| Registrar | " + " | ".join(label for label, _ in MATRIX_COLUMNS) + " |",
-        "| --- | " + " | ".join(":---:" for _ in MATRIX_COLUMNS) + " |",
-        *rows,
-    ]
+def pattern_context(tlds: list[str], data: dict, facts: dict[str, RegistrySide]) -> tuple[object, bool, bool, str]:
+    """The pattern's key, and whether its TLDs have a lock, include gTLDs, and who approves."""
+    gtld = any(data["tld_types"].get(t) == "gTLD" for t in tlds)
+    return facts[tlds[0]].key, any(facts[t].lock for t in tlds), gtld, approver([facts[t].holder for t in tlds])
+
+
+def pattern_swimlane(pattern: Pattern, key: object, lock: bool, gtld: bool, who: str) -> tuple[str, str]:
+    """The pattern's swimlane, in the lanes and colours of the gTLD one, and its text alternative."""
+    steps, said, labels = [], [], {}
+    if lock:
+        steps.append(("reg", swim.AMBER, ["Unlock the", "domain"]))
+        said.append("You unlock the domain at your current registrar.")
+    if key == "push":
+        steps += [("op", swim.BLUE, ["Record the", "transfer"]), ("reg", swim.PURPLE, ["Push the", "domain"]),
+                  ("ry", swim.TEAL, ["Move the", "domain"])]
+        said += ["OpusDNS records the transfer.", "Your current registrar pushes the domain to OpusDNS's tag.",
+                 "The registry moves the domain."]
+    else:
+        code, approval, _ = key
+        if code != "none":
+            steps.append(("reg", swim.AMBER, ["Get the", "auth code"]))
+            said.append("You get the auth code, which the registry sets." if code == "registry" else "You get the auth code.")
+            if code == "registry":
+                labels[len(steps) - 1] = "set by the registry"
+        steps.append(("op", swim.BLUE, ["Request the", "transfer"]))
+        said.append("OpusDNS requests the transfer at the registry.")
+        if approval:
+            steps.append(("ry", swim.TEAL, ["Transfer", "pending"]))
+            if who == "holder":
+                steps.append(("reg", swim.AMBER, ["Holder", "approves"]))
+                said.append("The domain's holder approves or denies it by email.")
+            else:
+                steps.append(("reg", swim.PURPLE, ["Approve", "or deny"]))
+                said.append("Your current registrar or the domain's holder approves or denies it." if who == "either"
+                            else "Your current registrar approves or denies it.")
+            if gtld or who == "either":
+                labels[len(steps) - 1] = "within 5 days at gTLDs" if gtld else "or the holder"
+        steps.append(("ry", swim.TEAL, ["Transfer", "the domain"]))
+        said.append("The registry transfers the domain." if approval else "The registry transfers the domain without an approval.")
+    steps.append(("op", swim.BLUE, ["In your", "account"]))
+    said.append("The domain is in your OpusDNS account.")
+    names = {swim.AMBER: "You" if who != "holder" else "You or the domain's holder", swim.PURPLE: "Your current registrar",
+             swim.TEAL: "The registry", swim.BLUE: "OpusDNS"}
+    used = {colour for _, colour, _ in steps}
+    legend = [(colour, name) for colour, name in names.items() if colour in used]
+    alt = "Swimlane in three lanes: your current registrar, the registry and OpusDNS. " + " ".join(said)
+    return swim.svg(f"{pattern.title}: a transfer to OpusDNS", alt, swim.LANES, steps, legend, None, labels), alt
 
 
 def render_pattern(pattern: Pattern, tlds: list[str], data: dict, facts: dict[str, RegistrySide]) -> str:
     tld_types = data["tld_types"]
-    key = facts[tlds[0]].key
+    key, lock, gtld, who = pattern_context(tlds, data, facts)
 
     def link(tld: str) -> str:
-        return f"[.{tld}]({tld_path(tld, facts[tld].key)})"
+        return kb_link(tld, tld_types)
 
     gtlds = [t for t in tlds if tld_types.get(t) == "gTLD"]
     cctlds = [t for t in tlds if t not in gtlds]
     named = [f"{len(gtlds)} gTLDs, such as {examples(gtlds, link)}" if len(gtlds) > 20 else ", ".join(map(link, gtlds))] if gtlds else []
     if cctlds:
         named.append(("these ccTLDs: " if gtlds else "") + ", ".join(map(link, cctlds)))
-    who = approver([facts[t].holder for t in tlds])
     lines = [f"# {pattern.title}", "", pattern_intro(key, pattern, who)]
     for tld in (t for t in tlds if t in UPCOMING):
         lines += ["", "> [!NOTE]", f"> {link(tld)}: {UPCOMING[tld][1]}"]
-    steps = pattern_steps(key, any(facts[t].lock for t in tlds), bool(gtlds), who)
+    _, alt = pattern_swimlane(pattern, key, lock, gtld, who)
+    lines += ["", f"![{alt}](/images/{SWIMLANES.name}/{pattern.slug}.svg)"]
+    steps = pattern_steps(key, lock, gtld, who)
     lines += ["", "## Steps", "", *[f"{i}. {step}" for i, step in enumerate(steps, 1)]]
-    lines += ["", "Each TLD's page shows which of these steps OpusDNS takes at your registrar."]
-    lines += ["", "## TLDs", "", sentence_case(", and ".join(named)) + "."]
+    lines += ["", "Which of these steps OpusDNS takes for you depends on your registrar. Its page in "
+              "[Your registrar](/transfers/overview#your-registrar) shows them."]
+    lines += ["", "## TLDs", "", sentence_case(", and ".join(named)) + ".", "",
+              "The [TLD Knowledge Base](/tld-knowledge-base) has each TLD's transfer rules, such as its transfer lock "
+              "and how long a transfer takes."]
     by_registry: dict[str, list[str]] = defaultdict(list)
     sites: dict[str, list[str]] = defaultdict(list)
     for tld in tlds:
@@ -712,57 +734,8 @@ def render_pattern(pattern: Pattern, tlds: list[str], data: dict, facts: dict[st
     return "\n".join(lines)
 
 
-def render_tld(tld: str, data: dict, side: RegistrySide) -> str:
-    name = f"`.{tld}`"
-    lines = [f"# Transferring a .{tld} domain", ""]
-    if side.key is None:
-        lines.append(f"{name} has no transfer at its registry. OpusDNS can't request one.")
-        if tld in TLD_NOTES:
-            lines += ["", TLD_NOTES[tld]]
-        lines += ["", f"To move a {name} domain to OpusDNS, contact [OpusDNS support]({SUPPORT_URL}).", ""]
-        return "\n".join(lines)
-    pattern = PATTERNS[side.key]
-    registry = registry_of(tld, data["tld_types"])
-    facts = [f"{name} follows the [{pattern.title}]({PATTERN_ROUTE}/{pattern.slug}) pattern."]
-    if registry:
-        facts.append(f"Its registry is {f'[{registry[0]}]({registry[1]})' if registry[1] else registry[0]}.")
-    facts += [
-        "The registry has a transfer lock." if side.lock else "The registry has no transfer lock.",
-        "A transfer extends the registration." if side.renews else "A transfer doesn't extend the registration.",
-    ]
-    if side.deny and isinstance(side.key, tuple) and not side.key[1]:
-        facts.append("Your current registrar can still deny a transfer.")
-    if side.days == 0:
-        facts.append("The registry completes a transfer at once.")
-    elif side.days:
-        facts.append(f"A transfer takes up to {side.days} day{'' if side.days == 1 else 's'}.")
-    if data["tld_types"].get(tld) == "gTLD":
-        facts.append(f"As a gTLD, it follows ICANN's [Transfer Policy]({ICANN_POLICY}).")
-    lines.append(" ".join(facts))
-    if tld in UPCOMING:
-        lines += ["", "> [!NOTE]", f"> {UPCOMING[tld][1]}"]
-    lines += ["", "## Steps", ""]
-    gtld = data["tld_types"].get(tld) == "gTLD"
-    steps = [step.replace(", depending on the TLD", "") for step in pattern_steps(side.key, side.lock, gtld, approver([side.holder]))]
-    lines += [f"{i}. {step}" for i, step in enumerate(steps, 1)]
-    lines += ["", *registrar_table(data, tld)]
-    privacy = [
-        REGISTRARS[key].name
-        for key in sorted(data["registrars"], key=registrar_order)
-        if any(s["action"] == "update_privacy" for row in data["registrars"][key] if row["tld"] == tld for s in row["flows"]["transfer_to_opusdns"]["steps"])
-    ]
-    if privacy:
-        lines += ["", f"{and_join(privacy)} {'refuses' if len(privacy) == 1 else 'refuse'} to remove the lock while WHOIS "
-                  "privacy is on. Turn it off there first."]
-    kb = kb_path(tld, data["tld_types"])
-    if kb:
-        lines += ["", f"The [TLD Knowledge Base]({kb}) has more on {name}."]
-    lines.append("")
-    return "\n".join(lines)
-
-
 def anchor(heading: str) -> str:
-    """The id Scalar gives a heading."""
+    """The id Scalar gives a heading of letters, digits and spaces."""
     return re.sub(r"[^a-z0-9]+", "-", heading.lower()).strip("-")
 
 
@@ -772,7 +745,8 @@ def render_managing(data: dict) -> str:
     per = {k: {row["tld"]: manage_cells(row, REGISTRARS[k]) for row in data["registrars"][k]} for k in keys}
     usual = {k: {a: most_common(c[a] for c in per[k].values()) for _, a, _ in MANAGE_ACTIONS} for k in keys}
     shown = {k: {a: at_most_tlds(per[k], a, usual[k][a], REGISTRARS[k]) for _, a, _ in MANAGE_ACTIONS} for k in keys}
-    same = [(a, label) for _, a, label in MANAGE_ACTIONS if len({shown[k][a][0] for k in keys}) == 1]
+    exceptions = {a for k in keys for _, a, _ in MANAGE_ACTIONS if any(matters(c[a], usual[k][a]) for c in per[k].values())}
+    same = [(a, label) for _, a, label in MANAGE_ACTIONS if len({shown[k][a][0] for k in keys}) == 1 and a not in exceptions]
     varying = [(a, label) for _, a, label in MANAGE_ACTIONS if (a, label) not in same]
     lines = [
         "# What OpusDNS can do per registrar",
@@ -780,7 +754,8 @@ def render_managing(data: dict) -> str:
         "Until you transfer a domain to OpusDNS, it stays at your current registrar. OpusDNS syncs it from there "
         "and makes some changes there for you. This page shows which ones, for each registrar.",
         "",
-        legend({shown[k][a][0] for k in keys for _, a, _ in MANAGE_ACTIONS} | {"↗️"}),
+        legend({shown[k][a][0] for k in keys for _, a, _ in MANAGE_ACTIONS}
+               | {WHO[c[a].entity][0] for k in keys for c in per[k].values() for _, a, _ in MANAGE_ACTIONS} | {"↗️"}),
     ]
     if same:
         lines += ["", "## At every registrar", "", *[f"- {shown[keys[0]][a][0]} {label}" for a, label in same]]
@@ -809,6 +784,7 @@ def render_managing(data: dict) -> str:
 def render_overview(data: dict, facts: dict[str, RegistrySide]) -> str:
     keys = sorted(data["registrars"], key=registrar_order)
     without = sorted(tld for tld, side in facts.items() if side.key is None)
+    tld_types = data["tld_types"]
     lines = [
         "# Transfer to OpusDNS",
         "",
@@ -833,7 +809,9 @@ def render_overview(data: dict, facts: dict[str, RegistrySide]) -> str:
         "TLDs with the same steps share a transfer pattern:",
         "",
         *[f"- [{pattern.title}]({PATTERN_ROUTE}/{pattern.slug}): {len(tlds)} TLD{'' if len(tlds) == 1 else 's'}" for pattern, tlds in ordered_patterns(facts)],
-        *(["", no_transfer_line("no transfers", ", ".join(f"[.{t}]({tld_path(t, None)})" for t in without), len(without))] if without else []),
+        *(["", " ".join([no_transfer_line("no transfers", ", ".join(kb_link(t, tld_types) for t in without), len(without)),
+                          *(TLD_NOTES[t] for t in without if t in TLD_NOTES),
+                          f"To move such a domain to OpusDNS, contact [OpusDNS support]({SUPPORT_URL})."])] if without else []),
         "",
         "## With a connected account",
         "",
@@ -867,8 +845,8 @@ def render_overview(data: dict, facts: dict[str, RegistrySide]) -> str:
         "## Your registrar",
         "",
         "Each registrar has its own page in these docs. It shows which steps OpusDNS takes there and at "
-        "which TLDs they differ. It also shows what OpusDNS can do with your domain there until you "
-        "transfer it.",
+        "which TLDs they differ. [What OpusDNS can do per registrar](/products/connected-registrars/registrars) "
+        "shows what OpusDNS can do with your domain there until you transfer it.",
         "",
         *[f"- [{REGISTRARS[k].name}]({REGISTRAR_ROUTE}/{REGISTRARS[k].slug})" for k in keys],
         "",
@@ -876,11 +854,11 @@ def render_overview(data: dict, facts: dict[str, RegistrySide]) -> str:
     return "\n".join(lines)
 
 
-def nav_page(title: str, filepath: str, *, sidebar: bool = True, **extra) -> dict:
-    return {"type": "page", "title": title, **extra, "filepath": filepath, "showInSidebar": sidebar}
+def nav_page(title: str, filepath: str, **extra) -> dict:
+    return {"type": "page", "title": title, **extra, "filepath": filepath, "showInSidebar": True}
 
 
-def update_config(config_path: Path, keys: list[str], patterns: list[tuple[Pattern, list[str]]], without: list[str]) -> bool:
+def update_config(config_path: Path, keys: list[str], patterns: list[Pattern]) -> bool:
     raw = config_path.read_text(encoding="utf-8")
     config = json.loads(raw)
     navigation = config["navigation"]
@@ -888,20 +866,7 @@ def update_config(config_path: Path, keys: list[str], patterns: list[tuple[Patte
     if not any(tab.get("to") == ROUTE for tab in tabs):
         after = next(i for i, tab in enumerate(tabs) if tab.get("to") == "/tld-knowledge-base")
         tabs.insert(after + 1, dict(TAB))
-    folder = PATTERN_ROUTE.removeprefix("/")
-    by_pattern = {
-        f"/{pattern.slug}": {
-            "type": "group",
-            "title": pattern.title,
-            "children": {
-                "/": nav_page("Overview", f"content/{folder}/{pattern.slug}/index.md"),
-                **{f"/{tld}": nav_page(f".{tld}", f"content/{folder}/{pattern.slug}/{tld}.md") for tld in tlds},
-            },
-        }
-        for pattern, tlds in patterns
-    }
-    # The sidebar lists TLDs by pattern. One without transfers has none, so its page stays out of the sidebar.
-    by_pattern |= {f"/{tld}": nav_page(f".{tld}", f"content/{folder}/{tld}.md", sidebar=False) for tld in without}
+    by_pattern = {f"/{pattern.slug}": nav_page(pattern.title, f"content/transfers/patterns/{pattern.slug}.md") for pattern in patterns}
     navigation["routes"][ROUTE] = {
         "type": "group",
         "title": TAB["title"],
@@ -933,6 +898,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     parser.add_argument("--tld-pages-file", type=Path, default=TRANSFER_PAGES_FILE)
     parser.add_argument("--managing-page", type=Path, default=MANAGING_PAGE)
+    parser.add_argument("--swimlanes", type=Path, default=SWIMLANES)
     args = parser.parse_args(argv)
     data = json.loads(args.input.read_text(encoding="utf-8"))
     data["registrars"] = {k: v for k, v in data["registrars"].items() if k not in EXCLUDED}
@@ -948,23 +914,27 @@ def main(argv: list[str] | None = None) -> None:
     patterns = ordered_patterns(facts)
     without = sorted(tld for tld, side in facts.items() if side.key is None)
     pages = {"index.md": render_overview(data, facts)}
+    swimlanes: dict[str, str] = {}
     for pattern, tlds in patterns:
-        pages[f"patterns/{pattern.slug}/index.md"] = render_pattern(pattern, tlds, data, facts)
-        pages |= {f"patterns/{pattern.slug}/{tld}.md": render_tld(tld, data, facts[tld]) for tld in tlds}
-    pages |= {f"patterns/{tld}.md": render_tld(tld, data, facts[tld]) for tld in without}
+        pages[f"patterns/{pattern.slug}.md"] = render_pattern(pattern, tlds, data, facts)
+        swimlanes[f"{pattern.slug}.svg"] = pattern_swimlane(pattern, *pattern_context(tlds, data, facts))[0]
     for key, rows in data["registrars"].items():
         pages[f"registrars/{REGISTRARS[key].slug}.md"] = render_registrar(key, rows, data["tld_types"])
     for name, text in pages.items():
         (args.output / name).parent.mkdir(parents=True, exist_ok=True)
         (args.output / name).write_text(text, encoding="utf-8")
     links = {
-        tld: {"title": PATTERNS[side.key].title if side.key is not None else "No transfers", "path": tld_path(tld, side.key)}
-        for tld, side in sorted(facts.items())
+        tld: {"title": PATTERNS[side.key].title, "path": f"{PATTERN_ROUTE}/{PATTERNS[side.key].slug}"}
+        for tld, side in sorted(facts.items()) if side.key is not None
     }
     args.managing_page.write_text(render_managing(data), encoding="utf-8")
+    args.swimlanes.mkdir(parents=True, exist_ok=True)
+    for name, text in swimlanes.items():
+        (args.swimlanes / name).write_text(text, encoding="utf-8")
     args.tld_pages_file.write_text(json.dumps(links, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    update_config(args.config, list(data["registrars"]), patterns, without)
+    update_config(args.config, list(data["registrars"]), [pattern for pattern, _ in patterns])
     stale = sorted(str(p.relative_to(args.output)) for p in args.output.rglob("*.md") if str(p.relative_to(args.output)) not in pages)
+    stale += sorted(p.name for p in args.swimlanes.glob("*.svg") if p.name not in swimlanes)
     if stale:
         raise SystemExit(f"pages no longer generated, remove them: {stale}")
 

@@ -2,7 +2,7 @@
 
 Until you transfer a domain to OpusDNS, it stays at your current registrar. OpusDNS syncs it from there and makes some changes there for you. This page shows which ones, for each registrar.
 
-✅ OpusDNS does it for you · ↗️ you do it at your registrar
+✅ OpusDNS does it for you · ↗️ you do it at your registrar · ➖ the TLD doesn't have it
 
 ## At every registrar
 

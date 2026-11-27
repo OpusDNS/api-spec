@@ -10,26 +10,26 @@ Your TLD's transfer pattern sets which steps a transfer has. ➖ marks a step th
 
 | Transfer pattern | TLDs | Remove the lock | Get the auth code | Approve |
 | --- | --- | :---: | :---: | :---: |
-| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | Every other TLD, such as [.com](/transfers/patterns/gtlds/com), [.net](/transfers/patterns/gtlds/net) and [.org](/transfers/patterns/gtlds/org) | ✅ OpusDNS | ↗️ You, at NICManager | ✅ OpusDNS |
-| [Auth code set by the registry](/transfers/patterns/registry-auth-code) | [.cz](/transfers/patterns/registry-auth-code/cz), [.dk](/transfers/patterns/registry-auth-code/dk), [.eu](/transfers/patterns/registry-auth-code/eu), [.gr](/transfers/patterns/registry-auth-code/gr), [.lt](/transfers/patterns/registry-auth-code/lt), [.nl](/transfers/patterns/registry-auth-code/nl), [.nu](/transfers/patterns/registry-auth-code/nu), [.ro](/transfers/patterns/registry-auth-code/ro), [.se](/transfers/patterns/registry-auth-code/se) | ➖ | ↗️ You, at NICManager | ➖ |
-| [Auth code only](/transfers/patterns/auth-code) | [.ch](/transfers/patterns/auth-code/ch), [.de](/transfers/patterns/auth-code/de), [.li](/transfers/patterns/auth-code/li), [.no](/transfers/patterns/auth-code/no), [.pl](/transfers/patterns/auth-code/pl), [.pt](/transfers/patterns/auth-code/pt), [.si](/transfers/patterns/auth-code/si) | ➖ | ↗️ You, at NICManager | ➖ |
-| [Unlock and auth code](/transfers/patterns/unlock-auth-code) | [.ca](/transfers/patterns/unlock-auth-code/ca), [.cl](/transfers/patterns/unlock-auth-code/cl), [.ee](/transfers/patterns/unlock-auth-code/ee), [.gg](/transfers/patterns/unlock-auth-code/gg), [.je](/transfers/patterns/unlock-auth-code/je), [.sk](/transfers/patterns/unlock-auth-code/sk) | ✅ OpusDNS | ↗️ You, at NICManager | ➖ |
-| [No auth code, with approval](/transfers/patterns/no-auth-code) | [.co.za](/transfers/patterns/no-auth-code/co.za), [.lu](/transfers/patterns/no-auth-code/lu), [.net.za](/transfers/patterns/no-auth-code/net.za), [.org.za](/transfers/patterns/no-auth-code/org.za), [.web.za](/transfers/patterns/no-auth-code/web.za) | ➖ | ➖ | ✅ OpusDNS |
-| [Auth code and approval](/transfers/patterns/auth-code-approval) | [.at](/transfers/patterns/auth-code-approval/at), [.it](/transfers/patterns/auth-code-approval/it), [.mx](/transfers/patterns/auth-code-approval/mx) | ➖ | ↗️ You, at NICManager | ✅ OpusDNS |
-| [Unlock, auth code set by the registry, and approval](/transfers/patterns/unlock-registry-auth-code-approval) | [.cymru](/transfers/patterns/unlock-registry-auth-code-approval/cymru), [.wales](/transfers/patterns/unlock-registry-auth-code-approval/wales) | ✅ OpusDNS | ↗️ You, at NICManager | ✅ OpusDNS |
-| [Unlock and auth code set by the registry](/transfers/patterns/unlock-registry-auth-code) | [.be](/transfers/patterns/unlock-registry-auth-code/be) | ✅ OpusDNS | ↗️ You, at NICManager | ➖ |
-| [Push to a tag](/transfers/patterns/push) | [.uk](/transfers/patterns/push/uk) | ✅ OpusDNS | ➖ | ↗️ You, at NICManager (push) |
+| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | Every other TLD, such as [.com](/tld-knowledge-base/gtlds/com), [.net](/tld-knowledge-base/gtlds/net) and [.org](/tld-knowledge-base/gtlds/org) | ✅ OpusDNS | ↗️ You, at NICManager | ✅ OpusDNS |
+| [Auth code set by the registry](/transfers/patterns/registry-auth-code) | [.cz](/tld-knowledge-base/cctlds/cz), [.dk](/tld-knowledge-base/cctlds/dk), [.eu](/tld-knowledge-base/cctlds/eu), [.gr](/tld-knowledge-base/cctlds/gr), [.lt](/tld-knowledge-base/cctlds/lt), [.nl](/tld-knowledge-base/cctlds/nl), [.nu](/tld-knowledge-base/cctlds/nu), [.ro](/tld-knowledge-base/cctlds/ro), [.se](/tld-knowledge-base/cctlds/se) | ➖ | ↗️ You, at NICManager | ➖ |
+| [Auth code only](/transfers/patterns/auth-code) | [.ch](/tld-knowledge-base/cctlds/ch), [.de](/tld-knowledge-base/cctlds/de), [.li](/tld-knowledge-base/cctlds/li), [.no](/tld-knowledge-base/cctlds/no), [.pl](/tld-knowledge-base/cctlds/pl), [.pt](/tld-knowledge-base/cctlds/pt), [.si](/tld-knowledge-base/cctlds/si) | ➖ | ↗️ You, at NICManager | ➖ |
+| [Unlock and auth code](/transfers/patterns/unlock-auth-code) | [.ca](/tld-knowledge-base/cctlds/ca), .cl, .ee, [.gg](/tld-knowledge-base/cctlds/gg), [.je](/tld-knowledge-base/cctlds/je), [.sk](/tld-knowledge-base/cctlds/sk) | ✅ OpusDNS | ↗️ You, at NICManager | ➖ |
+| [No auth code, with approval](/transfers/patterns/no-auth-code) | [.co.za](/tld-knowledge-base/cctlds/co.za), [.lu](/tld-knowledge-base/cctlds/lu), [.net.za](/tld-knowledge-base/cctlds/net.za), [.org.za](/tld-knowledge-base/cctlds/org.za), [.web.za](/tld-knowledge-base/cctlds/web.za) | ➖ | ➖ | ✅ OpusDNS |
+| [Auth code and approval](/transfers/patterns/auth-code-approval) | [.at](/tld-knowledge-base/cctlds/at), [.it](/tld-knowledge-base/cctlds/it), [.mx](/tld-knowledge-base/cctlds/mx) | ➖ | ↗️ You, at NICManager | ✅ OpusDNS |
+| [Unlock, auth code set by the registry, and approval](/transfers/patterns/unlock-registry-auth-code-approval) | [.cymru](/tld-knowledge-base/gtlds/cymru), [.wales](/tld-knowledge-base/gtlds/wales) | ✅ OpusDNS | ↗️ You, at NICManager | ✅ OpusDNS |
+| [Unlock and auth code set by the registry](/transfers/patterns/unlock-registry-auth-code) | [.be](/tld-knowledge-base/cctlds/be) | ✅ OpusDNS | ↗️ You, at NICManager | ➖ |
+| [Push to a tag](/transfers/patterns/push) | [.uk](/tld-knowledge-base/cctlds/uk) | ✅ OpusDNS | ➖ | ↗️ You, at NICManager (push) |
 
 These TLDs differ from their pattern's row:
 
 | Transfer pattern | TLDs | Remove the lock | Get the auth code | Approve |
 | --- | --- | :---: | :---: | :---: |
-| [Auth code set by the registry](/transfers/patterns/registry-auth-code) | [.nu](/transfers/patterns/registry-auth-code/nu), [.se](/transfers/patterns/registry-auth-code/se) | ➖ | ↗️ You, at NICManager (a new one) | ➖ |
-| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | [.com.se](/transfers/patterns/gtlds/com.se) | ✅ OpusDNS | ↗️ You, at NICManager (a new one) | ✅ OpusDNS |
-| [No auth code, with approval](/transfers/patterns/no-auth-code) | [.lu](/transfers/patterns/no-auth-code/lu) | ➖ | ➖ | 👤 The holder, by email |
+| [Auth code set by the registry](/transfers/patterns/registry-auth-code) | [.nu](/tld-knowledge-base/cctlds/nu), [.se](/tld-knowledge-base/cctlds/se) | ➖ | ↗️ You, at NICManager (a new one) | ➖ |
+| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | [.com.se](/tld-knowledge-base/cctlds/com.se) | ✅ OpusDNS | ↗️ You, at NICManager (a new one) | ✅ OpusDNS |
+| [No auth code, with approval](/transfers/patterns/no-auth-code) | [.lu](/tld-knowledge-base/cctlds/lu) | ➖ | ➖ | 👤 The holder, by email |
 
-[.is](/transfers/patterns/is) has no transfer at its registry. Its page explains what to do instead.
+.is has no transfer at its registry. See [Transfer to OpusDNS](/transfers/overview#transfer-patterns) for what to do instead.
 
-At [.uk](/transfers/patterns/push/uk), the domain is pushed to OpusDNS's tag instead of approved.
+At [.uk](/tld-knowledge-base/cctlds/uk), the domain is pushed to OpusDNS's tag instead of approved.
 
 Until you transfer a domain, OpusDNS can make some changes to it at NICManager. See [What OpusDNS can do at NICManager](/products/connected-registrars/registrars#nicmanager).
