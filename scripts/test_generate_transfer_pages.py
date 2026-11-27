@@ -19,7 +19,7 @@ def action(entity, detail):
     return {"executing_entity": entity, "detail": detail}
 
 
-def row(tld, steps, *, lock=True, privacy=True, contacts="opusdns_none", flow_detail=FLOW_DETAIL):
+def row(tld, steps, *, lock=True, privacy=True, contacts="opusdns_none", flow_detail=FLOW_DETAIL, policies=None, push=False):
     lock_read = action("opusdns", "OpusDNS reads the transfer lock at OpenSRS.") if lock else action(None, f".{tld} has no transfer lock.")
     lock_set = action("opusdns", "OpusDNS changes the lock through the OpenSRS API.") if lock else action(None, f".{tld} has no transfer lock.")
     privacy_read = action("customer", "OpusDNS has no access to WHOIS privacy at OpenSRS yet. Check it at OpenSRS.") if privacy else action(None, f".{tld} has no privacy service.")
@@ -30,6 +30,7 @@ def row(tld, steps, *, lock=True, privacy=True, contacts="opusdns_none", flow_de
         else action("customer", "OpusDNS cannot remove a contact from a connected domain. Remove it at OpenSRS.")
     )
     actions = {
+        "transfer": {"push_transfer_out": {**action(None, ""), "supported_by_registry": push}},
         "status": {"read_transfer_lock": lock_read, "update_transfer_lock": lock_set},
         "dns": {
             "read_nameservers": action("opusdns", "OpusDNS reads the nameservers in each sync."),
@@ -43,7 +44,10 @@ def row(tld, steps, *, lock=True, privacy=True, contacts="opusdns_none", flow_de
         },
         "privacy": {"read_privacy": privacy_read, "update_privacy": privacy_set},
     }
-    return {"tld": tld, "actions": actions, "flows": {"transfer_to_opusdns": {"steps": steps, "detail": flow_detail}}}
+    policies = {"authinfo_required": True, "authinfo_set_by_registrar": True, "transfer_ack": "both", **(policies or {})}
+    policies["transfer_lock_policy"] = {"supported_by_registry": lock}
+    return {"tld": tld, "actions": actions, "specification": {"transfer_policies": policies},
+            "flows": {"transfer_to_opusdns": {"steps": steps, "detail": flow_detail}}}
 
 
 def usual_steps(tld, *, approve="customer", privacy_step=False):
@@ -100,7 +104,8 @@ def test_the_customers_auth_code_is_sent_with_the_request():
     rows[0]["flows"]["transfer_to_opusdns"]["steps"][1] = step("read_auth_code", "customer", "Get the auth code at OpenSRS.")
     rows[1]["flows"]["transfer_to_opusdns"]["steps"][1] = step("read_auth_code", "customer", "Get the auth code at OpenSRS.")
     assert "Get the auth code at OpenSRS and send it as `auth_code`." in page(rows)
-    assert "Leave out the auth code where OpusDNS gets it for you." in text
+    assert "At most TLDs, OpusDNS then removes the transfer lock and gets the auth code at OpenSRS." in text
+    assert "Leave out `auth_code` in the request." in text
 
 
 def test_approval_is_optional_at_gtlds_only():
@@ -216,11 +221,13 @@ def test_knowledge_base_links_only_where_the_page_exists(tmp_path, monkeypatch):
 
 
 def test_the_overview_explains_gtlds_cctlds_and_the_connected_account():
-    text = gen.render_overview({"tld_types": TYPES, "registrars": {"opensrs": [row("com", usual_steps("com"))], "enom": [row("com", usual_steps("com"))]}})
+    data = {"tld_types": TYPES, "registrars": {"opensrs": [row("com", usual_steps("com"))], "enom": [row("com", usual_steps("com"))]}}
+    text = gen.render_overview(data, gen.registry_facts(data))
     assert "(/images/gtld-transfer.svg)" in text
     assert "## ccTLDs" in text and "## With a connected account" in text
     assert "> [!WARNING]" in text and "[page for your registrar](#your-registrar)" in text and "## Your registrar" in text
-    assert "- [eNom](/transfers/enom)" in text and "- [OpenSRS](/transfers/opensrs)" in text
+    assert "- [eNom](/transfers/registrars/enom)" in text and "- [OpenSRS](/transfers/registrars/opensrs)" in text
+    assert "- [gTLDs and most ccTLDs](/transfers/gtlds): 1 TLD" in text
     assert ";" not in text
 
 
@@ -247,11 +254,14 @@ def test_main_skips_excluded_registrars_and_reports_stale_pages(tmp_path):
     config = tmp_path / "scalar.config.json"
     config.write_text(json.dumps({"navigation": {"tabs": [{"to": "/tld-knowledge-base"}], "routes": {}}}, indent=2) + "\n", encoding="utf-8")
     out = tmp_path / "transfers"
-    gen.main(["--input", str(source), "--output", str(out), "--config", str(config)])
-    assert sorted(p.name for p in out.glob("*.md")) == ["index.md", "opensrs.md"]
-    (out / "gone.md").write_text("old\n", encoding="utf-8")
-    with pytest.raises(SystemExit, match="gone.md"):
-        gen.main(["--input", str(source), "--output", str(out), "--config", str(config)])
+    workflows = tmp_path / "workflows.json"
+    args = ["--input", str(source), "--output", str(out), "--config", str(config), "--workflows-file", str(workflows)]
+    gen.main(args)
+    assert sorted(str(p.relative_to(out)) for p in out.rglob("*.md")) == ["gtlds.md", "index.md", "registrars/opensrs.md"]
+    assert json.loads(workflows.read_text(encoding="utf-8")) == {"com": {"title": "gTLDs and most ccTLDs", "path": "/transfers/gtlds"}}
+    (out / "registrars" / "gone.md").write_text("old\n", encoding="utf-8")
+    with pytest.raises(SystemExit, match="registrars/gone.md"):
+        gen.main(args)
 
 
 def test_config_gets_the_tab_after_tld_info_and_is_idempotent(tmp_path):
@@ -263,8 +273,65 @@ def test_config_gets_the_tab_after_tld_info_and_is_idempotent(tmp_path):
     }
     path = tmp_path / "scalar.config.json"
     path.write_text(json.dumps(config, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    assert gen.update_config(path, ["opensrs", "enom"]) is True
+    flows = [gen.WORKFLOWS[("registrar", True)], gen.WORKFLOWS["push"]]
+    assert gen.update_config(path, ["opensrs", "enom"], flows) is True
     written = json.loads(path.read_text(encoding="utf-8"))
     assert [tab["title"] for tab in written["navigation"]["tabs"]] == ["Guides", "TLD Info", "Transfers", "Changelog"]
-    assert list(written["navigation"]["routes"]["/transfers"]["children"]) == ["/overview", "/enom", "/opensrs"]
-    assert gen.update_config(path, ["opensrs", "enom"]) is False
+    children = written["navigation"]["routes"]["/transfers"]["children"]
+    assert list(children) == ["/overview", "/gtlds", "/push", "/registrars"]
+    assert list(children["/registrars"]["children"]) == ["/enom", "/opensrs"]
+    assert children["/registrars"]["children"]["/enom"]["filepath"] == "content/transfers/registrars/enom.md"
+    assert gen.update_config(path, ["opensrs", "enom"], flows) is False
+
+
+# --- transfer workflows -------------------------------------------------------
+
+
+def export(*rows_per_registrar):
+    return {"tld_types": TYPES, "registrars": {key: rows for key, rows in zip(("opensrs", "enom"), rows_per_registrar)}}
+
+
+def test_registrars_must_agree_on_the_registrys_side():
+    data = export([row("com", usual_steps("com"))], [row("com", usual_steps("com"), policies={"transfer_ack": "none"})])
+    with pytest.raises(SystemExit, match="disagree"):
+        gen.registry_facts(data)
+
+
+def test_a_workflow_without_wording_fails_the_run():
+    data = export([row("com", usual_steps("com"), policies={"authinfo_required": False, "transfer_ack": "none"})])
+    with pytest.raises(SystemExit, match="add it to WORKFLOWS"):
+        gen.registry_facts(data)
+
+
+def test_workflows_come_most_common_first_and_push_wins_over_the_auth_code():
+    rows = [row("com", usual_steps("com")), row("net", usual_steps("net")), row("se", se_steps(), lock=False, policies={"transfer_ack": "none"}),
+            row("xx", [], push=True), row("fr", [], flow_detail=".fr has no transfers.", policies={"supported": False})]
+    facts = gen.registry_facts(export(rows))
+    assert [(w.slug, tlds) for w, tlds in gen.ordered_workflows(facts)] == [("gtlds", ["com", "net"]), ("auth-code", ["se"]), ("push", ["xx"])]
+    assert facts["fr"] == (None, True)
+
+
+def test_a_workflow_page_says_where_the_lock_is_and_what_each_registrar_does():
+    rows = [row("com", usual_steps("com")), row("net", usual_steps("net")), row("fr", usual_steps("fr")[1:], lock=False)]
+    data = export(rows, rows)
+    facts = gen.registry_facts(data)
+    workflow, tlds = gen.ordered_workflows(facts)[0]
+    text = gen.render_workflow(workflow, tlds, data, {t: lock for t, (_, lock) in facts.items()})
+    assert "1. Remove the transfer lock at your current registrar, where the TLD has one." in text
+    assert "No transfer lock at [.fr](/tld-knowledge-base/cctlds/fr)." in text
+    # .fr has no lock: the lock cell still shows what OpusDNS does where there is one.
+    assert "| [OpenSRS](/transfers/registrars/opensrs) | ✅ OpusDNS | ✅ OpusDNS | ↗️ You, optional |" in text
+
+
+def test_the_intro_says_what_stays_with_the_customer_before_and_after_the_request():
+    def steps(tld):
+        found = usual_steps(tld)
+        found[0] = step("update_transfer_lock", "customer", "Remove the transfer lock at OpenSRS.")
+        found[3] = step("approve_transfer_out", "registrant", f"The holder of the .{tld} domain approves the transfer.")
+        return found
+
+    text = page([row("com", steps("com")), row("net", steps("net"))])
+    intro = text.split("\n")[2]
+    assert intro.startswith("At most TLDs, first remove the transfer lock at OpenSRS. Then connect your OpenSRS account")
+    assert "OpenSRS emails the domain's holder, who approves the transfer." in intro
+    assert intro.endswith("In the API, OpenSRS is `OPENSRS`.")

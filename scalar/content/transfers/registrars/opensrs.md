@@ -1,6 +1,6 @@
 # Transfer from OpenSRS
 
-Transferring a domain from OpenSRS to OpusDNS takes a few steps. This page shows which steps OpusDNS takes for you at each TLD and which stay with you. OpusDNS takes its steps once you have [connected](/products/connected-registrars/connect) your OpenSRS account and [requested the transfer](/products/connected-registrars/transfer-to-opusdns). In the API, OpenSRS is `OPENSRS`. Leave out the auth code where OpusDNS gets it for you.
+Connect your OpenSRS account and request the transfer. At most TLDs, OpusDNS then removes the transfer lock and gets the auth code at OpenSRS. Leave out `auth_code` in the request. OpenSRS emails the domain's holder, who approves the transfer. In the API, OpenSRS is `OPENSRS`.
 
 ✅ OpusDNS does it for you · ↗️ you do it at your registrar · 👤 the domain's holder approves by email · ⚙️ the registry does it on its own · ➖ the TLD doesn't have it
 
@@ -35,7 +35,7 @@ At [.uk](/tld-knowledge-base/cctlds/uk), the domain is pushed to OpusDNS's tag i
 | 6 | ⚙️ The registry transfers the domain | The registry transfers the domain to OpusDNS. |
 | 7 | ✅ Finish the transfer | OpusDNS completes the transfer in your account, sets the transfer lock and stops syncing the domain from OpenSRS. |
 
-For gTLDs, these steps follow ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en). ccTLDs often differ. See [Transfer to OpusDNS](/transfers/overview) for both.
+For gTLDs, these steps follow ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en). Every TLD follows one of the [transfer workflows](/transfers/overview#transfer-workflows).
 
 ## Managing a connected domain
 

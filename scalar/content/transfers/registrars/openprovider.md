@@ -1,6 +1,6 @@
 # Transfer from Openprovider
 
-Transferring a domain from Openprovider to OpusDNS takes a few steps. This page shows which steps OpusDNS takes for you at each TLD and which stay with you. OpusDNS takes its steps once you have [connected](/products/connected-registrars/connect) your Openprovider account and [requested the transfer](/products/connected-registrars/transfer-to-opusdns). In the API, Openprovider is `OPENPROVIDER`. Leave out the auth code where OpusDNS gets it for you.
+Connect your Openprovider account and request the transfer. At most TLDs, OpusDNS then removes the transfer lock and gets the auth code at Openprovider. Leave out `auth_code` in the request. You can approve the transfer at Openprovider to finish sooner. In the API, Openprovider is `OPENPROVIDER`.
 
 ✅ OpusDNS does it for you · ↗️ you do it at your registrar · 👤 the domain's holder approves by email · ⚙️ the registry does it on its own · ➖ the TLD doesn't have it
 
@@ -37,7 +37,7 @@ At [.uk](/tld-knowledge-base/cctlds/uk), the domain is pushed to OpusDNS's tag i
 | 6 | ⚙️ The registry transfers the domain | The registry transfers the domain to OpusDNS. |
 | 7 | ✅ Finish the transfer | OpusDNS completes the transfer in your account, sets the transfer lock and stops syncing the domain from Openprovider. |
 
-For gTLDs, these steps follow ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en). ccTLDs often differ. See [Transfer to OpusDNS](/transfers/overview) for both.
+For gTLDs, these steps follow ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en). Every TLD follows one of the [transfer workflows](/transfers/overview#transfer-workflows).
 
 ## Managing a connected domain
 

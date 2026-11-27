@@ -86,6 +86,7 @@
 | Transfer Extends Domain | ❌ No |
 | Transfer via AuthInfo | ❌ No |
 | Confirmation Required | ✅ Yes (registrar) |
+| Transfer to OpusDNS | [Push to a tag](/transfers/push) |
 
 ## WHOIS & RDAP
 

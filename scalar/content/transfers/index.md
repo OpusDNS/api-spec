@@ -25,6 +25,15 @@ ccTLD registries don't follow ICANN's Transfer Policy. Each sets its own rules, 
 
 The [TLD Knowledge Base](/tld-knowledge-base) describes each TLD's rules, and each registrar's page lists the TLDs whose steps differ.
 
+TLDs with the same steps share a workflow:
+
+- [gTLDs and most ccTLDs](/transfers/gtlds): 502 TLDs
+- [Auth code, completes at once](/transfers/auth-code): 13 TLDs
+- [Auth code from the registry](/transfers/registry-auth-code): 10 TLDs
+- [No auth code, with approval](/transfers/no-auth-code): 5 TLDs
+- [Auth code from the registry, with approval](/transfers/registry-auth-code-approval): 2 TLDs
+- [Push to a tag](/transfers/push): 1 TLD
+
 ## With a connected account
 
 If you have [connected](/products/connected-registrars/connect) your account at the current registrar, you can usually request the transfer without the auth code. OpusDNS then takes the steps at your current registrar that the registrar's API allows:
@@ -52,13 +61,13 @@ See [Transfer a connected domain to OpusDNS](/products/connected-registrars/tran
 
 Each registrar has its own page in these docs. It shows which steps OpusDNS takes there and at which TLDs they differ. It also shows what OpusDNS can do with your domain there until you transfer it.
 
-- [CentralNic Reseller](/transfers/centralnic)
-- [eNom](/transfers/enom)
-- [InterNetX](/transfers/internetx)
-- [Moniker](/transfers/moniker)
-- [NIC Direct](/transfers/nic-direct)
-- [NICManager](/transfers/nicmanager)
-- [Openprovider](/transfers/openprovider)
-- [OpenSRS](/transfers/opensrs)
-- [PartnerGate](/transfers/domain-bestellsystem)
-- [Realtime Register](/transfers/realtime-register)
+- [CentralNic Reseller](/transfers/registrars/centralnic)
+- [eNom](/transfers/registrars/enom)
+- [InterNetX](/transfers/registrars/internetx)
+- [Moniker](/transfers/registrars/moniker)
+- [NIC Direct](/transfers/registrars/nic-direct)
+- [NICManager](/transfers/registrars/nicmanager)
+- [Openprovider](/transfers/registrars/openprovider)
+- [OpenSRS](/transfers/registrars/opensrs)
+- [PartnerGate](/transfers/registrars/domain-bestellsystem)
+- [Realtime Register](/transfers/registrars/realtime-register)

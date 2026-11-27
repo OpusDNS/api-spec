@@ -25,3 +25,12 @@ def test_without_idn_limit_domain_length_is_unchanged() -> None:
     page = render.render(_spec({"min": 1, "max": 63}))
     assert "| Domain Length | 1–63 characters |" in page
     assert "IDN Length" not in page
+
+
+def test_the_transfer_policy_links_the_tlds_transfer_workflow(monkeypatch) -> None:
+    workflows = {"xn--q9jyb4c": {"title": "Auth code, completes at once", "path": "/transfers/auth-code"}}
+    monkeypatch.setattr(render, "_transfer_workflows", lambda: workflows)
+    page = render.render(_spec({"min": 1, "max": 63}))
+    assert "| Transfer to OpusDNS | [Auth code, completes at once](/transfers/auth-code) |" in page
+    monkeypatch.setattr(render, "_transfer_workflows", lambda: {})
+    assert "Transfer to OpusDNS" not in render.render(_spec({"min": 1, "max": 63}))

@@ -1,6 +1,6 @@
 # Transfer from Moniker
 
-Transferring a domain from Moniker to OpusDNS takes a few steps. This page shows which steps OpusDNS takes for you at each TLD and which stay with you. OpusDNS takes its steps once you have [connected](/products/connected-registrars/connect) your Moniker account and [requested the transfer](/products/connected-registrars/transfer-to-opusdns). In the API, Moniker is `MONIKER`. Leave out the auth code where OpusDNS gets it for you.
+Connect your Moniker account and request the transfer. At most TLDs, OpusDNS then removes the transfer lock, gets the auth code and approves the transfer at Moniker. Leave out `auth_code` in the request. In the API, Moniker is `MONIKER`.
 
 ✅ OpusDNS does it for you · ↗️ you do it at your registrar · 👤 the domain's holder approves by email · ⚙️ the registry does it on its own · ➖ the TLD doesn't have it
 
@@ -36,7 +36,7 @@ At [.uk](/tld-knowledge-base/cctlds/uk), the domain is pushed to OpusDNS's tag i
 | 6 | ⚙️ The registry transfers the domain | The registry transfers the domain to OpusDNS. |
 | 7 | ✅ Finish the transfer | OpusDNS completes the transfer in your account, sets the transfer lock and stops syncing the domain from Moniker. |
 
-For gTLDs, these steps follow ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en). ccTLDs often differ. See [Transfer to OpusDNS](/transfers/overview) for both.
+For gTLDs, these steps follow ICANN's [Transfer Policy](https://www.icann.org/resources/pages/transfer-policy-2024-02-21-en). Every TLD follows one of the [transfer workflows](/transfers/overview#transfer-workflows).
 
 ## Managing a connected domain
 

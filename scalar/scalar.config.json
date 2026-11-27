@@ -4054,65 +4054,107 @@
             "filepath": "content/transfers/index.md",
             "showInSidebar": true
           },
-          "/centralnic": {
+          "/gtlds": {
             "type": "page",
-            "title": "From CentralNic Reseller",
-            "filepath": "content/transfers/centralnic.md",
+            "title": "gTLDs and most ccTLDs",
+            "filepath": "content/transfers/gtlds.md",
             "showInSidebar": true
           },
-          "/enom": {
+          "/auth-code": {
             "type": "page",
-            "title": "From eNom",
-            "filepath": "content/transfers/enom.md",
+            "title": "Auth code, completes at once",
+            "filepath": "content/transfers/auth-code.md",
             "showInSidebar": true
           },
-          "/internetx": {
+          "/registry-auth-code": {
             "type": "page",
-            "title": "From InterNetX",
-            "filepath": "content/transfers/internetx.md",
+            "title": "Auth code from the registry",
+            "filepath": "content/transfers/registry-auth-code.md",
             "showInSidebar": true
           },
-          "/moniker": {
+          "/no-auth-code": {
             "type": "page",
-            "title": "From Moniker",
-            "filepath": "content/transfers/moniker.md",
+            "title": "No auth code, with approval",
+            "filepath": "content/transfers/no-auth-code.md",
             "showInSidebar": true
           },
-          "/nic-direct": {
+          "/registry-auth-code-approval": {
             "type": "page",
-            "title": "From NIC Direct",
-            "filepath": "content/transfers/nic-direct.md",
+            "title": "Auth code from the registry, with approval",
+            "filepath": "content/transfers/registry-auth-code-approval.md",
             "showInSidebar": true
           },
-          "/nicmanager": {
+          "/push": {
             "type": "page",
-            "title": "From NICManager",
-            "filepath": "content/transfers/nicmanager.md",
+            "title": "Push to a tag",
+            "filepath": "content/transfers/push.md",
             "showInSidebar": true
           },
-          "/openprovider": {
-            "type": "page",
-            "title": "From Openprovider",
-            "filepath": "content/transfers/openprovider.md",
-            "showInSidebar": true
-          },
-          "/opensrs": {
-            "type": "page",
-            "title": "From OpenSRS",
-            "filepath": "content/transfers/opensrs.md",
-            "showInSidebar": true
-          },
-          "/domain-bestellsystem": {
-            "type": "page",
-            "title": "From PartnerGate",
-            "filepath": "content/transfers/domain-bestellsystem.md",
-            "showInSidebar": true
-          },
-          "/realtime-register": {
-            "type": "page",
-            "title": "From Realtime Register",
-            "filepath": "content/transfers/realtime-register.md",
-            "showInSidebar": true
+          "/registrars": {
+            "type": "group",
+            "title": "Registrars",
+            "children": {
+              "/centralnic": {
+                "type": "page",
+                "title": "CentralNic Reseller",
+                "filepath": "content/transfers/registrars/centralnic.md",
+                "showInSidebar": true
+              },
+              "/enom": {
+                "type": "page",
+                "title": "eNom",
+                "filepath": "content/transfers/registrars/enom.md",
+                "showInSidebar": true
+              },
+              "/internetx": {
+                "type": "page",
+                "title": "InterNetX",
+                "filepath": "content/transfers/registrars/internetx.md",
+                "showInSidebar": true
+              },
+              "/moniker": {
+                "type": "page",
+                "title": "Moniker",
+                "filepath": "content/transfers/registrars/moniker.md",
+                "showInSidebar": true
+              },
+              "/nic-direct": {
+                "type": "page",
+                "title": "NIC Direct",
+                "filepath": "content/transfers/registrars/nic-direct.md",
+                "showInSidebar": true
+              },
+              "/nicmanager": {
+                "type": "page",
+                "title": "NICManager",
+                "filepath": "content/transfers/registrars/nicmanager.md",
+                "showInSidebar": true
+              },
+              "/openprovider": {
+                "type": "page",
+                "title": "Openprovider",
+                "filepath": "content/transfers/registrars/openprovider.md",
+                "showInSidebar": true
+              },
+              "/opensrs": {
+                "type": "page",
+                "title": "OpenSRS",
+                "filepath": "content/transfers/registrars/opensrs.md",
+                "showInSidebar": true
+              },
+              "/domain-bestellsystem": {
+                "type": "page",
+                "title": "PartnerGate",
+                "filepath": "content/transfers/registrars/domain-bestellsystem.md",
+                "showInSidebar": true
+              },
+              "/realtime-register": {
+                "type": "page",
+                "title": "Realtime Register",
+                "filepath": "content/transfers/registrars/realtime-register.md",
+                "showInSidebar": true
+              }
+            }
           }
         }
       }
