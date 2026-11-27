@@ -1,6 +1,6 @@
 # Transferring a .uk domain
 
-`.uk` follows the [Push to a tag](/transfers/patterns/push) pattern. Its registry has a transfer lock. A transfer doesn't extend the registration. Your current registrar can still deny a transfer. The registry completes a transfer at once.
+`.uk` follows the [Push to a tag](/transfers/patterns/push) pattern. Its registry has a transfer lock. A transfer doesn't extend the registration. The registry completes a transfer at once.
 
 ## Steps
 

@@ -743,7 +743,7 @@ def render_tld(tld: str, data: dict, side: RegistrySide) -> str:
         "Its registry has a transfer lock." if side.lock else "Its registry has no transfer lock.",
         "A transfer extends the registration." if side.renews else "A transfer doesn't extend the registration.",
     ]
-    if side.deny and not (isinstance(side.key, tuple) and side.key[1]):
+    if side.deny and isinstance(side.key, tuple) and not side.key[1]:
         facts.append("Your current registrar can still deny a transfer.")
     if side.days == 0:
         facts.append("The registry completes a transfer at once.")
@@ -752,7 +752,6 @@ def render_tld(tld: str, data: dict, side: RegistrySide) -> str:
     if data["tld_types"].get(tld) == "gTLD":
         facts.append(f"As a gTLD, it follows ICANN's [Transfer Policy]({ICANN_POLICY}).")
     lines += [" ".join(facts), "", "## Steps", ""]
-    # A single TLD's page drops the pattern's "depending on the TLD".
     steps = [step.replace(", depending on the TLD", "") for step in pattern_steps(pattern, [side.lock])]
     lines += [f"{i}. {step}" for i, step in enumerate(steps, 1)]
     lines += ["", *registrar_table(data, [tld])]

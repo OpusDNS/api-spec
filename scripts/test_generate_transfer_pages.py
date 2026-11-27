@@ -439,3 +439,15 @@ def test_a_tld_without_transfers_and_without_a_note_still_points_to_support():
     data = export(rows)
     text = gen.render_tld("fr", data, gen.registry_facts(data)["fr"])
     assert "ISNIC" not in text and "contact [OpusDNS support](https://support.opusdns.com/)" in text
+
+
+def test_only_a_tld_without_approval_says_its_registrar_can_deny():
+    nack = {"transfer_nack": "registrar"}
+    push = [step("update_transfer_lock", "opusdns", "OpusDNS removes the transfer lock at OpenSRS."),
+            step("request_transfer", "opusdns", "OpusDNS books the domain and has it pushed. The .uk registry gets no transfer request."),
+            step("push_transfer_out", "opusdns", "OpusDNS pushes the domain to its tag at OpenSRS."),
+            step("complete_transfer", "registry", "The .uk registry moves the domain to OpusDNS's tag.")]
+    data = export([row("com", usual_steps("com"), policies=nack), row("uk", push, push=True, policies=nack)])
+    facts = gen.registry_facts(data)
+    for tld in ("com", "uk"):
+        assert "can still deny" not in gen.render_tld(tld, data, facts[tld])
