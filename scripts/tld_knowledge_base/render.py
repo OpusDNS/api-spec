@@ -8,7 +8,10 @@ each page reflects the underlying spec faithfully without empty placeholders.
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
+from functools import cache
+from pathlib import Path
 from typing import Any, Iterable
 
 from . import countries, formatters as f
@@ -292,7 +295,24 @@ def _nameservers_and_dns(config: dict[str, Any]) -> list[str]:
     return _section("Nameservers & DNS", rows)
 
 
-def _transfer_policy(config: dict[str, Any]) -> list[str]:
+# Written by scripts/generate_transfer_pages.py from the registrar capabilities,
+# which know what the TLD specs don't (a push TLD, for one).
+TRANSFER_PAGES = Path(__file__).with_name("transfer_pages.json")
+
+
+@cache
+def _transfer_pages() -> dict[str, dict[str, str]]:
+    if not TRANSFER_PAGES.exists():
+        return {}
+    return json.loads(TRANSFER_PAGES.read_text(encoding="utf-8"))
+
+
+def _transfer_page(tld: str) -> str:
+    entry = _transfer_pages().get(tld)
+    return f"[{entry['title']}]({entry['path']})" if entry else ""
+
+
+def _transfer_policy(config: dict[str, Any], tld: str) -> list[str]:
     transfer = config.get("transfer_policies") or {}
     lock_policy = transfer.get("transfer_lock_policy") or {}
     lock_duration = transfer.get("transfer_lock_duration") or {}
@@ -326,6 +346,7 @@ def _transfer_policy(config: dict[str, Any]) -> list[str]:
             "Confirmation Required",
             _confirmation_label(transfer.get("transfer_ack"), transfer.get("transfer_nack")),
         ),
+        ("Transfer to OpusDNS", _transfer_page(tld)),
     ]
     return _section("Transfer Policy", rows)
 
@@ -418,7 +439,7 @@ def render(spec: dict[str, Any]) -> str:
     lines.extend(_domain_characteristics(config))
     lines.extend(_contacts_and_roles(config))
     lines.extend(_nameservers_and_dns(config))
-    lines.extend(_transfer_policy(config))
+    lines.extend(_transfer_policy(config, info.name))
     lines.extend(_whois_and_rdap(config))
     lines.extend(_dispute_resolution(config))
     lines.extend(_local_presence(config))

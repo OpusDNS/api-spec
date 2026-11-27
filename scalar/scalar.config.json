@@ -112,6 +112,12 @@
         "newTab": false
       },
       {
+        "title": "Transfers",
+        "icon": "line/arrow-right",
+        "to": "/transfers",
+        "newTab": false
+      },
+      {
         "title": "Changelog",
         "icon": "phosphor/regular/clock-counter-clockwise",
         "to": "/changelog",
@@ -356,6 +362,34 @@
                     "title": "Host objects (glue records)",
                     "icon": "line/programming-script-code",
                     "filepath": "content/domains/host-objects.md",
+                    "showInSidebar": true
+                  }
+                }
+              },
+              "/connected-registrars": {
+                "type": "group",
+                "title": "Connected registrars",
+                "icon": "phosphor/regular/plugs",
+                "children": {
+                  "/connect": {
+                    "type": "page",
+                    "title": "Connect a registrar",
+                    "icon": "line/interface-login-key",
+                    "filepath": "content/connect/overview.md",
+                    "showInSidebar": true
+                  },
+                  "/transfer-to-opusdns": {
+                    "type": "page",
+                    "title": "Transfer a connected domain to OpusDNS",
+                    "icon": "line/arrow-right",
+                    "filepath": "content/connect/transfer-to-opusdns.md",
+                    "showInSidebar": true
+                  },
+                  "/registrars": {
+                    "type": "page",
+                    "title": "What OpusDNS can do per registrar",
+                    "icon": "phosphor/regular/buildings",
+                    "filepath": "content/connect/registrars.md",
                     "showInSidebar": true
                   }
                 }
@@ -4012,6 +4046,146 @@
             "icon": "line/interface-content-book-open-pages",
             "filepath": "content/mcp-server/pages/faq.md",
             "showInSidebar": true
+          }
+        }
+      },
+      "/transfers": {
+        "type": "group",
+        "title": "Transfers",
+        "icon": "line/arrow-right",
+        "children": {
+          "/overview": {
+            "type": "page",
+            "title": "Transfer to OpusDNS",
+            "icon": "line/arrow-right",
+            "filepath": "content/transfers/index.md",
+            "showInSidebar": true
+          },
+          "/patterns": {
+            "type": "group",
+            "title": "Transfer patterns",
+            "children": {
+              "/gtlds": {
+                "type": "page",
+                "title": "gTLDs and most ccTLDs",
+                "filepath": "content/transfers/patterns/gtlds.md",
+                "showInSidebar": true
+              },
+              "/registry-auth-code": {
+                "type": "page",
+                "title": "Auth code set by the registry",
+                "filepath": "content/transfers/patterns/registry-auth-code.md",
+                "showInSidebar": true
+              },
+              "/auth-code": {
+                "type": "page",
+                "title": "Auth code only",
+                "filepath": "content/transfers/patterns/auth-code.md",
+                "showInSidebar": true
+              },
+              "/unlock-auth-code": {
+                "type": "page",
+                "title": "Unlock and auth code",
+                "filepath": "content/transfers/patterns/unlock-auth-code.md",
+                "showInSidebar": true
+              },
+              "/no-auth-code": {
+                "type": "page",
+                "title": "No auth code, with approval",
+                "filepath": "content/transfers/patterns/no-auth-code.md",
+                "showInSidebar": true
+              },
+              "/auth-code-approval": {
+                "type": "page",
+                "title": "Auth code and approval",
+                "filepath": "content/transfers/patterns/auth-code-approval.md",
+                "showInSidebar": true
+              },
+              "/unlock-registry-auth-code-approval": {
+                "type": "page",
+                "title": "Unlock, auth code set by the registry, and approval",
+                "filepath": "content/transfers/patterns/unlock-registry-auth-code-approval.md",
+                "showInSidebar": true
+              },
+              "/unlock-registry-auth-code": {
+                "type": "page",
+                "title": "Unlock and auth code set by the registry",
+                "filepath": "content/transfers/patterns/unlock-registry-auth-code.md",
+                "showInSidebar": true
+              },
+              "/push": {
+                "type": "page",
+                "title": "Push to a tag",
+                "filepath": "content/transfers/patterns/push.md",
+                "showInSidebar": true
+              }
+            }
+          },
+          "/registrars": {
+            "type": "group",
+            "title": "Registrars",
+            "children": {
+              "/centralnic": {
+                "type": "page",
+                "title": "CentralNic Reseller",
+                "filepath": "content/transfers/registrars/centralnic.md",
+                "showInSidebar": true
+              },
+              "/enom": {
+                "type": "page",
+                "title": "eNom",
+                "filepath": "content/transfers/registrars/enom.md",
+                "showInSidebar": true
+              },
+              "/internetx": {
+                "type": "page",
+                "title": "InterNetX",
+                "filepath": "content/transfers/registrars/internetx.md",
+                "showInSidebar": true
+              },
+              "/moniker": {
+                "type": "page",
+                "title": "Moniker",
+                "filepath": "content/transfers/registrars/moniker.md",
+                "showInSidebar": true
+              },
+              "/nic-direct": {
+                "type": "page",
+                "title": "NIC Direct",
+                "filepath": "content/transfers/registrars/nic-direct.md",
+                "showInSidebar": true
+              },
+              "/nicmanager": {
+                "type": "page",
+                "title": "NICManager",
+                "filepath": "content/transfers/registrars/nicmanager.md",
+                "showInSidebar": true
+              },
+              "/openprovider": {
+                "type": "page",
+                "title": "Openprovider",
+                "filepath": "content/transfers/registrars/openprovider.md",
+                "showInSidebar": true
+              },
+              "/opensrs": {
+                "type": "page",
+                "title": "OpenSRS",
+                "filepath": "content/transfers/registrars/opensrs.md",
+                "showInSidebar": true
+              },
+              "/domain-bestellsystem": {
+                "type": "page",
+                "title": "PartnerGate",
+                "filepath": "content/transfers/registrars/domain-bestellsystem.md",
+                "showInSidebar": true
+              },
+              "/realtime-register": {
+                "type": "page",
+                "title": "Realtime Register",
+                "filepath": "content/transfers/registrars/realtime-register.md",
+                "showInSidebar": true
+              }
+            }
           }
         }
       }

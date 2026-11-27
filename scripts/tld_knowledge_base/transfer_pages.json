@@ -1,0 +1,2134 @@
+{
+  "academy": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "accountants": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "actor": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ae.org": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ag": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "agency": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ai": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "airforce": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "apartments": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "app": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "archi": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "army": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "art": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "associates": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "at": {
+    "title": "Auth code and approval",
+    "path": "/transfers/patterns/auth-code-approval"
+  },
+  "attorney": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "auction": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "audio": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "auto": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "autos": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "baby": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "band": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "bar": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "bargains": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "bayern": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "be": {
+    "title": "Unlock and auth code set by the registry",
+    "path": "/transfers/patterns/unlock-registry-auth-code"
+  },
+  "beer": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "berlin": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "best": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "bet": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "bh": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "bike": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "bingo": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "bio": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "biz": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "biz.bh": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "black": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "blackfriday": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "blog": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "blue": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "boats": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "bond": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "boo": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "boston": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "boutique": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "br.com": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "broker": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "brussels": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "build": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "builders": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "business": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "bz": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ca": {
+    "title": "Unlock and auth code",
+    "path": "/transfers/patterns/unlock-auth-code"
+  },
+  "cab": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cafe": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cam": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "camera": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "camp": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "capital": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "car": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cards": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "care": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "careers": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cars": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "casa": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "case": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cash": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "casino": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "catering": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cc": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cc.bh": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "center": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ceo": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cfd": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ch": {
+    "title": "Auth code only",
+    "path": "/transfers/patterns/auth-code"
+  },
+  "channel": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "charity": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "chat": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cheap": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "christmas": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "church": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "city": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cl": {
+    "title": "Unlock and auth code",
+    "path": "/transfers/patterns/unlock-auth-code"
+  },
+  "claims": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cleaning": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "click": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "clinic": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "clothing": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cloud": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "club": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cn.com": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "co": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "co.com": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "co.nl": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "co.no": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "co.za": {
+    "title": "No auth code, with approval",
+    "path": "/transfers/patterns/no-auth-code"
+  },
+  "coach": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "codes": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "coffee": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "college": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cologne": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "com": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "com.bh": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "com.de": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "com.se": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "community": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "company": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "compare": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "computer": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "condos": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "construction": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "consulting": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "contact": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "contractors": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cooking": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cool": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "country": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "coupons": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "courses": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "credit": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "creditcard": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cruises": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cymru": {
+    "title": "Unlock, auth code set by the registry, and approval",
+    "path": "/transfers/patterns/unlock-registry-auth-code-approval"
+  },
+  "cyou": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "cz": {
+    "title": "Auth code set by the registry",
+    "path": "/transfers/patterns/registry-auth-code"
+  },
+  "dad": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "dance": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "dating": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "day": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "de": {
+    "title": "Auth code only",
+    "path": "/transfers/patterns/auth-code"
+  },
+  "de.com": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "dealer": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "deals": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "degree": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "delivery": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "democrat": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "dental": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "dentist": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "design": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "dev": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "diamonds": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "diet": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "digital": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "direct": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "directory": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "discount": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "diy": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "dk": {
+    "title": "Auth code set by the registry",
+    "path": "/transfers/patterns/registry-auth-code"
+  },
+  "doctor": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "dog": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "domains": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "earth": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "edu.bh": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "education": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ee": {
+    "title": "Unlock and auth code",
+    "path": "/transfers/patterns/unlock-auth-code"
+  },
+  "email": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "energy": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "engineer": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "engineering": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "enterprises": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "equipment": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "esq": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "estate": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "eu": {
+    "title": "Auth code set by the registry",
+    "path": "/transfers/patterns/registry-auth-code"
+  },
+  "eu.com": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "events": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "exchange": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "expert": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "exposed": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "express": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "fail": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "faith": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "family": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "fan": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "fans": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "farm": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "fashion": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "finance": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "financial": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "fish": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "fishing": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "fit": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "fitness": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "flights": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "florist": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "flowers": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "fm": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "fo": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "foo": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "food": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "football": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "forex": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "forsale": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "foundation": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "fr": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "frl": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "fun": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "fund": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "furniture": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "futbol": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "fyi": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "gallery": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "game": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "games": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "garden": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "gay": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "gb.net": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "gd": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "gg": {
+    "title": "Unlock and auth code",
+    "path": "/transfers/patterns/unlock-auth-code"
+  },
+  "gifts": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "gives": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "giving": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "gl": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "glass": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "global": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "gmbh": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "gold": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "golf": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "gr": {
+    "title": "Auth code set by the registry",
+    "path": "/transfers/patterns/registry-auth-code"
+  },
+  "gr.com": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "graphics": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "gratis": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "green": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "gripe": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "group": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "guide": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "guitars": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "guru": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "hair": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "hamburg": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "haus": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "health": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "healthcare": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "help": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "hiv": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "hockey": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "holdings": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "holiday": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "homes": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "horse": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "hospital": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "host": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "hosting": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "house": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "how": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "hu.net": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "icu": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "immo": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "immobilien": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "inc": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "industries": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "info": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "info.bh": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ing": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ink": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "institute": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "insure": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "international": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "investments": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "io": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "irish": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "it": {
+    "title": "Auth code and approval",
+    "path": "/transfers/patterns/auth-code-approval"
+  },
+  "je": {
+    "title": "Unlock and auth code",
+    "path": "/transfers/patterns/unlock-auth-code"
+  },
+  "jetzt": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "jewelry": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "jp.net": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "jpn.com": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "juegos": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "kaufen": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "kim": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "kitchen": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "koeln": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "kred": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "land": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "lat": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "latino": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "law": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "lawyer": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "lc": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "lease": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "legal": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "lgbt": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "li": {
+    "title": "Auth code only",
+    "path": "/transfers/patterns/auth-code"
+  },
+  "life": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "lifestyle": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "lighting": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "limited": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "limo": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "link": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "live": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "living": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "llc": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "loans": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "lol": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "london": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "lotto": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "love": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "lt": {
+    "title": "Auth code set by the registry",
+    "path": "/transfers/patterns/registry-auth-code"
+  },
+  "ltd": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "lu": {
+    "title": "No auth code, with approval",
+    "path": "/transfers/patterns/no-auth-code"
+  },
+  "luxe": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "luxury": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "lv": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "maison": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "makeup": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "management": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "market": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "marketing": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "markets": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "mba": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "me": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "me.bh": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "media": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "meme": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "memorial": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "mex.com": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "miami": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "mn": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "mobi": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "mobile": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "moda": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "mom": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "money": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "monster": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "mortgage": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "motorcycles": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "mov": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "movie": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "music": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "mx": {
+    "title": "Auth code and approval",
+    "path": "/transfers/patterns/auth-code-approval"
+  },
+  "name": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "name.bh": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "navy": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "net": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "net.bh": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "net.za": {
+    "title": "No auth code, with approval",
+    "path": "/transfers/patterns/no-auth-code"
+  },
+  "network": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "new": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "news": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "nexus": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ngo": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ninja": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "nl": {
+    "title": "Auth code set by the registry",
+    "path": "/transfers/patterns/registry-auth-code"
+  },
+  "no": {
+    "title": "Auth code only",
+    "path": "/transfers/patterns/auth-code"
+  },
+  "nrw": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "nu": {
+    "title": "Auth code set by the registry",
+    "path": "/transfers/patterns/registry-auth-code"
+  },
+  "one": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ong": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "online": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ooo": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "org": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "org.bh": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "org.za": {
+    "title": "No auth code, with approval",
+    "path": "/transfers/patterns/no-auth-code"
+  },
+  "organic": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "page": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "partners": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "parts": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "pet": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "phd": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "photo": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "photography": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "photos": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "pics": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "pictures": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "pink": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "pizza": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "pl": {
+    "title": "Auth code only",
+    "path": "/transfers/patterns/auth-code"
+  },
+  "place": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "plumbing": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "plus": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "pm": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "poker": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "pr": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "press": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "pro": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "productions": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "prof": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "promo": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "properties": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "protection": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "pt": {
+    "title": "Auth code only",
+    "path": "/transfers/patterns/auth-code"
+  },
+  "pub": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "qpon": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "quest": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "radio.am": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "radio.fm": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "re": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "recipes": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "red": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "rehab": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "reise": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "reisen": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "reit": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "rent": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "rentals": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "repair": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "report": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "republican": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "restaurant": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "reviews": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "rip": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ro": {
+    "title": "Auth code set by the registry",
+    "path": "/transfers/patterns/registry-auth-code"
+  },
+  "rocks": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "rodeo": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "rsvp": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ru.com": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ruhr": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "run": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "sa.com": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "saarland": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "sale": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "salon": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "sarl": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "sbs": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "sc": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "school": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "schule": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "se": {
+    "title": "Auth code set by the registry",
+    "path": "/transfers/patterns/registry-auth-code"
+  },
+  "se.net": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "security": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "select": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "services": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "sexy": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "shiksha": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "shoes": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "shop": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "shopping": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "show": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "si": {
+    "title": "Auth code only",
+    "path": "/transfers/patterns/auth-code"
+  },
+  "singles": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "site": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "sk": {
+    "title": "Unlock and auth code",
+    "path": "/transfers/patterns/unlock-auth-code"
+  },
+  "ski": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "skin": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "soccer": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "social": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "software": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "solar": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "solutions": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "soy": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "space": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "storage": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "store": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "studio": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "study": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "style": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "supplies": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "supply": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "support": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "surf": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "surgery": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "systems": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "tattoo": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "tax": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "taxi": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "team": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "tech": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "technology": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "tel": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "tennis": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "tf": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "theater": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "theatre": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "tickets": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "tienda": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "tips": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "tires": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "tirol": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "to": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "today": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "tools": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "tours": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "town": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "toys": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "trade": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "trading": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "training": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "travel": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "tv": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "uk": {
+    "title": "Push to a tag",
+    "path": "/transfers/patterns/push"
+  },
+  "uk.com": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "uk.net": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "university": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "uno": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "us": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "us.com": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "us.org": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "vacations": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "vc": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "vegas": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ventures": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "vet": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "vg": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "viajes": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "video": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "villas": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "vin": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "vip": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "vision": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "vlaanderen": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "vodka": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "vote": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "voto": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "voyage": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "vu": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "wales": {
+    "title": "Unlock, auth code set by the registry, and approval",
+    "path": "/transfers/patterns/unlock-registry-auth-code-approval"
+  },
+  "watch": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "watches": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "web": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "web.za": {
+    "title": "No auth code, with approval",
+    "path": "/transfers/patterns/no-auth-code"
+  },
+  "website": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "wedding": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "wf": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "wien": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "wiki": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "wine": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "work": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "works": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "world": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "ws": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "wtf": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "xn--c1avg": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "xn--i1b6b1a6a2e": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "xn--mgbcpq6gpa1a": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "xn--nqv7f": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "xn--q9jyb4c": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "xyz": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "yachts": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "yoga": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "yt": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "za.com": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "zip": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  },
+  "zone": {
+    "title": "gTLDs and most ccTLDs",
+    "path": "/transfers/patterns/gtlds"
+  }
+}

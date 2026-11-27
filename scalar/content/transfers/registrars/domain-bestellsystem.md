@@ -1,0 +1,35 @@
+# Transfer from PartnerGate
+
+To transfer a domain from PartnerGate, [connect](/products/connected-registrars/connect) your PartnerGate account and [request the transfer](/products/connected-registrars/transfer-to-opusdns). In the API, PartnerGate is `DOMAIN_BESTELLSYSTEM`.
+
+## By transfer pattern
+
+Your TLD's transfer pattern sets which steps a transfer has. PartnerGate sets which of them OpusDNS can take for you. ➖ marks a step your TLD doesn't have. Where the table shows ↗️ under Get the auth code, send the code as `auth_code` in your request.
+
+Search this page for your TLD. If it isn't listed exactly, it is in the first row.
+
+| Transfer pattern | TLDs | Remove the lock | Get the auth code | Approve |
+| --- | --- | :---: | :---: | :---: |
+| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | Every other TLD, such as [.com](/tld-knowledge-base/gtlds/com), [.net](/tld-knowledge-base/gtlds/net) and [.org](/tld-knowledge-base/gtlds/org) | ↗️ You, at PartnerGate | ✅ OpusDNS | ✅ OpusDNS |
+| [Auth code set by the registry](/transfers/patterns/registry-auth-code) | [.cz](/tld-knowledge-base/cctlds/cz), [.dk](/tld-knowledge-base/cctlds/dk), [.eu](/tld-knowledge-base/cctlds/eu), [.gr](/tld-knowledge-base/cctlds/gr), [.lt](/tld-knowledge-base/cctlds/lt), [.nl](/tld-knowledge-base/cctlds/nl), [.nu](/tld-knowledge-base/cctlds/nu), [.ro](/tld-knowledge-base/cctlds/ro), [.se](/tld-knowledge-base/cctlds/se) | ➖ | ✅ OpusDNS | ➖ |
+| [Auth code only](/transfers/patterns/auth-code) | [.ch](/tld-knowledge-base/cctlds/ch), [.de](/tld-knowledge-base/cctlds/de), [.li](/tld-knowledge-base/cctlds/li), [.no](/tld-knowledge-base/cctlds/no), [.pl](/tld-knowledge-base/cctlds/pl), [.pt](/tld-knowledge-base/cctlds/pt), [.si](/tld-knowledge-base/cctlds/si) | ➖ | ✅ OpusDNS | ➖ |
+| [Unlock and auth code](/transfers/patterns/unlock-auth-code) | [.ca](/tld-knowledge-base/cctlds/ca), .cl, .ee, [.gg](/tld-knowledge-base/cctlds/gg), [.je](/tld-knowledge-base/cctlds/je), [.sk](/tld-knowledge-base/cctlds/sk) | ↗️ You, at PartnerGate | ✅ OpusDNS | ➖ |
+| [No auth code, with approval](/transfers/patterns/no-auth-code) | [.co.za](/tld-knowledge-base/cctlds/co.za), [.lu](/tld-knowledge-base/cctlds/lu), [.net.za](/tld-knowledge-base/cctlds/net.za), [.org.za](/tld-knowledge-base/cctlds/org.za), [.web.za](/tld-knowledge-base/cctlds/web.za) | ➖ | ➖ | ✅ OpusDNS |
+| [Auth code and approval](/transfers/patterns/auth-code-approval) | [.at](/tld-knowledge-base/cctlds/at), [.it](/tld-knowledge-base/cctlds/it), [.mx](/tld-knowledge-base/cctlds/mx) | ➖ | ✅ OpusDNS | ✅ OpusDNS |
+| [Unlock, auth code set by the registry, and approval](/transfers/patterns/unlock-registry-auth-code-approval) | [.cymru](/tld-knowledge-base/gtlds/cymru), [.wales](/tld-knowledge-base/gtlds/wales) | ↗️ You, at PartnerGate | ✅ OpusDNS | ✅ OpusDNS |
+| [Unlock and auth code set by the registry](/transfers/patterns/unlock-registry-auth-code) | [.be](/tld-knowledge-base/cctlds/be) | ↗️ You, at PartnerGate | ✅ OpusDNS | ➖ |
+| [Push to a tag](/transfers/patterns/push) | [.uk](/tld-knowledge-base/cctlds/uk) | ↗️ You, at PartnerGate | ➖ | ↗️ You, at PartnerGate (push) |
+
+These TLDs differ from their pattern's row:
+
+| Transfer pattern | TLDs | Remove the lock | Get the auth code | Approve |
+| --- | --- | :---: | :---: | :---: |
+| [Auth code set by the registry](/transfers/patterns/registry-auth-code) | [.nu](/tld-knowledge-base/cctlds/nu), [.se](/tld-knowledge-base/cctlds/se) | ➖ | ↗️ You, at PartnerGate (a new one) | ➖ |
+| [gTLDs and most ccTLDs](/transfers/patterns/gtlds) | [.com.se](/tld-knowledge-base/cctlds/com.se) | ↗️ You, at PartnerGate | ↗️ You, at PartnerGate (a new one) | ✅ OpusDNS |
+| [No auth code, with approval](/transfers/patterns/no-auth-code) | [.lu](/tld-knowledge-base/cctlds/lu) | ➖ | ➖ | 👤 The holder, by email |
+
+.is has no transfer at its registry. See [Transfer to OpusDNS](/transfers/overview#transfer-patterns) for what to do instead.
+
+At [.uk](/tld-knowledge-base/cctlds/uk), the domain is pushed to OpusDNS's tag instead of approved.
+
+Until you transfer a domain, OpusDNS can make some changes to it at PartnerGate. See [What OpusDNS can do at PartnerGate](/products/connected-registrars/registrars#partnergate).
